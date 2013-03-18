@@ -7,7 +7,8 @@
         
        function eventoscernanos($eventsNears){
             $cont = 0; //cantidad de eventos encontrados para mostrarlos en el mapa
-            $listevents = '<div class="eventsnear">';
+            //$listevents = '<div class="eventsnear">';
+            $listevents = '';
             $infodiv = '';
             $e = new evento();
              foreach ($eventsNears as $dcto){
@@ -22,24 +23,39 @@
                         $folder = (string)$dcto['producido_por']['_id'];
                         $url = '../images/productoras/'.$folder.'/'.$dcto['fotos'][0];
 
-                                     $listevents.= '<div class="item-event">';
+                                     $listevents.= '<div class="item-eventcerca">
+                                                        <div class="event-right">
+                                                          <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
+                                                             <div class="num-event"></div>
+                                                        </div>
+                                                    </div>';
                                 
-                                  $listevents.= '   
-                                                     <div style="background-image:url('.$url.'); background-size: cover" class="foto-event"></div>
-                                                     <div class="info-event">
-                                                        <div class="date-event">'.$dcto['fecha_muestra'].'</div><br><br>
-                                                        <a class="tittle-event" target="_blank" href="../evento/'.$dcto['_id'].'" >'.$dcto['nombre'].'</a> 
-                                                        <!--<div class="productora-event">
-                                                            Producido por: '.$dcto['producido_por']['nombre'].'
-                                                        </div>-->
-                                                    </div>
-
-
+                                  $listevents.= '   <a class="tit-eventcerca link" >'.$dcto['nombre'].'</a>
+                                                       <div class="info-eventcerca">
+                                                            <div class="item-infocerca">
+                                                                <div class="preg-cuando">¿Cuándo?</div>
+                                                               <div id="fechaevent" class="resp-cuando">'.$dcto['fecha_muestra'].'</div>
+                                                           </div>
+                                                           
+                                                           <div class="item-infocerca">
+                                                                <div class="preg-cuando">¿Dónde?</div>
+                                                                <div id="dondeevent" class="resp-cuando">Estadio nacional #233, Santiago</div>
+                                                            </div>
+                                                            
+                                                             <div class="item-infocerca">
+                                                                <div class="preg-cuando">¿Cuánto sale?</div>
+                                                                <div id="precioevent" class="resp-cuando">Gratis</div>
+                                                            </div>
+                                                                
+                                                           
+                                                        
+                                                      </div>
                                                  ';     
-                                $listevents.= '</div>'; 
+                                        $listevents.= '</div>
+                                                    </div>'; 
 
                     }
-                    $listevents.= '</div>';
+                    //$listevents.= '</div>';
                     $infodiv.= '<div id="number">'.$cont.'</div>';
                     $arr = array('listevents'=>$listevents,
                                  'infodiv'=>$infodiv);
@@ -130,7 +146,23 @@
                                 $listeventsor.= '</div>';
                                 return $listeventsor;
        }
-
+       
+       if(isset($_REQUEST['findnear2'])){
+            $lat = $_REQUEST['lat'];
+            $long = $_REQUEST['lng'];
+            $event = new evento();
+            
+            $eventsNears = $event->findnear((float)$lat, (float)$long);
+            $arr = eventoscernanos($eventsNears);
+            $infodiv = $arr['infodiv'];//información para que el mapa lea y muestre los pines con eventos
+            $listevents = $arr['listevents'];
+            
+            $resp = array("infodiv"=>$infodiv,
+                          "listevents"=>$listevents
+                         );
+            echo json_encode($resp);
+       }
+       
        if(isset($_REQUEST['findnear'])){
             $lat = $_REQUEST['lat'];
             $long = $_REQUEST['lng'];
