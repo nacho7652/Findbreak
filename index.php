@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    //O
     date_default_timezone_set("Chile/Continental");
     require_once 'function/place.php';
     require_once 'DAL/connect.php';
