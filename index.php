@@ -223,13 +223,14 @@
                 </div>
             <?php } ?>
         </div>
-        
-        <footer id="bottom">
-            <p class="textbottom">
-                Estudiantes de Inacap Desarrolladores del proyecto Findbreak - Fonos: 652 213 55 / 541 67 51 / 546 28 51 -
-                <span class="emailbottom">info@findbreak.com</span>
-            </p>
-        </footer>
+        <?php if($page_site != 'cerca'){?>
+            <footer id="bottom">
+                <p class="textbottom">
+                    Estudiantes de Inacap Desarrolladores del proyecto Findbreak - Fonos: 652 213 55 / 541 67 51 / 546 28 51 -
+                    <span class="emailbottom">info@findbreak.com</span>
+                </p>
+            </footer>
+       <?php } ?>
          <script type="text/javascript" src="js/upload.js"></script>
          <script type="text/javascript" src="js/script.js"></script>
         <script type="text/javascript" src="js/publicar_evento.js"></script>
