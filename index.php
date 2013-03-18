@@ -1,4 +1,5 @@
 <?php 
+//amo a: don c, viñuela, elgueda, del pilar, lourdes
     session_start();
     //O
     date_default_timezone_set("Chile/Continental");
