@@ -1,0 +1,83 @@
+
+.landing {
+    margin-top: 103px;
+}
+.banner-landing {
+    height: 162px;
+}
+.info-landing{
+    width: 100%;
+    height: 500px;
+}
+.content-infolanding {
+    width: 950px;
+    height: 500px;
+    margin: 0px auto;
+    padding-left: 62px;
+}
+.button-rol {
+    width: 211px;
+    height: 65px;
+    float: left;
+    margin-right: 15px;
+    margin-top: 19px;
+    background: rgba(237, 237, 237, 0.7);
+    border: 1px solid #DADADA;
+    box-shadow: 0px 0px 3px 2px #F6F6F6;
+    border-radius: 2px;
+}
+.button-rol:hover{
+    background: rgba(225, 230, 232, 0.7);
+}
+.content-infolanding img{
+    float: left;
+}
+.text-rol {
+     font-family: Impact;
+     margin: 23px 3px 0px 15px;
+    float: left;
+     color: #9D9D9D;
+     font-size: 0.9em;
+     letter-spacing: 1px;
+}
+.button-rol #fondouser{
+    background: url('images/botones/fondo-roles-sprite.png') no-repeat;
+    width: 45px;
+    height: 46px;
+    float: left;
+    margin: 8px 0px 0px 11px;  
+}
+.button-rol:hover{
+   cursor: pointer;
+}
+
+ #fondoproductora {
+   background: url('images/botones/fondo-roles-sprite.png') no-repeat -45px 1px;
+    width: 51px;
+    height: 50px;
+    float: left;
+    margin: 5px 0px 0px 5px;
+}
+#fondoproveedor {
+    background: url('images/botones/fondo-roles-sprite.png') no-repeat -97px 0px;
+    width: 53px;
+    height: 46px;
+    float: left;
+    margin: 8px 0px 0px 0px;
+}
+#fondoestablecimiento {
+    background: url('images/botones/fondo-roles-sprite.png') no-repeat -152px -1px;
+    width: 60px;
+    height: 46px;
+    float: left;
+    margin: 7px 0px 0px 0px;  
+}
+#text-usuario {
+    margin-left: 24px;
+}
+#text-productora {
+    margin-left: 20px;
+}
+#text-establecimiento {
+    margin-left: 18px;
+}

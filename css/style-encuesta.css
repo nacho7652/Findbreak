@@ -1,0 +1,172 @@
+#coverall .titlebig {
+   font-size: 1.1em;
+    border-bottom: 1px dotted #AD289C;
+    padding: 9px 0px;
+    color: white;
+    float: left;
+    width: 668px;
+    margin: 15px 0px 0px 0px;
+    background-color: #962154;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#coverall .textbig {
+    float: left;
+    width: 630px;
+    margin: 17px 0px 0px 14px;
+    font-size: 0.9em;
+    text-align: justify;
+}
+#coverall .titlebottom {
+    border-right: 1px dotted #1D6685;
+    height: 52px;
+    margin: 0px 0px 0px 0px;
+    float: right;
+}
+#coverall .suscription {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    margin-bottom: 11px;
+}
+#coverall .query{
+    font-size: 1.1em;
+    width: 100%;
+    display: block;
+    padding: 14px 0px;
+    border-radius: 4px;
+}
+#coverall .boton.accept {
+    float: left;
+    margin: 8px 15px 0px 159px;
+}
+#coverall .boton.noaccept {
+    margin-top: 8px;
+    float: left;
+}
+#top .trans{
+    position: absolute;
+}
+.explicacion {
+    float: left;
+    width: 100%;
+    height: 125px;
+    color:#FFF;
+}
+.tituloexplicacion{
+    color: white;
+    width: 95%;
+    margin: 0px 0px 5px 0px;
+    padding: 10px 0px 10px 5%;
+}
+.explicacion span{
+    font-size: 0.9em;
+}
+.explicacion p {
+    width: 90%;
+    margin: 4px 0px 0px 67px;
+    line-height: 26px;
+    font-size: 0.8em;
+    text-align: justify;
+}
+#body.productora{
+    width: 950px; 
+}
+.productora .pregunta {
+    width: 100%;
+    margin: 0px 0px 29px 0px;
+    overflow: hidden;
+    padding-bottom: 8px;
+
+    color: #FFF;
+}
+.campofaltante{
+    float: right;
+    color: #f00;
+    display: none;
+    margin-right: 198px;
+    font-size: 0.8em;
+    background-color: #962154;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 4px;
+    color: #fff;
+}
+.productora .lastdiv {
+    width: 100%;
+    margin: 57px 0px 45px 21px;
+    overflow: hidden;
+    padding-bottom: 8px;
+    color: #FFF;
+}
+.pregunta .nombre{
+    font-size: 0.8em; 
+}
+.alternativas {
+width: 39px;
+overflow: hidden;
+margin: 0px 0px 0px 21px;
+font-size: 0.8em;
+}
+.ej{
+    font-weight: normal;
+}
+.alternativasabiertas{
+    overflow: hidden;
+    margin: 0px 0px 0px 21px;
+    font-size: 0.9em;
+}
+
+.textarea{
+    width: 529px;
+    resize: none;
+    font-size: 0.9em;
+    margin-top: 4px;
+    height: 80px;
+}
+.si {
+margin-right: 5px;
+}
+.altabierta span {
+font-weight: bold;
+}
+.alt {
+float: left;
+width: 100%;
+}
+.si, .no{
+float: right;
+margin-top: 3px;
+}
+input[type="radio"] {
+float: left;
+margin: 5px 0px 0px 0px;
+}
+.boton {
+    display: block;
+    width: 150px;
+    padding: 7px 5px;
+    background-color: #962154;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0px 2px 7px -4px #FFF inset;
+    color: white;
+    text-decoration: none;
+}
+.boton:hover{
+    color:#FFFF00;
+}
+.botonright{
+    float: right;
+    margin: 0px 179px 0px 24px;
+}
+.divsuscription, .contact{
+    font-size: 0.9em;
+}
+.mailproductora {
+    padding: 4px 5px;
+    width: 243px;
+}

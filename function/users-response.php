@@ -1,0 +1,116 @@
+<?php
+            require_once '../DAL/connect.php';
+            require_once '../DAL/usuario.php';
+    if(!empty($_POST["search-friend"]))
+    {
+             $busqueda = $_POST["textoAmigo"];
+            $usuario = new usuario();
+            $coincidencia = $usuario->findFriend($busqueda);
+            
+            
+            //crear cuadro de busqueda de AMIGOS
+            $cuadrouser = '<div class="title-search-item">Personas</div>';
+            $hayuser = false;
+            foreach($coincidencia as $dcto)
+            {
+                $hayuser = true;
+                $cuadrouser.= 
+                '<div class="item-search item-search-friend">
+                   <div class="foto-item-search"></div>
+                   <div class="name-item-search">'.$dcto["nombre"].'</div>
+                   <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
+                </div>';
+                
+            }
+            if(!$hayuser){//si no hay usuarios encontrados borro el titulo
+                $cuadrouser = '';
+            }
+            //EVENTOS 
+             require_once '../DAL/evento.php';
+             $cuadroevento = '<div class="title-search-item">Eventos</div>';
+             
+             $evento = new evento();
+             $coincidenciaevento = $evento->filtrar($busqueda);
+             $hayevents = false;
+             foreach($coincidenciaevento as $dcto)
+            {
+                $hayevents = true;
+                $cuadroevento.= 
+                '<a href="../evento/'.(string)$dcto['_id'].'" target="_blank" class="item-search item-search-event">
+                   <div class="foto-item-search"></div>
+                   <div class="name-item-search">'.$dcto["nombre"].'</div>
+                   <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
+                </a>';
+                
+            }
+            
+            if(!$hayevents){//si no hay usuarios encontrados borro el titulo
+                $cuadroevento = '';
+            }
+            //ESTABLECIMIENTOS
+//            if($cuadro == ""){
+//                $cuadro = "no";
+//            }
+            echo $cuadrouser.$cuadroevento;
+    }
+           
+    if(!empty($_POST["reqfriend"]))
+    {
+        
+
+        session_start();
+
+         $id = $_SESSION["userid"];
+         $idSolicitado= $_POST['idSolicitado'];
+         
+
+        $solicitud = new usuario();
+        $userSolicitante = $solicitud->findforid($id);
+        $userSolicitado = $solicitud->findforid($idSolicitado);
+        
+        $resp = $solicitud->SaveRequest($id,$idSolicitado , $userSolicitado['nombre'], $userSolicitante['nombre']);
+
+        echo $resp;
+    }
+    
+    if(!empty($_POST["solicitudaceptada"]))
+    {
+        
+        $idSolicitud = $_POST['idsolicitud'];
+        $usuario = new usuario();
+        $resp = $usuario->AceptarSolicitud($idSolicitud);
+        echo $resp;
+        
+        
+        
+    }
+    if(!empty($_POST["solicitud-rechazada"]))
+    {
+        
+        $idSolicitud = $_POST['id-solicitud'];
+        $usuario = new usuario();
+        $resp = $usuario->RechazarSolicitud($idSolicitud);
+        echo $resp;
+        
+        
+    }
+    
+    if(!empty($_POST["guardaruser"]))
+    {
+//"guardaruser=1&nomuser="+nomeuser+"&nombrefoto="+res.nombrefoto+"&apellido="+apellido+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
+        $name = $_POST['nomuser'];
+        $apellido = $_POST['apellido'];
+        $mail = $_POST['correousuario'];
+        $pass = $_POST['claveusuario'];
+        
+        $usuario = new usuario();
+        
+        $resp = $usuario->insertar(strtolower($name), strtolower($apellido), strtolower($mail), $pass);
+        $_SESSION['mailuser'] = $mail;
+        echo $resp;
+        
+        
+    }
+            
+
+?>
