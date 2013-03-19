@@ -1,4 +1,11 @@
 <?php 
+    session_start();
+    date_default_timezone_set("Chile/Continental");
+    require_once 'function/place.php';
+    require_once 'DAL/connect.php';
+    require_once 'DAL/usuario.php';
+    $contsol=0;
+    
     $agregarEvento = 0;
     if($agregarEvento == 1){
             require_once 'DAL/evento.php';
@@ -20,12 +27,6 @@
             $evento = new evento();                      
             echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter);
     }
-    session_start();
-    date_default_timezone_set("Chile/Continental");
-    require_once 'function/place.php';
-    require_once 'DAL/connect.php';
-    require_once 'DAL/usuario.php';
-    $contsol=0;
 //    if(isset($_POST['cerrarsession'])){
 //        session_destroy();
 //        header("location:../home/");

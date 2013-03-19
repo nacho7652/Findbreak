@@ -96,15 +96,16 @@ function geolocalizarCentroStgo(address){
             
             var lat = map.getCenter().lat();
             var lng = map.getCenter().lng();
-         // alert(lat); alert(lng); 
+            return false;
+          //alert(lat); alert(lng); 
             $.ajax({
                 data: "findnear2=1&lat="+lat+"&lng="+lng,
                 type: "POST",
                 dataType: "json",
-                url: "../function/event-response.php",
+                url: "/findbreak/function/event-response.php",
                 success: function(data){
                     
-                alert(data.infodiv)
+                alert(data.listevents)
                 $('.loading-events').hide();
                 $('.event-hidden').html(data.infodiv);
                 $('.inner-list-maps').html(data.listevents);

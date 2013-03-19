@@ -10,7 +10,7 @@
                     <input id="boton-buscarcerca" type="button" class="sprites" />
                   </div> 
                   <div class="input-textparent3">
-                    <input type="text" value="¿DÓNDE ESTÁS?" id="search-location" class="input-transf"/>
+                    <input type="text" value="UBICACIÓN ACTUAL" id="search-location" class="input-transf"/>
                     <input id="boton-location" type="button" class="sprites loc-activado" />
                   </div>
               </div>
@@ -73,5 +73,5 @@
    
         
     </div>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> <!--Cargamos la API de Google Maps-->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> Cargamos la API de Google Maps
     <script type="text/javascript" src="js/maps.js"></script>

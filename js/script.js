@@ -35,7 +35,7 @@ $(document).ready(function(){
             }
         })
          $('#search-location').focus(function(){
-            if($(this).val() == '¿DÓNDE ESTÁS?'){
+            if($(this).val() == 'UBICACIÓN ACTUAL'){
                 $(this).css('color',colorfocus);
                 $(this).val('');
             }
@@ -43,7 +43,7 @@ $(document).ready(function(){
         $('#search-location').focusout(function(){
             if($(this).val() == ''){
                 $(this).css('color','rgba(129, 78, 78, 0.73)');
-                $(this).val('¿DÓNDE ESTÁS?');
+                $(this).val('UBICACIÓN ACTUAL');
             }
         })
         //reset location

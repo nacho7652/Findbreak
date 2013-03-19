@@ -670,6 +670,7 @@ top: 147px;
     margin-top: 13px;
     margin-bottom: 2px;
     color: rgb(163, 96, 96);
+    display: block; 
 }
 .info-eventcerca {
     background: #fff;

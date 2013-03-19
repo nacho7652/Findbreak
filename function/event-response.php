@@ -22,15 +22,13 @@
                      //   $mongotime = New Mongodate(strtotime($realtime));
                         $folder = (string)$dcto['producido_por']['_id'];
                         $url = '../images/productoras/'.$folder.'/'.$dcto['fotos'][0];
-
-                                     $listevents.= '<div class="item-eventcerca">
-                                                        <div class="event-right">
-                                                          <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
-                                                             <div class="num-event"></div>
-                                                        </div>
-                                                    </div>';
+                        $listevents.= '<div class="item-eventcerca">
+                                         <div class="barra"></div>
+                                            <div class="event-right">
+                                                        <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
+                                                         <div class="num-event">#</div>';
                                 
-                                  $listevents.= '   <a class="tit-eventcerca link" >'.$dcto['nombre'].'</a>
+                                  $listevents.= '   <a href="#" class="tit-eventcerca link" >'.$dcto['nombre'].'</a>
                                                        <div class="info-eventcerca">
                                                             <div class="item-infocerca">
                                                                 <div class="preg-cuando">¿Cuándo?</div>
@@ -39,20 +37,20 @@
                                                            
                                                            <div class="item-infocerca">
                                                                 <div class="preg-cuando">¿Dónde?</div>
-                                                                <div id="dondeevent" class="resp-cuando">Estadio nacional #233, Santiago</div>
+                                                                <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
                                                             </div>
                                                             
                                                              <div class="item-infocerca">
                                                                 <div class="preg-cuando">¿Cuánto sale?</div>
-                                                                <div id="precioevent" class="resp-cuando">Gratis</div>
+                                                                <div id="precioevent" class="resp-cuando">'.$dcto['descripcion'].'</div>
                                                             </div>
                                                                 
-                                                           
+                                                           <div class="botongreen">Ver información</div>
                                                         
                                                       </div>
                                                  ';     
-                                        $listevents.= '</div>
-                                                    </div>'; 
+                          $listevents.= '</div>
+                                     </div>'; 
 
                     }
                     //$listevents.= '</div>';
