@@ -96,29 +96,29 @@ function geolocalizarCentroStgo(address){
             
             var lat = map.getCenter().lat();
             var lng = map.getCenter().lng();
-            //alert(lat); alert(lng); 
+          alert(lat); alert(lng); 
             $.ajax({
-                data: "findnear=1&lat="+lat+"&lng="+lng,
+                data: "findnear2=1&lat="+lat+"&lng="+lng,
                 type: "POST",
                 dataType: "json",
                 url: "../function/event-response.php",
                 success: function(data){
                     
-             
+                alert(data.infodiv)
                 $('.loading-events').hide();
                 $('.event-hidden').html(data.infodiv);
                 $('.inner-list-maps').html(data.listevents);
-                $('.list-events-pop').html(data.listeventspop);
-               
-                if(data.listeventsfavo != '')//si devuelve eventos favoritos
-                {
-                    $('.list-events-favo').html(data.listeventsfavo);
-                    
-                }else{
-                    $('.divseventsfavo').hide();
-                }
-                
-                $('.list-events-ord').html(data.listeventsporfecha);
+//                $('.list-events-pop').html(data.listeventspop);
+//               
+//                if(data.listeventsfavo != '')//si devuelve eventos favoritos
+//                {
+//                    $('.list-events-favo').html(data.listeventsfavo);
+//                    
+//                }else{
+//                    $('.divseventsfavo').hide();
+//                }
+//                
+//                $('.list-events-ord').html(data.listeventsporfecha);
                 
                // alert(data.listeventsfavo);
 //                    if(data.exitoso == 0){
