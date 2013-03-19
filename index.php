@@ -1,7 +1,26 @@
 <?php 
-//amo a: don c, viñuela, elgueda, del pilar, lourdes
+    $agregarEvento = 0;
+    if($agregarEvento == 1){
+         $idproductora = (string)$_SESSION['userid'];
+            $nombreproductora = (string)$_SESSION['username'];
+            $nom = 'Lolapalusa';
+            $dir = 'Santa Sofia #2092';
+            $arrayfotos = 'foto1.jps, foto2.jpg';
+            $fec = $_POST["dateevent"];
+            $hor = $_POST["hourevent"];
+            $fechString = $fec;   
+            $fechMongo = new MongoDate(strtotime($fec.' 23:59:59')); 
+            $tag = $_POST["tagsevent"];
+            $lat = $_POST["lat"];
+            $lng = $_POST["lng"];
+            $desc = $_POST['descripcionevent'];
+            $urltwitter = $_POST['urltwitter'];
+            $urlfacebook = $_POST['urlface'];        
+            $evento = new evento();
+                                    
+            echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter);
+    }
     session_start();
-    //O
     date_default_timezone_set("Chile/Continental");
     require_once 'function/place.php';
     require_once 'DAL/connect.php';
