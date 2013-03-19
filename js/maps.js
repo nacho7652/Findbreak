@@ -96,7 +96,7 @@ function geolocalizarCentroStgo(address){
             
             var lat = map.getCenter().lat();
             var lng = map.getCenter().lng();
-          alert(lat); alert(lng); 
+         // alert(lat); alert(lng); 
             $.ajax({
                 data: "findnear2=1&lat="+lat+"&lng="+lng,
                 type: "POST",
