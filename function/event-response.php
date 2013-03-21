@@ -214,8 +214,12 @@
             $arrayfotos = $_POST["nombresfoto"];
             $fec = $_POST["dateevent"];
             $hor = $_POST["hourevent"];
-            $fechString = $fec;   
-            $fechMongo = new MongoDate(strtotime($fec.' 23:59:59')); 
+            $fechas = explode(',', $fec);  
+            $fechMongo = array();
+            for($i=0; $i<count($fechas); $i++){
+                $fechMongo[] = new MongoDate(strtotime($fec.' 23:59:59')); 
+            }
+           // $fechMongo = new MongoDate(strtotime($fec.' 23:59:59')); 
             $tag = $_POST["tagsevent"];
             $lat = $_POST["lat"];
             $lng = $_POST["lng"];
@@ -226,7 +230,7 @@
             
             $evento = new evento();
                                     
-            echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter);
+            echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechas, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter);
         }
         
         

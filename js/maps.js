@@ -3,13 +3,13 @@ $(document).ready(function(){
     var latitud;
     var longitud;
     var map;
+    var manualLocation = false;
 $(document).ready(function () {
     localizame();
     
  });
   function cargarMapa() {
             var latlon = new google.maps.LatLng(latitud,longitud); /* Creamos un punto con nuestras coordenadas */
-
             var myOptions = {
                 scrollwheel: false,
                 zoom: 12,
@@ -38,10 +38,11 @@ $(document).ready(function () {
                     position: google.maps.ControlPosition.RIGHT_TOP
                 }
             };/*Configuramos una serie de opciones como el zoom del mapa y el tipo. */
+            
+            
             map = new google.maps.Map($("#map_canvas").get(0), myOptions); /*Creamos el mapa y lo situamos en su capa */
             
             var coorMarcador = new google.maps.LatLng(latitud,longitud); /*Un nuevo punto con nuestras coordenadas para el marcador (flecha) */
-                
             var marcador = new google.maps.Marker({
 				/*Creamos un marcador*/
                 position: coorMarcador, /*Lo situamos en nuestro punto */
@@ -50,7 +51,7 @@ $(document).ready(function () {
             });
   }
             
- function localizame() {
+ function localizame() {   
             if (navigator.geolocation) { /* Si el navegador tiene geolocalizacion */
                 navigator.geolocation.getCurrentPosition(coordenadas);
             }else{
@@ -58,7 +59,7 @@ $(document).ready(function () {
             }
         }
         
-        function coordenadas(position) {
+function coordenadas(position) {
             latitud = position.coords.latitude; /*Guardamos nuestra latitud*/
             longitud = position.coords.longitude;
             geolocalizar();
@@ -72,67 +73,71 @@ function geolocalizar(){
         cargarMapa();
         geocoder.geocode({'address': address}, geocodeResult);
 }
-function geolocalizarCentroStgo(address){
-  
-        DeletePrintStore();
-        var geocoder = new google.maps.Geocoder();
+function geolocalizarManual(address){
+         manualLocation = true;
+         DeletePrintStore();
+         var geocoder = new google.maps.Geocoder();
+        //var address = latitud+","+longitud;//$("#direHidden").val()+', Chile';
+//        alert(latitud +" , "+ longitud);
+//        cargarMapa();
+
         geocoder.geocode({'address': address}, geocodeResult);
+        
+        
 }
+
     
     function geocodeResult(results, status) {
        
         if (status == 'OK' && results.length > 0) {
-//            var mapOptions = {
-//                zoom: 13,
-//                center: results[0].geometry.location,
-//                mapTypeId: google.maps.MapTypeId.ROADMAP
-//            };
+            //si modificó la direccion manual
+            if(manualLocation){
+                        var mapOptions = {
+                            zoom: 12,
+                            center: results[0].geometry.location,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                            scrollwheel: false,
+                            mapTypeControl: false,
+                            mapTypeControlOptions: {
+                                style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                                position: google.maps.ControlPosition.BOTTOM_CENTER
+                            },
+                            panControl: true,
+                            panControlOptions: {
+                                position: google.maps.ControlPosition.RIGHT_BOTTOM
+                            },
+                            zoomControl: true,
+                            zoomControlOptions: {
+                                style: google.maps.ZoomControlStyle.LARGE,
+                                position: google.maps.ControlPosition.RIGHT_TOP
+                            },
+                            streetViewControl: true,
+                            streetViewControlOptions: {
+                                position: google.maps.ControlPosition.RIGHT_TOP
+                            }
+                        };
+                        map = new google.maps.Map($("#map_canvas").get(0), mapOptions);
+                        map.fitBounds(results[0].geometry.viewport);
+                        var markerOptions = {position: results[0].geometry.location}
+                        var marker = new google.maps.Marker(markerOptions);
+                        marker.setMap(map);
             
-          //  map = new google.maps.Map($("#map_canvas").get(0), mapOptions);
-//            map.fitBounds(results[0].geometry.viewport);
-//            var markerOptions = {position: results[0].geometry.location}
-//            var marker = new google.maps.Marker(markerOptions);
-//            marker.setMap(map);
-            
+        }
             var lat = map.getCenter().lat();
             var lng = map.getCenter().lng();
-            return false;
-          //alert(lat); alert(lng); 
+            //return false;
+         // alert(lat); alert(lng); 
             $.ajax({
                 data: "findnear2=1&lat="+lat+"&lng="+lng,
                 type: "POST",
                 dataType: "json",
                 url: "/findbreak/function/event-response.php",
                 success: function(data){
-                    
-                alert(data.listevents)
+//                alert("dads")
+               // alert(data.listevents)
                 $('.loading-events').hide();
                 $('.event-hidden').html(data.infodiv);
                 $('.inner-list-maps').html(data.listevents);
-//                $('.list-events-pop').html(data.listeventspop);
-//               
-//                if(data.listeventsfavo != '')//si devuelve eventos favoritos
-//                {
-//                    $('.list-events-favo').html(data.listeventsfavo);
-//                    
-//                }else{
-//                    $('.divseventsfavo').hide();
-//                }
-//                
-//                $('.list-events-ord').html(data.listeventsporfecha);
-                
-               // alert(data.listeventsfavo);
-//                    if(data.exitoso == 0){
-//                         $('#titulosearch').html("No hemos encontrado clínicas cerca");
-//                         return ;
-//                    }
-//                    $('#titulosearch').html(data.titulosearch);
-//                    $('.infodentistas').html(data.infodentistas);
-//                    $('.leftinfo').html(data.leftinfo);
-
-                    //   alert(data);
-             	// $('div').remove('#mainTenant');	
-               //  $('#infoDiv').html(data);//append
                  var numberOfCase = parseInt($('#number').text());
                  var infoDiv = "";
                  var tokens;
@@ -233,6 +238,22 @@ function geolocalizarCentroStgo(address){
    function DeletePrintStore(){
 	   $('div').remove('#storeinformation');
    }
+   
+   //cuando el usuario escriba una dirección en el buscador
+   $('#search-location').keypress(function(e){
+       if(e.keyCode == 13){
+            geolocalizarManual($(this).val())
+       }
+   })
+   //cuando quiere location automática
+   $('#boton-location').click(function(){
+       if($(this).hasClass('loc-desactivado')){
+            manualLocation = false;
+            $('#search-location').css('color','rgba(129, 78, 78, 0.73)');
+            $('#search-location').val('UBICACIÓN ACTUAL');
+            localizame();
+       }
+   })
    
     function trim(cadena){
 // USO: Devuelve un string como el parámetro cadena pero quitando los espacios en blanco de los bordes.

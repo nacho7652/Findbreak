@@ -38,24 +38,34 @@ $(document).ready(function(){
             if($(this).val() == 'UBICACIÓN ACTUAL'){
                 $(this).css('color',colorfocus);
                 $(this).val('');
+                desactivarLocacion();
             }
         })
         $('#search-location').focusout(function(){
             if($(this).val() == ''){
                 $(this).css('color','rgba(129, 78, 78, 0.73)');
                 $(this).val('UBICACIÓN ACTUAL');
+                 activarLocacion();
             }
         })
         //reset location
         $('#boton-location').click(function(){
             if($(this).hasClass('loc-desactivado')){
-                $(this).removeClass('loc-desactivado');
-                $(this).addClass('loc-activado');
+                activarLocacion();
             }else{
-                $(this).removeClass('loc-activado');
-                $(this).addClass('loc-desactivado');
+                desactivarLocacion();
+                $('#search-location').val('UBICACIÓN ACTUAL');
             }
         });
+        
+        function activarLocacion(){
+                $('#boton-location').removeClass('loc-desactivado');
+                $('#boton-location').addClass('loc-activado');
+        }
+        function desactivarLocacion(){
+                $('#boton-location').removeClass('loc-activado');
+                $('#boton-location').addClass('loc-desactivado');
+        }
         
         var outMenuCont = false;
         $(".menu,.groupoption").mouseover(function(){

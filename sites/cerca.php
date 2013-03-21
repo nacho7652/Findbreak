@@ -18,8 +18,8 @@
               <div class="loading-events">Loading...</div>
                 <div class="inner-list-maps">
                     
-                   <?php for($i=1; $i<=7; $i++){?> 
-                    <div class="item-eventcerca">
+                   <?php// for($i=1; $i<=7; $i++){?> 
+<!--                    <div class="item-eventcerca">
                         <div class="barra"></div>
                         
                         <div class="event-right">
@@ -46,9 +46,9 @@
                                 <div class="botongreen">Ver información</div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                    
-                    <?php } ?>
+                    <?php //} ?>
                     
                 </div>
             </div>

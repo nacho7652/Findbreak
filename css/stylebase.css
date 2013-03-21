@@ -734,7 +734,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     position: relative;
 }
 .item-eventcerca:hover{
-    background: url('/findbreak/nuevo/images/fondoevent.png') rgb(245, 245, 245);
+    background: url('/findbreak/images/fondoevent.png') rgb(245, 245, 245);
 }
 .first-partevent #map_canvas{
     border: 1px solid #CCC;

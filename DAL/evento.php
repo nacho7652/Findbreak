@@ -15,7 +15,7 @@ class evento {
         $a = $this->hoy();
        // return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ), 'fecha_realizacion'=> array('$gte' => $a )   ))->limit(10);
         //return $this->db->evento->find(array("loc" => array('$near' => 50,30))); //array('$near' =>[50,50])
-                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , 'fecha_realizacion'=> array('$gte' => $a )   ))->limit(10);
+                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(100);
 
     }
     public function findforid($id){
@@ -99,10 +99,11 @@ class evento {
          return $this->db->evento->update(array("_id" => $theObjId), array('$inc'=> array("visitas"=>1)));
      }
      
-                        //$idproductora, $nombreproductora, $nom, $dir, $fotnom, $fech, $fe, $tag, $lat, $lng, $desc
-    public function insertar($userid, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw){ 
+    public function insertar($userid, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
+                             $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar){ 
          $arrtags = explode(" ", $tags);
          $fotos = explode(",", $arrayfotos);
+         
          $event = array(
             "nombre" => $nombre,
             "direccion" =>  $direccion,
@@ -116,7 +117,13 @@ class evento {
             "loc"=> array((float)$lat, (float)$lng),
             "descripcion"=>  $desc,
              "visitas"=>0,
-             "redes" => array($urlfb, $urltw)
+             "redes" => array($urlfb, $urltw),
+             "video" => $video,
+             "establecimiento"=> $establecimiento,
+             "precio"=>$precio,
+             "puntos_de_venta"=>$puntosDeVenta,
+             "sitio_web"=>$sitioWeb,
+             "donde_comprar"=>$dondeComprar
         );
          //MODIFICAR EVENTOS PUBLICADOS
          

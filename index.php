@@ -11,21 +11,43 @@
             require_once 'DAL/evento.php';
             $idproductora = '238928932389892';
             $nombreproductora = 'Nombre de prueba';
-            $nom = 'Lolapalusa';
+            $nom = 'Lolapalusa 200';
             $dir = 'Santa Sofia #2092';
             $arrayfotos = 'foto1.jps, foto2.jpg';
-            $fec = '2013-03-25';
-            $hor = '22:00:00';
+            $fec = '2013-03-20, 2013-03-21';
+            $hor = '22:00:00, 23:15:00';
+            $hor = explode(',', $hor);
             $fechString = $fec;   
-            $fechMongo = new MongoDate(strtotime($fec.' 23:59:59')); 
+            $fechas = explode(',', $fec);  
+            $fechMongo = array();
+            for($i=0; $i<count($fechas); $i++){
+                $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
+            }
             $tag = 'rock musica';
             $lat = '-33.542662';
             $lng = '-70.598835';
             $desc = 'adssda';
             $urltwitter = 'tw';
-            $urlfacebook = 'face';        
+            $urlfacebook = 'face';  
+            //nuevo
+            $video = 'link de youtube';  
+            $establecimiento = array('id'=>'232323',
+                                     'nombre'=>'Estadio Nacional',
+                                     'direccion'=>'Avenida vicuña #32');
+            $precio = 'Gratis';
+            $puntosDeVenta = array( array('id'=>'232323',
+                                          'nombre'=>'Ticket Master',
+                                          'web'=>'http://www.google.cl'),
+                                    array('id'=>'232323',
+                                          'nombre'=>'Ticket Master',
+                                          'web'=>'http://www.google.cl')
+                                   );
+            $sitioWeb = 'web oficial del evento';
+            $dondeComprar = 'En las boleterias del estadio nacional';
+            
             $evento = new evento();                      
-            echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter);
+            echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+                                   $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar);
     }
 //    if(isset($_POST['cerrarsession'])){
 //        session_destroy();
