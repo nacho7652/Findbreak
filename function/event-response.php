@@ -49,9 +49,15 @@
                                                         
                                                       </div><div class="sitioevento">Sitio web</div>
                                                  ';     
-                          $listevents.= '</div>
-                                         
-                                     </div>'; 
+                          $listevents.= '</div>';
+                                        $listevents.= '<div class="tags-hidden">';
+                                        foreach ($dcto['tags'] as $tags){
+                                             
+                                                $listevents.= $tags;
+                                                //$listevents.= ',';
+                                        }
+                                        $listevents.= '</div>';
+                          $listevents.= '</div>'; 
 
                     }
                     //$listevents.= '</div>';

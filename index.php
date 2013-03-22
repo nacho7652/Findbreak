@@ -11,10 +11,10 @@
             require_once 'DAL/evento.php';
             $idproductora = '238928932389892';
             $nombreproductora = 'Nombre de prueba';
-            $nom = 'Lolapalusa 200';
+            $nom = 'Lolapalusa 600';
             $dir = 'Santa Sofia #2092';
             $arrayfotos = 'foto1.jps, foto2.jpg';
-            $fec = '2013-03-20, 2013-03-21';
+            $fec = '2013-03-20, 2013-03-25';
             $hor = '22:00:00, 23:15:00';
             $hor = explode(',', $hor);
             $fechString = $fec;   
@@ -23,7 +23,7 @@
             for($i=0; $i<count($fechas); $i++){
                 $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
             }
-            $tag = 'rock musica';
+            $tag = 'copete alcohol';
             $lat = '-33.542662';
             $lng = '-70.598835';
             $desc = 'adssda';

@@ -1084,6 +1084,9 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 500px;
     color: white;
 }
+.tags-hidden{
+    display: none;
+}
 .title-eventdone, .title-eventreali {
     font-weight: bold;
     font-size: 0.9em;
