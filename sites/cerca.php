@@ -15,7 +15,8 @@
                   </div>
               </div>
             <div class="list-maps">
-              <div class="loading-events">Loading...</div>
+              <div class="loading-events">Buscando eventos...</div>
+              <div class="loading-events no-resultados">No hay carrete cerca de la ubicacion, prueba con otra dirección...</div>
                 <div class="inner-list-maps">
                     
                    <?php// for($i=1; $i<=7; $i++){?> 

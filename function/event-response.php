@@ -26,7 +26,7 @@
                                          <div class="barra"></div>
                                             <div class="event-right">
                                                         <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
-                                                         <div class="num-event">#</div>';
+                                                         <div class="num-event">'.$cont.'</div>';
                                 
                                   $listevents.= '   <a href="#" class="tit-eventcerca link" >'.$dcto['nombre'].'</a>
                                                        <div class="info-eventcerca">
@@ -47,9 +47,10 @@
                                                                 
                                                            <div class="botongreen">Ver información</div>
                                                         
-                                                      </div>
+                                                      </div><div class="sitioevento">Sitio web</div>
                                                  ';     
                           $listevents.= '</div>
+                                         
                                      </div>'; 
 
                     }

@@ -45,7 +45,7 @@ $(document).ready(function(){
             if($(this).val() == ''){
                 $(this).css('color','rgba(129, 78, 78, 0.73)');
                 $(this).val('UBICACIÓN ACTUAL');
-                 activarLocacion();
+                 //activarLocacion();
             }
         })
         //reset location

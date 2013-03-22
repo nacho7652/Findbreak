@@ -136,6 +136,13 @@ function geolocalizarManual(address){
 //                alert("dads")
                // alert(data.listevents)
                 $('.loading-events').hide();
+                $('.inner-list-maps').html('');
+                if(data.listevents == ''){
+                    $('.no-resultados').show();
+                    return false;
+                }else{
+                    $('.no-resultados').hide();
+                }
                 $('.event-hidden').html(data.infodiv);
                 $('.inner-list-maps').html(data.listevents);
                  var numberOfCase = parseInt($('#number').text());
@@ -255,6 +262,28 @@ function geolocalizarManual(address){
        }
    })
    
+   $('#search-near').keyup(function(e){
+       buscar($(this).val())
+//       if(e.keyCode == 13){
+//            buscar($(this).val())
+//       }
+   })
+   $('#boton-buscarcerca').click(function(){
+       buscar($(this).val())
+   })
+   function buscar(texto){
+	var eventos = $(".item-eventcerca");
+	texto        = texto.toLowerCase();
+	eventos.show();
+        eventos.each(function(){
+                var contenido = $(this).find('.tit-eventcerca').html();
+		contenido     = contenido.toLowerCase();
+		var index     = contenido.indexOf(texto);
+		if(index == -1){
+			$(this).hide();
+		}
+        })
+    }
     function trim(cadena){
 // USO: Devuelve un string como el parámetro cadena pero quitando los espacios en blanco de los bordes.
         var retorno=cadena.replace(/^\s+/g,'');
