@@ -167,7 +167,9 @@ function geolocalizarManual(address){
                        position: PointMaps
                        , map: map
                        , title: name
+                       //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
                        , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/marker'+cont+'.png'
+                       
                    });
                    //nota es el recuadro que sale en grande cuando se hace click en la clinica
                    note = '<div id="infoWindow" style=""><p><strong>'+name+'</strong></div>';
@@ -264,7 +266,13 @@ function geolocalizarManual(address){
    
    $('#search-near').keyup(function(e){
        if(e.keyCode != 32){
-        buscar($(this).val())
+       var texto = $(this).val().split(' ');
+      
+        if(texto.length == 1){
+            buscar($(this).val())
+        }else{
+            buscarFrase(texto)
+        }
        }
 //       if(e.keyCode == 13){
 //            buscar($(this).val())
@@ -281,6 +289,7 @@ function geolocalizarManual(address){
 	eventos.show();
        
         eventos.each(function(){
+            //for por cada palabra del b
                var tags = $(this).find('.tags-hidden').html();
                var tagsArr = tags.split(",");
                var cumple = false;
@@ -290,14 +299,14 @@ function geolocalizarManual(address){
                    
                     var contenido = tagsArr[i];
                      if(contenido != ''){
-                        alert( 'tags: '+contenido+ ' texto: '+texto)
+                       // alert( 'tags: '+contenido+ ' textos: '+texto)
                         contenido     = contenido.toLowerCase();
                         var index     = contenido.indexOf(texto);
 //                        alert(tagsArr[i])
 //                        alert(texto)
-                        alert(index)
+                       // alert(index)
                         if(index == 0){
-                            alert('no cumple')
+                          //  alert('cumple')
                             cumple = true;
                         }
                     }
@@ -305,9 +314,50 @@ function geolocalizarManual(address){
                
                if(!cumple){
                         $(this).hide();
-                }
+                }          
+        })
+    }
+    function buscarFrase(texto){
+        
+	var eventos = $(".item-eventcerca");
+	
+	eventos.show();
+       
+        eventos.each(function(){
+            //for por cada palabra del b
+            //alert(texto.length)
+            var cumple = false;
+            for(var j=0; j<texto.length; j++){
+               var textoBuscar        = texto[j].toLowerCase();
+               //alert(textoBuscar)
+               var tags = $(this).find('.tags-hidden').html();
+               var tagsArr = tags.split(",");
                
-                    
+               for(var i=0;i<tagsArr.length;i++){
+                   
+                    //alert(tagsArr[i])
+                   
+                    var contenido = tagsArr[i];
+                     if(contenido != ''){
+//                        alert( 'tags: '+contenido+ ' textos: '+textoBuscar)
+                        contenido     = contenido.toLowerCase();
+                        var index     = contenido.indexOf(textoBuscar);
+//                        alert(tagsArr[i])
+//                        alert(texto)
+//                        alert(index)
+                        if(index == 0){
+//                            alert('cumple')
+                            cumple = true;
+                        }
+                    }
+               }
+                   
+           }
+           
+               if(!cumple){
+                       // alert('la escondo')
+                        $(this).hide();
+                } 
         })
     }
     function trim(cadena){
