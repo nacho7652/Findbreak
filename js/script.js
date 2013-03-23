@@ -561,28 +561,34 @@ $(document).ready(function(){
       //FIN PUblic EStablecimiento
       
        $('.productora-registro').click(function()
-  {
-      
-      $.ajax({
-          
+  {     
+      $.ajax({  
                         type: "POST",
                         dataType: "html",
                         url: "../json/zoom.php",
                         data: "popup-registroproductora="+1,
                         success : function (data)
-                        {
-                            
-                            popup(data);
-                            
-                            
-                            
-                        }
-                        
-          
-          
+                        {                           
+                            popup(data);                          
+                        }         
       })
       
   })
+  
+     $('#btn-comentar').click(function(){
+         var coment = $('#coment').val();
+         var estaid = $('#idesta').val();
+         $.ajax({           
+             type:"POST",
+             dataType:"json",
+             url: "../function/comentario-response.php",
+             data: "comentest=1&comentario="+coment+"&estaId="+estaid,
+             success: function (data)
+             {
+                 alert(data.exito);
+             }
+         })
+     })
       
       
       /*functions*/
