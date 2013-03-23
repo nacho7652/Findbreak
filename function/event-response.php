@@ -54,7 +54,7 @@
                                         foreach ($dcto['tags'] as $tags){
                                              
                                                 $listevents.= $tags;
-                                                //$listevents.= ',';
+                                                $listevents.= ',';
                                         }
                                         $listevents.= '</div>';
                           $listevents.= '</div>'; 

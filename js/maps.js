@@ -263,32 +263,50 @@ function geolocalizarManual(address){
    })
    
    $('#search-near').keyup(function(e){
-       buscar($(this).val())
+       if(e.keyCode != 32){
+        buscar($(this).val())
+       }
 //       if(e.keyCode == 13){
 //            buscar($(this).val())
 //       }
    })
-   $('#boton-buscarcerca').click(function(){
+   $('#boton-buscarcerca').click(function(e){
+       
        buscar($(this).val())
+       
    })
    function buscar(texto){
 	var eventos = $(".item-eventcerca");
 	texto        = texto.toLowerCase();
 	eventos.show();
+       
         eventos.each(function(){
                var tags = $(this).find('.tags-hidden').html();
-//               tags = tags.split(",");
-              // alert(tags)
-//               for(var i=0;i<tags.count();i++){
-//                   alert(tags[i])
-//               }
-               var contenido = tags;
-                contenido     = contenido.toLowerCase();
-                var index     = contenido.indexOf(texto);
-                if(index == -1){
-                    $(this).hide();
+               var tagsArr = tags.split(",");
+               var cumple = false;
+               for(var i=0;i<tagsArr.length;i++){
+                   
+                    //alert(tagsArr[i])
+                   
+                    var contenido = tagsArr[i];
+                     if(contenido != ''){
+                        alert( 'tags: '+contenido+ ' texto: '+texto)
+                        contenido     = contenido.toLowerCase();
+                        var index     = contenido.indexOf(texto);
+//                        alert(tagsArr[i])
+//                        alert(texto)
+                        alert(index)
+                        if(index == 0){
+                            alert('no cumple')
+                            cumple = true;
+                        }
+                    }
+               }
+               
+               if(!cumple){
+                        $(this).hide();
                 }
-
+               
                     
         })
     }

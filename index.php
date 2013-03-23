@@ -11,7 +11,7 @@
             require_once 'DAL/evento.php';
             $idproductora = '238928932389892';
             $nombreproductora = 'Nombre de prueba';
-            $nom = 'Lolapalusa 600';
+            $nom = 'TEATRO EN CHV';
             $dir = 'Santa Sofia #2092';
             $arrayfotos = 'foto1.jps, foto2.jpg';
             $fec = '2013-03-20, 2013-03-25';
@@ -23,9 +23,9 @@
             for($i=0; $i<count($fechas); $i++){
                 $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
             }
-            $tag = 'copete alcohol';
-            $lat = '-33.542662';
-            $lng = '-70.598835';
+            $tag = 'teatro arte vivo';
+            $lat = '-33.542698';
+            $lng = '-70.598899';
             $desc = 'adssda';
             $urltwitter = 'tw';
             $urlfacebook = 'face';  
