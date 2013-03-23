@@ -276,12 +276,20 @@ function geolocalizarManual(address){
 	texto        = texto.toLowerCase();
 	eventos.show();
         eventos.each(function(){
-                var contenido = $(this).find('.tit-eventcerca').html();
-		contenido     = contenido.toLowerCase();
-		var index     = contenido.indexOf(texto);
-		if(index == -1){
-			$(this).hide();
-		}
+               var tags = $(this).find('.tags-hidden').html();
+//               tags = tags.split(",");
+              // alert(tags)
+//               for(var i=0;i<tags.count();i++){
+//                   alert(tags[i])
+//               }
+               var contenido = tags;
+                contenido     = contenido.toLowerCase();
+                var index     = contenido.indexOf(texto);
+                if(index == -1){
+                    $(this).hide();
+                }
+
+                    
         })
     }
     function trim(cadena){
