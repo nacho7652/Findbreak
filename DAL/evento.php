@@ -171,7 +171,7 @@ class evento {
              case '12': $nombremes = 'Diciembre'; break; 
          }
          $formato = "El ".$dia." de ".$nombremes." del ".$anio;
-         $re = array('fecha'=>$formato, 'hora'=>$hora);
+         $re = array('fecha'=>$formato, 'hora'=>$hora[0]);
          return $re;
      }
 }

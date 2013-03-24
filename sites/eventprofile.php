@@ -1,5 +1,5 @@
 <?php 
-    header('location: http://www.google.cl');  
+    
     require_once '/DAL/connect.php';
       require_once '/DAL/evento.php';
       $event = new evento();

@@ -549,7 +549,7 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 
   RewriteRule ^([a-z0-9_-]+)/?$ /findbreak/index.php?place=$1 [NC,L]
   
-  RewriteRule ^evento/([a-z0-9_-]+)/?$ /findbreak/index.php?place=eventprofile&id=$1 [NC,L]
+  RewriteRule ^evento/([a-z0-9_-]+)?$ /findbreak/index.php?place=eventprofile&id=$1 [NC,L]
 
   RewriteRule ^productora/([a-z0-9_-]+)/?$ /findbreak/index.php?place=productora&id=$1 [NC,L]
 

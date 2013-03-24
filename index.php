@@ -234,7 +234,9 @@
        </div><!-- top-->
        
         <div id="body" <?= $page_class ?>>
-            <div class="menutop"></div>
+            <?php if($page_site != 'cerca'){?>
+                <div class="menutop"></div>
+           <?php } ?>
             <div  <?= $page_class_near ?>>
                  <?php include_once('sites/'.$page_site.'.php'); ?>
             </div>
