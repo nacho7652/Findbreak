@@ -674,6 +674,10 @@ top: -8px;
     margin-bottom: 2px;
     display: block; 
 }
+.inner-eveninfo.info-eventcerca {
+    margin: 55px 0px 0px 0px;
+    height: 271px;
+}
 .info-eventcerca {
     background: #fff;
     padding: 13px 0px 0px 0px;
@@ -877,11 +881,13 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     color: #444;
 }
 .foto-event {
-    width: 220px;
+    width: 195px;
     height: 220px;
     float: left;
     margin: -36px 0px 0px 17px;
     background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT-emr-cZmmzPLfojzDOcej8piniNvk4N0lTfG68vkhUeKsK9kO) !important;
+    box-shadow: 0px 1px 10px -3px #444;  
+    border: 4px solid #fff;
 }
 
 .info-event {
@@ -930,7 +936,6 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .eventprofile,.productora, .perfilest {
     width: 968px !important;
     margin: 0px auto 0px auto !important;    
-    background: rgba(136, 129, 128, 0.23);
     overflow: hidden !important;
 }
 
@@ -938,7 +943,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 641px;
     height: 388px;
     float: left;
-    margin: 50px 0px 0px 20px;    border-radius: 2px;    
+    margin: 13px 0px 0px 20px;    border-radius: 2px;    
     background: rgb(245, 245, 245);  box-shadow: 0px 2px 9px -3px #444;  position: relative;
     color: rgb(88, 88, 88) !important;
 }
@@ -948,7 +953,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 100%;
     
     float: left;
-    margin: -26px 0px 0px 245px;
+    margin: 30px 0px 0px 231px;
     color: #444;
     font-weight: bold;
 }
