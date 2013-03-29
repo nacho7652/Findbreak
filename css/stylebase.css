@@ -8,7 +8,7 @@
 
 *{ font-family: EstoyBueno;}
 body{
-    background: url('/findbreak/images/back.png');
+    background: url('/findbreak/images/back.png') fixed;
     
 }
 .sprites{
@@ -586,11 +586,10 @@ html {
     color: rgb(163, 96, 96);
     margin: 86px 0px 0px 14px;
     float: left;
-    font-weight: bold;
     padding: 18px 0px;
     width: 447px;  
     height: 27px;  border-radius: 2px;    
-    background: url('/findbreak/images/fondoevent.png') rgb(245, 245, 245); 
+    background: #fff; 
     box-shadow: 0px 2px 9px -3px #444;  position: relative;
 }
 .no-resultados{
@@ -602,7 +601,7 @@ html {
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
 .first-partevent .divevents .title {
-    background: rgba(150, 71, 66, 0.6);
+    background: rgba(150, 71, 66, 0.76);
     width: 468px;
     height: 64px;
     color: #FFF;
@@ -679,11 +678,11 @@ top: -8px;
 }
 .info-eventcerca {
     background: #fff;
-    padding: 1px 0px 0px 0px;
+    padding: 16px 0px 0px 10px;
     color: rgb(88, 88, 88) !important;
     height: 129px;
-    border-top: 1px dashed rgba(206, 126, 126, 0.31);
-    border-bottom: 1px dashed rgba(206, 126, 126, 0.31);
+    border-top: 1px solid rgb(236, 236, 236);
+    border-bottom: 1px solid rgb(236, 236, 236);
 }
 .botongreen {
     width: 92px;
@@ -706,11 +705,11 @@ top: -8px;
 }
 .item-infocerca {
     margin-bottom: 0px;
-    margin-left: 123px;
+    margin-left: 124px;
 }
 .sitioevento {
     font-size: 0.6em;
-    margin: -16px 0px 0px 127px;
+    margin: -16px 0px 0px 137px;
 }
 .linkred{
     color: rgba(163, 96, 96, 1) !important;
@@ -750,12 +749,12 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     margin-bottom: 15px;
     padding-top: 2px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
-    width: 315px;
+    width: 280px;
     height: 15px;
 }
 .item-eventcerca {
     width: 447px;
-    height: 200px;
+    height: 209px;
     border-radius: 2px;
     margin: 11px 0px 11px 14px;
     background: rgb(245, 245, 245);
@@ -884,7 +883,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     height: 220px;
     float: left;
     margin: -36px 0px 0px 17px;
-    background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT-emr-cZmmzPLfojzDOcej8piniNvk4N0lTfG68vkhUeKsK9kO) !important;
+    background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;
     box-shadow: 0px 1px 10px -3px #444;  
     border: 4px solid #fff;
 }
@@ -942,7 +941,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 641px;
     height: 388px;
     float: left;
-    margin: 13px 0px 0px 20px;    border-radius: 2px;    
+    margin: 13px 0px 0px 3px;    border-radius: 2px;    
     background: rgb(245, 245, 245);  box-shadow: 0px 2px 9px -3px #444;  position: relative;
     color: rgb(88, 88, 88) !important;
 }

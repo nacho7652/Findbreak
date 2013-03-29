@@ -11,10 +11,10 @@
             require_once 'DAL/evento.php';
             $idproductora = '238928932389892';
             $nombreproductora = 'Nombre de prueba';
-            $nom = 'TEATRO EN CHV';
+            $nom = 'Carrete quilicura';
             $dir = 'Santa Sofia #2092';
             $arrayfotos = 'foto1.jps, foto2.jpg';
-            $fec = '2013-03-20, 2013-03-25';
+            $fec = '2013-04-20, 2013-04-25';
             $hor = '22:00:00, 23:15:00';
             $hor = explode(',', $hor);
             $fechString = $fec;   
@@ -23,10 +23,10 @@
             for($i=0; $i<count($fechas); $i++){
                 $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
             }
-            $tag = 'teatro arte vivo';
-            $lat = '-33.542698';
-            $lng = '-70.598899';
-            $desc = 'adssda';
+            $tag = 'quilicura carrete';
+            $lat = '-33.342399';
+            $lng = '-70.844988';
+            $desc = '$ 5.000.- por persona';
             $urltwitter = 'tw';
             $urlfacebook = 'face';  
             //nuevo
