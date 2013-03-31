@@ -8,8 +8,8 @@
 
 *{ font-family: EstoyBueno;}
 body{
-    background: url('/findbreak/images/back.png') fixed;
-    
+    background: rgba(150, 71, 66, 0.11);
+    background: url('http://d1l2emnu9r9dtc.cloudfront.net/img/bg.jpg');
 }
 .sprites{
      background: url('/findbreak/images/sprites.png') no-repeat;
@@ -64,7 +64,8 @@ html {
 }
 
 #top {
-    background: url('/findbreak/images/top.png');
+    background: rgba(65, 65, 65, 1);
+    background: rgb(19, 84, 136);
     width: 100%;  
     height: 51px; 
     margin: 0px 0px 0px 0px; 
@@ -89,10 +90,12 @@ html {
     top: -2px;
 }
 .menutop {
-    width: 972px;
+    width: 954px;
     height: 52px;
-    background: rgba(150, 71, 66, 0.6);
+    background: rgba(150, 71, 66, 0.49);
+    background: rgba(177,177,177,0.12);
     margin: 63px auto 0 auto;
+    border: 1px solid #E0E0E0;
 }
 #content-top .top-left {
     float: left;
@@ -102,9 +105,9 @@ html {
 }
 .logo {
     width: 201px;
-    height: 49px;
-    background: url('/findbreak/images/logo.png') no-repeat;
-    margin-top: 4px;
+    height: 50px;
+    background: url('/findbreak/images/logob26.png')no-repeat;
+    margin-top: 3px;
 }
 #content-top .top-center {
     float: left;
@@ -145,7 +148,7 @@ html {
     height: 30px;
     width: 323px;
     margin-top: 11px;
-    border: 1px solid rgba(172, 46, 38, 0.4);  
+    border: 1px solid rgb(209, 209, 209);  
     background: #fff;
     font-size: 11px;
     line-height: 17px;
@@ -180,7 +183,7 @@ html {
 }
 .input-transf{
     border: none;
-    box-shadow: 0px 2px 3px -1px #E6E6E6 inset;
+    box-shadow: 0px 2px 5px -1px #E6E6E6 inset;
     color: rgba(150, 71, 66, 0.701961);
     text-transform: uppercase;
 }
@@ -224,16 +227,17 @@ html {
 .registrate {
     float: right;
     margin: 6px 11px 0px 0px;
-    color: white;
-    font-size: 0.9em;
+    color: #fff;
+    font-size: 0.8em;
     text-decoration: none;
 }
 .productora-registro{
     float: left;
     margin: 33px 0px 0px 23px;
-    color: white;
+    color: rgb(30, 12, 11);
     font-size: 0.9em;
     text-decoration: none;
+    display: none;
 }
 .top-right #user-login{
     float: right;
@@ -479,8 +483,8 @@ html {
 }
 #content-top .login-hover{
     text-decoration: none;
-    font-size: 0.9em;
-    color: white;
+    font-size: 0.8em;
+    color: #fff;
     float: right;
     margin: 6px 6px 6px 6px;
 }
@@ -601,7 +605,7 @@ html {
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
 .first-partevent .divevents .title {
-    background: rgba(150, 71, 66, 0.76);
+    background: rgba(66, 110, 150, 0.76);
     width: 468px;
     height: 64px;
     color: #FFF;
@@ -678,11 +682,11 @@ top: -8px;
 }
 .info-eventcerca {
     background: #fff;
-    padding: 16px 0px 0px 10px;
+    padding: 8px 0px 0px 10px;
     color: rgb(88, 88, 88) !important;
-    height: 129px;
-    border-top: 1px solid rgb(236, 236, 236);
-    border-bottom: 1px solid rgb(236, 236, 236);
+    height: 170px;
+    border-top: 1px dashed rgb(228, 228, 228);
+    border-bottom: 1px dashed rgb(228, 228, 228);
 }
 .botongreen {
     width: 92px;
@@ -690,7 +694,7 @@ top: -8px;
     text-align: center;
     float: right;
     font-size: 0.7em;
-    margin: -9px 6px 0px 0px;
+    margin: -6px 11px 0px 0px;
     padding: 5px 7px;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
@@ -736,6 +740,9 @@ top: -8px;
 #fechaevent {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -10px;
 }
+#horaevent {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -67px;
+}
 #dondeevent {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -27px;
 }
@@ -745,16 +752,16 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .resp-cuando {
     font-size: 0.7em;  
     padding-left: 23px;
-    padding-bottom: 2px;
+    padding-bottom: 1px;
     margin-bottom: 15px;
-    padding-top: 2px;
+    padding-top: 3px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
     width: 280px;
     height: 15px;
 }
 .item-eventcerca {
     width: 447px;
-    height: 209px;
+    height: 242px;
     border-radius: 2px;
     margin: 11px 0px 11px 14px;
     background: rgb(245, 245, 245);
@@ -938,12 +945,15 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 
 .part-left {
-    width: 641px;
+    width: 601px;
     height: 388px;
     float: left;
-    margin: 13px 0px 0px 3px;    border-radius: 2px;    
-    background: rgb(245, 245, 245);  box-shadow: 0px 2px 9px -3px #444;  position: relative;
-    color: rgb(88, 88, 88) !important;
+    margin: 13px 0px 0px 6px;    border-radius: 2px;    
+    background: #F9FAFA;  
+    background: #fff;
+    box-shadow: 0px 4px 6px -5px #DDB;  position: relative;
+    color: rgb(88, 88, 88);
+    border: 1px solid #e4e5e8;
 }
 .part-left .foto-event{
 }
@@ -968,11 +978,25 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .face img, .twitt img{
     width: 26px
 }
+#fechaevent-prof {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -9px;
+}
+#dondeevent-prof{
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -25px;
+}
+#precioevent-prof{
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -44px;
+}
+#horaevent-prof{
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -66px;
+}
 .part-left .info-event-item{
     float: left;
-    margin: 8px 0px 6px 29px;
-    font-size: 0.8em;
-    width: 390px;
+    margin: 8px 0px 6px 11px;
+    padding: 1px 0px 5px 24px;
+    font-size: 0.7em;
+    width: 334px;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.31);
 }
 .part-right {
     float: left;
@@ -1222,6 +1246,8 @@ footer{
     bottom: 0px;  
     z-index: 10000000000000; 
 /*    display: none !important;*/
+;
+    display: none !important;
 }
 footer .textbottom {
     margin: 3px 0px 0px 140px;

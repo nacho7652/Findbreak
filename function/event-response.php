@@ -28,21 +28,24 @@
                                                         <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
                                                          <div class="num-event"></div>';
                                   $nombreLink = str_replace(' ', '-', $dcto['nombre']);
+                                  $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio']);
                                   $listevents.= '   <a target="_blank" href="/findbreak/evento/'.$dcto['_id'].'" class="tit-eventcerca linkred" >'.$dcto['nombre'].'</a>
                                                        <div class="info-eventcerca">
-                                                            <div class="item-infocerca">
-                                                                <div class="preg-cuando">¿Cuándo?</div>
-                                                               <div id="fechaevent" class="resp-cuando">'.$dcto['fecha_muestra'].'</div>
-                                                           </div>
-                                                           
                                                            <div class="item-infocerca">
-                                                                <div class="preg-cuando">¿Dónde?</div>
+                                                                
+                                                               <div id="fechaevent" class="resp-cuando">'.$realizacion['fecha'].'</div>
+                                                           </div>
+                                                            <div class="item-infocerca">
+                                                                    <div id="horaevent" class="resp-cuando">'.$realizacion['hora'].' hrs.</div>
+                                                           </div>
+                                                           <div class="item-infocerca">
+                                                                
                                                                 <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
                                                             </div>
                                                             
                                                              <div class="item-infocerca">
-                                                                <div class="preg-cuando">¿Cuánto sale?</div>
-                                                                <div id="precioevent" class="resp-cuando">'.$dcto['descripcion'].'</div>
+                                                               
+                                                                <div id="precioevent" class="resp-cuando">'.$dcto['precio'].'</div>
                                                             </div>
                                                                 
                                                            <div class="botongreen">Ver información</div>

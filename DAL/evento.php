@@ -148,29 +148,64 @@ class evento {
      }
      
      public function formatoFecha($fecha, $hora){
-         $datos = explode(' ', $fecha);
-         $fecha = $datos[0];
-         
-         $itemfecha = explode('-', $fecha);
-         $anio = $itemfecha[0];
-         $mes = $itemfecha[1];
-         $dia = $itemfecha[2];
-         $nombremes = '';
-         switch ($mes){
-             case '1': $nombremes = 'Enero'; break; 
-             case '2': $nombremes = 'Febrero'; break; 
-             case '3': $nombremes = 'Marzo'; break; 
-             case '4': $nombremes = 'Abril'; break; 
-             case '5': $nombremes = 'Mayo'; break; 
-             case '6': $nombremes = 'Junio'; break; 
-             case '7': $nombremes = 'Julio'; break; 
-             case '8': $nombremes = 'Agosto'; break; 
-             case '9': $nombremes = 'Septiembre'; break; 
-             case '10': $nombremes = 'Octubre'; break; 
-             case '11': $nombremes = 'Noviembre'; break; 
-             case '12': $nombremes = 'Diciembre'; break; 
+         $masfechas = explode(',', $fecha);
+         $formato = '';
+         if(count($masfechas) == 1){
+//            $datos = explode(' ', $fecha);
+//            $fecha = $datos[0];
+
+            $itemfecha = explode('-', $fecha);
+            $anio = $itemfecha[0];
+            $mes = $itemfecha[1];
+            $dia = $itemfecha[2];
+            $nombremes = '';
+            switch ($mes){
+                case '1': $nombremes = 'Enero'; break; 
+                case '2': $nombremes = 'Febrero'; break; 
+                case '3': $nombremes = 'Marzo'; break; 
+                case '4': $nombremes = 'Abril'; break; 
+                case '5': $nombremes = 'Mayo'; break; 
+                case '6': $nombremes = 'Junio'; break; 
+                case '7': $nombremes = 'Julio'; break; 
+                case '8': $nombremes = 'Agosto'; break; 
+                case '9': $nombremes = 'Septiembre'; break; 
+                case '10': $nombremes = 'Octubre'; break; 
+                case '11': $nombremes = 'Noviembre'; break; 
+                case '12': $nombremes = 'Diciembre'; break; 
+            }
+            $formato = "El ".$dia." de ".$nombremes." del ".$anio;
+         }else{//más fechas
+             $formato.= "El ";
+             for($i=0; $i < count($masfechas); $i++){
+//                    $datos = explode(' ', $masfechas[$i]);
+//                    $masfechas[$i] = $datos[0];
+
+                    $itemfecha = explode('-', $masfechas[$i]);
+                    $anio = $itemfecha[0];
+                    $mes = $itemfecha[1];
+                    $dia = $itemfecha[2];
+                    $nombremes = '';
+                    switch ($mes){
+                        case '1': $nombremes = 'Enero'; break; 
+                        case '2': $nombremes = 'Febrero'; break; 
+                        case '3': $nombremes = 'Marzo'; break; 
+                        case '4': $nombremes = 'Abril'; break; 
+                        case '5': $nombremes = 'Mayo'; break; 
+                        case '6': $nombremes = 'Junio'; break; 
+                        case '7': $nombremes = 'Julio'; break; 
+                        case '8': $nombremes = 'Agosto'; break; 
+                        case '9': $nombremes = 'Septiembre'; break; 
+                        case '10': $nombremes = 'Octubre'; break; 
+                        case '11': $nombremes = 'Noviembre'; break; 
+                        case '12': $nombremes = 'Diciembre'; break; 
+                    }
+                    $formato.= $dia." de ".$nombremes." del ".$anio;
+                    if(isset($masfechas[$i+1])){
+                        $formato.=", ";
+                    }
+             }
          }
-         $formato = "El ".$dia." de ".$nombremes." del ".$anio;
+         
          $re = array('fecha'=>$formato, 'hora'=>$hora[0]);
          return $re;
      }

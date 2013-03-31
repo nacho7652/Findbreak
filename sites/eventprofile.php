@@ -27,18 +27,15 @@
     <div class="title-event"><?php echo $eventfound['nombre']; ?></div>
     <div class="foto-event" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
     <div class="inner-eveninfo info-eventcerca">
-            <div class="info-event-item address-event">Dirección: <?php  echo $eventfound['direccion'];?></div>
-            <div class="info-event-item producido-por">Producido por: <?php echo $eventfound['producido_por']['nombre']?></div>
             <?php 
-                $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
-            ?>
-            <div class="info-event-item fecha">Cuando: <?php echo $realizacion['fecha']?></div>
-            <div class="info-event-item hora">A las: <?php echo $realizacion['hora']?> hrs.</div>
-            <div class="info-event-item visitas">Visto por: <?php echo $eventfound['visitas']?> personas</div>
-            <div class="redes">
-                <a class="face" href=""><img src="../images/facebook.png"/></a>
-                <a class="twitt" href=""><img src="../images/twitter.png"/></a>
-            </div>
+                    $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
+                ?>
+            <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
+            <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
+            <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
+            <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
+            <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
+            
     </div>
 </div>
 

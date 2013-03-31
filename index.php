@@ -11,10 +11,10 @@
             require_once 'DAL/evento.php';
             $idproductora = '238928932389892';
             $nombreproductora = 'Nombre de prueba';
-            $nom = 'Carrete quilicura';
+            $nom = 'Carrete quilicura #3';
             $dir = 'Santa Sofia #2092';
             $arrayfotos = 'foto1.jps, foto2.jpg';
-            $fec = '2013-04-20, 2013-04-25';
+            $fec = '2013-04-20, 2013-04-21, 2014-04-22';
             $hor = '22:00:00, 23:15:00';
             $hor = explode(',', $hor);
             $fechString = $fec;   
@@ -24,8 +24,8 @@
                 $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
             }
             $tag = 'quilicura carrete';
-            $lat = '-33.342399';
-            $lng = '-70.844988';
+            $lat = '-33.342376';
+            $lng = '-70.847788';
             $desc = '$ 5.000.- por persona';
             $urltwitter = 'tw';
             $urlfacebook = 'face';  
