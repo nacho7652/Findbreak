@@ -1,5 +1,6 @@
 <?php
-    require_once 'DAL/comentario.php';   
+    require_once '../DAL/connect.php';
+    require_once '../DAL/evento.php';
     
     if(isset($_POST['comentest'])){
         session_start();
@@ -14,7 +15,7 @@
         echo $re;      
     }
     
-    if(isset($_POST['comentevent'])){
+    if(isset($_REQUEST['comentevent'])){
         session_start();
         $userId = $_SESSION['userid'];
         $userName = $_SESSION['username'];

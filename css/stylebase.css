@@ -141,7 +141,7 @@ html {
     background-position: -65px -443px;
 }
 .loc-desactivado{
-    background-position: -37px -443px;
+    background-position: -38px -443px;
 }
 .input-textparent1{
     border-radius: 2px;  
@@ -183,7 +183,7 @@ html {
 }
 .input-transf{
     border: none;
-    box-shadow: 0px 2px 5px -1px #E6E6E6 inset;
+    box-shadow: 0px 3px 5px -2px #E6E6E6 inset;
     color: rgba(150, 71, 66, 0.701961);
     text-transform: uppercase;
 }
@@ -219,7 +219,7 @@ html {
     font-size: 11px;
 }
 #search-location {
-    width: 142px;
+    width: 147px;
     margin: 0px 0px 0px 2px;
     padding: 8px 5px;
     font-size: 11px;

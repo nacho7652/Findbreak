@@ -1,5 +1,5 @@
 <?php
-    require_once 'DAL/connect.php';
+    
     class comentario{
         private $db;
         function __construct() {
