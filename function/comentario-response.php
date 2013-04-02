@@ -19,8 +19,8 @@
         session_start();
         $userId = $_SESSION['userid'];
         $userName = $_SESSION['username'];
-        $comentario = $_POST['comentario'];
-        $evenId = $_POST['evenId'];
+        $comentario = $_REQUEST['comentario'];
+        $evenId = $_REQUEST['evenId'];
         $comentarios = new comentario();
         $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName);
          $respuesta = array("exito"=>"funciono");
