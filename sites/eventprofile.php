@@ -69,7 +69,10 @@
     <div class="title-coment-event">Comentarios</div>
     <?php if(isset($_SESSION['userid'])){ //si el usuario esta logueado puedo comentar (nuevo) ?>
     <div class="coments">
-        <div id="disqus_thread"></div>
+        <input type="hidden" id="idevent" value="<?php echo $eventfound['_id'] ?>"/>
+        <textarea id="coment" rows="5" cols="50" placeholder="Comentario..."></textarea>
+        <input type="button" id="btn-comentar" value="Comentar" />
+<!--        <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'findbreak'; // required: replace example with your forum shortname
@@ -82,7 +85,7 @@
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
 
     </div>
     <?php }

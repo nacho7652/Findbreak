@@ -577,12 +577,13 @@ $(document).ready(function(){
   
      $('#btn-comentar').click(function(){
          var coment = $('#coment').val();
-         var estaid = $('#idesta').val();
+         var eventid = $('#idevent').val();
+         alert(coment + eventid)
          $.ajax({           
              type:"POST",
              dataType:"json",
              url: "../function/comentario-response.php",
-             data: "comentest=1&comentario="+coment+"&estaId="+estaid,
+             data: "comentevent=1&comentario="+coment+"&eventId="+eventid,
              success: function (data)
              {
                  alert(data.exito);
