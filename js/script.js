@@ -582,7 +582,7 @@ $(document).ready(function(){
          $.ajax({           
              type:"POST",
              dataType:"json",
-             url: "../function/comentario-response.php",
+             url: "/findbreak/function/comentario-response.php",
              data: "comentevent=1&comentario="+coment+"&eventId="+eventid,
              success: function (data)
              {
