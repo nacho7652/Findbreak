@@ -30,7 +30,7 @@
                                   $nombreLink = str_replace(' ', '-', $dcto['nombre']);
                                   $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio']);
                                   $listevents.= '   <a target="_blank" href="/findbreak/evento/'.$dcto['_id'].'" class="tit-eventcerca linkred" >'.$dcto['nombre'].'</a>
-                                                       <div class="info-eventcerca">
+                                                       <div class="info-eventcerca info-eventcercawhte">
                                                            <div class="item-infocerca">
                                                                 
                                                                <div id="fechaevent" class="resp-cuando">'.$realizacion['fecha'].'</div>
