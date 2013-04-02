@@ -164,7 +164,6 @@ html {
     background: #fff;
     line-height: 17px;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
-    color: rgba(65, 89, 184, 0.8);
     float: left;
 }
 .input-textparent3{
@@ -184,8 +183,8 @@ html {
 .input-transf{
     border: none;
     box-shadow: 0px 3px 5px -2px #E6E6E6 inset;
-    color: rgba(150, 71, 66, 0.701961);
     text-transform: uppercase;
+    color: #777;
 }
 .input-transf:focus{
     outline:none;
@@ -211,6 +210,7 @@ html {
     width: 286px;
     margin: 0px 0px 0px 0px;
     padding: 8px 5px;  
+    color: #777;
 }
 #search-near {
     width: 221px;

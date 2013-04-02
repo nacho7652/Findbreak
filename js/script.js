@@ -8,7 +8,7 @@ $(document).ready(function(){
 	});
         
         var colorfocus = 'rgba(150, 71, 66, 0.9)';
-        var colorfocusout = 'rgba(150, 71, 66, 0.7)';
+        var colorfocusout = '#777';
         $('#search').focus(function(){
             if($(this).val() == 'BUSCA TU CARRETE...'){
                 $(this).css('color',colorfocus);
@@ -43,7 +43,7 @@ $(document).ready(function(){
         })
         $('#search-location').focusout(function(){
             if($(this).val() == ''){
-                $(this).css('color','rgba(129, 78, 78, 0.73)');
+                $(this).css('color','#777)');
                 $(this).val('UBICACIÓN ACTUAL');
                  //activarLocacion();
             }
