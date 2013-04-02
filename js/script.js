@@ -578,7 +578,6 @@ $(document).ready(function(){
      $('#btn-comentar').click(function(){
          var coment = $('#coment').val();
          var eventid = $('#idevent').val();
-         alert(coment + eventid)
          $.ajax({           
              type:"POST",
              dataType:"json",

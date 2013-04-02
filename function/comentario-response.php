@@ -1,6 +1,7 @@
 <?php
     require_once '../DAL/connect.php';
     require_once '../DAL/evento.php';
+    require_once '../DAL/comentario.php';
     
     if(isset($_POST['comentest'])){
         session_start();
@@ -20,7 +21,7 @@
         $userId = $_SESSION['userid'];
         $userName = $_SESSION['username'];
         $comentario = $_REQUEST['comentario'];
-        $evenId = $_REQUEST['evenId'];
+        $evenId = $_REQUEST['eventId'];
         $comentarios = new comentario();
         $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName);
          $respuesta = array("exito"=>"funciono");
