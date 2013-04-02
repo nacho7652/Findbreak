@@ -586,6 +586,7 @@ $(document).ready(function(){
              success: function (data)
              {
                  alert(data.exito);
+                 $('#coment').val("");
              }
          })
      })
