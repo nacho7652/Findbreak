@@ -49,7 +49,8 @@
         
     </div>
 </div>
-<div class="part-bottom">
+<div class="part-bottom"><iframe width='500' height='300' frameBorder='0' src='http://a.tiles.mapbox.com/v3/skumblue.map-v24un18b.html#3/0/0'></iframe>
+    
     <div class="more-fotos">
         <?php 
            $fotos = $eventfound['fotos'];
