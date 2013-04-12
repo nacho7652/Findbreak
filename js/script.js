@@ -6,9 +6,35 @@ $(document).ready(function(){
 	}).live('mouseleave', function(){ 
 	    mouseOverAll = false; 
 	});
-        
-        var colorfocus = 'rgba(150, 71, 66, 0.9)';
-        var colorfocusout = '#777';
+        $('.menutop').hover(function(){
+            $(this).animate({
+                         'height': '70px',
+                         'margin-bottom': '30px' 
+                     },
+                     {
+                        duration:200,
+                        easing:"swing"
+                     }
+                     );
+        }, function(){
+            $(this).animate({
+                         'height': '50px',
+                         'margin-bottom': '0px'
+                     },
+                     {
+                        duration:200,
+                        easing:"swing"
+                     }
+                     );
+        });
+        $('#user-login .option').hover(function(){
+            $(this).find('.content-option').css('color','rgba(255, 255, 255, 0.86)');
+        })
+        $('#user-login .option').mouseleave(function(){
+            $(this).find('.content-option').css('color','rgb(219, 219, 219)');
+        })
+        var colorfocus = 'rgb(104, 104, 104)';
+        var colorfocusout = 'rgb(145, 145, 145)';
         $('#search').focus(function(){
             if($(this).val() == 'BUSCA TU CARRETE...'){
                 $(this).css('color',colorfocus);
@@ -43,7 +69,7 @@ $(document).ready(function(){
         })
         $('#search-location').focusout(function(){
             if($(this).val() == ''){
-                $(this).css('color','#777)');
+                $(this).css('color',colorfocusout);
                 $(this).val('UBICACIÓN ACTUAL');
                  //activarLocacion();
             }
@@ -459,6 +485,7 @@ $(document).ready(function(){
       var idSolicitado;
      $('#response-friend').delegate('.item-search-friend','click',function(){
          idSolicitado = $(this).find('.id-item-search').html();
+        
          $.ajax({
                           type: "POST",
                           dataType: "json",

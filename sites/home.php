@@ -1,49 +1,25 @@
 
 <div class="content-home">
-    <div class="first-partevent">
-        <div class="divevents">
-            <div class="title"> Eventos cercanos a tu ubicación !</div>
-            
-            <div class="list-maps">
-              <div class="loading-events">Loading...</div>
-                <div class="inner-list-maps"></div>
-            </div>
-        </div>
-        <article>
-            <div id='map_canvas' style='width:100%; height:400px;'></div><!--Esta capa har� de elemento contenedor del mapa-->
-        </article>
-        <div class="event-hidden">
-           
-        </div>
-    </div>
+    <div class="banner-home"></div>
     <div class="second-partevent">
-        <div class="hor horiz1">
-            <div class="divseventspop">
-             <div class="title"> Eventos más populares!</div>
+        <div class="hor horiz1 divtrans">
+<!--            <div class="divseventspop">
+             <div class="titlediv"> Eventos más populares!</div>
                 <div class="list-events-pop">
                 </div>
             </div>
-        </div>
-        <div class="hor horiz2">
             
-            <div class="divseventsord">
-                 <div class="title"> Eventos próximos!</div>
-                <div class="list-events-ord">
-                </div>
-            </div>
             
-        </div>
-        <div class="hor horiz3">
             <div class="divseventsfavo">
-                 <div class="title"> Eventos recomendados para ti!</div>
+                 <div class="titlediv"> Eventos recomendados para ti!</div>
                 <div class="list-events-favo">
                 </div>
-            </div>
+            </div>-->
             <?php 
             
             if(isset($_SESSION['userid'])){?>
                     <div class="divseventsfavo">
-                         <div class="title"> Eventos visitados recientemente</div>
+                         <div class="titlediv"> Eventos visitados recientemente</div>
                         <div class="list-events-hist">
                             <div class="eventsfavo">
                                 <?php 
@@ -59,9 +35,9 @@
                                     $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                 ?>
                                 <div class="item-event">   
-                                     <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event"></div>
+                                     <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
-                                        <a class="tittle-event" target="_blank" href="../evento/<?php echo $dcto['_id'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        <a class="tittle-event tit" target="_blank" href="../evento/<?php echo $dcto['_id'];?>"><?php echo $dcto['nombre']; ?></a> 
                                          <!--<div class="productora-event">
                                             Producido por: productora
                                         </div>-->
@@ -74,6 +50,18 @@
                         </div>
                     </div>
             <?php }?>
+        </div>
+        <div class="hor horiz2 divtrans">
+            
+            <div class="divseventsord">
+                 <div class="titlediv"> Eventos próximos!</div>
+                <div class="list-events-ord">
+                </div>
+            </div>
+            
+        </div>
+        <div class="hor horiz3">
+            
         </div>
 <!--    
         

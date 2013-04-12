@@ -1,19 +1,19 @@
-
 <div class="content-cerca">
     <div class="first-partevent">
         <div class="divevents">
-            <div class="title"> 
-                  <div class="text-cerca"> EVENTOS CERCA TUYO</div>
-                  
-                  <div class="input-textparent2">
-                    <input type="text" value="BUSCA LO QUE QUIERAS..." id="search-near" class="input-transf"/>
-                    <input id="boton-buscarcerca" type="button" class="sprites" />
-                  </div> 
-                  <div class="input-textparent3">
-                    <input type="text" value="UBICACIÓN ACTUAL" id="search-location" class="input-transf"/>
-                    <input id="boton-location" type="button" class="sprites loc-activado" />
-                  </div>
-              </div>
+                     <div class="title"> 
+                          <div class="text-cerca"> EVENTOS CERCA TUYO</div>
+
+                          <div class="input-textparent2">
+                            <input type="text" value="BUSCA LO QUE QUIERAS..." id="search-near" class="input-transf"/>
+                            <input id="boton-buscarcerca" type="button" class="sprites" />
+                          </div> 
+                          <div class="input-textparent3">
+                            <input type="text" value="UBICACIÓN ACTUAL" id="search-location" class="input-transf"/>
+                            <input id="boton-location" type="button" class="sprites loc-activado" />
+                          </div>
+                      </div>
+               
             <div class="list-maps">
               <div class="loading-events">Buscando eventos...</div>
               <div class="loading-events no-resultados">No hay carrete cerca de la ubicacion, prueba con otra dirección...</div>
@@ -25,7 +25,7 @@
                         
                         <div class="event-right">
                             <div class="event-left"></div>
-                            <div class="num-event">#<?php echo $i?></div>
+                            <div class="num-event">#</div>
                             
                             <div class="tit-eventcerca link">Barcelona vs Real Madrid</div>
                             <div class="info-eventcerca">

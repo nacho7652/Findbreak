@@ -23,80 +23,100 @@
           $_SESSION['vi'.(string)$eventfound['_id']] = 1;
     //  }
 ?>
-<div class="part-left">
-    <div class="title-event"><?php echo $eventfound['nombre']; ?></div>
-    <div class="foto-event" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
-    <div class="inner-eveninfo info-eventcerca">
-            <?php 
-                    $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
-                ?>
-            <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
-            <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
-            <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
-            <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
-            <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
-            
+<div class="parte-left-parent">
+            <div class="part-left divtrans">
+            <div class="part-left-right">
+                <div class="foto-event" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
+            </div>
+
+            <div class="part-left-cent">
+                <div class="title-event tit"><?php echo $eventfound['nombre']; ?></div>
+                <div class="inner-eveninfo info-eventcerca">
+                        <?php 
+                                $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
+                            ?>
+
+                        <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
+                        <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
+                        <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
+                        <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
+                        <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
+
+                </div>
+            </div>
+
+            <div class="part-left-lf">
+
+            </div>
+
+
+        </div>
+    
+    <div class="cercanos">
+            <div class="tit tit1">Establecimientos cercanos al evento</div>
+           <div id='map_establecimientos' style='width:100%; height:175px;'></div>
+            <div id="list-establec">
+
+
+
+
+            </div>
+
+            <div class="more-fotos">
+                <?php 
+                   $fotos = $eventfound['fotos'];
+                   if(count($eventfound['fotos']) > 1){
+                       for($i=0; $i<count($eventfound['fotos']) -1; $i++){
+                           $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][$i+1];
+                           ?>
+                       <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
+                <?php
+                     }
+                   }
+               ?>
+             </div>
+            <div class="description-event">
+                <?php echo $eventfound['descripcion']; ?>
+            </div>
+            <div class="title-coment-event">Comentarios</div>
+    </div>
+    
+    <div class="part-bottom divtrans">
+    <div class="tit tit1">Comenta el evento</div>
+        <?php if(isset($_SESSION['userid'])){ //si el usuario esta logueado puedo comentar (nuevo) ?>
+        <div class="coments">
+            <input type="hidden" id="idevent" value="<?php echo $eventfound['_id'] ?>"/>
+            <input id="coment" class="input-textparent1" placeholder="Comentario..."/>
+            <input type="button" class="botongreen" id="btn-comentar" value="Comentar" />
+        </div>
+        <?php }
+          else{ //si no esta logueado no puedo comentar ?>  
+        <div class="coments">Para comentar el evento debes iniciar sesión</div>
+         <?php } ?>
+        
+
+
+
+
+    </div>
+</div>
+<div class="parte-der">
+    <div class="part-right divtrans">
+
+
+    </div>
+    
+    <div class="part-right divtrans">
+
+
     </div>
 </div>
 
-<div class="part-right">
-    <div class="tittle-est-near">Establecimientos cercanos</div>
-    <div id='map_establecimientos' style='width:100%; height:400px;'></div>
-    <div id="list-establec">
-        
-        
-        
-        
-    </div>
-</div>
-<div class="part-bottom"><iframe width='500' height='300' frameBorder='0' src='http://a.tiles.mapbox.com/v3/skumblue.map-v24un18b.html#3/0/0'></iframe>
-    
-    <div class="more-fotos">
-        <?php 
-           $fotos = $eventfound['fotos'];
-           if(count($eventfound['fotos']) > 1){
-               for($i=0; $i<count($eventfound['fotos']) -1; $i++){
-                   $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][$i+1];
-                   ?>
-               <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
-        <?php
-             }
-           }
-       ?>
-     </div>
-    <div class="description-event">
-        <?php echo $eventfound['descripcion']; ?>
-    </div>
-    <div class="title-coment-event">Comentarios</div>
-    <?php if(isset($_SESSION['userid'])){ //si el usuario esta logueado puedo comentar (nuevo) ?>
-    <div class="coments">
-        <input type="hidden" id="idevent" value="<?php echo $eventfound['_id'] ?>"/>
-        <textarea id="coment" rows="5" cols="50" placeholder="Comentario..."></textarea>
-        <input type="button" id="btn-comentar" value="Comentar" />
-<!--        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'findbreak'; // required: replace example with your forum shortname
 
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>-->
 
-    </div>
-    <?php }
-      else{ //si no esta logueado no puedo comentar ?>  
-    <div class="coments">Para comentar el evento debes iniciar sesión</div>
-     <?php } ?>
-    
-    
-    </div>
-</div>
+
+
+
 <?php 
     $loc = $eventfound['loc'];
 ?>

@@ -60,8 +60,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--        <link rel="shortcut icon" href="images/favicon.png">
-        <link rel="apple-touch-icon" href="images/favicon.png">-->
+        <link rel="shortcut icon" href="images/icon.png">
+        <link rel="apple-touch-icon" href="images/icon.png">
         <title><?= $page_title ?></title>
         <meta name="description" content="<?= $page_description ?>">
         <link rel="stylesheet" href="css/stylebase.css">
@@ -101,6 +101,7 @@
         <div id="top">
             <div id="content-top">
                 <div class="top-left">
+                    <div class="logoper"></div>
                     <div class="logo"></div>
                 </div>
                 
@@ -124,9 +125,9 @@
                                        Iniciar sesion
                                    </a>
                                    <div class="login-cont"> 
-                                      <input type="text" placeholder="Correo electronico" id="mail">
+                                      <input  type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
-                                      <a href="#" id="boton-login">Entrar</a>
+                                      <a href="#" class="botongreen" id="boton-login">Entrar</a>
                                    </div>
                                    
                                    <a href="#" class="registrate">Registrate</a>
@@ -229,13 +230,18 @@
                                </div>
                                <?php } ?>
                  </div>
+                
+              
+                
         </div><!--content top-->
         
        </div><!-- top-->
        
         <div id="body" <?= $page_class ?>>
             <?php if($page_site != 'cerca'){?>
-                <div class="menutop"></div>
+                <div class="menutop">
+                    <div class="btnslide"></div>
+                </div>
            <?php } ?>
             <div  <?= $page_class_near ?>>
                  <?php include_once('sites/'.$page_site.'.php'); ?>

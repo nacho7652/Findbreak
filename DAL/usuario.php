@@ -67,7 +67,7 @@ class usuario {
     }
     
     
-    public function solicitudPendientes($idSolicitado)//solicitud pendientes
+    public function solicitudPendientes($solicitante, $idSolicitado)//solicitud pendientes
     {
         $idSolicitado = new MongoId($idSolicitado);
        // $solicitante = new MongoId($solicitante);

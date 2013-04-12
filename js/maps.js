@@ -258,7 +258,7 @@ function geolocalizarManual(address){
    $('#boton-location').click(function(){
        if($(this).hasClass('loc-desactivado')){
             manualLocation = false;
-            $('#search-location').css('color','rgba(129, 78, 78, 0.73)');
+            $('#search-location').css('color','rgb(145, 145, 145)');
             $('#search-location').val('UBICACIÓN ACTUAL');
             localizame();
        }

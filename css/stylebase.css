@@ -66,6 +66,7 @@ html {
 #top {
     background: rgba(36, 115, 167, 1);
     /*background: url(/findbreak/images/bg-bner.png);*/
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
     width: 100%;  
     height: 51px; 
     margin: 0px 0px 0px 0px; 
@@ -73,7 +74,7 @@ html {
     box-shadow: 0px 2px 6px -3px black;  
     min-width: 990px;  
     top: 0px;  
-    z-index: 10000000000000; 
+    z-index: 10; 
 /*    background: #962154; 
     background-image: -webkit-gradient(linear,left top,left bottom,from(#3C3C3C),to(#111));   
     background-image: -webkit-linear-gradient(#A5235B,#962154);   
@@ -94,7 +95,7 @@ html {
     height: 52px;
     background: rgba(150, 71, 66, 0.49);
     background: rgba(177,177,177,0.12);
-    margin: 63px auto 0 auto;
+    margin: 30px auto 0 auto;
     border: 1px solid #E0E0E0;
 }
 #content-top .top-left {
@@ -103,11 +104,21 @@ html {
     height: 53px;
     margin-right: 36px;
 }
+.logoper {
+    background: url('/findbreak/images/logoper.png')no-repeat;
+    width: 60px;
+    height: 37px;
+    position: absolute;
+    left: -12px;
+    background-size: cover;
+    top: 16px;
+    display: none;
+}
 .logo {
     width: 201px;
     height: 50px;
-    background: url('/findbreak/images/logon6.png')no-repeat;
-    margin-top: 6px;
+    background: url('/findbreak/images/logon15.png')no-repeat;
+    margin-top: 3px;
 }
 #content-top .top-center {
     float: left;
@@ -117,7 +128,7 @@ html {
 }
 #content-top .top-right {
     float: left;
-    width: 388px;
+    width: 400px;
     height: 53px;
 }
 #boton-buscar {
@@ -153,7 +164,6 @@ html {
     font-size: 11px;
     line-height: 17px;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
-    color: rgba(150, 71, 66, 0.8);
 }
 .input-textparent2{
     border-radius: 2px;  
@@ -184,7 +194,7 @@ html {
     border: none;
     box-shadow: 0px 3px 5px -2px #E6E6E6 inset;
     text-transform: uppercase;
-    color: #777;
+    color: rgb(145, 145, 145);
 }
 .input-transf:focus{
     outline:none;
@@ -210,7 +220,7 @@ html {
     width: 286px;
     margin: 0px 0px 0px 0px;
     padding: 8px 5px;  
-    color: #777;
+    color: rgb(145, 145, 145);
 }
 #search-near {
     width: 221px;
@@ -241,12 +251,10 @@ html {
 }
 .top-right #user-login{
     float: right;
-    height: 50px;
-    margin-right: 7px;
-    margin-top: 15px;
+    height: 38px;
+    margin-top: 0px;
     max-width: 370px;
     color: #fff;
-    font-size: 0.8em;
     position: relative;
 }
 #user-login .groupoption {
@@ -257,7 +265,8 @@ html {
     position: absolute;
     right: 0px;
     top: 43px;
-    display: none;  box-shadow: 0px 1px 10px -2px #962154;  
+    display: none;  
+    box-shadow: 0px 1px 10px -2px rgb(117, 117, 117);  
 }
 #user-login .itemgroup-option {
     background: white;
@@ -277,32 +286,32 @@ html {
     margin: 11px 0px 0px -1px;    
     padding: 8px 0px 8px 0px;
     text-align: center;
-    color: #ECB9CE;
+    color: rgb(219, 219, 219);
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 11px;
     text-decoration: none;
 }
 
 #user-login .option.user-photo {
-    background-color: #A4A4A4;
-    border-right: 1px solid #a4a4a4;
-    width: 38px;
+    background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s160x160/75506_10200385133008579_1835723334_a.jpg) no-repeat;
+    background-size: cover;
+    width: 30px;
     height: 16px;
     margin-right: 1px;
 }
 
 #user-login #optionhome{
-    border-right: 1px solid #B81F61;
+    border-right: 1px solid rgb(59, 91, 173);
 }
 .option.user-photo:hover{
    background-color: #A4A4A4 !important; 
 }
 #user-login .option:hover{
-    background-color: #B81F61;
+    background-color: rgba(25, 81, 153, 0.36);
     cursor: pointer;
 }
 #user-login .content-option {
-    border-right: 1px solid #B81F61;
+    border-right: 1px solid rgb(59, 91, 173);
     padding: 0px 15px 0px 15px;
 }
 #user-login .content-option-first {
@@ -355,7 +364,7 @@ html {
     border-right: 1px solid #e6e6e6;
     border-bottom: 1px solid #e6e6e6;
     overflow: hidden;
-    z-index: 100;
+    z-index: 10240000000000000000000000000000;
     position: relative;
     top: -4px;
     box-shadow: 0px 7px 10px -9px #962154;
@@ -496,7 +505,7 @@ html {
     right: 5px;
     top: 27px;
     border: 1px solid #D8D8D8;
-    box-shadow: 0px 1px 10px -2px #962154;
+    box-shadow: 0px 1px 10px -2px rgb(173, 173, 173);
     border-radius: 4px;
 }
 #content-top .login-cont #mail{
@@ -521,7 +530,8 @@ html {
 }
 
 #content-top .login-cont #boton-login {
-    display: block;
+    float: right;
+/*    display: block;
     width: 102px;
     padding: 7px 3px;
     background-color: #B81F61;
@@ -531,7 +541,10 @@ html {
     text-align: center;
     text-decoration: none;
     color: white;
-    font-size: 0.8em;
+    font-size: 0.8em;*/
+;
+    margin: 11px 15px 12px 0px;
+    text-decoration: none;
 }
 
 /* END TOP*/
@@ -561,12 +574,21 @@ html {
 /*HOME*/
 .home{
     padding: 4px 0px;
+    width: 968px !important;  margin: 0px auto 0px auto !important;  overflow: hidden !important;
 }
 .content-home {
     width: 100%;
     margin: 0 auto;
-    padding-top: 0px;
-    box-shadow: 0px 0px 3px 2px #F6F6F6;  border-radius: 2px;
+    padding-top: 0px;  border-radius: 2px;
+}
+
+.banner-home {
+    width: 964px;
+    height: 200px;
+    background: url(http://www.summeribiza.com/wp-content/uploads/2010/05/espuma.jpg) 0px -107px !important;
+    background-size: cover !important;
+    border: 1px solid #e4e5e8;
+    border-radius: 2px;
 }
 
 .first-partevent {
@@ -604,17 +626,20 @@ html {
     font-family: EstoyBueno;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
-.first-partevent .divevents .title {
-    background: rgba(36, 115, 167, 0.69);
+.title {
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(35, 106, 151, 1), rgba(24, 99, 146, 1));
     width: 468px;
     height: 64px;
     color: #FFF;
     padding: 7px 0px 2px 17px;
     position: fixed;
-    z-index: 4;
+    z-index: 7;
     left: 26px;
     margin: 1px 0px 0px 0px;
     box-shadow: 0px 2px 6px -3px black;
+    top: 50px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 .first-partevent .list-maps {
     width: 475px;
@@ -677,8 +702,9 @@ top: -8px;
     display: block; 
 }
 .inner-eveninfo.info-eventcerca {
-    margin: 55px 0px 0px 0px;
-    height: 223px;
+    margin: 22px 0px 0px 0px;
+    height: 268px;
+    width: 458px;
 }
 .info-eventcercawhte{
     background: #fff;
@@ -687,10 +713,9 @@ top: -8px;
     padding: 8px 0px 0px 10px;
     color: rgb(88, 88, 88) !important;
     height: 170px;
-    border-top: 1px dashed rgb(228, 228, 228);
-    border-bottom: 1px dashed rgb(228, 228, 228);
 }
 .botongreen {
+    display: block;
     width: 92px;
     border-radius: 3px;
     text-align: center;
@@ -698,16 +723,17 @@ top: -8px;
     font-size: 0.7em;
     margin: -6px 11px 0px 0px;
     padding: 5px 7px;
-    color: #fff;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-    background-color: rgba(30, 115, 187, 0.83);
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);                  
-    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  text-shadow: rgba(0,0,0,0.2) 0 1px 0;  -webkit-text-shadow: rgba(0,0,0,0.2) 0 1px 0;  -moz-text-shadow: rgba(0,0,0,0.2) 0 1px 0;
+    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
+    background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    color: #FFF;
 }
+
 .botongreen:hover {
     cursor: pointer;
-    background-color: rgba(30, 115, 187, 0.9);
+    background: -webkit-linear-gradient(top,rgba(47, 135, 194, 1), rgba(38, 113, 160, 1));
 }
 .item-infocerca {
     margin-bottom: 0px;
@@ -718,7 +744,7 @@ top: -8px;
     margin: -16px 0px 0px 137px;
 }
 .linkred{
-    color: #444;
+    color: rgba(68, 68, 68, 0.86);
     font-weight: bold;
     text-decoration: none;
 }
@@ -766,12 +792,12 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     height: 242px;
     border-radius: 2px;
     margin: 11px 0px 11px 14px;
-    background: rgb(245, 245, 245);
+    background: url('/findbreak/images/bg.jpg') rgb(245, 245, 245);
     box-shadow: 0px 2px 9px -3px #444;
     position: relative;
 }
 .item-eventcerca:hover{
-    background: url('/findbreak/images/fondoevent.png') rgb(245, 245, 245);
+    background: url('/findbreak/images/bg.jpg') rgb(245, 245, 245);
 }
 .first-partevent #map_canvas{
     border: 1px solid #CCC;
@@ -786,32 +812,35 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 950px;
     margin: 11px auto;
     overflow: hidden;
-    position: relative;
-    background: #fff;
-    background: rgba(237, 237, 237, 0.7);  border: 1px solid #DADADA;
+    position: relative;  
 }
 .second-partevent .hor {
     min-height: 216px;
     float: left;
-    margin-right: 5px;
-    margin-top: 4px;
 }
 .second-partevent .hor.horiz1 {
-    margin-left: 5px;
-    width: 255px;
+    width: 253px;
+    margin-right: 8px;
 }
 .second-partevent .hor.horiz2 {
-    width: 420px;
+    width: 684px;
 }
 .second-partevent .hor.horiz3 {
-    width: 254px;
-    border-left: 1px solid #ccc;
+    width: 274px;
+    border-left: 1px solid rgba(211, 211, 211, 0.31);
+}
+.titlediv {
+    font-size: 0.7em;
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    color: rgb(241, 241, 241);
+    padding: 7px 0px 7px 12px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #083f78;
 }
 .second-partevent .divseventsfavo{
-    width: 229px;
+    width: 253px;
     overflow: hidden;
-    padding: 7px 13px 13px 13px;
-    border-radius: 5px;
+    padding: 0px;
     float: right;
 }
 .second-partevent .list-events-favo{
@@ -827,16 +856,14 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 
 .second-partevent .divseventspop{
     
-    width: 255px;
+    width: 100%;
     overflow: hidden;
-    border-radius: 5px;
     float: left;
 }
 .second-partevent .divseventsord{
-    width: 401px;
+    width: 100%;
     overflow: hidden;
-    padding: 7px 13px 13px 13px;
-    border-radius: 5px;
+    padding: 0px;
     float: left;
 }
 .second-partevent .divseventspop .title, .second-partevent .divseventsfavo .title{
@@ -859,11 +886,11 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     background: rgba(255,255,255,0.8);
 }
 .item-event {
-    width: 251px;
-    height: 86px;
+    width: 274px;
+    height: 69px;
     float: left;
-    margin: 0px 0px 0px 0px;
-    border-bottom: 1px solid #CCC;
+    margin: 10px 0px 0px 0px;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.31);
     color: #444;
     padding-bottom: 4px;
 }
@@ -890,8 +917,17 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .foto-event {
     width: 195px;
     height: 220px;
+    float: right;
+    margin: -24px 1px 0px 17px;
+    background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;
+    box-shadow: 0px 1px 10px -3px #444;  
+    border: 4px solid #fff;
+}
+.foto-event-peq{
+    width: 49px;
+    height: 56px;
     float: left;
-    margin: -36px 0px 0px 17px;
+    margin: 0px 0px 0px 10px;
     background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;
     box-shadow: 0px 1px 10px -3px #444;  
     border: 4px solid #fff;
@@ -899,7 +935,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 
 .info-event {
     float: left;
-    width: 168px;
+    width: 183px;
     height: 81px;
 }
 .revews-event {
@@ -913,12 +949,11 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .tittle-event {
     color: #4D4D4D;
     display: block;
-    width: 160px;
+    width: 155px;
     float: left;
     text-decoration: none;
     margin: 5px 0px 0px 10px;
-    font-weight: bold;
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 .tittle-event:hover{
     text-decoration: underline;
@@ -946,26 +981,32 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     overflow: hidden !important;
 }
 
+.parte-left-parent {
+    width: 671px;
+    float: left;
+    margin-bottom: 30px;
+}
 .part-left {
-    width: 601px;
+    width: 657px;
     height: 333px;
     float: left;
-    margin: 13px 0px 0px 6px;    border-radius: 2px;    
-    background: #F9FAFA;  
-    background: #fff;
-    background: rgba(177,177,177,0.12);
-    box-shadow: 0px 4px 6px -5px #DDB;  position: relative;
+    margin: 13px 0px 0px 6px;            position: relative;
     color: rgb(88, 88, 88);
-    border: 1px solid #e4e5e8;
 }
-.part-left .foto-event{
+.part-left-cent {
+    width: 380px;
+    float: left;
+}
+.part-left-right {
+    width: 262px;
+    float: left;
+    margin-right: 4px;
 }
 .part-left .title-event{
-    width: 100%;
+    width: 362px;
     
     float: left;
-    margin: 30px 0px 0px 231px;
-    color: #444;
+    margin: 5px 0px 0px 12px;
     font-weight: bold;
 }
 .part-left .foto-event-small {
@@ -995,22 +1036,45 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .part-left .info-event-item{
     float: left;
-    margin: 8px 0px 6px 11px;
+    margin: 8px 0px 6px 0px;
     padding: 1px 0px 5px 24px;
     font-size: 0.7em;
     width: 334px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
 }
+.part-left-lf {
+    width: 259px;
+    height: 319px;
+    float: left;
+    padding: 0px 0px 0px 11px;
+    margin-top: 5px;
+}
+.divtrans{
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e4e5e8;
+    border-radius: 2px;
+}
+.tit {
+    color: rgba(68, 68, 68, 0.86);
+    font-weight: bold;
+}
+.tit1 {
+    font-size: 0.7em;
+}
+#map_establecimientos {
+    border: 1px solid rgba(211, 211, 211, 0.24);
+    margin: 4px 0px 0px 0px;
+}
 .part-right {
     float: left;
-    width: 271px;
+    width: 272px;
     
-    min-height: 272px;
+    min-height: 214px;
+    height: 329px;
     padding-left: 11px;
-    margin: 40px 0px 0px 12px;
+    padding-top: 4px;
+    margin: 13px 0px 0px 12px;
     overflow: hidden;
-    background: #fff;
-    display: none;
 }
 #list-establec {
     margin: 6px 10px 0px 0px;
@@ -1020,6 +1084,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     font-size: 0.8em;
     overflow-y: scroll;
     max-height: 188px;
+    display: none;
 }
 .item-est {
     width: 347px;
@@ -1052,19 +1117,37 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     font-weight: bold;
     color: #444;
 }
+.cercanos {
+    width: 656px;
+    height: 211px;
+    margin: 10px 0px 0px 8px;
+    float: left;
+}
 .part-bottom {
     float: left;
-    width: 516px;
+    width: 632px;
+    margin: 0px 0px 0px 8px;
+    padding-left: 11px;
+    padding-top: 4px;
+    padding-right: 13px;
+    min-height: 316px;
+}
+#coment {
+    margin: 0px 0px 0px 2px;
+    width: 242px;
+    font-size: 12px;
+    color: rgb(104, 104, 104);
+    padding: 6px 3px;
+    height: 19px;
+}
+#btn-comentar {
+    margin: 10px 0px 0px 0px;
+    float: right;
 }
 .coments {
-    width: 834px;
-    float: left;
-    padding: 19px 12px;
-    background: rgba(253, 250, 255, 0.9);    
-    border: 1px solid #DADADA;  
-    margin-bottom: 14px;
-    margin-left: 45px;
-    margin-top: 54px;
+    width: 251px;
+    float: left;      
+    margin: 8px 0px 0px 0px;
 }
 .more-fotos {
     float: left;
