@@ -11,7 +11,7 @@
             require_once 'DAL/evento.php';
             $idproductora = '238928932389892';
             $nombreproductora = 'Nombre de prueba';
-            $nom = 'Carrete quilicura #3';
+            $nom = 'Millencolin en chile 2013';
             $dir = 'Santa Sofia #2092';
             $arrayfotos = 'foto1.jps, foto2.jpg';
             $fec = '2013-04-20, 2013-04-21, 2014-04-22';
@@ -95,6 +95,13 @@
             <div class="innercal">
                 <div class="cerrar"></div>
                 <div id="caloader">
+                </div>
+            </div>
+        </div>
+        <div id="covermsj">
+            <div class="innermsj">
+                <!--<div class="cerrar"></div>-->
+                <div id="calmsj">
                 </div>
             </div>
         </div>

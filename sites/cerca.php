@@ -1,8 +1,12 @@
+
+
+
+
 <div class="content-cerca">
     <div class="first-partevent">
         <div class="divevents">
                      <div class="title"> 
-                          <div class="text-cerca"> EVENTOS CERCA TUYO</div>
+                          <div class="text-cerca"> EVENTOS CERCA TUYO </div>
 
                           <div class="input-textparent2">
                             <input type="text" value="BUSCA LO QUE QUIERAS..." id="search-near" class="input-transf"/>

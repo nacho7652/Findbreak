@@ -63,6 +63,35 @@ html {
     padding: 15px;
 }
 
+#covermsj {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.26);
+    position: fixed;  z-index: 2000000;  
+    top: 0;  left: 0;  right: 0;  bottom: 0;
+}
+.innermsj {     
+    position: relative;  width: 526px;  margin: 70px auto;  
+    background: rgba(238, 238, 238, 1);  
+    box-shadow: 0px 0px 32px -4px #424242;  
+    border-radius: 2px;  padding: 15px;  
+}
+#covermsj .cerrar {
+    width: 32px;
+    height: 29px;
+    background: url("images/cerrarsmall.png") center center no-repeat;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 110;
+    cursor: pointer;
+}
+#calmsj {
+    min-height: 100%;
+    overflow: hidden;            
+    padding: 15px;
+}
+
 #top {
     background: rgba(36, 115, 167, 1);
     /*background: url(/findbreak/images/bg-bner.png);*/
@@ -196,7 +225,7 @@ html {
     text-transform: uppercase;
     color: rgb(145, 145, 145);
 }
-.input-transf:focus{
+.input-transf:focus, #coment:focus{
     outline:none;
 }
 .input-text{
@@ -704,7 +733,7 @@ top: -8px;
 .inner-eveninfo.info-eventcerca {
     margin: 22px 0px 0px 0px;
     height: 268px;
-    width: 458px;
+    width: 369px;
 }
 .info-eventcercawhte{
     background: #fff;
@@ -918,7 +947,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 195px;
     height: 220px;
     float: right;
-    margin: -24px 1px 0px 17px;
+    margin: -24px 1px 0px 4px;
     background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;
     box-shadow: 0px 1px 10px -3px #444;  
     border: 4px solid #fff;
@@ -977,17 +1006,21 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 /*EVENT PROFILE*/
 .eventprofile,.productora, .perfilest {
     width: 968px !important;
-    margin: 0px auto 0px auto !important;    
+    margin: 0px auto 11px auto !important;    
     overflow: hidden !important;
 }
 
 .parte-left-parent {
-    width: 671px;
+    width: 630px;
     float: left;
     margin-bottom: 30px;
 }
+.parte-der {
+    float: left;
+    width: 332px;
+}
 .part-left {
-    width: 657px;
+    width: 614px;
     height: 333px;
     float: left;
     margin: 13px 0px 0px 6px;            position: relative;
@@ -998,7 +1031,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     float: left;
 }
 .part-left-right {
-    width: 262px;
+    width: 230px;
     float: left;
     margin-right: 4px;
 }
@@ -1006,7 +1039,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 362px;
     
     float: left;
-    margin: 5px 0px 0px 12px;
+    margin: 5px 0px 0px 14px;
     font-weight: bold;
 }
 .part-left .foto-event-small {
@@ -1067,13 +1100,11 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .part-right {
     float: left;
-    width: 272px;
+    width: 330px;
     
-    min-height: 214px;
-    height: 329px;
-    padding-left: 11px;
+    min-height: 329px;
     padding-top: 4px;
-    margin: 13px 0px 0px 12px;
+    margin: 13px 0px 0px 0px;
     overflow: hidden;
 }
 #list-establec {
@@ -1118,14 +1149,14 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     color: #444;
 }
 .cercanos {
-    width: 656px;
-    height: 211px;
-    margin: 10px 0px 0px 8px;
+    width: 612px;
+    height: 192px;
+    margin: 6px 0px 0px 8px;
     float: left;
 }
 .part-bottom {
     float: left;
-    width: 632px;
+    width: 587px;
     margin: 0px 0px 0px 8px;
     padding-left: 11px;
     padding-top: 4px;
@@ -1133,21 +1164,131 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     min-height: 316px;
 }
 #coment {
-    margin: 0px 0px 0px 2px;
-    width: 242px;
+    margin: 5px 0px 7px 0px;
+    width: 295px;
     font-size: 12px;
     color: rgb(104, 104, 104);
-    padding: 6px 3px;
-    height: 19px;
+    padding: 5px 3px 6px 7px;
+    height: 15px;
+    resize: none;
+    border: none;
 }
+
 #btn-comentar {
-    margin: 10px 0px 0px 0px;
+    margin: 8px 0px 0px 0px;
     float: right;
 }
+.login-hover-com {
+    color: rgba(42, 124, 179, 1) !important;
+    text-decoration: none;
+}
 .coments {
-    width: 251px;
+    width: 310px;
     float: left;      
-    margin: 8px 0px 0px 0px;
+    margin: 8px 0px 0px 10px;
+}
+.mjscoment{
+    font-size: 0.8em;
+    color: rgb(88, 88, 88) !important;
+}
+.input-transcom {
+    border: 1px solid rgb(209, 209, 209);
+    box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
+}
+.divcitar {
+    float: left;
+    font-weight: bold;
+    color: rgb(105, 105, 105);
+    margin: 5px 0px 0px 2px;
+    font-size: 1.1em;
+}
+.divcitar:hover{
+    color: rgb(83, 83, 83) !important;
+    cursor: pointer;
+}
+.hash {
+    margin: 2px 0px 0px 5px;
+    padding-bottom: 1px;
+    font-size: 0.8em;
+    color: rgba(42, 124, 179, 1);
+    border-bottom: 1px solid rgba(228, 228, 228, 0.36);
+    width: 297px;
+}
+.hashlink {
+    margin: 2px 3px 0px 0px;
+    padding-bottom: 1px;
+    color: rgba(42, 124, 179, 1);
+     text-decoration: none;
+}
+.hashlink:hover{
+    text-decoration: underline;
+}
+.line {
+    border-top: 1px solid rgba(211, 211, 211, 0.31);
+    float: left;
+    width: 317px;
+    margin: 0px 0px 6px 0px;
+}
+.itemcoment {
+    width: 324px;
+    min-height: 70px;
+    float: left;
+    padding: 0px 0px 0px 6px;
+    margin-left: 0px;
+}
+.itemcoment:hover{
+    background:rgba(250, 250, 250, 0.38);
+}
+.bloq1 {
+    width: 40px;
+    height: 40px;
+    background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s160x160/75506_10200385133008579_1835723334_a.jpg) no-repeat;
+    background-size: cover;
+    float: left;
+    margin: 0px 3px 0px 0px;
+}
+.nomusercom.tit {
+    font-size: 0.7em;
+    margin: 0px 0px 0px 4px;
+}
+.bloq2 {
+    float: left;
+    width: 257px;
+    min-height: 60px;
+    margin-bottom: 4px;
+}
+.bloq3 {
+    float: left;
+    width: 309px;
+    height: 16px;
+    font-size: 0.6em;
+    color: #999;
+}
+.hacecuant {
+    float: left;
+}
+.aparececom {
+    float: left;
+    margin-left: 17px;
+    display: none;
+}
+.aparececom:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgba(42, 124, 179, 1);
+}
+.showfocuscom{
+    display: none; 
+}
+.list {
+    margin-top: 17px;
+    width: 330px;
+    float: left;
+}
+.comentuser {
+    font-size: 0.7em;
+    margin: 2px 0px 0px 5px;
+    color: rgb(88, 88, 88) !important;
 }
 .more-fotos {
     float: left;

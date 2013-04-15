@@ -1,4 +1,38 @@
 $(document).ready(function(){
+        mouseOverAllmsj = false; 	
+	$('.innermsj').live('mouseenter', function(){
+	    mouseOverAllmsj = true; 
+	}).live('mouseleave', function(){ 
+	    mouseOverAllmsj = false; 
+	});
+        $("#covermsj").click(function(){
+			if (!mouseOverAllmsj){
+				covermsjclose();    
+			}			
+        });
+        function covermsjclose(){	
+		$("#covermsj").fadeOut(0, 
+			function(){
+				$("#covermsj > .innermsj").css("display", "none");
+                                $('#covermsj').hide();
+				//$("html").css("overflow-y", "scroll");
+				$("#calmsj").html("");								
+			});
+	}
+    function msjError(msj){				
+            $('#calmsj').html('<img class="iconerror" src="images/error.png"/> '+msj);
+            setTimeout('$("#covermsj").fadeOut(500);',4000);
+        }
+        function loader(msj){
+            $("#covermsj").fadeIn(0);	
+            $("#covermsj > .innermsj").fadeIn(0);
+            $('#calmsj').html(msj);
+        }
+        function msjSucess(msj){
+            $('#calmsj').html('<img class="iconsuccess" src="images/s_success.png"/> '+msj);
+            setTimeout('$("#covermsj").fadeOut(500);',4000);
+
+        }
     /* COVERALL   ***************************************************** */
 	mouseOverAll = false; 	
 	$('#caloader').live('mouseenter', function(){
@@ -27,6 +61,72 @@ $(document).ready(function(){
                      }
                      );
         });
+        //PERFIL EVENTO
+        var overcoment = false;
+        $('.coments').hover(function(){
+            
+            overcoment = true;
+        })
+        $('.coments').mouseleave(function(){
+           
+            overcoment = false;
+        })
+        $('#coment').focus(function(){
+            $(this).css('height','60px');
+            $('.showfocuscom').show();
+        })  
+        $('body').delegate('.itemcoment','hover',function(){
+            $(this).find('.aparececom').show();
+        })
+        $('body').delegate('.itemcoment','mouseleave',function(){
+            $(this).find('.aparececom').hide();
+        })
+        $('#btn-comentar').click(function(){
+         var coment = $('#coment').val();
+         var eventid = $('#idevent').val();
+         var hashevent = $('#hashevent').val();
+         $.ajax({           
+             type:"POST",
+             dataType:"html",
+             url: "/findbreak/function/comentario-response.php",
+             data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent,
+             success: function (data)
+             {
+                 $('.showfocuscom').hide();
+                 $('#coment').css('height','16px');
+                 $('#coment').val('');
+                
+                 $('.list').html(data);
+             }
+         })
+     })
+      
+        //delcoment
+        $('body').delegate('#delcoment','click',function(){
+           var dataid = $(this).attr('data-id');
+           var item = $(this).parent().parent();
+            $.ajax({           
+               type:"POST",
+               dataType:"html",
+               url: "/findbreak/function/comentario-response.php",
+               data: "delcoment=1&dataid="+dataid,
+               success: function (data)
+               {
+                   
+                   if(data == 1)
+                    item.remove();
+                   
+               }
+           })
+        })
+//        $('#coment').focusout(function(){
+//            if(!overcoment){
+//                $(this).css('height','19px');
+//                $('.showfocuscom').hide();
+//              }
+//        })  
+        //FIN PERFIL EVENTO
+        
         $('#user-login .option').hover(function(){
             $(this).find('.content-option').css('color','rgba(255, 255, 255, 0.86)');
         })
@@ -602,22 +702,7 @@ $(document).ready(function(){
       
   })
   
-     $('#btn-comentar').click(function(){
-         var coment = $('#coment').val();
-         var eventid = $('#idevent').val();
-         $.ajax({           
-             type:"POST",
-             dataType:"json",
-             url: "/findbreak/function/comentario-response.php",
-             data: "comentevent=1&comentario="+coment+"&eventId="+eventid,
-             success: function (data)
-             {
-                 alert(data.exito);
-                 $('#coment').val("");
-             }
-         })
-     })
-      
+     
       
       /*functions*/
       

@@ -98,14 +98,23 @@ class evento {
          $theObjId = new  MongoId($id);
          return $this->db->evento->update(array("_id" => $theObjId), array('$inc'=> array("visitas"=>1)));
      }
-     
-    public function insertar($userid, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
+     private function crearHash($nom){
+         $arr = explode(' ', $nom);
+         $hash = '#';
+         for($i=0; $i<count($arr); $i++){
+             $hash.= ucwords($arr[$i]);
+         }
+         return $hash;
+     }
+
+     public function insertar($userid, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
                              $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar){ 
          $arrtags = explode(" ", $tags);
          $fotos = explode(",", $arrayfotos);
          
          $event = array(
             "nombre" => $nombre,
+            "hash" => $this->crearHash($nombre),
             "direccion" =>  $direccion,
             "fotos" => $fotos,
             "fecha_realizacion" => $fechaMongo, //para la busqueda por fechas

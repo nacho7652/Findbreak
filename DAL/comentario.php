@@ -6,19 +6,126 @@
             $conn = new connect();
             $this->db = $conn->getDB();
         }
+        public function eliminar($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->remove(array("_id" => $theObjId));
+        }
+        public function findforid($id){
+        // $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->find(array("_eventId" => $id))->sort(array("fechaMongo" => -1 ));
+        }
+        public function verFecha($fechaComentario){
+//           $datosComentario = explode(' ', $dcto['fechaMuestra']);
+//           $fechaComentario = $datosComentario[0];
+//           $horaComentario = $datosComentario[1];
+        $fechaAc = date('Y-m-d H:i:s');
         
-        public function guardarComentarioEvento($comentario,$userId,$eventId,$userName) {         
-            $fechaMongo = new MongoDate(strtotime(date('Y-m-d H:i:s')));
-            $fechaMuestra = date('Y-m-d H:i:s');
+        $fechaAcsinHora = explode(" ",$fechaAc);
+        $datosFechaAc = explode("-",$fechaAcsinHora[0]);
+        $anioA = $datosFechaAc[0];
+        $mesA = $datosFechaAc[1];
+        $diaA = $datosFechaAc[2];
+        
+        
+        $fechaComsinHora = explode(" ",$fechaComentario);
+        $datosFechaTe = explode("-",$fechaComsinHora[0]);
+       // $datosFechaTe = explode("-",$fechaComentarioSin);
+        $anioT = $datosFechaTe[0];
+        $mesT = $datosFechaTe[1];
+        $diaT = $datosFechaTe[2];
+        
+        if($anioA < $anioT){//si la caducidad es al otro aÃ±o
+            $difAnio = $anioT - $anioA;
+            $meses = $difAnio * 12;
+            if($mesA < $mesT)//si el mes actual es menor al de caducidad
+            {  
+                $meses+= $mesT - $mesA;    
+            }elseif ($mesA > $mesT) {
+                $meses-= $mesA - $mesT;
+            }
+                
+        }elseif($anioA == $anioT){//si estoy en el mismo aÃ±o
+            if($mesA < $mesT){
+                $meses = $mesT - $mesA;
+            }elseif ($mesA == $mesT) {
+                $meses = 0;
+            }
+            
+        }
+        
+        if($diaA < $diaT){
+                    $dias = $diaT - $diaA;
+                }elseif($diaA > $diaT){
+                    $dias = 30 - ($diaA - $diaT);
+                    $meses--;
+                }else{//mismo dia
+                    $dias = 0;
+                }
+       $texto = '';
+       //SI ES HOY
+       if($meses == 0 && $dias == 0){
+            $resta = $this->diferenciaEntreFechas($fechaComentario, $fechaAc, "MINUTOS", TRUE);
+            if($resta < 60){
+                if($resta == 0){
+                    $texto = 'Justo ahora';
+                }elseif($resta == 1){
+                    $texto = 'Hace 1 minuto';
+                }else{
+                    $texto = 'Hace '.$resta.' minutos';
+                }
+            }else{
+                $resta = $this->diferenciaEntreFechas($fechaComentario, $fechaAc, "HORAS", TRUE);
+                if($resta == 1){
+                    $texto = 'Hace una hora';
+                }else{
+                    $texto = 'Hace '.$resta.' horas';
+                }     
+            }
+       }else{
+           $resta = $this->diferenciaEntreFechas($fechaComentario, $fechaAc, "DIAS", TRUE);
+           if($resta == 1){
+               $texto = 'Hace un dia';
+           }else{
+               $texto = 'Hace '.$resta.' dias';
+           }
+       }       
+       return $texto;   
+    }
+    
+    function diferenciaEntreFechas($fecha_principal, $fecha_secundaria, $obtener = 'SEGUNDOS', $redondear = false){
+        $f0 = strtotime($fecha_principal);
+        $f1 = strtotime($fecha_secundaria);
+        if ($f0 < $f1) 
+        {
+            $tmp = $f1; 
+            $f1 = $f0; 
+            $f0 = $tmp; 
+         }
+        $resultado = ($f0 - $f1);
+        switch ($obtener) {
+            default: break;
+            case "MINUTOS"   :   $resultado = $resultado / 60;   break;
+            case "HORAS"     :   $resultado = $resultado / 60 / 60;   break;
+            case "DIAS"      :   $resultado = $resultado / 60 / 60 / 24;   break;
+            case "SEMANAS"   :   $resultado = $resultado / 60 / 60 / 24 / 7;   break;
+        }
+        if($redondear) $resultado = round($resultado);
+        return $resultado;
+}
+        public function guardarComentarioEvento($comentario,$userId,$eventId,$userName, $fecha) {  
+            $theObjId = new MongoId($eventId);
+            $fechaMongo = new MongoDate(strtotime($fecha));
+            
             $coment = array(
                 "_userId"=>$userId,
-                "_eventId"=>$eventId,
+                "_eventId"=>$theObjId,
                 "userName"=>$userName,
                 "comentario"=>$comentario,
                 "fechaMongo"=>$fechaMongo,
-                "fechaMuestra"=>$fechaMuestra
+                "fechaMuestra"=>$fecha
             );
-            return $this->db->comentariosEvento->insert($coment);           
+             $this->db->comentariosEvento->insert($coment);   
+            
         }
         
         public function guardarComentarioEstablecimiento($comentario,$userId,$estaId,$userName) {         

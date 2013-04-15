@@ -1,6 +1,10 @@
 
 <div class="content-home">
-    <div class="banner-home"></div>
+    <div class="banner-home">
+        <div class="content-banner">
+            <div class="logo"></div>
+        </div>
+    </div>
     <div class="second-partevent">
         <div class="hor horiz1 divtrans">
 <!--            <div class="divseventspop">
@@ -19,7 +23,7 @@
             
             if(isset($_SESSION['userid'])){?>
                     <div class="divseventsfavo">
-                         <div class="titlediv"> Eventos visitados recientemente</div>
+                         <div class="titlediv">Tus actividades visitadas</div>
                         <div class="list-events-hist">
                             <div class="eventsfavo">
                                 <?php 
