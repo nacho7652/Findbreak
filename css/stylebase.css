@@ -64,6 +64,7 @@ html {
 }
 
 #covermsj {
+    display: none;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.26);
@@ -71,10 +72,11 @@ html {
     top: 0;  left: 0;  right: 0;  bottom: 0;
 }
 .innermsj {     
-    position: relative;  width: 526px;  margin: 70px auto;  
-    background: rgba(238, 238, 238, 1);  
+    position: relative;  
+    width: 512px;  margin: 70px auto;    
+    background: rgb(255, 255, 255);
     box-shadow: 0px 0px 32px -4px #424242;  
-    border-radius: 2px;  padding: 15px;  
+    border-radius: 2px;    
 }
 #covermsj .cerrar {
     width: 32px;
@@ -89,9 +91,57 @@ html {
 #calmsj {
     min-height: 100%;
     overflow: hidden;            
-    padding: 15px;
 }
-
+.bloq1msj {
+    float: left;
+    width: 511px;
+    height: 25px;
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #555;
+    padding: 10px 5px 2px 5px;
+    background: rgba(236, 236, 236, 0.52);
+}
+.bloq2msj {
+    float: left;
+    width: 506px;
+    padding: 0px 3px;
+}
+.bloq2msjinner {
+    float: left;
+    width: 449px;
+}
+.bloq3msjinner{
+    float: left;
+    width: 497px;
+    height: 16px;
+    font-size: 0.6em;
+    color: #999;
+    margin-top: 14px;
+}
+.bloq3msj {
+    float: left;
+    width: 509px;
+    margin: 19px 0px 0px 0px;
+    padding: 0px 3px 13px 0px;
+}
+.itemcomentmsj {
+    width: 505px;
+    min-height: 70px;
+    float: left;
+    padding: 10px 0px 0px 6px;
+    margin-left: 0px;
+    background: rgba(250, 250, 250, 0.69);
+    border-bottom: 1px solid rgba(211, 211, 211, 0.31);
+    border-top: 1px solid rgba(211, 211, 211, 0.31);
+}
+.bloq2innermsj {
+    float: left;
+    width: 257px;
+    min-height: 60px;
+    margin-bottom: 4px;
+}
 #top {
     background: rgba(36, 115, 167, 1);
     /*background: url(/findbreak/images/bg-bner.png);*/
@@ -743,6 +793,41 @@ top: -8px;
     color: rgb(88, 88, 88) !important;
     height: 170px;
 }
+.botoncancel{
+    display: block;
+width: 92px;
+border-radius: 3px;
+text-align: center;
+float: right;
+font-size: 0.7em;
+margin: -6px 11px 0px 0px;
+padding: 5px 7px;
+
+background-repeat: repeat-x;
+border: 1px solid rgba(65, 115, 169, 0.34);
+-webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);
+    color: rgb(88,88,88);
+    background-color: #d8d8d8; 
+    background-image: -khtml-gradient(linear,left top,left bottom,from(#f8f8f8),to(#d8d8d8));  
+    background-image: -moz-linear-gradient(#f8f8f8,#d8d8d8); 
+    background-image: -ms-linear-gradient(#f8f8f8,#d8d8d8); 
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#f8f8f8),color-stop(100%,#d8d8d8));  
+    background-image: -webkit-linear-gradient(#f8f8f8,#d8d8d8);  
+    background-image: -o-linear-gradient(#f8f8f8,#d8d8d8);  
+    background-image: linear-gradient(#f8f8f8,#d8d8d8);  
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);  
+    border-color: #bbb;
+}
+.botoncancel:hover{
+    cursor: pointer;
+    background-image: -khtml-gradient(linear,left top,left bottom,from(#f8f8f8),to(#d8d8d8));  
+    background-image: -moz-linear-gradient(#f8f8f8,#d8d8d8); 
+    background-image: -ms-linear-gradient(#f8f8f8,#d8d8d8); 
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#f8f8f8),color-stop(100%,#d8d8d8));  
+    background-image: -webkit-linear-gradient(#f8f8f8,#d8d8d8);  
+    background-image: -o-linear-gradient(#f8f8f8,#d8d8d8);  
+    background-image: linear-gradient(rgb(235, 235, 235),#d8d8d8);  
+}
 .botongreen {
     display: block;
     width: 92px;
@@ -1259,7 +1344,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .bloq3 {
     float: left;
-    width: 309px;
+    width: 497px;
     height: 16px;
     font-size: 0.6em;
     color: #999;

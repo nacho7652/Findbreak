@@ -1,6 +1,6 @@
 <?php
-            require_once '../DAL/connect.php';
-            require_once '../DAL/usuario.php';
+    require_once '../DAL/connect.php';
+    require_once '../DAL/usuario.php';
     if(!empty($_POST["search-friend"]))
     {
              $busqueda = $_POST["textoAmigo"];
@@ -54,23 +54,38 @@
             echo $cuadrouser.$cuadroevento;
     }
            
-    if(!empty($_POST["reqfriend"]))
+    if(!empty($_REQUEST["seguirpersona"]))
     {
-        
-
         session_start();
-
-         $id = $_SESSION["userid"];
-         $idSolicitado= $_POST['idSolicitado'];
-         
-
+        $quien = $_SESSION["userid"];
+        $aquien = $_REQUEST['idSolicitado'];
         $solicitud = new usuario();
-        $userSolicitante = $solicitud->findforid($id);
-        $userSolicitado = $solicitud->findforid($idSolicitado);
-        
-        $resp = $solicitud->SaveRequest($id,$idSolicitado , $userSolicitado['nombre'], $userSolicitante['nombre']);
-
-        echo $resp;
+        $userQuien = $solicitud->findforid($quien);
+        $userAquien = $solicitud->findforid($aquien);
+        $resp = $solicitud->agregarSeguidor($userQuien, $userAquien);
+        $resp2 = $solicitud->agregarSiguiendo($userQuien, $userAquien);
+        if($resp == $resp2){
+            echo 1;
+        }else{
+            echo -1;
+        }
+    }
+    
+    if(!empty($_REQUEST["desseguirpersona"]))
+    {
+        session_start();
+        $quien = $_SESSION["userid"];
+        $aquien = $_REQUEST['idSolicitado'];
+        $solicitud = new usuario();
+        $userQuien = $solicitud->findforid($quien);
+        $userAquien = $solicitud->findforid($aquien);
+        $resp = $solicitud->agregarSeguidor($userQuien, $userAquien);
+        $resp2 = $solicitud->agregarSiguiendo($userQuien, $userAquien);
+        if($resp == $resp2){
+            echo 1;
+        }else{
+            echo -1;
+        }
     }
     
     if(!empty($_POST["solicitudaceptada"]))

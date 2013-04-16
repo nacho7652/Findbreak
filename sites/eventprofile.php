@@ -95,7 +95,7 @@
 <div class="parte-der">
     <div class="part-right divtrans">
          <!--<div class="tit tit1">Comenta el evento</div>-->
-        <?php if(isset($_SESSION['userid'])){ //si el usuario esta logueado puedo comentar (nuevo) ?>
+        <?php if(isset($_SESSION['userid'])){ ?>
         <div class="coments">
             <input type="hidden" id="idevent" value="<?php echo $eventfound['_id'] ?>"/>
             <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
@@ -123,6 +123,7 @@
                 $comentarios = $comentarioEvent->findforid($eventfound['_id']);
                 foreach($comentarios as $dcto){
                      $realizacion = $comentarioEvent->verFecha($dcto['fechaMuestra']);
+                     $useridComent = $dcto['_userId'];
                 ?>
                 <div class="itemcoment">
                     <div class="line"></div>
@@ -137,8 +138,18 @@
                             <?php echo $realizacion;
                             ?>
                         </div>
-                        
-                        <div data-id="<?php echo $dcto['_id'];?>" id="delcoment" class="aparececom">Eliminar</div>
+                        <?php 
+                        if(isset($_SESSION['userid'])){
+                            if($useridComent == $_SESSION['userid']){?>
+                                <div data-id="<?php echo $dcto['_id'];?>" id="delcoment" class="aparececom">Eliminar</div>
+           
+                            <?php }else{?>
+                                <div data-id="<?php echo $dcto['_id'];?>" id="compartircoment" class="aparececom">Compartir</div>
+                            <?php }
+                             }else{?>
+                                <div data-id="<?php echo $dcto['_id'];?>" id="compartircoment" class="aparececom">Compartir</div>
+                          <?php }?>
+                           
                     </div>
                 </div>
                 <?php }?>

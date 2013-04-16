@@ -114,26 +114,53 @@ class usuario {
         $MonId = new MongoId($idSolicitud);
         $this->db->solicitud_amigos->remove(array("_id"=>$MonId));
     }
+    public function agregarSeguidor($quien, $aquien)
+    {
+        $user = array(
+            "_id"=> $aquien['_id'],
+            "nombre"=> $aquien['nombre']
+        );
+        
+        return $this->db->usuario->update( array("_id"=>$quien['_id']), array('$push'=> array("siguiendo"=>($user))   )    );
+        
+    }
+    public function agregarSiguiendo($quien, $aquien)
+    {
+        $user = array(
+            "_id"=> $quien['_id'],
+            "nombre"=> $quien['nombre']
+        );
+        
+        return $this->db->usuario->update( array("_id"=>$aquien['_id']), array('$push'=> array("seguidores"=>($user))   )    );
+        
+    }
     
-    public function AgregarAmigosSolicitud1($nom1, $nom2)
+    public function comprobarSiLoSigo($quien, $aquien)//solicitud pendientes
     {
-        $user = array(
-            "_id"=> $nom2['_id'],
-            "nombre"=> $nom2['nombre']
-        );
-        
-        $this->db->usuario->update( array("_id"=>$nom1['_id']), array('$push'=> array("amigos"=>($user))   )    );
-        
+        $aquien = new MongoId($aquien);
+        $quien = new MongoId($quien);
+        return   $this->db->usuario->findOne( array("siguiendo._id"=>$aquien, "_id"=>$quien));
+       
+          //find one, 
+//       // $solicitante = new MongoId($solicitante);
+//        //return $this->db->usuario->findOne(array("solicitado._id"=>$solicitante, "solicitante._id"=> $idSolicitado));//Sirve
+//        $uno = $this->db->usuario->findOne(array("siguiendo._id"=>$quien, "solicitante._id"=> $aquien));
+//        if(empty($uno))
+//        {
+//            return $this->db->solicitud_amigos->findOne(array("solicitado._id"=>$aquien, "solicitante._id"=> $quien));
+//        }
+//        else
+//        {
+//            return $this->db->solicitud_amigos->findOne(array("solicitado._id"=>$quien, "solicitante._id"=> $aquien));
+//        }
     }
-    public function AgregarAmigosSolicitud2($nom2, $nom1)
-    {
-        $user = array(
-            "_id"=> $nom1['_id'],
-            "nombre"=> $nom1['nombre']
-        );
-        $this->db->usuario->update( array("_id"=>$nom2['_id']), array('$push'=> array("amigos"=>($user))   )    );
-        
-    }
+    
+    
+    
+    
+    
+    
+   
       public function diferencia($fechahoy, $fechaold){//diferencia de fechas en dias
          
         $itemold = explode("-", $fechaold);

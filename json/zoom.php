@@ -1,43 +1,38 @@
 <?php
-    
+    if(isset($_REQUEST['a'])){
+         session_start();
+         require_once '../DAL/connect.php';  
+         require_once '../DAL/usuario.php';
+         $solicitante = $_SESSION['userid'];
+         $idSolicitado = $_REQUEST['idSolicitado'];
+         $usuario = new usuario();
+         $resp = -1;
+         $usuario = $usuario->comprobarSiLoSigo($solicitante, $idSolicitado);
+         if(isset($usuario['_id'])){
+             $resp = 1;
+         }
+         echo $resp;
+        // print_r($usuario->comprobarSiLoSigo($solicitante, $idSolicitado));
+    }
     if(isset($_REQUEST['popup-user'])){
          session_start();
          require_once '../DAL/connect.php';  
          require_once '../DAL/usuario.php';                                     ///AGREGAR AMIGOS CHAO
          
-         $buttonFriend = '<div id="send-req" class="button-friend">Seguir</div>';
+         $buttonFriend = '<div id="seguiramigo" class="button-friend">Seguir</div>';
          $usuario = new usuario();
          //si está logeado buscar las posibles solicitudes
          $idSolicitado = $_REQUEST['idSolicitado'];
          if(!empty($_SESSION['userid'])) //si está logeado
-         {            //<div id="send-req" class="button-friend">'.$valueButton.'</div>
+         {           
                 $solicitante = $_SESSION['userid'];
                 if($solicitante == new MongoId($idSolicitado))
                 {//si me busco a mi mismo
                     $buttonFriend = '';//no quiero que aparesca el boton de amigos
                 }else{//si busco a otra persona
-                    
-                    
-                    //BOTON SEGUIR
-                        
-                    //
-                        $comprobacionSolicitd = $usuario->solicitudPendientes($solicitante, $idSolicitado);
-                        
-                        if(isset($comprobacionSolicitd['estado'])){ //DISTINTO DE VACIO ES POR QUE MANDE LA SOLICITUD
-                            //EXISTE SOLICITUD
-                            if($comprobacionSolicitd['estado'] == 0){//enviada
-                                $buttonFriend = '<div id="send-req" class="button-friend">Solicitud enviada</div>';
-                            }
-                            if($comprobacionSolicitd['estado'] == 1){//aceptada
-                                
-                                $buttonFriend = '<div id="del-req" class="button-friend">Siguiendo</div>';
-                            }
-                            
-
-               //             if($comprobacionSolicitd['estado'] == -1){//rechazada
-               //                 $valueButton = '';
-               //             }
-
+                        $usuarioSig = $usuario->comprobarSiLoSigo($solicitante, $idSolicitado);
+                        if(isset($usuarioSig['_id'])){ //lo sigo
+                             $buttonFriend = '<div id="desseguiramigo" class="button-friend">Siguiendo</div>'; 
                         }
                       // $buttonFriend = '<div id="send-req" class="button-friend">'.$valueButton.'</div>';
                 }

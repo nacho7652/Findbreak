@@ -19,6 +19,14 @@ $(document).ready(function(){
 				$("#calmsj").html("");								
 			});
 	}
+    function preguntar(pregunta, cuerpo, pie){
+            $("#covermsj").fadeIn(0);
+            $(".innermsj").fadeIn(0);
+            $('#calmsj').html(pregunta+cuerpo+pie);
+    }    
+    $('body').delegate('#cancelar','click',function(){
+           covermsjclose();
+    })    
     function msjError(msj){				
             $('#calmsj').html('<img class="iconerror" src="images/error.png"/> '+msj);
             setTimeout('$("#covermsj").fadeOut(500);',4000);
@@ -101,10 +109,37 @@ $(document).ready(function(){
          })
      })
       
+        //preguntar(pregunta, cuerpo, pie)
+          var itemComentario;
+          $('body').delegate('#delcoment','click',function(){
+              itemComentario = $(this).parent().parent();
+              var dataid = $(this).attr('data-id');
+              var pregunta = '<div class="bloq1msj">¿Realmente deseas borrar este comentario?</div>';
+              var nombre = $(this).parent().parent().find('.nomusercom').html();
+              var foto = $(this).parent().parent().find('.bloq1').css('background');
+              var tiempo = $(this).parent().parent().find('.hacecuant').html();
+              var comentario = $(this).parent().parent().find('.comentuser').html();
+              
+              var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
+                  cuerpo+=   '<div style="background: url('+foto+')" class="bloq1"></div>';
+                  cuerpo+=   '<div class="bloq2msjinner">';
+                  cuerpo+=       '<div class="nomusercom tit">'+nombre+'</div>';
+                  cuerpo+=       '<div class="comentuser">'+comentario+'</div>';
+                  cuerpo+=   '</div>';
+                  cuerpo+= '<div class="bloq3msjinner">';
+                  cuerpo+=    '<div class="hacecuant">'+tiempo+'</div>';
+                  cuerpo+= '</div></div></div>';
+             
+             var pie = '<div class="bloq3msj"><div data-id="'+dataid+'" id="aceptarcoment" class="botongreen">Aceptar</div>';
+                 pie+= '<div id="cancelar" class="botoncancel">Cancelar</div></div>';
+                 
+                
+              preguntar(pregunta, cuerpo, pie)
+          });
         //delcoment
-        $('body').delegate('#delcoment','click',function(){
+        $('#covermsj').delegate('#aceptarcoment','click',function(){
            var dataid = $(this).attr('data-id');
-           var item = $(this).parent().parent();
+         
             $.ajax({           
                type:"POST",
                dataType:"html",
@@ -113,8 +148,10 @@ $(document).ready(function(){
                success: function (data)
                {
                    
-                   if(data == 1)
-                    item.remove();
+                   if(data == 1){
+                    covermsjclose();
+                    itemComentario.remove();
+                   }
                    
                }
            })
@@ -585,7 +622,6 @@ $(document).ready(function(){
       var idSolicitado;
      $('#response-friend').delegate('.item-search-friend','click',function(){
          idSolicitado = $(this).find('.id-item-search').html();
-        
          $.ajax({
                           type: "POST",
                           dataType: "json",
@@ -593,20 +629,6 @@ $(document).ready(function(){
                           data: "popup-user=1&idSolicitado="+idSolicitado,
                           success : function (data)
                           {
-                             
-                             
-                           //  alert(data.nombre);
-//                             alert(data.amigos[0].nombre) 
-//                             alert(data.amigos[1].nombre) FUNCIONO
-
-                               
-//                                $('#caloader').html(data.nombre);
-//                                $('#caloader').append(data.apellido);
-//                                $('#caloader').append(data.foto);
-//                                $('#caloader').append(data.email);
-                                
-                                //$('#caloader').html(data.amigos);
-                               //  idsolicitado = data.idSolicitado;
                                  popup(data.divProfileUser);
                                 
                           }
@@ -615,34 +637,48 @@ $(document).ready(function(){
          })
          
      })
-        $('#coverall').delegate('#send-req','click',function(){
-         
+        $('#coverall').delegate('#seguiramigo','click',function(){
+            
          $.ajax({
                           type: "POST",
                           dataType: "html",
                           url: "/findbreak/function/users-response.php",
-                          data: "reqfriend=1&idSolicitado="+idSolicitado,
+                          data: "seguirpersona=1&idSolicitado="+idSolicitado,
                           success : function (data)
-                          {
-//                             alert(data.nombre);
-//                             alert(data.amigos[0].nombre) 
-//                             alert(data.amigos[1].nombre) FUNCIONO
-                               
+                          {    
                                if(data==1)
                                    {
-                                $('.button-friend').html("Solicitud enviada");
-                                   }
-                                   else
+                                        $('.button-friend').html("Siguiendo");
+                                   }else
                                        {
+                                   
                                            $('.button-friend').html("No se puede");
                                        }
-                                //$('#caloader').html(data.amigos);
-                                //var idusuario = $('#caloader').html(data.idSolicitado);
-                                 
                                 
                           }
-             
-             
+         })
+         
+     })
+     
+      $('#coverall').delegate('#desseguiramigo','click',function(){
+           
+         $.ajax({
+                          type: "POST",
+                          dataType: "html",
+                          url: "/findbreak/function/users-response.php",
+                          data: "desseguirpersona=1&idSolicitado="+idSolicitado,
+                          success : function (data)
+                          {    
+                               if(data==1)
+                                   {
+                                        $('.button-friend').html("Siguiendo");
+                                   }else
+                                       {
+                                   
+                                           $('.button-friend').html("No se puede");
+                                       }
+                                
+                          }
          })
          
      })

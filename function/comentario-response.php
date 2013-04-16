@@ -40,6 +40,7 @@
         $todosComent = $comentarios->findforid($theObjId);
         $html = '';
         foreach ($todosComent as $dcto){
+            $useridComent = $dcto['_userId'];
             $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
             $html.='<div class="itemcoment">
                         <div class="line"></div>
@@ -54,12 +55,17 @@
                         <div class="bloq3">
                                 <div class="hacecuant">
                                     '.$realizacion.'
-                                </div>
-                                <div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>
-                        </div>
-                    </div>';
+                                </div>';
+                            if($useridComent == $_SESSION['userid']){
+                               $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
+                           }else{
+                               $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                           }
+                    $html.='
+                          </div>
+                      </div>';
         }
         
         echo $html;      
     }
-?>
+?>                    
