@@ -7,10 +7,8 @@
          $idSolicitado = $_REQUEST['idSolicitado'];
          $usuario = new usuario();
          $resp = -1;
-         $usuario = $usuario->comprobarSiLoSigo($solicitante, $idSolicitado);
-         if(isset($usuario['_id'])){
-             $resp = 1;
-         }
+         $resp = $usuario->dejarDeSeguir($solicitante, $idSolicitado);
+        
          echo $resp;
         // print_r($usuario->comprobarSiLoSigo($solicitante, $idSolicitado));
     }
@@ -19,7 +17,7 @@
          require_once '../DAL/connect.php';  
          require_once '../DAL/usuario.php';                                     ///AGREGAR AMIGOS CHAO
          
-         $buttonFriend = '<div id="seguiramigo" class="button-friend">Seguir</div>';
+         $buttonFriend = '<div id="seguiramigo" class="botoncancel">Seguir</div>';
          $usuario = new usuario();
          //si está logeado buscar las posibles solicitudes
          $idSolicitado = $_REQUEST['idSolicitado'];
@@ -32,12 +30,12 @@
                 }else{//si busco a otra persona
                         $usuarioSig = $usuario->comprobarSiLoSigo($solicitante, $idSolicitado);
                         if(isset($usuarioSig['_id'])){ //lo sigo
-                             $buttonFriend = '<div id="desseguiramigo" class="button-friend">Siguiendo</div>'; 
+                             $buttonFriend = '<div id="desseguiramigo" class="botongreen">Siguiendo</div>'; 
                         }
                       // $buttonFriend = '<div id="send-req" class="button-friend">'.$valueButton.'</div>';
                 }
          }else{//no esta logeado
-                        $buttonFriend = '<div id="logeate-friend" class="button-friend">Inicia sesión</div>';
+                        $buttonFriend = '<div id="logeate-friend" class="botongreen">Inicia sesión</div>';
          }
          $usuariofound = $usuario->findforid($idSolicitado);
          $divProfileUser = '<div class="profileuser">';
@@ -46,26 +44,27 @@
                                 '.$buttonFriend.'
                               </div>
                               <div class="info-user">';
-         $divProfileUser.=     '<div class="name-user">'.$usuariofound['nombre'].' '.$usuariofound['apellido'].'</div>
+         $divProfileUser.=     '<div class="name-user tit">'.$usuariofound['nombre'].' '.$usuariofound['apellido'].'</div>
                                 
                                </div>';
-        // $amigos = $userFound['amigos'];
-//         if(count($amigos) > 0){//si tiene 1 o muchos amigos
-//            $friends = $userFound['amigos'];
-//            $divProfileUser.=   '<div class="friends-user"> 
-//                                    <div class="tittle-friends"> 
-//                                            Amigos de '.$nombreUser.
-//                                    '</div>';
-//            foreach($friends as $item){
-//                $divProfileUser.=   '<div class="item-friends-user">
-//                                        <div class="item-friends-userpic"></div>
-//                                        <div class="item-friends-username">'.ucwords($item['nombre']).'</div>
-//                                    </div>';
-//            }
-//             $divProfileUser.=   '</div>';
-//         }else{
-//             $divProfileUser.=   '<div class="friends-user">Sé el primer amigo de '.ucwords($userFound['nombre']).'</div>';
-//         }
+         if(isset($usuariofound['seguidores']) && count($usuariofound['seguidores']) > 0){//si tiene 1 o muchos seguidores
+            $seguidores = $usuariofound['seguidores'];
+            $divProfileUser.=   '<div class="friends-user"> 
+                                    <div class="tittle-friends"> 
+                                            Seguidores de '.$usuariofound['nombre'].
+                                    '</div>';
+            foreach($seguidores as $item){
+                $divProfileUser.=   '<div data-id="'.$item['_id'].'" class="item-friends-user">
+                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
+                                        <div class="item-friends-username">'.ucwords($item['nombre']).'</div>
+                                    </div>';
+            }
+             $divProfileUser.=   '</div>';
+         }else{
+             $divProfileUser.=   '<div class="friends-user">
+                                        <div class="mjscoment"> '.ucwords($usuariofound['nombre']).' aún no posee seguidores</div>
+                                  </div>';
+         }
          
          $divProfileUser.= '</div>';
         

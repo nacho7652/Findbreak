@@ -109,16 +109,24 @@ class usuario {
         
         
     }
-    public function RechazarSolicitud( $idSolicitud)
+    public function dejarDeSeguir($quien, $aquien)
     {
-        $MonId = new MongoId($idSolicitud);
-        $this->db->solicitud_amigos->remove(array("_id"=>$MonId));
+        $aquien = new MongoId($aquien);
+        return $this->db->usuario->update( array("_id"=>$quien), array('$pull'=> array("siguiendo"=>(array("_id"=>($aquien))))   ));
+    }
+    public function eliminarSeguidor($quien, $aquien)
+    {
+       $aquien = new MongoId($aquien);
+        
+        return $this->db->usuario->update( array("_id"=>$aquien), array('$pull'=> array("seguidores"=>(array("_id"=>($quien))))   ));
     }
     public function agregarSeguidor($quien, $aquien)
     {
+        $aquienId = new MongoId($aquien['_id']);
         $user = array(
-            "_id"=> $aquien['_id'],
-            "nombre"=> $aquien['nombre']
+            "_id"=> $aquienId,
+            "nombre"=> $aquien['nombre'],
+            'foto'=> $aquien['foto']
         );
         
         return $this->db->usuario->update( array("_id"=>$quien['_id']), array('$push'=> array("siguiendo"=>($user))   )    );
@@ -126,12 +134,14 @@ class usuario {
     }
     public function agregarSiguiendo($quien, $aquien)
     {
+        $aquienId = new MongoId($aquien['_id']);
         $user = array(
             "_id"=> $quien['_id'],
-            "nombre"=> $quien['nombre']
+            "nombre"=> $quien['nombre'],
+            'foto'=> $quien['foto']
         );
         
-        return $this->db->usuario->update( array("_id"=>$aquien['_id']), array('$push'=> array("seguidores"=>($user))   )    );
+        return $this->db->usuario->update( array("_id"=>$aquienId), array('$push'=> array("seguidores"=>($user))   )    );
         
     }
     
@@ -140,19 +150,6 @@ class usuario {
         $aquien = new MongoId($aquien);
         $quien = new MongoId($quien);
         return   $this->db->usuario->findOne( array("siguiendo._id"=>$aquien, "_id"=>$quien));
-       
-          //find one, 
-//       // $solicitante = new MongoId($solicitante);
-//        //return $this->db->usuario->findOne(array("solicitado._id"=>$solicitante, "solicitante._id"=> $idSolicitado));//Sirve
-//        $uno = $this->db->usuario->findOne(array("siguiendo._id"=>$quien, "solicitante._id"=> $aquien));
-//        if(empty($uno))
-//        {
-//            return $this->db->solicitud_amigos->findOne(array("solicitado._id"=>$aquien, "solicitante._id"=> $quien));
-//        }
-//        else
-//        {
-//            return $this->db->solicitud_amigos->findOne(array("solicitado._id"=>$quien, "solicitante._id"=> $aquien));
-//        }
     }
     
     
@@ -441,7 +438,8 @@ class usuario {
              "amigos" => array(),
              "tags_buscados" => array(),
              "historial_eventos" => array(),
-            "fecha_registro" => $this->hoy()
+            "fecha_registro" => $this->hoy(),
+            "foto"=>'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c170.50.621.621/s160x160/604099_10200642826730761_1474278375_n.jpg'
              
         );
          return $this->db->usuario->insert($user);        

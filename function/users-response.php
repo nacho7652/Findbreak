@@ -64,28 +64,35 @@
         $userAquien = $solicitud->findforid($aquien);
         $resp = $solicitud->agregarSeguidor($userQuien, $userAquien);
         $resp2 = $solicitud->agregarSiguiendo($userQuien, $userAquien);
+        $re = -1;
+        $item = '<div data-id="'.$userQuien['_id'].'" class="item-friends-user">';
+        $item.=  '<div style="background-image:url('.$userQuien['foto'].')" class="item-friends-userpic"></div>';
+        $item.=  '<div class="item-friends-username">'.$userQuien['nombre'].'</div>';
+        $item.= '</div>';
         if($resp == $resp2){
-            echo 1;
+            $re = 1;
         }else{
-            echo -1;
+            $re = -1;
         }
+        $re = json_encode(array('re'=>$re, 'item'=>$item));
+        echo $re;
     }
     
-    if(!empty($_REQUEST["desseguirpersona"]))
+    if(!empty($_REQUEST["dejardeseguirpersona"]))
     {
         session_start();
         $quien = $_SESSION["userid"];
         $aquien = $_REQUEST['idSolicitado'];
         $solicitud = new usuario();
-        $userQuien = $solicitud->findforid($quien);
-        $userAquien = $solicitud->findforid($aquien);
-        $resp = $solicitud->agregarSeguidor($userQuien, $userAquien);
-        $resp2 = $solicitud->agregarSiguiendo($userQuien, $userAquien);
+        $resp = $solicitud->dejarDeSeguir($quien, $aquien);
+        $resp2 = $solicitud->eliminarSeguidor($quien, $aquien);
         if($resp == $resp2){
-            echo 1;
+            $re = 1;
         }else{
-            echo -1;
+            $re = -1;
         }
+        $re = json_encode(array('re'=>$re, 'idUser'=>(string)$quien));
+        echo $re;
     }
     
     if(!empty($_POST["solicitudaceptada"]))

@@ -85,8 +85,10 @@
            $resta = $this->diferenciaEntreFechas($fechaComentario, $fechaAc, "DIAS", TRUE);
            if($resta == 1){
                $texto = 'Hace un dia';
+           }elseif($resta == 0){
+               $texto = 'Hace algunas horas';
            }else{
-               $texto = 'Hace '.$resta.' dias';
+                $texto = 'Hace '.$resta.' dias';
            }
        }       
        return $texto;   

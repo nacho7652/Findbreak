@@ -637,18 +637,30 @@ $(document).ready(function(){
          })
          
      })
+     //seguiramigo
+     $('#coverall').delegate('#desseguiramigo','hover',function(){
+         $(this).html('Dejar de seguir')
+     });
+     $('#coverall').delegate('#desseguiramigo','mouseleave',function(){
+         $(this).html('Siguiendo')
+     });
         $('#coverall').delegate('#seguiramigo','click',function(){
-            
+         var boton = $(this);
          $.ajax({
                           type: "POST",
-                          dataType: "html",
+                          dataType: "json",
                           url: "/findbreak/function/users-response.php",
                           data: "seguirpersona=1&idSolicitado="+idSolicitado,
                           success : function (data)
                           {    
-                               if(data==1)
+                               if(data.re==1)
                                    {
-                                        $('.button-friend').html("Siguiendo");
+                                        //id="seguiramigo" class="botoncancel"
+                                        boton.removeClass('botoncancel');
+                                        boton.addClass('botongreen');
+                                        boton.attr('id','desseguiramigo');
+                                        boton.html("Siguiendo");
+                                        $('.friends-user').append(data.item);
                                    }else
                                        {
                                    
@@ -661,17 +673,21 @@ $(document).ready(function(){
      })
      
       $('#coverall').delegate('#desseguiramigo','click',function(){
-           
+         var boton = $(this);
          $.ajax({
                           type: "POST",
-                          dataType: "html",
+                          dataType: "json",
                           url: "/findbreak/function/users-response.php",
-                          data: "desseguirpersona=1&idSolicitado="+idSolicitado,
+                          data: "dejardeseguirpersona=1&idSolicitado="+idSolicitado,
                           success : function (data)
                           {    
-                               if(data==1)
+                               if(data.re==1)
                                    {
-                                        $('.button-friend').html("Siguiendo");
+                                        boton.removeClass('botongreen');
+                                        boton.addClass('botoncancel');
+                                        boton.attr('id','seguiramigo');
+                                        boton.html("Seguir");
+                                        eliminarSeguidor(data.idUser);
                                    }else
                                        {
                                    
@@ -682,6 +698,17 @@ $(document).ready(function(){
          })
          
      })
+     function eliminarSeguidor(id){
+         
+         $('.item-friends-user').each(function(){
+             var idUser = $(this).attr('data-id');
+            
+             if(idUser == id){
+                 $(this).remove();
+                 return;
+             }
+         })
+     }
       //Fin  solicitud amigos
       
       
