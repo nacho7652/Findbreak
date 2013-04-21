@@ -101,10 +101,14 @@
             <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
             <div class="input-transcom">
                 <div class="hash"><?php echo $eventfound['hash']?></div>
-                <textarea id="coment" placeholder="Publicar un nuevo comentario..."></textarea>
+                <div contenteditable="true" spellcheck="true"  role="textbox" aria-multiline="true" dir="dir" 
+                     id="coment" data-focus="true">
+                    
+                </div>
             </div>
             <div class="showfocuscom">
              <div class="divcitar">@</div>
+             <div class="amigosCitar"></div>
              <input type="button" class="botongreen" id="btn-comentar" value="Comentar" />
             </div>
             
@@ -130,7 +134,12 @@
                     <div class="bloq1"></div>
                     <div class="bloq2">
                         <div class="nomusercom tit"><?php echo $dcto['userName'] ?></div>
-                        <div class="comentuser"><a href="#" class="hashlink"><?php echo $eventfound['hash']?></a><?php echo $dcto['comentario'] ?></div>
+                        <div class="comentuser">
+                            
+                              <a href="#" class="hashlink"><?php echo $eventfound['hash']?></a>
+                                                           <?php echo $dcto['comentario'] ?>
+
+                        </div>
                     </div>
                     <div class="bloq3">
                         
@@ -159,38 +168,9 @@
     <div class="part-right divtrans">
         
         
-        <?php 
-    //$v = [1,3,8,-1,0];
-    $v = [31,-41,59,26,-53,58,97,-93,-23,84];
-    $recorrer = 2;
-    $suma = 0;
-    $aux = 0;
-    $maxGlobal = 0;
-    $n = count($v) -1;
-    $indices = '';
-    for($s=0; $s<count($v)-1; $s++){
-        for($i=0; $i<$n; $i++){
+     
 
-            for($j=$i; $j<$recorrer; $j++){
-                $suma+= $v[$j];
-                $indices.='v['.($j+1).'] ';
-            }
-            $recorrer++;
-            if($suma > $aux){
-                $aux = $suma;
-                $auxPalabra = $indices;
-            }
-            $suma = 0;
-            $indices = '';
-        }
-        $PalGlob = $auxPalabra;
-        $maxGlobal = $aux;
-        $recorrer = $s + 3;
-        $n--;
-    }
-?>
-
-    <?php echo 'Suma máxima: '.$maxGlobal.' '; echo ' <br><br>Índices: '.$PalGlob;?>
+   
     </div>
 </div>
 
@@ -202,13 +182,12 @@
 <?php 
     $loc = $eventfound['loc'];
 ?>
- 
+  
  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> <!--Cargamos la API de Google Maps-->
  <script type="text/javascript" src="js/evento.js"></script>
  
 <input id="lat-event" type="hidden" value="<?php echo $loc[0] //lat ?>"/>
 <input id="lng-event" type="hidden" value="<?php echo $loc[1] //lng ?>"/>
 <div class="est-hidden">
-    
-    
+   
 </div>

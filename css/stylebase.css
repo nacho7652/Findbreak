@@ -32,12 +32,14 @@ html {
     z-index: 50000000000000000000000000000000000000;
 }
 #coverall {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
+    position: fixed;
+    z-index: 2000000;
     top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: none;
+    overflow-y: scroll;
     z-index: 50000000000000000000000000000000000001;
 }
 #coverall .innercal {
@@ -399,19 +401,71 @@ html {
 #user-login .content-option-last {
     border-right: none !important;
 }
+#show-solicitud .item-friends-userpic {
+    width: 40px;
+    height: 40px;
+    float: left;
+    background-size: cover;
+    margin-left: 6px;
+    margin-right: 8px;
+}
+#show-solicitud .item-friends-username {
+    float: left;
+    font-size: 0.7em;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 4px;
+}
+#show-solicitud .msjmencion {
+    font-size: 0.7em;
+    float: left;
+}
+.tit.msjmencion.msjeventonom {
+    margin-top: 2px;
+}
+#show-solicitud .item-friends-msj {
+    color: rgb(122, 122, 122);
+    margin-left: 0px;
+    width: 248px;
+    float: left;
+}
 #user-login #show-solicitud {
-    width: 250px;
+    width: 350px;
     background-color: #fff;
-    box-shadow: 0px 1px 10px -2px #962154;
     position: absolute;
     top: 43px;
-    left: -60px;
+    left: -11px;
+    border-top: 1px solid rgb(216, 216, 216);  
+    border-left: 1px solid rgb(216, 216, 216);
+    border-right: 1px solid rgb(216, 216, 216);
+    box-shadow: 0px 0px 4px -4px rgb(173, 173, 173);  border-radius: 2px;
+}
+#show-solicitud .item-friends-eventpic {
+    width: 40px;
+    height: 40px;
+    float: left;
+    background-size: cover;
+    border: 1px solid rgba(34, 34, 34, 0.23);
+}
+#show-solicitud .bloq3 {
+    float: left;
+    width: 351px;
+    height: 16px;
+    font-size: 0.6em;
+    color: #999;
+    margin: 2px 0px 0px 5px;
 }
 .item-solicitud-friend {
     width: 100%;
     color: #444;
     float: left;
     border-bottom: 1px solid #d8d8d8;
+    padding: 14px 0px 1px 0px;
+}
+.item-solicitud-friend:hover{ 
+    background-color: rgba(247, 247, 247, 0.6);
+    color: #fff !important;
+    cursor: pointer;
 }
 .name-solicitud {
     width: 212px;
@@ -634,6 +688,7 @@ html {
     overflow: visible;
     min-height: 100%;
     margin-top: 51px;
+    position: relative;
 }
 #body > .inner {
     margin: 0px auto;
@@ -783,7 +838,7 @@ top: -8px;
     display: block; 
 }
 .inner-eveninfo.info-eventcerca {
-    margin: 22px 0px 0px 0px;
+    margin: 29px 0px 0px 0px;
     height: 268px;
     width: 369px;
 }
@@ -1102,7 +1157,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 
 .parte-left-parent {
-    width: 630px;
+    width: 609px;
     float: left;
     margin-bottom: 30px;
 }
@@ -1111,18 +1166,18 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 332px;
 }
 .part-left {
-    width: 614px;
+    width: 594px;
     height: 333px;
     float: left;
     margin: 13px 0px 0px 6px;            position: relative;
     color: rgb(88, 88, 88);
 }
 .part-left-cent {
-    width: 380px;
+    width: 364px;
     float: left;
 }
 .part-left-right {
-    width: 230px;
+    width: 217px;
     float: left;
     margin-right: 4px;
 }
@@ -1191,7 +1246,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .part-right {
     float: left;
-    width: 330px;
+    width: 351px;
     
     min-height: 329px;
     padding-top: 4px;
@@ -1240,7 +1295,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     color: #444;
 }
 .cercanos {
-    width: 612px;
+    width: 591px;
     height: 192px;
     margin: 6px 0px 0px 8px;
     float: left;
@@ -1256,7 +1311,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 #coment {
     margin: 5px 0px 7px 0px;
-    width: 295px;
+    width: 315px;
     font-size: 12px;
     color: rgb(104, 104, 104);
     padding: 5px 3px 6px 7px;
@@ -1264,7 +1319,15 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     resize: none;
     border: none;
 }
-
+.itemcita {
+    margin: 0px 1px 0px 1px;
+    color: rgba(42, 124, 179, 1);
+    text-decoration: none;
+}
+.itemcita:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
 #btn-comentar {
     margin: 8px 0px 0px 0px;
     float: right;
@@ -1274,7 +1337,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     text-decoration: none;
 }
 .coments {
-    width: 310px;
+    width: 331px;
     float: left;      
     margin: 8px 0px 0px 10px;
 }
@@ -1293,9 +1356,41 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     margin: 5px 0px 0px 2px;
     font-size: 1.1em;
 }
+.amigosCitar {
+    width: 329px;
+    position: absolute;
+    background-color: rgb(255, 255, 255);    top: 27px;  border: 1px solid rgb(216, 216, 216);  
+    box-shadow: 0px 0px 7px -4px rgb(173, 173, 173);  
+    border-radius: 2px;
+}
+
 .divcitar:hover{
     color: rgb(83, 83, 83) !important;
     cursor: pointer;
+}
+.amigosCitar .item-friends-user {
+    float: left;
+    width: 324px;
+    margin-bottom: 0px;
+    padding: 9px 4px 8px 1px;
+    border-top: 1px solid rgba(211, 211, 211, 0.31);
+}
+.amigosCitar .item-friends-user:hover{
+    background-color: rgba(247, 247, 247, 0.78); 
+    cursor: pointer;
+}
+.amigosCitar .item-friends-userpic {
+    width: 25px;
+    height: 25px;
+    float: left;
+    background-size: cover;
+    margin-left: 6px;
+}
+.amigosCitar .item-friends-username {
+    float: left;
+    font-size: 0.7em;
+    margin-left: 6px;
+    margin-top: -2px;
 }
 .hash {
     margin: 2px 0px 0px 5px;
@@ -1303,7 +1398,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     font-size: 0.8em;
     color: rgba(42, 124, 179, 1);
     border-bottom: 1px solid rgba(228, 228, 228, 0.36);
-    width: 297px;
+    width: 316px;
 }
 .hashlink {
     margin: 2px 3px 0px 0px;
@@ -1317,18 +1412,18 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .line {
     border-top: 1px solid rgba(211, 211, 211, 0.31);
     float: left;
-    width: 317px;
+    width: 328px;
     margin: 0px 0px 6px 0px;
 }
 .itemcoment {
-    width: 324px;
+    width: 339px;
     min-height: 70px;
     float: left;
-    padding: 0px 0px 0px 6px;
+    padding: 0px 0px 0px 12px;
     margin-left: 0px;
 }
 .itemcoment:hover{
-    background:rgba(250, 250, 250, 0.38);
+    background: rgba(247, 247, 247, 0.6);
 }
 .bloq1 {
     width: 40px;
@@ -1344,7 +1439,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .bloq2 {
     float: left;
-    width: 257px;
+    width: 285px;
     min-height: 60px;
     margin-bottom: 4px;
 }
@@ -1370,16 +1465,18 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .showfocuscom{
     display: none; 
+    position: relative;
 }
 .list {
     margin-top: 17px;
-    width: 330px;
+    width: 337px;
     float: left;
 }
 .comentuser {
     font-size: 0.7em;
     margin: 2px 0px 0px 5px;
     color: rgb(88, 88, 88) !important;
+    word-wrap: break-word;
 }
 .more-fotos {
     float: left;

@@ -1,4 +1,41 @@
 $(document).ready(function(){
+        /* COVERALL   ***************************************************** */
+	mouseOverAll = false; 	
+	$('#caloader').live('mouseenter', function(){
+	    mouseOverAll = true; 
+	}).live('mouseleave', function(){ 
+	    mouseOverAll = false; 
+	});
+        function popup(data){
+          $("html").css("overflow","hidden");
+          $("#top").css("right","8px");
+          $("#body").css("right","0px");
+          $('#allbackground').show();
+          $('#coverall').show();
+          $("#coverall > .innercal").fadeIn(0);
+          $('#caloader').html(data);
+      }
+	function coverallclose(){	
+		$("#coverall").fadeOut(0, 
+			function(){
+				$("#coverall > .innercal").css("display", "none");
+                                $('#allbackground').hide();
+				$("html").css("overflow-y", "scroll");
+                                $("#top").css("right","0px");
+                                $("#body").css("right","0px");
+				$("#caloader").html("");								
+			}
+		);
+	}
+	$("#coverall").click(
+		function(){
+			if (!mouseOverAll){
+				coverallclose();
+                                
+			}			
+        });
+        
+        //popupmensajes
         mouseOverAllmsj = false; 	
 	$('.innermsj').live('mouseenter', function(){
 	    mouseOverAllmsj = true; 
@@ -14,8 +51,10 @@ $(document).ready(function(){
 		$("#covermsj").fadeOut(0, 
 			function(){
 				$("#covermsj > .innermsj").css("display", "none");
+                                $("#top").css("right","0px");
+                                $("#body").css("right","0px");
                                 $('#covermsj').hide();
-				//$("html").css("overflow-y", "scroll");
+				$("html").css("overflow-y", "scroll");
 				$("#calmsj").html("");								
 			});
 	}
@@ -27,7 +66,7 @@ $(document).ready(function(){
     $('body').delegate('#cancelar','click',function(){
            covermsjclose();
     })    
-    function msjError(msj){				
+        function msjError(msj){				
             $('#calmsj').html('<img class="iconerror" src="images/error.png"/> '+msj);
             setTimeout('$("#covermsj").fadeOut(500);',4000);
         }
@@ -41,13 +80,6 @@ $(document).ready(function(){
             setTimeout('$("#covermsj").fadeOut(500);',4000);
 
         }
-    /* COVERALL   ***************************************************** */
-	mouseOverAll = false; 	
-	$('#caloader').live('mouseenter', function(){
-	    mouseOverAll = true; 
-	}).live('mouseleave', function(){ 
-	    mouseOverAll = false; 
-	});
         $('.menutop').hover(function(){
             $(this).animate({
                          'height': '70px',
@@ -90,25 +122,31 @@ $(document).ready(function(){
             $(this).find('.aparececom').hide();
         })
         $('#btn-comentar').click(function(){
-         var coment = $('#coment').val();
+         var coment = $('#coment').html();
          var eventid = $('#idevent').val();
          var hashevent = $('#hashevent').val();
+         var menciones = guardarMenciones();
          $.ajax({           
              type:"POST",
              dataType:"html",
              url: "/findbreak/function/comentario-response.php",
-             data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent,
+             data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&menciones="+menciones,
              success: function (data)
              {
                  $('.showfocuscom').hide();
                  $('#coment').css('height','16px');
                  $('#coment').val('');
-                
                  $('.list').html(data);
              }
-         })
-     })
-      
+           })
+        })
+        function guardarMenciones(){
+            var menciones = '';
+            $('#coment .itemcita').each(function(){
+                menciones+= $(this).attr('data-id')+'-';
+            })
+            return menciones;
+        }
         //preguntar(pregunta, cuerpo, pie)
           var itemComentario;
           $('body').delegate('#delcoment','click',function(){
@@ -162,6 +200,23 @@ $(document).ready(function(){
 //                $('.showfocuscom').hide();
 //              }
 //        })  
+        
+        $('.divcitar').click(function(){
+            $('.amigosCitar').show();
+            $.post('/findbreak/function/users-response.php', {'search-friend-citar':1},
+                    function(data){          
+                                $('.amigosCitar').html(data)
+                    }, "html");
+        })
+        //itemCitar
+        $('body').delegate('.itemCitar','click',function(){
+            var id = $(this).attr('data-id');
+            var nombre = $(this).find('.item-friends-username').html();
+            var nombreCita = '<span class="spancom"> <a href="/danitow" \n\
+                                    data-id="'+id+'"\n\
+                                    class="itemcita">@'+nombre+'</a></span>';
+            $('#coment').html($('#coment').html()+nombreCita);
+        })
         //FIN PERFIL EVENTO
         
         $('#user-login .option').hover(function(){
@@ -246,32 +301,7 @@ $(document).ready(function(){
        $('.menu').click(function(){
             $('.groupoption').toggle();
         });
-        function popup(data){
-         // $("html").css("overflow","hidden");
-          $('#allbackground').show();
-          $('#coverall').show();
-          $("#coverall > .innercal").fadeIn(0);
-          $('#caloader').html(data);
-      }
-      
-	function coverallclose(){	
-               
-		$("#coverall").fadeOut(0, 
-			function(){
-				$("#coverall > .innercal").css("display", "none");
-                                $('#allbackground').hide();
-				//$("html").css("overflow-y", "scroll");
-				$("#caloader").html("");								
-			}
-		);
-	}
-	$("#coverall").click(
-		function(){
-			if (!mouseOverAll){
-				coverallclose();
-                                
-			}			
-        });
+        
         /* HOME */
         $('#coverall').delegate('.noaccept','click',function(){
             coverallclose();

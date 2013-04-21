@@ -4,6 +4,7 @@
     require_once 'function/place.php';
     require_once 'DAL/connect.php';
     require_once 'DAL/usuario.php';
+    require_once 'DAL/comentario.php';
     $contsol=0;
     
     $agregarEvento = 0;
@@ -151,16 +152,28 @@
                                    <?php $usertype = $_SESSION['usertype'];
                                          if($usertype == 1){
                                              $usuario = new usuario();
-                                             $solicitud = $usuario->VerSolicitudes($_SESSION['userid']);
-                                             $divAmigos = "";
-                                             foreach($solicitud as $sol)
+                                             $menciones = $usuario->verMenciones($_SESSION['userid']);
+                                             $comentarioEvent = new comentario();
+//                                             $solicitud = $usuario->VerSolicitudes($_SESSION['userid']);
+                                             $divMenciones = "";
+                                             foreach($menciones as $sol)
                                              {
                                                  $contsol++;
-                                                 $divAmigos.='<div id="'.$sol['_id'].'" class="item-solicitud-friend"> 
-                                                                 <div class="name-solicitud">'.$sol['solicitante']['nombre'].'</div>';
-                                                 $divAmigos.=   '<div class="boton-aceptar" >Aceptar</div>';
-                                                 $divAmigos.=   '<div class="boton-rechazar">Rechazar</div>
-                                                              </div>';
+                                                 $realizacion = $comentarioEvent->verFecha($sol['fechaMuestra']);
+                                                 $user = $usuario->findforid($sol['_userId']);
+                                                 $divMenciones.='<div id="'.$sol['_id'].'" class="item-solicitud-friend"> 
+                                                                    <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                    <div class="item-friends-msj">
+                                                                        <div class="item-friends-username tit">'.$sol['userName'].'</div>
+                                                                        <span class="msjmencion">te ha mencionado en el evento</span>
+                                                                        <span class="tit msjmencion msjeventonom">'.$sol['userName'].' Lollapalusa 2013</span>
+                                                                    </div>
+                                                                    <div style="background-image:url('.$user['foto'].')" class="item-friends-eventpic"></div>
+                                                                    <div class="bloq3">
+                                                                        <div class="hacecuant">'.$realizacion.'</div>
+                                                                    </div>';
+                                                                    
+                                                 $divMenciones.=   '</div>';
                                              }
                                    ?>
                                         <div class="option user-photo">
@@ -175,12 +188,12 @@
                                         </div>
                                    
                                         <div class="option noti-friend">
-                                            <div class="content-option">Friends (<span id="cant-solicitud"><?php echo $contsol ?></span>)</div>
+                                            <div class="content-option">Menciones (<span id="cant-solicitud"><?php echo $contsol ?></span>)</div>
                                             
                                         </div>
                                         <div id="show-solicitud" style="display:none">
                                                 
-                                                <?php echo $divAmigos ?> 
+                                                <?php echo $divMenciones ?> 
                                         </div>
 <!--                                        <div class="option publicar-est">
                                             <div class="content-option ">

@@ -114,17 +114,34 @@
         if($redondear) $resultado = round($resultado);
         return $resultado;
 }
-        public function guardarComentarioEvento($comentario,$userId,$eventId,$userName, $fecha) {  
+        private function transformarMenciones($menciones){
+//            $puntosDeVenta = array( array('id'=>'232323',
+//                                          'nombre'=>'Ticket Master',
+//                                          'web'=>'http://www.google.cl'),
+//                                    array('id'=>'232323',
+//                                          'nombre'=>'Ticket Master',
+//                                          'web'=>'http://www.google.cl')
+//                                   );
+            $partes = explode('-', $menciones);
+            $arr = array();
+            for($i=0; $i<count($partes)-1; $i++){
+                $id = new MongoId($partes[$i]);
+                $arr[] = array('id'=>$id,'revisado'=>0);
+            }
+            return $arr;
+        }
+        public function guardarComentarioEvento($comentario,$userId,$eventId,$userName, $fecha, $menciones) {  
             $theObjId = new MongoId($eventId);
             $fechaMongo = new MongoDate(strtotime($fecha));
-            
+            $mencionados = $this->transformarMenciones($menciones);
             $coment = array(
                 "_userId"=>$userId,
                 "_eventId"=>$theObjId,
                 "userName"=>$userName,
                 "comentario"=>$comentario,
                 "fechaMongo"=>$fechaMongo,
-                "fechaMuestra"=>$fecha
+                "fechaMuestra"=>$fecha,
+                "mencionados"=>$mencionados
             );
              $this->db->comentariosEvento->insert($coment);   
             

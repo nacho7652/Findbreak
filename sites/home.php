@@ -61,8 +61,7 @@
                  <div class="titlediv"> Eventos próximos!</div>
                 <div class="list-events-ord">
                 </div>
-            </div>
-            
+            </div>     
         </div>
         <div class="hor horiz3">
             

@@ -17,7 +17,13 @@ class usuario {
         $conn = new connect();
         $this->db = $conn->getDB();
     }
-    
+    public function verMenciones($id){
+        $idM = new MongoId($id);
+        $mencionesFound = $this->db->comentariosEvento->find( array("mencionados.0.id"=>$idM))->sort(array("fechaMongo" => -1 ));;
+        return $mencionesFound;
+    }
+
+
     public function findFriend($buscador)
     {
         $buscador = strtolower($buscador);
@@ -53,62 +59,6 @@ class usuario {
          $theObjId = new MongoId($id); 
          return $this->db->usuario->findOne(array("_id" => $theObjId));
      }
-     
-       public function SaveRequest($solicitante, $solicitado, $nombre_solicitado, $nombre_solicitante){
-        //findbreak->evento->insert($documento);
-           $solicitado = new MongoId($solicitado);
-           $solicitante = new MongoId($solicitante);
-           $solicitud = array ( 
-             "solicitado"=>array("_id"=>$solicitado, "nombre"=>$nombre_solicitado),
-             "solicitante"=>array("_id"=>$solicitante, "nombre"=>$nombre_solicitante),
-             "estado"=>0
-           );
-        return $this->db->solicitud_amigos->save($solicitud);
-    }
-    
-    
-    public function solicitudPendientes($solicitante, $idSolicitado)//solicitud pendientes
-    {
-        $idSolicitado = new MongoId($idSolicitado);
-       // $solicitante = new MongoId($solicitante);
-      //  return $this->db->solicitud_amigos->findOne(array("solicitado._id"=>$solicitante, "solicitante._id"=> $idSolicitado));//Sirve
-        
-        $uno = $this->db->usuario->findOne(array("siguiendo._id"=>$solicitante, "solicitante._id"=> $idSolicitado));
-        if(empty($uno))
-        {
-            return $this->db->solicitud_amigos->findOne(array("solicitado._id"=>$idSolicitado, "solicitante._id"=> $solicitante));
-        }
-        else
-        {
-            return $this->db->solicitud_amigos->findOne(array("solicitado._id"=>$solicitante, "solicitante._id"=> $idSolicitado));
-        }
-    }
-    
-    
-    public function VerSolicitudes($idUsuario)
-    {
-        $idUsuario = new MongoId($idUsuario);
-        //$this->db->evento->find(array("loc"=>array(50,33))); 
-          //SELECT * FROM evento WHERE nombre = "LOLAPALUSA" AND direccion = "San carlos #294"
-    //this->db->$coll->find(array("nombre"=>"LOLAPALUSA", "direccion"=>"San carlos #294"));
-               return $this->db->solicitud_amigos->find(array( "solicitado._id"=>$idUsuario, "estado"=>0));
-
-    }
-    
-    public function AceptarSolicitud($idSolicitud)
-    {
-        //estado=1 SON AMIGOS 
-        //$this->db->contacto->update($criterio,array('$set'=>array($cal)));
-        $MonId = new MongoId($idSolicitud);
-        $sol_enc = $this->db->solicitud_amigos->findOne(array( "_id"=>$MonId));
-        
-        $this->db->solicitud_amigos->update(array("_id"=>$MonId),array('$set'=> array("estado"=>1)));
-        $usuario = new usuario();
-        $usuario->AgregarAmigosSolicitud1($sol_enc["solicitado"], $sol_enc["solicitante"]);
-        $usuario->AgregarAmigosSolicitud2($sol_enc["solicitante"], $sol_enc["solicitado"]);
-        
-        
-    }
     public function dejarDeSeguir($quien, $aquien)
     {
         $aquien = new MongoId($aquien);
@@ -151,13 +101,7 @@ class usuario {
         $quien = new MongoId($quien);
         return   $this->db->usuario->findOne( array("siguiendo._id"=>$aquien, "_id"=>$quien));
     }
-    
-    
-    
-    
-    
-    
-   
+
       public function diferencia($fechahoy, $fechaold){//diferencia de fechas en dias
          
         $itemold = explode("-", $fechaold);

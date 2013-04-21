@@ -31,9 +31,10 @@
         $comentario = $_REQUEST['comentario'];
         $evenId = $_REQUEST['eventId'];
         $hashevent = $_REQUEST['hashevent'];
+        $menciones = $_REQUEST['menciones'];
         $comentarios = new comentario();
         $fecha = date('Y-m-d H:i:s');
-        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha);
+        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha, $menciones );
         
         //cargar comentarios
         $theObjId = new MongoId($evenId);

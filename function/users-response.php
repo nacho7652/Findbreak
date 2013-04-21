@@ -1,9 +1,28 @@
 <?php
     require_once '../DAL/connect.php';
     require_once '../DAL/usuario.php';
+    if(!empty($_POST["search-friend-citar"]))
+    {
+         session_start();
+         $usuario = new usuario();
+         $id = $_SESSION['userid'];
+         $yo = $usuario->findforid($id);
+         $html = '';
+         if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
+             foreach ($yo['siguiendo'] as $item){
+                 $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
+                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
+                                        <div class="item-friends-username">'.ucwords($item['nombre']).'</div>
+                                    </div>';
+             }
+         }else{
+             $html = 'aun no sigues a tus amigos, búscalos !';
+         }
+         echo $html;
+    }
     if(!empty($_POST["search-friend"]))
     {
-             $busqueda = $_POST["textoAmigo"];
+            $busqueda = $_POST["textoAmigo"];
             $usuario = new usuario();
             $coincidencia = $usuario->findFriend($busqueda);
             
@@ -94,29 +113,6 @@
         $re = json_encode(array('re'=>$re, 'idUser'=>(string)$quien));
         echo $re;
     }
-    
-    if(!empty($_POST["solicitudaceptada"]))
-    {
-        
-        $idSolicitud = $_POST['idsolicitud'];
-        $usuario = new usuario();
-        $resp = $usuario->AceptarSolicitud($idSolicitud);
-        echo $resp;
-        
-        
-        
-    }
-    if(!empty($_POST["solicitud-rechazada"]))
-    {
-        
-        $idSolicitud = $_POST['id-solicitud'];
-        $usuario = new usuario();
-        $resp = $usuario->RechazarSolicitud($idSolicitud);
-        echo $resp;
-        
-        
-    }
-    
     if(!empty($_POST["guardaruser"]))
     {
 //"guardaruser=1&nomuser="+nomeuser+"&nombrefoto="+res.nombrefoto+"&apellido="+apellido+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
