@@ -5,6 +5,7 @@
     require_once 'DAL/connect.php';
     require_once 'DAL/usuario.php';
     require_once 'DAL/comentario.php';
+   
     $contsol=0;
     
     $agregarEvento = 0;
@@ -176,7 +177,7 @@
                                                                     <div class="item-friends-msj">
                                                                         <div class="item-friends-username tit">'.$sol['userName'].'</div>
                                                                         <span class="msjmencion">te ha mencionado en el evento</span>
-                                                                        <span class="tit msjmencion msjeventonom">'.$sol['userName'].' Lollapalusa 2013</span>
+                                                                        <span class="tit msjmencion msjeventonom">'.$sol['nombreevent'].' </span>
                                                                     </div>
                                                                     <div style="background-image:url('.$user['foto'].')" class="item-friends-eventpic"></div>
                                                                     <div class="bloq3">

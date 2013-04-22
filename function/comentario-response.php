@@ -27,7 +27,40 @@
         $realizacion = $comentarios->verFecha($coment['fechaMuestra']);
         $cuerpo.=    '<div class="hacecuant">'.$realizacion.'</div>';
         $cuerpo.= '</div></div></div></div>';
-        echo $cuerpo;      
+        
+        $theObjId = new MongoId($coment['_eventId']);
+        $todosComent = $comentarios->findUltimoscoment($theObjId, 3);
+        $html = '<div class="otroscoment">
+                   <div class="tit titotros">Últimos comentarios</div>';
+        foreach ($todosComent as $dcto){
+            $useridComent = $dcto['_userId'];
+            $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
+            $html.='<div class="itemcoment">
+                        <div class="line"></div>
+                        <div class="bloq1"></div>
+                        <div class="bloq2">
+                            
+                            <div class="nomusercom tit">'.$dcto['userName'].'</div>
+                            <div class="comentuser"><a href="#" class="hashlink">'.$event['hash'].'</a>
+                                                    '.$dcto['comentario'].'
+                            </div>
+                        </div>
+                        <div class="bloq3">
+                                <div class="hacecuant">
+                                    '.$realizacion.'
+                                </div>';
+                            if($useridComent == $_SESSION['userid']){
+                               $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
+                           }else{
+                               $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                           }
+                    $html.='
+                          </div>
+                      </div>';
+        }
+        $html.='</div>';
+        $re = $cuerpo.$html;  
+        echo $re;
     }
     
     
@@ -59,10 +92,11 @@
         $evenId = $_REQUEST['eventId'];
         $hashevent = $_REQUEST['hashevent'];
         $menciones = $_REQUEST['menciones'];
+        $nombreevent = $_REQUEST['nombreevent'];
         $comentarios = new comentario();
         $fecha = date('Y-m-d H:i:s');
         //$comentarioEscapado = str_replace('&nbsp;', ' ', $comentario);
-        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha, $menciones );
+        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha, $menciones,$nombreevent );
         
         //cargar comentarios
         $theObjId = new MongoId($evenId);

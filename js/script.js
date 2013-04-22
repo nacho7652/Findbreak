@@ -1,4 +1,33 @@
 $(document).ready(function(){
+        /*CERRAR CON CLICK*/
+        var cerrarNoti = true;
+        $('.noti-friend').hover(function(){
+            cerrarNoti = false;
+        }, 
+        function(){
+            cerrarNoti = true;
+        });
+        $('body, html').click(function(){
+            if(cerrarNoti){
+                $('#show-solicitud').hide();
+            }
+        })
+        
+        
+        var cerrarCit = true;
+        $('.divcitar').hover(function(){
+            cerrarCit = false;
+        }, 
+        function(){
+            cerrarCit = true;
+        });
+        $('body, html').click(function(){
+            if(cerrarCit){
+                $('.amigosCitar').hide();
+            }
+        })
+        /*CERRAR CON CLICK FIN*/
+        
         /* COVERALL   ***************************************************** */
 	mouseOverAll = false; 	
 	$('#caloader').live('mouseenter', function(){
@@ -115,6 +144,7 @@ $(document).ready(function(){
                 data: "vercomentario=1&id="+id,
                 success: function (data)
                 { 
+                    
                     popup(data);
                 }
             })
@@ -143,6 +173,7 @@ $(document).ready(function(){
         $('#btn-comentar').click(function(){
          var coment = $('#coment').html();
          var eventid = $('#idevent').val();
+         var nombreevent = $('.title-event').html();
          var hashevent = $('#hashevent').val();
          var esc = coment.replace(/&nbsp;/g,' ');
          var menciones = guardarMenciones();
@@ -150,7 +181,7 @@ $(document).ready(function(){
              type:"POST",
              dataType:"html",
              url: "/findbreak/function/comentario-response.php",
-             data: "comentevent=1&comentario="+esc+"&eventId="+eventid+"&hashevent="+hashevent+"&menciones="+menciones,
+             data: "comentevent=1&comentario="+esc+"&eventId="+eventid+"&hashevent="+hashevent+"&menciones="+menciones+"&nombreevent="+nombreevent,
              success: function (data)
              {
                  $('.showfocuscom').hide();
@@ -244,6 +275,7 @@ $(document).ready(function(){
                                     data-id="'+id+'"\n\
                                     class="itemcita">@'+nombre+'</a> ';
             $('#coment').html($('#coment').html()+nombreCita);
+            $('#coment').focus();
             
         })
         //FIN PERFIL EVENTO

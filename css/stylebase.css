@@ -128,13 +128,17 @@ html {
     margin: 19px 0px 0px 0px;
     padding: 0px 3px 13px 0px;
 }
+.otroscoment {
+    float: left;
+    margin: 13px 0px 0px 17px;
+}
 .divmencionevent .foto-event {
-    width: 212px;
-    height: 220px;
+    width: 169px;
+    height: 196px;
     float: left;
     margin: -21px 1px 0px 11px;
     background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;
-    box-shadow: 0px 1px 10px -3px #444;
+    box-shadow: 0px 1px 8px -3px #444;
     border: 4px solid #fff;
     background-size: cover;
 }
@@ -145,7 +149,17 @@ html {
 .divmencionevent .bloq2msj {
     float: left;
     width: 448px;
-    padding: 0px 3px;
+    padding: 0px 3px 0px 0px;
+}
+.divmencionevent .itemcomentmsj {
+    width: 505px;
+    min-height: 70px;
+    float: left;
+    padding: 10px 0px 0px 9px;
+    margin-left: 0px;
+    background: rgba(238, 238, 238, 0.64);
+    border-bottom: 1px solid rgba(211, 211, 211, 0.5);
+    border-top: 1px solid rgba(211, 211, 211, 0.5);
 }
 .itemcomentmsj {
     width: 505px;
@@ -454,9 +468,9 @@ html {
     position: absolute;
     top: 43px;
     left: -11px;
-    border-top: 1px solid rgb(216, 216, 216);  
-    border-left: 1px solid rgb(216, 216, 216);
-    border-right: 1px solid rgb(216, 216, 216);
+    border-top: 1px solid #e4e5e8;  
+    border-left: 1px solid #e4e5e8;
+    border-right: 1px solid #e4e5e8;
     box-shadow: 0px 0px 4px -4px rgb(173, 173, 173);  border-radius: 2px;
 }
 #show-solicitud .item-friends-eventpic {
@@ -478,7 +492,7 @@ html {
     width: 100%;
     color: #444;
     float: left;
-    border-bottom: 1px solid #d8d8d8;
+    border-bottom: 1px solid #e4e5e8;
     padding: 14px 0px 1px 0px;
 }
 .item-solicitud-friend:hover{ 
@@ -1273,7 +1287,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     float: left;
     width: 351px;
     
-    min-height: 329px;
+    min-height: 322px;
     padding-top: 4px;
     margin: 13px 0px 0px 0px;
     overflow: hidden;
@@ -1389,9 +1403,9 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 225px;
     position: absolute;
     background-color: rgb(255, 255, 255);    top: 27px;  
-    border-bottom: 1px solid rgba(211, 211, 211, 0.31);  
-    border-left: 1px solid rgba(211, 211, 211, 0.31);
-    border-right: 1px solid rgba(211, 211, 211, 0.31);
+    border-bottom: 1px solid rgba(211, 211, 211, 0.72);  
+    border-left: 1px solid rgba(211, 211, 211, 0.72);
+    border-right: 1px solid rgba(211, 211, 211, 0.72);
     box-shadow: 0px 0px 10px -5px rgb(82, 82, 82);  
     border-radius: 2px;
     display: none;
@@ -1504,7 +1518,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 351px;
     float: left;
     min-height: 300px;
-    max-height: 473px;
+    max-height: 443px;
     overflow: hidden;
 }
 .comentuser {

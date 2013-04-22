@@ -22,6 +22,10 @@
         // $theObjId = new MongoId($id); 
          return $this->db->comentariosEvento->find(array("_eventId" => $id))->sort(array("fechaMongo" => -1 ));
         }
+        public function findUltimoscoment($id, $limit){
+        // $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->find(array("_eventId" => $id))->sort(array("fechaMongo" => -1 ))->limit($limit);
+        }
         public function verFecha($fechaComentario){
 //           $datosComentario = explode(' ', $dcto['fechaMuestra']);
 //           $fechaComentario = $datosComentario[0];
@@ -138,13 +142,14 @@
             }
             return $arr;
         }
-        public function guardarComentarioEvento($comentario,$userId,$eventId,$userName, $fecha, $menciones) {  
+        public function guardarComentarioEvento($comentario,$userId,$eventId,$userName, $fecha, $menciones,$nombreevent) {  
             $theObjId = new MongoId($eventId);
             $fechaMongo = new MongoDate(strtotime($fecha));
             $mencionados = $this->transformarMenciones($menciones);
             $coment = array(
                 "_userId"=>$userId,
                 "_eventId"=>$theObjId,
+                "nombreevent"=>$nombreevent,
                 "userName"=>$userName,
                 "comentario"=>$comentario,
                 "fechaMongo"=>$fechaMongo,
