@@ -3,6 +3,33 @@
     require_once '../DAL/evento.php';
     require_once '../DAL/comentario.php';
     date_default_timezone_set("Chile/Continental");
+    if(isset($_POST['vercomentario'])){
+        session_start();
+        require_once '../DAL/usuario.php';
+        $usuario = new usuario();
+        $evento = new evento();
+        $id = $_POST['id'];
+        $comentarios = new comentario();
+        $comentarios->revisado($id, $_SESSION['userid']);
+        $coment = $comentarios->findcomentarioforid($id);
+        $event = $evento->findforid($coment['_eventId']);
+        $quienCito = $usuario->findforid($coment['_userId']);
+        $cuerpo = '<div class="divmencionevent">';
+        $cuerpo.= '<div class="foto-event"></div>';//$event['foto'][0]
+        $cuerpo.= '<div class="tit title-event">'.$event['nombre'].'</div>';
+        $cuerpo.= '<div class="bloq2msj"><div class="itemcomentmsj">';
+        $cuerpo.=   '<div style="background: url('.$quienCito['foto'].')" class="bloq1"></div>';
+        $cuerpo.=   '<div class="bloq2msjinner">';
+        $cuerpo.=       '<div class="nomusercom tit">'.$quienCito['nombre'].'</div>';
+        $cuerpo.=       '<div class="comentuser">'.$coment['comentario'].'</div>';
+        $cuerpo.=   '</div>';
+        $cuerpo.= '<div class="bloq3msjinner">';
+        $realizacion = $comentarios->verFecha($coment['fechaMuestra']);
+        $cuerpo.=    '<div class="hacecuant">'.$realizacion.'</div>';
+        $cuerpo.= '</div></div></div></div>';
+        echo $cuerpo;      
+    }
+    
     
     if(isset($_POST['delcoment'])){
         $dataid = $_POST['dataid'];
@@ -34,6 +61,7 @@
         $menciones = $_REQUEST['menciones'];
         $comentarios = new comentario();
         $fecha = date('Y-m-d H:i:s');
+        //$comentarioEscapado = str_replace('&nbsp;', ' ', $comentario);
         $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha, $menciones );
         
         //cargar comentarios

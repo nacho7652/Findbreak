@@ -19,7 +19,7 @@ class usuario {
     }
     public function verMenciones($id){
         $idM = new MongoId($id);
-        $mencionesFound = $this->db->comentariosEvento->find( array("mencionados.0.id"=>$idM))->sort(array("fechaMongo" => -1 ));;
+        $mencionesFound = $this->db->comentariosEvento->find( array("mencionados.id"=>$idM))->sort(array("fechaMongo" => -1 ));;
         return $mencionesFound;
     }
 

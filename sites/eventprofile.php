@@ -96,7 +96,7 @@
     <div class="part-right divtrans">
          <!--<div class="tit tit1">Comenta el evento</div>-->
         <?php if(isset($_SESSION['userid'])){ ?>
-        <div class="coments">
+        <div  class="coments">
             <input type="hidden" id="idevent" value="<?php echo $eventfound['_id'] ?>"/>
             <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
             <div class="input-transcom">
@@ -115,14 +115,14 @@
         </div>
         <?php }
           else{ //si no esta logueado no puedo comentar ?>  
-        <div class="coments">
+        <div  class="coments">
             <div class="mjscoment">
                 Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a>
             </div>
         </div>
          <?php } ?>
          
-        <div class="list">
+        <div id="boxscroll" class="list">
                 <?php 
                 $comentarios = $comentarioEvent->findforid($eventfound['_id']);
                 foreach($comentarios as $dcto){

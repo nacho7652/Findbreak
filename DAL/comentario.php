@@ -6,9 +6,17 @@
             $conn = new connect();
             $this->db = $conn->getDB();
         }
+        public function revisado($id, $userid){
+            $theObjId = new MongoId($id); 
+            return $this->db->comentariosEvento->update(array("_id" => $theObjId, "mencionados.id" => $userid),array('$set' => array('mencionados.$.revisado' => 1)));
+        }
         public function eliminar($id){
          $theObjId = new MongoId($id); 
          return $this->db->comentariosEvento->remove(array("_id" => $theObjId));
+        }
+        public function findcomentarioforid($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->findOne(array("_id" => $theObjId));
         }
         public function findforid($id){
         // $theObjId = new MongoId($id); 

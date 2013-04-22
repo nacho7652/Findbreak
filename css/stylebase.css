@@ -128,6 +128,25 @@ html {
     margin: 19px 0px 0px 0px;
     padding: 0px 3px 13px 0px;
 }
+.divmencionevent .foto-event {
+    width: 212px;
+    height: 220px;
+    float: left;
+    margin: -21px 1px 0px 11px;
+    background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;
+    box-shadow: 0px 1px 10px -3px #444;
+    border: 4px solid #fff;
+    background-size: cover;
+}
+.divmencionevent .title-event {
+    margin: 0px 0px 4px 7px;
+    float: left;
+}
+.divmencionevent .bloq2msj {
+    float: left;
+    width: 448px;
+    padding: 0px 3px;
+}
 .itemcomentmsj {
     width: 505px;
     min-height: 70px;
@@ -155,7 +174,7 @@ html {
     box-shadow: 0px 2px 6px -3px black;  
     min-width: 990px;  
     top: 0px;  
-    z-index: 10; 
+    z-index: 10000; 
 /*    background: #962154; 
     background-image: -webkit-gradient(linear,left top,left bottom,from(#3C3C3C),to(#111));   
     background-image: -webkit-linear-gradient(#A5235B,#962154);   
@@ -466,6 +485,12 @@ html {
     background-color: rgba(247, 247, 247, 0.6);
     color: #fff !important;
     cursor: pointer;
+}
+.norevi {
+    background: rgba(205, 211, 255, 0.36) !important;
+}
+.norevi:hover{
+    background: rgba(205, 211, 255, 0.36) !important;
 }
 .name-solicitud {
     width: 212px;
@@ -1302,7 +1327,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .part-bottom {
     float: left;
-    width: 587px;
+    width: 567px;
     margin: 0px 0px 0px 8px;
     padding-left: 11px;
     padding-top: 4px;
@@ -1315,9 +1340,11 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     font-size: 12px;
     color: rgb(104, 104, 104);
     padding: 5px 3px 6px 7px;
-    height: 15px;
+    height: 10px;
     resize: none;
     border: none;
+    overflow: hidden;
+    
 }
 .itemcita {
     margin: 0px 1px 0px 1px;
@@ -1340,6 +1367,8 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 331px;
     float: left;      
     margin: 8px 0px 0px 10px;
+    padding-bottom: 9px;
+    box-shadow: 0px 3px 8px -6px #444;
 }
 .mjscoment{
     font-size: 0.8em;
@@ -1357,11 +1386,15 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     font-size: 1.1em;
 }
 .amigosCitar {
-    width: 329px;
+    width: 225px;
     position: absolute;
-    background-color: rgb(255, 255, 255);    top: 27px;  border: 1px solid rgb(216, 216, 216);  
-    box-shadow: 0px 0px 7px -4px rgb(173, 173, 173);  
+    background-color: rgb(255, 255, 255);    top: 27px;  
+    border-bottom: 1px solid rgba(211, 211, 211, 0.31);  
+    border-left: 1px solid rgba(211, 211, 211, 0.31);
+    border-right: 1px solid rgba(211, 211, 211, 0.31);
+    box-shadow: 0px 0px 10px -5px rgb(82, 82, 82);  
     border-radius: 2px;
+    display: none;
 }
 
 .divcitar:hover{
@@ -1370,7 +1403,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .amigosCitar .item-friends-user {
     float: left;
-    width: 324px;
+    width: 220px;
     margin-bottom: 0px;
     padding: 9px 4px 8px 1px;
     border-top: 1px solid rgba(211, 211, 211, 0.31);
@@ -1468,9 +1501,11 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     position: relative;
 }
 .list {
-    margin-top: 17px;
-    width: 337px;
+    width: 351px;
     float: left;
+    min-height: 300px;
+    max-height: 473px;
+    overflow: hidden;
 }
 .comentuser {
     font-size: 0.7em;

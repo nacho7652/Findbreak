@@ -158,10 +158,20 @@
                                              $divMenciones = "";
                                              foreach($menciones as $sol)
                                              {
-                                                 $contsol++;
+                                                 $clase = '';
+                                                 foreach($sol['mencionados'] as $mencion){
+                                                     if($mencion['id'] == $_SESSION['userid']){
+                                                         if($mencion['revisado'] == 0){
+                                                             $clase = 'norevi';
+                                                             $contsol++;
+                                                             break;
+                                                         }
+                                                     }
+                                                 }
+                                                 
                                                  $realizacion = $comentarioEvent->verFecha($sol['fechaMuestra']);
                                                  $user = $usuario->findforid($sol['_userId']);
-                                                 $divMenciones.='<div id="'.$sol['_id'].'" class="item-solicitud-friend"> 
+                                                 $divMenciones.='<div id="'.$sol['_id'].'" class="'.$clase.' item-solicitud-friend"> 
                                                                     <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
                                                                     <div class="item-friends-msj">
                                                                         <div class="item-friends-username tit">'.$sol['userName'].'</div>
@@ -171,7 +181,8 @@
                                                                     <div style="background-image:url('.$user['foto'].')" class="item-friends-eventpic"></div>
                                                                     <div class="bloq3">
                                                                         <div class="hacecuant">'.$realizacion.'</div>
-                                                                    </div>';
+                                                                    </div>
+                                                                    ';
                                                                     
                                                  $divMenciones.=   '</div>';
                                              }
@@ -311,7 +322,7 @@
   
 	//var nice = $("html").niceScroll();  // The document page (body)
     
-    $("#boxscroll").niceScroll({cursorborder:"rgba(104, 102, 102, 0.58)",cursorcolor:"rgba(104, 102, 102, 0.58)",boxzoom:false, cursorwidth:11}); // First scrollable DIV
+    $("#boxscroll").niceScroll({cursorborder:"rgba(104, 102, 102, 0.58)",cursorcolor:"rgba(104, 102, 102, 0.58)",boxzoom:false, cursorwidth:9}); // First scrollable DIV
     
     // Customizable cursor
     // $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#00F",cursoropacitymax:0.7,cursorwidth:11,cursorborder:"1px solid #2848BE",cursorborderradius:"8px"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar
@@ -335,15 +346,15 @@
         
     </body>
     <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'findbreak'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
+//        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+//        var disqus_shortname = 'findbreak'; // required: replace example with your forum shortname
+//
+//        /* * * DON'T EDIT BELOW THIS LINE * * */
+//        (function () {
+//            var s = document.createElement('script'); s.async = true;
+//            s.type = 'text/javascript';
+//            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+//            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+//        }());
      </script>
 </html>

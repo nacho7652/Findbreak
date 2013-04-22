@@ -9,7 +9,7 @@ $(document).ready(function(){
         function popup(data){
           $("html").css("overflow","hidden");
           $("#top").css("right","8px");
-          $("#body").css("right","0px");
+          $(".eventprofile").css("right","8px");
           $('#allbackground').show();
           $('#coverall').show();
           $("#coverall > .innercal").fadeIn(0);
@@ -22,7 +22,7 @@ $(document).ready(function(){
                                 $('#allbackground').hide();
 				$("html").css("overflow-y", "scroll");
                                 $("#top").css("right","0px");
-                                $("#body").css("right","0px");
+                                $(".eventprofile").css("right","0px");
 				$("#caloader").html("");								
 			}
 		);
@@ -102,6 +102,24 @@ $(document).ready(function(){
                      );
         });
         //PERFIL EVENTO
+        $('body').delegate('.item-solicitud-friend','click',function(){
+            var id = $(this).attr('id');
+            //hacer un ajax y ver el comentario
+            if($(this).hasClass('norevi')){
+                $(this).removeClass('norevi');
+            }
+            $.ajax({           
+                type:"POST",
+                dataType:"html",
+                url: "/findbreak/function/comentario-response.php",
+                data: "vercomentario=1&id="+id,
+                success: function (data)
+                { 
+                    popup(data);
+                }
+            })
+            
+        })
         var overcoment = false;
         $('.coments').hover(function(){
             
@@ -113,6 +131,7 @@ $(document).ready(function(){
         })
         $('#coment').focus(function(){
             $(this).css('height','60px');
+            $(this).css('overflow-y', 'auto')
             $('.showfocuscom').show();
         })  
         $('body').delegate('.itemcoment','hover',function(){
@@ -125,25 +144,29 @@ $(document).ready(function(){
          var coment = $('#coment').html();
          var eventid = $('#idevent').val();
          var hashevent = $('#hashevent').val();
+         var esc = coment.replace(/&nbsp;/g,' ');
          var menciones = guardarMenciones();
          $.ajax({           
              type:"POST",
              dataType:"html",
              url: "/findbreak/function/comentario-response.php",
-             data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&menciones="+menciones,
+             data: "comentevent=1&comentario="+esc+"&eventId="+eventid+"&hashevent="+hashevent+"&menciones="+menciones,
              success: function (data)
              {
                  $('.showfocuscom').hide();
                  $('#coment').css('height','16px');
                  $('#coment').val('');
                  $('.list').html(data);
+                 $('#coment').html('');
              }
            })
         })
         function guardarMenciones(){
             var menciones = '';
             $('#coment .itemcita').each(function(){
+                
                 menciones+= $(this).attr('data-id')+'-';
+                
             })
             return menciones;
         }
@@ -202,7 +225,7 @@ $(document).ready(function(){
 //        })  
         
         $('.divcitar').click(function(){
-            $('.amigosCitar').show();
+            $('.amigosCitar').toggle();
             $.post('/findbreak/function/users-response.php', {'search-friend-citar':1},
                     function(data){          
                                 $('.amigosCitar').html(data)
@@ -210,12 +233,18 @@ $(document).ready(function(){
         })
         //itemCitar
         $('body').delegate('.itemCitar','click',function(){
+//            var esc = $('#coment').html().replace(/<div>/g,'');
+//            var esc2 = esc.replace(/<\/div>/g,'');
+//            $('#coment').html(esc2);
+           
             var id = $(this).attr('data-id');
             var nombre = $(this).find('.item-friends-username').html();
-            var nombreCita = '<span class="spancom"> <a href="/danitow" \n\
+            var nombreCita = ' <a \n\
+                                    href="/danitow" \n\
                                     data-id="'+id+'"\n\
-                                    class="itemcita">@'+nombre+'</a></span>';
+                                    class="itemcita">@'+nombre+'</a> ';
             $('#coment').html($('#coment').html()+nombreCita);
+            
         })
         //FIN PERFIL EVENTO
         
