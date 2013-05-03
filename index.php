@@ -111,14 +111,16 @@
         <div id="top">
             <div id="content-top">
                 <div class="top-left">
-                    <div class="logoper"></div>
-                    <div class="logo"></div>
+                    <a href="/findbreak/home">
+                        <div class="logoper"></div>
+                        <div class="logo"></div>
+                    </a>
                 </div>
                 
                 <div class="top-center">
                     <!--<div id="hover-response">-->
                         <div class="input-textparent1">
-                            <input value="BUSCA TU CARRETE..." type="text" id="search" class="input-transf">
+                            <input value="BUSCA TU CARRETE..." type="text" id="search2" class="input-transf">
                             <input id="boton-buscar" type="button" class="sprites" />
                         </div>
                         <div id="response-friend" >
@@ -135,7 +137,7 @@
                                        Iniciar sesion
                                    </a>
                                    <div class="login-cont"> 
-                                      <input  type="text" placeholder="Correo electronico" id="mail">
+                                      <input   type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
                                       <a href="#" class="botongreen" id="boton-login">Entrar</a>
                                    </div>
@@ -153,51 +155,75 @@
                                    <?php $usertype = $_SESSION['usertype'];
                                          if($usertype == 1){
                                              $usuario = new usuario();
-                                             $menciones = $usuario->verMenciones($_SESSION['userid']);
+                                             $notificaciones = $usuario->verNotificaciones($_SESSION['userid']);
+                                             //$re = $usuario->unirNotificaciones($menciones, $seguiArr, null);
+                                            // echo count($seguiArr);
+                                            // echo count((array)$menciones);
+                                             
                                              $comentarioEvent = new comentario();
 //                                             $solicitud = $usuario->VerSolicitudes($_SESSION['userid']);
                                              $divMenciones = "";
-                                             foreach($menciones as $sol)
-                                             {
+                                            
+                                             foreach($notificaciones as $not)
+                                             {  
+//                                                 print_r($not);
                                                  $clase = '';
-                                                 foreach($sol['mencionados'] as $mencion){
-                                                     if($mencion['id'] == $_SESSION['userid']){
-                                                         if($mencion['revisado'] == 0){
-                                                             $clase = 'norevi';
-                                                             $contsol++;
-                                                             break;
-                                                         }
-                                                     }
+                                                 if($not['estado'] == 0){
+                                                     $clase = 'norevi';
+                                                     $contsol++;
                                                  }
+                                                 if($not['tipo'] == 1){
+                                                        $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
+                                                        $user = $usuario->findforid($not['quien']);
+                                                        $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not1"> 
+                                                                           <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                           <div class="item-friends-msj">
+                                                                               <div class="item-friends-username tit">'.$user['nombre'].'</div>
+                                                                               <span class="msjmencion">te ha mencionado en el evento</span>
+                                                                               <span class="tit msjmencion msjeventonom">'.$not['nombreEvent'].' </span>
+                                                                           </div>
+                                                                           <div style="background-image:url('.$user['foto'].')" class="item-friends-eventpic"></div>
+                                                                           <div class="bloq3">
+                                                                               <div class="hacecuant">'.$realizacion.'</div>
+                                                                           </div>
+                                                                           ';
+
+                                                        $divMenciones.=   '</div>';
+                                                 } 
+                                                 if($not['tipo'] == 2){
+                                                        $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
+                                                        $user = $usuario->findforid($not['quien']);
+                                                        $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not2 item-search-friend"> 
+                                                                           <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                           <div class="item-friends-msj">
+                                                                               <div class="item-friends-username tit">'.$user['nombre'].'</div>
+                                                                               <span class="msjmencion">te ha seguido.</span>
+                                                                               
+                                                                           </div>
+                                                                           
+                                                                           <div class="bloq3">
+                                                                               <div class="hacecuant">'.$realizacion.'</div>
+                                                                           </div>
+                                                                           <div style="display:none" class="id-item-search">'.$user['_id'].'</div>
+                                                                           ';
+
+                                                        $divMenciones.=   '</div>';
+                                                 }   
                                                  
-                                                 $realizacion = $comentarioEvent->verFecha($sol['fechaMuestra']);
-                                                 $user = $usuario->findforid($sol['_userId']);
-                                                 $divMenciones.='<div id="'.$sol['_id'].'" class="'.$clase.' item-solicitud-friend"> 
-                                                                    <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
-                                                                    <div class="item-friends-msj">
-                                                                        <div class="item-friends-username tit">'.$sol['userName'].'</div>
-                                                                        <span class="msjmencion">te ha mencionado en el evento</span>
-                                                                        <span class="tit msjmencion msjeventonom">'.$sol['nombreevent'].' </span>
-                                                                    </div>
-                                                                    <div style="background-image:url('.$user['foto'].')" class="item-friends-eventpic"></div>
-                                                                    <div class="bloq3">
-                                                                        <div class="hacecuant">'.$realizacion.'</div>
-                                                                    </div>
-                                                                    ';
-                                                                    
-                                                 $divMenciones.=   '</div>';
+                                                 
+                                                 
                                              }
                                    ?>
-                                        <div class="option user-photo">
+                                        <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-photo">
                                             <div class="content-option content-option-first"
                                             style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat">
                                             </div> 
-                                        </div>
-                                        <div class="option user-name" >
+                                        </a>
+                                        <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-name" >
                                              <div class="content-option">
                                                  <?php echo $_SESSION['username'] ?>
                                              </div>
-                                        </div>
+                                        </a>
                                    
                                         <div class="option noti-friend">
                                             <div class="content-option">Menciones (<span id="cant-solicitud"><?php echo $contsol ?></span>)</div>
@@ -218,7 +244,7 @@
                                               <input type="submit" name="cerrarsession" value="-C" class="content-option "/>
                                             </form>
                                          </div>-->
-                                         <a href="../home/"  class="option ">
+                                         <a href="/findbreak/home"  class="option ">
                                             <div id="optionhome"  class="content-option">
                                                 Home
                                             </div>
@@ -316,6 +342,8 @@
        <?php } ?>
          <script type="text/javascript" src="js/upload.js"></script>
          <script type="text/javascript" src="js/script.js"></script>
+         <script type="text/javascript" src="js/autoresize.js"></script>
+         <script type="text/javascript" src="js/menciones.js"></script>
         <script type="text/javascript" src="js/publicar_evento.js"></script>
         <script src="js/jquery.nicescroll.min.js"></script>
         <script>
@@ -323,7 +351,7 @@
   
 	//var nice = $("html").niceScroll();  // The document page (body)
     
-    $("#boxscroll").niceScroll({cursorborder:"rgba(104, 102, 102, 0.58)",cursorcolor:"rgba(104, 102, 102, 0.58)",boxzoom:false, cursorwidth:9}); // First scrollable DIV
+    $("#boxscroll").niceScroll({cursorborder:"rgba(104, 102, 102, 0.58)",cursorcolor:"rgba(104, 102, 102, 0.58)",boxzoom:false, cursorwidth:9}).cursor.css({"margin-right":"3px"}); // MAC like scrollbar; // First scrollable DIV
     
     // Customizable cursor
     // $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#00F",cursoropacitymax:0.7,cursorwidth:11,cursorborder:"1px solid #2848BE",cursorborderradius:"8px"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar

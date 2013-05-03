@@ -44,7 +44,7 @@
                                 '.$buttonFriend.'
                               </div>
                               <div class="info-user">';
-         $divProfileUser.=     '<div class="name-user tit">'.$usuariofound['nombre'].' '.$usuariofound['apellido'].'</div>
+         $divProfileUser.=     '<a href="/findbreak/!#'.$usuariofound['_id'].'" class="name-user tit">'.$usuariofound['nombre'].' '.$usuariofound['apellido'].'</a>
                                 
                                </div>';
          if(isset($usuariofound['seguidores']) && count($usuariofound['seguidores']) > 0){//si tiene 1 o muchos seguidores
@@ -56,7 +56,7 @@
             foreach($seguidores as $item){
                 $divProfileUser.=   '<div data-id="'.$item['_id'].'" class="item-friends-user">
                                         <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-                                        <div class="item-friends-username">'.ucwords($item['nombre']).'</div>
+                                        <a href="/findbreak/!#'.$item['_id'].'" class="item-friends-username">'.ucwords($item['nombre']).'</a>
                                     </div>';
             }
              $divProfileUser.=   '</div>';

@@ -10,8 +10,9 @@
         $evento = new evento();
         $id = $_POST['id'];
         $comentarios = new comentario();
-        $comentarios->revisado($id, $_SESSION['userid']);
-        $coment = $comentarios->findcomentarioforid($id);
+        $comentarios->revisado($id);//dejo la notificacion como revisada
+        $not = $comentarios->findNotificacionForId($id);
+        $coment = $comentarios->findcomentarioforid($not['idComentario']);
         $event = $evento->findforid($coment['_eventId']);
         $quienCito = $usuario->findforid($coment['_userId']);
         $cuerpo = '<div class="divmencionevent">';
@@ -21,7 +22,7 @@
         $cuerpo.=   '<div style="background: url('.$quienCito['foto'].')" class="bloq1"></div>';
         $cuerpo.=   '<div class="bloq2msjinner">';
         $cuerpo.=       '<div class="nomusercom tit">'.$quienCito['nombre'].'</div>';
-        $cuerpo.=       '<div class="comentuser">'.$coment['comentario'].'</div>';
+        $cuerpo.=       '<div class="comentuser"><a href="/findbreak/break/'.$event['_id'].'" class="hashlink">'.$event['hash'].'</a>'.$coment['comentario'].'</div>';
         $cuerpo.=   '</div>';
         $cuerpo.= '<div class="bloq3msjinner">';
         $realizacion = $comentarios->verFecha($coment['fechaMuestra']);
@@ -29,34 +30,36 @@
         $cuerpo.= '</div></div></div></div>';
         
         $theObjId = new MongoId($coment['_eventId']);
-        $todosComent = $comentarios->findUltimoscoment($theObjId, 3);
+        $todosComent = $comentarios->findOtrasMenciones($_SESSION['userid'], 4);
         $html = '<div class="otroscoment">
-                   <div class="tit titotros">Últimos comentarios</div>';
+                   <div class="tit titotros">Otras menciones</div>';
         foreach ($todosComent as $dcto){
-            $useridComent = $dcto['_userId'];
-            $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
-            $html.='<div class="itemcoment">
-                        <div class="line"></div>
-                        <div class="bloq1"></div>
-                        <div class="bloq2">
-                            
-                            <div class="nomusercom tit">'.$dcto['userName'].'</div>
-                            <div class="comentuser"><a href="#" class="hashlink">'.$event['hash'].'</a>
-                                                    '.$dcto['comentario'].'
+            if($dcto['_id'] != $not['idComentario']){
+                $useridComent = $dcto['_userId'];
+                $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
+                $html.='<div class="itemcoment">
+                            <div class="line"></div>
+                            <div class="bloq1"></div>
+                            <div class="bloq2">
+
+                                <div class="nomusercom tit">'.$dcto['userName'].'</div>
+                                <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].' " class="hashlink">'.$event['hash'].'</a>
+                                                        '.$dcto['comentario'].'
+                                </div>
                             </div>
-                        </div>
-                        <div class="bloq3">
-                                <div class="hacecuant">
-                                    '.$realizacion.'
-                                </div>';
-                            if($useridComent == $_SESSION['userid']){
-                               $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
-                           }else{
-                               $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
-                           }
-                    $html.='
-                          </div>
-                      </div>';
+                            <div class="bloq3">
+                                    <div class="hacecuant">
+                                        '.$realizacion.'
+                                    </div>';
+                                if($useridComent == $_SESSION['userid']){
+                                   $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
+                               }else{
+                                   $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                               }
+                        $html.='
+                              </div>
+                          </div>';
+            }
         }
         $html.='</div>';
         $re = $cuerpo.$html;  
@@ -91,12 +94,10 @@
         $comentario = $_REQUEST['comentario'];
         $evenId = $_REQUEST['eventId'];
         $hashevent = $_REQUEST['hashevent'];
-        $menciones = $_REQUEST['menciones'];
         $nombreevent = $_REQUEST['nombreevent'];
         $comentarios = new comentario();
         $fecha = date('Y-m-d H:i:s');
-        //$comentarioEscapado = str_replace('&nbsp;', ' ', $comentario);
-        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha, $menciones,$nombreevent );
+        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha,$nombreevent );
         
         //cargar comentarios
         $theObjId = new MongoId($evenId);
@@ -111,7 +112,7 @@
                         <div class="bloq2">
                             
                             <div class="nomusercom tit">'.$dcto['userName'].'</div>
-                            <div class="comentuser"><a href="#" class="hashlink">'.$hashevent.'</a>
+                            <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].'" class="hashlink">'.$hashevent.'</a>
                                                     '.$dcto['comentario'].'
                             </div>
                         </div>

@@ -231,7 +231,7 @@ html {
 .logo {
     width: 201px;
     height: 50px;
-    background: url('/findbreak/images/logon15.png')no-repeat;
+    background: url('/findbreak/images/logon13.png')no-repeat;
     margin-top: 3px;
 }
 #content-top .top-center {
@@ -539,12 +539,12 @@ html {
     z-index: 10240000000000000000000000000000;
     position: relative;
     top: -4px;
-    box-shadow: 0px 7px 10px -9px #962154;
+    box-shadow: 0px 2px 11px -5px rgb(82, 82, 82);
     left: 0px;
 }
 #content-top #response-friend .item-search{
     width: 100%;
-    height: 50px;
+    height: 48px;
     float: left;
 }
 #content-top #response-friend .item-search:hover{
@@ -552,18 +552,18 @@ html {
     cursor: pointer;
 }
 #content-top #response-friend .foto-item-search{
-    width: 45px;    
-    height: 45px;
+    width: 40px;    
+    height: 40px;
     float: left;
-    background-color: #a4a4a4;
-    margin: 2px 2px 2px 4px;
+    background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s160x160/75506_10200385133008579_1835723334_a.jpg) no-repeat;
+    background-size: cover;
+    margin: 4px 2px 0px 4px;
 }
 #content-top #response-friend .name-item-search{
-    margin: 16px 0px 0px 3px;
+    margin: 11px 0px 0px 5px;
     
     float: left;
-    color: #444;
-    font-size: 0.9em;
+    font-size: 0.7em;
 }
 #content-top .title-search-item {
     font-size: 0.7em;
@@ -616,6 +616,9 @@ html {
     margin: 0px 0px 0px 15px;
     max-width: 209px;
     width: 100%;
+}
+.info-user .name-user:hover{
+    text-decoration: underline;
 }
 .info-user {
     width: 288px;
@@ -1275,6 +1278,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .tit {
     color: rgba(68, 68, 68, 0.86);
     font-weight: bold;
+    text-decoration: none;
 }
 .tit1 {
     font-size: 0.7em;
@@ -1348,6 +1352,38 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     padding-right: 13px;
     min-height: 316px;
 }
+
+#comentsup {
+    background: transparent;
+    position: relative;
+    z-index: 100;
+}
+#replica {
+    vertical-align: top;
+    font-size: 12px;
+    left: 0px;
+    position: absolute;
+    margin:  5px 0px 7px 0px;
+    padding: 5px 3px 6px 7px;
+    width: 315px;
+    color: transparent;
+    top: 24px;
+    direction: ltr;
+    word-wrap: break-word;
+    background: transparent;
+}
+#replica b{
+    background: rgb(182, 204, 238);
+    background: -webkit-gradient(linear, center top, center bottom, from(#dce6f8), to(#bdcff1));
+    background: -webkit-linear-gradient(rgb(233, 239, 250), rgb(205, 217, 240));
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0 0 0 1px #a3bcea;
+    font-weight: normal;
+}
+#overcoment {
+    z-index: 1;
+    position: relative;
+}
 #coment {
     margin: 5px 0px 7px 0px;
     width: 315px;
@@ -1358,10 +1394,15 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     resize: none;
     border: none;
     overflow: hidden;
-    
+    background: transparent;
+    font-family: EstoyBueno;      display: block; /* obligatorio para que tome el efecto */        overflow-y: scroll;
+}
+
+.itemCitarSelected{
+    background-color: rgba(247, 247, 247, 0.78);
 }
 .itemcita {
-    margin: 0px 1px 0px 1px;
+    margin: 0px 0px 0px 0px;
     color: rgba(42, 124, 179, 1);
     text-decoration: none;
 }
@@ -1391,6 +1432,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .input-transcom {
     border: 1px solid rgb(209, 209, 209);
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
+    position: relative;
 }
 .divcitar {
     float: left;
@@ -1483,6 +1525,10 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .nomusercom.tit {
     font-size: 0.7em;
     margin: 0px 0px 0px 4px;
+    display: block;
+}
+.nomusercom.tit:hover{
+    text-decoration: underline;
 }
 .bloq2 {
     float: left;

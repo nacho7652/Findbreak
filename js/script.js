@@ -131,11 +131,16 @@ $(document).ready(function(){
                      );
         });
         //PERFIL EVENTO
-        $('body').delegate('.item-solicitud-friend','click',function(){
+        function descontarNotificacion(){
+            var count = parseInt($('#cant-solicitud').html());
+            count--;
+            $('#cant-solicitud').html(count);
+        }
+        $('body').delegate('.not1','click',function(){
             var id = $(this).attr('id');
-            //hacer un ajax y ver el comentario
             if($(this).hasClass('norevi')){
                 $(this).removeClass('norevi');
+                descontarNotificacion();
             }
             $.ajax({           
                 type:"POST",
@@ -147,8 +152,7 @@ $(document).ready(function(){
                     
                     popup(data);
                 }
-            })
-            
+            })   
         })
         var overcoment = false;
         $('.coments').hover(function(){
@@ -160,8 +164,6 @@ $(document).ready(function(){
             overcoment = false;
         })
         $('#coment').focus(function(){
-            $(this).css('height','60px');
-            $(this).css('overflow-y', 'auto')
             $('.showfocuscom').show();
         })  
         $('body').delegate('.itemcoment','hover',function(){
@@ -171,36 +173,25 @@ $(document).ready(function(){
             $(this).find('.aparececom').hide();
         })
         $('#btn-comentar').click(function(){
-         var coment = $('#coment').html();
+         var coment = $('#coment').val();
          var eventid = $('#idevent').val();
          var nombreevent = $('.title-event').html();
          var hashevent = $('#hashevent').val();
-         var esc = coment.replace(/&nbsp;/g,' ');
-         var menciones = guardarMenciones();
          $.ajax({           
              type:"POST",
              dataType:"html",
              url: "/findbreak/function/comentario-response.php",
-             data: "comentevent=1&comentario="+esc+"&eventId="+eventid+"&hashevent="+hashevent+"&menciones="+menciones+"&nombreevent="+nombreevent,
+             data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent,
              success: function (data)
              {
                  $('.showfocuscom').hide();
                  $('#coment').css('height','16px');
                  $('#coment').val('');
                  $('.list').html(data);
-                 $('#coment').html('');
+                 $('#replica').html('');
              }
            })
         })
-        function guardarMenciones(){
-            var menciones = '';
-            $('#coment .itemcita').each(function(){
-                
-                menciones+= $(this).attr('data-id')+'-';
-                
-            })
-            return menciones;
-        }
         //preguntar(pregunta, cuerpo, pie)
           var itemComentario;
           $('body').delegate('#delcoment','click',function(){
@@ -248,36 +239,7 @@ $(document).ready(function(){
                }
            })
         })
-//        $('#coment').focusout(function(){
-//            if(!overcoment){
-//                $(this).css('height','19px');
-//                $('.showfocuscom').hide();
-//              }
-//        })  
-        
-        $('.divcitar').click(function(){
-            $('.amigosCitar').toggle();
-            $.post('/findbreak/function/users-response.php', {'search-friend-citar':1},
-                    function(data){          
-                                $('.amigosCitar').html(data)
-                    }, "html");
-        })
-        //itemCitar
-        $('body').delegate('.itemCitar','click',function(){
-//            var esc = $('#coment').html().replace(/<div>/g,'');
-//            var esc2 = esc.replace(/<\/div>/g,'');
-//            $('#coment').html(esc2);
-           
-            var id = $(this).attr('data-id');
-            var nombre = $(this).find('.item-friends-username').html();
-            var nombreCita = ' <a \n\
-                                    href="/danitow" \n\
-                                    data-id="'+id+'"\n\
-                                    class="itemcita">@'+nombre+'</a> ';
-            $('#coment').html($('#coment').html()+nombreCita);
-            $('#coment').focus();
-            
-        })
+       
         //FIN PERFIL EVENTO
         
         $('#user-login .option').hover(function(){
@@ -711,8 +673,13 @@ $(document).ready(function(){
       
       //Solicitud Amigos
       var idSolicitado;
-     $('#response-friend').delegate('.item-search-friend','click',function(){
+     $('body').delegate('.item-search-friend','click',function(){
          idSolicitado = $(this).find('.id-item-search').html();
+         if($(this).hasClass('norevi')){
+             $(this).removeClass('norevi');
+              descontarNotificacion();
+              $.post('/findbreak/function/users-response.php', {'revisarnot2':1,'id':$(this).attr('id')});
+         }
          $.ajax({
                           type: "POST",
                           dataType: "json",

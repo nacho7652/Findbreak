@@ -1,18 +1,26 @@
 <?php
-    
     class comentario{
         private $db;
         function __construct() {
             $conn = new connect();
             $this->db = $conn->getDB();
         }
-        public function revisado($id, $userid){
+//        public function revisado($id, $userid){
+//            $theObjId = new MongoId($id); 
+//            return $this->db->comentariosEvento->update(array("_id" => $theObjId, "mencionados.id" => $userid),array('$set' => array('mencionados.$.revisado' => 1)));
+//        }
+         public function revisado($id){
             $theObjId = new MongoId($id); 
-            return $this->db->comentariosEvento->update(array("_id" => $theObjId, "mencionados.id" => $userid),array('$set' => array('mencionados.$.revisado' => 1)));
+            return $this->db->notificaciones->update(array("_id" => $theObjId),array('$set' => array('estado' => 1)));
         }
         public function eliminar($id){
          $theObjId = new MongoId($id); 
+          $this->db->notificaciones->remove(array("idComentario" => $theObjId));
          return $this->db->comentariosEvento->remove(array("_id" => $theObjId));
+        }
+        public function findNotificacionForId($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->notificaciones->findOne(array("_id" => $theObjId));
         }
         public function findcomentarioforid($id){
          $theObjId = new MongoId($id); 
@@ -20,11 +28,15 @@
         }
         public function findforid($id){
         // $theObjId = new MongoId($id); 
-         return $this->db->comentariosEvento->find(array("_eventId" => $id))->sort(array("fechaMongo" => -1 ));
+         return $this->db->comentariosEvento->find(array("_eventId" => $id))->sort(array("fechaMongo" => -1 ))->limit(10);
         }
-        public function findUltimoscoment($id, $limit){
+        public function findUltimoscoment($id,$limit){
         // $theObjId = new MongoId($id); 
          return $this->db->comentariosEvento->find(array("_eventId" => $id))->sort(array("fechaMongo" => -1 ))->limit($limit);
+        }
+        public function findOtrasMenciones($aquien, $limit){
+       //  $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->find(array("mencionados.id" => $aquien))->sort(array("fechaMongo" => -1 ))->limit($limit);
         }
         public function verFecha($fechaComentario){
 //           $datosComentario = explode(' ', $dcto['fechaMuestra']);
@@ -60,6 +72,8 @@
             if($mesA < $mesT){
                 $meses = $mesT - $mesA;
             }elseif ($mesA == $mesT) {
+                $meses = 0;
+            }else{
                 $meses = 0;
             }
             
@@ -126,37 +140,81 @@
         if($redondear) $resultado = round($resultado);
         return $resultado;
 }
-        private function transformarMenciones($menciones){
-//            $puntosDeVenta = array( array('id'=>'232323',
-//                                          'nombre'=>'Ticket Master',
-//                                          'web'=>'http://www.google.cl'),
-//                                    array('id'=>'232323',
-//                                          'nombre'=>'Ticket Master',
-//                                          'web'=>'http://www.google.cl')
-//                                   );
+//        private function transformarMenciones($menciones){
+////            $puntosDeVenta = array( array('id'=>'232323',
+////                                          'nombre'=>'Ticket Master',
+////                                          'web'=>'http://www.google.cl'),
+////                                    array('id'=>'232323',
+////                                          'nombre'=>'Ticket Master',
+////                                          'web'=>'http://www.google.cl')
+////                                   );
+//            $partes = explode('-', $menciones);
+//            $arr = array();
+//            for($i=0; $i<count($partes)-1; $i++){
+//                $id = new MongoId($partes[$i]);
+//                $arr[] = array('id'=>$id,'revisado'=>0);
+//            }
+//            return $arr;
+//        }
+        private function guardarNotificacion1($quien, $menciones, $idComent, $nombreEvent, $fechaMongo, $fecha){
             $partes = explode('-', $menciones);
-            $arr = array();
-            for($i=0; $i<count($partes)-1; $i++){
-                $id = new MongoId($partes[$i]);
-                $arr[] = array('id'=>$id,'revisado'=>0);
+            if(count($partes)>0){
+                 for($i=0; $i<count($partes)-1; $i++){
+                    $idM = new MongoId($partes[$i]); 
+                    $noti1 = array(
+                        "quien"=>$quien,
+                        "aquien"=>$idM,
+                        "idComentario"=>$idComent,
+                        'nombreEvent'=>$nombreEvent,
+                        "tipo"=>1,
+                        "fechaMongo"=>$fechaMongo,
+                        "fechaMuestra"=>$fecha,
+                        "estado"=>0
+                      );
+                    $this->db->notificaciones->insert($noti1);
+                 }
             }
-            return $arr;
         }
-        public function guardarComentarioEvento($comentario,$userId,$eventId,$userName, $fecha, $menciones,$nombreevent) {  
+        public function findUsuarioForNick($nickname){
+//         return $this->db->usuario->findOne(array("nickname" => $nickname));
+             return $this->db->usuario->findOne(array("nombre" => $nickname));
+        }
+        private function buscarMencionados($comentario){
+            //$usuario = new usuario();
+            $partes = explode(' ', $comentario);
+            $menciones = '';
+            for($i=0; $i<count($partes); $i++){
+                if(strpos($partes[$i], '!#' ) !== false){//es un usuario
+                    $nicknameCompleto = $partes[$i];//completo es con !#
+                    $nickname = str_replace('!#','', $nicknameCompleto);
+                    $usuario = $this->findUsuarioForNick($nickname);
+                    $menciones.= $usuario['_id'].'-';
+                    $itemCita = '<a class="itemcita" href="/findbreak/!#'.$usuario['_id'].'">!#'.$usuario['nombre'].'</a>';
+                    $comentario = str_replace($nicknameCompleto, $itemCita, $comentario);
+                    //reemplazar los !# por los links
+                }
+            }
+            $re = array('menciones'=>$menciones, 'comentario'=>$comentario);
+            return $re;
+        }
+        public function guardarComentarioEvento($comentario,$userId,$eventId,$userName, $fecha,$nombreevent) {  
             $theObjId = new MongoId($eventId);
             $fechaMongo = new MongoDate(strtotime($fecha));
-            $mencionados = $this->transformarMenciones($menciones);
+            $re = $this->buscarMencionados($comentario);
+           // $mencionados = $this->transformarMenciones($menciones);
             $coment = array(
                 "_userId"=>$userId,
                 "_eventId"=>$theObjId,
                 "nombreevent"=>$nombreevent,
                 "userName"=>$userName,
-                "comentario"=>$comentario,
+                "comentario"=>$re['comentario'],
                 "fechaMongo"=>$fechaMongo,
-                "fechaMuestra"=>$fecha,
-                "mencionados"=>$mencionados
+                "fechaMuestra"=>$fecha
+//                "mencionados"=>$mencionados
             );
-             $this->db->comentariosEvento->insert($coment);   
+             $this->db->comentariosEvento->insert($coment); 
+             $this->guardarNotificacion1($userId, $re['menciones'],$coment['_id'] , $nombreevent, $fechaMongo, $fecha);
+             
             
         }
         

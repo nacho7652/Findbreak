@@ -101,12 +101,10 @@
             <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
             <div class="input-transcom">
                 <div class="hash"><?php echo $eventfound['hash']?></div>
-                <div id="overcoment">
-                  <textarea class="textoajustable" id="coment"></textarea>
+                <div contenteditable="true" spellcheck="true"  role="textbox" aria-multiline="true" dir="dir" 
+                     id="coment" data-focus="true">
+                    
                 </div>
-<!--                <div id="citasHidden"></div>
-                <div class="citasHiddenReservas"></div>-->
-                <div id="replica"></div>
             </div>
             <div class="showfocuscom">
              <div class="divcitar">@</div>
@@ -135,10 +133,10 @@
                     <div class="line"></div>
                     <div class="bloq1"></div>
                     <div class="bloq2">
-                        <a href="/findbreak/!#<?php echo $dcto['_userId']?>" class="nomusercom tit"><?php echo $dcto['userName'] ?></a>
+                        <div class="nomusercom tit"><?php echo $dcto['userName'] ?></div>
                         <div class="comentuser">
                             
-                              <a href="/findbreak/break/<?php echo $dcto['_eventId'];?>" class="hashlink"><?php echo $eventfound['hash']?></a>
+                              <a href="#" class="hashlink"><?php echo $eventfound['hash']?></a>
                                                            <?php echo $dcto['comentario'] ?>
 
                         </div>
@@ -187,7 +185,6 @@
   
  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> <!--Cargamos la API de Google Maps-->
  <script type="text/javascript" src="js/evento.js"></script>
- 
  
 <input id="lat-event" type="hidden" value="<?php echo $loc[0] //lat ?>"/>
 <input id="lng-event" type="hidden" value="<?php echo $loc[1] //lng ?>"/>

@@ -41,7 +41,7 @@
                                 <div class="item-event">   
                                      <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
-                                        <a class="tittle-event tit" target="_blank" href="../evento/<?php echo $dcto['_id'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['_id'];?>"><?php echo $dcto['nombre']; ?></a> 
                                          <!--<div class="productora-event">
                                             Producido por: productora
                                         </div>-->

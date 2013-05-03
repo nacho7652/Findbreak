@@ -17,6 +17,24 @@ class usuario {
         $conn = new connect();
         $this->db = $conn->getDB();
     }
+    public function guardarNotificacion2($quien, $aquien, $fechaMongo, $fecha){
+                   // $idM = new MongoId($aquien['_id']);   
+                    $noti2 = array(
+                        "quien"=>$quien['_id'],
+                        "aquien"=>$aquien['_id'],
+                        "tipo"=>2,
+                        "fechaMongo"=>$fechaMongo,
+                        "fechaMuestra"=>$fecha,
+                        "estado"=>0
+                      );
+                    $this->db->notificaciones->insert($noti2);
+             
+    }
+    public function verNotificaciones($id){
+        $idM = new MongoId($id);                   //516e9e314de8b4180d000003
+        $mencionesFound = $this->db->notificaciones->find( array("aquien"=>$idM))->sort(array("fechaMongo" => -1 ));
+        return $mencionesFound;
+    }
     public function verMenciones($id){
         $idM = new MongoId($id);
         $mencionesFound = $this->db->comentariosEvento->find( array("mencionados.id"=>$idM))->sort(array("fechaMongo" => -1 ));;
@@ -62,6 +80,7 @@ class usuario {
     public function dejarDeSeguir($quien, $aquien)
     {
         $aquien = new MongoId($aquien);
+        $this->db->notificaciones->remove(array("tipo" => 2,"quien" => $quien,"aquien" => $aquien));
         return $this->db->usuario->update( array("_id"=>$quien), array('$pull'=> array("siguiendo"=>(array("_id"=>($aquien))))   ));
     }
     public function eliminarSeguidor($quien, $aquien)

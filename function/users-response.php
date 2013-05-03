@@ -1,6 +1,90 @@
 <?php
     require_once '../DAL/connect.php';
     require_once '../DAL/usuario.php';
+    date_default_timezone_set("Chile/Continental");
+    //reemplazarBr
+    if(!empty($_POST["reemplazarBr"]))
+    {
+        $textoPlano = $_POST["textoPlano"];
+        echo nl2br($textoPlano);
+    }
+    if(!empty($_POST["dejarEnlace"]))
+    {
+        $id = $_POST["id"];
+        $nombre = $_POST["nombre"];
+        $busqueda = $_POST["coment"];
+
+        $palabras = explode(' ', $busqueda);
+        $textoAmigo = '';
+        if(count($palabras) > 1){
+            for($i=0; $i<count($palabras); $i++){
+                   if(strpos($palabras[$i], '@') !== false){//si encuentro el arroa paro
+                       $textoAmigo = $palabras[$i];
+                        break;
+                   }
+                }
+        }else{//es una palabra
+            $textoAmigo = $busqueda;
+        }
+        $nombreCitaDB2 = ' <a href="/findbreak/!#'.$id.'"
+                                    data-id="'.$id.'"
+                                    class="itemcita">'.$nombre.'</a> ';
+        
+        $nombreCita = $nombre;
+        $comentarioFinal = str_replace($textoAmigo, $nombreCitaDB2, $busqueda);
+        
+       
+        echo $comentarioFinal;
+        /*
+         var nombreCita = ' <a \n\
+                                    href="/findbreak/!#'+id+'" \n\
+                                    data-id="'+id+'"\n\
+                                    class="itemcita">'+nombre+'</a> ';
+         */
+    }
+    if(!empty($_POST["search-friend-cit"]))
+    {
+            $busqueda = $_POST["textoAmigo"];
+            $palabras = explode(' ', $busqueda);
+            $textoAmigo = '';
+            $r = 0;
+            $hayArroa = false;
+            for($i=0; $i<count($palabras); $i++){
+               if(strpos($palabras[$i], '@') !== false){//si encuentro el arroa paro
+                   $textoAmigo = $palabras[$i];
+                   $hayArroa = true;
+                    //break;
+               }
+            }
+            $usuario = new usuario();
+           $textoAmigoSinArroa = str_replace('@', '', $textoAmigo);
+            $coincidencia = $usuario->findFriend($textoAmigoSinArroa);
+            //crear cuadro de busqueda de AMIGOS
+            $cuadrouser = '';
+            $hayuser = false;
+            foreach($coincidencia as $dcto)
+            {
+                $hayuser = true;
+                $cuadrouser.= '<div data-id="'.$dcto["_id"].'" class="item-friends-user itemCitar">
+                                <div style="background-image:url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c170.50.621.621/s160x160/604099_10200642826730761_1474278375_n.jpg)" class="item-friends-userpic"></div>
+                                <div class="item-friends-username">'.$dcto["nombre"].'</div>
+                             </div>';
+                
+            }
+            
+            if($hayArroa)
+            echo $cuadrouser;
+            else
+            echo '';
+            
+    }
+    if(!empty($_POST["revisarnot2"]))
+    {
+        require_once '../DAL/comentario.php';
+        $id = $_POST['id'];
+        $comentarios = new comentario();
+        $comentarios->revisado($id);//dejo la notificacion como revisada
+    }
     if(!empty($_POST["search-friend-citar"]))
     {
          session_start();
@@ -36,7 +120,7 @@
                 $cuadrouser.= 
                 '<div class="item-search item-search-friend">
                    <div class="foto-item-search"></div>
-                   <div class="name-item-search">'.$dcto["nombre"].'</div>
+                   <div class="name-item-search tit">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </div>';
                 
@@ -55,9 +139,9 @@
             {
                 $hayevents = true;
                 $cuadroevento.= 
-                '<a href="../evento/'.(string)$dcto['_id'].'" target="_blank" class="item-search item-search-event">
+                '<a href="/findbreak/break/'.(string)$dcto['_id'].'" target="_blank" class="item-search item-search-event">
                    <div class="foto-item-search"></div>
-                   <div class="name-item-search">'.$dcto["nombre"].'</div>
+                   <div class="name-item-search tit">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';
                 
@@ -83,6 +167,9 @@
         $userAquien = $solicitud->findforid($aquien);
         $resp = $solicitud->agregarSeguidor($userQuien, $userAquien);
         $resp2 = $solicitud->agregarSiguiendo($userQuien, $userAquien);
+        $fecha = date('Y-m-d H:i:s');
+        $fechaMongo = new MongoDate(strtotime($fecha));
+        $solicitud->guardarNotificacion2($userQuien, $userAquien, $fechaMongo, $fecha);
         $re = -1;
         $item = '<div data-id="'.$userQuien['_id'].'" class="item-friends-user">';
         $item.=  '<div style="background-image:url('.$userQuien['foto'].')" class="item-friends-userpic"></div>';

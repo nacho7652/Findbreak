@@ -19,6 +19,11 @@
                    $page_class = 'home';
                    $page_description = "Encuentra un quiebre a tu rutina";
                    break;
+    case 'userprofile': $page_title = 'Findbreak';
+                   $page_site = 'userprofile';
+                   $page_class = 'eventprofile';
+                   $page_description = "Encuentra un quiebre a tu rutina";
+                   break;
     case 'eventprofile': $page_title = 'Findbreak';
                    $page_site = 'eventprofile';
                    $page_class = 'eventprofile';
