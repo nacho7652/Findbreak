@@ -177,6 +177,8 @@ $(document).ready(function(){
          var eventid = $('#idevent').val();
          var nombreevent = $('.title-event').html();
          var hashevent = $('#hashevent').val();
+        // alert(coment);
+         //return false;
          $.ajax({           
              type:"POST",
              dataType:"html",

@@ -42,40 +42,85 @@
                                     class="itemcita">'+nombre+'</a> ';
          */
     }
+    //search-friend-cit-arroa'
+    if(!empty($_POST["search-friend-cit-arroa"]))
+    {
+                $busqueda = $_POST["textoAmigo"];
+                $palabras = explode(' ', $busqueda);
+                $textoAmigo = '';
+                $r = 0;
+                $hayArroa = false;
+                for($i=0; $i<count($palabras); $i++){
+                   if(strpos($palabras[$i], '@') !== false){//si encuentro el arroa paro
+                       $textoAmigo = $palabras[$i];
+                       $hayArroa = true;
+                        //break;
+                   }
+                }
+               session_start();
+               $usuario = new usuario();
+               $id = $_SESSION['userid'];
+               $textoAmigoSinArroa = str_replace('@', '', $textoAmigo);
+               $yo = $usuario->findforid($id);
+               $html = '';
+               if($textoAmigoSinArroa == '')//si mando sólo el arroa muestro todos los seguidores
+               {
+                   if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
+                        foreach ($yo['siguiendo'] as $item){
+                                $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
+                                                       <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
+                                                       <div class="item-friends-username">'.$item['nombre'].'</div>
+                                                   </div>';
+                            
+                        }
+                }else{
+                        $html = 'aun no sigues a tus amigos, búscalos !';
+                }
+               }else
+               {
+                    if($textoAmigoSinArroa != ''){
+                         if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
+                                  foreach ($yo['siguiendo'] as $item){
+                                      if(strpos($item['nombre'], $textoAmigoSinArroa) !== false){
+                                          $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
+                                                                 <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
+                                                                 <div class="item-friends-username">'.$item['nombre'].'</div>
+                                                             </div>';
+                                      }
+                                  }
+                          }else{
+                                  $html = 'aun no sigues a tus amigos, búscalos !';
+
+                          }
+
+                     }
+               }
+            
+                if($hayArroa)
+                echo $html;
+                else
+                echo '';
+            
+    }
     if(!empty($_POST["search-friend-cit"]))
     {
-            $busqueda = $_POST["textoAmigo"];
-            $palabras = explode(' ', $busqueda);
-            $textoAmigo = '';
-            $r = 0;
-            $hayArroa = false;
-            for($i=0; $i<count($palabras); $i++){
-               if(strpos($palabras[$i], '@') !== false){//si encuentro el arroa paro
-                   $textoAmigo = $palabras[$i];
-                   $hayArroa = true;
-                    //break;
-               }
-            }
-            $usuario = new usuario();
-           $textoAmigoSinArroa = str_replace('@', '', $textoAmigo);
-            $coincidencia = $usuario->findFriend($textoAmigoSinArroa);
-            //crear cuadro de busqueda de AMIGOS
-            $cuadrouser = '';
-            $hayuser = false;
-            foreach($coincidencia as $dcto)
-            {
-                $hayuser = true;
-                $cuadrouser.= '<div data-id="'.$dcto["_id"].'" class="item-friends-user itemCitar">
-                                <div style="background-image:url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c170.50.621.621/s160x160/604099_10200642826730761_1474278375_n.jpg)" class="item-friends-userpic"></div>
-                                <div class="item-friends-username">'.$dcto["nombre"].'</div>
-                             </div>';
-                
-            }
+                    session_start();
+                    $usuario = new usuario();
+                    $id = $_SESSION['userid'];
+                    $yo = $usuario->findforid($id);
+                    $html = '';
+                    if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
+                        foreach ($yo['siguiendo'] as $item){
+                            $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
+                                                   <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
+                                                   <div class="item-friends-username">'.$item['nombre'].'</div>
+                                               </div>';
+                        }
+                    }else{
+                        $html = 'aun no sigues a tus amigos, búscalos !';
+                    }
+                    echo $html;
             
-            if($hayArroa)
-            echo $cuadrouser;
-            else
-            echo '';
             
     }
     if(!empty($_POST["revisarnot2"]))
@@ -84,25 +129,6 @@
         $id = $_POST['id'];
         $comentarios = new comentario();
         $comentarios->revisado($id);//dejo la notificacion como revisada
-    }
-    if(!empty($_POST["search-friend-citar"]))
-    {
-         session_start();
-         $usuario = new usuario();
-         $id = $_SESSION['userid'];
-         $yo = $usuario->findforid($id);
-         $html = '';
-         if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
-             foreach ($yo['siguiendo'] as $item){
-                 $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
-                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-                                        <div class="item-friends-username">'.ucwords($item['nombre']).'</div>
-                                    </div>';
-             }
-         }else{
-             $html = 'aun no sigues a tus amigos, búscalos !';
-         }
-         echo $html;
     }
     if(!empty($_POST["search-friend"]))
     {

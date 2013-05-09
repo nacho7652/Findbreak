@@ -254,6 +254,15 @@ html {
     right: -10px;
     border: none;
 }
+#boton-buscar-ini {
+    width: 46px;
+    height: 41px;
+    background-position: -22px -482px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    border: none;
+}
 #boton-location {
     width: 22px;
     height: 35px;
@@ -267,6 +276,19 @@ html {
 }
 .loc-desactivado{
     background-position: -38px -443px;
+}
+.input-textparent-ini{
+    border-radius: 2px;  
+    height: 43px;
+    position: relative;
+    width: 480px;
+    margin: 8px auto 0px auto;
+    border: 1px solid rgb(209, 209, 209);  
+    background: #fff;
+    font-size: 15px;
+    font-weight: bolder;
+    line-height: 17px;
+    box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
 }
 .input-textparent1{
     border-radius: 2px;  
@@ -335,6 +357,14 @@ html {
     margin: 0px 0px 0px 0px;
     padding: 8px 5px;  
     color: rgb(145, 145, 145);
+}
+#search-ini{
+    width: 426px;
+    margin: 0px 0px 0px 0px;
+    height: 27px;
+    padding: 8px 5px;  
+    color: rgba(78, 78, 78, 0.77);
+    font-weight: bold;
 }
 #search-near {
     width: 221px;
@@ -725,6 +755,28 @@ html {
 }
 
 /* END TOP*/
+.content-inicio {
+    width: 800px;
+    margin: 0 auto 14px auto;
+}
+.txtini{
+    color: #fff;
+    font-size: 1.5em; 
+    text-align: center;
+    text-shadow: 0px 2px 2px rgb(9, 70, 136);
+}
+.txt1 {
+     margin: 4px auto 0 auto;
+}
+.txt2 {
+     margin: 20px auto 0 auto;
+}
+.logo-inicio {
+    background: url(/findbreak/images/logo-inicio.png) no-repeat;
+    width: 499px;
+    height: 168px;
+    margin: 0px auto;
+}
 #body{
     width: 100%;
     overflow: visible;
@@ -1366,11 +1418,10 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     margin:  5px 0px 7px 0px;
     padding: 5px 3px 6px 7px;
     width: 315px;
-    color: transparent;
-    top: 24px;
+    top: 23px;
     direction: ltr;
-    word-wrap: break-word;
     background: transparent;
+    color: transparent;
 }
 #replica b{
     background: rgb(182, 204, 238);
@@ -1386,7 +1437,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 #coment {
     margin: 5px 0px 7px 0px;
-    width: 315px;
+    width: 319px;
     font-size: 12px;
     color: rgb(104, 104, 104);
     padding: 5px 3px 6px 7px;

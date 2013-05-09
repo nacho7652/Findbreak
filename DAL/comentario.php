@@ -181,20 +181,22 @@
         }
         private function buscarMencionados($comentario){
             //$usuario = new usuario();
+//            $comentario = 'vamaam #ignacio';
             $partes = explode(' ', $comentario);
             $menciones = '';
             for($i=0; $i<count($partes); $i++){
-                if(strpos($partes[$i], '!#' ) !== false){//es un usuario
-                    $nicknameCompleto = $partes[$i];//completo es con !#
-                    $nickname = str_replace('!#','', $nicknameCompleto);
+                if(strpos($partes[$i], '#' ) !== false){//es un usuario
+                    $nicknameCompleto = $partes[$i];//completo es con #
+                    $nickname = str_replace('#','', $nicknameCompleto);
+                    
                     $usuario = $this->findUsuarioForNick($nickname);
                     $menciones.= $usuario['_id'].'-';
-                    $itemCita = '<a class="itemcita" href="/findbreak/!#'.$usuario['_id'].'">!#'.$usuario['nombre'].'</a>';
+                    $itemCita = '<a class="itemcita" href="/findbreak/!#'.$usuario['_id'].'">@'.$usuario['nombre'].'</a>';
                     $comentario = str_replace($nicknameCompleto, $itemCita, $comentario);
                     //reemplazar los !# por los links
                 }
             }
-            $re = array('menciones'=>$menciones, 'comentario'=>$comentario);
+            $re = array('menciones'=>$menciones, 'comentario'=>  nl2br($comentario));
             return $re;
         }
         public function guardarComentarioEvento($comentario,$userId,$eventId,$userName, $fecha,$nombreevent) {  

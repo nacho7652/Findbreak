@@ -64,7 +64,28 @@ class usuario {
                                            )
                                       )->limit(5);
     }
-    
+    public function findFriendCitar($buscador)
+    {
+        $buscador = strtolower($buscador);
+        $words = explode(" ", $buscador);
+        $result = array();
+        for($i=0 ; $i < count($words); $i++){
+           $nombre =  array("nombre" => new MongoRegex("/".$words[$i]."/")); // '%rock%'
+           $result[]= $nombre;
+//           
+           $apellido =  array("apellido" => new MongoRegex("/".$words[$i]."/")); // '%rock%'
+           $result[]= $apellido;
+        }
+        return $this->db->usuario->find(array('$or' => $result//
+//                                                      array(
+//                                                            //$result
+//                                                           array("nombre" => new MongoRegex("/D/"))
+////                                                            array("tags" => new MongoRegex("/lsls/")),
+////                                                            array("tags" => new MongoRegex("/asc/"))
+//                                                          )
+                                           )
+                                      )->limit(5);
+    }
     public function login($mail, $pass)
     {
         

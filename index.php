@@ -88,7 +88,11 @@
 
 		</script>
     </head>
-    <body>
+     <?php if($page_site != 'inicio'){?>
+     <body>
+    <?php }else{ ?>
+     <body style="background: url('/findbreak/images/superpos-bg.png') rgb(35, 111, 160)">    
+    <?php } ?>
         
         <div id="allbackground">
             
@@ -108,6 +112,7 @@
                 </div>
             </div>
         </div>
+        <?php if($page_site != 'inicio'){?>
         <div id="top">
             <div id="content-top">
                 <div class="top-left">
@@ -120,7 +125,7 @@
                 <div class="top-center">
                     <!--<div id="hover-response">-->
                         <div class="input-textparent1">
-                            <input value="BUSCA TU CARRETE..." type="text" id="search2" class="input-transf">
+                            <input value="BUSCA TU CARRETE..." type="text" id="search" class="input-transf">
                             <input id="boton-buscar" type="button" class="sprites" />
                         </div>
                         <div id="response-friend" >
@@ -295,9 +300,9 @@
         </div><!--content top-->
         
        </div><!-- top-->
-       
+       <?php }?>
         <div id="body" <?= $page_class ?>>
-            <?php if($page_site != 'cerca'){?>
+            <?php if($page_site != 'cerca' && $page_site != 'inicio'){?>
                 <div class="menutop">
                     <div class="btnslide"></div>
                 </div>
