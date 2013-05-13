@@ -1,13 +1,14 @@
 $(document).ready(function(){
+    localizame();
     var popupNew;
     var latitud;
     var longitud;
     var map;
     var manualLocation = false;
-$(document).ready(function () {
-    localizame();
-    
- });
+//$(document).ready(function () {
+//    localizame();
+//    
+// });
   function cargarMapa() {
             var latlon = new google.maps.LatLng(latitud,longitud); /* Creamos un punto con nuestras coordenadas */
             var myOptions = {

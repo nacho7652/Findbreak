@@ -124,7 +124,7 @@
         </div>
          <?php } ?>
          
-        <div id="boxscroll" class="list">
+        <div class="list boxscroll">
                 <?php 
                 $comentarios = $comentarioEvent->findforid($eventfound['_id']);
                 foreach($comentarios as $dcto){
@@ -135,7 +135,7 @@
                     <div class="line"></div>
                     <div class="bloq1"></div>
                     <div class="bloq2">
-                        <a href="/findbreak/!#<?php echo $dcto['_userId']?>" class="nomusercom tit"><?php echo $dcto['userName'] ?></a>
+                        <a href="/findbreak/!#<?php echo $dcto['_userId']?>" class="nomusercom tit-gray"><?php echo $dcto['userName'] ?></a>
                         <div class="comentuser">
                             
                               <a href="/findbreak/break/<?php echo $dcto['_eventId'];?>" class="hashlink"><?php echo $eventfound['hash']?></a>

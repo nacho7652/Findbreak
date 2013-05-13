@@ -1,12 +1,12 @@
 @font-face{
     font-family: "EstoyBueno";
-    src: url('/findbreak/fonts/OpenSans-Regular.ttf'),
+    src: url('/findbreak/fonts/DroidSans.ttf'),
          url('../fonts/Impact.eot'),
          url('../fonts/Impact.otf'),
          url('../fonts/Impact.woff') ;
 }
 
-*{ font-family: EstoyBueno;}
+*{}
 body{
     background: rgba(150, 71, 66, 0.11);
     background: url('http://d1l2emnu9r9dtc.cloudfront.net/img/bg.jpg');
@@ -177,6 +177,13 @@ html {
     min-height: 60px;
     margin-bottom: 4px;
 }
+#ascrail2001 div, #ascrail2000 div{
+    right: 2px;
+    margin: 1px 0px 2px 0px;
+}
+#ascrail2001 {/*comentarios*/
+    z-index: 999 !important;
+}
 #top {
     background: rgba(36, 115, 167, 1);
     /*background: url(/findbreak/images/bg-bner.png);*/
@@ -188,7 +195,7 @@ html {
     box-shadow: 0px 2px 6px -3px black;  
     min-width: 990px;  
     top: 0px;  
-    z-index: 10000; 
+    z-index: 1000; 
 /*    background: #962154; 
     background-image: -webkit-gradient(linear,left top,left bottom,from(#3C3C3C),to(#111));   
     background-image: -webkit-linear-gradient(#A5235B,#962154);   
@@ -286,7 +293,6 @@ html {
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
     font-size: 15px;
-    font-weight: bolder;
     line-height: 17px;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
 }
@@ -329,7 +335,6 @@ html {
 .input-transf{
     border: none;
     box-shadow: 0px 3px 5px -2px #E6E6E6 inset;
-    text-transform: uppercase;
     color: rgb(145, 145, 145);
 }
 .input-transf:focus, #coment:focus{
@@ -364,7 +369,19 @@ html {
     height: 27px;
     padding: 8px 5px;  
     color: rgba(78, 78, 78, 0.77);
-    font-weight: bold;
+    font-size: 19px;
+}
+#eventresponse {
+    width: 482px;
+    background: rgba(255, 255, 255, 1);
+    overflow: hidden;
+    position: absolute;
+    top: 48px;
+    left: -1px;
+    border: 1px solid rgb(189, 189, 189);
+    box-shadow: 0px 2px 26px -10px #444;
+    z-index: 10000000;
+    display: none;
 }
 #search-near {
     width: 221px;
@@ -483,7 +500,7 @@ html {
     font-size: 0.7em;
     float: left;
 }
-.tit.msjmencion.msjeventonom {
+.tit-gray.msjmencion.msjeventonom {
     margin-top: 2px;
 }
 #show-solicitud .item-friends-msj {
@@ -494,6 +511,7 @@ html {
 }
 #user-login #show-solicitud {
     width: 350px;
+    max-height: 343px;
     background-color: #fff;
     position: absolute;
     top: 43px;
@@ -502,6 +520,7 @@ html {
     border-left: 1px solid #e4e5e8;
     border-right: 1px solid #e4e5e8;
     box-shadow: 0px 0px 4px -4px rgb(173, 173, 173);  border-radius: 2px;
+    overflow: hidden;
 }
 #show-solicitud .item-friends-eventpic {
     width: 40px;
@@ -523,7 +542,7 @@ html {
     color: #444;
     float: left;
     border-bottom: 1px solid #e4e5e8;
-    padding: 14px 0px 1px 0px;
+    padding: 7px 0px 1px 0px;
 }
 .item-solicitud-friend:hover{ 
     background-color: rgba(247, 247, 247, 0.6);
@@ -572,28 +591,27 @@ html {
     box-shadow: 0px 2px 11px -5px rgb(82, 82, 82);
     left: 0px;
 }
-#content-top #response-friend .item-search{
+.item-search{
     width: 100%;
-    height: 48px;
+    height: 58px;
     float: left;
 }
-#content-top #response-friend .item-search:hover{
-    background: rgba(237, 237, 237, 0.7) !important;
+.item-search:hover{
+    background: rgba(228, 228, 228, 0.7) !important;
     cursor: pointer;
 }
-#content-top #response-friend .foto-item-search{
-    width: 40px;    
-    height: 40px;
+.foto-item-search{
+    width: 50px;    
+    height: 50px;
     float: left;
     background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s160x160/75506_10200385133008579_1835723334_a.jpg) no-repeat;
     background-size: cover;
-    margin: 4px 2px 0px 4px;
+    margin: 4px 2px 0px 6px;
 }
-#content-top #response-friend .name-item-search{
-    margin: 11px 0px 0px 5px;
+ .name-item-search{
+    margin: 6px 0px 0px 5px;
     
     float: left;
-    font-size: 0.7em;
 }
 #content-top .title-search-item {
     font-size: 0.7em;
@@ -756,14 +774,24 @@ html {
 
 /* END TOP*/
 .content-inicio {
-    width: 800px;
     margin: 0 auto 14px auto;
+}
+.redir-cerca {
+    width: 200px;
+    margin: 27px auto 0px auto;
+    display: block;
 }
 .txtini{
     color: #fff;
     font-size: 1.5em; 
     text-align: center;
-    text-shadow: 0px 2px 2px rgb(9, 70, 136);
+    text-shadow: 0px 1px 1px rgb(9, 70, 136);
+}
+.txtini-blue{
+    color: rgb(59, 113, 172);
+    font-size: 1.5em; 
+    text-align: center;
+    text-shadow: 0px 1px 1px rgb(255, 255, 255);
 }
 .txt1 {
      margin: 4px auto 0 auto;
@@ -777,11 +805,40 @@ html {
     height: 168px;
     margin: 0px auto;
 }
+
+.inicio {
+    
+    height: 700px;
+}
+.inicio-primera{
+    background: url('/findbreak/images/superpos-bg.png') rgb(35, 111, 160);
+    box-shadow: 0px 2px 12px -3px #444;
+    padding-bottom: 18px;
+    margin-bottom: 34px;
+}
+.redir-cerca {
+    text-decoration: none;
+}
+.redir-cerca:hover{
+    color: rgb(81, 164, 255) !important;
+}
+.txt4.txtini-blue {
+   
+    width: 200px;
+    margin: 0 auto;
+    height: 40px;
+}
+.pincerca{
+    background: url(/findbreak/images/sprites.png) 54px -533px no-repeat;
+    width: 200px;
+    margin: 0 auto;
+    height: 61px;
+}
 #body{
     width: 100%;
     overflow: visible;
     min-height: 100%;
-    margin-top: 51px;
+    margin-top: 0px;
     position: relative;
 }
 #body > .inner {
@@ -839,8 +896,7 @@ html {
 .first-partevent .loading-events{
     font-size: 0.8em;
     text-align: center;
-    color: rgb(163, 96, 96);
-    margin: 86px 0px 0px 14px;
+    margin: 139px 0px 0px 14px;
     float: left;
     padding: 18px 0px;
     width: 447px;  
@@ -883,7 +939,7 @@ html {
     max-height: 102px;
     margin: 0px auto 0 auto;  
     min-height: 186px;
-    padding-top: 73px;
+    padding-top: 120px;
 }
 .barra {
     width: 8px;
@@ -932,7 +988,7 @@ top: -8px;
     display: block; 
 }
 .inner-eveninfo.info-eventcerca {
-    margin: 29px 0px 0px 0px;
+    margin: 23px 0px 0px 0px;
     height: 268px;
     width: 369px;
 }
@@ -995,14 +1051,17 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);                  
+    border: 1px solid rgba(65, 169, 94, 0.34);
     -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
     background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
     color: #FFF;
+    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
 }
 
 .botongreen:hover {
     cursor: pointer;
     background: -webkit-linear-gradient(top,rgba(47, 135, 194, 1), rgba(38, 113, 160, 1));
+    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
 }
 .item-infocerca {
     margin-bottom: 0px;
@@ -1060,7 +1119,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 447px;
     height: 242px;
     border-radius: 2px;
-    margin: 11px 0px 11px 14px;
+    margin: 17px 0px 11px 14px;
     background: url('/findbreak/images/bg.jpg') rgb(245, 245, 245);
     box-shadow: 0px 2px 9px -3px #444;
     position: relative;
@@ -1279,7 +1338,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 362px;
     
     float: left;
-    margin: 5px 0px 0px 14px;
+    margin: 8px 0px 0px 14px;
     font-weight: bold;
 }
 .part-left .foto-event-small {
@@ -1328,9 +1387,16 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     border-radius: 2px;
 }
 .tit {
-    color: rgba(68, 68, 68, 0.86);
-    font-weight: bold;
+    color: rgba(35, 106, 151, 1);
     text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+}
+.tit-gray {
+    color: #555;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
 }
 .tit1 {
     font-size: 0.7em;
@@ -1573,12 +1639,12 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     float: left;
     margin: 0px 3px 0px 0px;
 }
-.nomusercom.tit {
+.nomusercom.tit-gray {
     font-size: 0.7em;
     margin: 0px 0px 0px 4px;
     display: block;
 }
-.nomusercom.tit:hover{
+.nomusercom.tit-gray:hover{
     text-decoration: underline;
 }
 .bloq2 {

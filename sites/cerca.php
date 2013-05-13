@@ -19,7 +19,7 @@
                       </div>
                
             <div class="list-maps">
-              <div class="loading-events">Buscando eventos...</div>
+              <div class="loading-events tit">Buscando eventos...</div>
               <div class="loading-events no-resultados">No hay carrete cerca de la ubicacion, prueba con otra dirección...</div>
                 <div class="inner-list-maps">
                     
@@ -79,4 +79,4 @@
         
     </div>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> Cargamos la API de Google Maps
-    <script type="text/javascript" src="js/maps.js"></script>
+    <script type="text/javascript" src="/findbreak/js/maps.js"></script>

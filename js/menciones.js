@@ -273,7 +273,7 @@ $(document).ready(function(){
         $('body').delegate('.itemCitar','click',function(){
             var id = $(this).attr('data-id');
             var nombre = $(this).find('.item-friends-username').html();
-            $('#coment').val($('#coment').val()+ '#'+nombre)
+            $('#coment').val($('#coment').val()+ ' #'+nombre)
 //            citar(nombre)
 //            alert(nombre)
             reemplazar();

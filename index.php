@@ -8,15 +8,15 @@
    
     $contsol=0;
     
-    $agregarEvento = 0;
-    if($agregarEvento == 1){
+    $agregarEvento = 1;
+    if($agregarEvento == 0){
             require_once 'DAL/evento.php';
             $idproductora = '238928932389892';
             $nombreproductora = 'Nombre de prueba';
-            $nom = 'Millencolin en chile 2013';
+            $nom = 'Boster en chile 2013';
             $dir = 'Santa Sofia #2092';
             $arrayfotos = 'foto1.jps, foto2.jpg';
-            $fec = '2013-04-20, 2013-04-21, 2014-04-22';
+            $fec = '2013-06-20, 2013-06-21, 2014-06-22';
             $hor = '22:00:00, 23:15:00';
             $hor = explode(',', $hor);
             $fechString = $fec;   
@@ -88,11 +88,9 @@
 
 		</script>
     </head>
-     <?php if($page_site != 'inicio'){?>
+     
      <body>
-    <?php }else{ ?>
-     <body style="background: url('/findbreak/images/superpos-bg.png') rgb(35, 111, 160)">    
-    <?php } ?>
+ 
         
         <div id="allbackground">
             
@@ -116,7 +114,7 @@
         <div id="top">
             <div id="content-top">
                 <div class="top-left">
-                    <a href="/findbreak/home">
+                    <a href="/findbreak/inicio">
                         <div class="logoper"></div>
                         <div class="logo"></div>
                     </a>
@@ -183,9 +181,9 @@
                                                         $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not1"> 
                                                                            <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
                                                                            <div class="item-friends-msj">
-                                                                               <div class="item-friends-username tit">'.$user['nombre'].'</div>
+                                                                               <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
                                                                                <span class="msjmencion">te ha mencionado en el evento</span>
-                                                                               <span class="tit msjmencion msjeventonom">'.$not['nombreEvent'].' </span>
+                                                                               <span class="tit-gray msjmencion msjeventonom">'.$not['nombreEvent'].' </span>
                                                                            </div>
                                                                            <div style="background-image:url('.$user['foto'].')" class="item-friends-eventpic"></div>
                                                                            <div class="bloq3">
@@ -201,7 +199,7 @@
                                                         $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not2 item-search-friend"> 
                                                                            <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
                                                                            <div class="item-friends-msj">
-                                                                               <div class="item-friends-username tit">'.$user['nombre'].'</div>
+                                                                               <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
                                                                                <span class="msjmencion">te ha seguido.</span>
                                                                                
                                                                            </div>
@@ -234,7 +232,7 @@
                                             <div class="content-option">Menciones (<span id="cant-solicitud"><?php echo $contsol ?></span>)</div>
                                             
                                         </div>
-                                        <div id="show-solicitud" style="display:none">
+                                        <div id="show-solicitud" class="boxscroll" style="display:none">
                                                 
                                                 <?php echo $divMenciones ?> 
                                         </div>
@@ -249,9 +247,9 @@
                                               <input type="submit" name="cerrarsession" value="-C" class="content-option "/>
                                             </form>
                                          </div>-->
-                                         <a href="/findbreak/home"  class="option ">
+                                         <a href="/findbreak/inicio"  class="option ">
                                             <div id="optionhome"  class="content-option">
-                                                Home
+                                                Inicio
                                             </div>
                                         </a>
                                          <div class="option  menu">
@@ -356,7 +354,7 @@
   
 	//var nice = $("html").niceScroll();  // The document page (body)
     
-    $("#boxscroll").niceScroll({cursorborder:"rgba(104, 102, 102, 0.58)",cursorcolor:"rgba(104, 102, 102, 0.58)",boxzoom:false, cursorwidth:9}).cursor.css({"margin-right":"3px"}); // MAC like scrollbar; // First scrollable DIV
+    $(".boxscroll").niceScroll({cursorborder:"rgb(185, 185, 185)",cursorcolor:"rgb(185, 185, 185)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
     
     // Customizable cursor
     // $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#00F",cursoropacitymax:0.7,cursorwidth:11,cursorborder:"1px solid #2848BE",cursorborderradius:"8px"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar

@@ -1,4 +1,13 @@
 $(document).ready(function(){
+        //inicio
+        $('.redir-cerca').hover(function(){
+          //  alert('sadsda')
+            $('.pincerca').css('background-position','56px -612px');
+        })
+        $('.redir-cerca').mouseleave(function(){
+            $('.pincerca').css('background-position','54px -533px');
+        })
+        
         /*CERRAR CON CLICK*/
         var cerrarNoti = true;
         $('.noti-friend').hover(function(){
@@ -481,6 +490,36 @@ $(document).ready(function(){
            }
        })
    
+      $('#search-ini').keyup(function(){
+          var textoAmigo = $('#search-ini').val();
+          if(textoAmigo == ""){
+              $('#eventresponse').html("");
+              $('#eventresponse').hide();
+              return;
+          }
+          $.ajax({
+              
+              type: "POST",
+              dataType: "json",
+              url: "/findbreak/function/comentario-response.php",// url: "../function/users-response.php",
+              data: "search-ini=1&busqueda="+textoAmigo, 
+              success : function(data) // data = cuadro
+              {     
+                 if(data.hay){
+                     
+                      $('#eventresponse').show();
+                      $('#eventresponse').html(data.re);
+                 }else{
+                     $('#eventresponse').show();
+                     $('#eventresponse').html("No hay coincidencias");
+                 }
+              
+              }
+              
+          })
+          
+          
+      })
       
       $('#search').keyup(function(){
           var textoAmigo = $('#search').val();
