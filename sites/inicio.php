@@ -7,7 +7,10 @@
             <input placeholder="Fiestas, deporte, arte, etc." type="text" id="search-ini" class="input-transf">
             <input id="boton-buscar-ini" type="button" class="sprites" />
             <div id="eventresponse"></div>
+            <!--<div id="buscarini" class="botongreen">Buscar</div>-->
+            <div id="buscarini"></div>
         </div>
+        
     </div>
     <div class="inicio-segunda">
         <div class="txt3 txtini-blue"> ¿Deseas buscar algún panorama cerca tuyo? </div>

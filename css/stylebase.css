@@ -288,7 +288,7 @@ html {
     border-radius: 2px;  
     height: 43px;
     position: relative;
-    width: 480px;
+    width: 493px;
     margin: 8px auto 0px auto;
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
@@ -730,14 +730,15 @@ html {
     right: 5px;
     top: 27px;
     border: 1px solid #D8D8D8;
-    box-shadow: 0px 1px 10px -2px rgb(173, 173, 173);
-    border-radius: 4px;
+    border: 1px solid rgb(189, 189, 189);
+    box-shadow: 0px 8px 15px -3px rgb(173, 173, 173);
+    border-radius: 2px;
 }
 #content-top .login-cont #mail{
     width: 221px;
-    margin: 19px 0px 0px 13px;
-    padding: 7px 3px;
-    border-radius: 4px;
+    margin: 13px 0px 0px 13px;
+    padding: 9px 5px;
+    border-radius: 2px;
     border: 1px solid #BFBFBF;
     font-size: 0.8em;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
@@ -746,8 +747,8 @@ html {
 #content-top .login-cont #pass{    
     width: 221px;  
     margin: 8px 0px 0px 13px; 
-    padding: 7px 3px; 
-    border-radius: 4px;  
+    padding: 9px 5px; 
+    border-radius: 2px;  
     border: 1px solid #BFBFBF;  
     font-size: 0.8em;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
@@ -768,7 +769,7 @@ html {
     color: white;
     font-size: 0.8em;*/
 ;
-    margin: 11px 15px 12px 0px;
+    margin: 9px 12px 13px 0px;
     text-decoration: none;
 }
 
@@ -809,6 +810,7 @@ html {
 .inicio {
     
     height: 700px;
+    background: url(/findbreak/images/iconos-bg.png);
 }
 .inicio-primera{
     background: url('/findbreak/images/superpos-bg.png') rgb(35, 111, 160);
@@ -839,7 +841,6 @@ html {
     overflow: visible;
     min-height: 100%;
     margin-top: 0px;
-    position: relative;
 }
 #body > .inner {
     margin: 0px auto;
@@ -1039,29 +1040,90 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     float: left;
     margin: 13px 0px 0px 31px;
 }
+#login-fb{
+    background: url(/mooff/images/login-face-sprite.png) top right no-repeat;
+    width: 162px;
+    float: right;
+    font: bold 11px/22px "Lucida Grande",Lucida,Arial,sans-serif;  
+    height: 22px;  
+    padding-right: 6px;  
+    text-shadow: rgba(0, 0, 0, 0.5) 0 -1px 0;  -webkit-text-stroke: 1px transparent;
+    position: relative;
+    margin: 0px 38px 10px 0px;
+    color: #fff;
+    text-decoration: none;
+}
+.txtfb {
+    margin: 0px 0px 0px 30px;
+}
+#loginbtn-fb{
+    background: url(/mooff/images/loginbtn-face-sprite.png) top right no-repeat;
+    width: 24px;
+    height: 22px;
+    position: absolute;
+}
+#buscarini {
+    float: left;
+    position: absolute;
+    right: -151px;
+    top: -37px;
+    background: url(/findbreak/images/logo1.png);
+    width: 150px;
+    height: 99px;
+}
 .botongreen {
     display: block;
     width: 92px;
-    border-radius: 3px;
+    border-radius: 2px;
     text-align: center;
     float: right;
     font-size: 0.7em;
     margin: -6px 11px 0px 0px;
-    padding: 5px 7px;
+    padding: 7px 18px;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);                  
-    border: 1px solid rgba(65, 169, 94, 0.34);
+    border: 1px solid rgba(65, 169, 94, 0);
+    border: 1px solid #1c74b3;  border-top-color: #2c8ed1;  border-bottom-color: #0d5b97;
     -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
     background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
     color: #FFF;
-    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
 }
 
 .botongreen:hover {
     cursor: pointer;
     background: -webkit-linear-gradient(top,rgba(47, 135, 194, 1), rgba(38, 113, 160, 1));
     background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
+    border: 1px solid rgba(48, 156, 39, 1);  
+    border-top-color: rgba(77, 184, 67, 1);  
+    border-bottom-color: rgba(41, 134, 33, 1);
+}
+.botonblue {
+    display: block;
+    width: 92px;
+    border-radius: 2px;
+    text-align: center;
+    float: right;
+    font-size: 0.7em;
+    margin: -6px 11px 0px 0px;
+    padding: 7px 18px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-repeat: repeat-x;
+    border: 1px solid rgba(65, 115, 169, 0.34);                  
+    border: 1px solid rgba(65, 169, 94, 0);
+    border: 1px solid #1c74b3;  border-top-color: #2c8ed1;  border-bottom-color: #0d5b97;
+    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
+    background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    color: #FFF;
+}
+
+.botonblue:hover {
+    cursor: pointer;
+    background: -webkit-linear-gradient(top,rgba(47, 135, 194, 1), rgba(38, 113, 160, 1));
+    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
+    border: 1px solid rgba(48, 156, 39, 1);  
+    border-top-color: rgba(77, 184, 67, 1);  
+    border-bottom-color: rgba(41, 134, 33, 1);
 }
 .item-infocerca {
     margin-bottom: 0px;
@@ -1530,6 +1592,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 #btn-comentar {
     margin: 8px 0px 0px 0px;
     float: right;
+    width: 105px;
 }
 .login-hover-com {
     color: rgba(42, 124, 179, 1) !important;

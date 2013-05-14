@@ -1,4 +1,12 @@
 $(document).ready(function(){
+        $('#login-fb').mouseover(function(){
+           $(this).css('background','url(/mooff/images/login-face-sprite.png) -82px -24px no-repeat');
+           $('#loginbtn-fb').css('background','url(/mooff/images/loginbtn-face-sprite.png) -0px -24px no-repeat')
+       })
+       $('#login-fb').mouseleave(function(){
+           $(this).css('background','url(/mooff/images/login-face-sprite.png) top right no-repeat');
+           $('#loginbtn-fb').css('background','url(/mooff/images/loginbtn-face-sprite.png) top right no-repeat')
+       })
         //inicio
         $('.redir-cerca').hover(function(){
           //  alert('sadsda')
