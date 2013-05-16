@@ -5,6 +5,64 @@
         require_once '../DAL/usuario.php';
         require_once '../DAL/establecimiento.php';
         
+        if(isset($_REQUEST['search-space'])){
+            $event = new evento();
+            $eventpopular = $event->findpopular();
+            $hayevents = false;
+             $primero = 0;
+             $cuadroevento = '<div class="title-search-item">Populares</div>';
+            foreach($eventpopular as $dcto)
+            {
+                $hayevents = true;
+                $classPrimero = '';
+                if($primero == 0){
+                    $primero = 1;
+                    $classPrimero = 'itemCitarSelected';
+                }
+                $cuadroevento.= 
+                '<a href="/findbreak/break/'.(string)$dcto['_id'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
+                   <div class="foto-item-search"></div>
+                   <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
+                   <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
+                </a>';
+                
+            }
+            $re = array('hay'=>$hayevents,'re'=>$cuadroevento);
+            echo json_encode($re);
+        }
+        
+        if(isset($_POST['search-ini'])){
+        //EVENTOS 
+             $texto = $_POST['busqueda'];
+            
+             $cuadroevento = '';
+             
+             $evento = new evento();
+             $coincidenciaevento = $evento->filtrar($texto);
+             $hayevents = false;
+             $primero = 0;
+             
+             foreach($coincidenciaevento as $dcto)
+            {
+                $hayevents = true;
+                $classPrimero = '';
+                if($primero == 0){
+                    $primero = 1;
+                    $classPrimero = 'itemCitarSelected';
+                }
+                $cuadroevento.= 
+                '<a href="/findbreak/break/'.(string)$dcto['_id'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
+                   <div class="foto-item-search"></div>
+                   <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
+                   <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
+                </a>';
+                
+            }
+            $re = array('hay'=>$hayevents,'re'=>$cuadroevento);
+            echo json_encode($re);
+    }
+    
+    
        function eventoscernanos($eventsNears){
             $cont = 0; //cantidad de eventos encontrados para mostrarlos en el mapa
             //$listevents = '<div class="eventsnear">';

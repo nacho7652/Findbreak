@@ -15,6 +15,7 @@ $(document).ready(function(){
         $('.redir-cerca').mouseleave(function(){
             $('.pincerca').css('background-position','54px -533px');
         })
+       
         
         /*CERRAR CON CLICK*/
         var cerrarNoti = true;
@@ -270,7 +271,7 @@ $(document).ready(function(){
         var colorfocus = 'rgb(104, 104, 104)';
         var colorfocusout = 'rgb(145, 145, 145)';
         $('#search').focus(function(){
-            if($(this).val() == 'BUSCA TU CARRETE...'){
+            if($(this).val() == 'Fiestas, deportes, arte, etc.'){
                 $(this).css('color',colorfocus);
                 $(this).val('');
             }
@@ -278,7 +279,7 @@ $(document).ready(function(){
         $('#search').focusout(function(){
             if($(this).val() == ''){
                 $(this).css('color',colorfocusout);
-                $(this).val('BUSCA TU CARRETE...');
+                $(this).val('Fiestas, deportes, arte, etc.');
             }
         })
         
@@ -497,8 +498,97 @@ $(document).ready(function(){
                 $("#response-friend").hide();
            }
        })
-   
-      $('#search-ini').keyup(function(){
+       
+       function setSelectionRange(input, selectionStart, selectionEnd) {
+        if (input.setSelectionRange) {
+          input.focus();
+          input.setSelectionRange(selectionStart, selectionEnd);
+        }
+        else if (input.createTextRange) {
+          var range = input.createTextRange();
+          range.collapse(true);
+          range.moveEnd('character', selectionEnd);
+          range.moveStart('character', selectionStart);
+          range.select();
+        }
+      }
+
+        function setCaretToPos (input, pos) {
+          setSelectionRange(input, pos, pos);
+        }
+        $('body').delegate('.item-search','hover',function(){
+            $('.item-search').removeClass('itemCitarSelected');
+            $(this).addClass('itemCitarSelected');
+        });
+      $('#search-ini').keyup(function(e){
+           focusFinalBus = $('#search-ini').val().length;
+          if(e.keyCode == 32 && trim($('#search-ini').val()) == false ){//si apreto espacio muestro los más populares
+               $('#search-ini').val('')
+              $.ajax({
+              
+                    type: "POST",
+                    dataType: "json",
+                    url: "/findbreak/function/event-response.php",// url: "../function/users-response.php",
+                    data: "search-space=1", 
+                    success : function(data) // data = cuadro
+                    {  
+                       if(data.hay){
+
+                            $('#eventresponse').show();
+                            $('#eventresponse').html(data.re);
+                       }else{
+                           $('#eventresponse').show();
+                           $('#eventresponse').html("<div class='nohaycoinci'>No hay coincidencias</div>");
+                       }
+
+                    }
+
+                })
+              setCaretToPos(document.getElementById('search-ini'), 0);
+              return;
+          }
+      
+         
+          if(e.keyCode == 13){//enter
+              var redirec = $('.item-search.itemCitarSelected').attr('href');
+              location.href = redirec;
+          }
+          if(e.keyCode == 40){//abajo
+                       //$('.item-search').removeClass('itemCitarSelected');
+                       setCaretToPos(document.getElementById('search-ini'), parseInt(focusFinalBus))
+                       if( $('#eventresponse .item-search:last-child').hasClass('itemCitarSelected')){
+                             selected = $('.item-search.itemCitarSelected');
+                             nuevo = $('.item-search:first');
+                             selected.removeClass('itemCitarSelected');
+                             nuevo.addClass('itemCitarSelected');
+                             return false;
+                        }
+                        selected = $('.item-search.itemCitarSelected');
+                        nuevo = selected.next('.item-search');
+                        selected.removeClass('itemCitarSelected');
+                        nuevo.addClass('itemCitarSelected');
+                        
+                       return false;
+                  }
+                  if(e.keyCode == 38){
+                    //  $('.item-search').removeClass('itemCitarSelected');
+                       //si estoy en el primero no haga nada 
+                      setCaretToPos(document.getElementById('search-ini'), parseInt(focusFinalBus))
+                      if( $('#eventresponse .item-search:first-child').hasClass('itemCitarSelected')){
+                             selected = $('.item-search.itemCitarSelected');
+                             nuevo = $('.item-search:last');
+                             selected.removeClass('itemCitarSelected');
+                             nuevo.addClass('itemCitarSelected');
+                             return false;
+                      }
+                      selected = $('.item-search.itemCitarSelected');
+                      nuevo = selected.prev('.item-search');
+                      selected.removeClass('itemCitarSelected');
+                      nuevo.addClass('itemCitarSelected');
+                       
+                       return false;
+                  }
+                  
           var textoAmigo = $('#search-ini').val();
           if(textoAmigo == ""){
               $('#eventresponse').html("");
@@ -509,7 +599,7 @@ $(document).ready(function(){
               
               type: "POST",
               dataType: "json",
-              url: "/findbreak/function/comentario-response.php",// url: "../function/users-response.php",
+              url: "/findbreak/function/event-response.php",// url: "../function/users-response.php",
               data: "search-ini=1&busqueda="+textoAmigo, 
               success : function(data) // data = cuadro
               {     
@@ -519,7 +609,7 @@ $(document).ready(function(){
                       $('#eventresponse').html(data.re);
                  }else{
                      $('#eventresponse').show();
-                     $('#eventresponse').html("No hay coincidencias");
+                     $('#eventresponse').html("<div class='nohaycoinci'>No hay coincidencias</div>");
                  }
               
               }
@@ -529,7 +619,75 @@ $(document).ready(function(){
           
       })
       
-      $('#search').keyup(function(){
+      $('#search').keyup(function(e){
+           focusFinalBus = $('#search').val().length;
+          if(trim($('#search').val()) == false ){//si apreto espacio muestro los más populares
+             
+              $('#search').val('')
+              $('#response-friend').hide();
+              setCaretToPos(document.getElementById('search'), 0);
+              return;
+          }
+      
+         
+          if(e.keyCode == 13){//enter
+              var redirec = $('.item-search.itemCitarSelected').attr('href');
+              location.href = redirec;
+          }
+          if(e.keyCode == 40){//abajo
+                       //$('.item-search').removeClass('itemCitarSelected');
+                       setCaretToPos(document.getElementById('search'), parseInt(focusFinalBus))
+                       if( $('#response-friend .item-search:last-child').hasClass('itemCitarSelected')){
+                           
+                             selected = $('.item-search.itemCitarSelected');
+                             nuevo = $('.item-search:first');
+                             selected.removeClass('itemCitarSelected');
+                             nuevo.addClass('itemCitarSelected');
+                             return false;
+                        }
+                        selected = $('.item-search.itemCitarSelected');
+
+                        if(selected.next('.item-search').html() == null){//si es el titulo
+                            nuevo = $('.title-search-item2').next('.item-search');
+                            selected.removeClass('itemCitarSelected');
+                            nuevo.addClass('itemCitarSelected');
+                        }else{
+                            
+                            nuevo = selected.next('.item-search');
+                            selected.removeClass('itemCitarSelected');
+                            nuevo.addClass('itemCitarSelected');
+                       }
+                       return false;
+                  }
+                  if(e.keyCode == 38){
+                    //  $('.item-search').removeClass('itemCitarSelected');
+                       //si estoy en el primero no haga nada 
+                      setCaretToPos(document.getElementById('search'), parseInt(focusFinalBus))
+                      if( $('#response-friend .item-search:first-child').hasClass('itemCitarSelected')){
+                             selected = $('.item-search.itemCitarSelected');
+                             nuevo = $('#response-friend .item-search:last');
+                             selected.removeClass('itemCitarSelected');
+                             nuevo.addClass('itemCitarSelected');
+                             return false;
+                      }
+                      selected = $('.item-search.itemCitarSelected');
+
+                        if(selected.prev('.item-search').html() == null){//si es el titulo
+                            nuevo = $('.title-search-item2').prev('.item-search');
+                            selected.removeClass('itemCitarSelected');
+                            nuevo.addClass('itemCitarSelected');
+                        }else{
+                            
+                            nuevo = selected.prev('.item-search');
+                            selected.removeClass('itemCitarSelected');
+                            nuevo.addClass('itemCitarSelected');
+                       
+                       }
+                       
+                       return false;
+                  }
+          
+          ///
           var textoAmigo = $('#search').val();
           if(textoAmigo == ""){
               $('#search').html("");
@@ -546,7 +704,7 @@ $(document).ready(function(){
               {     
                  if(data == "no"){
                      $('#response-friend').show();
-                     $('#response-friend').html("No hay coincidencias");
+                     $('#response-friend').html("<div class='nohaycoinci'>No hay coincidencias</div>");
                  }else{
                   $('#response-friend').show();
                   $('#response-friend').html(data);
@@ -742,7 +900,7 @@ $(document).ready(function(){
              
              
          })
-         
+       return false;  
      })
      //seguiramigo
      $('#coverall').delegate('#desseguiramigo','hover',function(){

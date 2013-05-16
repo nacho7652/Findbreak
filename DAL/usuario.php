@@ -44,7 +44,8 @@ class usuario {
 
     public function findFriend($buscador)
     {
-        $buscador = strtolower($buscador);
+        
+        $buscador = trim(strtolower($buscador));
         $words = explode(" ", $buscador);
         $result = array();
         for($i=0 ; $i < count($words); $i++){
@@ -66,7 +67,8 @@ class usuario {
     }
     public function findFriendCitar($buscador)
     {
-        $buscador = strtolower($buscador);
+        
+        $buscador = trim(strtolower($buscador));
         $words = explode(" ", $buscador);
         $result = array();
         for($i=0 ; $i < count($words); $i++){

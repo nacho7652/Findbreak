@@ -3,29 +3,7 @@
     require_once '../DAL/evento.php';
     require_once '../DAL/comentario.php';
     date_default_timezone_set("Chile/Continental");
-    if(isset($_POST['search-ini'])){
-        //EVENTOS 
-             $texto = $_POST['busqueda'];
-             require_once '../DAL/evento.php';
-             $cuadroevento = '';
-             
-             $evento = new evento();
-             $coincidenciaevento = $evento->filtrar($texto);
-             $hayevents = false;
-             foreach($coincidenciaevento as $dcto)
-            {
-                $hayevents = true;
-                $cuadroevento.= 
-                '<a href="/findbreak/break/'.(string)$dcto['_id'].'" target="_blank" class="item-search item-search-event">
-                   <div class="foto-item-search"></div>
-                   <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
-                   <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
-                </a>';
-                
-            }
-            $re = array('hay'=>$hayevents,'re'=>$cuadroevento);
-            echo json_encode($re);
-    }
+  
     
     if(isset($_POST['vercomentario'])){
         session_start();

@@ -140,15 +140,21 @@
             //crear cuadro de busqueda de AMIGOS
             $cuadrouser = '<div class="title-search-item">Personas</div>';
             $hayuser = false;
+            $primero = 0;
             foreach($coincidencia as $dcto)
             {
+                $classPrimero = '';
+                if($primero == 0){
+                    $primero = 1;
+                    $classPrimero = 'itemCitarSelected';
+                }
                 $hayuser = true;
                 $cuadrouser.= 
-                '<div class="item-search item-search-friend">
+                '<a href="/findbreak/!#'.$dcto["_id"].'" class="'.$classPrimero.' item-search item-search-friend">
                    <div class="foto-item-search"></div>
-                   <div class="name-item-search tit">'.$dcto["nombre"].'</div>
+                   <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
-                </div>';
+                </a>';
                 
             }
             if(!$hayuser){//si no hay usuarios encontrados borro el titulo
@@ -156,7 +162,7 @@
             }
             //EVENTOS 
              require_once '../DAL/evento.php';
-             $cuadroevento = '<div class="title-search-item">Eventos</div>';
+             $cuadroevento = '<div class="title-search-item title-search-item2">Eventos</div>';
              
              $evento = new evento();
              $coincidenciaevento = $evento->filtrar($busqueda);
@@ -167,7 +173,7 @@
                 $cuadroevento.= 
                 '<a href="/findbreak/break/'.(string)$dcto['_id'].'" target="_blank" class="item-search item-search-event">
                    <div class="foto-item-search"></div>
-                   <div class="name-item-search tit">'.$dcto["nombre"].'</div>
+                   <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';
                 
@@ -177,9 +183,9 @@
                 $cuadroevento = '';
             }
             //ESTABLECIMIENTOS
-//            if($cuadro == ""){
-//                $cuadro = "no";
-//            }
+            if($hayevents == false && $hayuser == false){
+             echo "no";
+            }else
             echo $cuadrouser.$cuadroevento;
     }
            

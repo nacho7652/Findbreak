@@ -123,7 +123,7 @@
                 <div class="top-center">
                     <!--<div id="hover-response">-->
                         <div class="input-textparent1">
-                            <input value="BUSCA TU CARRETE..." type="text" id="search" class="input-transf">
+                            <input value="Fiestas, deportes, arte, etc." type="text" id="search" class="input-transf">
                             <input id="boton-buscar" type="button" class="sprites" />
                         </div>
                         <div id="response-friend" >

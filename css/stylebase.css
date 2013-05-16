@@ -298,12 +298,12 @@ html {
 }
 .input-textparent1{
     border-radius: 2px;  
-    height: 30px;
+    height: 31px;
     width: 323px;
     margin-top: 11px;
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 17px;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
 }
@@ -371,8 +371,11 @@ html {
     color: rgba(78, 78, 78, 0.77);
     font-size: 19px;
 }
+.nohaycoinci {
+    padding: 9px 8px;
+}
 #eventresponse {
-    width: 482px;
+    width: 493px;
     background: rgba(255, 255, 255, 1);
     overflow: hidden;
     position: absolute;
@@ -581,13 +584,11 @@ html {
     background-color: white;
     display: none;
     width: 460px;
-    border-left: 1px solid #E6E6E6;
-    border-right: 1px solid #e6e6e6;
-    border-bottom: 1px solid #e6e6e6;
+    border: 1px solid rgb(189, 189, 189);
     overflow: hidden;
     z-index: 10240000000000000000000000000000;
     position: relative;
-    top: -4px;
+    top: 5px;
     box-shadow: 0px 2px 11px -5px rgb(82, 82, 82);
     left: 0px;
 }
@@ -613,14 +614,15 @@ html {
     
     float: left;
 }
-#content-top .title-search-item {
+.title-search-item2{
+    border-top: 1px solid rgb(216, 216, 216);
+}
+ .title-search-item {
     font-size: 0.7em;
-    font-weight: bold;
     color: #424242;
     padding: 2px 0px 2px 6px;
-    background: rgba(189, 189, 189, 0.2);
-    border-top: 1px solid #DADADA;
-    border-bottom: 1px solid #DADADA;
+    background: rgb(253, 253, 253);
+    border-bottom: 1px solid rgb(216, 216, 216);
     float: left;
     width: 100%;
 }
@@ -1009,7 +1011,8 @@ text-align: center;
 float: right;
 font-size: 0.7em;
 margin: -6px 11px 0px 0px;
-padding: 5px 7px;
+
+    padding: 7px 18px;
 
 background-repeat: repeat-x;
 border: 1px solid rgba(65, 115, 169, 0.34);
@@ -1369,6 +1372,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 968px !important;
     margin: 0px auto 11px auto !important;    
     overflow: hidden !important;
+    position: relative;
 }
 
 .parte-left-parent {
@@ -1578,7 +1582,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 
 .itemCitarSelected{
-    background-color: rgba(247, 247, 247, 0.78);
+    background-color: rgba(228, 228, 228, 0.7) !important;
 }
 .itemcita {
     margin: 0px 0px 0px 0px;

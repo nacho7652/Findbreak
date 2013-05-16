@@ -20,3 +20,6 @@
         </a>
     </div>
 </div>
+<script>
+    $('#search-ini').focus();
+</script>

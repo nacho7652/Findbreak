@@ -73,12 +73,17 @@ class evento {
      }
      
       public function filtrar($buscador){
-        $words = explode(" ", $buscador);
+        $buscadorSinSp = trim($buscador);
+        $words = explode(" ", $buscadorSinSp);
+        
         $result = array();
-        for($i=0 ; $i < count($words); $i++){
-           $tags =  array("tags" => new MongoRegex("/".$words[$i]."/")); // '%rock%'
-           $result[]= $tags;
-        }
+            for($i=0 ; $i < count($words); $i++){
+                $tags =  array("tags" => new MongoRegex("/".trim($words[$i])."/")); // '%rock%'
+                $result[]= $tags;
+           }
+        
+        
+        
         return $this->db->evento->find(array('$or' => $result//array($a
                                                             //$result
 //                                                           array("tags" => new MongoRegex("/hard/")), 
