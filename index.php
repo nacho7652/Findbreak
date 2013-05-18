@@ -303,12 +303,28 @@
         
        </div><!-- top-->
        <?php }?>
-        <div id="body" <?= $page_class ?>>
-            <?php if($page_site != 'cerca' && $page_site != 'inicio'){?>
+       
+        
+           <?php if($page_site != 'cerca' && $page_site != 'inicio'){?>
                 <div class="menutop">
                     <div class="btnslide"></div>
                 </div>
            <?php } ?>
+       
+           <?php if($page_site == 'eventprofile'){?> 
+            <div class="topevent">
+                <div class="shadow-event"></div>
+            </div>
+          <?php } ?>
+            
+        <div id="body" <?= $page_class ?>>
+            
+            
+             
+            
+           
+           
+            
             <div  <?= $page_class_near ?>>
                  <?php include_once('sites/'.$page_site.'.php'); ?>
             </div>

@@ -216,7 +216,7 @@ html {
     height: 52px;
     background: rgba(150, 71, 66, 0.49);
     background: rgba(177,177,177,0.12);
-    margin: 30px auto 0 auto;
+    margin: -3px auto 0 auto;
     border: 1px solid #E0E0E0;
 }
 #content-top .top-left {
@@ -991,7 +991,7 @@ top: -8px;
     display: block; 
 }
 .inner-eveninfo.info-eventcerca {
-    margin: 23px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     height: 268px;
     width: 369px;
 }
@@ -1042,6 +1042,10 @@ border: 1px solid rgba(65, 115, 169, 0.34);
 #desseguiramigo, #seguiramigo, #logeate-friend {
     float: left;
     margin: 13px 0px 0px 31px;
+}
+.paracoment {
+    margin: 10px 173px 0px 0px !important;
+    float: left;
 }
 #login-fb{
     background: url(/mooff/images/login-face-sprite.png) top right no-repeat;
@@ -1307,14 +1311,40 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     border-bottom: 1px solid #CCC;
     color: #444;
 }
+.info-num {
+    float: left;
+    width: 199px;
+    height: 40px;
+    margin: 0px 0px 0px -1px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-top: 6px;
+}
+.num-topinfo {
+font-size: 0.8em;
+font-weight: bolder;
+text-align: center;
+}
+.topinfo {
+    font-size: 0.8em;
+    color: #999;
+    text-align: center;
+}
+.item-info-num {
+    float: left;
+    width: 99px;
+    height: 41px;
+    border-right: 1px solid rgba(211, 211, 211, 0.31);
+}
+.item-info-num2 {
+    border-right: none !important;
+}
 .foto-event {
     width: 195px;
     height: 220px;
     float: right;
-    margin: -24px 1px 0px 4px;
-    background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;
-    box-shadow: 0px 1px 10px -3px #444;  
-    border: 4px solid #fff;
+    margin: -45px 1px 0px 4px;
+    background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;  
+    border: 1px solid rgba(24, 24, 24, 0.27);
 }
 .foto-event-peq{
     width: 49px;
@@ -1368,13 +1398,22 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 
 /*END-HOME*/
 /*EVENT PROFILE*/
+.eventprofile {
+    top: -143px !important;
+    padding-top: 135px !important;
+}
 .eventprofile,.productora, .perfilest {
     width: 968px !important;
     margin: 0px auto 11px auto !important;    
     overflow: hidden !important;
     position: relative;
 }
-
+.topevent {
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#333, rgb(44, 44, 44));
+    width: 100%;
+    height: 107px;
+    margin: 0px 0px 0px 0px;
+}
 .parte-left-parent {
     width: 609px;
     float: left;
@@ -1388,7 +1427,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 594px;
     height: 333px;
     float: left;
-    margin: 13px 0px 0px 6px;            position: relative;
+    margin: 8px 0px 0px 6px;            position: relative;
     color: rgb(88, 88, 88);
 }
 .part-left-cent {
@@ -1396,7 +1435,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     float: left;
 }
 .part-left-right {
-    width: 217px;
+    width: 198px;
     float: left;
     margin-right: 4px;
 }
@@ -1406,6 +1445,12 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     float: left;
     margin: 8px 0px 0px 14px;
     font-weight: bold;
+    position: absolute;
+    top: -32px;
+    color: #fff;
+    font-size: 16px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.77);
+    padding-left: 4px;
 }
 .part-left .foto-event-small {
     float: left;
@@ -1432,6 +1477,11 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 #horaevent-prof{
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -66px;
 }
+#visitavent-prof {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -83px;
+    font-size: 12px;
+    font-weight: bold;
+}
 .part-left .info-event-item{
     float: left;
     margin: 8px 0px 6px 0px;
@@ -1448,9 +1498,12 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     margin-top: 5px;
 }
 .divtrans{
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #e4e5e8;
-    border-radius: 2px;
+    background: rgb(255, 255, 255);
+    border-left: 1px solid #e4e5e8;
+    border-right: 1px solid #e4e5e8;
+    border-bottom: 1px solid #e4e5e8;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 .tit {
     color: rgba(35, 106, 151, 1);
@@ -1477,7 +1530,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     
     min-height: 322px;
     padding-top: 4px;
-    margin: 13px 0px 0px 0px;
+    margin: 8px 0px 0px 0px;
     overflow: hidden;
 }
 #list-establec {
@@ -1599,19 +1652,36 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 105px;
 }
 .login-hover-com {
-    color: rgba(42, 124, 179, 1) !important;
+    color: rgb(34, 103, 148) !important;
     text-decoration: none;
+}
+.login-hover-com:hover{
+    text-decoration: underline;
 }
 .coments {
     width: 331px;
     float: left;      
-    margin: 8px 0px 0px 10px;
+    margin: 8px 0px 0px 8px;
     padding-bottom: 9px;
     box-shadow: 0px 3px 8px -6px #444;
+}
+.coments-nolog {
+    width: 331px;
+    float: left;      
+    margin: -4px 0px 0px 0px;
+    padding-bottom: 9px;
+    box-shadow: 0px 3px 8px -6px #444;
+}
+.advert {
+    background: url(/findbreak/images/iconos-bg.png) rgb(231, 205, 98) 0px -9px;
+    padding: 25px 16px;
 }
 .mjscoment{
     font-size: 0.8em;
     color: rgb(88, 88, 88) !important;
+    width: 342px;
+    height: 40px;
+    font-weight: bold;
 }
 .input-transcom {
     border: 1px solid rgb(209, 209, 209);
@@ -1759,14 +1829,19 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .more-fotos {
     float: left;
-    width: 429px;
-    margin: 0px 0px 23px 21px;
+    width: 100%;
+    margin: 0px 0px 23px 0px;
+    padding-left: 39px;
+    position: absolute;
+    top: 36px;
+    left: 200px;
 }
 .foto-event-small {
-    width: 50px;
-    height: 50px;
+    width: 92px;
+    height: 107px;
     float: left;
     margin-right: 5px;
+    box-shadow: 0px -32px 40px -7px rgba(0, 0, 0, 0.77) inset;
 }
 .description-event {
     font-size: 0.8em;

@@ -25,10 +25,42 @@
           $_SESSION['vi'.(string)$eventfound['_id']] = 1;
     //  }
 ?>
+<div class="more-fotos">
+                <?php 
+                   $fotos = $eventfound['fotos'];
+                   $primero = 0;
+                   if(count($eventfound['fotos']) > 1){
+                       for($i=0; $i<count($eventfound['fotos']) ; $i++){
+                           if($primero == 0){
+                               $primero = 1;
+                               $url = 'background-size: cover; background-image: url(http://3.bp.blogspot.com/-BDrt8UjnTis/TVq6Yzct59I/AAAAAAAAAZg/9dH2MauSfhk/s1600/millencolin_4.jpg);width: 170px;';
+                           echo ' <div class="foto-event-small" style="'.$url.'"></div>';
+                               
+                           }else{
+                          // $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][$i+1];
+                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
+                           ?>
+                       <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
+                <?php
+                     }}
+                   }
+               ?>
+</div>
+
 <div class="parte-left-parent">
             <div class="part-left divtrans">
                     <div class="part-left-right">
                         <div class="foto-event" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
+                        <div class="info-num">
+                            <div class="item-info-num">
+                                <div class="topinfo">Visitas</div>
+                                <div class="num-topinfo">1000</div>
+                            </div>
+                            <div class="item-info-num item-info-num2">
+                                <div class="topinfo">Comentarios</div>
+                                <div class="num-topinfo">50</div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="part-left-cent">
@@ -42,7 +74,7 @@
                                 <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
                                 <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
                                 <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
-                                <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
+                                <div id="visitavent-prof" class="info-event-item"><?php echo $eventfound['visitas']?> visitas</div>
 
                         </div>
                     </div>
@@ -64,19 +96,7 @@
 
             </div>
 
-            <div class="more-fotos">
-                <?php 
-                   $fotos = $eventfound['fotos'];
-                   if(count($eventfound['fotos']) > 1){
-                       for($i=0; $i<count($eventfound['fotos']) -1; $i++){
-                           $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][$i+1];
-                           ?>
-                       <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
-                <?php
-                     }
-                   }
-               ?>
-             </div>
+            
             <div class="description-event">
                 <?php echo $eventfound['descripcion']; ?>
             </div>
@@ -117,9 +137,13 @@
         </div>
         <?php }
           else{ //si no esta logueado no puedo comentar ?>  
-        <div  class="coments">
-            <div class="mjscoment">
-                Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a>
+        <div  class="coments-nolog">
+            <div class="advert mjscoment">
+                Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
+                <a class="paracoment" id="login-fb" href="<?php echo ''; ?>">
+                    <div id="loginbtn-fb"></div>
+                    <div class="txtfb">Ingresar con Facebook</div>
+                </a>
             </div>
         </div>
          <?php } ?>

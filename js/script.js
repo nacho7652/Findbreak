@@ -127,27 +127,27 @@ $(document).ready(function(){
             setTimeout('$("#covermsj").fadeOut(500);',4000);
 
         }
-        $('.menutop').hover(function(){
-            $(this).animate({
-                         'height': '70px',
-                         'margin-bottom': '30px' 
-                     },
-                     {
-                        duration:200,
-                        easing:"swing"
-                     }
-                     );
-        }, function(){
-            $(this).animate({
-                         'height': '50px',
-                         'margin-bottom': '0px'
-                     },
-                     {
-                        duration:200,
-                        easing:"swing"
-                     }
-                     );
-        });
+//        $('.menutop').hover(function(){
+//            $(this).animate({
+//                         'height': '70px',
+//                         'margin-bottom': '30px' 
+//                     },
+//                     {
+//                        duration:200,
+//                        easing:"swing"
+//                     }
+//                     );
+//        }, function(){
+//            $(this).animate({
+//                         'height': '50px',
+//                         'margin-bottom': '0px'
+//                     },
+//                     {
+//                        duration:200,
+//                        easing:"swing"
+//                     }
+//                     );
+//        });
         //PERFIL EVENTO
         function descontarNotificacion(){
             var count = parseInt($('#cant-solicitud').html());
