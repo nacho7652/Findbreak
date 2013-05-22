@@ -90,7 +90,7 @@
     
     if(isset($_REQUEST['comentevent'])){
         session_start();
-       
+        $limit = $_REQUEST['ultimo'];//8
         $userId = $_SESSION['userid'];
         $userName = $_SESSION['username'];
         $comentario = $_REQUEST['comentario'];
@@ -98,17 +98,28 @@
         $hashevent = $_REQUEST['hashevent'];
         $nombreevent = $_REQUEST['nombreevent'];
         $comentarios = new comentario();
+        $totalComent = $_REQUEST['totalComent'];//8
+//        if($limit>10){
+//            $limit = 10;
+//        }
+//        $comentRestantes = $totalComent - $limit;
+
+//        $limit+= 5; //de a 5
+//        $comentRestantes = $comentRestantes - 5;
+        
+        
         $fecha = date('Y-m-d H:i:s');
         $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha,$nombreevent );
         
         //cargar comentarios
         $theObjId = new MongoId($evenId);
-        $todosComent = $comentarios->findforid($theObjId);
+        $todosComent = $comentarios->findUltimoscoment($theObjId, 10);
         $html = '';
+        $numComent = 0;
         foreach ($todosComent as $dcto){
             $useridComent = $dcto['_userId'];
             $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
-            $html.='<div class="itemcoment">
+            $html.='<div data-num="'.$numComent.'" class="itemcoment">
                         <div class="line"></div>
                         <div class="bloq1"></div>
                         <div class="bloq2">
@@ -130,8 +141,64 @@
                     $html.='
                           </div>
                       </div>';
+                    $numComent++;
         }
+        $comentRestantes = $totalComent - $numComent;
+        if($comentRestantes > 0)
+         $html.='<a href="#" class="leermas-coment readmorecoment">Ver más comentarios</a>';
+        echo $html;      
+    }
+     if(isset($_REQUEST['vermascomentarios'])){
+        session_start();       
+        //cargar comentarios
+        $limit = $_REQUEST['ultimo'];//10
+        $evenId = $_REQUEST['eventid'];
+        $hashevent = $_REQUEST['hashevent'];
+        $totalComent = $_REQUEST['totalComent'];//14
+        $comentRestantes = $totalComent - $limit;//14-10 = 4
+        $comentarios = new comentario();
+        $limit+= 5; //de a 5
+        $comentRestantes = $comentRestantes - 5;
         
+        $theObjId = new MongoId($evenId);
+        $todosComent = $comentarios->findUltimoscoment($theObjId, $limit);
+        $html = '';
+        $numComent = 0;
+        foreach ($todosComent as $dcto){
+            $useridComent = $dcto['_userId'];
+            $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
+            $html.='<div data-num="'.$numComent.'" class="itemcoment">
+                        <div class="line"></div>
+                        <div class="bloq1"></div>
+                        <div class="bloq2">
+                            
+                            <div class="nomusercom tit-gray">'.$dcto['userName'].'</div>
+                            <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].'" class="hashlink">'.$hashevent.'</a>
+                                                    '.$dcto['comentario'].'
+                            </div>
+                        </div>
+                        <div class="bloq3">
+                                <div class="hacecuant">
+                                    '.$realizacion.'
+                                </div>';
+                          if(isset($_SESSION['userid'])){
+                                if($useridComent == $_SESSION['userid']){
+                                   $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
+                               }else{
+                                   $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                               }
+                          }else{
+                              $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                          
+                          }                   
+                          
+                    $html.='
+                          </div>
+                      </div>';
+                    $numComent++;
+        }
+        if($comentRestantes > 0)
+            $html.='<a  href="#" class="leermas-coment readmorecoment">Ver más comentarios</a>';
         echo $html;      
     }
 ?>                    

@@ -73,6 +73,7 @@
         <link rel="stylesheet" href="css/stylelanding.css">
         <link rel="stylesheet" href="css/style-encuesta.css">
         <meta charset="utf-8">
+        
         <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript">
 
@@ -142,7 +143,7 @@
                                    <div class="login-cont"> 
                                       <input   type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
-                                      <a href="#" class="botongreen" id="boton-login">Entrar</a>
+                                      <a href="#" class="botonblue" id="boton-login">Entrar</a>
                                       <a id="login-fb" href="<?php echo ''; ?>">
                                         <div id="loginbtn-fb"></div>
                                         <div class="txtfb">Ingresar con Facebook</div>
@@ -357,35 +358,44 @@
         </div>
         <?php if($page_site != 'cerca'){?>
             <footer id="bottom">
-                <p class="textbottom">
+<!--                <p class="textbottom">
                     Estudiantes de Inacap Desarrolladores del proyecto Findbreak - Fonos: 652 213 55 / 541 67 51 / 546 28 51 -
                     <span class="emailbottom">info@findbreak.com</span>
-                </p>
+                </p>-->
             </footer>
        <?php } ?>
+         <script src="js/jquery.nicescroll.min.js"></script>
          <script type="text/javascript" src="js/upload.js"></script>
          <script type="text/javascript" src="js/script.js"></script>
          <script type="text/javascript" src="js/autoresize.js"></script>
          <script type="text/javascript" src="js/menciones.js"></script>
         <script type="text/javascript" src="js/publicar_evento.js"></script>
-        <script src="js/jquery.nicescroll.min.js"></script>
+        
         <script>
-  $(document).ready(function() {
-  
-	//var nice = $("html").niceScroll();  // The document page (body)
-    
-    $(".boxscroll").niceScroll({cursorborder:"rgb(185, 185, 185)",cursorcolor:"rgb(185, 185, 185)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
-    
-    // Customizable cursor
-    // $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#00F",cursoropacitymax:0.7,cursorwidth:11,cursorborder:"1px solid #2848BE",cursorborderradius:"8px"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar
+            $(document).ready(function() {
 
-//    $("#boxscroll").niceScroll("#contentscroll2",{cursorcolor:"#F00",cursoropacitymax:0.7,boxzoom:true,touchbehavior:true});  // Second scrollable DIV
-//    $("#boxframe").niceScroll("#boxscroll3",{cursorcolor:"#0F0",cursoropacitymax:0.7,boxzoom:true});  // This is an IFrame (iPad compatible)
-//	
-//    $("#boxscroll4").niceScroll("#boxscroll4 .wrapper",{boxzoom:true});  // hw acceleration enabled when using wrapper
-    
-  });
-</script>
+                  //var nice = $("html").niceScroll();  // The document page (body)
+//             $('body .boxscroll').on({
+//                    click: function() {
+//                      event.preventDefault();
+//                      console.log('item clicked');
+//                    },
+//                    mouseenter: function() {
+//                      console.log('enter!');
+//                    }
+//             });
+             $(".boxscroll").niceScroll({cursorborder:"rgb(185, 185, 185)",cursorcolor:"rgb(185, 185, 185)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
+
+              // Customizable cursor
+              // $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#00F",cursoropacitymax:0.7,cursorwidth:11,cursorborder:"1px solid #2848BE",cursorborderradius:"8px"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar
+
+          //    $("#boxscroll").niceScroll("#contentscroll2",{cursorcolor:"#F00",cursoropacitymax:0.7,boxzoom:true,touchbehavior:true});  // Second scrollable DIV
+          //    $("#boxframe").niceScroll("#boxscroll3",{cursorcolor:"#0F0",cursoropacitymax:0.7,boxzoom:true});  // This is an IFrame (iPad compatible)
+          //	
+          //    $("#boxscroll4").niceScroll("#boxscroll4 .wrapper",{boxzoom:true});  // hw acceleration enabled when using wrapper
+
+            });
+          </script>
 
 <!--         <script type="text/javascript" src="js/jquery.cycle.all.latest.js"></script>
           <script type="text/javascript">

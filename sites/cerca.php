@@ -1,7 +1,6 @@
 
 
 
-
 <div class="content-cerca">
     <div class="first-partevent">
         <div class="divevents">
@@ -80,3 +79,5 @@
     </div>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> Cargamos la API de Google Maps
     <script type="text/javascript" src="/findbreak/js/maps.js"></script>
+    
+ 

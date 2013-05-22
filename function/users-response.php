@@ -109,12 +109,15 @@
                     $id = $_SESSION['userid'];
                     $yo = $usuario->findforid($id);
                     $html = '';
+                    $limite = 3;
                     if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
                         foreach ($yo['siguiendo'] as $item){
+                            if($limite == 0)break;
                             $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
                                                    <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
                                                    <div class="item-friends-username">'.$item['nombre'].'</div>
                                                </div>';
+                            $limite--;
                         }
                     }else{
                         $html = 'aun no sigues a tus amigos, búscalos !';

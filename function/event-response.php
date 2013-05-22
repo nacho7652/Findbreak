@@ -4,10 +4,104 @@
         require_once '../DAL/evento.php';
         require_once '../DAL/usuario.php';
         require_once '../DAL/establecimiento.php';
+        require_once '../DAL/comentario.php';
         
+      if(isset($_REQUEST['mostrar-coment-cerca'])){
+        $idEvento = $_REQUEST['idevento'];
+        $hashevent = $_REQUEST['hashevent'];
+        $comentarioEvent = new comentario();
+        $event = new evento();
+        $listcoment = '';
+        if(isset($_SESSION['userid'])){ 
+            $listcoment.= '<div  class="coments">';
+            $listcoment.= '  <input type="hidden" id="idevent" value="'.$idEvento.'"/>';
+            $listcoment.= '  <input type="hidden" id="hashevent" value="'.$hashevent.'"/>';
+            $listcoment.= '  <div class="input-transcom">';
+            $listcoment.= '     <div class="hash">'.$hashevent.'</div>';
+            $listcoment.= '     <div id="overcoment">';
+            $listcoment.= '     <textarea class="textoajustable" id="coment"></textarea>';
+            $listcoment.= '  </div>
+                                <div id="replica"></div>
+                            </div>
+                            <div class="showfocuscom">
+                                <div class="divcitar">@</div>
+                                <div class="amigosCitar"></div>
+                                <input type="button" class="botonblue" id="btn-comentar" value="Comentar" />
+                            </div>
+
+                </div>';
+           }
+          else{ //si no esta logueado no puedo comentar 
+                 $listcoment.= '<div  class="coments-nolog">
+                     <input type="hidden" id="idevent" value="'.$idEvento.'"/>
+                     <input type="hidden" id="hashevent" value="'.$hashevent.'"/>
+                    <div class="advert mjscoment">
+                        Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
+                        <a class="paracoment" id="login-fb" href="">
+                            <div id="loginbtn-fb"></div>
+                            <div class="txtfb">Ingresar con Facebook</div>
+                        </a>
+                    </div>
+                </div>';
+           } 
+         $listcoment = '';
+         $listcoment.= '<div class="list boxscroll">';
+          $listcoment = '';      
+                $theObjId = new MongoId($idEvento);
+                $comentarios = $comentarioEvent->findforid($theObjId);
+                $numComent = 0;
+                foreach($comentarios as $dcto){
+                     
+                     $realizacion = $comentarioEvent->verFecha($dcto['fechaMuestra']);
+                     $useridComent = $dcto['_userId'];
+                
+                    $listcoment.= '<div data-num="'.$numComent.'" class="itemcoment">
+                               <div class="line"></div>
+                               <div class="bloq1"></div>
+                               <div class="bloq2">
+                                   <a href="/findbreak/!#'.$dcto['_userId'].'" class="nomusercom tit-gray">'.$dcto['userName'].'</a>
+                                   <div class="comentuser">
+
+                                         <a href="/findbreak/break/'.$dcto['_eventId'].'" class="hashlink">'.$hashevent.'</a>
+                                                                      '.$dcto['comentario'].'
+
+                                   </div>
+                               </div>
+                               <div class="bloq3">
+
+                                   <div class="hacecuant">
+                                       '.$realizacion.'
+                                   </div>';
+                         
+                        if(isset($_SESSION['userid'])){
+                            if($useridComent == $_SESSION['userid']){
+                                $listcoment.= ' <div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
+           
+                                    }else{
+                                       $listcoment.= ' <div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                                      }
+                             }else{
+                                 $listcoment.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                              }
+                           
+                        $listcoment.= '</div>
+                       </div>';
+
+                        $numComent++;
+                 
+                 }
+                $cantidadComentarios = $event->verCantidadComentarios($idEvento);
+                $comentRestantes = $cantidadComentarios - $numComent; //ultimo = limit
+                if($comentRestantes > 0){
+                     $listcoment.= '<a  href="#" class="leermas-coment readmorecoment">Ver más comentarios</a>';
+                  } 
+           //  $listcoment.= '</div>';
+             
+             echo $listcoment;
+        }
         if(isset($_REQUEST['search-space'])){
             $event = new evento();
-            $eventpopular = $event->findpopular();
+            $eventpopular = $event->findpopular(4);
             $hayevents = false;
              $primero = 0;
              $cuadroevento = '<div class="title-search-item">Populares</div>';
@@ -80,17 +174,26 @@
                      //   $mongotime = New Mongodate(strtotime($realtime));
                         $folder = (string)$dcto['producido_por']['_id'];
                         $url = '../images/productoras/'.$folder.'/'.$dcto['fotos'][0];
-                        $listevents.= '<div class="item-eventcerca">
-                                         <div class="barra"></div>
+                        $listevents.= '<div data-id="'.$dcto['_id'].'" data-hash="'.$dcto['hash'].'" class="item-eventcerca">';
+                        $listevents.= '<div class="barra"></div>
                                             <div class="event-right">
                                                         <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
                                                          <div class="num-event"></div>';
                                   $nombreLink = str_replace(' ', '-', $dcto['nombre']);
-                                  $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio']);
-                                  $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['_id'].'" class="tit-eventcerca linkred" >'.$dcto['nombre'].'</a>
+                                  $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'],1);
+                                  $cantidadComentarios = $e->verCantidadComentarios($dcto['_id']);
+                                    $textoComentario = '';
+                                    if($cantidadComentarios == 0){
+                                        $textoComentario = 'Se el primero en comentar!';
+                                    }elseif($cantidadComentarios == 1){
+                                        $textoComentario = 'Un comentario';
+                                    }else{
+                                        $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
+                                    }
+                                  $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['_id'].'" class="tit-eventcerca" >'.$dcto['nombre'].'</a>
                                                        <div class="info-eventcerca info-eventcercawhte">
                                                            <div class="item-infocerca">
-                                                                
+                                                               
                                                                <div id="fechaevent" class="resp-cuando">'.$realizacion['fecha'].'</div>
                                                            </div>
                                                             <div class="item-infocerca">
@@ -101,14 +204,19 @@
                                                                 <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
                                                             </div>
                                                             
-                                                             <div class="item-infocerca">
-                                                               
-                                                                <div id="precioevent" class="resp-cuando">'.$dcto['precio'].'</div>
-                                                            </div>
-                                                                
-                                                           <div class="botongreen">Ver información</div>
+                                                            
+                                                            
+                                                            <div class="item-infocerca">
+                                                                <div id="visitavent-prof" class="info-event-item resp-cuando">
+                                                                   <div>Visto por <span class="bold">'.$dcto['visitas'].'</span></div>
+                                                                   <div id="comentaevent-prof">'.$textoComentario.'</div>
+                                                                   <input type="hidden" id="totalComent" value="'.$cantidadComentarios.'"/>
+                                                               </div>  
+                                                           </div>
+                                                           <div class="botonitemcerca botonblue">Ver comentarios</div>
                                                         
-                                                      </div><div class="sitioevento link">Sitio web</div>
+                                                      </div>
+                                                     
                                                  ';     
                           $listevents.= '</div>';
                                         $listevents.= '<div class="tags-hidden">';
@@ -117,7 +225,50 @@
                                                 $listevents.= $tags;
                                                 $listevents.= ',';
                                         }
-                                        $listevents.= '</div>';
+                                        $listevents.= '</div>
+                                            <div class="coment-cerca">';
+                                            //aca
+                                                    if(isset($_SESSION['userid'])){ 
+                                                            $listevents.= '<div  class="coments">';
+                                                            $listevents.= '  <input type="hidden" id="idevent" value="'.$dcto['_id'].'"/>';
+                                                            $listevents.= '  <input type="hidden" id="hashevent" value="'.$dcto['hash'].'"/>';
+                                                            $listevents.= '  <div class="input-transcom">';
+                                                            $listevents.= '     <div class="hash">'.$dcto['hash'].'</div>';
+                                                            $listevents.= '     <div id="overcoment">';
+                                                            $listevents.= '     <textarea class="textoajustable" id="coment"></textarea>';
+                                                            $listevents.= '  </div>
+                                                                                <div id="replica"></div>
+                                                                            </div>
+                                                                            <div class="showfocuscom">
+                                                                                <div class="divcitar">@</div>
+                                                                                <div class="amigosCitar"></div>
+                                                                                <input type="button" class="botonblue" id="btn-comentar" value="Comentar" />
+                                                                            </div>
+
+                                                                </div>';
+                                                           }
+                                                          else{ //si no esta logueado no puedo comentar 
+                                                                 $listevents.= '<div  class="coments-nolog">
+                                                                     <input type="hidden" id="idevent" value="'.$dcto['_id'].'"/>
+                                                                     <input type="hidden" id="hashevent" value="'.$dcto['hash'].'"/>
+                                                                    <div class="advert mjscoment">
+                                                                        Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
+                                                                        <a class="paracoment" id="login-fb" href="">
+                                                                            <div id="loginbtn-fb"></div>
+                                                                            <div class="txtfb">Ingresar con Facebook</div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>';
+                                                           } 
+                                          $listevents.= '<div  class="list boxscroll">
+                                              
+                                            ';
+                                                            
+
+                                          $listevents.= '  </div>';   
+                                         //fin aca     
+                                        $listevents.='</div>';
+                                        
                           $listevents.= '</div>'; 
 
                     }

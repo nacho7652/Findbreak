@@ -155,7 +155,7 @@ $(document).ready(function(){
       }
       
         
-        $('#coment').keyup(function(e){ 
+        $('body').delegate('#coment','keyup',function(e){ 
            // alert('dsaads')
 //           alert(e.keyCode)
 //           alert('key up')
@@ -219,7 +219,7 @@ $(document).ready(function(){
       
       focusArroa = false;
       apretoFuera = false;
-      $('#coment').keyup(function(e){
+      $('body').delegate('#coment','keyup',function(e){
           if(e.keyCode == 81){
            focusArroa = conocerElFocus();
           }
@@ -266,7 +266,7 @@ $(document).ready(function(){
                                 $('.amigosCitar').html(data)
                     }, "html");
         }
-        $('.divcitar').click(function(){
+        $('body').delegate('.divcitar','click',function(){
             mostrarAmigosCitar();
         })
         //itemCitar
@@ -286,35 +286,29 @@ $(document).ready(function(){
        
       //autoresize
         //<![CDATA[
+        $('body').delegate('.textoajustable','keyup',
+                $('.textoajustable').autoResize({
+                        // Al redimensionar
+                        onResize : function() {
 
-        $('.textoajustable').autoResize({
-                // Al redimensionar
-                onResize : function() {
-                 
-                  $(this).css({opacity:0.8});
-                },
-                // Llamar efecto despues de redimensionar:
-                animateCallback : function() {
-                    $(this).css({opacity:1});
-//                    $(this).css({'background-color':'#A39565'});
-                },
-                // Diración de la animación:
-                animateDuration : 300,
-                // Limite en pixeles hasta los que se va a expandir
-                // pasado el límite genera el scroll tradicional, valor por defecto 1000px
-                limit : 300,
-                // Espacio Extra al final del texto:
-                extraSpace : 30
-                });
+                          $(this).css({opacity:0.8});
+                        },
+                        // Llamar efecto despues de redimensionar:
+                        animateCallback : function() {
+                            $(this).css({opacity:1});
+        //                    $(this).css({'background-color':'#A39565'});
+                        },
+                        // Diración de la animación:
+                        animateDuration : 300,
+                        // Limite en pixeles hasta los que se va a expandir
+                        // pasado el límite genera el scroll tradicional, valor por defecto 1000px
+                        limit : 300,
+                        // Espacio Extra al final del texto:
+                        extraSpace : 30
+                  })
+           );     
 
-                // reseteamos el textarea
-                $("#eliminar").click(function(event) {
-                $('.textoajustable').css({height:'26px'})
-                $('.textoajustable').css({opacity:1})
-                $('.textoajustable').val('');
-                $('.textoajustable').css('background-color', '#fff');
-        });
         
-        //]]>
+      //  ]]>
 
 });        

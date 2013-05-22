@@ -18,13 +18,17 @@ class evento {
                 return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(100);
 
     }
+    public function verCantidadComentarios($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->find(array("_eventId" => $theObjId))->count();
+     }
     public function findforid($id){
          $theObjId = new MongoId($id); 
          return $this->db->evento->findOne(array("_id" => $theObjId));
      }
-     public function findpopular(){
+     public function findpopular($limit){
          $numeroPromedio = $this->promedioVisitas();
-         return $this->db->evento->find(array( 'fecha_realizacion'=> array('$gte' => $this->hoy()), 'visitas'=> array('$gte' => $numeroPromedio) ))->sort(array("visitas" => -1 ))->limit(4);
+         return $this->db->evento->find(array( 'fecha_realizacion'=> array('$gte' => $this->hoy()), 'visitas'=> array('$gte' => $numeroPromedio) ))->sort(array("visitas" => -1 ))->limit($limit);
      }
      
      public function findpopularPorProductora($idProductora, $cuando){
@@ -95,6 +99,28 @@ class evento {
                                       )->limit(5);
     }
     
+     public function similares($idNo, $words, $limit){//id, array
+//        $buscadorSinSp = trim($buscador);
+//        $words = explode(" ", $buscadorSinSp);
+        
+        $result = array();
+            for($i=0 ; $i < count($words); $i++){
+                $tags =  array("tags" => new MongoRegex("/".trim($words[$i])."/")); // '%rock%'
+                $result[]= $tags;
+           }
+        
+        
+        
+        return $this->db->evento->find(array('$or' => $result//array($a
+                                                            //$result
+//                                                           array("tags" => new MongoRegex("/hard/")), 
+//                                                            array("tags" => new MongoRegex("/lsls/"))
+                                                            //array("tags" => new MongoRegex("/asc/"))
+                                                          //)
+                                              ,  'fecha_realizacion'=> array('$gte' => $this->hoy())
+                                           )
+                                      )->limit($limit);
+    }
      public function findall(){
          return $this->db->evento->find();
      }
@@ -161,7 +187,7 @@ class evento {
          
      }
      
-     public function formatoFecha($fecha, $hora){
+     public function formatoFecha($fecha, $hora, $cantidad = null){
          $masfechas = explode(',', $fecha);
          $formato = '';
          if(count($masfechas) == 1){
@@ -189,8 +215,12 @@ class evento {
             }
             $formato = "El ".$dia." de ".$nombremes." del ".$anio;
          }else{//más fechas
-             $formato.= "El ";
-             for($i=0; $i < count($masfechas); $i++){
+             $formato.= "";
+             $cantidadFechas = count($masfechas);
+             if($cantidad != null){
+                 $cantidadFechas = $cantidad;
+             }
+             for($i=0; $i < $cantidadFechas; $i++){
 //                    $datos = explode(' ', $masfechas[$i]);
 //                    $masfechas[$i] = $datos[0];
 
@@ -198,6 +228,21 @@ class evento {
                     $anio = $itemfecha[0];
                     $mes = $itemfecha[1];
                     $dia = $itemfecha[2];
+                    //saber dia
+                        $f2 = $mes.$dia.$anio;
+                        $diaNumero =date("w",strtotime($f2));
+                        $nombredia = '';
+                        switch ($diaNumero){
+                        case '1': $nombredia = 'Domingo'; break; 
+                        case '2': $nombredia = 'Lunes'; break; 
+                        case '3': $nombredia = 'Martes'; break; 
+                        case '4': $nombredia = 'Miercoles'; break; 
+                        case '5': $nombredia = 'Jueves'; break; 
+                        case '6': $nombredia = 'Viernes'; break; 
+                        case '7': $nombredia = 'Sábado'; break; 
+                        
+                    }
+                    //fin saber dia
                     $nombremes = '';
                     switch ($mes){
                         case '1': $nombremes = 'Enero'; break; 
@@ -213,9 +258,10 @@ class evento {
                         case '11': $nombremes = 'Noviembre'; break; 
                         case '12': $nombremes = 'Diciembre'; break; 
                     }
-                    $formato.= $dia." de ".$nombremes." del ".$anio;
-                    if(isset($masfechas[$i+1])){
-                        $formato.=", ";
+                   
+                    $formato.= $nombredia.", ".$dia." de ".$nombremes." del ".$anio;
+                    if(isset($masfechas[$i+1]) && $cantidadFechas != 1) {
+                        $formato.=" <br> ";
                     }
              }
          }

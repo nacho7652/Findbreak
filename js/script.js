@@ -1,4 +1,5 @@
 $(document).ready(function(){
+ 
         $('#login-fb').mouseover(function(){
            $(this).css('background','url(/mooff/images/login-face-sprite.png) -82px -24px no-repeat');
            $('#loginbtn-fb').css('background','url(/mooff/images/loginbtn-face-sprite.png) -0px -24px no-repeat')
@@ -15,7 +16,42 @@ $(document).ready(function(){
         $('.redir-cerca').mouseleave(function(){
             $('.pincerca').css('background-position','54px -533px');
         })
+       //cerca
+          $('body').delegate('.botonitemcerca','click',function(){
+              var item = $(this).parent().parent().parent();
+             
+               $('body, html').animate({
+                         'scrollTop': item.offset().top - 200 + "px" 
+                     },
+                     {
+                        duration:500,
+                        easing:"swing"
+                     }
+                     );
+                  
+                 $('.coment-cerca').fadeOut(100);
+                 $('.coment-cerca .list .boxscroll').html('');
+                 idevento = item.attr('data-id');
+                 hashevent = item.attr('data-hash');
+                 $.ajax({           
+                            type:"POST",
+                            dataType:"html",
+                            url: "/findbreak/function/event-response.php",
+                            data: "mostrar-coment-cerca=1&idevento="+idevento+'&hashevent='+hashevent,
+                            success: function (data)
+                            {   
+                                item.find('.coment-cerca .list.boxscroll').html(data)
+                                item.find('.coment-cerca').fadeIn(100)
+                                
+                            }
+                        })
+            
+               
+             //$(".boxscroll").niceScroll({cursorborder:"rgb(185, 185, 185)",cursorcolor:"rgb(185, 185, 185)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
+
+          })
        
+       //fin cerca
         
         /*CERRAR CON CLICK*/
         var cerrarNoti = true;
@@ -33,12 +69,18 @@ $(document).ready(function(){
         
         
         var cerrarCit = true;
-        $('.divcitar').hover(function(){
-            cerrarCit = false;
-        }, 
-        function(){
+        $('body').delegate('.divcitar','hover',function(){
+             cerrarCit = false;
+        })
+        $('body').delegate('.divcitar','mouseleave',function(){
             cerrarCit = true;
-        });
+        })
+//        $('.divcitar').hover(function(){
+//            cerrarCit = false;
+//        }, 
+//        function(){
+//            cerrarCit = true;
+//        });
         $('body, html').click(function(){
             if(cerrarCit){
                 $('.amigosCitar').hide();
@@ -149,6 +191,45 @@ $(document).ready(function(){
 //                     );
 //        });
         //PERFIL EVENTO
+        $('.readmore').click(function(){
+            if($('.descripcion-event').css('max-height') == '115px'){
+                $('.descripcion-event').css('max-height','none')
+                $(this).html('Leer menos...');
+            }else{
+                $('.descripcion-event').css('max-height','115px');
+                $(this).html('Leer más...');
+            }
+            return false;
+        })
+        $('body').delegate('.leermas-coment','click',function(){
+            var id = $('#idevent').val();
+            var ultimoComentario = $('.list .itemcoment:last').attr('data-num');
+            var totalComent = $('#totalComent').val();
+            var hashevent = $('#hashevent').val();
+            ultimoComentario++;
+//            alert(ultimoComentario);
+//            alert(totalComent)
+            $.ajax({           
+                type:"POST",
+                dataType:"html",
+                url: "/findbreak/function/comentario-response.php",
+                data: "vermascomentarios=1&ultimo="+ultimoComentario+'&eventid='+id+'&hashevent='+hashevent+'&totalComent='+totalComent,
+                success: function (data)
+                {   
+                    $('.list').html(data);
+                    $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
+//                    $('.list').animate({
+//                         'scrollTop': $('.leermas-coment').offset().top + "px" 
+//                     },
+//                     {
+//                        duration:500,
+//                        easing:"swing"
+//                     }
+//                     );
+                }
+            })  
+            return false;
+        })
         function descontarNotificacion(){
             var count = parseInt($('#cant-solicitud').html());
             count--;
@@ -181,7 +262,7 @@ $(document).ready(function(){
            
             overcoment = false;
         })
-        $('#coment').focus(function(){
+        $('body').delegate('#coment','focus',function(){
             $('.showfocuscom').show();
         })  
         $('body').delegate('.itemcoment','hover',function(){
@@ -190,18 +271,25 @@ $(document).ready(function(){
         $('body').delegate('.itemcoment','mouseleave',function(){
             $(this).find('.aparececom').hide();
         })
-        $('#btn-comentar').click(function(){
+        $('body').delegate('#coment','focus',function(){
+            $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
+        })
+        
+        $('body').delegate('#btn-comentar','click',function(){
          var coment = $('#coment').val();
          var eventid = $('#idevent').val();
          var nombreevent = $('.title-event').html();
          var hashevent = $('#hashevent').val();
-        // alert(coment);
-         //return false;
+         var totalComent = $('#totalComent').val();
+         var ultimoComentario = $('.list .itemcoment:last').attr('data-num');
+         ultimoComentario = parseInt(ultimoComentario) +2;
+         totalComent++;
+         
          $.ajax({           
              type:"POST",
              dataType:"html",
              url: "/findbreak/function/comentario-response.php",
-             data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent,
+             data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
              success: function (data)
              {
                  $('.showfocuscom').hide();
@@ -209,6 +297,29 @@ $(document).ready(function(){
                  $('#coment').val('');
                  $('.list').html(data);
                  $('#replica').html('');
+                 $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
+                 //sumar evento
+                
+                 cantidadComentarios = (parseInt($('#totalComent').val())  + 1)
+                 $('#totalComent').val(cantidadComentarios)
+                 if(cantidadComentarios == 0){
+                                            textoComentario = 'Se el primero en comentar!';
+                                        }else
+                                            if(cantidadComentarios == 1){
+                                            textoComentario = 'Un comentario';
+                                        }else{
+                                            textoComentario = '<span class="bold">'+cantidadComentarios+'</span> Comentarios';
+                                        }
+                 $('#comentaevent-prof').html(textoComentario);
+                
+                 $('.list').animate({
+                     'scrollTop': "0px" 
+                 },
+                 {
+                    duration:500,
+                    easing:"swing"
+                 }
+                 );
              }
            })
         })
@@ -226,14 +337,14 @@ $(document).ready(function(){
               var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
                   cuerpo+=   '<div style="background: url('+foto+')" class="bloq1"></div>';
                   cuerpo+=   '<div class="bloq2msjinner">';
-                  cuerpo+=       '<div class="nomusercom tit">'+nombre+'</div>';
+                  cuerpo+=       '<div class="nomusercom tit-gray">'+nombre+'</div>';
                   cuerpo+=       '<div class="comentuser">'+comentario+'</div>';
                   cuerpo+=   '</div>';
                   cuerpo+= '<div class="bloq3msjinner">';
                   cuerpo+=    '<div class="hacecuant">'+tiempo+'</div>';
                   cuerpo+= '</div></div></div>';
              
-             var pie = '<div class="bloq3msj"><div data-id="'+dataid+'" id="aceptarcoment" class="botongreen">Aceptar</div>';
+             var pie = '<div class="bloq3msj"><div data-id="'+dataid+'" id="aceptarcoment" class="botonblue">Aceptar</div>';
                  pie+= '<div id="cancelar" class="botoncancel">Cancelar</div></div>';
                  
                 
@@ -250,7 +361,19 @@ $(document).ready(function(){
                data: "delcoment=1&dataid="+dataid,
                success: function (data)
                {
-                   
+                 //sumar evento
+                    cantidadComentarios = (parseInt($('#totalComent').val())  - 1)
+                    $('#totalComent').val(cantidadComentarios)
+                    if(cantidadComentarios == 0){
+                                               textoComentario = 'Se el primero en comentar!';
+                                           }else
+                                               if(cantidadComentarios == 1){
+                                               textoComentario = 'Un comentario';
+                                           }else{
+                                               textoComentario = '<span class="bold">'+cantidadComentarios+'</span> Comentarios';
+                                           }
+                    $('#comentaevent-prof').html(textoComentario);
+                 ///
                    if(data == 1){
                     covermsjclose();
                     itemComentario.remove();
@@ -523,7 +646,8 @@ $(document).ready(function(){
       $('#search-ini').keyup(function(e){
            focusFinalBus = $('#search-ini').val().length;
           if(e.keyCode == 32 && trim($('#search-ini').val()) == false ){//si apreto espacio muestro los más populares
-               $('#search-ini').val('')
+              
+              $('#search-ini').val('')
               $.ajax({
               
                     type: "POST",

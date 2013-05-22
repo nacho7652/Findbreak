@@ -10,6 +10,8 @@ $(document).ready(function(){
 //    
 // });
   function cargarMapa() {
+//           alert('lat: '+latitud)
+//           alert('long: '+longitud)
             var latlon = new google.maps.LatLng(latitud,longitud); /* Creamos un punto con nuestras coordenadas */
             var myOptions = {
                 scrollwheel: false,
