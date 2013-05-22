@@ -5,6 +5,7 @@
     require_once 'DAL/connect.php';
     require_once 'DAL/usuario.php';
     require_once 'DAL/comentario.php';
+    include_once ('function/facebook-response.php'); 
    
     $contsol=0;
     
@@ -144,12 +145,12 @@
                                       <input   type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
                                       <a href="#" class="botonblue" id="boton-login">Entrar</a>
-                                      <a id="login-fb" href="<?php echo ''; ?>">
+                                      <a id="login-fb" href="<?php echo $loginUrl;; ?>">
                                         <div id="loginbtn-fb"></div>
-                                        <div class="txtfb">Ingresar con Facebook</div>
+                                        <div class="txtfb">Ingresar con Facebook</div>       
                                       </a>
                                    </div>
-                                   
+                                   <?php if(empty($user_profile)){echo $user_profile['email'];} ?> 
                                    <a href="#" class="registrate">Registrate</a>
                                    <a href="#" class="productora-registro">¿Deseas publicar?</a>
                                </div>
