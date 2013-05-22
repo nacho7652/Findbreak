@@ -5,7 +5,7 @@
     require_once 'DAL/connect.php';
     require_once 'DAL/usuario.php';
     require_once 'DAL/comentario.php';
-    include_once ('function/facebook-response.php'); 
+    include_once 'function/facebook-response.php'; 
    
     $contsol=0;
     
@@ -145,16 +145,16 @@
                                       <input   type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
                                       <a href="#" class="botonblue" id="boton-login">Entrar</a>
-                                      <a id="login-fb" href="<?php echo $loginUrl;; ?>">
-                                        <div id="loginbtn-fb"></div>
-                                        <div class="txtfb">Ingresar con Facebook</div>       
-                                      </a>
+                                       <a class="loginface-top" id="login-fb" href="<?php echo $loginUrl; ?>">
+                                            <div id="loginbtn-fb"></div>
+                                            <div class="txtfb">Ingresar con Facebook</div>
+                                        </a>
                                    </div>
-                                   <?php 
-                                   if(isset($user_profile) != null){
-                                       echo $user_profile['email'];
-                                       
-                                       } ?> 
+                                    <?php 
+                                        if(isset($user_profile) != null){//apreté el boton y se creo mi usuario
+                                            $_SESSION['user'] = $user_profile;
+                                            print_r($_SESSION['user']);
+                                            }?>
                                    <a href="#" class="registrate">Registrate</a>
                                    <a href="#" class="productora-registro">¿Deseas publicar?</a>
                                </div>
