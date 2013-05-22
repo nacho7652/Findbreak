@@ -150,7 +150,11 @@
                                         <div class="txtfb">Ingresar con Facebook</div>       
                                       </a>
                                    </div>
-                                   <?php if(empty($user_profile)){echo $user_profile['email'];} ?> 
+                                   <?php 
+                                   if(isset($user_profile) != null){
+                                       echo $user_profile['email'];
+                                       
+                                       } ?> 
                                    <a href="#" class="registrate">Registrate</a>
                                    <a href="#" class="productora-registro">¿Deseas publicar?</a>
                                </div>
@@ -161,7 +165,8 @@
                                    
 
                                    
-                                   <?php $usertype = $_SESSION['usertype'];
+                                   <?php echo $user_profile;
+                                         $usertype = $_SESSION['usertype'];
                                          if($usertype == 1){
                                              $usuario = new usuario();
                                              $notificaciones = $usuario->verNotificaciones($_SESSION['userid']);
