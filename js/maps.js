@@ -137,7 +137,9 @@ function geolocalizarManual(address){
                 url: "/findbreak/function/event-response.php",
                 success: function(data){
 //                alert("dads")
-               // alert(data.listevents)
+//              alert(data.arreglo[0]['parte1']);
+//              alert(data.arreglo[0]['parte2']);
+//              return false;
                 $('.loading-events').hide();
                // $('.inner-list-maps').html('');
                 if(data.listevents == ''){
@@ -147,7 +149,7 @@ function geolocalizarManual(address){
                     $('.no-resultados').hide();
                 }
                 $('.event-hidden').html(data.infodiv);
-              //  $('.inner-list-maps').html(data.listevents);
+                $('.inner-list-maps').html(data.listevents);
                  var numberOfCase = parseInt($('#number').text());
                  var infoDiv = "";
                  var tokens;

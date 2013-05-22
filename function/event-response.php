@@ -225,18 +225,21 @@
                                                 $listevents.= $tags;
                                                 $listevents.= ',';
                                         }
-                                        $listevents.= '</div>
-                                            <div class="coment-cerca">';
+                                        $listevents.= '</div>';
+                                      
+                                        //PARTE 2
+                                        
+                                          $listevents2='<div class="coment-cerca">';
                                             //aca
                                                     if(isset($_SESSION['userid'])){ 
-                                                            $listevents.= '<div  class="coments">';
-                                                            $listevents.= '  <input type="hidden" id="idevent" value="'.$dcto['_id'].'"/>';
-                                                            $listevents.= '  <input type="hidden" id="hashevent" value="'.$dcto['hash'].'"/>';
-                                                            $listevents.= '  <div class="input-transcom">';
-                                                            $listevents.= '     <div class="hash">'.$dcto['hash'].'</div>';
-                                                            $listevents.= '     <div id="overcoment">';
-                                                            $listevents.= '     <textarea class="textoajustable" id="coment"></textarea>';
-                                                            $listevents.= '  </div>
+                                                            $listevents2.= '<div  class="coments">';
+                                                            $listevents2.= '  <input type="hidden" id="idevent" value="'.$dcto['_id'].'"/>';
+                                                            $listevents2.= '  <input type="hidden" id="hashevent" value="'.$dcto['hash'].'"/>';
+                                                            $listevents2.= '  <div class="input-transcom">';
+                                                            $listevents2.= '     <div class="hash">'.$dcto['hash'].'</div>';
+                                                            $listevents2.= '     <div id="overcoment">';
+                                                            $listevents2.= '     <textarea class="textoajustable" id="coment"></textarea>';
+                                                            $listevents2.= '  </div>
                                                                                 <div id="replica"></div>
                                                                             </div>
                                                                             <div class="showfocuscom">
@@ -248,7 +251,7 @@
                                                                 </div>';
                                                            }
                                                           else{ //si no esta logueado no puedo comentar 
-                                                                 $listevents.= '<div  class="coments-nolog">
+                                                                 $listevents2.= '<div  class="coments-nolog">
                                                                      <input type="hidden" id="idevent" value="'.$dcto['_id'].'"/>
                                                                      <input type="hidden" id="hashevent" value="'.$dcto['hash'].'"/>
                                                                     <div class="advert mjscoment">
@@ -260,22 +263,25 @@
                                                                     </div>
                                                                 </div>';
                                                            } 
-                                          $listevents.= '<div  class="list boxscroll">
+                                          $listevents2.= '<div  class="list boxscroll">
                                               
                                             ';
                                                             
 
-                                          $listevents.= '  </div>';   
+                                          $listevents2.= '  </div>';   
                                          //fin aca     
-                                        $listevents.='</div>';
+                                        $listevents2.='</div>';
                                         
                           $listevents.= '</div>'; 
 
                     }
                     //$listevents.= '</div>';
                     $infodiv.= '<div id="number">'.$cont.'</div>';
+                    
+                    $arreglo[] = array('parte1'=>$listevents,'parte2'=>$listevents2);
                     $arr = array('listevents'=>$listevents,
-                                 'infodiv'=>$infodiv);
+                                 'infodiv'=>$infodiv,
+                                 'arreglo'=>$arreglo);
                     return $arr;
        }
        
@@ -373,9 +379,10 @@
             $arr = eventoscernanos($eventsNears);
             $infodiv = $arr['infodiv'];//información para que el mapa lea y muestre los pines con eventos
             $listevents = $arr['listevents'];
-            
+            $arreglo =  $arr['arreglo'];
             $resp = array("infodiv"=>$infodiv,
-                          "listevents"=>$listevents
+                          "listevents"=>$listevents,
+                          "arreglo"=>$arreglo
                          );
             echo json_encode($resp);
        }
