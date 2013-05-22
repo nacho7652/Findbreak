@@ -177,16 +177,19 @@ html {
     min-height: 60px;
     margin-bottom: 4px;
 }
-#ascrail2000 {
+/*#ascrail2000 {
     z-index: 100000000000 !important;
-}
-#ascrail2001 div, #ascrail2000 div{
+}*/
+#ascrail2001 div, #ascrail2000 div,#ascrail2002 div, #ascrail2003 div,
+#ascrail2004 div, #ascrail2004 div,#ascrail2006 div, #ascrail2007 div,
+#ascrail2008 div, #ascrail2009 div,#ascrail2010 div, #ascrail2011 div{
     right: 2px;
     margin: 1px 0px 2px 0px;
-}
-#ascrail2001 {/*comentarios*/
     z-index: 999 !important;
 }
+/*#ascrail2001 {comentarios
+    
+}*/
 #top {
     background: rgba(36, 115, 167, 1);
     /*background: url(/findbreak/images/bg-bner.png);*/

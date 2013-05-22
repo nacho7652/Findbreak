@@ -139,7 +139,7 @@ function geolocalizarManual(address){
 //                alert("dads")
                // alert(data.listevents)
                 $('.loading-events').hide();
-                $('.inner-list-maps').html('');
+               // $('.inner-list-maps').html('');
                 if(data.listevents == ''){
                     $('.no-resultados').show();
                     return false;
@@ -147,7 +147,7 @@ function geolocalizarManual(address){
                     $('.no-resultados').hide();
                 }
                 $('.event-hidden').html(data.infodiv);
-                $('.inner-list-maps').html(data.listevents);
+              //  $('.inner-list-maps').html(data.listevents);
                  var numberOfCase = parseInt($('#number').text());
                  var infoDiv = "";
                  var tokens;

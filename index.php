@@ -384,6 +384,9 @@
 //                      console.log('enter!');
 //                    }
 //             });
+//             $('body').delegate('.boxscroll','',function(){
+//                 
+//             })
              $(".boxscroll").niceScroll({cursorborder:"rgb(185, 185, 185)",cursorcolor:"rgb(185, 185, 185)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
 
               // Customizable cursor

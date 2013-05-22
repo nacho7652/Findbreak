@@ -42,7 +42,7 @@ $(document).ready(function(){
                             {   
                                 item.find('.coment-cerca .list.boxscroll').html(data)
                                 item.find('.coment-cerca').fadeIn(100)
-                                
+                                item.find('#coment').focus()
                             }
                         })
             
@@ -994,7 +994,7 @@ $(document).ready(function(){
                           data: "logout=1",
                           success : function (data)
                           {
-                                window.location.href="../home/";
+                                window.location.href="/findbreak/inicio/";
                           }
              
              

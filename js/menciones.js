@@ -287,10 +287,11 @@ $(document).ready(function(){
       //autoresize
         //<![CDATA[
         $('body').delegate('.textoajustable','keyup',
+        
                 $('.textoajustable').autoResize({
                         // Al redimensionar
                         onResize : function() {
-
+                           
                           $(this).css({opacity:0.8});
                         },
                         // Llamar efecto despues de redimensionar:
@@ -306,6 +307,7 @@ $(document).ready(function(){
                         // Espacio Extra al final del texto:
                         extraSpace : 30
                   })
+                  
            );     
 
         
