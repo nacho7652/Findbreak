@@ -5,7 +5,6 @@
     require_once 'DAL/connect.php';
     require_once 'DAL/usuario.php';
     require_once 'DAL/comentario.php';
-    include_once 'function/facebook-response.php'; 
    
     $contsol=0;
     
@@ -135,7 +134,36 @@
                 </div>
 
                  <div class="top-right">
-                            <?php if(empty($_SESSION['userid'])){?>
+                            <?php
+                            include_once ('function/facebook-response.php');
+                            if(isset($user_profile) != null){//apreté el boton y se creo mi usuario
+                                            $us = new usuario();
+                                            $comp = $us->loginFace($user_profile['email']);
+                                            if($comp!=null)
+                                            {
+                                               $_SESSION['userid'] = $comp['_id'];
+                                               $_SESSION['username'] = $comp['nombre'];
+                                               $_SESSION['foto'] = $comp['foto'];
+                                               $_SESSION['usertype'] = 1;
+                                               $userid = $_SESSION['userid'];
+                                               $username = $_SESSION['username'];
+                                               $foto = $_SESSION['foto'];
+                                               $usertype = $_SESSION['usertype'];
+                                            }
+                                            else
+                                            {
+                                               $hola = $us->insertar($user_profile['email'], $user_profile['email'], $user_profile['email'], '','https://graph.facebook.com/<?= $user?>/picture');
+                                               $_SESSION['userid'] = $hola['_id'];
+                                               $_SESSION['username'] = $hola['nombre'];
+                                               $_SESSION['foto'] = $hola['foto'];
+                                               $_SESSION['usertype'] = 1;
+                                               $userid = $_SESSION['userid'];
+                                               $username = $_SESSION['username'];
+                                               $foto = $_SESSION['foto'];
+                                               $usertype = $_SESSION['usertype'];
+                                            }
+                                        }
+                            if(empty($_SESSION['userid'])){?>
                                <div id="login">
 
                                    <a href="" class="login-hover">
@@ -150,11 +178,6 @@
                                             <div class="txtfb">Ingresar con Facebook</div>
                                         </a>
                                    </div>
-                                    <?php 
-                                        if(isset($user_profile) != null){//apreté el boton y se creo mi usuario
-                                            $_SESSION['user'] = $user_profile;
-                                            print_r($_SESSION['user']);
-                                            }?>
                                    <a href="#" class="registrate">Registrate</a>
                                    <a href="#" class="productora-registro">¿Deseas publicar?</a>
                                </div>
@@ -165,7 +188,7 @@
                                    
 
                                    
-                                   <?php echo $user_profile;
+                                   <?php
                                          $usertype = $_SESSION['usertype'];
                                          if($usertype == 1){
                                              $usuario = new usuario();
