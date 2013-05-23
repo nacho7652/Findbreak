@@ -22,11 +22,14 @@
               <div class="loading-events no-resultados">No hay carrete cerca de la ubicacion, prueba con otra dirección...</div>
                 <div class="inner-list-maps">
                     
-                   <?php for($i=1; $i<=7; $i++){?> 
-                         <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca"><div class="barra"></div>
+                    <?php $j=0; for($i=0; $i<=5; $i++){?> 
+                       <div class="content-eventcerca" id="item-eventcerca<?=$i?>">  
+                         <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca">
+                                            <div class="barra"></div>
                                             <div class="event-right">
                                                         <div class="event-left" style="background-image:url(../images/productoras/238928932389892/foto1.jps); background-size: cover"></div>
-                                                         <div class="num-event"></div>   <a target="_blank" href="/findbreak/break/518d0c174de8b45810000000" class="tit-eventcerca">Rooster en chile 2013</a>
+                                                         <div class="num-event"></div>   
+                                                        <a target="_blank" href="/findbreak/break/518d0c174de8b45810000000" class="tit-eventcerca">Rooster en chile XXX</a>
                                                        <div class="info-eventcerca info-eventcercawhte">
                                                            <div class="item-infocerca">
                                                                
@@ -44,29 +47,61 @@
                                                             
                                                             <div class="item-infocerca">
                                                                 <div id="visitavent-prof" class="info-event-item resp-cuando">
-                                                                   <div>Visto por <span class="bold">180</span></div>
-                                                                   <div id="comentaevent-prof"><span class="bold">67</span> Comentarios</div>
-                                                                   <input type="hidden" id="totalComent" value="67">
+                                                                   <div>Visto por <span class="bold">181</span></div>
+                                                                   <div id="comentaevent-prof"><span class="bold">70</span> Comentarios</div>
+                                                                   <input type="hidden" id="totalComent" value="70">
                                                                </div>  
                                                            </div>
                                                            <div class="botonitemcerca botonblue">Ver comentarios</div>
                                                         
                                                       </div>
-                                                     
-                                                 </div><div class="tags-hidden">quilicura,carrete,</div>
-                                            <div class="coment-cerca"><div class="coments">  <input type="hidden" id="idevent" value="518d0c174de8b45810000000">  <input type="hidden" id="hashevent" value="#RoosterEnChile2013">  <div class="input-transcom">     <div class="hash">#RoosterEnChile2013</div>     <div id="overcoment">     <textarea class="textoajustable" id="coment"></textarea>  </div>
-                                                                                <div id="replica"></div>
-                                                                            </div>
-                                                                            <div class="showfocuscom">
-                                                                                <div class="divcitar">@</div>
-                                                                                <div class="amigosCitar"></div>
-                                                                                <input type="button" class="botonblue" id="btn-comentar" value="Comentar">
-                                                                            </div>
+                                                      
+                                                        <div class="tags-hidden">quilicura,carrete,</div>
+                                                    
+                                            </div>
+                                            
+                                            <div class="coment-cerca">
+                                               <?php if(!isset($_SESSION['userid'])){?>
+                                                    <div class="cuadrocoment">
+                                                        <div class="coments-nolog">
+                                                            <input type="hidden" id="idevent" value="518d0c174de8b45810000000">
+                                                            <input type="hidden" id="hashevent" value="#RoosterEnChile2013">
+                                                           <div class="advert mjscoment">
+                                                               Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
+                                                               <a class="paracoment" id="login-fb" href="">
+                                                                   <div id="loginbtn-fb"></div>
+                                                                   <div class="txtfb">Ingresar con Facebook</div>
+                                                               </a>
+                                                           </div>
+                                                        </div>
+                                                    </div>
+                                                <?php }else{?>
+                                                     <div class="cuadrocoment coments">  
+                                                         <input type="hidden" id="idevent" value="518d0c944de8b48419000000">  
+                                                         <input type="hidden" id="hashevent" value="#BosterEnChile2013">  
+                                                         <div class="input-transcom">     
+                                                             <div class="hash">#BosterEnChile2013</div>     
+                                                             <div id="overcoment">     
+                                                                <textarea class="textoajustable" id="coment"></textarea>  
+                                                             </div>
+                                                             <div id="replica"></div>
+                                                         </div>
+                                                        <div class="showfocuscom" style="display: block;">
+                                                            <div class="divcitar">@</div>
+                                                            <div class="amigosCitar" style="display: none;"></div>
+                                                            <input type="button" class="botonblue" id="btn-comentar" value="Comentar">
+                                                        </div>
 
-                                                                </div><div class="list boxscroll">
-                                              
-                                              </div></div></div>
-                   
+                                                      </div>
+                                                <?php }?>
+                                                <div class="list boxscroll">
+
+                                                </div>
+                                                
+                                            </div>
+                                                 
+                         </div>
+                     </div>
                     <?php } ?>
                     
                 </div>

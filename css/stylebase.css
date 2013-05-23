@@ -944,6 +944,11 @@ html {
     z-index: 2;
     padding: 0px 0px 16px 0px;
 }
+.content-eventcerca {
+    width: 447px;
+    height: 240px;
+    margin: 0px 0px 29px 0px;
+}
 .first-partevent .list-maps .inner-list-maps{
     max-height: 102px;
     margin: 0px auto 0 auto;  

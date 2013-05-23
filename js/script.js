@@ -1,5 +1,5 @@
 $(document).ready(function(){
- 
+  padre = 0;
         $('#login-fb').mouseover(function(){
            $(this).css('background','url(/mooff/images/login-face-sprite.png) -82px -24px no-repeat');
            $('#loginbtn-fb').css('background','url(/mooff/images/loginbtn-face-sprite.png) -0px -24px no-repeat')
@@ -274,14 +274,15 @@ $(document).ready(function(){
         $('body').delegate('#coment','focus',function(){
             $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
         })
-        
+       
         $('body').delegate('#btn-comentar','click',function(){
-         var coment = $('#coment').val();
-         var eventid = $('#idevent').val();
-         var nombreevent = $('.title-event').html();
-         var hashevent = $('#hashevent').val();
-         var totalComent = $('#totalComent').val();
-         var ultimoComentario = $('.list .itemcoment:last').attr('data-num');
+         padre = $(this).parent().parent().parent().parent().parent();
+         var coment = padre.find('#coment').val();
+         var eventid = padre.find('#idevent').val();
+         var nombreevent = padre.find('.title-event').html();
+         var hashevent = padre.find('#hashevent').val();
+         var totalComent = padre.find('#totalComent').val();
+         var ultimoComentario = padre.find('.list .itemcoment:last').attr('data-num');
          ultimoComentario = parseInt(ultimoComentario) +2;
          totalComent++;
          
@@ -292,16 +293,16 @@ $(document).ready(function(){
              data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
              success: function (data)
              {
-                 $('.showfocuscom').hide();
-                 $('#coment').css('height','16px');
-                 $('#coment').val('');
-                 $('.list').html(data);
-                 $('#replica').html('');
-                 $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
+                 padre.find('.showfocuscom').hide();
+                 padre.find('#coment').css('height','16px');
+                 padre.find('#coment').val('');
+                 padre.find('.list').html(data);
+                 padre.find('#replica').html('');
+                 padre.find('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
                  //sumar evento
                 
-                 cantidadComentarios = (parseInt($('#totalComent').val())  + 1)
-                 $('#totalComent').val(cantidadComentarios)
+                 cantidadComentarios = (parseInt(padre.find('#totalComent').val())  + 1)
+                 padre.find('#totalComent').val(cantidadComentarios)
                  if(cantidadComentarios == 0){
                                             textoComentario = 'Se el primero en comentar!';
                                         }else
@@ -310,9 +311,9 @@ $(document).ready(function(){
                                         }else{
                                             textoComentario = '<span class="bold">'+cantidadComentarios+'</span> Comentarios';
                                         }
-                 $('#comentaevent-prof').html(textoComentario);
+                 padre.find('#comentaevent-prof').html(textoComentario);
                 
-                 $('.list').animate({
+                 padre.find('.list').animate({
                      'scrollTop': "0px" 
                  },
                  {
@@ -326,6 +327,7 @@ $(document).ready(function(){
         //preguntar(pregunta, cuerpo, pie)
           var itemComentario;
           $('body').delegate('#delcoment','click',function(){
+               padre = $(this).parent().parent().parent().parent().parent().parent();
               itemComentario = $(this).parent().parent();
               var dataid = $(this).attr('data-id');
               var pregunta = '<div class="bloq1msj">¿Realmente deseas borrar este comentario?</div>';
@@ -352,6 +354,7 @@ $(document).ready(function(){
           });
         //delcoment
         $('#covermsj').delegate('#aceptarcoment','click',function(){
+           
            var dataid = $(this).attr('data-id');
          
             $.ajax({           
@@ -362,7 +365,7 @@ $(document).ready(function(){
                success: function (data)
                {
                  //sumar evento
-                    cantidadComentarios = (parseInt($('#totalComent').val())  - 1)
+                    cantidadComentarios = (parseInt(padre.find('#totalComent').val())  - 1)
                     $('#totalComent').val(cantidadComentarios)
                     if(cantidadComentarios == 0){
                                                textoComentario = 'Se el primero en comentar!';

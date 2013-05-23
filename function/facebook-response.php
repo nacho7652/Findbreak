@@ -18,6 +18,7 @@ require 'facebook.php';
       } catch (FacebookApiException $e) {
         error_log($e);
         $user = null;
+        //$user_profile = -1;
       }
     }
 

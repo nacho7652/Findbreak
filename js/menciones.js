@@ -2,8 +2,10 @@ $(document).ready(function(){
         
      largoUsuario = 0;
      focusFinal = 0;
+     comentGlobal = 0;
+     replicaGlobal = 0;
       function reemplazar(){
-          texto = $('#coment').val();
+          texto = comentGlobal.val();
           partes = texto.split(" ");
           usuario = -1;
           yapaso = 0;
@@ -20,12 +22,12 @@ $(document).ready(function(){
                      textoHtml = texto.replace(usuario, nueva);  
                   }
                   yapaso = 1;
-                  $('#replica').html(textoHtml);
+                  replicaGlobal.html(textoHtml);
               }
           }
           if(usuario == -1)// no hay citas
               {
-                  $('#replica').html(texto);
+                  replicaGlobal.html(texto);
               }
       }
       function conocerElFocus(){
@@ -45,7 +47,7 @@ $(document).ready(function(){
               //tomo el nombre de usuario y tomo el largo
                 var id = $('.itemCitar.itemCitarSelected').attr('data-id');
                 var nombre = $('.itemCitar.itemCitarSelected').find('.item-friends-username').html();
-                nuevoTexto = $('#coment').val();
+                nuevoTexto = comentGlobal.val();
 //                usuarioAcitar = '!#skumblue1';
                 usuarioAcitar = nombre;
                 largoUsuario = usuarioAcitar.length + 3;//mas dos por el !#
@@ -64,7 +66,7 @@ $(document).ready(function(){
               //tomo el nombre de usuario y tomo el largo
 //                var id = $('.itemCitar.itemCitarSelected').attr('data-id');
 //                var nombre = $('.itemCitar.itemCitarSelected').find('.item-friends-username').html();
-                nuevoTexto = $('#coment').val();
+                nuevoTexto = comentGlobal.val();
 //                usuarioAcitar = '!#skumblue1';
                 usuarioAcitar = nombre;
                 largoUsuario = usuarioAcitar.length + 3;//mas dos por el !#
@@ -79,7 +81,7 @@ $(document).ready(function(){
        
       function HayArroa(){
           hayArroa = false;
-          partes = $('#coment').val();
+          partes = comentGlobal.val();
           for(i=0; i<partes.length; i++){
               if(partes[i].indexOf('@')!= -1){
                   hayArroa = true;
@@ -92,11 +94,11 @@ $(document).ready(function(){
       function citar(nombre){
           //tengo que sacar el nickname del usuario seleccionado
           //luego saco su largo y era
-          texto = $('#coment').val();
+          texto = comentGlobal.val();
           partes = texto.split(" ");
           usuario = -1;
           yapaso = 0;
-          cursor = $('#coment').val().length;
+          cursor = comentGlobal.val().length;
           // buscar cada palabra que contenga esto !#skumblue
           // a estas palabras se transformaran en <b>!#skumblue</b>
           for(i=0; i<partes.length; i++){
@@ -116,8 +118,8 @@ $(document).ready(function(){
                      textoPlano = texto.replace(arroa, nuevaplano);
                   }
                   yapaso = 1;
-                  $('#replica').html(textoHtml);
-                  $('#coment').val(textoPlano);
+                  replicaGlobal.html(textoHtml);
+                  comentGlobal.val(textoPlano);
               }
           }
       }
@@ -141,39 +143,34 @@ $(document).ready(function(){
         }
 
      function tobr(){
-         textoPlano1 = $('#replica').html().replace(/ /g,'&nbsp;');
+         textoPlano1 = replicaGlobal.html().replace(/ /g,'&nbsp;');
          textoPlano = textoPlano1.replace(/\n/g,'<br>');
-         $('#replica').html(textoPlano)
-//         alert($('#replica').html());
-//         alert($('#coment').val());
-//              textoPlano = $('#replica').html().replace(/ /g,'&nbsp;');
-//              $('#replica').html(textoPlano) 
-//              $.post('/findbreak/function/users-response.php', {'reemplazarBr':1,'textoPlano':textoPlano},
-//                    function(data){   
-//                        $('#replica').html(data)       
-//                    }, "html");
+         replicaGlobal.html(textoPlano)
       }
       
         
         $('body').delegate('#coment','keyup',function(e){ 
-           // alert('dsaads')
+           comentGlobal = $(this);
+           padreComent = $(this).parent().parent().parent();
+           replicaGlobal = $(this).parent().parent().find('#replica');
+          //  alert('dsaads')
 //           alert(e.keyCode)
 //           alert('key up')
          
-           if($('.amigosCitar').is(':visible')){
+           if(padreComent.find('.amigosCitar').is(':visible')){
                    conocerElFocusFinal();
                    if(e.keyCode == 40){//abajo
                       
                         //si estoy en el ultimo no haga nada
-                        setCaretToPos(document.getElementById('coment'), parseInt(focusFinal))
-                       if( $('.amigosCitar .itemCitar:last-child').hasClass('itemCitarSelected')){
-                             selected = $('.itemCitar.itemCitarSelected');
-                             nuevo = $('.itemCitar:first');
+                        setCaretToPos(comentGlobal, parseInt(focusFinal))
+                       if( padreComent.find('.amigosCitar .itemCitar:last-child').hasClass('itemCitarSelected')){
+                             selected = padreComent.find('.itemCitar.itemCitarSelected');
+                             nuevo = padreComent.find('.itemCitar:first');
                              selected.removeClass('itemCitarSelected');
                              nuevo.addClass('itemCitarSelected');
                              return false;
                         }
-                        selected = $('.itemCitar.itemCitarSelected');
+                        selected = padreComent.find('.itemCitar.itemCitarSelected');
                         nuevo = selected.next('.itemCitar');
                         selected.removeClass('itemCitarSelected');
                         nuevo.addClass('itemCitarSelected');
@@ -183,15 +180,15 @@ $(document).ready(function(){
                   if(e.keyCode == 38){
                        //si estoy en el primero no haga nada
 //                      conocerElFocusFinal();
-                      setCaretToPos(document.getElementById('coment'), parseInt(focusFinal))
+                      setCaretToPos(comentGlobal, parseInt(focusFinal))
                       if( $('.amigosCitar .itemCitar:first-child').hasClass('itemCitarSelected')){
-                             selected = $('.itemCitar.itemCitarSelected');
-                             nuevo = $('.itemCitar:last');
+                             selected = padreComent.find('.itemCitar.itemCitarSelected');
+                             nuevo = padreComent.find('.itemCitar:last');
                              selected.removeClass('itemCitarSelected');
                              nuevo.addClass('itemCitarSelected');
                              return false;
                       }
-                      selected = $('.itemCitar.itemCitarSelected');
+                      selected = padreComent.find('.itemCitar.itemCitarSelected');
                       nuevo = selected.prev('.itemCitar');
                       selected.removeClass('itemCitarSelected');
                       nuevo.addClass('itemCitarSelected');
@@ -206,13 +203,13 @@ $(document).ready(function(){
                     function(data){   
                                 //alert(data)
                                 if(data == ''){
-                                    $('.amigosCitar').hide();
-                                    $('.amigosCitar').html(data);
-                                    $('.itemCitar:first').addClass('itemCitarSelected');
+                                    padreComent.find('.amigosCitar').hide();
+                                    padreComent.find('.amigosCitar').html(data);
+                                    padreComent.find('.itemCitar:first').addClass('itemCitarSelected');
                                 }else{
-                                    $('.amigosCitar').show();
-                                    $('.amigosCitar').html(data);
-                                    $('.itemCitar:first').addClass('itemCitarSelected');
+                                    padreComent.find('.amigosCitar').show();
+                                    padreComent.find('.amigosCitar').html(data);
+                                    padreComent.find('.itemCitar:first').addClass('itemCitarSelected');
                                 }
                     }, "html");
         })
@@ -229,8 +226,8 @@ $(document).ready(function(){
              //si no hay arroa no haga nada
              if(HayArroa() || apretoFuera){
                 
-                var id = $('.itemCitar.itemCitarSelected').attr('data-id');
-                var nombre = $('.itemCitar.itemCitarSelected').find('.item-friends-username').html(); 
+                var id = padreComent.find('.itemCitar.itemCitarSelected').attr('data-id');
+                var nombre = padreComent.find('.itemCitar.itemCitarSelected').find('.item-friends-username').html(); 
                 citar(nombre);
                 reemplazar();
                 conocerElFocusFinal();
@@ -253,8 +250,8 @@ $(document).ready(function(){
         
         amigosCitVisible = false;
         function mostrarAmigosCitar(){
-            $('.amigosCitar').toggle();
-            if($('.amigosCitar').is(':visible')){
+            padreComent.find('.amigosCitar').toggle();
+            if(padreComent.find('.amigosCitar').is(':visible')){
                 amigosCitVisible = true;
             }else{
                 amigosCitVisible = false;
@@ -273,7 +270,7 @@ $(document).ready(function(){
         $('body').delegate('.itemCitar','click',function(){
             var id = $(this).attr('data-id');
             var nombre = $(this).find('.item-friends-username').html();
-            $('#coment').val($('#coment').val()+ ' #'+nombre)
+            comentGlobal.val(comentGlobal.val()+ ' #'+nombre)
 //            citar(nombre)
 //            alert(nombre)
             reemplazar();
@@ -286,7 +283,7 @@ $(document).ready(function(){
        
       //autoresize
         //<![CDATA[
-        $('body').delegate('.textoajustable','keyup',
+       // $('body').delegate('.textoajustable','keyup',
         
                 $('.textoajustable').autoResize({
                         // Al redimensionar
@@ -308,7 +305,7 @@ $(document).ready(function(){
                         extraSpace : 30
                   })
                   
-           );     
+          // );     
 
         
       //  ]]>

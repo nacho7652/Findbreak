@@ -156,11 +156,119 @@
             echo json_encode($re);
     }
     
-    
        function eventoscernanos($eventsNears){
+           $cont = 0; //cantidad de eventos encontrados para mostrarlos en el mapa
+            //$listevents = '<div class="eventsnear">';
+            $listevents = '';
+            $infodiv = '';
+            $e = new evento();
+            $arreglo = array();
+             foreach ($eventsNears as $dcto){
+                        //Con esta info. el mapa de google muestra los pines
+                         $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['direccion']."+".$dcto['fotos'][0]."+".
+                                $dcto['loc'][0]."+".$dcto['loc'][1].'</div>'."\n";
+                         $cont++;
+                       //----0----   
+                       
+
+                     //   $mongotime = New Mongodate(strtotime($realtime));
+                        $folder = (string)$dcto['producido_por']['_id'];
+                        $url = '../images/productoras/'.$folder.'/'.$dcto['fotos'][0];
+                       // $listevents.= '<div data-id="'.$dcto['_id'].'" data-hash="'.$dcto['hash'].'" class="item-eventcerca">';
+                        $listevents.= '
+                                           
+                          <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
+                                 <div class="num-event"></div>';
+                                  $nombreLink = str_replace(' ', '-', $dcto['nombre']);
+                                  $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'],1);
+                                  $cantidadComentarios = $e->verCantidadComentarios($dcto['_id']);
+                                    $textoComentario = '';
+                                    if($cantidadComentarios == 0){
+                                        $textoComentario = 'Se el primero en comentar!';
+                                    }elseif($cantidadComentarios == 1){
+                                        $textoComentario = 'Un comentario';
+                                    }else{
+                                        $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
+                                    }
+                                  $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['_id'].'" class="tit-eventcerca" >'.$dcto['nombre'].'</a>
+                                                       <div class="info-eventcerca info-eventcercawhte">
+                                                           <div class="item-infocerca">
+                                                               
+                                                               <div id="fechaevent" class="resp-cuando">'.$realizacion['fecha'].'</div>
+                                                           </div>
+                                                            <div class="item-infocerca">
+                                                                    <div id="horaevent" class="resp-cuando">'.$realizacion['hora'].' hrs.</div>
+                                                           </div>
+                                                           <div class="item-infocerca">
+                                                                
+                                                                <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                            <div class="item-infocerca">
+                                                                <div id="visitavent-prof" class="info-event-item resp-cuando">
+                                                                   <div>Visto por <span class="bold">'.$dcto['visitas'].'</span></div>
+                                                                   <div id="comentaevent-prof">'.$textoComentario.'</div>
+                                                                   <input type="hidden" id="totalComent" value="'.$cantidadComentarios.'"/>
+                                                               </div>  
+                                                           </div>
+                                                           <div class="botonitemcerca botonblue">Ver comentarios</div>
+                                                        
+                                                      </div>
+                                                     
+                                                 '; 
+                                     $infoEventCerca = '
+                                                           <div class="item-infocerca">
+                                                               
+                                                               <div id="fechaevent" class="resp-cuando">'.$realizacion['fecha'].'</div>
+                                                           </div>
+                                                            <div class="item-infocerca">
+                                                                    <div id="horaevent" class="resp-cuando">'.$realizacion['hora'].' hrs.</div>
+                                                           </div>
+                                                           <div class="item-infocerca">
+                                                                
+                                                                <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                            <div class="item-infocerca">
+                                                                <div id="visitavent-prof" class="info-event-item resp-cuando">
+                                                                   <div>Visto por <span class="bold">'.$dcto['visitas'].'</span></div>
+                                                                   <div id="comentaevent-prof">'.$textoComentario.'</div>
+                                                                   <input type="hidden" id="totalComent" value="'.$cantidadComentarios.'"/>
+                                                               </div>  
+                                                           </div>
+                                                           <div class="botonitemcerca botonblue">Ver comentarios</div>';
+                                 $tagsHidden = '';
+                                                    foreach ($dcto['tags'] as $tags){
+
+                                                            $tagsHidden.= $tags;
+                                                            $tagsHidden.= ',';
+                                                    }
+                                                $listevents.= '</div>';                              
+                          $arreglo[] = array('id'=>(string)$dcto['_id'],
+                                             'hash'=>$dcto['hash'],
+                                             'event-right'=>$listevents,
+                                             'info'=>$infoEventCerca,
+                                             'tags'=>$tagsHidden,
+                                             'nombre'=>$dcto['nombre']);  
+                    }
+                    //$listevents.= '</div>';
+                    $infodiv.= '<div id="number">'.$cont.'</div>';
+                    $arr = array('listevents'=>$listevents,
+                                 'infodiv'=>$infodiv,
+                                 'arreglo'=>$arreglo);
+                    return $arr;
+       }
+       function eventoscernanos5($eventsNears){
             $cont = 0; //cantidad de eventos encontrados para mostrarlos en el mapa
             //$listevents = '<div class="eventsnear">';
             $listevents = '';
+            $listevents2 = '';
+            $todos = '';
+            $arreglo = array();
             $infodiv = '';
             $e = new evento();
              foreach ($eventsNears as $dcto){
@@ -219,17 +327,17 @@
                                                      
                                                  ';     
                           $listevents.= '</div>';
-                                        $listevents.= '<div class="tags-hidden">';
-                                        foreach ($dcto['tags'] as $tags){
-                                             
-                                                $listevents.= $tags;
-                                                $listevents.= ',';
-                                        }
-                                        $listevents.= '</div>';
+//                                        $listevents.= '<div class="tags-hidden">';
+//                                        foreach ($dcto['tags'] as $tags){
+//                                             
+//                                                $listevents.= $tags;
+//                                                $listevents.= ',';
+//                                        }
+//                                        $listevents.= '</div>';
                                       
                                         //PARTE 2
                                         
-                                          $listevents2='<div class="coment-cerca">';
+                                          $listevents2='</div></div><div class="coment-cerca">';
                                             //aca
                                                     if(isset($_SESSION['userid'])){ 
                                                             $listevents2.= '<div  class="coments">';
@@ -263,25 +371,24 @@
                                                                     </div>
                                                                 </div>';
                                                            } 
-                                          $listevents2.= '<div  class="list boxscroll">
-                                              
-                                            ';
+                                          $listevents2.= '<div  class="list boxscroll">';
                                                             
 
-                                          $listevents2.= '  </div>';   
+                                          $listevents2.= '</div>';   
                                          //fin aca     
                                         $listevents2.='</div>';
                                         
-                          $listevents.= '</div>'; 
-
+                          $listevents2.= '</div>'; 
+                          $arreglo[] = array('parte1'=>$listevents,'parte2'=>$listevents2);
+                          $todos.=$listevents.$listevents2;
                     }
-                    //$listevents.= '</div>';
-                    $infodiv.= '<div id="number">'.$cont.'</div>';
+                    $listevents.= '</div>';
+                   $infodiv.= '<div id="number">'.$cont.'</div>';
                     
-                    $arreglo[] = array('parte1'=>$listevents,'parte2'=>$listevents2);
-                    $arr = array('listevents'=>$listevents,
-                                 'infodiv'=>$infodiv,
-                                 'arreglo'=>$arreglo);
+                    
+                    $arr = array('listevents'=>$todos,
+                                 'arreglo'=>$arreglo,
+                                 'infodiv'=>$infodiv);
                     return $arr;
        }
        
@@ -380,6 +487,7 @@
             $infodiv = $arr['infodiv'];//información para que el mapa lea y muestre los pines con eventos
             $listevents = $arr['listevents'];
             $arreglo =  $arr['arreglo'];
+            //$number = $arr['number'];
             $resp = array("infodiv"=>$infodiv,
                           "listevents"=>$listevents,
                           "arreglo"=>$arreglo

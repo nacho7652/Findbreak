@@ -151,10 +151,11 @@
                                       </a>
                                    </div>
                                    <?php 
-                                   if(isset($user_profile) != null){
-                                       echo $user_profile['email'];
-                                       
-                                       } ?> 
+                                   
+//                                   if(isset($user_profile) != null){
+//                                       echo $user_profile['email'];
+//                                       
+//                                       } ?> 
                                    <a href="#" class="registrate">Registrate</a>
                                    <a href="#" class="productora-registro">¿Deseas publicar?</a>
                                </div>
@@ -165,7 +166,7 @@
                                    
 
                                    
-                                   <?php echo $user_profile;
+                                   <?php //echo $user_profile;
                                          $usertype = $_SESSION['usertype'];
                                          if($usertype == 1){
                                              $usuario = new usuario();
