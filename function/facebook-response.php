@@ -14,7 +14,9 @@ require 'facebook.php';
     if ($user) {
       try {
         // Proceed knowing you have a logged in user who's authenticated.
-        $user_profile = $facebook->api('/me');
+        $user_profile = $facebook->api('/me'); 
+        print_r($_SESSION['user']);
+        //$_SESSION['user'] = null;
       } catch (FacebookApiException $e) {
         error_log($e);
         $user = null;
@@ -28,7 +30,6 @@ require 'facebook.php';
             'redirect_uri' => 'http://localhost/findbreak/cerca'
     );
     $loginUrl = $facebook->getLoginUrl($params);
-    //$user_profile = null;
     //header("location:/mooff/home");
     
 if(isset($_GET['logout'])){

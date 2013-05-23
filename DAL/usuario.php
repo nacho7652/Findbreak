@@ -96,6 +96,14 @@ class usuario {
          //this->db->$coll->find(array("nombre"=>"LOLAPALUSA", "direccion"=>"San carlos #294"))
     }
     
+    public function loginFace($mail)
+    {
+        
+        $result = $this->db->usuario->findOne(array("email"=>$mail ));
+        return $result;
+         //this->db->$coll->find(array("nombre"=>"LOLAPALUSA", "direccion"=>"San carlos #294"))
+    }
+    
      public function findforid($id){
          $theObjId = new MongoId($id); 
          return $this->db->usuario->findOne(array("_id" => $theObjId));
@@ -415,7 +423,7 @@ class usuario {
                                       );
     }
      
-     public function insertar($name, $apellido, $mail, $pass){ 
+     public function insertar($name, $apellido, $mail, $pass, $photo){ 
          $user = array(
             "nombre" => $name,
             "apellido" => $apellido,
@@ -425,8 +433,7 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c170.50.621.621/s160x160/604099_10200642826730761_1474278375_n.jpg'
-             
+            "foto"=>$photo    
         );
          return $this->db->usuario->insert($user);        
      }
