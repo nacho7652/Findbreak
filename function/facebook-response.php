@@ -15,7 +15,7 @@ require 'facebook.php';
       try {
         // Proceed knowing you have a logged in user who's authenticated.
         $user_profile = $facebook->api('/me'); 
-        print_r($_SESSION['user']);
+        print_r($user_profile);
         //$_SESSION['user'] = null;
       } catch (FacebookApiException $e) {
         error_log($e);
@@ -23,7 +23,7 @@ require 'facebook.php';
         //$user_profile = -1;
       }
     }
-
+   
     // Login or logout url will be needed depending on current user state.
     $params = array(
             'scope' => 'email,user_birthday,user_location,publish_stream,offline_access',
