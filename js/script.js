@@ -938,7 +938,7 @@ $(document).ready(function(){
       })
       
       $("#boton-login").click(function(){
-          
+          alert('qwerty')
           //var textoAmigo = $('#amigo').val();
           var mail = $('#mail').val();
           var pass = $('#pass').val();
