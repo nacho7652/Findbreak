@@ -7,6 +7,16 @@
                    $page_class = 'inicio';
                    $page_description = "Encuentra un quiebre a tu rutina";
                    break;
+    case 'publicar': $page_title = 'Findbreak';
+                   $page_site = 'publicar';
+                   $page_class = 'publicar';
+                   $page_description = "Encuentra un quiebre a tu rutina";
+                   break;
+     case 'login': $page_title = 'Findbreak';
+                   $page_site = 'login';
+                   $page_class = 'login';
+                   $page_description = "Encuentra un quiebre a tu rutina";
+                   break;
       case 'cerca': $page_title = 'Findbreak';
                    $page_site = 'cerca';
                    $page_class = 'cerca';

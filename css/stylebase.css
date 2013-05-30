@@ -258,6 +258,13 @@ html {
     width: 400px;
     height: 53px;
 }
+#info-publicar{
+    float: right;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+}
 #boton-buscar {
     width: 28px;
     height: 32px;

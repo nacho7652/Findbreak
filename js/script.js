@@ -1,4 +1,21 @@
 $(document).ready(function(){
+    
+    //Informacion publicar evento hecho por el mejor programador de la tierra daniel millar
+    
+    $('#info-publicar').hover(function(){
+        
+        $('#info-mostrar').show();
+        
+    })
+    $('#info-mostrar').mouseleave(function(){
+        
+        $('#info-mostrar').hide();
+        
+    })
+    
+    //fin info-publicar
+    
+    
   padre = 0;
         $('#login-fb').mouseover(function(){
            $(this).css('background','url(/mooff/images/login-face-sprite.png) -82px -24px no-repeat');
@@ -913,7 +930,7 @@ $(document).ready(function(){
       
       //LOGIN
       $('.registrate').click(function(){
-          $.post("../json/zoom.php", {'popup-registrousuario':1}, function(data){
+          $.post("/findbreak/json/zoom.php", {'popup-registrousuario':1}, function(data){
                 popup(data);
             }, "html");
       });
@@ -942,6 +959,57 @@ $(document).ready(function(){
           //var textoAmigo = $('#amigo').val();
           var mail = $('#mail').val();
           var pass = $('#pass').val();
+          
+          if(mail=="" || pass=="")
+              {
+                  alert('Email o contraseña no son validos');
+              }
+              else
+                  {
+                      
+                      $.ajax({
+                          
+                          type: "POST",
+                          dataType: "JSON",
+                          url: "/findbreak/function/login-response.php",
+                          data: "login=1&mail="+mail+"&pass="+pass,
+                          success : function (data)
+                          {  
+                              if(data.exito)
+                                  { 
+                                      if(data.usertype == 1){
+                                        window.location.reload();//es usuario y recargo la página donde esté
+                                      }
+                                      if(data.usertype == 2){  
+                                        var id = data.userid;
+                                        
+                                        window.location.href="../productora/"+id+"";//es usuario y recargo la página donde esté
+                                      }
+                                     // alert(data.divuserlogin)
+                                     // $('.top-right').html(data.divuserlogin);
+                                      //$("#login").html("Bienvenido");
+//                                      $('#login').hide(1000);
+//                                      $("#user-register").show(1111);
+//                                      $("#user-photo").html(data.foto);
+//                                      $("#user-name").html(data.username);
+                                      //user-id 
+                                      
+                                      
+                                  }
+                          }
+                          
+                          
+                      })
+                  }
+              
+          
+          
+      })
+      $("#boton-login2").click(function(){
+          
+          //var textoAmigo = $('#amigo').val();
+          var mail = $('#mail2').val();
+          var pass = $('#pass2').val();
           
           if(mail=="" || pass=="")
               {
