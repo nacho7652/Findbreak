@@ -333,6 +333,33 @@
                                    <?php }?>
                                </div>
                                <?php } ?>
+                     
+                     <div id="info-publicar"> 
+                     
+                     
+                     </div>
+                     <div id="info-mostrar" style="display:none">  
+                     Publica un evento y obten todos los beneficios que te bindra findbreak
+                     ¿Quieres publicar un evento?
+                     <?php 
+                        
+                        if(isset($_SESSION["userid"])) //estoy logeado
+                        {
+                           ?> <a href="/findbreak/publicar" >+</a> <?php
+                        }
+                        else
+                        {
+                            
+                            
+                        
+                     ?>
+                        <a href="/findbreak/login" >+</a>
+                        
+                        <?php
+                        }
+                        ?>
+                     
+                     </div>
                  </div>
                 
               
