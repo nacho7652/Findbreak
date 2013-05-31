@@ -190,17 +190,17 @@ $(document).ready(function(){
       
   })
 
-     $('#coverall').delegate('#guardarusuario','click',function()
+  $('#coverall').delegate('#guardarusuario','click',function()
   {
       
         var nomeuser = $('#nombre-usuario').val();
         var apellido = $('#apellido-usuario').val();
         var correousuario = $('#correo-usuario').val();
         var claveusuario = $('#clave-usuario').val();
-        //alert("adads"); return;
+//        alert("adads"); return;
                         $.ajax({
                                  dataType:"JSON",
-                                 url : '../function/users-response.php',
+                                 url : '/findbreak/function/users-response.php',
                                  type : 'POST',
                                  data : "guardaruser=1&nomuser="+nomeuser+"&apellido="+apellido+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
                                  success : function(res){                      

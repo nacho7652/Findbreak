@@ -4,26 +4,43 @@
       require_once '/DAL/evento.php';
       require_once '/DAL/comentario.php';
       require_once '/DAL/usuario.php';
-      //
       $usuario = new usuario();
-      $useridGet = explode($_GET['id'], '#');
-     // $useridGet2 = $useridGet[1];
-     // $usuariofound = $usuario->findforid($_GET['id']);
-      //
-      $comentarioEvent = new comentario();
+      $partid = explode('!', $_GET['id']);
+      $userid = $partid[1];
+      $usuariofound = $usuario->findforid($userid);
+      
+      $comentarioUser = new comentario();
       $event = new evento();
-//      $eventfound = $event->findforid($_GET['id']);
-//      $folder = (string)$eventfound['producido_por']['_id'];
-//      $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
+      $eventfound = $event->findforid('516aed144de8b4a003000003');
+      $folder = (string)$eventfound['producido_por']['_id'];
+      $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
 ?>
 <div class="more-fotos">
-
+                <?php 
+                   $fotos = $eventfound['fotos'];
+                   $primero = 0;
+                   if(count($eventfound['fotos']) > 1){
+                       for($i=0; $i<count($eventfound['fotos']) ; $i++){
+                           if($primero == 0){
+                               $primero = 1;
+                               $url = 'background-size: cover; background-image: url(http://3.bp.blogspot.com/-BDrt8UjnTis/TVq6Yzct59I/AAAAAAAAAZg/9dH2MauSfhk/s1600/millencolin_4.jpg);width: 170px;';
+                           echo ' <div class="foto-event-small" style="'.$url.'"></div>';
+                               
+                           }else{
+                          // $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][$i+1];
+                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
+                           ?>
+                       <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
+                <?php
+                     }}
+                   }
+               ?>
 </div>
 
 <div class="parte-left-parent">
             <div class="part-left divtrans">
                     <div class="part-left-right">
-                        <div class="foto-event" style="background-size: cover; background-image: url(<?php// echo $url ?>)"></div>
+                        <div class="foto-event" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
 <!--                        <div class="info-num">
                             <div class="item-info-num">
                                 <div class="topinfo">Visitas</div>
@@ -37,15 +54,52 @@
                     </div>
 
                     <div class="part-left-cent">
-                        <div class="title-event tit"><?php echo $useridGet; ?></div>
+                        <div class="title-event tit"><?php echo $usuariofound['nombre'].' '.$usuariofound['apellido']?></div>
                         <div class="inner-eveninfo info-eventcerca">
+                                <?php 
+                                        $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
+                                        $cantidadComentarios = $usuario->verCantidadComentarios($userid);
+                                        $textoComentario = '';
+                                        if($cantidadComentarios == 0){
+                                            $textoComentario = 'Se el primero en comentar!';
+                                        }elseif($cantidadComentarios == 1){
+                                            $textoComentario = 'Un comentario';
+                                        }else{
+                                            $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
+                                        }
+                                    ?>
 
+                                <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
+                                <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
+                                <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
+                                <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
+                                <div id="visitavent-prof" class="info-event-item">
+                                    <div>Visto por <span class="bold"><?php echo $eventfound['visitas']?></span></div>
+                                    <div id="comentaevent-prof"><?php echo $textoComentario?> </div>
+                                    <input type="hidden" id="totalComent" value="<?= $cantidadComentarios?>"/>
+                                </div>
 
                         </div>
                     </div>
 
                     <div class="part-left-lf">
-                      
+                        <div id="icondescrip"></div>
+                        <?php 
+                                $c = 0;
+                                foreach(str_word_count($eventfound['descripcion'],1) as $w){
+                                    $c+= strlen($w);
+                                }
+                        ?>
+                        <div class="descripcion-event"><?php echo $eventfound['descripcion']?></div>
+                        <div class="leer-masevent">
+                            <?php 
+                                    if($c > 300)//alcanza en todo el cuadro
+                                  {
+                                       echo '<a href="#" class="readmore">Leer más...</a>';
+                                  }
+                            ?>
+                        </div>
+                        <div class="masinfo-event"></div>
                     </div>
 
 
@@ -63,7 +117,7 @@
 
             
             <div class="description-event">
-              
+                <?php echo $eventfound['descripcion']; ?>
             </div>
             <div class="title-coment-event">Comentarios</div>
     </div>
@@ -77,7 +131,7 @@
          <!--<div class="tit tit1">Comenta el evento</div>-->
         <?php if(isset($_SESSION['userid'])){ ?>
         <div  class="coments">
-            <input type="hidden" id="idevent" value="<?php echo $_GET['id'] ?>"/>
+            <input type="hidden" id="iduser" value="<?php echo $userid ?>"/>
             <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
             <div class="input-transcom">
                 <div class="hash"><?php echo $eventfound['hash']?></div>
@@ -111,12 +165,14 @@
          <?php } ?>
          
         <div class="list boxscroll">
+            
                 <?php 
-                $comentarios = $US->findforid($eventfound['_id']);
+                
+                $comentarios = $comentarioUser->verMisComentarios($userid);
                 $numComent = 0;
                 foreach($comentarios as $dcto){
                      
-                     $realizacion = $comentarioEvent->verFecha($dcto['fechaMuestra']);
+                     $realizacion = $comentarioUser->verFecha($dcto['fechaMuestra']);
                      $useridComent = $dcto['_userId'];
                 ?>
                 <div data-num="<?= $numComent ?>" class="itemcoment">
@@ -154,10 +210,11 @@
             
                 <?php $numComent++;}
                 $comentRestantes = $cantidadComentarios - $numComent; //ultimo = limit
+                echo $cantidadComentarios;
                 if($comentRestantes > 0){
                 ?>
                 
-                <a  href="#" class="leermas-coment readmorecoment">Ver más comentarios</a>
+                <a  href="#" class="leermas-comentuser readmorecoment">Ver más comentarios</a>
                 <?php } ?>
             </div>
          

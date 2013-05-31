@@ -3,7 +3,7 @@
     require_once '../DAL/evento.php';
     require_once '../DAL/comentario.php';
     date_default_timezone_set("Chile/Continental");
-  
+    
     
     if(isset($_POST['vercomentario'])){
         session_start();
@@ -199,6 +199,60 @@
         }
         if($comentRestantes > 0)
             $html.='<a  href="#" class="leermas-coment readmorecoment">Ver más comentarios</a>';
+        echo $html;      
+    }
+     if(isset($_REQUEST['vermascomentariosUser'])){
+        session_start();       
+        //cargar comentarios
+        $limit = $_REQUEST['ultimo'];//10
+        $iduser = $_REQUEST['iduser'];//USER ID
+//        $hashevent = $_REQUEST['hashevent'];
+        $totalComent = $_REQUEST['totalComent'];//14
+        $comentRestantes = $totalComent - $limit;//14-10 = 4
+        $comentarios = new comentario();
+        $limit+= 5; //de a 5
+        $comentRestantes = $comentRestantes - 5;
+        
+        $theObjId = new MongoId($iduser);
+        $todosComent = $comentarios->findUltimoscomentUsuario($theObjId, $limit);
+        $html = '';
+        $numComent = 0;
+        foreach ($todosComent as $dcto){
+            $hashevent = 'sda';
+            $useridComent = $dcto['_userId'];
+            $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
+            $html.='<div data-num="'.$numComent.'" class="itemcoment">
+                        <div class="line"></div>
+                        <div class="bloq1"></div>
+                        <div class="bloq2">
+                            
+                            <div class="nomusercom tit-gray">'.$dcto['userName'].'</div>
+                            <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].'" class="hashlink">'.$hashevent.'</a>
+                                                    '.$dcto['comentario'].'
+                            </div>
+                        </div>
+                        <div class="bloq3">
+                                <div class="hacecuant">
+                                    '.$realizacion.'
+                                </div>';
+                          if(isset($_SESSION['userid'])){
+                                if($useridComent == $_SESSION['userid']){
+                                   $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
+                               }else{
+                                   $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                               }
+                          }else{
+                              $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                          
+                          }                   
+                          
+                    $html.='
+                          </div>
+                      </div>';
+                    $numComent++;
+        }
+        if($comentRestantes > 0)
+            $html.='<a  href="#" class="leermas-comentuser readmorecoment">Ver más comentarios</a>';
         echo $html;      
     }
 ?>                    
