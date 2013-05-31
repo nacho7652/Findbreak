@@ -3,6 +3,7 @@
     date_default_timezone_set("Chile/Continental");
     require_once 'function/place.php';
     require_once 'DAL/connect.php';
+    require_once 'DAL/relacional/connect_relacional.php';
     require_once 'DAL/usuario.php';
     require_once 'DAL/comentario.php';
 //    include_once ('function/facebook-response.php');

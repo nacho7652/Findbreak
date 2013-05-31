@@ -1,25 +1,20 @@
 <?php
+    require_once 'relacional/connect_relacional.php';
 
 class usuarioRelacional {
     private $conect;
     function __construct() {
-        $this->conect = new connect();
+        $this->conect = new connect_relacional();
     }
     function __destruct() {
         $this->conect->desconectarse();
     }
-    public function guardar($idUser, $titulo, $fotoPq, $fotoGr, $contenido){
+    public function insertarUsuarioRelacional($idMongo, $nombre, $saldo){
         if($this->conect->conectarse()){
-            $query = "INSERT INTO NOTICIA VALUES('',$idUser, '$fotoPq', '$fotoGr', '$titulo', '$contenido') ";
+            $query = "INSERT INTO usuario VALUES('','$idMongo', '$nombre', '$saldo') ";
             $re = mysql_query($query);
-            if($re){
-                $idNoticia = 0;
-                $result = mysql_query("select last_insert_id();");
-                   while($re1 = mysql_fetch_array($result)){
-                       $idNoticia = $re1[0];
-                   }
-            }
-            return $idNoticia;
+            
+            return $re;
         }else{
             return -5;
         }

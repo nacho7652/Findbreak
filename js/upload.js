@@ -200,15 +200,16 @@ $(document).ready(function(){
         //alert("adads"); return;
                         $.ajax({
                                  dataType:"JSON",
-                                 url : '../function/users-response.php',
+                                 url : '/findbreak/function/users-response.php',
                                  type : 'POST',
                                  data : "guardaruser=1&nomuser="+nomeuser+"&apellido="+apellido+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
                                  success : function(res){                      
                                      //modificar la foto con el mail
                                      if(res == 1)
-                                     alert("Agregado")
+                                     alert("Bienvenido")
                                     else
-                                     alert("Vuelva a intentarlo")
+                                        if(res == -5)
+                                     alert("Lo sentimos, parece que  está cuenta ya está existente. ¿Te gustaría reclamar está dirección de correo electrónico?");
                                   }//success                
                               });
       

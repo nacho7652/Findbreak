@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+require_once 'usuarioRelacional.php';
 /**
  * Description of usuario
  *
@@ -107,6 +107,10 @@ class usuario {
      public function findforid($id){
          $theObjId = new MongoId($id); 
          return $this->db->usuario->findOne(array("_id" => $theObjId));
+     }
+     public function findforemail($email){
+          
+         return $this->db->usuario->findOne(array("email" => $email));
      }
     public function dejarDeSeguir($quien, $aquien)
     {
@@ -423,7 +427,7 @@ class usuario {
                                       );
     }
      
-     public function insertar($name, $apellido, $mail, $pass, $photo){ 
+     public function insertar($name, $apellido, $mail, $pass){ 
          $user = array(
             "nombre" => $name,
             "apellido" => $apellido,
@@ -433,10 +437,26 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>$photo    
+            "foto"=>-1    
         );
-         return $this->db->usuario->insert($user);        
+         
+         $emailEncontrado = $this->findforemail($mail);        
+         if($emailEncontrado != '' || $emailEncontrado != null)
+         {
+                 return -5;
+         }
+         else
+         {
+                $this->db->usuario->insert($user);
+                 $usuariorelacional = new usuarioRelacional();
+                 $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
+                 
+                     return 1;
+         
+         }
      }
+     
+     
      
      public function modificarfoto($name, $apellido, $mail, $pass){ 
          $user = array(

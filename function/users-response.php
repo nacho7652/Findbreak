@@ -239,13 +239,13 @@
         $re = json_encode(array('re'=>$re, 'idUser'=>(string)$quien));
         echo $re;
     }
-    if(!empty($_POST["guardaruser"]))
+    if(!empty($_REQUEST["guardaruser"]))
     {
 //"guardaruser=1&nomuser="+nomeuser+"&nombrefoto="+res.nombrefoto+"&apellido="+apellido+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
-        $name = $_POST['nomuser'];
-        $apellido = $_POST['apellido'];
-        $mail = $_POST['correousuario'];
-        $pass = $_POST['claveusuario'];
+        $name = $_REQUEST['nomuser'];
+        $apellido = $_REQUEST['apellido'];
+        $mail = $_REQUEST['correousuario'];
+        $pass = $_REQUEST['claveusuario'];
         
         $usuario = new usuario();
         
