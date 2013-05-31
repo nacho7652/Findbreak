@@ -470,7 +470,7 @@ html {
 }
 
 #user-login .option.user-photo {
-    background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s160x160/75506_10200385133008579_1835723334_a.jpg) no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
     width: 30px;
     height: 16px;

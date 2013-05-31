@@ -91,8 +91,33 @@
     </head>
      
      <body>
- 
-        
+         <?php if(!isset($_SESSION['userprofile'])){ ?>
+         <div id="fb-root"></div>
+            <script>
+              // Additional JS functions here
+              window.fbAsyncInit = function() {
+                FB.init({
+                  appId      : '127844714081862', // App ID
+                  channelUrl : 'http://localhost/findbreak/cerca', // Channel File
+                  status     : true, // check login status
+                  cookie     : true, // enable cookies to allow the server to access the session
+                  xfbml      : true  // parse XFBML
+                });
+
+                // Additional init code here
+
+              };
+
+              // Load the SDK asynchronously
+              (function(d){
+                 var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement('script'); js.id = id; js.async = true;
+                 js.src = "//connect.facebook.net/en_US/all.js";
+                 ref.parentNode.insertBefore(js, ref);
+               }(document));
+            </script>
+            <?php } ?>
         <div id="allbackground">
             
         </div>
@@ -133,18 +158,23 @@
                     <!--</div>-->
                 </div>
                  <?php
-                            ?>
+                 include_once ('function/facebook-response.php'); 
+                 ?>
                  <div class="top-right">
+                     <!--<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>-->
                             <?php
-                            include_once ('function/facebook-response.php'); 
-                            if(isset($user_profile) != null){//apreté el boton y se creo mi usuario
+                            //print_r($user);
+                            //print_r($_SESSION['userprofile']);
+                            if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
                                 $us = new usuario();
+                                //echo "FUNCIONOOOOOOOOOOOOO!!!!!!!!!";
+                                $user_profile = $_SESSION['userprofile'];
                                 $comp = $us->loginFace($user_profile['email']);
                                 if($comp!=null)
                                 {
                                    $_SESSION['userid'] = $comp['_id'];
                                    $_SESSION['username'] = $comp['nombre'];
-                                  // $_SESSION['foto'] = $comp['foto'];
+                                   $_SESSION['foto'] = $comp['foto'];
                                    $_SESSION['usertype'] = 1;
                                    $userid = $_SESSION['userid'];
                                    $username = $_SESSION['username'];
@@ -153,7 +183,8 @@
                                 }
                                 else
                                 {
-                                   $hola = $us->insertar($user_profile['email'], $user_profile['email'], $user_profile['email'], '','https://graph.facebook.com/'.$user.'/picture');
+                                   //echo "FUNCIONOOOOOOOOOOOOO!!!!!!!!!";
+                                   $hola = $us->insertar($user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '','https://graph.facebook.com/'.$user.'/picture');
                                    $_SESSION['userid'] = $hola['_id'];
                                    $_SESSION['username'] = $hola['nombre'];
                                    $_SESSION['foto'] = $hola['foto'];
@@ -163,6 +194,10 @@
                                    $foto = $_SESSION['foto'];
                                    $usertype = $_SESSION['usertype'];
                                 }
+                            }
+                            else
+                            {
+                                //echo "NOOOOOOOOOOOOOO FUNCIONOOOOOOOOOOOOO!!!!!!!!!";
                             }
                            
                             if(empty($_SESSION['userid'])){?>
@@ -258,12 +293,23 @@
                                                  
                                                  
                                              }
+                                          if(isset($_SESSION['userprofile']) != null){
                                    ?>
                                         <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-photo">
+                                            <div class="content-option content-option-first"
+                                            style="background: url('<?php echo $_SESSION['foto']?>') no-repeat">
+                                            </div> 
+                                        </a>
+                                   <?php }
+                                   else
+                                   {?>
+                                    <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-photo">
                                             <div class="content-option content-option-first"
                                             style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat">
                                             </div> 
                                         </a>
+                                   
+                                   <?php } ?>
                                         <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-name" >
                                              <div class="content-option">
                                                  <?php echo $_SESSION['username'] ?>
@@ -376,7 +422,7 @@
                 </div>
            <?php } ?>
        
-           <?php if($page_site == 'eventprofile' || $page_site == 'userprofile'){?> 
+           <?php if($page_site == 'eventprofile'){?> 
             <div class="topevent">
                 <div class="shadow-event"></div>
             </div>
