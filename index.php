@@ -376,7 +376,7 @@
                 </div>
            <?php } ?>
        
-           <?php if($page_site == 'eventprofile'){?> 
+           <?php if($page_site == 'eventprofile' || $page_site == 'userprofile'){?> 
             <div class="topevent">
                 <div class="shadow-event"></div>
             </div>
