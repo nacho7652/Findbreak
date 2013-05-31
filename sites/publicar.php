@@ -5,7 +5,7 @@
         {
 ?>
 
-<div class="content-publicarevent">
+<div class="content-publicarevent divtrans">
                                  <div class="item-publicarevent">
                                     <div class="title-publicarevent">Crear nuevo evento</div>
                                  </div>

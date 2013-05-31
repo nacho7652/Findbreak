@@ -169,7 +169,7 @@
                                <div id="login">
 
                                    <a href="" class="login-hover">
-                                       Iniciar sesion 2
+                                       Iniciar sesion
                                    </a>
                                    <div class="login-cont"> 
                                       <input   type="text" placeholder="Correo electronico" id="mail">

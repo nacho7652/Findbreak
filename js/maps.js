@@ -129,34 +129,27 @@ function geolocalizarManual(address){
             var lat = map.getCenter().lat();
             var lng = map.getCenter().lng();
             //return false;
-         // alert(lat); alert(lng); 
+//        alert(lat); alert(lng); 
             $.ajax({
                 data: "findnear2=1&lat="+lat+"&lng="+lng,
                 type: "POST",
                 dataType: "json",
                 url: "/findbreak/function/event-response.php",
                 success: function(data){
-               
-//              alert(data.arreglo[0]['parte1']);
-//              alert(data.arreglo[0]['parte2']);
-//              return false;
-               $('.loading-events').hide();
-//               // $('.inner-list-maps').html('');
-//                if(data.listevents == ''){
-//                    $('.no-resultados').show();
-//                    return false;
-//                }else{
-//                    $('.no-resultados').hide();
-//                }
-               
-               // $('.inner-list-maps').html(data.listevents);
-                $('.loading-events').hide();
-                $('.event-hidden').html(data.infodiv);
-                 var numberOfCase = parseInt($('#number').text());
+                   $('.loading-events').hide();
+                   $('.event-hidden').html(data.infodiv);
+                   var numberOfCase = parseInt($('#number').text());
+                    if(numberOfCase == 0){
+                        $('.inner-list-maps').hide();
+                        $('.no-resultados').show();
+                        return false;
+                    }else{
+                        $('.inner-list-maps').show();
+                        $('.no-resultados').hide();
+                    }        
                  var infoDiv = "";
                  var tokens;
                  var cont = 1;
-
                  //alert(numberOfCase)
                  for(var i=0;i<numberOfCase;i++){
                     id = data.arreglo[i]['id'];
@@ -173,7 +166,7 @@ function geolocalizarManual(address){
                    $('#item-eventcerca'+i).find('.info-eventcerca').html(infoCerca);
                    $('#item-eventcerca'+i).find('.tags-hidden').html(tagshidden);
                    $('#item-eventcerca'+i).find('.tit-eventcerca').html(nombre); 
-                   
+                   $('#item-eventcerca'+i).show();
                    infoDiv = $('#info'+i).text();	 
                    tokens = infoDiv.split("+");
                    
@@ -202,7 +195,8 @@ function geolocalizarManual(address){
                  PrintStore(map,markerNew,note,lat,lng,name, address, cont);  	   
                  cont++; 
                 }
-
+                //esconder los eventos tipo que no se usan
+                
           	   map.setZoom(12); //13
 //                   clickdentista();//IMPORTANTE
 //                   clickPaginador();//para activar la function cuando se carga el DOM

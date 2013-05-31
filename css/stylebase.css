@@ -177,10 +177,10 @@ html {
     min-height: 60px;
     margin-bottom: 4px;
 }
-/*#ascrail2000 {
+#ascrail2000 {
     z-index: 100000000000 !important;
-}*/
-#ascrail2001 div, #ascrail2000 div,#ascrail2002 div, #ascrail2003 div,
+}
+#ascrail2000 div, #ascrail2001 div, #ascrail2000 div,#ascrail2002 div, #ascrail2003 div,
 #ascrail2004 div, #ascrail2004 div,#ascrail2006 div, #ascrail2007 div,
 #ascrail2008 div, #ascrail2009 div,#ascrail2010 div, #ascrail2011 div{
     right: 2px;
@@ -749,6 +749,32 @@ html {
     box-shadow: 0px 7px 8px -8px rgb(173, 173, 173);
     border-radius: 2px;
 }
+#content-login  #mail2{
+    width: 350px;
+    margin: 0px 0px 0px 0px;
+    padding: 12px 5px;
+    border-radius: 2px;
+    border: 1px solid #BFBFBF;
+    font-size: 0.8em;
+    box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
+    float: left;
+}
+#boton-login2{
+    float: right;
+    margin: 12px 41px 13px 0px;
+    text-decoration: none;
+    padding: 9px 23px;
+}
+#content-login #pass2{    
+    width: 349px;  
+    margin: 8px 0px 0px 0px; 
+    padding: 12px 5px; 
+    border-radius: 2px;  
+    border: 1px solid #BFBFBF;  
+    font-size: 0.8em;
+    box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
+    float: left;
+}
 #content-top .login-cont #mail{
     width: 221px;
     margin: 13px 0px 0px 13px;
@@ -821,11 +847,56 @@ html {
     height: 168px;
     margin: 0px auto;
 }
-
-.inicio {
-    
+.login{
+    height: 600px;
+    background: url(/findbreak/images/iconos-bg.png);
+}
+.inicio{
     height: 700px;
     background: url(/findbreak/images/iconos-bg.png);
+}
+#content-login {
+    width: 950px;
+    margin: 0px auto 0 auto;
+    padding-top: 30px;
+}
+#content-login #login-fb {
+    margin: 22px 134px 0px 0px;
+}
+.titulo-login1 {
+    width: 312px;
+    height: 25px;
+    float: left;
+    margin-left: 0px;
+}
+.titulo-login2 {
+    width: 312px;
+    height: 25px;
+    float: left;
+    margin-left: 36px;
+}
+.msj-log1 {
+    float: left;
+    width: 84px !important;
+    font-size: 0.9em;
+    margin: 0px 0px 0px 0px;
+}
+.msj-log3 {
+    float: left;
+    width: 300px !important;
+    height: 20px !important;
+    font-size: 0.9em;
+    margin: 12px 0px 0px 0px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    text-align: center;
+}
+.msj-log2 {
+    font-size: 0.8em;
+}
+.content-inputlog {
+    width: 400px;
+    height: 300px;
+    float: right;
 }
 .inicio-primera{
     background: url('/findbreak/images/superpos-bg.png') rgb(35, 111, 160);
@@ -950,6 +1021,9 @@ html {
     background: rgba(136, 129, 128, 0.38);
     z-index: 2;
     padding: 0px 0px 16px 0px;
+}
+.event-none{
+    display: none;
 }
 .content-eventcerca {
     width: 447px;
@@ -2070,11 +2144,10 @@ text-align: center;
 
 /*PROFILE PRODUCTORA*/
 .content-publicarevent {
-    background: rgba(237, 237, 237, 0.5);
-    border: 1px solid #DADADA;
-    box-shadow: 0px 0px 3px 2px #F6F6F6;
-    float: left;
+    width:1000px;
+    overflow:hidden;
     color: #444;
+    margin: 0px auto 0px auto;
 }
 .event-list {
     width: 500px;
@@ -2126,11 +2199,18 @@ text-align: center;
     position: relative;
 }
 .title-publicarevent {
-    background-color: #B81F61;
-    color: white;
+   text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-repeat: repeat-x;
+    border: 1px solid rgba(65, 115, 169, 0.34);                  
+    border: 1px solid rgba(65, 169, 94, 0);
+    border: 1px solid #1c74b3;  border-top-color: #2c8ed1;  border-bottom-color: #0d5b97;
+    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
+    background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    color: #FFF;
     padding: 7px;
     font-weight: bold;
     font-size: 0.9em;
+   width: 1000px;
 }
 .nombre-publicarevent {
     float: left;
@@ -2144,8 +2224,8 @@ text-align: center;
 .item-publicarevent input[type="text"] {
     float: left;
     width: 406px;
-    padding: 4px 3px;
-    font-size: 0.9em;
+    padding: 11px 9px;
+    border-radius: 2px;  border: 1px solid #BFBFBF;  font-size: 0.8em;  box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
 }
 #map_evento {
     position: absolute !important;
@@ -2198,12 +2278,13 @@ text-align: center;
 footer{
     background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1),rgba(35, 106, 151, 1) );
     width: 100%;  
-    height: 110px; 
+    height: 20px; 
     margin: -110px 0px 0px 0px;   
     box-shadow: 0px -2px 6px -3px black;  
     min-width: 990px;  
     bottom: 0px;  
     z-index: 10000000000000; 
+    position: fixed;
 /*    display: none !important;*/
 ;
 }

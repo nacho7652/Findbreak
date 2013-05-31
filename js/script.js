@@ -1061,7 +1061,7 @@ $(document).ready(function(){
           $.ajax({
                           type: "POST",
                           dataType: "json",
-                          url: "../function/login-response.php",
+                          url: "/findbreak/function/login-response.php",
                           data: "logout=1",
                           success : function (data)
                           {
