@@ -427,10 +427,11 @@ class usuario {
                                       );
     }
      
-     public function insertar($name, $apellido, $mail, $pass, $photo){ 
+     public function insertar($name, $apellido, $mail, $pass, $photo,$username){ 
          $user = array(
             "nombre" => $name,
             "apellido" => $apellido,
+            "username"=>$username,
             "email" => $mail,
             "clave" => $pass,
              "amigos" => array(),
@@ -440,6 +441,10 @@ class usuario {
             "foto"=>$photo    
         );
          return $this->db->usuario->insert($user);        
+     }
+     
+     public function updatePhoto($userid,$photo){ 
+         return $this->db->usuario->update(array("_id"=>$userid),array('$set'=>array("foto"=>$photo))); 
      }
      
      public function modificarfoto($name, $apellido, $mail, $pass){ 

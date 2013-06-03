@@ -10,6 +10,23 @@ require 'facebook.php';
 //    // Get User ID
 //    $user = $facebook->getUser();
     //var_dump($user);
+//    if ($user) {
+//      try {
+//        // Proceed knowing you have a logged in user who's authenticated.
+//        $_SESSION['userprofile'] = $facebook->api('/me'); 
+//      } catch (FacebookApiException $e) {
+//        error_log($e);
+//        print_r($e->getMessage());
+//        $user = null;
+//      }
+//    }
+    // Login or logout url will be needed depending on current user state.
+//    $params = array(
+//            'scope' => 'email,user_birthday,user_location,publish_stream,offline_access',
+//            'redirect_uri' => 'http://localhost/findbreak/cerca'
+//    );
+//    $loginUrl = $facebook->getLoginUrl($params);
+    //header("location:/mooff/home");
     if(isset($_GET['login']))
     {
      session_start();
@@ -28,25 +45,7 @@ require 'facebook.php';
          "picture"=>$picture
      );
       echo "ok"; 
-//    if ($user) {
-//      try {
-//        // Proceed knowing you have a logged in user who's authenticated.
-//        $_SESSION['userprofile'] = $facebook->api('/me'); 
-//      } catch (FacebookApiException $e) {
-//        error_log($e);
-//        print_r($e->getMessage());
-//        $user = null;
-//      }
-//    }
     }
-   
-    // Login or logout url will be needed depending on current user state.
-//    $params = array(
-//            'scope' => 'email,user_birthday,user_location,publish_stream,offline_access',
-//            'redirect_uri' => 'http://localhost/findbreak/cerca'
-//    );
-//    $loginUrl = $facebook->getLoginUrl($params);
-    //header("location:/mooff/home");
     
 if(isset($_GET['logout'])){
         session_destroy();
