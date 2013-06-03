@@ -1,22 +1,43 @@
 $(document).ready(function(){
-    $('#login-fb').click(function(){
+    //SI YA ESTOY LOGUEADO EN FACEBOOK
+//    fb.ready(function(){ 
+//              if (fb.logged)
+//              {
+//                  alert(fb.user.name);
+//                // Cambiamos el link de identificarse por el nombre y la foto del usuario.
+//        //        $.ajax({
+//        //            type:"GET",
+//        //            dataType:"html",
+//        //            url:"/findbreak/function/facebook-response.php",
+//        //            data:"login=1&name="+fb.user.name+"first_name="+response.first_name+"&last_name="+response.last_name+"&username="+response.username+"&email="+response.email+"&picture="+response.picture,
+//        //            success:function(data)
+//        //            {
+//        //
+//        //            }
+//        //        });
+//              }
+//            });
+    $('#login-fb').click(function(event){
+        event.preventDefault();
         fb.login(function(){ 
-            if (fb.logged)
+            if (fb.logged) 
             {
-              // Cambiamos el link de identificarse por el nombre y la foto del usuario.
-              $.ajax({
-                  type:"GET",
-                  dataType:"html",
-                  url:"/findbreak/function/facebook-response.php",
-                  data:"login=1&name="+"",
-                  success:function(data)
-                  {
-                      
-                  }
-              });
+               $.ajax({
+                      type:"GET",
+                      dataType:"html",
+                      url:"/findbreak/function/facebook-response.php",
+                      data:"login=1&name="+fb.user.name+"&first_name="+fb.user.first_name+"&last_name="+fb.user.last_name+"&username="+fb.user.username+"&email="+fb.user.email+"&picture="+fb.user.picture,
+                      success:function(data)
+                      {
+                          if(data == "ok")
+                              {
+                                  $(location).attr('href','http://localhost/findbreak/cerca');
+                              }
+                      }
+                  }); 
             }
-          })
-    });
+        })
+    })
     //PERFIL USUARIO
     $('body').delegate('.leermas-comentuser','click',function(){
             var id = $('#iduser').val();

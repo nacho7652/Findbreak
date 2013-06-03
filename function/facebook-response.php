@@ -12,7 +12,22 @@ require 'facebook.php';
     //var_dump($user);
     if(isset($_GET['login']))
     {
-        
+     session_start();
+     $name=$_GET['name'];
+     $first_name=$_GET['first_name'];
+     $last_name=$_GET['last_name'];
+     $username=$_GET['username'];
+     $email=$_GET['email'];
+     $picture=$_GET['picture'];
+     $_SESSION['userprofile'] = array(
+         "name"=>$name,
+         "first_name"=>$first_name,
+         "last_name"=>$last_name,
+         "username"=>$username,
+         "email"=>$email,
+         "picture"=>$picture
+     );
+      echo "ok"; 
 //    if ($user) {
 //      try {
 //        // Proceed knowing you have a logged in user who's authenticated.
@@ -35,7 +50,7 @@ require 'facebook.php';
     
 if(isset($_GET['logout'])){
         session_destroy();
-        $user = null;
+//        $user = null;
         header("location:/findbreak/cerca");
     }
 
