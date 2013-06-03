@@ -1,4 +1,22 @@
 $(document).ready(function(){
+    $('#login-fb').click(function(){
+        fb.login(function(){ 
+            if (fb.logged)
+            {
+              // Cambiamos el link de identificarse por el nombre y la foto del usuario.
+              $.ajax({
+                  type:"GET",
+                  dataType:"html",
+                  url:"/findbreak/function/facebook-response.php",
+                  data:"login=1&name="+"",
+                  success:function(data)
+                  {
+                      
+                  }
+              });
+            }
+          })
+    });
     //PERFIL USUARIO
     $('body').delegate('.leermas-comentuser','click',function(){
             var id = $('#iduser').val();
