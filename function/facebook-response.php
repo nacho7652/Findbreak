@@ -5,7 +5,7 @@ require 'facebook.php';
     // Create our Application instance (replace this with your appId and secret).
     $facebook = new Facebook(array(
       'appId'  => '127844714081862',
-      'secret' => '5ec223a6a2682a3d6bb51dab952fe43c',
+      'secret' => '31e9ae856c9c4ca6435db7a6ffcaaa27',
     ));
 
     // Get User ID
@@ -14,8 +14,8 @@ require 'facebook.php';
     if ($user) {
       try {
         // Proceed knowing you have a logged in user who's authenticated.
-        $user_profile = $facebook->api('/me'); 
-        print_r($user_profile);
+        $_SESSION['userprofile'] = $facebook->api('/me'); 
+        //echo "<script type=\"text/javascript\">alert(".$user_profile.")</script>";
         //$_SESSION['user'] = null;
       } catch (FacebookApiException $e) {
         error_log($e);
