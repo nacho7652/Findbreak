@@ -190,14 +190,14 @@ $(document).ready(function(){
       
   })
 
-     $('#coverall').delegate('#guardarusuario','click',function()
+  $('#coverall').delegate('#guardarusuario','click',function()
   {
       
         var nomeuser = $('#nombre-usuario').val();
         var apellido = $('#apellido-usuario').val();
         var correousuario = $('#correo-usuario').val();
         var claveusuario = $('#clave-usuario').val();
-        //alert("adads"); return;
+//        alert("adads"); return;
                         $.ajax({
                                  dataType:"JSON",
                                  url : '/findbreak/function/users-response.php',

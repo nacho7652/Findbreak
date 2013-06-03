@@ -17,6 +17,10 @@ class usuario {
         $conn = new connect();
         $this->db = $conn->getDB();
     }
+    public function verCantidadComentarios($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->find(array("_userId" => $theObjId))->count();
+     }
     public function guardarNotificacion2($quien, $aquien, $fechaMongo, $fecha){
                    // $idM = new MongoId($aquien['_id']);   
                     $noti2 = array(

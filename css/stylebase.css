@@ -2068,7 +2068,7 @@ text-align: center;
     display: none; 
     position: relative;
 }
-.leermas-coment {
+.leermas-coment,.leermas-comentuser {
     height: 25px;
     width: 309px;
     float: left;

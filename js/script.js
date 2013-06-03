@@ -1,4 +1,48 @@
 $(document).ready(function(){
+    $('#login-fb').click(function(){
+        fb.login(function(){ 
+            if (fb.logged)
+            {
+              // Cambiamos el link de identificarse por el nombre y la foto del usuario.
+              $.ajax({
+                  type:"GET",
+                  dataType:"html",
+                  url:"/findbreak/function/facebook-response.php",
+                  data:"login=1&name="+"",
+                  success:function(data)
+                  {
+                      
+                  }
+              });
+            }
+          })
+    });
+    //PERFIL USUARIO
+    $('body').delegate('.leermas-comentuser','click',function(){
+            var id = $('#iduser').val();
+            var ultimoComentario = $('.list .itemcoment:last').attr('data-num');
+            var totalComent = $('#totalComent').val();
+
+//            ultimoComentario++;
+//            alert(id);
+//            alert(ultimoComentario)
+//            alert(totalComent)
+//            return false;
+            $.ajax({           
+                type:"POST",
+                dataType:"html",
+                url: "/findbreak/function/comentario-response.php",
+                data: "vermascomentariosUser=1&ultimo="+ultimoComentario+'&iduser='+id+'&totalComent='+totalComent,
+                success: function (data)
+                {   
+                    $('.list').html(data);
+                    $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
+                }
+            })  
+            return false;
+        })
+    
+    //PERFIL USUARIO
     
     //Informacion publicar evento hecho por el mejor programador de la tierra daniel millar
     
@@ -235,18 +279,11 @@ $(document).ready(function(){
                 {   
                     $('.list').html(data);
                     $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
-//                    $('.list').animate({
-//                         'scrollTop': $('.leermas-coment').offset().top + "px" 
-//                     },
-//                     {
-//                        duration:500,
-//                        easing:"swing"
-//                     }
-//                     );
                 }
             })  
             return false;
         })
+        
         function descontarNotificacion(){
             var count = parseInt($('#cant-solicitud').html());
             count--;

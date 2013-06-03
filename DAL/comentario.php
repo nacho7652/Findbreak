@@ -30,6 +30,14 @@
         // $theObjId = new MongoId($id); 
          return $this->db->comentariosEvento->find(array("_eventId" => $id))->sort(array("fechaMongo" => -1 ))->limit(10);
         }
+        public function verMisComentarios($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->find(array("_userId" => $theObjId))->sort(array("fechaMongo" => -1 ))->limit(10);
+        }
+        public function findUltimoscomentUsuario($id,$limit){
+        // $theObjId = new MongoId($id); 
+         return $this->db->comentariosEvento->find(array("_userId" => $id))->sort(array("fechaMongo" => -1 ))->limit($limit);
+        }
         public function findUltimoscoment($id,$limit){
         // $theObjId = new MongoId($id); 
          return $this->db->comentariosEvento->find(array("_eventId" => $id))->sort(array("fechaMongo" => -1 ))->limit($limit);
