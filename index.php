@@ -57,7 +57,7 @@
 //    }
 ?>
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -91,33 +91,6 @@
     </head>
      
      <body>
-         <?php if(!isset($_SESSION['userprofile'])){ ?>
-         <div id="fb-root"></div>
-            <script>
-              // Additional JS functions here
-              window.fbAsyncInit = function() {
-                FB.init({
-                  appId      : '127844714081862', // App ID
-                  channelUrl : 'http://localhost/findbreak/cerca', // Channel File
-                  status     : true, // check login status
-                  cookie     : true, // enable cookies to allow the server to access the session
-                  xfbml      : true  // parse XFBML
-                });
-
-                // Additional init code here
-
-              };
-
-              // Load the SDK asynchronously
-              (function(d){
-                 var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-                 if (d.getElementById(id)) {return;}
-                 js = d.createElement('script'); js.id = id; js.async = true;
-                 js.src = "//connect.facebook.net/en_US/all.js";
-                 ref.parentNode.insertBefore(js, ref);
-               }(document));
-            </script>
-            <?php } ?>
         <div id="allbackground">
             
         </div>
@@ -161,13 +134,12 @@
                  include_once ('function/facebook-response.php'); 
                  ?>
                  <div class="top-right">
-                     <!--<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>-->
                             <?php
-                            //print_r($user);
+                            print_r($user);
                             //print_r($_SESSION['userprofile']);
                             if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
                                 $us = new usuario();
-                                //echo "FUNCIONOOOOOOOOOOOOO!!!!!!!!!";
+                                echo "FUNCIONOOOOOOOOOOOOO!!!!!!!!!";
                                 $user_profile = $_SESSION['userprofile'];
                                 $comp = $us->loginFace($user_profile['email']);
                                 if($comp!=null)

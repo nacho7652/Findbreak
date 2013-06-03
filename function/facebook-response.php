@@ -5,22 +5,21 @@ require 'facebook.php';
     // Create our Application instance (replace this with your appId and secret).
     $facebook = new Facebook(array(
       'appId'  => '127844714081862',
-      'secret' => '31e9ae856c9c4ca6435db7a6ffcaaa27',
+      'secret' => '31e9ae856c9c4ca6435db7a6ffcaaa2',
     ));
-
     // Get User ID
     $user = $facebook->getUser();
-
+    $facebook->setExtendedAccessToken(); //long-live access_token 60 days
+    $access_token = $facebook->getAccessToken();
+    //var_dump($user);
     if ($user) {
       try {
         // Proceed knowing you have a logged in user who's authenticated.
-        $_SESSION['userprofile'] = $facebook->api('/me'); 
-        //echo "<script type=\"text/javascript\">alert(".$user_profile.")</script>";
-        //$_SESSION['user'] = null;
+        $_SESSION['userprofile'] = $facebook->api('/'.$user,'GET'); 
       } catch (FacebookApiException $e) {
         error_log($e);
+        print_r($e->getMessage());
         $user = null;
-        //$user_profile = -1;
       }
     }
    
