@@ -141,9 +141,11 @@
                                 {
                                    $_SESSION['userid'] = $comp['_id'];
                                    $_SESSION['username'] = $comp['username'];
-                                   if($comp['foto']!="")
+                                   if($comp['foto'] == "")
                                    {
-                                    $us->updatePhoto($comp['_id'], $user_profile['picture']);
+                                      $us->updatePhoto($comp['_id'], $user_profile['picture']);
+                                      $_SESSION['foto']=$user_profile['picture'];
+                                      
                                    }
                                    else
                                    {
