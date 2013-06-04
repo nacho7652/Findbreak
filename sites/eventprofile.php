@@ -227,7 +227,7 @@
          
     </div>
     
-    <div id="list-similares" class="part-right divtrans2">
+    <div id="list-similares" class="part-right divtrans">
         <div class="titlediv">Actividades similares</div>
         <div class="boxscroll boxscrollEvents">
                             <!--<div class="eventsfavo">-->
@@ -269,7 +269,7 @@
         </div>
     </div>
 
-     <div id="list-similares" class="part-right divtrans2">
+     <div id="list-similares" class="part-right divtrans">
         <div class="titlediv">Actividades más visitadas</div>
         <div class="boxscroll boxscrollEvents">
                             <!--<div class="eventsfavo">-->

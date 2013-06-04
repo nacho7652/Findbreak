@@ -38,7 +38,7 @@
 </div>
 
 <div class="parte-left-parent">
-            <div class="part-left divtrans">
+            <div class="part-left divtrans2">
                     <div class="part-left-right">
                         <div class="foto-event" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
 <!--                        <div class="info-num">
@@ -127,7 +127,7 @@
     </div>
 </div>
 <div class="parte-der">
-    <div class="part-right divtrans">
+    <div class="part-right divtrans2">
          <!--<div class="tit tit1">Comenta el evento</div>-->
         <?php if(isset($_SESSION['userid'])){ ?>
         <div  class="coments">

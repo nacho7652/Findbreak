@@ -430,51 +430,5 @@ class usuario {
                                            )
                                       );
     }
-     
-     public function insertar($name, $apellido, $mail, $pass){ 
-         $user = array(
-            "nombre" => $name,
-            "apellido" => $apellido,
-            "email" => $mail,
-            "clave" => $pass,
-             "amigos" => array(),
-             "tags_buscados" => array(),
-             "historial_eventos" => array(),
-            "fecha_registro" => $this->hoy(),
-            "foto"=>-1    
-        );
-         
-         $emailEncontrado = $this->findforemail($mail);        
-         if($emailEncontrado != '' || $emailEncontrado != null)
-         {
-                 return -5;
-         }
-         else
-         {
-                $this->db->usuario->insert($user);
-                 $usuariorelacional = new usuarioRelacional();
-                 $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
-                 
-                     return 1;
-         
-         }
-     }
-     
-     
-     
-     public function modificarfoto($name, $apellido, $mail, $pass){ 
-         $user = array(
-            "nombre" => $name,
-            "apellido" => $apellido,
-            "email" => $mail,
-            "clave" => $pass,
-            
-            "fecha_registro" => $this->hoy()
-             
-        );
-         return $this->db->usuario->insert($user);        
-     }
-    
-}//fin class
-
-?>
+}
+   ?>  
