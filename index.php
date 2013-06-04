@@ -136,6 +136,7 @@
                             if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
                                 $us = new usuario();
                                 $user_profile = $_SESSION['userprofile'];
+                                $_SESSION['userprofile']=null;
                                 $comp = $us->loginFace($user_profile['email']);
                                 if($comp!=null)
                                 {
