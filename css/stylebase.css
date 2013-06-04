@@ -471,11 +471,9 @@ html {
 
 #user-login .option.user-photo {
     background-repeat: no-repeat;
-<<<<<<< HEAD
     background-size: cover;
-=======
     background-size: cover !important;
->>>>>>> branch 'master' of http://github.com/nacho7652/Findbreak.git
+    background-size: cover !important;
     width: 30px;
     height: 16px;
     margin-right: 1px;

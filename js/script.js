@@ -37,7 +37,7 @@ $(document).ready(function(){
                   }); 
             }
         })
-    });
+    })
     //PERFIL USUARIO
     $('body').delegate('.leermas-comentuser','click',function(){
             var id = $('#iduser').val();
