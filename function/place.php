@@ -36,7 +36,7 @@
                    break;
     case 'userprofile': $page_title = 'Findbreak';
                    $page_site = 'userprofile';
-                   $page_class = 'eventprofile';
+                   $page_class = 'perfiluser';
                    $page_description = "Encuentra un quiebre a tu rutina";
                    break;
     case 'eventprofile': $page_title = 'Findbreak';

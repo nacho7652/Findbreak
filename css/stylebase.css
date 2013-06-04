@@ -471,7 +471,7 @@ html {
 
 #user-login .option.user-photo {
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover !important;
     width: 30px;
     height: 16px;
     margin-right: 1px;
@@ -1573,7 +1573,11 @@ text-align: center;
     top: -143px !important;
     padding-top: 135px !important;
 }
-.eventprofile,.productora, .perfilest {
+.perfiluser{
+    top: -23px !important;
+    padding-top: 135px !important;
+}
+.eventprofile,.productora, .perfilest, .perfiluser{
     width: 968px !important;
     margin: 0px auto 11px auto !important;    
     overflow: hidden !important;
@@ -1589,6 +1593,9 @@ text-align: center;
     width: 609px;
     float: left;
     margin-bottom: 30px;
+}
+.perfiluser .parte-left-parent {
+    width: 514px;
 }
 .parte-der {
     float: left;
@@ -1741,11 +1748,18 @@ text-align: center;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
 }
+.perfiluser .part-left{
+    width: 500px;
+}
+.perfiluser .part-right{
+    width: 451px;
+}
 .divtrans2{
     background: rgb(255, 255, 255);
     border-left: 1px solid #e4e5e8;
     border-right: 1px solid #e4e5e8;
     border-bottom: 1px solid #e4e5e8;
+    border-top: 1px solid #e4e5e8;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
 }

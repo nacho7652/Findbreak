@@ -258,15 +258,14 @@
                                              }
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>
-                                        <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-photo">
-                                            <div class="content-option content-option-first"
-                                            style="background: url('<?php echo $_SESSION['foto']?>') no-repeat">
+                                        <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['userid']?>" class="option user-photo">
+                                            <div class="content-option content-option-first">
                                             </div> 
                                         </a>
                                    <?php }
                                    else
                                    {?>
-                                    <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-photo">
+                                    <a href="/findbreak/!<?php echo $_SESSION['userid']?>" class="option user-photo">
                                             <div class="content-option content-option-first"
                                             style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat">
                                             </div> 
