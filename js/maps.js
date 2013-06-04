@@ -165,7 +165,8 @@ function geolocalizarManual(address){
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-hash',hash);
                    $('#item-eventcerca'+i).find('.info-eventcerca').html(infoCerca);
                    $('#item-eventcerca'+i).find('.tags-hidden').html(tagshidden);
-                   $('#item-eventcerca'+i).find('.tit-eventcerca').html(nombre); 
+                   $('#item-eventcerca'+i).find('.tit-eventcerca').html(nombre); //
+                   $('#item-eventcerca'+i).find('#idevent').val(id);
                    $('#item-eventcerca'+i).show();
                    infoDiv = $('#info'+i).text();	 
                    tokens = infoDiv.split("+");

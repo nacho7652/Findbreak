@@ -471,8 +471,6 @@ html {
 
 #user-login .option.user-photo {
     background-repeat: no-repeat;
-    background-size: cover;
-    background-size: cover !important;
     background-size: cover !important;
     width: 30px;
     height: 16px;
@@ -1490,6 +1488,25 @@ text-align: center;
 .item-info-num2 {
     border-right: none !important;
 }
+.title-user{
+  font-size: 13px;
+}
+.bloque-info {
+    width: 462px;
+    height: 40px;
+    float: left;
+    margin: 7px 0px 0px 0px;
+}
+.foto-user{
+    width: 179px;
+    height: 195px;
+    float: left;
+    margin: 0px 9px 0px 0px;
+    background-image: url(http://3.bp.blogspot.com/-BDrt8UjnTis/TVq6Yzct59I/AAAAAAAAAZg/9dH2MauSfhk/s1600/millencolin_4.jpg);  
+    border-right: 1px solid rgba(24, 24, 24, 0.16);
+    border-bottom: 1px solid rgba(24, 24, 24, 0.16);
+    box-shadow: 0px 3px 8px -2px #444;
+}
 .foto-event {
     width: 195px;
     height: 227px;
@@ -1576,7 +1593,7 @@ text-align: center;
     padding-top: 135px !important;
 }
 .perfiluser{
-    top: -23px !important;
+    top: -134px !important;
     padding-top: 135px !important;
 }
 .eventprofile,.productora, .perfilest, .perfiluser{
@@ -1597,7 +1614,7 @@ text-align: center;
     margin-bottom: 30px;
 }
 .perfiluser .parte-left-parent {
-    width: 514px;
+    width: 300px;
 }
 .parte-der {
     float: left;
@@ -1620,7 +1637,6 @@ text-align: center;
 }
 .part-left .title-event{
     width: 362px;
-    
     float: left;
     margin: 8px 0px 0px 14px;
     font-weight: bold;
@@ -1751,10 +1767,10 @@ text-align: center;
     border-bottom-right-radius: 2px;
 }
 .perfiluser .part-left{
-    width: 500px;
+    width: 286px;
 }
 .perfiluser .part-right{
-    width: 451px;
+    width: 661px;
 }
 .divtrans2{
     background: rgb(255, 255, 255);

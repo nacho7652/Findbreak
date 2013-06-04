@@ -115,13 +115,14 @@ $(document).ready(function(){
                  $('.coment-cerca .list .boxscroll').html('');
                  idevento = item.attr('data-id');
                  hashevent = item.attr('data-hash');
+                // alert(idevento)
                  $.ajax({           
                             type:"POST",
                             dataType:"html",
                             url: "/findbreak/function/event-response.php",
                             data: "mostrar-coment-cerca=1&idevento="+idevento+'&hashevent='+hashevent,
                             success: function (data)
-                            {   
+                            {   //alert(data)
                                 item.find('.coment-cerca .list.boxscroll').html(data)
                                 item.find('.coment-cerca').fadeIn(100)
                                 item.find('#coment').focus()
@@ -354,6 +355,7 @@ $(document).ready(function(){
          padre = $(this).parent().parent().parent().parent().parent();
          var coment = padre.find('#coment').val();
          var eventid = padre.find('#idevent').val();
+         //alert(eventid)
          var nombreevent = padre.find('.title-event').html();
          var hashevent = padre.find('#hashevent').val();
          var totalComent = padre.find('#totalComent').val();
