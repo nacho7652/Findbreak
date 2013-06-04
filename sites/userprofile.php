@@ -22,7 +22,7 @@
 <div class="parte-left-parent">
             <div class="part-left divtrans2">
                     <div class="part-left-right">
-                        <div class="foto-event" style="background-size: cover; background-image: url(<?php echo $usuariofound['foto'] ?>)"></div>
+                      
 <!--                        <div class="info-num">
                             <div class="item-info-num">
                                 <div class="topinfo">Visitas</div>
@@ -51,58 +51,19 @@
                                         }
                                     ?>
 
-                                <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
-                                <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
-                                <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
-                                <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
-                                <div id="visitavent-prof" class="info-event-item">
-                                    <div>Visto por <span class="bold"><?php echo $eventfound['visitas']?></span></div>
-                                    <div id="comentaevent-prof"><?php echo $textoComentario?> </div>
-                                    <input type="hidden" id="totalComent" value="<?= $cantidadComentarios?>"/>
-                                </div>
+                               
 
                         </div>
                     </div>
 
                     <div class="part-left-lf">
-                        <div id="icondescrip"></div>
-                        <?php 
-                                $c = 0;
-                                foreach(str_word_count($eventfound['descripcion'],1) as $w){
-                                    $c+= strlen($w);
-                                }
-                        ?>
-                        <div class="descripcion-event"><?php echo $eventfound['descripcion']?></div>
-                        <div class="leer-masevent">
-                            <?php 
-                                    if($c > 300)//alcanza en todo el cuadro
-                                  {
-                                       echo '<a href="#" class="readmore">Leer más...</a>';
-                                  }
-                            ?>
-                        </div>
-                        <div class="masinfo-event"></div>
+                        
                     </div>
 
 
              </div>
     
-    <div class="cercanos">
-            <!--<div class="tit tit1">Establecimientos cercanos al evento</div>-->
-           <div id='map_establecimientos' style='width:100%; height:175px;'></div>
-            <div id="list-establec">
-
-
-
-
-            </div>
-
-            
-            <div class="description-event">
-                <?php echo $eventfound['descripcion']; ?>
-            </div>
-            <div class="title-coment-event">Comentarios</div>
-    </div>
+   
     
     <div class="part-bottom">
         <div class="publicidad-media"></div>      
@@ -110,7 +71,11 @@
 </div>
 <div class="parte-der">
     <div class="part-right divtrans2">
-         <!--<div class="tit tit1">Comenta el evento</div>-->
+          <div class="foto-user" style="background-size: cover; background-image: url(<?php echo $usuariofound['foto'] ?>)"></div>
+          <div class="bloque-info info-event-item">
+              <div class="title-user tit-gray"><?php echo $usuariofound['nombre'].' '.$usuariofound['apellido'];; ?></div>
+          </div>
+          <!--<div class="tit tit1">Comenta el evento</div>-->
         <?php if(isset($_SESSION['userid'])){ ?>
         <div  class="coments">
             <input type="hidden" id="iduser" value="<?php echo $userid ?>"/>
@@ -287,21 +252,3 @@
     </div>
 </div>
 <div class="publicidad-large"></div>
-
-
-
-
-
-<?php 
-    $loc = $eventfound['loc'];
-?>
-  
- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> <!--Cargamos la API de Google Maps-->
- <script type="text/javascript" src="js/evento.js"></script>
- 
- 
-<input id="lat-event" type="hidden" value="<?php echo $loc[0] //lat ?>"/>
-<input id="lng-event" type="hidden" value="<?php echo $loc[1] //lng ?>"/>
-<div class="est-hidden">
-   
-</div>
