@@ -1125,7 +1125,7 @@ $(document).ready(function(){
                           data: "logout=1",
                           success : function (data)
                           {
-                              if(data=="exito")
+                              if(data == "ok")
                                   {
                                     window.location.reload();
                                   }
