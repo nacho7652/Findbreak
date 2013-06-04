@@ -140,8 +140,15 @@
                                 if($comp!=null)
                                 {
                                    $_SESSION['userid'] = $comp['_id'];
-                                   $_SESSION['username'] = $comp['nombre'];
-                                   $_SESSION['foto'] = $comp['foto'];
+                                   $_SESSION['username'] = $comp['username'];
+                                   if($comp['foto']!="")
+                                   {
+                                    $us->updatePhoto($comp['_id'], $user_profile['picture']);
+                                   }
+                                   else
+                                   {
+                                       $_SESSION['foto'] = $comp['foto'];
+                                   }
                                    $_SESSION['usertype'] = 1;
                                    $userid = $_SESSION['userid'];
                                    $username = $_SESSION['username'];
@@ -150,9 +157,9 @@
                                 }
                                 else
                                 {
-                                   $hola = $us->insertar($user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture']);
+                                   $hola = $us->insertar($user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
                                    $_SESSION['userid'] = $hola['_id'];
-                                   $_SESSION['username'] = $hola['nombre'];
+                                   $_SESSION['username'] = $hola['username'];
                                    $_SESSION['foto'] = $hola['foto'];
                                    $_SESSION['usertype'] = 1;
                                    $userid = $_SESSION['userid'];
@@ -259,9 +266,8 @@
                                              }
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>
-                                        <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-photo">
-                                            <div class="content-option content-option-first"
-                                            style="background: url('<?php echo $_SESSION['foto']?>') no-repeat">
+                                        <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['userid']?>" class="option user-photo">
+                                            <div class="content-option content-option-first">
                                             </div> 
                                         </a>
                                    <?php }

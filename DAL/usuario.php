@@ -408,6 +408,26 @@ class usuario {
         }
     }
     
+    public function insertar($name, $apellido, $mail, $pass, $photo,$username){ 
+         $user = array(
+            "nombre" => $name,
+            "apellido" => $apellido,
+            "username"=>$username,
+            "email" => $mail,
+            "clave" => $pass,
+             "amigos" => array(),
+             "tags_buscados" => array(),
+             "historial_eventos" => array(),
+            "fecha_registro" => $this->hoy(),
+            "foto"=>$photo    
+        );
+         return $this->db->usuario->insert($user);        
+     }
+     
+     public function updatePhoto($userid,$photo){ 
+         return $this->db->usuario->update(array("_id"=>$userid),array('$set'=>array("foto"=>$photo))); 
+     }
+    
     public function hoy(){
          $a = date('Y-m-d 00:00:00'); // date("d-m-Y H:i:s");
          $hoy = new MongoDate(strtotime($a));
