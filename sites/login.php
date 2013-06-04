@@ -15,7 +15,7 @@
             <div class="titulo-login2">
                 <div class="msj-log3 mjscoment">O también puedes</div>
             </div>
-            <a class="loginface-top" id="login-fb" href="<?php echo $loginUrl; ?>">
+            <a class="loginface-top login-face" id="login-fb" href="#<?php //echo $loginUrl; ?>">
                 <div id="loginbtn-fb"></div>
                 <div class="txtfb">Ingresar con Facebook</div>
             </a>

@@ -17,7 +17,7 @@ $(document).ready(function(){
 //        //        });
 //              }
 //            });
-    $('#login-fb').click(function(event){
+    $('.login-face').click(function(event){
         event.preventDefault();
         fb.login(function(){ 
             if (fb.logged) 
@@ -1123,12 +1123,9 @@ $(document).ready(function(){
                           dataType: "json",
                           url: "/findbreak/function/login-response.php",
                           data: "logout=1",
-                          success : function (data)
+                          success : function ()
                           {
-                              if(data == "ok")
-                                  {
-                                    window.location.reload();
-                                  }
+                                  window.location.reload();
                           }
              
              

@@ -50,7 +50,6 @@ require 'facebook.php';
 if(isset($_GET['logout'])){
         session_destroy();
 //        $user = null;
-        echo "ok";
     }
 
 ?>

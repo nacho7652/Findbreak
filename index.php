@@ -182,7 +182,7 @@
                                       <input   type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
                                       <a href="#" class="botonblue" id="boton-login">Entrar</a>
-                                       <a class="loginface-top" id="login-fb" href="#<?php //echo $loginUrl; ?>">
+                                       <a class="loginface-top login-face" id="login-fb" href="#<?php //echo $loginUrl; ?>">
                                             <div id="loginbtn-fb"></div>
                                             <div class="txtfb">Ingresar con Facebook</div>
                                         </a>
