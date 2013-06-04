@@ -161,10 +161,7 @@
                                    $usertype = $_SESSION['usertype'];
                                 }
                             }
-                            else
-                            {
-                                //echo "NOOOOOOOOOOOOOO FUNCIONOOOOOOOOOOOOO!!!!!!!!!";
-                            }
+
                            
                             if(empty($_SESSION['userid'])){?>
                                <div id="login">
