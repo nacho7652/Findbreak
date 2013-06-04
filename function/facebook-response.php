@@ -50,7 +50,7 @@ require 'facebook.php';
 if(isset($_GET['logout'])){
         session_destroy();
 //        $user = null;
-        header("location:/findbreak/cerca");
+        echo "ok";
     }
 
 ?>

@@ -1125,7 +1125,10 @@ $(document).ready(function(){
                           data: "logout=1",
                           success : function (data)
                           {
-                                window.location.href="/findbreak/cerca/";
+                              if(data=="exito")
+                                  {
+                                    window.location.reload();
+                                  }
                           }
              
              
