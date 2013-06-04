@@ -206,9 +206,10 @@ $(document).ready(function(){
                                  success : function(res){                      
                                      //modificar la foto con el mail
                                      if(res == 1)
-                                     alert("Agregado")
+                                     alert("Bienvenido")
                                     else
-                                     alert("Vuelva a intentarlo")
+                                        if(res == -5)
+                                     alert("Lo sentimos, parece que  está cuenta ya está existente. ¿Te gustaría reclamar está dirección de correo electrónico?");
                                   }//success                
                               });
       

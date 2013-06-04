@@ -471,6 +471,8 @@ html {
 
 #user-login .option.user-photo {
     background-repeat: no-repeat;
+    background-size: cover;
+    background-size: cover !important;
     background-size: cover !important;
     width: 30px;
     height: 16px;
