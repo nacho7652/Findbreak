@@ -141,8 +141,14 @@
                                 {
                                    $_SESSION['userid'] = $comp['_id'];
                                    $_SESSION['username'] = $comp['username'];
-                                   $us->updatePhoto($comp['_id'], $user_profile['picture']);
-                                   $_SESSION['foto'] = $user_profile['picture'];
+                                   if($comp['foto']!="")
+                                   {
+                                    $us->updatePhoto($comp['_id'], $user_profile['picture']);
+                                   }
+                                   else
+                                   {
+                                       $_SESSION['foto'] = $comp['foto'];
+                                   }
                                    $_SESSION['usertype'] = 1;
                                    $userid = $_SESSION['userid'];
                                    $username = $_SESSION['username'];
@@ -162,6 +168,8 @@
                                    $usertype = $_SESSION['usertype'];
                                 }
                             }
+
+                           
                             if(empty($_SESSION['userid'])){?>
                                <div id="login">
 
@@ -265,7 +273,7 @@
                                    <?php }
                                    else
                                    {?>
-                                    <a href="/findbreak/!<?php echo $_SESSION['userid']?>" class="option user-photo">
+                                    <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-photo">
                                             <div class="content-option content-option-first"
                                             style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat">
                                             </div> 

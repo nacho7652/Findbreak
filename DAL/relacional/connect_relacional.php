@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
-class connect {
+class connect_relacional {
    
    public static function conectarse()
    {
@@ -11,7 +11,7 @@ class connect {
    }
    public static function desconectarse()
    {
-       if(connect::conectarse()){
+       if(connect_relacional::conectarse()){
             mysql_close();
        }
    }
