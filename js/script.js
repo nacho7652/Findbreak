@@ -31,7 +31,7 @@ $(document).ready(function(){
                       {
                           if(data == "ok")
                               {
-                                  $(location).attr('href','http://localhost/findbreak/cerca');
+                                  window.location.reload();
                               }
                       }
                   }); 
