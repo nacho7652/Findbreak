@@ -408,10 +408,9 @@ class usuario {
         }
     }
     
-    public function insertar($name, $apellido, $mail, $pass, $photo,$username){ 
+    public function insertar($name, $username, $mail, $pass){ 
          $user = array(
             "nombre" => $name,
-            "apellido" => $apellido,
             "username"=>$username,
             "email" => $mail,
             "clave" => $pass,
@@ -419,12 +418,21 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>$photo    
+            "foto"=>""    
         );
-         return $this->db->usuario->insert($user);        
+         
+         $emailRepetido = $this->findforemail($mail);
+           if($emailRepetido != "" || $emailRepetido != null)
+           {
+               return -5; //REPETIDO
+           }
+           else { 
+         return $this->db->usuario->insert($user); 
+          }
+         
      }
      
-     public function updatePhoto($userid,$photo){ 
+     public function updatePhoto($userid, $photo){ 
          return $this->db->usuario->update(array("_id"=>$userid),array('$set'=>array("foto"=>$photo))); 
      }
     

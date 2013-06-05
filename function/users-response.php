@@ -243,13 +243,14 @@
     {
 //"guardaruser=1&nomuser="+nomeuser+"&nombrefoto="+res.nombrefoto+"&apellido="+apellido+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
         $name = $_REQUEST['nomuser'];
-        $apellido = $_REQUEST['apellido'];
+        $username = $_REQUEST['username'];
         $mail = $_REQUEST['correousuario'];
         $pass = $_REQUEST['claveusuario'];
+        //$username = $_REQUEST['username']; // Upload guardaruser
         
         $usuario = new usuario();
         
-        $resp = $usuario->insertar(strtolower($name), strtolower($apellido), strtolower($mail), $pass);
+        $resp = $usuario->insertar(strtolower($name), $username, strtolower($mail), $pass);
         $_SESSION['mailuser'] = $mail;
         echo $resp;
         

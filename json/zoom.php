@@ -91,26 +91,26 @@
     if(isset($_POST['popup-registrousuario'])){
         $divPublicar = '<div class="content-publicarevent">
                                  <div class="item-publicarevent">
-                                    <div class="title-publicarevent">Registrate para disfrutar de todos los eventos</div>
+                                    <div class="title-publicarevent">Unete a Findbreak, la nueva red social de eventos</div>
                                  </div>
                                 <div class="item-publicarevent">
-                                 <div class="nombre-publicarevent">Nombre</div>
+                                 <div class="nombre-publicarevent">Nombre completo</div>
                                  <input class="field-publicarevent" type="text" id="nombre-usuario" name="nom-event"/>
                                 </div>
                                 
                                 <div class="item-publicarevent">
-                                 <div class="nombre-publicarevent">Apellido</div>
-                                 <input class="field-publicarevent" type="text" id="apellido-usuario" name="nom-event"/>
-                                </div>
-                                
-                                <div class="item-publicarevent">
-                                 <div class="nombre-publicarevent">Correo</div>
+                                 <div class="nombre-publicarevent">Dirección de correo electrónico</div>
                                  <input class="field-publicarevent" type="text" id="correo-usuario" name="nom-event"/>
                                 </div>
                                 
                                 <div class="item-publicarevent">
-                                 <div class="nombre-publicarevent">Clave</div>
+                                 <div class="nombre-publicarevent">Crea una contraseña</div>
                                  <input class="field-publicarevent" type="password" id="clave-usuario" name="nom-event"/>
+                                </div>
+                                
+                                <div class="item-publicarevent">
+                                 <div class="nombre-publicarevent">Escoge tu nombre de usuario</div>
+                                 <input class="field-publicarevent" type="text" id="user-name" name="nom-event"/>
                                 </div>
                                 
                                     

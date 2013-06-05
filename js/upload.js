@@ -194,7 +194,7 @@ $(document).ready(function(){
   {
       
         var nomeuser = $('#nombre-usuario').val();
-        var apellido = $('#apellido-usuario').val();
+        var username = $('#user-name').val();
         var correousuario = $('#correo-usuario').val();
         var claveusuario = $('#clave-usuario').val();
 //        alert("adads"); return;
@@ -202,11 +202,11 @@ $(document).ready(function(){
                                  dataType:"JSON",
                                  url : '/findbreak/function/users-response.php',
                                  type : 'POST',
-                                 data : "guardaruser=1&nomuser="+nomeuser+"&apellido="+apellido+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
+                                 data : "guardaruser=1&nomuser="+nomeuser+"&username="+username+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
                                  success : function(res){                      
                                      //modificar la foto con el mail
                                      if(res == 1)
-                                     alert("Bienvenido")
+                                     alert("Bienvenido");
                                     else
                                         if(res == -5)
                                      alert("Lo sentimos, parece que  está cuenta ya está existente. ¿Te gustaría reclamar está dirección de correo electrónico?");
