@@ -78,7 +78,10 @@
                                <div class="line"></div>
                                <div class="bloq1"></div>
                                <div class="bloq2">
-                                   <a href="/findbreak/!'.$dcto['username'].'" class="nomusercom tit-gray">'.$dcto['userName'].'</a>
+                                <div class="titu-usercom">
+                                    <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
+                                    <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
+                                </div>
                                    <div class="comentuser">
 
                                         

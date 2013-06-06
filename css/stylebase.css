@@ -2261,7 +2261,7 @@ padding: 0px 25px;
 .list {
     width: 351px;
     float: left;
-    min-height: 300px;
+/*    min-height: 300px;*/
     max-height: 443px;
     overflow: hidden;
 }
