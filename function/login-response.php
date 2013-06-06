@@ -18,50 +18,15 @@ if(isset($_POST['login']))
             $exito = true;
             session_start();
             $_SESSION['userid'] = $encontrado['_id'];
-            $_SESSION['username'] = $encontrado['nombre'];
-            if(isset($encontrado['foto'])){
-                $_SESSION['foto'] = $encontrado['foto'];
-            }else{
-                $_SESSION['foto'] = -1;
-            }
-            
+            $_SESSION['username'] = $encontrado['username'];
+            $_SESSION['nombre'] =  $encontrado['nombre'];
+            $_SESSION['foto'] = $encontrado['foto'];
             $userid = $_SESSION['userid'];
             $username = $_SESSION['username'];
-            $foto = $_SESSION['foto'];
             $_SESSION['usertype'] = 1;
             $usertype = $_SESSION['usertype'];
-        }else{
-            require_once '../DAL/productora.php';
-            $prod = new productora();
-            $encontrado = $prod->login($mail, $pass);
-            if(isset($encontrado['_id'])){ //Si es productora 
-
-                    $exito = true;
-                    session_start();
-                    $_SESSION['userid'] = $encontrado['_id'];
-                    $_SESSION['username'] = $encontrado['nombre'];
-                    if(isset($encontrado['foto'])){
-                        $_SESSION['foto'] = $encontrado['foto'];
-                    }else{
-                        $_SESSION['foto'] = -1;
-                    }
-
-                $userid = $_SESSION['userid'];
-                $username = $_SESSION['username'];
-                $foto = $_SESSION['foto'];
-                $_SESSION['usertype'] = 2;
-                $usertype = $_SESSION['usertype'];
-            }
         }
-        
-        
-        
-        
-        
         $respuesta = array("exito"=>$exito,
-                           "userid"=>(string)$userid,
-                           "username"=> $username,
-                           "foto"=> $foto,
                            "usertype"=>$usertype
                            );
         $re = json_encode($respuesta);

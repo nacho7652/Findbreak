@@ -5,7 +5,26 @@
         require_once '../DAL/usuario.php';
         require_once '../DAL/establecimiento.php';
         require_once '../DAL/comentario.php';
-        
+      if(!empty($_POST["search-event-cit"]))
+    {
+                    $evento = new evento();
+                    $popular = $evento->findpopular(3);
+                    $html = '';
+                    $limite = 3;
+                    foreach ($popular as $item){
+                        if($limite > 0){
+                            $html.= '<div data-id="'.$item['_id'].'" class="item-event-citar">
+                                                   <div style="background-image:url(http://images.ak.instagram.com/profiles/profile_144600501_75sq_1364906070.jpg)" class="item-evento-foto"></div>
+                                                   <div class="item-evento-name">'.$item['hash'].'</div>
+                                               </div>';
+                            $limite--;
+                        }
+                    }
+                    
+                    echo $html;
+            
+            
+    }
       if(isset($_REQUEST['mostrar-coment-cerca'])){
         $idEvento = $_REQUEST['idevento'];
         $hashevent = $_REQUEST['hashevent'];
@@ -59,10 +78,10 @@
                                <div class="line"></div>
                                <div class="bloq1"></div>
                                <div class="bloq2">
-                                   <a href="/findbreak/!#'.$dcto['_userId'].'" class="nomusercom tit-gray">'.$dcto['userName'].'</a>
+                                   <a href="/findbreak/!'.$dcto['username'].'" class="nomusercom tit-gray">'.$dcto['userName'].'</a>
                                    <div class="comentuser">
 
-                                         <a href="/findbreak/break/'.$dcto['_eventId'].'" class="hashlink">'.$hashevent.'</a>
+                                        
                                                                       '.$dcto['comentario'].'
 
                                    </div>

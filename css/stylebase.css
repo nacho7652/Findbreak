@@ -350,7 +350,7 @@ html {
     box-shadow: 0px 3px 5px -2px #E6E6E6 inset;
     color: rgb(145, 145, 145);
 }
-.input-transf:focus, #coment:focus{
+.input-transf:focus, #coment:focus, #hasheventos:focus{
     outline:none;
 }
 .input-text{
@@ -480,9 +480,7 @@ html {
 #user-login #optionhome{
     border-right: 1px solid rgb(59, 91, 173);
 }
-.option.user-photo:hover{
-   background-color: #A4A4A4 !important; 
-}
+
 #user-login .option:hover{
     background-color: rgba(25, 81, 153, 0.36);
     cursor: pointer;
@@ -537,6 +535,17 @@ html {
     border-right: 1px solid #e4e5e8;
     box-shadow: 0px 0px 4px -4px rgb(173, 173, 173);  border-radius: 2px;
     overflow: hidden;
+}
+.itemfoto-eve {
+    width: 40px;
+    height: 40px;
+    background-size: cover !important;
+}
+.itemfoto-eve-doble {
+    width: 20px;
+    height: 41px;
+    background-size: cover !important;
+    float: left;
 }
 #show-solicitud .item-friends-eventpic {
     width: 40px;
@@ -1463,11 +1472,17 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .info-num {
     float: left;
-    width: 183px;
+    width: 357px;
     height: 40px;
-    margin: 0px 0px 0px 7px;
+    margin: 7px 0px 20px -1px;
     border-bottom: 1px solid #e8e8e8;
+    border-top: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+    background: rgb(250, 250, 250);
     padding-top: 6px;
+    padding-bottom: 7px;
+    box-shadow: 0px 0px 5px -3px #444;
+    background: rgb(241, 241, 241) url("//d36xtkk24g8jdx.cloudfront.net/bluebar/dd6cb37/images/bg/white-gradient-100px.png") repeat-x 50% 50%;
 }
 .num-topinfo {
 font-size: 0.8em;
@@ -1489,19 +1504,82 @@ text-align: center;
     border-right: none !important;
 }
 .title-user{
-  font-size: 13px;
+  font-size: 25px !important;
+  margin: 0px 0px 0px 8px;
+}
+.username {
+margin: 0px 0px 0px 8px;
+font-size: 0.9em;
+color: rgb(189, 189, 189);
+}
+.perfiluser #coment {
+    width: 606px;
+    font-size: 0.8em;
+}
+.perfiluser #replica {
+    top: 34px;
+    width: 606px;
+    font-size: 0.8em;
+}
+.perfiluser .mjscoment {
+    width: 629px;
+}
+.perfiluser .username.usernamecom {
+    margin: 3px 0px 0px 4px;
+}
+#hasheventos {
+    margin: 5px 0px 7px 3px;
+    width: 599px;
+    font-size: 13px;
+    padding: 5px 3px 12px 7px;
+    height: 10px;
+    resize: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    overflow: hidden;
+    background: transparent;
+    font-family: EstoyBueno;
+    display: block;
 }
 .bloque-info {
     width: 462px;
-    height: 40px;
     float: left;
     margin: 7px 0px 0px 0px;
+}
+.perfiluser .coments {
+    float: right;
+    margin: 30px 20px 0px 0px;
+    width: 618px;
+    padding: 0px 0px 9px 0px;
+}
+.perfiluser .line {
+    width: 611px;
+}
+.perfiluser .itemcoment {
+width: 639px;
+padding: 0px 25px;
+}
+.perfiluser .list.boxscroll {
+    width: 662px;
+    margin: 0px 0px 0px 0px;
+    font-size: 1.2em;
+}
+.perfiluser .bloq2 {
+    width: 554px;
+}
+.perfiluser .titu-usercom {
+    width: 568px;
+}
+.perfiluser .leermas-comentuser.readmorecoment {
+    width: 622px;
+    font-size: 0.7em;
 }
 .foto-user{
     width: 179px;
     height: 195px;
     float: left;
-    margin: 0px 9px 0px 0px;
+    margin: 0px 0px 0px 0px;
     background-image: url(http://3.bp.blogspot.com/-BDrt8UjnTis/TVq6Yzct59I/AAAAAAAAAZg/9dH2MauSfhk/s1600/millencolin_4.jpg);  
     border-right: 1px solid rgba(24, 24, 24, 0.16);
     border-bottom: 1px solid rgba(24, 24, 24, 0.16);
@@ -1781,6 +1859,13 @@ text-align: center;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
 }
+.divtrans3{
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid #e4e5e8;
+    border-top: 1px solid #e4e5e8;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
 .tit {
     color: rgba(35, 106, 151, 1);
     text-decoration: none;
@@ -1884,13 +1969,14 @@ text-align: center;
     font-size: 12px;
     left: 0px;
     position: absolute;
-    margin:  5px 0px 7px 0px;
+    margin: 5px 0px 7px 0px;
     padding: 5px 3px 6px 7px;
     width: 315px;
-    top: 23px;
+    top: 22px;
     direction: ltr;
     background: transparent;
     color: transparent;
+    font-family: EstoyBueno;
 }
 #replica b{
     background: rgb(182, 204, 238);
@@ -1932,6 +2018,11 @@ text-align: center;
     text-decoration: underline;
 }
 #btn-comentar {
+    margin: 8px 0px 0px 0px;
+    float: right;
+    width: 105px;
+}
+#btn-comentar-puser {
     margin: 8px 0px 0px 0px;
     float: right;
     width: 105px;
@@ -1980,7 +2071,31 @@ text-align: center;
     margin: 5px 0px 0px 2px;
     font-size: 1.1em;
 }
-.amigosCitar {
+.eventosCitar .item-event-citar:hover {
+    background-color: rgba(247, 247, 247, 0.78);
+    cursor: pointer;
+}
+.eventosCitar .item-evento-foto {
+    width: 25px;
+    height: 25px;
+    float: left;
+    background-size: cover;
+    margin-left: 6px;
+}
+.eventosCitar .item-evento-name {
+    float: left;
+    font-size: 0.7em;
+    margin-left: 6px;
+    margin-top: -2px;
+}
+.eventosCitar .item-event-citar {
+    float: left;
+    width: 220px;
+    margin-bottom: 0px;
+    padding: 9px 4px 8px 1px;
+    border-top: 1px solid rgba(211, 211, 211, 0.31);
+}
+.amigosCitar, .eventosCitar {
     width: 225px;
     position: absolute;
     background-color: rgb(255, 255, 255);    top: 27px;  
@@ -1990,7 +2105,7 @@ text-align: center;
     box-shadow: 0px 0px 10px -5px rgb(82, 82, 82);  
     border-radius: 2px;
     display: none;
-    z-index: 1;
+    z-index: 2;
 }
 
 .divcitar:hover{
@@ -2057,15 +2172,25 @@ text-align: center;
 .bloq1 {
     width: 40px;
     height: 40px;
-    background: url(https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/s160x160/75506_10200385133008579_1835723334_a.jpg) no-repeat;
-    background-size: cover;
+    background-size: cover !important;
     float: left;
     margin: 0px 3px 0px 0px;
+}
+.username.usernamecom {
+    float: left;
+    font-size: 11px;
+    margin: 0px 0px 0px 3px;
+}
+.titu-usercom {
+    width: 292px;
+    float: left;
+    height: 17px;
 }
 .nomusercom.tit-gray {
     font-size: 0.7em;
     margin: 0px 0px 0px 4px;
     display: block;
+    float: left;
 }
 .nomusercom.tit-gray:hover{
     text-decoration: underline;

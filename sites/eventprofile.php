@@ -179,18 +179,27 @@
                 $comentarios = $comentarioEvent->findforid($eventfound['_id']);
                 $numComent = 0;
                 foreach($comentarios as $dcto){
-                     
+                     $userFoto = $usuario->verFoto($dcto['_userId']);
                      $realizacion = $comentarioEvent->verFecha($dcto['fechaMuestra']);
                      $useridComent = $dcto['_userId'];
+//                     $mostrarHash = '';
+//                     if(isset($dcto['eventos_mencionados']) != null){
+//                        $mencionado = $comentarioEvent->verCitaEvento( $eventfound['_id'], $dcto['eventos_mencionados']);
+//                        if(!$mencionado)
+//                         $mostrarHash = $eventfound['_id'];
+//                     }
                 ?>
                 <div data-num="<?= $numComent ?>" class="itemcoment">
                     <div class="line"></div>
-                    <div class="bloq1"></div>
+                    <div class="bloq1" style="background: url('<?php echo $userFoto['foto']?>') no-repeat"></div>
                     <div class="bloq2">
-                        <a href="/findbreak/!#<?php echo $dcto['_userId']?>" class="nomusercom tit-gray"><?php echo $dcto['userName'] ?></a>
+                        <div class="titu-usercom">
+                            <a href="/findbreak/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo $dcto['nombreUsuario'] ?></a>
+                            <spam class="username usernamecom">@<?php echo $dcto['userName']?></spam>
+                        </div> 
                         <div class="comentuser">
-                            
-                              <a href="/findbreak/break/<?php echo $dcto['_eventId'];?>" class="hashlink"><?php echo $eventfound['hash']?></a>
+<!--                            
+                              <a href="/findbreak/break/<?php //echo $dcto['_eventId'];?>" class="hashlink"><?php//s echo $mostrarHash?></a>-->
                                                            <?php echo $dcto['comentario'] ?>
 
                         </div>

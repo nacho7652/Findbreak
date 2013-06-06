@@ -42,8 +42,9 @@ $(document).ready(function(){
     $('body').delegate('.leermas-comentuser','click',function(){
             var id = $('#iduser').val();
             var ultimoComentario = $('.list .itemcoment:last').attr('data-num');
-            var totalComent = $('#totalComent').val();
-
+            var totalComent = $('#totalComent').html();
+//            alert(ultimoComentario)
+//            alert(totalComent)
 //            ultimoComentario++;
 //            alert(id);
 //            alert(ultimoComentario)
@@ -355,14 +356,17 @@ $(document).ready(function(){
          padre = $(this).parent().parent().parent().parent().parent();
          var coment = padre.find('#coment').val();
          var eventid = padre.find('#idevent').val();
-         //alert(eventid)
          var nombreevent = padre.find('.title-event').html();
+         if(nombreevent == null){
+             nombreevent = padre.find('.tit-eventcerca').html();
+         }
+         
          var hashevent = padre.find('#hashevent').val();
          var totalComent = padre.find('#totalComent').val();
          var ultimoComentario = padre.find('.list .itemcoment:last').attr('data-num');
          ultimoComentario = parseInt(ultimoComentario) +2;
          totalComent++;
-         
+         coment = hashevent+' '+coment;
          $.ajax({           
              type:"POST",
              dataType:"html",
@@ -1015,7 +1019,7 @@ $(document).ready(function(){
       })
       
       $("#boton-login").click(function(){
-          alert('qwerty')
+       
           //var textoAmigo = $('#amigo').val();
           var mail = $('#mail').val();
           var pass = $('#pass').val();
@@ -1040,11 +1044,11 @@ $(document).ready(function(){
                                       if(data.usertype == 1){
                                         window.location.reload();//es usuario y recargo la página donde esté
                                       }
-                                      if(data.usertype == 2){  
-                                        var id = data.userid;
-                                        
-                                        window.location.href="../productora/"+id+"";//es usuario y recargo la página donde esté
-                                      }
+//                                      if(data.usertype == 2){  
+//                                        var id = data.userid;
+//                                        
+//                                        window.location.href="../productora/"+id+"";//es usuario y recargo la página donde esté
+//                                      }
                                      // alert(data.divuserlogin)
                                      // $('.top-right').html(data.divuserlogin);
                                       //$("#login").html("Bienvenido");

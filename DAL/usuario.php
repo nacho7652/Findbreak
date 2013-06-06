@@ -56,7 +56,7 @@ class usuario {
            $nombre =  array("nombre" => new MongoRegex("/".$words[$i]."/")); // '%rock%'
            $result[]= $nombre;
 //           
-           $apellido =  array("apellido" => new MongoRegex("/".$words[$i]."/")); // '%rock%'
+           $apellido =  array("username" => new MongoRegex("/".$words[$i]."/")); // '%rock%'
            $result[]= $apellido;
         }
         return $this->db->usuario->find(array('$or' => $result//
@@ -112,9 +112,17 @@ class usuario {
          $theObjId = new MongoId($id); 
          return $this->db->usuario->findOne(array("_id" => $theObjId));
      }
+     
+     public function findforusername($username){
+         return $this->db->usuario->findOne(array("username" => $username));
+     }
      public function findforemail($email){
           
          return $this->db->usuario->findOne(array("email" => $email));
+     }
+     public function verFoto($id){
+         return $this->db->usuario->findOne(array("_id" => $id), array("foto" => 1));
+         //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
      }
     public function dejarDeSeguir($quien, $aquien)
     {
@@ -418,7 +426,30 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>""    
+            "foto"=>-1    
+        );
+         
+         $emailRepetido = $this->findforemail($mail);
+           if($emailRepetido != "" || $emailRepetido != null)
+           {
+               return -5; //REPETIDO
+           }
+           else { 
+         return $this->db->usuario->insert($user); 
+          }
+         
+     }                          //$user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
+     public function insertarFB($name, $apellido, $mail,$pass, $foto, $username){ 
+         $user = array(
+            "nombre" => $name+' '+$apellido,
+            "username"=>$username,
+            "email" => $mail,
+            "clave" => $pass,
+             "amigos" => array(),
+             "tags_buscados" => array(),
+             "historial_eventos" => array(),
+            "fecha_registro" => $this->hoy(),
+            "foto" => $foto
         );
          
          $emailRepetido = $this->findforemail($mail);
@@ -431,7 +462,6 @@ class usuario {
           }
          
      }
-     
      public function updatePhoto($userid, $photo){ 
          return $this->db->usuario->update(array("_id"=>$userid),array('$set'=>array("foto"=>$photo))); 
      }

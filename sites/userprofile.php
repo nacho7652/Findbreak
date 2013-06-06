@@ -6,9 +6,9 @@
       require_once '/DAL/usuario.php';
       $usuario = new usuario();
       $partid = explode('!', $_GET['id']);
-      $userid = $partid[1];
-      $usuariofound = $usuario->findforid($userid);
-      
+      $usernameUrl = $partid[1];
+      $usuariofound = $usuario->findforusername($usernameUrl);
+      $userid = $usuariofound['_id'];
       $comentarioUser = new comentario();
       $event = new evento();
       $eventfound = $event->findforid('516aed144de8b4a003000003');
@@ -36,8 +36,7 @@
                     </div>
 
                     <div class="part-left-cent">
-                        <div class="title-event tit"><?php echo $usuariofound['nombre'].' '.$usuariofound['apellido']?></div>
-                        <div class="inner-eveninfo info-eventcerca">
+                       
                                 <?php 
                                         $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
                                         $cantidadComentarios = $usuario->verCantidadComentarios($userid);
@@ -52,8 +51,8 @@
                                     ?>
 
                                
-
-                        </div>
+                        a
+                        
                     </div>
 
                     <div class="part-left-lf">
@@ -73,43 +72,65 @@
     <div class="part-right divtrans2">
           <div class="foto-user" style="background-size: cover; background-image: url(<?php echo $usuariofound['foto'] ?>)"></div>
           <div class="bloque-info info-event-item">
-              <div class="title-user tit-gray"><?php echo $usuariofound['nombre'].' '.$usuariofound['apellido'];; ?></div>
+              <div class="title-user tit-gray"><?php echo ucwords($usuariofound['nombre']) ?></div>
+              <div class="username">@<?= $usuariofound['username']?></div>
+              <div class="info-num">
+                    <div class="item-info-num">
+                        <div class="topinfo">Comentarios</div>
+                        <div id="totalComent" class="num-topinfo"><?= $cantidadComentarios?></div>
+                    </div>
+                    <div class="item-info-num">
+                        <div class="topinfo">Seguidores</div>
+                        <div class="num-topinfo">50</div>
+                    </div>
+                    <div class="item-info-num item-info-num2">
+                        <div class="topinfo">Siguiendo</div>
+                        <div class="num-topinfo">1000</div>
+                    </div>
+              </div>
+              <div class="info-num moreinfouser"></div>
           </div>
           <!--<div class="tit tit1">Comenta el evento</div>-->
-        <?php if(isset($_SESSION['userid'])){ ?>
-        <div  class="coments">
-            <input type="hidden" id="iduser" value="<?php echo $userid ?>"/>
-            <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
-            <div class="input-transcom">
-                <div class="hash"><?php echo $eventfound['hash']?></div>
-                <div id="overcoment">
-                  <textarea class="textoajustable" id="coment"></textarea>
-                </div>
-<!--                <div id="citasHidden"></div>
-                <div class="citasHiddenReservas"></div>-->
-                <div id="replica"></div>
-            </div>
-            <div class="showfocuscom">
-             <div class="divcitar">@</div>
-             <div class="amigosCitar"></div>
-             <input type="button" class="botonblue" id="btn-comentar" value="Comentar" />
-            </div>
-            
-        </div>
-        <?php }
-          else{ //si no esta logueado no puedo comentar ?>  
-        <div  class="coments-nolog">
-             <input type="hidden" id="idevent" value="<?php echo $_GET['id'] ?>"/>
-             <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
-            <div class="advert mjscoment">
-                Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
-                <a class="paracoment" id="login-fb" href="<?php echo ''; ?>">
-                    <div id="loginbtn-fb"></div>
-                    <div class="txtfb">Ingresar con Facebook</div>
-                </a>
-            </div>
-        </div>
-         <?php } ?>
+       
+          <div class="part-right divtrans3">
+                 <?php if(isset($_SESSION['userid'])){ ?>
+                    <div  class="coments">
+                        <input type="hidden" id="iduser" value="<?php echo $userid ?>"/>
+<!--                        <input type="hidden" id="hashevent" value="<?ph//p echo $eventfound['hash'] ?>"/>-->
+                        <div class="input-transcom">
+                            <!--<div class="hash"><?php //echo $eventfound['hash']?></div>-->
+                            <textarea id="hasheventos" class="hash" ></textarea>
+                            <div class="eventosCitar"></div>
+
+
+                            <div id="overcoment">
+                              <textarea class="textoajustable" id="coment"></textarea>
+                            </div>
+            <!--                <div id="citasHidden"></div>
+                            <div class="citasHiddenReservas"></div>-->
+                            <div id="replica"></div>
+                        </div>
+                        <div class="showfocuscom">
+                         <div class="divcitar">@</div>
+                         <div class="amigosCitar"></div>
+                         <input type="button" class="botonblue" id="btn-comentar-puser" value="Comentar" />
+                        </div>
+
+                    </div>
+                    <?php }
+                      else{ //si no esta logueado no puedo comentar ?>  
+                    <div  class="coments-nolog">
+                         <input type="hidden" id="idevent" value="<?php echo $_GET['id'] ?>"/>
+                         <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
+                        <div class="advert mjscoment">
+                            Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
+                            <a class="paracoment login-face" id="login-fb" href="<?php echo ''; ?>">
+                                <div id="loginbtn-fb"></div>
+                                <div class="txtfb">Ingresar con Facebook</div>
+                            </a>
+                        </div>
+                    </div>
+                     <?php } ?>
          
         <div class="list boxscroll">
             
@@ -124,12 +145,15 @@
                 ?>
                 <div data-num="<?= $numComent ?>" class="itemcoment">
                     <div class="line"></div>
-                    <div class="bloq1"></div>
+                    <div class="bloq1" style="background: url('<?php echo $usuariofound['foto']?>') no-repeat"></div>
                     <div class="bloq2">
-                        <a href="/findbreak/!#<?php echo $dcto['_userId']?>" class="nomusercom tit-gray"><?php echo $dcto['userName'] ?></a>
+                        <div class="titu-usercom">
+                            <a href="/findbreak/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo $dcto['nombreUsuario'] ?></a>
+                            <spam class="username usernamecom">@<?php echo $dcto['userName']?></spam>
+                        </div>
                         <div class="comentuser">
                             
-                              <a href="/findbreak/break/<?php echo $dcto['_eventId'];?>" class="hashlink"><?php echo $eventfound['hash']?></a>
+<!--                              <a href="/findbreak/break/<?php //echo $dcto['_eventId'];?>" class="hashlink"><?php //echo $eventfound['hash']?></a>-->
                                                            <?php echo $dcto['comentario'] ?>
 
                         </div>
@@ -157,14 +181,14 @@
             
                 <?php $numComent++;}
                 $comentRestantes = $cantidadComentarios - $numComent; //ultimo = limit
-                echo $cantidadComentarios;
+                
                 if($comentRestantes > 0){
                 ?>
                 
                 <a  href="#" class="leermas-comentuser readmorecoment">Ver más comentarios</a>
                 <?php } ?>
             </div>
-         
+          </div>
     </div>
     
     <div id="list-similares" class="part-right divtrans2">
@@ -252,3 +276,5 @@
     </div>
 </div>
 <div class="publicidad-large"></div>
+<script type="text/javascript" src="js/userprofile.js"></script>
+ 

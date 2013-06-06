@@ -4,7 +4,13 @@
     require_once '../DAL/comentario.php';
     date_default_timezone_set("Chile/Continental");
     
-    
+     if(isset($_GET['foto'])){
+         session_start();
+         require_once '../DAL/usuario.php';
+        $usuario = new usuario();
+        $usu =  $usuario->verFoto($_SESSION['userid']);
+        echo $usu['foto'];
+     }
     if(isset($_POST['vercomentario'])){
         session_start();
         require_once '../DAL/usuario.php';
@@ -44,7 +50,7 @@
                             <div class="bloq1"></div>
                             <div class="bloq2">
 
-                                <div class="nomusercom tit">'.$dcto['userName'].'</div>
+                                <a href="/findbreak/!'.$dcto['username'].'" class="nomusercom tit">'.$dcto['userName'].'</a>
                                 <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].' " class="hashlink">'.$event['hash'].'</a>
                                                         '.$dcto['comentario'].'
                                 </div>
@@ -75,41 +81,79 @@
         echo $comentarios->eliminar($dataid);     
     }
     
-    if(isset($_POST['comentest'])){
+    //comenteventUser
+    if(isset($_REQUEST['comenteventUser'])){
         session_start();
+        $limit = $_REQUEST['ultimo'];//8
         $userId = $_SESSION['userid'];
         $userName = $_SESSION['username'];
-        $comentario = $_POST['comentario'];
-        $estaId = $_POST['estaId'];
+        $nombreUsuario = $_SESSION['nombre'];
+        $comentario = $_REQUEST['comentario'];
+        $evenId = $_REQUEST['eventId'];
+        $hashevent = $_REQUEST['hashevent'];
+        $nombreevent = $_REQUEST['nombreevent'];
         $comentarios = new comentario();
-        $comentarios->guardarComentarioEstablecimiento($comentario, $userId, $estaId, $userName);
-         $respuesta = array("exito"=>"funciono");
-        $re = json_encode($respuesta);
-        echo $re;      
+        $usuario = new usuario();
+        $totalComent = $_REQUEST['totalComent'];//8
+        
+        $fecha = date('Y-m-d H:i:s');
+        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName,$nombreUsuario, $fecha,$nombreevent,$hashevent );
+        
+        //cargar comentarios
+        $todosComent = $comentarios->verMisComentarios($userId);
+        $html = '';
+        $numComent = 0;
+        foreach ($todosComent as $dcto){
+            $userFoto = $usuario->verFoto($dcto['_userId']);
+            $useridComent = $dcto['_userId'];
+            $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
+            $html.='<div data-num="'.$numComent.'" class="itemcoment">
+                        <div class="line"></div>
+                        <div class="bloq1"  style="background: url('.$userFoto['foto'].') no-repeat"></div>
+                        <div class="bloq2">
+                            <div class="titu-usercom">
+                               <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
+                               <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
+                           </div>
+                            
+                            <div class="comentuser">
+                                                    '.$dcto['comentario'].'
+                            </div>
+                        </div>
+                        <div class="bloq3">
+                                <div class="hacecuant">
+                                    '.$realizacion.'
+                                </div>';
+                            if($useridComent == $_SESSION['userid']){
+                               $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
+                           }else{
+                               $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+                           }
+                    $html.='
+                          </div>
+                      </div>';
+                    $numComent++;
+        }
+        $comentRestantes = $totalComent - $numComent;
+        if($comentRestantes > 0)
+         $html.='<a href="#" class="leermas-comentuser readmorecoment">Ver más comentarios</a>';
+        echo $html;      
     }
-    
     if(isset($_REQUEST['comentevent'])){
         session_start();
         $limit = $_REQUEST['ultimo'];//8
         $userId = $_SESSION['userid'];
         $userName = $_SESSION['username'];
+        $nombreUsuario = $_SESSION['nombre'];
         $comentario = $_REQUEST['comentario'];
         $evenId = $_REQUEST['eventId'];
         $hashevent = $_REQUEST['hashevent'];
         $nombreevent = $_REQUEST['nombreevent'];
         $comentarios = new comentario();
         $totalComent = $_REQUEST['totalComent'];//8
-//        if($limit>10){
-//            $limit = 10;
-//        }
-//        $comentRestantes = $totalComent - $limit;
-
-//        $limit+= 5; //de a 5
-//        $comentRestantes = $comentRestantes - 5;
-        
-        
+        $usuario = new usuario();
         $fecha = date('Y-m-d H:i:s');
-        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName, $fecha,$nombreevent );
+        $comentarios->guardarComentarioEvento($comentario,$userId,$evenId,$userName,$nombreUsuario, $fecha,$nombreevent,$hashevent );
         
         //cargar comentarios
         $theObjId = new MongoId($evenId);
@@ -119,13 +163,17 @@
         foreach ($todosComent as $dcto){
             $useridComent = $dcto['_userId'];
             $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
+            $userFoto = $usuario->verFoto($dcto['_userId']);
             $html.='<div data-num="'.$numComent.'" class="itemcoment">
                         <div class="line"></div>
-                        <div class="bloq1"></div>
+                        <div class="bloq1" style="background: url('.$userFoto['foto'].') no-repeat"></div>
                         <div class="bloq2">
+                            <div class="titu-usercom">
+                               <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
+                               <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
+                           </div>
                             
-                            <div class="nomusercom tit-gray">'.$dcto['userName'].'</div>
-                            <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].'" class="hashlink">'.$hashevent.'</a>
+                            <div class="comentuser">
                                                     '.$dcto['comentario'].'
                             </div>
                         </div>
@@ -159,21 +207,25 @@
         $comentarios = new comentario();
         $limit+= 5; //de a 5
         $comentRestantes = $comentRestantes - 5;
-        
+        $usuario = new usuario();
         $theObjId = new MongoId($evenId);
         $todosComent = $comentarios->findUltimoscoment($theObjId, $limit);
         $html = '';
         $numComent = 0;
         foreach ($todosComent as $dcto){
+            
+            $userFoto = $usuario->verFoto($dcto['_userId']);
             $useridComent = $dcto['_userId'];
             $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
             $html.='<div data-num="'.$numComent.'" class="itemcoment">
                         <div class="line"></div>
-                        <div class="bloq1"></div>
+                        <div class="bloq1" style="background: url('.$userFoto['foto'].') no-repeat"></div>
                         <div class="bloq2">
-                            
-                            <div class="nomusercom tit-gray">'.$dcto['userName'].'</div>
-                            <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].'" class="hashlink">'.$hashevent.'</a>
+                            <div class="titu-usercom">
+                               <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
+                               <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
+                           </div>
+                            <div class="comentuser">
                                                     '.$dcto['comentario'].'
                             </div>
                         </div>
@@ -212,22 +264,24 @@
         $comentarios = new comentario();
         $limit+= 5; //de a 5
         $comentRestantes = $comentRestantes - 5;
-        
+        $usuario = new usuario();
         $theObjId = new MongoId($iduser);
         $todosComent = $comentarios->findUltimoscomentUsuario($theObjId, $limit);
         $html = '';
         $numComent = 0;
         foreach ($todosComent as $dcto){
-            $hashevent = 'sda';
             $useridComent = $dcto['_userId'];
             $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
+            $userFoto = $usuario->verFoto($dcto['_userId']);
             $html.='<div data-num="'.$numComent.'" class="itemcoment">
                         <div class="line"></div>
-                        <div class="bloq1"></div>
+                        <div class="bloq1" style="background: url('.$userFoto['foto'].') no-repeat"></div>
                         <div class="bloq2">
-                            
-                            <div class="nomusercom tit-gray">'.$dcto['userName'].'</div>
-                            <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].'" class="hashlink">'.$hashevent.'</a>
+                            <div class="titu-usercom">
+                               <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
+                               <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
+                           </div>
+                            <div class="comentuser">
                                                     '.$dcto['comentario'].'
                             </div>
                         </div>

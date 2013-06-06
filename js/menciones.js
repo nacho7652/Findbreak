@@ -50,7 +50,10 @@ $(document).ready(function(){
                 nuevoTexto = comentGlobal.val();
 //                usuarioAcitar = '!#skumblue1';
                 usuarioAcitar = nombre;
+                if(usuarioAcitar!=null)
                 largoUsuario = usuarioAcitar.length + 3;//mas dos por el !#
+            else
+                largoUsuario = 0;
                  largoUsuarioRetur = largoUsuario;
                  largoUsuario = 0;
 //                 alert('largo user: '+largoUsuarioRetur)

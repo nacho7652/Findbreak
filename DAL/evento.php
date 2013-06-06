@@ -20,7 +20,38 @@ class evento {
     }
     public function verCantidadComentarios($id){
          $theObjId = new MongoId($id); 
-         return $this->db->comentariosEvento->find(array("_eventId" => $theObjId))->count();
+         //return $this->db->comentariosEvento->find(array("_eventId" => $theObjId))->count();
+         return $this->db->comentariosEvento->find(array('$or' =>array(
+                                                                 array("_eventId" => $theObjId), 
+                                                                 array("eventos_mencionados.id"=>$theObjId)
+                                                                      )))->count();
+     }
+     public function verEventosMencionados($idEventos){
+         $nombres = '';
+         $fotos = '';
+         $foto = '';
+         for($i=0;$i<count($idEventos);$i++){
+             $id = $idEventos[$i]['id'];
+             $nombre = $this->verNombre($id);
+             $nombres.= $nombre['nombre'].'<br>';
+         }
+         if(count($idEventos) == 1)//un evento
+         {           
+             $id = $idEventos[0]['id'];
+             $foto = $this->verFoto($id);
+             $fotos = '<div style="background:url('.$foto['fotos'][0].') no-repeat" class="itemfoto-eve"></div>';
+         }else{//tomo dos eventos 
+              for($i=0;$i<count($idEventos);$i++){
+                $id = $idEventos[$i]['id'];
+                $foto = $this->verFoto($id);
+                $fotos.= '<div style="background:url('.$foto['fotos'][0].') no-repeat" class="itemfoto-eve-doble"></div>';
+             }
+         }
+         $re = array('nombre'=>$nombres,'fotos'=>$fotos);
+         return $re;
+     }
+     public function findforhash($hash){
+         return $this->db->evento->findOne(array("hash" => $hash));
      }
     public function findforid($id){
          $theObjId = new MongoId($id); 
@@ -28,9 +59,17 @@ class evento {
      }
      public function findpopular($limit){
          $numeroPromedio = $this->promedioVisitas();
-         return $this->db->evento->find(array( 'fecha_realizacion'=> array('$gte' => $this->hoy()), 'visitas'=> array('$gte' => $numeroPromedio) ))->sort(array("visitas" => -1 ))->limit($limit);
+         return $this->db->evento->find(array( 'fecha_realizacion'=> array('$gte' => $this->hoy()), 'visitas'=> array('$gte' => ($numeroPromedio/2)) ))->sort(array("visitas" => -1 ))->limit($limit);
      }
-     
+      public function verFoto($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->evento->findOne(array("_id" => $theObjId), array("fotos" => 1));
+     }
+     public function verNombre($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->evento->findOne(array("_id" => $theObjId), array("nombre" => 1));
+         //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
+     }
      public function findpopularPorProductora($idProductora, $cuando){
          if($cuando > 0){//el evento más popular por realizarse
             return $this->db->evento->find(array('producido_por._id'=>$idProductora, 'visitas' => array('$gt'=>0) ))->sort(array("visitas" => -1 ))->limit(1);  

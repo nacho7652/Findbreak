@@ -4,6 +4,7 @@
     require_once 'function/place.php';
     require_once 'DAL/connect.php';
     require_once 'DAL/usuario.php';
+    require_once 'DAL/evento.php';
     require_once 'DAL/comentario.php';
 //    include_once ('function/facebook-response.php');
     $contsol=0;
@@ -141,6 +142,7 @@
                                 {
                                    $_SESSION['userid'] = $comp['_id'];
                                    $_SESSION['username'] = $comp['username'];
+                                   $_SESSION['nombre'] = $comp['nombre'];
                                    if($comp['foto'] == -1)
                                    {
                                       $us->updatePhoto($comp['_id'], $user_profile['picture']);
@@ -152,22 +154,14 @@
                                        $_SESSION['foto'] = $comp['foto'];
                                    }
                                    $_SESSION['usertype'] = 1;
-                                   $userid = $_SESSION['userid'];
-                                   $username = $_SESSION['username'];
-                                   $foto = $_SESSION['foto'];
-                                   $usertype = $_SESSION['usertype'];
                                 }
-                                else
-                                {
+                                else{
                                    $hola = $us->insertar($user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
                                    $_SESSION['userid'] = $hola['_id'];
                                    $_SESSION['username'] = $hola['username'];
+                                   $_SESSION['nombre'] = $hola['nombre'];
                                    $_SESSION['foto'] = $hola['foto'];
                                    $_SESSION['usertype'] = 1;
-                                   $userid = $_SESSION['userid'];
-                                   $username = $_SESSION['username'];
-                                   $foto = $_SESSION['foto'];
-                                   $usertype = $_SESSION['usertype'];
                                 }
                             }
 
@@ -208,12 +202,14 @@
                                          $usertype = $_SESSION['usertype'];
                                          if($usertype == 1){
                                              $usuario = new usuario();
+                                             
                                              $notificaciones = $usuario->verNotificaciones($_SESSION['userid']);
                                              //$re = $usuario->unirNotificaciones($menciones, $seguiArr, null);
                                             // echo count($seguiArr);
                                             // echo count((array)$menciones);
                                              
                                              $comentarioEvent = new comentario();
+                                             $evento = new evento();
 //                                             $solicitud = $usuario->VerSolicitudes($_SESSION['userid']);
                                              $divMenciones = "";
                                             
@@ -228,14 +224,19 @@
                                                  if($not['tipo'] == 1){
                                                         $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
                                                         $user = $usuario->findforid($not['quien']);
+                                                        //ver nombre(s) y foto(s) de los eventos mencionados
+//                                                        echo $not['idEventos'][0]['id'];
+                                                        $fotosNombres = $evento->verEventosMencionados($not['idEventos']);
                                                         $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not1"> 
                                                                            <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
                                                                            <div class="item-friends-msj">
                                                                                <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
                                                                                <span class="msjmencion">te ha mencionado en el evento</span>
-                                                                               <span class="tit-gray msjmencion msjeventonom">'.$not['nombreEvent'].' </span>
+                                                                               <span class="tit-gray msjmencion msjeventonom">'.$fotosNombres['nombre'].' </span>
                                                                            </div>
-                                                                           <div style="background-image:url('.$user['foto'].')" class="item-friends-eventpic"></div>
+                                                                           <div class="item-friends-eventpic">
+                                                                            '.$fotosNombres['fotos'].'
+                                                                           </div>
                                                                            <div class="bloq3">
                                                                                <div class="hacecuant">'.$realizacion.'</div>
                                                                            </div>
@@ -268,21 +269,21 @@
                                              }
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>
-                                        <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['userid']?>" class="option user-photo">
+                                        <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
                                             <div class="content-option content-option-first">
                                             </div> 
                                         </a>
                                    <?php }
                                    else
                                    {?>
-                                    <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-photo">
+                                    <a href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
                                             <div class="content-option content-option-first"
                                             style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat">
                                             </div> 
                                         </a>
                                    
                                    <?php } ?>
-                                        <a href="/findbreak/!#<?php echo $_SESSION['userid']?>" class="option user-name" >
+                                        <a href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-name" >
                                              <div class="content-option">
                                                  <?php echo $_SESSION['username'] ?>
                                              </div>
