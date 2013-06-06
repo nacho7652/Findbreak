@@ -43,7 +43,12 @@
         }
         public function verMisComentarios($id){
          $theObjId = new MongoId($id); 
-         return $this->db->comentariosEvento->find(array("_userId" => $theObjId))->sort(array("fechaMongo" => -1 ))->limit(10);
+         return $this->db->comentariosEvento->find(array('$or' =>array(
+                                                                       array("_userId" => $theObjId)//,
+                                                                      // array("mencionados.id" => (string)$id)
+                                                                       )
+                                                        )
+                                                   )->sort(array("fechaMongo" => -1 ))->limit(10);
         }
         public function findUltimoscomentUsuario($id,$limit){
         // $theObjId = new MongoId($id); 
@@ -222,10 +227,10 @@
                         $comentario = str_replace($nicknameCompleto, $itemCita, $comentario);
                     }else{
                         //si es evento poner 
-                        $eventofound = $evento->findforhash($nicknameCompleto);
+                        $eventofound = $evento->findforhash($nickname);
                         if($eventofound !=null){
                             $totalEventos.= $eventofound['_id'].'-';
-                            $itemCita = '<a href="/findbreak/break/'.$eventofound['_id'].'" class="hashlink">'.$nicknameCompleto.'</a>';
+                            $itemCita = '<a href="/findbreak/break/'.$eventofound['hash'].'" class="hashlink">'.$nicknameCompleto.'</a>';
                             $comentario = str_replace($nicknameCompleto, $itemCita, $comentario);
                         }
                     }
@@ -239,7 +244,15 @@
             $fechaMongo = new MongoDate(strtotime($fecha));
             $re = $this->buscarMencionados($comentario);
             $eventosMencionados = $this->transformarMenciones($re['totalEventos']);
-            
+            ///ver mencionados y transformarlos a array
+                $mecionadosArray = array();
+                $partes = explode('-', $re['menciones']);
+                    if(count($partes)>0){
+                        for($i=0; $i<count($partes)-1; $i++){
+                            $mecionadosArray[] = array('id'=>$partes[$i]);
+                        }
+                    }
+             ///
                 $coment = array(
                     "_userId"=>$userId,
                     "_eventId"=>$eventosMencionados,//id de todos los eventos
@@ -247,9 +260,10 @@
                     "nombreUsuario"=>$nombreUsuario,
                     "comentario"=>$re['comentario'],
                     "fechaMongo"=>$fechaMongo,
-                    "fechaMuestra"=>$fecha
+                    "fechaMuestra"=>$fecha,
+                    "mencionados"=>$mecionadosArray
                 );
-            
+             
              $this->db->comentariosEvento->insert($coment); 
              $this->guardarNotificacion1($userId, $re['menciones'],$coment['_id'] , $hash, $fechaMongo, $fecha,$eventosMencionados);
              

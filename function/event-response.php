@@ -15,7 +15,7 @@
                         if($limite > 0){
                             $html.= '<div data-id="'.$item['_id'].'" class="item-event-citar">
                                                    <div style="background-image:url(http://images.ak.instagram.com/profiles/profile_144600501_75sq_1364906070.jpg)" class="item-evento-foto"></div>
-                                                   <div class="item-evento-name">'.$item['hash'].'</div>
+                                                   <div class="item-evento-name">#'.$item['hash'].'</div>
                                                </div>';
                             $limite--;
                         }
@@ -133,7 +133,7 @@
                     $classPrimero = 'itemCitarSelected';
                 }
                 $cuadroevento.= 
-                '<a href="/findbreak/break/'.(string)$dcto['_id'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
+                '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
                    <div class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
@@ -209,7 +209,7 @@
                                     }else{
                                         $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
                                     }
-                                  $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['_id'].'" class="tit-eventcerca" >'.$dcto['nombre'].'</a>
+                                  $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['hash'].'" class="tit-eventcerca" >'.$dcto['nombre'].'</a>
                                                        <div class="info-eventcerca info-eventcercawhte">
                                                            <div class="item-infocerca">
                                                                
@@ -317,7 +317,7 @@
                                     }else{
                                         $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
                                     }
-                                  $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['_id'].'" class="tit-eventcerca" >'.$dcto['nombre'].'</a>
+                                  $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['hash'].'" class="tit-eventcerca" >'.$dcto['nombre'].'</a>
                                                        <div class="info-eventcerca info-eventcercawhte">
                                                            <div class="item-infocerca">
                                                                

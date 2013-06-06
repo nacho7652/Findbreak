@@ -30,7 +30,7 @@
         $cuerpo.=   '<div style="background: url('.$quienCito['foto'].')" class="bloq1"></div>';
         $cuerpo.=   '<div class="bloq2msjinner">';
         $cuerpo.=       '<div class="nomusercom tit">'.$quienCito['nombre'].'</div>';
-        $cuerpo.=       '<div class="comentuser"><a href="/findbreak/break/'.$event['_id'].'" class="hashlink">'.$event['hash'].'</a>'.$coment['comentario'].'</div>';
+        $cuerpo.=       '<div class="comentuser"><a href="/findbreak/break/'.$event['hash'].'" class="hashlink">'.$event['hash'].'</a>'.$coment['comentario'].'</div>';
         $cuerpo.=   '</div>';
         $cuerpo.= '<div class="bloq3msjinner">';
         $realizacion = $comentarios->verFecha($coment['fechaMuestra']);
@@ -51,7 +51,7 @@
                             <div class="bloq2">
 
                                 <a href="/findbreak/!'.$dcto['username'].'" class="nomusercom tit">'.$dcto['userName'].'</a>
-                                <div class="comentuser"><a href="/findbreak/break/'.$dcto['_eventId'].' " class="hashlink">'.$event['hash'].'</a>
+                                <div class="comentuser"><a href="/findbreak/break/'.$event['hash'].' " class="hashlink">'.$event['hash'].'</a>
                                                         '.$dcto['comentario'].'
                                 </div>
                             </div>

@@ -35,8 +35,7 @@ $(document).ready(function(){
          var ultimoComentario = padre.find('.list .itemcoment:last').attr('data-num');
          ultimoComentario = parseInt(ultimoComentario) +2;
          totalComent++;
-         alert(nombreevent)
-         alert(hashevent)
+
          $.ajax({           
              type:"POST",
              dataType:"html",

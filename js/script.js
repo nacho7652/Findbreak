@@ -367,6 +367,7 @@ $(document).ready(function(){
          ultimoComentario = parseInt(ultimoComentario) +2;
          totalComent++;
          coment = hashevent+' '+coment;
+        
          $.ajax({           
              type:"POST",
              dataType:"html",
@@ -374,6 +375,7 @@ $(document).ready(function(){
              data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
              success: function (data)
              {
+                
                  padre.find('.showfocuscom').hide();
                  padre.find('#coment').css('height','16px');
                  padre.find('#coment').val('');

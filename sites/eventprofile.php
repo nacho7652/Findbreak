@@ -5,7 +5,7 @@
       require_once '/DAL/comentario.php';
       $comentarioEvent = new comentario();
       $event = new evento();
-      $eventfound = $event->findforhash('#'.$_GET['id']);
+      $eventfound = $event->findforhash($_GET['id']);
       $folder = (string)$eventfound['producido_por']['_id'];
       $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
       $event->sumarvisita($eventfound['_id']); // sumar visita
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="part-left-cent">
-                        <div class="title-event tit"><?php echo $_GET['id']; ?></div>
+                        <div class="title-event tit"><?php echo $eventfound['nombre']; ?></div>
                         <div class="inner-eveninfo info-eventcerca">
                                 <?php 
                                         $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
@@ -141,10 +141,10 @@
          <!--<div class="tit tit1">Comenta el evento</div>-->
         <?php if(isset($_SESSION['userid'])){ ?>
         <div  class="coments">
-            <input type="hidden" id="idevent" value="<?php echo $_GET['id'] ?>"/>
-            <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
+            <input type="hidden" id="idevent" value="<?php echo $eventfound['_id'] ?>"/>
+            <input type="hidden" id="hashevent" value="<?php echo '#'.$eventfound['hash'] ?>"/>
             <div class="input-transcom">
-                <div class="hash"><?php echo $eventfound['hash']?></div>
+                <div class="hash"><?php echo '#'.$eventfound['hash']?></div>
                 <div id="overcoment">
                   <textarea class="textoajustable" id="coment"></textarea>
                 </div>
@@ -163,7 +163,7 @@
           else{ //si no esta logueado no puedo comentar ?>  
         <div  class="coments-nolog">
              <input type="hidden" id="idevent" value="<?php echo $_GET['id'] ?>"/>
-             <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
+             <input type="hidden" id="hashevent" value="<?php echo '#'.$eventfound['hash'] ?>"/>
             <div class="advert mjscoment">
                 Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
                 <a class="paracoment login-face" id="login-fb" href="<?php echo '#'; ?>">
@@ -175,10 +175,13 @@
          <?php } ?>
          
         <div class="list boxscroll">
+            
                 <?php 
+                
                 $comentarios = $comentarioEvent->findforid($eventfound['_id']);
                 $numComent = 0;
                 foreach($comentarios as $dcto){
+                 
                      $userFoto = $usuario->verFoto($dcto['_userId']);
                      $realizacion = $comentarioEvent->verFecha($dcto['fechaMuestra']);
                      $useridComent = $dcto['_userId'];
@@ -260,7 +263,7 @@
                                 <div class="item-event">   
                                      <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
-                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['_id'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                         <div class="inner-eventpeq">  
                                             <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
                                             
@@ -302,7 +305,7 @@
                                 <div class="item-event">   
                                      <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
-                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['_id'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                         <div class="inner-eventpeq">  
                                             <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
                                             

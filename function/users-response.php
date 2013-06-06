@@ -26,7 +26,7 @@
         }else{//es una palabra
             $textoAmigo = $busqueda;
         }
-        $nombreCitaDB2 = ' <a href="/findbreak/!#'.$id.'"
+        $nombreCitaDB2 = ' <a href="/findbreak/!'.$id.'"
                                     data-id="'.$id.'"
                                     class="itemcita">'.$nombre.'</a> ';
         
@@ -157,7 +157,7 @@
                 }
                 $hayuser = true;
                 $cuadrouser.= 
-                '<a href="/findbreak/!#'.$dcto["_id"].'" class="'.$classPrimero.' item-search item-search-friend">
+                '<a href="/findbreak/!'.$dcto["username"].'" class="'.$classPrimero.' item-search item-search-friend">
                    <div class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
@@ -178,7 +178,7 @@
             {
                 $hayevents = true;
                 $cuadroevento.= 
-                '<a href="/findbreak/break/'.(string)$dcto['_id'].'" target="_blank" class="item-search item-search-event">
+                '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="item-search item-search-event">
                    <div class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>

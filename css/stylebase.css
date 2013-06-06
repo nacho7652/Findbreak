@@ -1442,6 +1442,26 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     float: left;
     background: rgba(255,255,255,0.8);
 }
+.perfiluser .item-event {
+    width: 276px;
+}
+.perfiluser .info-event {
+    width: 218px;
+}
+.perfiluser .inner-eventpeq {
+    width: 214px;
+    font-size: 0.9em;
+    height: 39px;
+}
+.perfiluser #fechaevent-prof {
+    width: 190px;
+    padding: 4px 0px 5px 23px;
+    border: none;
+}
+.perfiluser #visitavent-prof {
+    width: 194px;
+    border: none;
+}
 .item-event {
     width: 326px;
     height: 82px;
@@ -1843,6 +1863,9 @@ padding: 0px 25px;
     border-bottom: 1px solid #e4e5e8;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
+}
+.perfiluser .part-left-cent {
+    width: 286px;
 }
 .perfiluser .part-left{
     width: 286px;

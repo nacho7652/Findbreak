@@ -39,20 +39,68 @@
                        
                                 <?php 
                                         $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
-                                        $cantidadComentarios = $usuario->verCantidadComentarios($userid);
-                                        $textoComentario = '';
-                                        if($cantidadComentarios == 0){
-                                            $textoComentario = 'Se el primero en comentar!';
-                                        }elseif($cantidadComentarios == 1){
-                                            $textoComentario = 'Un comentario';
-                                        }else{
-                                            $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
-                                        }
+                                        $cantidadComentariosUser = $usuario->verCantidadComentarios($userid);
+//                                        $textoComentario = '';
+//                                        if($cantidadComentarios == 0){
+//                                            $textoComentario = 'Se el primero en comentar!';
+//                                        }elseif($cantidadComentarios == 1){
+//                                            $textoComentario = 'Un comentario';
+//                                        }else{
+//                                            $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
+//                                        }
                                     ?>
+                        <?php 
+                        if(isset($_SESSION['userid'])){
+                            if($_SESSION['userid'] == $userid)//mostrar mis recomendaciones
+                             { ?>
+                                <div class="titlediv">Actividades más visitadas</div>
+                                    <div class="boxscroll boxscrollEvents">
+                                                        <!--<div class="eventsfavo">-->
+                                                            <?php 
+                                //                          if(isset($_SESSION['userid'])){
+                                                        //$pop = $event->findpopular(4);
+                                                        $pop = $usuario->verEventosFavoritos($usuariofound['tags_buscados']);
+                                                        foreach($pop as $dcto){
+                                                            $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
+                                                                $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
+                                                                $textoComentario = '';
+                                                                if($cantidadComentarios == 0){
+                                                                    $textoComentario = 'Se el primero en comentar!';
+                                                                }elseif($cantidadComentarios == 1){
+                                                                    $textoComentario = 'Un comentario';
+                                                                }else{
+                                                                    $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
+                                                                }
 
-                               
-                        a
+                                                           // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
+                                                        ?>
+                                                        <div class="item-event">   
+                                                             <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
+                                                             <div class="info-event">
+                                                                <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                                                <div class="inner-eventpeq">  
+                                                                    <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
+
+                                                                 </div>
+                                                                <div id="visitavent-prof" class="info-event-item">
+                                                                        <div><span class="bold"><?php echo $dcto['visitas']?></span></div>
+
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php 
+
+                                                        } ?>
+                                                    <!--</div>-->
+                                </div>
                         
+                   <?php }
+                   
+                   }else{
+                        ?>
+                               no logged
+                        
+                        <?php }?>
                     </div>
 
                     <div class="part-left-lf">
@@ -77,15 +125,29 @@
               <div class="info-num">
                     <div class="item-info-num">
                         <div class="topinfo">Comentarios</div>
-                        <div id="totalComent" class="num-topinfo"><?= $cantidadComentarios?></div>
+                        <div id="totalComent" class="num-topinfo"><?= $cantidadComentariosUser?></div>
                     </div>
                     <div class="item-info-num">
                         <div class="topinfo">Seguidores</div>
-                        <div class="num-topinfo">50</div>
+                        <div class="num-topinfo">
+                            <?php if(isset($usuariofound['seguidores']))
+                                        echo count($usuariofound['seguidores']);
+                                   else
+                                       echo 0;
+                            ?>
+                        
+                        </div>
                     </div>
                     <div class="item-info-num item-info-num2">
                         <div class="topinfo">Siguiendo</div>
-                        <div class="num-topinfo">1000</div>
+                        <div class="num-topinfo">
+                            <?php if(isset($usuariofound['siguiendo']))
+                                        echo count($usuariofound['siguiendo']);
+                                   else
+                                       echo 0;
+                            ?>
+                        
+                        </div>
                     </div>
               </div>
               <div class="info-num moreinfouser"></div>
@@ -93,35 +155,41 @@
           <!--<div class="tit tit1">Comenta el evento</div>-->
        
           <div class="part-right divtrans3">
-                 <?php if(isset($_SESSION['userid'])){ ?>
-                    <div  class="coments">
-                        <input type="hidden" id="iduser" value="<?php echo $userid ?>"/>
-<!--                        <input type="hidden" id="hashevent" value="<?ph//p echo $eventfound['hash'] ?>"/>-->
-                        <div class="input-transcom">
-                            <!--<div class="hash"><?php //echo $eventfound['hash']?></div>-->
-                            <textarea id="hasheventos" class="hash" ></textarea>
-                            <div class="eventosCitar"></div>
+                 <?php if(isset($_SESSION['userid'])){ 
+                         if($_SESSION['userid'] == $userid)
+                         {
+                     ?>
+                 
+                            <div  class="coments">
+                                <input type="hidden" id="iduser" value="<?php echo $userid ?>"/>
+        <!--                        <input type="hidden" id="hashevent" value="<?ph//p echo $eventfound['hash'] ?>"/>-->
+                                <div class="input-transcom">
+                                    <!--<div class="hash"><?php //echo $eventfound['hash']?></div>-->
+                                    <textarea id="hasheventos" class="hash" ></textarea>
+                                    <div class="eventosCitar"></div>
 
 
-                            <div id="overcoment">
-                              <textarea class="textoajustable" id="coment"></textarea>
+                                    <div id="overcoment">
+                                      <textarea class="textoajustable" id="coment"></textarea>
+                                    </div>
+                    <!--                <div id="citasHidden"></div>
+                                    <div class="citasHiddenReservas"></div>-->
+                                    <div id="replica"></div>
+                                </div>
+                                <div class="showfocuscom">
+                                 <div class="divcitar">@</div>
+                                 <div class="amigosCitar"></div>
+                                 <input type="button" class="botonblue" id="btn-comentar-puser" value="Comentar" />
+                                </div>
+
                             </div>
-            <!--                <div id="citasHidden"></div>
-                            <div class="citasHiddenReservas"></div>-->
-                            <div id="replica"></div>
-                        </div>
-                        <div class="showfocuscom">
-                         <div class="divcitar">@</div>
-                         <div class="amigosCitar"></div>
-                         <input type="button" class="botonblue" id="btn-comentar-puser" value="Comentar" />
-                        </div>
-
-                    </div>
                     <?php }
+                    
+                    }
                       else{ //si no esta logueado no puedo comentar ?>  
                     <div  class="coments-nolog">
                          <input type="hidden" id="idevent" value="<?php echo $_GET['id'] ?>"/>
-                         <input type="hidden" id="hashevent" value="<?php echo $eventfound['hash'] ?>"/>
+                         <input type="hidden" id="hashevent" value="<?php echo '#'.$eventfound['hash'] ?>"/>
                         <div class="advert mjscoment">
                             Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
                             <a class="paracoment login-face" id="login-fb" href="<?php echo ''; ?>">
@@ -180,7 +248,7 @@
                 </div>
             
                 <?php $numComent++;}
-                $comentRestantes = $cantidadComentarios - $numComent; //ultimo = limit
+                $comentRestantes = $cantidadComentariosUser - $numComent; //ultimo = limit
                 
                 if($comentRestantes > 0){
                 ?>
@@ -215,7 +283,7 @@
                                 <div class="item-event">   
                                      <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
-                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['_id'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                         <div class="inner-eventpeq">  
                                             <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
                                             
@@ -257,7 +325,7 @@
                                 <div class="item-event">   
                                      <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
-                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['_id'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                         <div class="inner-eventpeq">  
                                             <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
                                             
