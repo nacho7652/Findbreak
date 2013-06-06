@@ -44,7 +44,7 @@
                                 '.$buttonFriend.'
                               </div>
                               <div class="info-user">';
-         $divProfileUser.=     '<a href="/findbreak/!#'.$usuariofound['_id'].'" class="name-user tit">'.$usuariofound['nombre'].' '.$usuariofound['apellido'].'</a>
+         $divProfileUser.=     '<a href="/findbreak/!'.$usuariofound['username'].'" class="name-user tit">'.ucwords($usuariofound['nombre']).'</a>
                                 
                                </div>';
          if(isset($usuariofound['seguidores']) && count($usuariofound['seguidores']) > 0){//si tiene 1 o muchos seguidores

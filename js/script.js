@@ -729,6 +729,7 @@ $(document).ready(function(){
         });
       $('#search-ini').keyup(function(e){
            focusFinalBus = $('#search-ini').val().length;
+           
           if(e.keyCode == 32 && trim($('#search-ini').val()) == false ){//si apreto espacio muestro los más populares
               
               $('#search-ini').val('')
@@ -758,6 +759,10 @@ $(document).ready(function(){
       
          
           if(e.keyCode == 13){//enter
+              //para apretar enter y se caiga
+//                if(trim($('#search-ini').val()) == "" && $('#eventresponse').is(":visible")){
+//                    return false;
+//                }
               var redirec = $('.item-search.itemCitarSelected').attr('href');
               location.href = redirec;
           }

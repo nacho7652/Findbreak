@@ -5,10 +5,10 @@
       require_once '/DAL/comentario.php';
       $comentarioEvent = new comentario();
       $event = new evento();
-      $eventfound = $event->findforid($_GET['id']);
+      $eventfound = $event->findforhash('#'.$_GET['id']);
       $folder = (string)$eventfound['producido_por']['_id'];
       $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
-      $event->sumarvisita($_GET['id']); // sumar visita
+      $event->sumarvisita($eventfound['_id']); // sumar visita
      // if(!isset($_SESSION['vi'.(string)$eventfound['_id']]) != "") 
     //  {
             if(isset($_SESSION['userid']) && isset($_SESSION['userid']) == 1){
@@ -64,11 +64,11 @@
                     </div>
 
                     <div class="part-left-cent">
-                        <div class="title-event tit"><?php echo $eventfound['nombre']; ?></div>
+                        <div class="title-event tit"><?php echo $_GET['id']; ?></div>
                         <div class="inner-eveninfo info-eventcerca">
                                 <?php 
                                         $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
-                                        $cantidadComentarios = $event->verCantidadComentarios($_GET['id']);
+                                        $cantidadComentarios = $event->verCantidadComentarios($eventfound['_id']);
                                         $textoComentario = '';
                                         if($cantidadComentarios == 0){
                                             $textoComentario = 'Se el primero en comentar!';

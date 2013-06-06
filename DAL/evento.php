@@ -22,8 +22,7 @@ class evento {
          $theObjId = new MongoId($id); 
          //return $this->db->comentariosEvento->find(array("_eventId" => $theObjId))->count();
          return $this->db->comentariosEvento->find(array('$or' =>array(
-                                                                 array("_eventId" => $theObjId), 
-                                                                 array("eventos_mencionados.id"=>$theObjId)
+                                                                 array("_eventId.id" => $theObjId)
                                                                       )))->count();
      }
      public function verEventosMencionados($idEventos){

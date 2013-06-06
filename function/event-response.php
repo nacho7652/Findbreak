@@ -164,7 +164,7 @@
                     $classPrimero = 'itemCitarSelected';
                 }
                 $cuadroevento.= 
-                '<a href="/findbreak/break/'.(string)$dcto['_id'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
+                '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
                    <div class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
