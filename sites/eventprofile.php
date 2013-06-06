@@ -36,51 +36,33 @@
                 if($pagar->VerVigenciaYProducidoPor($_SESSION['userid'], $eventfound['_id']) == 1 )
                 {
                     $mio = true;
-                    $mensajePremio = '';
                     ?> 
                             <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar información</a>
                         <?php
                         
-                        //PISOS 
-                        if( $visitasEvento < 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
-                        {
-                             $mensajePremio =  "Estas en el piso 1, te faltan ".(12000-$visitasEvento)." visitas para los 990 pesos :)";
-                        }
-                        if( $visitasEvento >= 12000) // && PISO igual 1 [consulta a bd]
-                        {
-                            if($pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ){
-                                $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
-                                $pagar->PagoVisitas(990, $_SESSION['userid']); //Esto depende del piso, en este caso piso 1
-                            }
-                                $mensajePremio = "Estas en el piso 2, te faltan ".(24000-$visitasEvento)." visitas para los 1390 pesos :)";
-                               
-                        }
-                        if( $visitasEvento >= 24000 ) // && PISO igual 1 [consulta a bd]
-                        {
-                              if($pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 2 ){
-                                $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
-                                $pagar->PagoVisitas(1390, $_SESSION['userid']); 
-                              }
-                                $mensajePremio = "Estas en el piso 3, te faltan ".(48000-$visitasEvento)." visitas para los 2990 pesos :)";
-                                
-                        }
-                        //FALTAN AGREGAR MAS PISOS
-//                        
-//                        
-//                        
-//                        
-//                        
-//                        
-//                        
-//                        
-                        
+//                        if( $visitasEvento%10000 <= 0 ) 
+//                        {
+//                            if($pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ){
+//                                $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
+//                                $pagar->PagoVisitas($_SESSION['userid']); //Esto depende del piso, en este caso piso 1
+//                            }
+//                                $mensajePremio = "Estas en el piso 2, te faltan ".(24000-$visitasEvento)." visitas para los 1390 pesos :)";
+//                        }
+                      // ES MI ES MI O ES MIO EMSI O EMOS MEISMO ESMI ES MIO
+//                               
                 }
                 else
                 {
                     
                     ?> 
                         
-                                    <div id="comprar-evento" class="botonred" data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $pagar->VerUltimoProductocidoPorVigencia($eventfound['_id'])?>'>  Comprar evento </div>  
+                                    <div id="denunciar-evento" class="botonred" >  Denunciar 
+                                        <div style="display:none" id="enviar-denuncia">
+                                            <textarea id="text-denuncia">      </textarea>
+                                            <input type="button" id="boton-denuncia" value="Enviar" data-idevent='<?php echo $eventfound['_id']?>' data-userid='<?php echo $_SESSION['userid'] ?>'>
+                                        </div>
+                                        
+                                    </div>  
                         <?php
                 }
                 }
@@ -133,14 +115,8 @@
                                             $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
                                         }
                                     ?>
-                              <?php 
-                               if(isset($_SESSION['userid']))
-                               if($mio){?>
-                                <div id="comprarevent-prof" class="info-event-item"><?php echo $mensajePremio?></div>
-                                 
-                                <?php } ?>
-                                
-                                <div id="comprarevent-prof" class="info-event-item"><?php echo "Compra este evento a: <b>$".number_format($precioEvento, 0, ",", ".")."</b>"?></div>
+                              
+                               
                                 <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
                                 <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
                                 <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
