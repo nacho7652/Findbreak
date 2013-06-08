@@ -215,8 +215,7 @@
             }
         }
         public function findUsuarioForNick($nickname){
-//         return $this->db->usuario->findOne(array("nickname" => $nickname));
-             return $this->db->usuario->findOne(array("nombre" => $nickname));
+             return $this->db->usuario->findOne(array("username" => $nickname));
         }
         private function buscarMencionados($comentario){
             $evento = new evento();
@@ -234,7 +233,7 @@
                         //si es evento poner 
                         //<a href="/findbreak/break/51ae59464de8b4e810000023" class="hashlink">#MillencolinEnChile2013</a>
                         $menciones.= $usuario['_id'].'-';
-                        $itemCita = '<a class="itemcita" href="/findbreak/!'.$usuario['username'].'">@'.$usuario['nombre'].'</a>';
+                        $itemCita = '<a class="itemcita" href="/findbreak/!'.$usuario['username'].'">@'.$usuario['username'].'</a>';
                         $comentario = str_replace($nicknameCompleto, $itemCita, $comentario);
                     }else{
                         //si es evento poner 

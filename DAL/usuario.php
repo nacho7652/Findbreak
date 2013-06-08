@@ -124,6 +124,10 @@ class usuario {
          return $this->db->usuario->findOne(array("_id" => $id), array("foto" => 1));
          //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
      }
+      public function verUserName($id){
+         return $this->db->usuario->findOne(array("_id" => $id), array("username" => 1));
+         //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
+     }
     public function dejarDeSeguir($quien, $aquien)
     {
         $aquien = new MongoId($aquien);

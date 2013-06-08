@@ -69,15 +69,18 @@
                    if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
                         foreach ($yo['siguiendo'] as $item){
                             if($limit > 0){
+                                $username = $usuario->verUserName($item['_id']);
                                 $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
                                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-                                                       <div class="item-friends-username">'.$item['nombre'].'</div>
+                                                       <div class="item-friends-name">'.$item['nombre'].'</div>
+                                                       <span class="arr-username username">@</span>
+                                                       <div class="item-friends-username username">'.$username['username'].'</div>
                                                    </div>';
                             }
                             $limit--;
                         }
                 }else{
-                        $html = 'aun no sigues a tus amigos, búscalos !';
+                        $html = '<div class="nosigues-amigos">aun no sigues a tus amigos, búscalos !</div>';
                 }
                }else
                {
@@ -85,14 +88,17 @@
                          if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
                                   foreach ($yo['siguiendo'] as $item){
                                       if(strpos($item['nombre'], $textoAmigoSinArroa) !== false){
+                                          $username = $usuario->verUserName($item['_id']);
                                           $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
                                                                  <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
                                                                  <div class="item-friends-username">'.$item['nombre'].'</div>
+                                                                 <span class="username arr-username">@</span>
+                                                                 <div class="item-friends-username username">'.$username['username'].'</div>
                                                              </div>';
                                       }
                                   }
                           }else{
-                                  $html = 'aun no sigues a tus amigos, búscalos !';
+                                  $html = '<div class="nosigues-amigos">aun no sigues a tus amigos, búscalos !</div>';
 
                           }
 
@@ -116,9 +122,12 @@
                     if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
                         foreach ($yo['siguiendo'] as $item){
                             if($limite > 0){
+                                $username = $usuario->verUserName($item['_id']);
                                 $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
                                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-                                                       <div class="item-friends-username">'.$item['nombre'].'</div>
+                                                       <div class="item-friends-name">'.$item['nombre'].'</div>
+                                                       <span class="arr-username username">@</span>
+                                                       <div class="item-friends-username username">'.$username['username'].'</div>
                                                    </div>';
                                 $limite--;
                             }

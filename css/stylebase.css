@@ -2165,6 +2165,19 @@ padding: 0px 25px;
     margin-left: 6px;
     margin-top: -2px;
 }
+.arr-username.username {
+float: left;
+font-size: 0.7em;
+margin: -3px -5px 0px 6px;
+}
+.amigosCitar .item-friends-name {
+    float: left;
+    font-size: 0.7em;
+    margin-left: 6px;
+    margin-top: -2px;
+    width: 180px;
+    margin-bottom: 2px;
+}
 .hash {
     margin: 2px 0px 0px 5px;
     padding-bottom: 1px;
