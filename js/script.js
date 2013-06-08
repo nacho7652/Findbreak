@@ -17,7 +17,7 @@ $(document).ready(function(){
 //        //        });
 //              }
 //            });
-    $('.login-face').click(function(event){
+    $('body').delegate('.login-face','click',function(event){
         event.preventDefault();
         fb.login(function(){ 
             if (fb.logged) 

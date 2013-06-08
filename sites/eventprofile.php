@@ -3,6 +3,8 @@
       require_once '/DAL/connect.php';
       require_once '/DAL/evento.php';
       require_once '/DAL/comentario.php';
+      require_once '/DAL/usuario.php';
+      $usuario = new usuario();
       $comentarioEvent = new comentario();
       $event = new evento();
       $eventfound = $event->findforhash($_GET['id']);
@@ -12,9 +14,9 @@
      // if(!isset($_SESSION['vi'.(string)$eventfound['_id']]) != "") 
     //  {
             if(isset($_SESSION['userid']) && isset($_SESSION['userid']) == 1){
-                require_once '/DAL/usuario.php';
+                
                 $userid = $_SESSION['userid'];
-                $usuario = new usuario();
+                
                 $tags = $eventfound['tags'];
                 $re = $usuario->guardarTagsBuscados($userid, $tags);
                 $re2 = $usuario->guardarHistorial($eventfound['_id'], $eventfound['fotos'][0], $eventfound['nombre'],$eventfound['producido_por']['_id'],$userid);

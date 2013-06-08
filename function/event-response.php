@@ -56,7 +56,7 @@
                      <input type="hidden" id="hashevent" value="'.$hashevent.'"/>
                     <div class="advert mjscoment">
                         Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
-                        <a class="paracoment" id="login-fb" href="">
+                        <a class="paracoment login-fb login-face" href="">
                             <div id="loginbtn-fb"></div>
                             <div class="txtfb">Ingresar con Facebook</div>
                         </a>
@@ -386,7 +386,7 @@
                                                                      <input type="hidden" id="hashevent" value="'.$dcto['hash'].'"/>
                                                                     <div class="advert mjscoment">
                                                                         Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
-                                                                        <a class="paracoment" id="login-fb" href="">
+                                                                        <a class="paracoment login-fb login-face"  href="">
                                                                             <div id="loginbtn-fb"></div>
                                                                             <div class="txtfb">Ingresar con Facebook</div>
                                                                         </a>

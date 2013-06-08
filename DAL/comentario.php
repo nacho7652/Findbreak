@@ -41,14 +41,25 @@
              }
              return false;
         }
-        public function verMisComentarios($id){
-         $theObjId = new MongoId($id); 
-         return $this->db->comentariosEvento->find(array('$or' =>array(
+        public function verMisComentarios($id, $limit = null){
+         if($limit == null)
+         {
+            $theObjId = new MongoId($id); 
+            return $this->db->comentariosEvento->find(array('$or' =>array(
+                                                                          array("_userId" => $theObjId)//,
+                                                                         // array("mencionados.id" => (string)$id)
+                                                                          )
+                                                           )
+                                                      )->sort(array("fechaMongo" => -1 ));
+         }else{
+             $theObjId = new MongoId($id); 
+             return $this->db->comentariosEvento->find(array('$or' =>array(
                                                                        array("_userId" => $theObjId)//,
                                                                       // array("mencionados.id" => (string)$id)
                                                                        )
                                                         )
-                                                   )->sort(array("fechaMongo" => -1 ))->limit(10);
+                                                   )->sort(array("fechaMongo" => -1 ))->limit($limit);
+         }
         }
         public function findUltimoscomentUsuario($id,$limit){
         // $theObjId = new MongoId($id); 

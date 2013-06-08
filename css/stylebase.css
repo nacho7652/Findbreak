@@ -224,6 +224,7 @@ html {
     background: rgba(177,177,177,0.12);
     margin: -3px auto 0 auto;
     border: 1px solid #E0E0E0;
+    display: none;
 }
 #content-top .top-left {
     float: left;
@@ -869,7 +870,7 @@ html {
     margin: 0px auto 0 auto;
     padding-top: 30px;
 }
-#content-login #login-fb {
+#content-login .login-fb {
     margin: 22px 134px 0px 0px;
 }
 .titulo-login1 {
@@ -1009,7 +1010,7 @@ html {
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
 .title {
-    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(35, 106, 151, 1), rgba(24, 99, 146, 1));
+    background: rgba(36, 115, 167, 1);  background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
     width: 468px;
     height: 64px;
     color: #FFF;
@@ -1157,7 +1158,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     margin: 10px 173px 0px 0px !important;
     float: left;
 }
-#login-fb{
+.login-fb{
     background: url(/mooff/images/login-face-sprite.png) top right no-repeat;
     width: 162px;
     float: right;
@@ -1189,6 +1190,8 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     height: 99px;
 }
 .botonblue {
+    background: rgba(36, 115, 167, 1);
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1)) !important;
     display: block;
     width: 92px;
     border-radius: 2px;
@@ -1202,8 +1205,8 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     border: 1px solid rgba(65, 115, 169, 0.34);                  
     border: 1px solid rgba(65, 169, 94, 0);
     border: 1px solid #1c74b3;  border-top-color: #2c8ed1;  border-bottom-color: #0d5b97;
-    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
-    background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  
+    box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
     color: #FFF;
 }
 
@@ -1387,6 +1390,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     border-left: 1px solid rgba(211, 211, 211, 0.31);
 }
 .titlediv {
+    background: rgba(36, 115, 167, 1);
     font-size: 0.7em;
     background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
     color: rgb(241, 241, 241);
@@ -1537,7 +1541,7 @@ color: rgb(189, 189, 189);
     font-size: 0.8em;
 }
 .perfiluser #replica {
-    top: 34px;
+    top: 39px;
     width: 606px;
     font-size: 0.8em;
 }
@@ -1552,7 +1556,7 @@ color: rgb(189, 189, 189);
     width: 599px;
     font-size: 13px;
     padding: 5px 3px 12px 7px;
-    height: 10px;
+    height: 15px;
     resize: none;
     border-left: none;
     border-right: none;
@@ -1566,6 +1570,9 @@ color: rgb(189, 189, 189);
     width: 462px;
     float: left;
     margin: 7px 0px 0px 0px;
+}
+.perfiluser .showfocuscom {
+    display: block;
 }
 .perfiluser .coments {
     float: right;
@@ -1584,6 +1591,7 @@ padding: 0px 25px;
     width: 662px;
     margin: 0px 0px 0px 0px;
     font-size: 1.2em;
+    max-height: none;
 }
 .perfiluser .bloq2 {
     width: 554px;
@@ -1691,8 +1699,7 @@ padding: 0px 25px;
     padding-top: 135px !important;
 }
 .perfiluser{
-    top: -134px !important;
-    padding-top: 135px !important;
+    padding-top: 56px !important;
 }
 .eventprofile,.productora, .perfilest, .perfiluser{
     width: 968px !important;
@@ -1704,7 +1711,7 @@ padding: 0px 25px;
     background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#333, rgb(44, 44, 44));
     width: 100%;
     height: 107px;
-    margin: 0px 0px 0px 0px;
+    margin: 51px 0px 0px 0px;
 }
 .parte-left-parent {
     width: 609px;
@@ -1884,7 +1891,6 @@ padding: 0px 25px;
 }
 .divtrans3{
     background: rgb(255, 255, 255);
-    border-bottom: 1px solid #e4e5e8;
     border-top: 1px solid #e4e5e8;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -2456,6 +2462,7 @@ padding: 0px 25px;
 }
 /*END PRODUCTORA*/
 footer{
+    background: rgba(36, 115, 167, 1);
     background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1),rgba(35, 106, 151, 1) );
     width: 100%;  
     height: 20px; 

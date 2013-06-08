@@ -270,7 +270,7 @@
         $comentRestantes = $comentRestantes - 5;
         $usuario = new usuario();
         $theObjId = new MongoId($iduser);
-        $todosComent = $comentarios->findUltimoscomentUsuario($theObjId, $limit);
+        $todosComent = $comentarios->verMisComentarios($theObjId);
         $html = '';
         $numComent = 0;
         foreach ($todosComent as $dcto){

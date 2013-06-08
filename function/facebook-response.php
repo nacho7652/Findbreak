@@ -30,10 +30,10 @@ require 'facebook.php';
     if(isset($_GET['login']))
     {
      session_start();
-     $name=$_GET['name'];
-     $first_name=$_GET['first_name'];
-     $last_name=$_GET['last_name'];
-     $username=$_GET['username'];
+     $name=strtolower($_GET['name']);
+     $first_name=strtolower($_GET['first_name']);
+     $last_name=strtolower($_GET['last_name']);
+     $username=strtolower($_GET['username']);
      $email=$_GET['email'];
      $picture=$_GET['picture'];
      $_SESSION['userprofile'] = array(

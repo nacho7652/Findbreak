@@ -156,7 +156,7 @@
                                    $_SESSION['usertype'] = 1;
                                 }
                                 else{
-                                   $hola = $us->insertar($user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
+                                   $hola = $us->insertarFB($user_profile['name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
                                    $_SESSION['userid'] = $hola['_id'];
                                    $_SESSION['username'] = $hola['username'];
                                    $_SESSION['nombre'] = $hola['nombre'];
@@ -176,7 +176,7 @@
                                       <input   type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
                                       <a href="#" class="botonblue" id="boton-login">Entrar</a>
-                                       <a class="loginface-top login-face" id="login-fb" href="#<?php //echo $loginUrl; ?>">
+                                       <a class="loginface-top login-face login-fb"  href="#<?php //echo $loginUrl; ?>">
                                             <div id="loginbtn-fb"></div>
                                             <div class="txtfb">Ingresar con Facebook</div>
                                         </a>
@@ -225,24 +225,42 @@
                                                         $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
                                                         $user = $usuario->findforid($not['quien']);
                                                         //ver nombre(s) y foto(s) de los eventos mencionados
-//                                                        echo $not['idEventos'][0]['id'];
-                                                        $fotosNombres = $evento->verEventosMencionados($not['idEventos']);
-                                                        $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not1"> 
-                                                                           <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
-                                                                           <div class="item-friends-msj">
-                                                                               <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
-                                                                               <span class="msjmencion">te ha mencionado en el evento</span>
-                                                                               <span class="tit-gray msjmencion msjeventonom">'.$fotosNombres['nombre'].' </span>
-                                                                           </div>
-                                                                           <div class="item-friends-eventpic">
-                                                                            '.$fotosNombres['fotos'].'
-                                                                           </div>
-                                                                           <div class="bloq3">
-                                                                               <div class="hacecuant">'.$realizacion.'</div>
-                                                                           </div>
-                                                                           ';
 
-                                                        $divMenciones.=   '</div>';
+                                                        if($not['idEventos'] != null){//si mencionó evento
+                                                            $fotosNombres = $evento->verEventosMencionados($not['idEventos']);
+                                                            $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not1"> 
+                                                                               <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                               <div class="item-friends-msj">
+                                                                                   <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
+                                                                                   <span class="msjmencion">te ha mencionado en el evento</span>
+                                                                                   <span class="tit-gray msjmencion msjeventonom">'.$fotosNombres['nombre'].' </span>
+                                                                               </div>
+                                                                               <div class="item-friends-eventpic">
+                                                                                '.$fotosNombres['fotos'].'
+                                                                               </div>
+                                                                               <div class="bloq3">
+                                                                                   <div class="hacecuant">'.$realizacion.'</div>
+                                                                               </div>
+                                                                               ';
+
+                                                            $divMenciones.=   '</div>';
+                                                        }else{
+                                                            
+                                                            $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not1"> 
+                                                                               <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                               <div class="item-friends-msj">
+                                                                                   <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
+                                                                                   <span class="msjmencion">te ha mencionado en un comentario</span>
+                                                                                   
+                                                                               </div>
+                                                                               
+                                                                               <div class="bloq3">
+                                                                                   <div class="hacecuant">'.$realizacion.'</div>
+                                                                               </div>
+                                                                               ';
+
+                                                            $divMenciones.=   '</div>';
+                                                        }
                                                  } 
                                                  if($not['tipo'] == 2){
                                                         $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
@@ -308,7 +326,7 @@
                                               <input type="submit" name="cerrarsession" value="-C" class="content-option "/>
                                             </form>
                                          </div>-->
-                                         <a href="/findbreak/inicio"  class="option ">
+                                         <a href="/findbreak/cerca"  class="option ">
                                             <div id="optionhome"  class="content-option">
                                                 Inicio
                                             </div>

@@ -439,9 +439,9 @@ class usuario {
           }
          
      }                          //$user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
-     public function insertarFB($name, $apellido, $mail,$pass, $foto, $username){ 
+     public function insertarFB($name, $mail,$pass, $foto, $username){ 
          $user = array(
-            "nombre" => $name+' '+$apellido,
+            "nombre" => $name,
             "username"=>$username,
             "email" => $mail,
             "clave" => $pass,
