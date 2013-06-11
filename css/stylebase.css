@@ -1158,6 +1158,9 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     margin: 10px 173px 0px 0px !important;
     float: left;
 }
+.perfiluser .login-fb{
+    margin: 0px 142px 0px 0px !important;
+}
 .login-fb{
     background: url(/mooff/images/login-face-sprite.png) top right no-repeat;
     width: 162px;
@@ -1240,6 +1243,9 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     border: 1px solid rgba(48, 156, 39, 1);  
     border-top-color: rgba(77, 184, 67, 1);  
     border-bottom-color: rgba(41, 134, 33, 1);
+}
+.verRuta {
+margin: 10px 28px 0px 0px;
 }
 .botonitemcerca {
     margin: 10px 9px 0px 0px;
@@ -2046,6 +2052,11 @@ padding: 0px 25px;
     cursor: pointer;
     text-decoration: underline;
 }
+.btn-comentar-cerca {
+    margin: 8px 0px 0px 0px;
+    float: right;
+    width: 105px;
+}
 #btn-comentar {
     margin: 8px 0px 0px 0px;
     float: right;
@@ -2226,7 +2237,7 @@ margin: -3px -5px 0px 6px;
 .titu-usercom {
     width: 292px;
     float: left;
-    height: 17px;
+    margin-bottom: 2px;
 }
 .nomusercom.tit-gray {
     font-size: 0.7em;

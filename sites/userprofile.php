@@ -233,7 +233,7 @@
                          <input type="hidden" id="hashevent" value="<?php echo '#'.$eventfound['hash'] ?>"/>
                         <div class="advert mjscoment">
                             Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
-                            <a class="paracoment login-face" id="login-fb" href="<?php echo ''; ?>">
+                            <a class="paracoment login-face login-fb" href="<?php echo ''; ?>">
                                 <div id="loginbtn-fb"></div>
                                 <div class="txtfb">Ingresar con Facebook</div>
                             </a>

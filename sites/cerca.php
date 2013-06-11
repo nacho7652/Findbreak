@@ -64,7 +64,7 @@
                                                <?php if(!isset($_SESSION['userid'])){?>
                                                     <div class="cuadrocoment">
                                                         <div class="coments-nolog">
-                                                            <input type="hidden" id="idevent" value="518d0c174de8b45810000000">
+                                                            <input type="hidden" class="idevent" value="518d0c174de8b45810000000">
                                                             <input type="hidden" id="hashevent" value="#RoosterEnChile2013">
                                                            <div class="advert mjscoment">
                                                                Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
@@ -77,7 +77,7 @@
                                                     </div>
                                                 <?php }else{?>
                                                      <div class="cuadrocoment coments">  
-                                                         <input type="hidden" id="idevent" value="518d0c944de8b48419000000">  
+                                                         <input type="hidden" class="idevent" value="518d0c944de8b48419000000">  
                                                          <input type="hidden" id="hashevent" value="#BosterEnChile2013">  
                                                          <div class="input-transcom">     
                                                              <div class="hash">#BosterEnChile2013</div>     
@@ -89,7 +89,7 @@
                                                         <div class="showfocuscom" style="display: block;">
                                                             <div class="divcitar">@</div>
                                                             <div class="amigosCitar" style="display: none;"></div>
-                                                            <input type="button" class="botonblue" id="btn-comentar" value="Comentar">
+                                                            <input type="button" class="botonblue btn-comentar-cerca" value="Comentar">
                                                         </div>
 
                                                       </div>
@@ -124,10 +124,5 @@
            
         </div>
     </div>
-   
-        
-    </div>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> Cargamos la API de Google Maps
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript" src="/findbreak/js/maps.js"></script>
-    
- 

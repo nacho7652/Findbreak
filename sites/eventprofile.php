@@ -143,7 +143,7 @@
          <!--<div class="tit tit1">Comenta el evento</div>-->
         <?php if(isset($_SESSION['userid'])){ ?>
         <div  class="coments">
-            <input type="hidden" id="idevent" value="<?php echo $eventfound['_id'] ?>"/>
+            <input type="hidden" class="idevent" value="<?php echo $eventfound['_id'] ?>"/>
             <input type="hidden" id="hashevent" value="<?php echo '#'.$eventfound['hash'] ?>"/>
             <div class="input-transcom">
                 <div class="hash"><?php echo '#'.$eventfound['hash']?></div>
@@ -168,7 +168,7 @@
              <input type="hidden" id="hashevent" value="<?php echo '#'.$eventfound['hash'] ?>"/>
             <div class="advert mjscoment">
                 Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
-                <a class="paracoment login-face" id="login-fb" href="<?php echo '#'; ?>">
+                <a class="paracoment login-face login-fb" href="<?php echo '#'; ?>">
                     <div id="loginbtn-fb"></div>
                     <div class="txtfb">Ingresar con Facebook</div>
                 </a>

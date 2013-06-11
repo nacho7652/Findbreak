@@ -116,14 +116,15 @@ $(document).ready(function(){
                  $('.coment-cerca .list .boxscroll').html('');
                  idevento = item.attr('data-id');
                  hashevent = item.attr('data-hash');
-                // alert(idevento)
+//                 alert(idevento);
+//                 alert(hashevent);
                  $.ajax({           
                             type:"POST",
                             dataType:"html",
                             url: "/findbreak/function/event-response.php",
                             data: "mostrar-coment-cerca=1&idevento="+idevento+'&hashevent='+hashevent,
                             success: function (data)
-                            {   //alert(data)
+                             {  //alert(data)
                                 item.find('.coment-cerca .list.boxscroll').html(data)
                                 item.find('.coment-cerca').fadeIn(100)
                                 item.find('#coment').focus()
@@ -351,23 +352,22 @@ $(document).ready(function(){
         $('body').delegate('#coment','focus',function(){
             $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
         })
-       
-        $('body').delegate('#btn-comentar','click',function(){
+        $('body').delegate('.btn-comentar-cerca','click',function(){
          padre = $(this).parent().parent().parent().parent().parent();
          var coment = padre.find('#coment').val();
-         var eventid = padre.find('#idevent').val();
+         var eventid = padre.find('.idevent').val();
          var nombreevent = padre.find('.title-event').html();
          if(nombreevent == null){
              nombreevent = padre.find('.tit-eventcerca').html();
          }
-         
+        
          var hashevent = padre.find('#hashevent').val();
          var totalComent = padre.find('#totalComent').val();
          var ultimoComentario = padre.find('.list .itemcoment:last').attr('data-num');
          ultimoComentario = parseInt(ultimoComentario) +2;
          totalComent++;
          coment = hashevent+' '+coment;
-        
+//        alert(eventid); return false;
          $.ajax({           
              type:"POST",
              dataType:"html",
@@ -379,6 +379,7 @@ $(document).ready(function(){
                  padre.find('.showfocuscom').hide();
                  padre.find('#coment').css('height','16px');
                  padre.find('#coment').val('');
+                 
                  padre.find('.list').html(data);
                  padre.find('#replica').html('');
                  padre.find('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
@@ -397,6 +398,57 @@ $(document).ready(function(){
                  padre.find('#comentaevent-prof').html(textoComentario);
                 
                  padre.find('.list').animate({
+                     'scrollTop': "0px" 
+                 },
+                 {
+                    duration:500,
+                    easing:"swing"
+                 }
+                 );
+             }
+           })
+        })
+        $('body').delegate('#btn-comentar','click',function(){
+         var coment = $('#coment').val();
+         var eventid = $('.idevent').val();
+         var nombreevent = $('.title-event').html();       
+         var hashevent = $('#hashevent').val();
+         var totalComent = $('#totalComent').val();
+         var ultimoComentario = $('.list .itemcoment:last').attr('data-num');
+         ultimoComentario = parseInt(ultimoComentario) +2;
+         totalComent++;
+         coment = hashevent+' '+coment;
+        alert(eventid);
+         $.ajax({           
+             type:"POST",
+             dataType:"html",
+             url: "/findbreak/function/comentario-response.php",
+             data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
+             success: function (data)
+             {
+                
+                 $('.showfocuscom').hide();
+                 $('#coment').css('height','16px');
+                 $('#coment').val('');
+                 
+                 $('.list').html(data);
+                 $('#replica').html('');
+                 $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
+                 //sumar evento
+                
+                 cantidadComentarios = (parseInt($('#totalComent').val())  + 1)
+                 $('#totalComent').val(cantidadComentarios)
+                 if(cantidadComentarios == 0){
+                                            textoComentario = 'Se el primero en comentar!';
+                                        }else
+                                            if(cantidadComentarios == 1){
+                                            textoComentario = 'Un comentario';
+                                        }else{
+                                            textoComentario = '<span class="bold">'+cantidadComentarios+'</span> Comentarios';
+                                        }
+                 $('#comentaevent-prof').html(textoComentario);
+                
+                 $('.list').animate({
                      'scrollTop': "0px" 
                  },
                  {

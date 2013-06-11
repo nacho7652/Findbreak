@@ -1,14 +1,12 @@
 $(document).ready(function(){
     localizame();
+  
     var popupNew;
     var latitud;
     var longitud;
     var map;
     var manualLocation = false;
-//$(document).ready(function () {
-//    localizame();
-//    
-// });
+
   function cargarMapa() {
 //           alert('lat: '+latitud)
 //           alert('long: '+longitud)
@@ -128,6 +126,8 @@ function geolocalizarManual(address){
         }
             var lat = map.getCenter().lat();
             var lng = map.getCenter().lng();
+            latitud = lat;
+            longitud = lng;
             //return false;
 //        alert(lat); alert(lng); 
             $.ajax({
@@ -164,9 +164,11 @@ function geolocalizarManual(address){
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-id',id);
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-hash',hash);
                    $('#item-eventcerca'+i).find('.info-eventcerca').html(infoCerca);
+                   $('#item-eventcerca'+i).find('.hash').html('#'+hash);
                    $('#item-eventcerca'+i).find('.tags-hidden').html(tagshidden);
                    $('#item-eventcerca'+i).find('.tit-eventcerca').html(nombre); //
-                   $('#item-eventcerca'+i).find('#idevent').val(id);
+                   $('#item-eventcerca'+i).find('.tit-eventcerca').attr("href","/findbreak/break/"+hash);
+                   $('#item-eventcerca'+i).find('.idevent').val(id);
                    $('#item-eventcerca'+i).show();
                    infoDiv = $('#info'+i).text();	 
                    tokens = infoDiv.split("+");
@@ -377,6 +379,58 @@ function geolocalizarManual(address){
                 } 
         })
     }
+    //ruta
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+        
+        function initialize() {
+          directionsDisplay = new google.maps.DirectionsRenderer();
+          directionsDisplay.setMap(map);
+           
+        }
+    function calcRoute(latEvento, lngEvento) {
+          initialize();
+//        alert(latitud)
+//        alert(longitud)
+    var start = new google.maps.LatLng(latitud,longitud);
+    var end = new google.maps.LatLng(latEvento,lngEvento);
+      var request = {
+        origin: start,
+        destination: end,
+        travelMode: google.maps.TravelMode.DRIVING
+      };
+       directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+        }
+        else{alert('No se pudo determinar el camino, prueba desde otra dirección')}
+      });
+    }
+    function mostrarError(){
+	   	if (gdir.getStatus().code == G_GEO_UNKNOWN_ADDRESS)
+	     	alert("No se ha encontrado una ubicación geográfica que se corresponda con la dirección especificada.");
+	   	else if (gdir.getStatus().code == G_GEO_SERVER_ERROR)
+	     	alert("No se ha podido procesar correctamente la solicitud de ruta o de códigos geográficos, sin saberse el motivo exacto del fallo.");
+	   	else if (gdir.getStatus().code == G_GEO_MISSING_QUERY)
+	     	alert("Falta el parámetro HTTP q o no tiene valor alguno. En las solicitudes de códigos geográficos, esto significa que se ha especificado una dirección vacía.");
+		else if (gdir.getStatus().code == G_GEO_BAD_KEY)
+	     	alert("La clave proporcionada no es válida o no coincide con el dominio para el cual se ha indicado.");
+	   	else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
+	     	alert("No se ha podido analizar correctamente la solicitud de ruta.");
+	   	else alert("Error desconocido.");
+	   
+	}
+    //google.maps.event.addDomListener(window, 'load', initialize);
+
+$('body').delegate('.verRuta','click',function(){
+    cargarMapa();
+    lat = $(this).parent().find('.latHidden').val();//borrar ruta anterior
+    lng = $(this).parent().find('.lngHidden').val();
+//    alert(lng);alert(lat);//return false;
+    calcRoute(lat,lng)
+})
+//fin ruta
+ 
     function trim(cadena){
 // USO: Devuelve un string como el parámetro cadena pero quitando los espacios en blanco de los bordes.
         var retorno=cadena.replace(/^\s+/g,'');

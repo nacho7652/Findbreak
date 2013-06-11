@@ -29,14 +29,15 @@
         $idEvento = $_REQUEST['idevento'];
         $hashevent = $_REQUEST['hashevent'];
         $comentarioEvent = new comentario();
+        $usuario = new usuario();
         $event = new evento();
         $listcoment = '';
         if(isset($_SESSION['userid'])){ 
             $listcoment.= '<div  class="coments">';
-            $listcoment.= '  <input type="hidden" id="idevent" value="'.$idEvento.'"/>';
+            $listcoment.= '  <input type="hidden" class="idevent" value="'.$idEvento.'"/>';
             $listcoment.= '  <input type="hidden" id="hashevent" value="'.$hashevent.'"/>';
             $listcoment.= '  <div class="input-transcom">';
-            $listcoment.= '     <div class="hash">'.$hashevent.'</div>';
+            $listcoment.= '     <div class="hash">#'.$hashevent.'</div>';
             $listcoment.= '     <div id="overcoment">';
             $listcoment.= '     <textarea class="textoajustable" id="coment"></textarea>';
             $listcoment.= '  </div>
@@ -45,14 +46,14 @@
                             <div class="showfocuscom">
                                 <div class="divcitar">@</div>
                                 <div class="amigosCitar"></div>
-                                <input type="button" class="botonblue" id="btn-comentar" value="Comentar" />
+                                <input type="button" class="botonblue btn-comentar-cerca" value="Comentar" />
                             </div>
 
                 </div>';
            }
           else{ //si no esta logueado no puedo comentar 
                  $listcoment.= '<div  class="coments-nolog">
-                     <input type="hidden" id="idevent" value="'.$idEvento.'"/>
+                     <input type="hidden" class="idevent" value="'.$idEvento.'"/>
                      <input type="hidden" id="hashevent" value="'.$hashevent.'"/>
                     <div class="advert mjscoment">
                         Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
@@ -70,13 +71,13 @@
                 $comentarios = $comentarioEvent->findforid($theObjId);
                 $numComent = 0;
                 foreach($comentarios as $dcto){
-                     
+                     $userFoto = $usuario->verFoto($dcto['_userId']);
                      $realizacion = $comentarioEvent->verFecha($dcto['fechaMuestra']);
                      $useridComent = $dcto['_userId'];
                 
                     $listcoment.= '<div data-num="'.$numComent.'" class="itemcoment">
                                <div class="line"></div>
-                               <div class="bloq1"></div>
+                               <div class="bloq1" style="background:url('.$userFoto['foto'].')"></div>
                                <div class="bloq2">
                                 <div class="titu-usercom">
                                     <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
@@ -251,6 +252,8 @@
                                                            <div class="item-infocerca">
                                                                 
                                                                 <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
+                                                                <input type="hidden" value="'.$dcto['loc'][0].'" class="latHidden"/>
+                                                                <input type="hidden" value="'.$dcto['loc'][1].'" class="lngHidden"/>
                                                             </div>
                                                             
                                                             
@@ -262,7 +265,8 @@
                                                                    <input type="hidden" id="totalComent" value="'.$cantidadComentarios.'"/>
                                                                </div>  
                                                            </div>
-                                                           <div class="botonitemcerca botonblue">Ver comentarios</div>';
+                                                           <div class="botonitemcerca botonblue">Ver comentarios</div>
+                                                           <div class="verRuta botonblue">¿Cómo llegar?</div>';
                                  $tagsHidden = '';
                                                     foreach ($dcto['tags'] as $tags){
 
@@ -363,7 +367,7 @@
                                             //aca
                                                     if(isset($_SESSION['userid'])){ 
                                                             $listevents2.= '<div  class="coments">';
-                                                            $listevents2.= '  <input type="hidden" id="idevent" value="'.$dcto['_id'].'"/>';
+                                                            $listevents2.= '  <input type="hidden" class="idevent" value="'.$dcto['_id'].'"/>';
                                                             $listevents2.= '  <input type="hidden" id="hashevent" value="'.$dcto['hash'].'"/>';
                                                             $listevents2.= '  <div class="input-transcom">';
                                                             $listevents2.= '     <div class="hash">'.$dcto['hash'].'</div>';
@@ -382,7 +386,7 @@
                                                            }
                                                           else{ //si no esta logueado no puedo comentar 
                                                                  $listevents2.= '<div  class="coments-nolog">
-                                                                     <input type="hidden" id="idevent" value="'.$dcto['_id'].'"/>
+                                                                     <input type="hidden" class="idevent" value="'.$dcto['_id'].'"/>
                                                                      <input type="hidden" id="hashevent" value="'.$dcto['hash'].'"/>
                                                                     <div class="advert mjscoment">
                                                                         Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó

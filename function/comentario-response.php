@@ -43,11 +43,12 @@
                    <div class="tit titotros">Otras menciones</div>';
         foreach ($todosComent as $dcto){
             if($dcto['_id'] != $not['idComentario']){
+                $userFoto = $usuario->verFoto($dcto['_userId']);
                 $useridComent = $dcto['_userId'];
                 $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
                 $html.='<div class="itemcoment">
                             <div class="line"></div>
-                            <div class="bloq1"></div>
+                            <div class="bloq1" style="'.$userFoto['foto'].'"></div>
                             <div class="bloq2">
                                 
                                 <div class="titu-usercom">
