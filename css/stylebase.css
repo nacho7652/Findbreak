@@ -62,7 +62,7 @@ html {
 #coverall #caloader {
     min-height: 100%;
     overflow: hidden;            
-    padding: 32px 0px 37px 0px;
+    background: url('http://d1l2emnu9r9dtc.cloudfront.net/img/bg.jpg');
 }
 
 #covermsj {
@@ -1229,17 +1229,15 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);                  
-    border: 1px solid rgba(65, 169, 94, 0);
-    border: 1px solid #1c74b3;  border-top-color: #2c8ed1;  border-bottom-color: #0d5b97;
-    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
-    background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    border: 1px solid rgba(65, 169, 94, 0);    
+    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);            background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
     color: #FFF;
+    border: 1px solid rgba(48, 156, 39, 1);        border-top-color: rgba(77, 184, 67, 1);        border-bottom-color: rgba(41, 134, 33, 1);
 }
 
 .botongreen:hover {
     cursor: pointer;
-    background: -webkit-linear-gradient(top,rgba(47, 135, 194, 1), rgba(38, 113, 160, 1));
-    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
+    background: -webkit-linear-gradient(top,rgba(130, 213, 54, 1), rgba(51, 170, 41, 1));
     border: 1px solid rgba(48, 156, 39, 1);  
     border-top-color: rgba(77, 184, 67, 1);  
     border-bottom-color: rgba(41, 134, 33, 1);
@@ -2278,7 +2276,7 @@ margin: -3px -5px 0px 6px;
     display: none; 
     position: relative;
 }
-.leermas-coment,.leermas-comentuser {
+.leermas-coment,.leermas-comentuser, .leermas-comentcerca {
     height: 25px;
     width: 309px;
     float: left;
@@ -2354,10 +2352,22 @@ margin: -3px -5px 0px 6px;
 
 /*PROFILE PRODUCTORA*/
 .content-publicarevent {
-    width:1000px;
+    width: 688px;
+    padding-bottom: 28px;
     overflow:hidden;
     color: #444;
     margin: 0px auto 0px auto;
+    background: url(/findbreak/images/iconos-bg.png);
+}
+.content-registro {
+    width: 688px;
+    padding-bottom: 28px;
+    overflow:hidden;
+    color: #444;
+    margin: 0px auto 0px auto;
+    background: url(/findbreak/images/iconos-bg.png);
+    box-shadow: 0px 87px 195px -66px rgba(37, 86, 146, 0.62) inset;
+    /*box-shadow: 0px 55px 66px -27px rgba(72, 115, 168, 0.76) inset;*/
 }
 .event-list {
     width: 500px;
@@ -2401,12 +2411,40 @@ margin: -3px -5px 0px 6px;
     float: left;
     margin: 6px 0px 0px 0px;
 }
-.item-publicarevent {
+.item-publicar {
     float: left;
-    width: 768px;
+    width: 324px;
     font-size: 0.9em;
     margin-bottom: 6px;
     position: relative;
+    margin-top: 6px;
+}
+.item-publicarevent-large.item-botonregistro {
+    margin: 38px 0px 0px 0px;
+}
+.item-publicarevent-large{
+    float: left;
+    width: 687px;
+    font-size: 0.9em;
+    margin-bottom: 6px;
+    position: relative;
+    margin-top: 6px;
+}
+.content-registro .txtini-blue {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.content-registro .login-fb {
+    width: 175px;
+    margin: 11px 250px 0px 0px;
+}
+.item-publicarevent-titulo {
+    float: left;
+    width: 685px;
+    font-size: 0.9em;
+    margin-bottom: 19px;
+    position: relative;
+    margin-top: 0px;
 }
 .title-publicarevent {
    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
@@ -2417,25 +2455,69 @@ margin: -3px -5px 0px 6px;
     -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
     background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
     color: #FFF;
-    padding: 7px;
-    font-weight: bold;
-    font-size: 0.9em;
-   width: 1000px;
+    
+   padding: 12px;
+    
+    
+   width: 671px;
+   text-align: center;
+   text-shadow: 0 1px 0 #083f78;
 }
 .nombre-publicarevent {
     float: left;
-    width: 80px;
-    text-align: right;
-    padding: 4px 3px;
-    margin-bottom: 4px;
+    width: 231px;
+    text-align: left;
+    padding: 4px 3px 4px 40px;
     font-weight: bold;
     font-size: .9em;
+    color: rgb(59, 113, 172);      text-shadow: 0px 1px 1px rgb(255, 255, 255);
 }
-.item-publicarevent input[type="text"] {
+.equis {
+color: rgb(235, 55, 55);
+font-weight: bold;
+}
+.content-mensaje {
+margin: 3px 0px 0px 7px;
+}
+.username-corr {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -24px -204px;
+    width: 40px;
+    height: 31px;
+    position: absolute;
+    right: 0px;
+    top: 32px;
+    display: none;
+}
+.username-incorr {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -24px -173px;
+    width: 40px;
+    height: 31px;
+    position: absolute;
+    right: 0px;
+    top: 32px;
+    display: none;
+}
+.mensaje-error {
     float: left;
-    width: 406px;
+    width: 279px;
+    background: rgba(255, 169, 169, 0.7);
+    margin: 4px 0px 0px 38px;
+    position: absolute;
+    top: 66px;
+    border: 1px solid #f7aeae;
+    color: #444;
+    font-size: 0.8em;
+    padding: 5px 5px 9px 0px;
+    display: none;
+}
+.item-publicar input[type="text"], .item-publicar input[type="password"]{
+    float: left;
+    width: 266px;
     padding: 11px 9px;
-    border-radius: 2px;  border: 1px solid #BFBFBF;  font-size: 0.8em;  box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
+    border-radius: 2px;  border: 1px solid #BFBFBF;  font-size: 0.8em;  
+    margin: 0px 0px 0px 38px;
+    box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
+    color: rgb(80, 80, 80);
 }
 #map_evento {
     position: absolute !important;
@@ -2483,6 +2565,15 @@ margin: -3px -5px 0px 6px;
     color: white;
     border-radius: 3px;
     border: none;
+}
+#guardarusuario{
+    float: left;
+    
+    width: 185px;
+    padding: 11px 0px;
+    font-size: 13px;
+    margin: 16px 0px 0px 253px;
+    font-weight: bold;
 }
 /*END PRODUCTORA*/
 footer{

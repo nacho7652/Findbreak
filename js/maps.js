@@ -81,10 +81,7 @@ function geolocalizarManual(address){
         //var address = latitud+","+longitud;//$("#direHidden").val()+', Chile';
 //        alert(latitud +" , "+ longitud);
 //        cargarMapa();
-
-        geocoder.geocode({'address': address}, geocodeResult);
-        
-        
+        geocoder.geocode({'address': address}, geocodeResult);      
 }
 
     
@@ -158,9 +155,6 @@ function geolocalizarManual(address){
                     infoCerca = data.arreglo[i]['info'];//$infoEventCerca
                     tagshidden = data.arreglo[i]['tags'];
                     nombre = data.arreglo[i]['nombre'];
-//                   alert(data.arreglo[i]['id']);
-//                   alert(data.arreglo[i]['hash']);
-                   //alert(data.arreglo[i]['event-right']);
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-id',id);
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-hash',hash);
                    $('#item-eventcerca'+i).find('.info-eventcerca').html(infoCerca);
@@ -169,11 +163,13 @@ function geolocalizarManual(address){
                    $('#item-eventcerca'+i).find('.tit-eventcerca').html(nombre); //
                    $('#item-eventcerca'+i).find('.tit-eventcerca').attr("href","/findbreak/break/"+hash);
                    $('#item-eventcerca'+i).find('.idevent').val(id);
+                   $('#item-eventcerca'+i).find('.hashevent').val(hash);
+                   $('#item-eventcerca'+i).find('.nombreevent').val(nombre);
                    $('#item-eventcerca'+i).show();
                    infoDiv = $('#info'+i).text();	 
                    tokens = infoDiv.split("+");
                    
-        		   var note="";
+                   var note="";
                    var name = tokens[0];
                    var address = tokens[1];
                        lat = parseFloat(tokens[2]); 	 
@@ -208,8 +204,19 @@ function geolocalizarManual(address){
               }
             });
           
-       } else {
+          }else{ //buscar los eventos
         	alert("Geocoding no tuvo éxito debido a: " + status);
+                
+                $.ajax({
+                    data: "findnear-eventos=1&q="+$('#search-location').val(),
+                    type: "POST",
+                    dataType: "json",
+                    url: "/findbreak/function/event-response.php",
+                    success: function(data){
+                        alert(data.listevents)
+                        //geolocalizarManual(' -33.5435178,-70.59479449999999');
+                    }
+                });
         }
         
     }
@@ -273,6 +280,9 @@ function geolocalizarManual(address){
             geolocalizarManual($(this).val())
        }
    })
+   $('#boton-buscarcerca').click(function(e){
+       geolocalizarManual($('#search-location').val())
+   })
    //cuando quiere location automática
    $('#boton-location').click(function(){
        if($(this).hasClass('loc-desactivado')){
@@ -283,102 +293,98 @@ function geolocalizarManual(address){
        }
    })
    
-   $('#search-near').keyup(function(e){
-       if(e.keyCode != 32){
-       var texto = $(this).val().split(' ');
-      
-        if(texto.length == 1){
-            buscar($(this).val())
-        }else{
-            buscarFrase(texto)
-        }
-       }
-//       if(e.keyCode == 13){
+//   $('#search-near').keyup(function(e){
+//       if(e.keyCode != 32){
+//       var texto = $(this).val().split(' ');
+//      
+//        if(texto.length == 1){
 //            buscar($(this).val())
+//        }else{
+//            buscarFrase(texto)
+//        }
 //       }
-   })
-   $('#boton-buscarcerca').click(function(e){
-       
-       buscar($(this).val())
-       
-   })
-   function buscar(texto){
-	var eventos = $(".item-eventcerca");
-	texto        = texto.toLowerCase();
-	eventos.show();
-       
-        eventos.each(function(){
-            //for por cada palabra del b
-               var tags = $(this).find('.tags-hidden').html();
-               var tagsArr = tags.split(",");
-               var cumple = false;
-               for(var i=0;i<tagsArr.length;i++){
-                   
-                    //alert(tagsArr[i])
-                   
-                    var contenido = tagsArr[i];
-                     if(contenido != ''){
-                       // alert( 'tags: '+contenido+ ' textos: '+texto)
-                        contenido     = contenido.toLowerCase();
-                        var index     = contenido.indexOf(texto);
-//                        alert(tagsArr[i])
-//                        alert(texto)
-                       // alert(index)
-                        if(index == 0){
-                          //  alert('cumple')
-                            cumple = true;
-                        }
-                    }
-               }
-               
-               if(!cumple){
-                        $(this).hide();
-                }          
-        })
-    }
-    function buscarFrase(texto){
-        
-	var eventos = $(".item-eventcerca");
-	
-	eventos.show();
-       
-        eventos.each(function(){
-            //for por cada palabra del b
-            //alert(texto.length)
-            var cumple = false;
-            for(var j=0; j<texto.length; j++){
-               var textoBuscar        = texto[j].toLowerCase();
-               //alert(textoBuscar)
-               var tags = $(this).find('.tags-hidden').html();
-               var tagsArr = tags.split(",");
-               
-               for(var i=0;i<tagsArr.length;i++){
-                   
-                    //alert(tagsArr[i])
-                   
-                    var contenido = tagsArr[i];
-                     if(contenido != ''){
-//                        alert( 'tags: '+contenido+ ' textos: '+textoBuscar)
-                        contenido     = contenido.toLowerCase();
-                        var index     = contenido.indexOf(textoBuscar);
-//                        alert(tagsArr[i])
-//                        alert(texto)
-//                        alert(index)
-                        if(index == 0){
-//                            alert('cumple')
-                            cumple = true;
-                        }
-                    }
-               }
-                   
-           }
-           
-               if(!cumple){
-                       // alert('la escondo')
-                        $(this).hide();
-                } 
-        })
-    }
+////       if(e.keyCode == 13){
+////            buscar($(this).val())
+////       }
+//   })
+   
+//   function buscar(texto){
+//	var eventos = $(".item-eventcerca");
+//	texto        = texto.toLowerCase();
+//	eventos.show();
+//       
+//        eventos.each(function(){
+//            //for por cada palabra del b
+//               var tags = $(this).find('.tags-hidden').html();
+//               var tagsArr = tags.split(",");
+//               var cumple = false;
+//               for(var i=0;i<tagsArr.length;i++){
+//                   
+//                    //alert(tagsArr[i])
+//                   
+//                    var contenido = tagsArr[i];
+//                     if(contenido != ''){
+//                       // alert( 'tags: '+contenido+ ' textos: '+texto)
+//                        contenido     = contenido.toLowerCase();
+//                        var index     = contenido.indexOf(texto);
+////                        alert(tagsArr[i])
+////                        alert(texto)
+//                       // alert(index)
+//                        if(index == 0){
+//                          //  alert('cumple')
+//                            cumple = true;
+//                        }
+//                    }
+//               }
+//               
+//               if(!cumple){
+//                        $(this).hide();
+//                }          
+//        })
+//    }
+//    function buscarFrase(texto){
+//        
+//	var eventos = $(".item-eventcerca");
+//	
+//	eventos.show();
+//       
+//        eventos.each(function(){
+//            //for por cada palabra del b
+//            //alert(texto.length)
+//            var cumple = false;
+//            for(var j=0; j<texto.length; j++){
+//               var textoBuscar        = texto[j].toLowerCase();
+//               //alert(textoBuscar)
+//               var tags = $(this).find('.tags-hidden').html();
+//               var tagsArr = tags.split(",");
+//               
+//               for(var i=0;i<tagsArr.length;i++){
+//                   
+//                    //alert(tagsArr[i])
+//                   
+//                    var contenido = tagsArr[i];
+//                     if(contenido != ''){
+////                        alert( 'tags: '+contenido+ ' textos: '+textoBuscar)
+//                        contenido     = contenido.toLowerCase();
+//                        var index     = contenido.indexOf(textoBuscar);
+////                        alert(tagsArr[i])
+////                        alert(texto)
+////                        alert(index)
+//                        if(index == 0){
+////                            alert('cumple')
+//                            cumple = true;
+//                        }
+//                    }
+//               }
+//                   
+//           }
+//           
+//               if(!cumple){
+//                       // alert('la escondo')
+//                        $(this).hide();
+//                } 
+//        })
+//    }
     //ruta
         var directionsDisplay;
         var directionsService = new google.maps.DirectionsService();

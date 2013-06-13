@@ -2,6 +2,18 @@
     require_once '../DAL/connect.php';
     require_once '../DAL/usuario.php';
     date_default_timezone_set("Chile/Continental");
+    if(!empty($_POST["comprobar-username"]))
+    {
+        $username = $_POST["username"];
+        $usuario = new usuario();
+        $encontrado = $usuario->findforusername($username);
+        if($encontrado['_id'] == null){ //se puede
+            echo 1;
+        }else{
+            echo -1;
+        }
+       
+    }
     //reemplazarBr
     if(!empty($_POST["reemplazarBr"]))
     {

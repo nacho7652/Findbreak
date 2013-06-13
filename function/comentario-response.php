@@ -206,6 +206,11 @@
         //cargar comentarios
         $limit = $_REQUEST['ultimo'];//10
         $evenId = $_REQUEST['eventid'];
+        if(isset($_REQUEST['cerca'])){
+            $vieneCerca = $_REQUEST['cerca'];
+        }else{
+            $vieneCerca = -1;
+        }
         $hashevent = $_REQUEST['hashevent'];
         $totalComent = $_REQUEST['totalComent'];//14
         $comentRestantes = $totalComent - $limit;//14-10 = 4
@@ -254,8 +259,14 @@
                       </div>';
                     $numComent++;
         }
-        if($comentRestantes > 0)
+        if($vieneCerca == 1){
+            if($comentRestantes > 0)
+            $html.='<a  href="#" class="leermas-comentcerca readmorecoment">Ver más comentarios</a>';
+        }else{
+            if($comentRestantes > 0)
             $html.='<a  href="#" class="leermas-coment readmorecoment">Ver más comentarios</a>';
+        }
+        
         echo $html;      
     }
      if(isset($_REQUEST['vermascomentariosUser'])){

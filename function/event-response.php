@@ -31,41 +31,42 @@
         $comentarioEvent = new comentario();
         $usuario = new usuario();
         $event = new evento();
-        $listcoment = '';
-        if(isset($_SESSION['userid'])){ 
-            $listcoment.= '<div  class="coments">';
-            $listcoment.= '  <input type="hidden" class="idevent" value="'.$idEvento.'"/>';
-            $listcoment.= '  <input type="hidden" id="hashevent" value="'.$hashevent.'"/>';
-            $listcoment.= '  <div class="input-transcom">';
-            $listcoment.= '     <div class="hash">#'.$hashevent.'</div>';
-            $listcoment.= '     <div id="overcoment">';
-            $listcoment.= '     <textarea class="textoajustable" id="coment"></textarea>';
-            $listcoment.= '  </div>
-                                <div id="replica"></div>
-                            </div>
-                            <div class="showfocuscom">
-                                <div class="divcitar">@</div>
-                                <div class="amigosCitar"></div>
-                                <input type="button" class="botonblue btn-comentar-cerca" value="Comentar" />
-                            </div>
-
-                </div>';
-           }
-          else{ //si no esta logueado no puedo comentar 
-                 $listcoment.= '<div  class="coments-nolog">
-                     <input type="hidden" class="idevent" value="'.$idEvento.'"/>
-                     <input type="hidden" id="hashevent" value="'.$hashevent.'"/>
-                    <div class="advert mjscoment">
-                        Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
-                        <a class="paracoment login-fb login-face" href="">
-                            <div id="loginbtn-fb"></div>
-                            <div class="txtfb">Ingresar con Facebook</div>
-                        </a>
-                    </div>
-                </div>';
-           } 
-         $listcoment = '';
-         $listcoment.= '<div class="list boxscroll">';
+//        $listcoment = '';
+//        if(isset($_SESSION['userid'])){ 
+//            $listcoment.= '<div  class="coments">';
+//            $listcoment.= '  <input type="hidden" class="idevent" value="'.$idEvento.'"/>';
+//            $listcoment.= '  <input type="hidden" class="hashevent" value="'.$hashevent.'"/>
+//                             <input type="hidden" class="nombreevent" value="'.$hashevent.'"/>';
+//            $listcoment.= '  <div class="input-transcom">';
+//            $listcoment.= '     <div class="hash">#'.$hashevent.'</div>';
+//            $listcoment.= '     <div id="overcoment">';
+//            $listcoment.= '     <textarea class="textoajustable" id="coment"></textarea>';
+//            $listcoment.= '  </div>
+//                                <div id="replica"></div>
+//                            </div>
+//                            <div class="showfocuscom">
+//                                <div class="divcitar">@</div>
+//                                <div class="amigosCitar"></div>
+//                                <input type="button" class="botonblue btn-comentar-cerca" value="Comentar" />
+//                            </div>
+//
+//                </div>';
+//           }
+//          else{ //si no esta logueado no puedo comentar 
+//                 $listcoment.= '<div  class="coments-nolog">
+//                     <input type="hidden" class="idevent" value="'.$idEvento.'"/>
+//                     <input type="hidden" class="hashevent" value="'.$hashevent.'"/>
+//                    <div class="advert mjscoment">
+//                        Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
+//                        <a class="paracoment login-fb login-face" href="">
+//                            <div id="loginbtn-fb"></div>
+//                            <div class="txtfb">Ingresar con Facebook</div>
+//                        </a>
+//                    </div>
+//                </div>';
+//           } 
+//         $listcoment = '';
+//         $listcoment.= '<div class="list boxscroll">';
           $listcoment = '';      
                 $theObjId = new MongoId($idEvento);
                 $comentarios = $comentarioEvent->findforid($theObjId);
@@ -116,7 +117,7 @@
                 $cantidadComentarios = $event->verCantidadComentarios($idEvento);
                 $comentRestantes = $cantidadComentarios - $numComent; //ultimo = limit
                 if($comentRestantes > 0){
-                     $listcoment.= '<a  href="#" class="leermas-coment readmorecoment">Ver más comentarios</a>';
+                     $listcoment.= '<a  href="#" class="leermas-comentcerca readmorecoment">Ver más comentarios</a>';
                   } 
            //  $listcoment.= '</div>';
              
@@ -266,7 +267,7 @@
                                                                </div>  
                                                            </div>
                                                            <div class="botonitemcerca botonblue">Ver comentarios</div>
-                                                           <div class="verRuta botonblue">¿Cómo llegar?</div>';
+                                                           <div class="verRuta botongreen">¿Cómo llegar?</div>';
                                  $tagsHidden = '';
                                                     foreach ($dcto['tags'] as $tags){
 
@@ -520,49 +521,66 @@
                          );
             echo json_encode($resp);
        }
-       
-       if(isset($_REQUEST['findnear'])){
-            $lat = $_REQUEST['lat'];
-            $long = $_REQUEST['lng'];
+       //findnear-eventos
+       if(isset($_REQUEST['findnear-eventos'])){
+            $q = $_REQUEST['q'];
             $event = new evento();
             
-            $eventsNears = $event->findnear((float)$lat, (float)$long);
+            $eventsNears = $event->filtrar($q);
             $arr = eventoscernanos($eventsNears);
             $infodiv = $arr['infodiv'];//información para que el mapa lea y muestre los pines con eventos
             $listevents = $arr['listevents'];
-            
-            $eventpopular = $event->findpopular();
-            $listeventspop = eventospopulares($eventpopular);
-            
-            $eventsporfecha = $event->eventosPorRealizarOrderFecha(1);
-            $listeventsporfecha = eventosRealizadosPorFecha($eventsporfecha);
-           // $listeventsporfecha = $event->eventosPorRealizarOrderFecha();
-            
-                    $listeventsfavo = '';
-                    /*EVENTOS FAVORITOS*/
-                     if(isset($_SESSION['userid'])){
-                        $userid = $_SESSION['userid'];
-                        
-                        $usuario = new usuario();
-                        $usuariofound = $usuario->findforid($userid);
-                        if(count($usuariofound['tags_buscados']) > 0){
-                            $tagsfavoritos = $usuariofound['tags_buscados'];
-                            $eventsfavo = $usuario->verEventosFavoritos($tagsfavoritos);
-                            //for
-                            $listeventsfavo = eventosfavoritos($eventsfavo);     
-                        }
-                     }else{
-                         
-                     }
-
+            $arreglo =  $arr['arreglo'];
+            //$number = $arr['number'];
             $resp = array("infodiv"=>$infodiv,
                           "listevents"=>$listevents,
-                          "listeventspop"=>$listeventspop,
-                          "listeventsfavo"=>$listeventsfavo,
-                          "listeventsporfecha"=>$listeventsporfecha
+                          "arreglo"=>$arreglo
                          );
             echo json_encode($resp);
-        }
+       }
+       
+//       if(isset($_REQUEST['findnear'])){
+//            $lat = $_REQUEST['lat'];
+//            $long = $_REQUEST['lng'];
+//            $event = new evento();
+//            
+//            $eventsNears = $event->findnear((float)$lat, (float)$long);
+//            $arr = eventoscernanos($eventsNears);
+//            $infodiv = $arr['infodiv'];//información para que el mapa lea y muestre los pines con eventos
+//            $listevents = $arr['listevents'];
+//            
+//            $eventpopular = $event->findpopular();
+//            $listeventspop = eventospopulares($eventpopular);
+//            
+//            $eventsporfecha = $event->eventosPorRealizarOrderFecha(1);
+//            $listeventsporfecha = eventosRealizadosPorFecha($eventsporfecha);
+//           // $listeventsporfecha = $event->eventosPorRealizarOrderFecha();
+//            
+//                    $listeventsfavo = '';
+//                    /*EVENTOS FAVORITOS*/
+//                     if(isset($_SESSION['userid'])){
+//                        $userid = $_SESSION['userid'];
+//                        
+//                        $usuario = new usuario();
+//                        $usuariofound = $usuario->findforid($userid);
+//                        if(count($usuariofound['tags_buscados']) > 0){
+//                            $tagsfavoritos = $usuariofound['tags_buscados'];
+//                            $eventsfavo = $usuario->verEventosFavoritos($tagsfavoritos);
+//                            //for
+//                            $listeventsfavo = eventosfavoritos($eventsfavo);     
+//                        }
+//                     }else{
+//                         
+//                     }
+//
+//            $resp = array("infodiv"=>$infodiv,
+//                          "listevents"=>$listevents,
+//                          "listeventspop"=>$listeventspop,
+//                          "listeventsfavo"=>$listeventsfavo,
+//                          "listeventsporfecha"=>$listeventsporfecha
+//                         );
+//            echo json_encode($resp);
+//        }
         
         if(isset($_POST['guardarevent'])){
             

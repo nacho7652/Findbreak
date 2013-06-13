@@ -138,8 +138,10 @@
                                 $us = new usuario();
                                 $user_profile = $_SESSION['userprofile'];
                                 $comp = $us->loginFace($user_profile['email']);
+                               
                                 if($comp!=null)
                                 {
+                                   
                                    $_SESSION['userid'] = $comp['_id'];
                                    $_SESSION['username'] = $comp['username'];
                                    $_SESSION['nombre'] = $comp['nombre'];
@@ -154,14 +156,15 @@
                                        $_SESSION['foto'] = $comp['foto'];
                                    }
                                    $_SESSION['usertype'] = 1;
-                                }
-                                else{
+                                }else{
+                                  
                                    $hola = $us->insertarFB($user_profile['name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
                                    $_SESSION['userid'] = $hola['_id'];
                                    $_SESSION['username'] = $hola['username'];
                                    $_SESSION['nombre'] = $hola['nombre'];
                                    $_SESSION['foto'] = $hola['foto'];
                                    $_SESSION['usertype'] = 1;
+                                  
                                 }
                             }
 

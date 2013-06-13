@@ -8,13 +8,13 @@
                           <div class="text-cerca"> EVENTOS CERCA TUYO </div>
 
                           <div class="input-textparent2">
-                            <input type="text" value="BUSCA LO QUE QUIERAS..." id="search-near" class="input-transf"/>
+                            <input type="text" value="BUSCA LO QUE QUIERAS..." id="search-location" class="input-transf"/>
                             <input id="boton-buscarcerca" type="button" class="sprites" />
                           </div> 
-                          <div class="input-textparent3">
+<!--                          <div class="input-textparent3">
                             <input type="text" value="UBICACIÓN ACTUAL" id="search-location" class="input-transf"/>
                             <input id="boton-location" type="button" class="sprites loc-activado" />
-                          </div>
+                          </div>-->
                       </div>
                
             <div class="list-maps">
@@ -78,7 +78,9 @@
                                                 <?php }else{?>
                                                      <div class="cuadrocoment coments">  
                                                          <input type="hidden" class="idevent" value="518d0c944de8b48419000000">  
-                                                         <input type="hidden" id="hashevent" value="#BosterEnChile2013">  
+                                                         <input type="hidden" class="hashevent" value="#BosterEnChile2013">
+                                                         <input type="hidden" class="nombreevent" value=""/>
+                                                         
                                                          <div class="input-transcom">     
                                                              <div class="hash">#BosterEnChile2013</div>     
                                                              <div id="overcoment">     

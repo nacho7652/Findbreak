@@ -462,7 +462,8 @@ class usuario {
                return -5; //REPETIDO
            }
            else { 
-         return $this->db->usuario->insert($user); 
+             $this->db->usuario->insert($user); 
+             return $user;
           }
          
      }

@@ -29,6 +29,8 @@ $(document).ready(function(){
                       data:"login=1&name="+fb.user.name+"&first_name="+fb.user.first_name+"&last_name="+fb.user.last_name+"&username="+fb.user.username+"&email="+fb.user.email+"&picture="+fb.user.picture,
                       success:function(data)
                       {
+//                          alert(data)
+//                           window.location.reload();
                           if(data == "ok")
                               {
                                   window.location.reload();
@@ -124,7 +126,7 @@ $(document).ready(function(){
                             url: "/findbreak/function/event-response.php",
                             data: "mostrar-coment-cerca=1&idevento="+idevento+'&hashevent='+hashevent,
                             success: function (data)
-                             {  //alert(data)
+                             {  
                                 item.find('.coment-cerca .list.boxscroll').html(data)
                                 item.find('.coment-cerca').fadeIn(100)
                                 item.find('#coment').focus()
@@ -287,18 +289,46 @@ $(document).ready(function(){
             return false;
         })
         $('body').delegate('.leermas-coment','click',function(){
-            var id = $('#idevent').val();
+            var id = $('.idevent').val();
             var ultimoComentario = $('.list .itemcoment:last').attr('data-num');
             var totalComent = $('#totalComent').val();
-            var hashevent = $('#hashevent').val();
+            var hashevent = $('.hashevent').val();
             ultimoComentario++;
-//            alert(ultimoComentario);
+//            alert(id);
 //            alert(totalComent)
+//            alert(ultimoComentario);
+//            alert(hashevent)
+//            return false;
             $.ajax({           
                 type:"POST",
                 dataType:"html",
                 url: "/findbreak/function/comentario-response.php",
                 data: "vermascomentarios=1&ultimo="+ultimoComentario+'&eventid='+id+'&hashevent='+hashevent+'&totalComent='+totalComent,
+                success: function (data)
+                {   
+                    $('.list').html(data);
+                    $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
+                }
+            })  
+            return false;
+        })
+        $('body').delegate('.leermas-comentcerca','click',function(){
+            padre = $(this).parent().parent().parent();
+            var id = padre.find('.idevent').val();
+            var ultimoComentario = padre.find('.list .itemcoment:last').attr('data-num');
+            var totalComent = padre.find('#totalComent').val();
+            var hashevent = padre.find('.hashevent').val();
+            ultimoComentario++;
+//            alert(id);
+//            alert(totalComent)
+//            alert(ultimoComentario);
+//            alert(hashevent)
+//            return false;
+            $.ajax({           
+                type:"POST",
+                dataType:"html",
+                url: "/findbreak/function/comentario-response.php",
+                data: "vermascomentarios=1&cerca=1&ultimo="+ultimoComentario+'&eventid='+id+'&hashevent='+hashevent+'&totalComent='+totalComent,
                 success: function (data)
                 {   
                     $('.list').html(data);
@@ -353,21 +383,26 @@ $(document).ready(function(){
             $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
         })
         $('body').delegate('.btn-comentar-cerca','click',function(){
-         padre = $(this).parent().parent().parent().parent().parent();
+         padre = $(this).parent().parent();
          var coment = padre.find('#coment').val();
          var eventid = padre.find('.idevent').val();
-         var nombreevent = padre.find('.title-event').html();
-         if(nombreevent == null){
-             nombreevent = padre.find('.tit-eventcerca').html();
-         }
-        
-         var hashevent = padre.find('#hashevent').val();
-         var totalComent = padre.find('#totalComent').val();
-         var ultimoComentario = padre.find('.list .itemcoment:last').attr('data-num');
+         var nombreevent = padre.find('.nombreevent').val();
+         var hashevent = padre.find('.hashevent').val();
+         
+         var totalComent = padre.parent().parent().find('#totalComent').val();
+         var ultimoComentario = padre.parent().find('.list .itemcoment:last').attr('data-num');
          ultimoComentario = parseInt(ultimoComentario) +2;
          totalComent++;
-         coment = hashevent+' '+coment;
+         coment = '#'+hashevent+' '+coment;
 //        alert(eventid); return false;
+        
+//         alert(eventid);
+//         alert(coment);
+//         alert(nombreevent);
+//         alert(hashevent);
+//         alert(totalComent)
+//         alert(ultimoComentario)
+//         return false;
          $.ajax({           
              type:"POST",
              dataType:"html",
@@ -375,7 +410,7 @@ $(document).ready(function(){
              data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
              success: function (data)
              {
-                
+                 padre = padre.parent();
                  padre.find('.showfocuscom').hide();
                  padre.find('#coment').css('height','16px');
                  padre.find('#coment').val('');
@@ -384,7 +419,7 @@ $(document).ready(function(){
                  padre.find('#replica').html('');
                  padre.find('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
                  //sumar evento
-                
+                 padre = padre.parent().parent();
                  cantidadComentarios = (parseInt(padre.find('#totalComent').val())  + 1)
                  padre.find('#totalComent').val(cantidadComentarios)
                  if(cantidadComentarios == 0){
@@ -1055,9 +1090,27 @@ $(document).ready(function(){
       $('.registrate').click(function(){
           $.post("/findbreak/json/zoom.php", {'popup-registrousuario':1}, function(data){
                 popup(data);
+                $('#nombre-usuario').focus();
             }, "html");
       });
-      
+      $('body').delegate('#user-name','keyup',function(e){
+          username = $(this).val();
+          $.post("/findbreak/function/users-response.php", {'comprobar-username':1,'username':username}, function(data){
+                if(data == 1){//se puede
+                    $('.username-corr').show();
+                    $('.username-incorr').hide();
+                    $('.mensaje-error').hide();
+                    $('.mensaje-error').html('<div class="content-mensaje username-correcto"></div>')
+                }else{
+                    $('.username-incorr').show();
+                    $('.username-corr').hide();
+                    $('.mensaje-error').show();
+                    $('.mensaje-error').html('<div class="content-mensaje username-repetido">\n\
+                                                  Este nombre de usuario ya existe <spam class="equis">:(</span>\n\
+                                              </div>')
+                } 
+            }, "html");
+      })
       var outLoginCont = false;
        $(".login-cont").mouseover(function(){
 //           alert("entrar")

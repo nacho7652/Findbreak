@@ -89,39 +89,49 @@
 
     
     if(isset($_POST['popup-registrousuario'])){
-        $divPublicar = '<div class="content-publicarevent">
-                                 <div class="item-publicarevent">
-                                    <div class="title-publicarevent">Unete a Findbreak, la nueva red social de eventos</div>
+        $divPublicar = '<div class="content-registro">
+                                 <div class="item-publicarevent-titulo">
+                                    <div class="title-publicar"><div class="logo"></div></div>
                                  </div>
-                                <div class="item-publicarevent">
+                                <div class="item-publicar">
                                  <div class="nombre-publicarevent">Nombre completo</div>
-                                 <input class="field-publicarevent" type="text" id="nombre-usuario" name="nom-event"/>
+                                 <input class="field-publicar" type="text" id="nombre-usuario" />
                                 </div>
                                 
-                                <div class="item-publicarevent">
+                                <div class="item-publicar">
                                  <div class="nombre-publicarevent">Dirección de correo electrónico</div>
-                                 <input class="field-publicarevent" type="text" id="correo-usuario" name="nom-event"/>
+                                 <input class="field-publicar" type="text" id="correo-usuario"/>
                                 </div>
                                 
-                                <div class="item-publicarevent">
+                                <div class="item-publicar">
                                  <div class="nombre-publicarevent">Crea una contraseña</div>
-                                 <input class="field-publicarevent" type="password" id="clave-usuario" name="nom-event"/>
+                                 <input class="field-publicar" type="password" id="clave-usuario" />
                                 </div>
                                 
-                                <div class="item-publicarevent">
-                                 <div class="nombre-publicarevent">Escoge tu nombre de usuario</div>
-                                 <input class="field-publicarevent" type="text" id="user-name" name="nom-event"/>
+                                <div class="item-publicar">
+                                    <div class="nombre-publicarevent">Escoge tu nombre de usuario</div>
+                                    <input class="field-publicar" type="text" id="user-name"/>
+                                    <div class="mensaje-error"></div>
+                                    <div class="username-corr"></div>
+                                    <div class="username-incorr"></div>
                                 </div>
                                 
                                     
                                 
-                                 <div class="item-publicarevent">
+                                 <div class="item-publicarevent-large item-botonregistro">
                                  
-                                 <button id="btnSubmit" style="display: none;">Subir archivo</button>
-                                  <input type="submit" id="guardarusuario" class="botonguardar" value="Guardar"/>
+                                 
+                                  <input type="submit" id="guardarusuario" class="botongreen" value="Regístrate"/>
                                  </div>
-                                <input type="hidden" class="Lat" name="lat"/>
-                                <input type="hidden" class="Lng" name="lng"/>
+                                 
+                                 <div class="item-publicarevent-large">
+                                    <div class="oface txtini-blue">ó</div>
+                                    <a class="loginface-top login-face login-fb"  href="#<?php //echo $loginUrl; ?>">
+                                            <div id="loginbtn-fb"></div>
+                                            <div class="txtfb">Regístrate con Facebook</div>
+                                    </a>
+                                 </div>
+                                 
                                </div>
                                
                                 ';

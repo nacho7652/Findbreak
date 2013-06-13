@@ -44,7 +44,7 @@ require 'facebook.php';
          "email"=>$email,
          "picture"=>$picture
      );
-      echo "ok"; 
+      echo 'ok'; 
     }
     
 if(isset($_GET['logout'])){
