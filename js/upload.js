@@ -189,10 +189,29 @@ $(document).ready(function(){
                      }
       
   })
-
+  usernameCorrecto = false;
+  function comprobarCampos(){
+          error = false;
+          $('.item-publicar input').each(function(){
+              valor = $(this).val();
+              if(trim(valor) == ""){
+                  error = true;
+              }
+          })
+          return error;
+      }
   $('#coverall').delegate('#guardarusuario','click',function()
   {
-      
+       if(comprobarCampos()){
+           $('.todosloscampos .content-mensaje').html('Debes completar todos los campos');
+           $('.todosloscampos').show();
+           return false;
+       }else{
+           $('.todosloscampos').hide();
+       }
+       if(usernameCorrecto == false){
+           return false;
+       }
         var nomeuser = $('#nombre-usuario').val();
         var username = $('#user-name').val();
         var correousuario = $('#correo-usuario').val();
@@ -205,38 +224,64 @@ $(document).ready(function(){
                                  data : "guardaruser=1&nomuser="+nomeuser+"&username="+username+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
                                  success : function(res){                      
                                      //modificar la foto con el mail
-                                     if(res == 1)
-                                     alert("Bienvenido");
-                                    else
-                                        if(res == -5)
-                                     alert("Lo sentimos, parece que  está cuenta ya está existente. ¿Te gustaría reclamar está dirección de correo electrónico?");
+                                     if(res == 1){
+                                          $.ajax({
+                                                    type: "POST",
+                                                    dataType: "JSON",
+                                                    url: "/findbreak/function/login-response.php",
+                                                    data: "login=1&mail="+correousuario+"&pass="+claveusuario,
+                                                    success : function (data)
+                                                    {  
+                                                        if(data.exito)
+                                                            { 
+                                                                if(data.usertype == 1){
+                                                                  window.location.reload();//es usuario y recargo la página donde esté
+                                                                }   
+                                                            }
+                                                    }
+                                                })
+                                     }else
+                                        if(res == -5){
+                                            $('.todosloscampos .content-mensaje').html("Lo sentimos, esta cuenta ya existe. ¿Te gustaría reclamar esta dirección de correo electrónico?");
+                                             $('.todosloscampos').show();
+                                         }
                                   }//success                
                               });
       
   })
 
-    $('#coverall').delegate('#guardarproductora','click',function()
-  {
+      $('body').delegate('#user-name','keyup',function(e){
+          username = $(this).val();
+          if(username == ""){
+              $('.username-incorr').hide();
+              $('.username-corr').hide();
+              return false;
+          }
+          $.post("/findbreak/function/users-response.php", {'comprobar-username':1,'username':username}, function(data){
+                if(data == 1){//se puede
+                    $('.username-corr').show();
+                    $('.username-incorr').hide();
+                    $('.error-username').hide();
+                    usernameCorrecto = true;
+                }else{
+                    usernameCorrecto = false;
+                    $('.todosloscampos').hide();
+                    $('.username-incorr').show();
+                    $('.username-corr').hide();
+                    $('.error-username').show();
+                    $('.error-username').html('Este nombre de usuario ya existe')
+                } 
+            }, "html");
+      })
       
-        var nomeuser = $('#nombre-usuario').val();
-        var correousuario = $('#correo-usuario').val();
-        var claveusuario = $('#clave-usuario').val();
-//        alert("adads"); return;
-                        $.ajax({
-                                 dataType:"JSON",
-                                 url : '../function/productora-response.php',
-                                 type : 'POST',
-                                 data : "guardarproductora=1&nomuser="+nomeuser+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
-                                 success : function(res){                      
-                                     //modificar la foto con el mail
-                                     if(res == 1)
-                                     alert("Agregado")
-                                    else
-                                     alert("Vuelva a intentarlo")
-                                  }//success                
-                              });
       
-  })
+  
+   function trim(cadena){
+        // USO: Devuelve un string como el parámetro cadena pero quitando los espacios en blanco de los bordes.
+        var retorno=cadena.replace(/^\s+/g,'');
+        retorno=retorno.replace(/\s+$/g,'');
+        return retorno;
+        }
   
 })
 

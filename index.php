@@ -123,10 +123,12 @@
                 
                 <div class="top-center">
                     <!--<div id="hover-response">-->
+                     <?php if($page_site != 'cerca'){?>
                         <div class="input-textparent1">
                             <input value="Fiestas, deportes, arte, etc." type="text" id="search" class="input-transf">
                             <input id="boton-buscar" type="button" class="sprites" />
                         </div>
+                    <?php }?>
                         <div id="response-friend" >
 
                         </div>
@@ -374,31 +376,33 @@
                                </div>
                                <?php } ?>
                      
-                     <div id="info-publicar"> 
-                     
-                     
+                     <div id="info-publicar" class="botongreen"> 
+                         Publicar
+                         
                      </div>
                      <div id="info-mostrar" style="display:none">  
-                     Publica un evento y obten todos los beneficios que te bindra findbreak
-                     ¿Quieres publicar un evento?
-                     <?php 
-                        
-                        if(isset($_SESSION["userid"])) //estoy logeado
-                        {
-                           ?> <a href="/findbreak/publicar" >+</a> <?php
-                        }
-                        else
-                        {
-                            
-                            
-                        
-                     ?>
-                        <a href="/findbreak/login" >+</a>
-                        
-                        <?php
-                        }
-                        ?>
-                     
+                         <div class="content-infomostrar">
+                             Publica un evento y obten todos los beneficios que te bindra findbreak
+                             ¿Quieres publicar un evento?
+                         </div>
+                         <div class="option-infomostrar">
+                                <?php 
+
+                                    if(isset($_SESSION["userid"])) //estoy logeado
+                                    {
+                                       ?> <a href="/findbreak/publicar" >click aquí</a> <?php
+                                    }
+                                    else
+                                    {                          
+                                 ?>
+            <!--                        <a href="/findbreak/login" >regístrate / login</a>-->
+                                        <a class="login-hover login-msj" href="#">Iniciar sesión</a> / 
+                                        <a class="registrate registro-msj" href="#">Regístrate</a>
+                                        
+                                    <?php
+                                    }
+                                    ?>
+                         </div>
                      </div>
                  </div>
                 

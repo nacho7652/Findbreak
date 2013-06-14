@@ -258,13 +258,35 @@ html {
     float: left;
     width: 400px;
     height: 53px;
+    position: relative;
+}
+.login-msj {
+    margin: 0px 68px 0px 0px !important;
+}
+.option-infomostrar {
+    float: left;
+    width: 331px;
+    margin: 18px 0px 0px 0px;
+}
+#info-mostrar {
+    width: 328px;
+    background: url(/findbreak/images/iconos-bg.png) rgba(213, 149, 54, 1) -181px -115px;
+    margin: 0px 15px 0px 0px;
+    position: absolute;
+    top: 54px;
+    padding: 22px 19px;
+    color: #fff;
+    text-shadow: 0px 1px 2px #444;
+    font-size: 20px;
+    box-shadow: 0px 2px 26px -10px #444;
+    text-align: center;
 }
 #info-publicar{
     float: right;
     color: #fff;
-    width: 30px;
-    height: 30px;
-    background: #fff;
+    width: 86px;
+    height: 19px;
+    margin: 9px 15px 0px 0px;
 }
 #boton-buscar {
     width: 28px;
@@ -411,6 +433,10 @@ html {
     margin: 0px 0px 0px 2px;
     padding: 8px 5px;
     font-size: 11px;
+}
+.registro-msj {
+    float: left !important;
+    margin: 0px 0px 0px 78px !important;
 }
 .registrate {
     float: right;
@@ -758,6 +784,7 @@ html {
     border: 1px solid rgb(189, 189, 189);
     box-shadow: 0px 7px 8px -8px rgb(173, 173, 173);
     border-radius: 2px;
+    z-index: 2;
 }
 #content-login  #mail2{
     width: 350px;
@@ -2351,13 +2378,20 @@ margin: -3px -5px 0px 6px;
 /*END-EVENT PROFILE*/
 
 /*PROFILE PRODUCTORA*/
+.publicar {
+    background: url(/findbreak/images/iconos-bg.png);
+    box-shadow: 0px 87px 195px -66px rgb(37, 86, 146) inset;
+}
+.publicar .item-publicar {
+    width: 900px;
+}
 .content-publicarevent {
-    width: 688px;
-    padding-bottom: 28px;
+    width: 900px;
+    padding-bottom: 20px;
+    padding-top: 45px;
     overflow:hidden;
     color: #444;
-    margin: 0px auto 0px auto;
-    background: url(/findbreak/images/iconos-bg.png);
+    margin: 0px auto 0px auto;  
 }
 .content-registro {
     width: 688px;
@@ -2366,8 +2400,9 @@ margin: -3px -5px 0px 6px;
     color: #444;
     margin: 0px auto 0px auto;
     background: url(/findbreak/images/iconos-bg.png);
-    box-shadow: 0px 87px 195px -66px rgba(37, 86, 146, 0.62) inset;
     /*box-shadow: 0px 55px 66px -27px rgba(72, 115, 168, 0.76) inset;*/
+;
+    box-shadow: 0px 87px 195px -66px rgb(37, 86, 146) inset;
 }
 .event-list {
     width: 500px;
@@ -2422,6 +2457,8 @@ margin: -3px -5px 0px 6px;
 .item-publicarevent-large.item-botonregistro {
     margin: 38px 0px 0px 0px;
 }
+.todosloscampos {
+}
 .item-publicarevent-large{
     float: left;
     width: 687px;
@@ -2447,21 +2484,35 @@ margin: -3px -5px 0px 6px;
     margin-top: 0px;
 }
 .title-publicarevent {
-   text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-    background-repeat: repeat-x;
-    border: 1px solid rgba(65, 115, 169, 0.34);                  
-    border: 1px solid rgba(65, 169, 94, 0);
-    border: 1px solid #1c74b3;  border-top-color: #2c8ed1;  border-bottom-color: #0d5b97;
-    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);      
-    background:  -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
-    color: #FFF;
-    
+    color: rgb(59, 113, 172);
    padding: 12px;
-    
-    
    width: 671px;
-   text-align: center;
-   text-shadow: 0 1px 0 #083f78;
+    text-align: left;
+    text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
+    font-size: 42px;
+}
+.publicar .field-publicarevent {
+    width: 600px !important;
+}
+.publicar .field-publicarevent-m {
+    width: 400px !important;
+}
+.publicar .field-publicarevent-s {
+    width: 100px !important;
+}
+.publicar .nombre-publicarevent {
+    width: 800px;
+}
+#minute-event {
+margin: 0px;
+}
+.dospuntos {
+float: left;
+font-size: 28px;
+margin: 0px 0px 0px 10px;
+width: 20px;
+height: 40px;
+background: url('/findbreak/nuevo/images/sprites.png') no-repeat -39px -260px;
 }
 .nombre-publicarevent {
     float: left;
@@ -2470,7 +2521,8 @@ margin: -3px -5px 0px 6px;
     padding: 4px 3px 4px 40px;
     font-weight: bold;
     font-size: .9em;
-    color: rgb(59, 113, 172);      text-shadow: 0px 1px 1px rgb(255, 255, 255);
+    color: rgb(59, 113, 172);      
+    text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
 }
 .equis {
 color: rgb(235, 55, 55);
@@ -2497,9 +2549,21 @@ margin: 3px 0px 0px 7px;
     top: 32px;
     display: none;
 }
+.todosloscampos {
+    top: -35px !important;
+    left: 161px;
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat 213px -233px rgba(255, 169, 169, 0.7) !important;
+    text-align: center;
+}
+.error-username {
+    padding: 7px 8px !important;
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat 205px -235px rgba(255, 169, 169, 0.7) !important;
+    text-align: center;
+    width: 268px !important;
+}
 .mensaje-error {
     float: left;
-    width: 279px;
+    width: 280px;
     background: rgba(255, 169, 169, 0.7);
     margin: 4px 0px 0px 38px;
     position: absolute;
@@ -2510,7 +2574,7 @@ margin: 3px 0px 0px 7px;
     padding: 5px 5px 9px 0px;
     display: none;
 }
-.item-publicar input[type="text"], .item-publicar input[type="password"]{
+.item-publicar input[type="text"], .item-publicar input[type="password"], .item-publicar input[type="time"],.item-publicar input[type="date"]{
     float: left;
     width: 266px;
     padding: 11px 9px;
@@ -2572,7 +2636,7 @@ margin: 3px 0px 0px 7px;
     width: 185px;
     padding: 11px 0px;
     font-size: 13px;
-    margin: 16px 0px 0px 253px;
+    margin: 20px 0px 0px 253px;
     font-weight: bold;
 }
 /*END PRODUCTORA*/

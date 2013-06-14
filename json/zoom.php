@@ -90,28 +90,28 @@
     
     if(isset($_POST['popup-registrousuario'])){
         $divPublicar = '<div class="content-registro">
-                                 <div class="item-publicarevent-titulo">
+                                <div class="item-publicarevent-titulo">
                                     <div class="title-publicar"><div class="logo"></div></div>
                                  </div>
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">Nombre completo</div>
-                                 <input class="field-publicar" type="text" id="nombre-usuario" />
+                                 <input placeholder="Bastian Nicolas Toro" class="field-publicar" type="text" id="nombre-usuario" />
                                 </div>
                                 
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">Dirección de correo electrónico</div>
-                                 <input class="field-publicar" type="text" id="correo-usuario"/>
+                                 <input placeholder="ejemplo@findbreak.com" class="field-publicar" type="text" id="correo-usuario"/>
                                 </div>
                                 
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">Crea una contraseña</div>
-                                 <input class="field-publicar" type="password" id="clave-usuario" />
+                                 <input placeholder="******" class="field-publicar" type="password" id="clave-usuario" />
                                 </div>
                                 
                                 <div class="item-publicar">
                                     <div class="nombre-publicarevent">Escoge tu nombre de usuario</div>
-                                    <input class="field-publicar" type="text" id="user-name"/>
-                                    <div class="mensaje-error"></div>
+                                    <input placeholder="bastian.toro24" class="field-publicar" type="text" id="user-name"/>
+                                    <div class="mensaje-error error-username"></div>
                                     <div class="username-corr"></div>
                                     <div class="username-incorr"></div>
                                 </div>
@@ -119,14 +119,18 @@
                                     
                                 
                                  <div class="item-publicarevent-large item-botonregistro">
+                                   <div class="todosloscampos mensaje-error">
+                                      <div class="content-mensaje">
+                                        
+                                      </div>
+                                   </div>
                                  
-                                 
-                                  <input type="submit" id="guardarusuario" class="botongreen" value="Regístrate"/>
+                                   <input type="submit" id="guardarusuario" class="botongreen" value="Regístrate"/>
                                  </div>
                                  
                                  <div class="item-publicarevent-large">
                                     <div class="oface txtini-blue">ó</div>
-                                    <a class="loginface-top login-face login-fb"  href="#<?php //echo $loginUrl; ?>">
+                                    <a class="loginface-top login-face login-fb"  href="#">
                                             <div id="loginbtn-fb"></div>
                                             <div class="txtfb">Regístrate con Facebook</div>
                                     </a>

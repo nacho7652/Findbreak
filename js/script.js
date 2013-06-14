@@ -1079,38 +1079,15 @@ $(document).ready(function(){
      })
      
   });
-      //fin aceptar/cancelar solicitud
-      
-      
-      
-      
-      //FIN SOLICITUD
-      
       //LOGIN
       $('.registrate').click(function(){
+          
           $.post("/findbreak/json/zoom.php", {'popup-registrousuario':1}, function(data){
                 popup(data);
                 $('#nombre-usuario').focus();
             }, "html");
       });
-      $('body').delegate('#user-name','keyup',function(e){
-          username = $(this).val();
-          $.post("/findbreak/function/users-response.php", {'comprobar-username':1,'username':username}, function(data){
-                if(data == 1){//se puede
-                    $('.username-corr').show();
-                    $('.username-incorr').hide();
-                    $('.mensaje-error').hide();
-                    $('.mensaje-error').html('<div class="content-mensaje username-correcto"></div>')
-                }else{
-                    $('.username-incorr').show();
-                    $('.username-corr').hide();
-                    $('.mensaje-error').show();
-                    $('.mensaje-error').html('<div class="content-mensaje username-repetido">\n\
-                                                  Este nombre de usuario ya existe <spam class="equis">:(</span>\n\
-                                              </div>')
-                } 
-            }, "html");
-      })
+      
       var outLoginCont = false;
        $(".login-cont").mouseover(function(){
 //           alert("entrar")
@@ -1127,6 +1104,7 @@ $(document).ready(function(){
        })
       $(".login-hover").click(function(){
           $(".login-cont").toggle();
+          $('#mail').focus();
           return false; 
       })
       
@@ -1155,26 +1133,9 @@ $(document).ready(function(){
                                   { 
                                       if(data.usertype == 1){
                                         window.location.reload();//es usuario y recargo la página donde esté
-                                      }
-//                                      if(data.usertype == 2){  
-//                                        var id = data.userid;
-//                                        
-//                                        window.location.href="../productora/"+id+"";//es usuario y recargo la página donde esté
-//                                      }
-                                     // alert(data.divuserlogin)
-                                     // $('.top-right').html(data.divuserlogin);
-                                      //$("#login").html("Bienvenido");
-//                                      $('#login').hide(1000);
-//                                      $("#user-register").show(1111);
-//                                      $("#user-photo").html(data.foto);
-//                                      $("#user-name").html(data.username);
-                                      //user-id 
-                                      
-                                      
+                                      }   
                                   }
                           }
-                          
-                          
                       })
                   }
               
