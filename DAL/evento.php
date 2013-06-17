@@ -169,7 +169,7 @@ class evento {
      }
      private function crearHash($nom){
          $arr = explode(' ', $nom);
-         $hash = '#';
+         $hash = '';
          for($i=0; $i<count($arr); $i++){
              $hash.= ucwords($arr[$i]);
          }
@@ -195,8 +195,7 @@ class evento {
             "loc"=> array((float)$lat, (float)$lng),
             "descripcion"=>  $desc,
              "visitas"=>0,
-             "redes" => array($urlfb, $urltw),
-             "video" => $video,
+             "redes" => array($urlfb, $urltw,$video),
              "establecimiento"=> $establecimiento,
              "precio"=>$precio,
              "puntos_de_venta"=>$puntosDeVenta,
@@ -204,11 +203,37 @@ class evento {
              "donde_comprar"=>$dondeComprar
         );
          //MODIFICAR EVENTOS PUBLICADOS
-         
-         
+//         
+//          $puntosDeVenta = array( 'nombre'=>'Ticket Master',
+//                                          'web'=>'http://www.ticketmaster.com.mx/'
+//                                  
+//                                   );
+//         return $this->db->puntos_venta->insert($puntosDeVenta); 
+//        $this->agregarPuntosVenta('Punto Ticket', 'http://www.puntoticket.com/');
          return $this->db->evento->insert($event);        
      }
      
+     public function agregarPuntosVenta($nombre, $web)
+     { 
+         $puntosDeVenta = array( 'nombre'=>$nombre,
+                                 'web'=>$web
+                                );
+         return $this->db->puntos_venta->insert($puntosDeVenta);   
+     }
+     public function verPuntosVenta()
+     { 
+         return $this->db->puntos_venta->find();    
+     }
+     
+     public function agregarTag($nombre)
+     { 
+         $tagdcto = array("nombre"=>$nombre);
+         return $this->db->tags->insert($tagdcto);   
+     }
+     public function verTags()
+     { 
+         return $this->db->tags->find();    
+     }
      public function EventosPorRealizarPorIdProductora($idProductora)
      { 
          return $this->db->evento->find(array('producido_por._id'=>$idProductora, 'fecha_realizacion'=> array('$gte' => $this->hoy()) ));    

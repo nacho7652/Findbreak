@@ -1,94 +1,161 @@
 $(document).ready(function(){
+    //mensajes transacciones
+    function limpiar(){
+        $('.titunoticia').val('');
+        $('.contentnoticia').val('');
+         formdata = false;
+         formdata = new FormData();
+         $('.images').val('');
+        $('.coverfile').css('background-image','none');
+         $('.titunoticia').focus();
+    }
+    function msjError(msj){				
+        $('#calmsj').html('<img class="iconerror" src="images/error.png"/> '+msj);
+        setTimeout('$("#covermsj").fadeOut(500);',4000);
+    }
+    function loader(msj){
+        $("#covermsj").fadeIn(0);	
+        $("#covermsj > .innermsj").fadeIn(0);
+        $('#calmsj').html(msj);
+    }
+    function msjSucess(msj){
+        $('#calmsj').html('<img class="iconsuccess" src="images/s_success.png"/> '+msj);
+        setTimeout('$("#covermsj").fadeOut(500);',4000);
+        
+        limpiar();
+    }
+    //fin mensajes transacciones
     mouseOverAll = false; 	
     $('#caloader').live('mouseenter', function(){
         mouseOverAll = true; 
     }).live('mouseleave', function(){ 
         mouseOverAll = false; 
     });
-    
-    $("#coverall").click(
-		function(){
-			if (!mouseOverAll){
-				formdata = false;
-                                cantfotos = 0;
-                                
-			}			
-    });
-        
- //   var input = document.getElementById('images');
-    var formdata = false;
-    var cantfotos = 0;
-    function mostrarImagenSubida(source){
-        
-//        var list = document.getElementById('lista-imagenes'),
-//            li   = document.createElement('li'),
-        var    img  = document.createElement('img');
-        
-        img.src = source;
-        //alert(source)
-//        li.appendChild(img);
-//        list.appendChild(li);
-          //li.html(img);
-          var item = '<div style=" background:url('+source+') ; background-size: cover " class="images-item"></div>';
-          $('.foto-publicarevent').append(item);
-          //$('.foto-publicarevent').html("");
-         // $('.foto-publicarevent').css('background', 'url("'+source+'")');
-          //$('.foto-publicarevent').css('background-size', 'cover');
-          
-    }
-    
-    //Revisamos si el navegador soporta el objeto FormData
-    if(window.FormData){
-        formdata = new FormData();
-        //document.getElementById('btnSubmit').style.display = 'none';
-    }
-    
-    //Aplicamos la subida de imágenes al evento change del input file
-    $('body').delegate('#images','change',function(evt){
-            cantfotos++;
-            if(cantfotos > 3){
-                alert("Solo 3 fotos!"); 
-                return;
-            }
-            var i = 0, len = this.files.length, img, reader, file;
-            
-            //document.getElementById('response').innerHTML = 'Subiendo...';
-            //$('.foto-publicarevent').html("Cargando...");
-            
-            //Si hay varias imágenes, las obtenemos una a una
-            for( ; i < len; i++){
-                file = this.files[i];
-                
-                //Una pequeña validación para subir imágenes
-                if(!!file.type.match(/image.*/)){
-                    //Si el navegador soporta el objeto FileReader
-                    if(window.FileReader){
-                        reader = new FileReader();
-                        //Llamamos a este evento cuando la lectura del archivo es completa
-                        //Después agregamos la imagen en una lista
-                        reader.onloadend = function(e){
-                            mostrarImagenSubida(e.target.result);
-                        };
-                        //Comienza a leer el archivo
-                        //Cuando termina el evento onloadend es llamado
-                        reader.readAsDataURL(file);
-                    }
-                    
-                    //Si existe una instancia de FormData
-                    if(formdata)
-                        //Usamos el método append, cuyos parámetros son:
-                            //name : El nombre del campo
-                            //value: El valor del campo (puede ser de tipo Blob, File e incluso string)
-                        formdata.append('images[]', file);
+    function revisarTag(nombre){
+        error = true;
+        $('.tag-elegir').each(function(){
+            este = $(this);
+            if(este.html() == nombre){
+                if(este.hasClass('tag-noselected')){
+                    este.removeClass('tag-noselected');
+                    este.addClass('tag-selected');
                 }
+                tags();
+                error = false;
+            } 
+         })
+         return error;
+    }
+    $('#guardarevento').click(function(){
+         guardar = true;
+         $('.obligatorio').each(function(){
+             valor = $(this).val();
+             error = $(this).parent().find('.error-obligatorio');
+             if(trim(valor) == ""){//si está vacío mostrar msj
+                    guardar = false;
+                    $(this).focus();
+                     $('html, body').animate({
+                         'scrollTop': $(this).offset().top - 90 + "px" 
+                     },
+                     {
+                        duration:500,
+                        easing:"swing"
+                     }
+                     );
+                     error.fadeIn(200); 
+                     return false;
+             }else{
+                      error.fadeOut(200); 
+                 }
+             
+         })
+         if(guardar){
+            loader('Guardando galería...');
+            document.formularioevento.submit();
+         }
+         
+    }); 
+    $('#nuevo-tag-btn').click(function(){
+        nuevotag = $('#nuevo-tag').val();
+        if(trim(nuevotag) == ''){
+            return false;
+        }
+        if(!revisarTag(nuevotag)){
+            alert('La palabra que agregaste ya existe, por ende se agregó automáticamente')
+            return false;
+        }
+        $.ajax({
+                      type:"POST",
+                      dataType:"html",
+                      url:"/findbreak/function/event-response.php",
+                      data:"nuevotag=1&nombre="+nuevotag,
+                      success:function(data)
+                      {
+                          if(data == 1){
+                            $('.content-tags').prepend('<div class="tag-elegir tag-selected">'+nuevotag+'</div>');
+                            tags();
+                          }
+                      }
+                  }); 
+    })
+    $('.mostrar-agre-tag').click(function(){
+        $('.divmostrar-agre-tag').toggle();
+        $('#nuevo-tag').focus();
+        return false;
+    })
+    $('body').delegate('.tag-elegir','click',function(){
+        este = $(this);
+        if(este.hasClass('tag-noselected')){
+            este.removeClass('tag-noselected');
+            este.addClass('tag-selected');
+        }else{
+            este.removeClass('tag-selected');
+            este.addClass('tag-noselected');
+        }
+        tags();
+    });
+     function tags(){
+         tagsElegidos = '';
+         $('.tag-elegir').each(function(){
+            if($(this).hasClass('tag-selected')){
+                tagsElegidos+= $(this).html()+' ';
             }
-            
-            //Por último hacemos uso del método proporcionado por jQuery para hacer la petición ajax
-            //Como datos a enviar, el objeto FormData que contiene la información de las imágenes
-            
-        });
+         })
+         $('#tags-hidden').val(tagsElegidos)
+     }
+    $('#date-event').datepick({ 
+        multiSelect: 999, monthsToShow: 1, dateFormat: 'yyyy-mm-dd'
+    });
     
-    
+    function mostrarImagenSubida(source, este){
+        var    img  = document.createElement('img');
+        img.src = source;
+        este.css('background-image','url('+source+')');
+        este.css('background-size','cover');
+        este.css('background-position','0px 0px');
+    }
+    $('body').delegate('#images-galerias','change',function(evt){
+            var i = 0, len = this.files.length, img, reader, file;
+            var este = $(this).parent();
+                 //for( ; i < len; i++){
+                    file = this.files[0];
+                    //Una pequeña validación para subir imágenes
+                    if(!!file.type.match(/image.*/)){
+                        //Si el navegador soporta el objeto FileReader
+                        if(window.FileReader){
+                            reader = new FileReader();
+                            //Llamamos a este evento cuando la lectura del archivo es completa
+                            //Después agregamos la imagen en una lista
+                            reader.onloadend = function(e){
+
+                                mostrarImagenSubida(e.target.result, este);
+                            };
+                            //Comienza a leer el archivo
+                            //Cuando termina el evento onloadend es llamado
+                            reader.readAsDataURL(file);
+                        }
+                    }
+         });
     $('#coverall').delegate('#guardarevento','click',function(){
         //alert("daasddas");
         

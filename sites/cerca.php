@@ -24,10 +24,10 @@
                     
                     <?php $j=0; for($i=0; $i<=5; $i++){?> 
                        <div class="content-eventcerca event-none" id="item-eventcerca<?=$i?>">  
-                         <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca">
+                         <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca" style="background-image:url(../images/productoras/238928932389892/foto1.jps); background-size: cover">
                                             <div class="barra"></div>
                                             <div class="event-right">
-                                                        <div class="event-left" style="background-image:url(../images/productoras/238928932389892/foto1.jps); background-size: cover"></div>
+                                                        <div class="event-left" ></div>
                                                          <div class="num-event"></div>   
                                                         <a target="_blank" href="/findbreak/break/518d0c174de8b45810000000" class="tit-eventcerca">Rooster en chile pico</a>
                                                        <div class="info-eventcerca info-eventcercawhte">

@@ -125,6 +125,12 @@ function geolocalizarManual(address){
             var lng = map.getCenter().lng();
             latitud = lat;
             longitud = lng;
+            if(guardarEvento){
+                $('.lat-event').val(lat);
+                $('.lng-event').val(lng);
+                return false;
+            }
+          
             //return false;
 //        alert(lat); alert(lng); 
             $.ajax({
@@ -151,10 +157,11 @@ function geolocalizarManual(address){
                  for(var i=0;i<numberOfCase;i++){
                     id = data.arreglo[i]['id'];
                     hash = data.arreglo[i]['hash'];
-                    html = data.arreglo[i]['event-right'];
+                    //html = data.arreglo[i]['event-right'];
                     infoCerca = data.arreglo[i]['info'];//$infoEventCerca
                     tagshidden = data.arreglo[i]['tags'];
                     nombre = data.arreglo[i]['nombre'];
+                    foto = data.arreglo[i]['foto'];
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-id',id);
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-hash',hash);
                    $('#item-eventcerca'+i).find('.info-eventcerca').html(infoCerca);
@@ -166,6 +173,8 @@ function geolocalizarManual(address){
                    $('#item-eventcerca'+i).find('.hashevent').val(hash);
                    $('#item-eventcerca'+i).find('.nombreevent').val(nombre);
                    $('#item-eventcerca'+i).show();
+                   $('#item-eventcerca'+i).find('.item-eventcerca').attr('style',foto);
+                   $('#item-eventcerca'+i).find('.event-left').attr('style',foto);
                    infoDiv = $('#info'+i).text();	 
                    tokens = infoDiv.split("+");
                    
@@ -292,7 +301,29 @@ function geolocalizarManual(address){
             localizame();
        }
    })
-   
+   //guardar evento
+   guardarEvento = false;
+   $('#addresEvent').keyup(function(e){
+       if(e.keyCode == 13){
+            guardarEvento = true;
+            direccionEvento = $('#addresEvent').val();
+            if(direccionEvento == ''){
+                direccionEvento = 'Santiago de Chile'
+            }
+            geolocalizarManual(direccionEvento);
+       }
+   })
+   $('#comprobar-event').click(function(){
+       guardarEvento = true;
+        direccionEvento = $('#addresEvent').val();
+        if(direccionEvento == ''){
+            direccionEvento = 'Santiago de Chile'
+        }
+        geolocalizarManual(direccionEvento);
+  })
+  //fin guardar evento
+
+
 //   $('#search-near').keyup(function(e){
 //       if(e.keyCode != 32){
 //       var texto = $(this).val().split(' ');

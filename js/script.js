@@ -23,7 +23,7 @@ $(document).ready(function(){
             if (fb.logged) 
             {
                $.ajax({
-                      type:"GET",
+                      type:"POST",
                       dataType:"html",
                       url:"/findbreak/function/facebook-response.php",
                       data:"login=1&name="+fb.user.name+"&first_name="+fb.user.first_name+"&last_name="+fb.user.last_name+"&username="+fb.user.username+"&email="+fb.user.email+"&picture="+fb.user.picture,

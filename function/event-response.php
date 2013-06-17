@@ -5,8 +5,13 @@
         require_once '../DAL/usuario.php';
         require_once '../DAL/establecimiento.php';
         require_once '../DAL/comentario.php';
-      if(!empty($_POST["search-event-cit"]))
-    {
+   if(!empty($_REQUEST["nuevotag"])){
+       $evento = new evento();
+       $nombre = $_REQUEST['nombre'];
+       echo $evento->agregarTag($nombre);
+            
+    }
+    if(!empty($_POST["search-event-cit"])){
                     $evento = new evento();
                     $popular = $evento->findpopular(3);
                     $html = '';
@@ -197,11 +202,11 @@
 
                      //   $mongotime = New Mongodate(strtotime($realtime));
                         $folder = (string)$dcto['producido_por']['_id'];
-                        $url = '../images/productoras/'.$folder.'/'.$dcto['fotos'][0];
+                        $url = 'background:url("/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0].'"); background-size: cover';
                        // $listevents.= '<div data-id="'.$dcto['_id'].'" data-hash="'.$dcto['hash'].'" class="item-eventcerca">';
                         $listevents.= '
                                            
-                          <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
+                          <div class="event-left"></div>
                                  <div class="num-event"></div>';
                                   $nombreLink = str_replace(' ', '-', $dcto['nombre']);
                                   $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'],1);
@@ -280,6 +285,7 @@
                                              'event-right'=>$listevents,
                                              'info'=>$infoEventCerca,
                                              'tags'=>$tagsHidden,
+                                             'foto'=>$url,
                                              'nombre'=>$dcto['nombre']);  
                     }
                     //$listevents.= '</div>';
@@ -309,7 +315,7 @@
                      //   $mongotime = New Mongodate(strtotime($realtime));
                         $folder = (string)$dcto['producido_por']['_id'];
                         $url = '../images/productoras/'.$folder.'/'.$dcto['fotos'][0];
-                        $listevents.= '<div data-id="'.$dcto['_id'].'" data-hash="'.$dcto['hash'].'" class="item-eventcerca">';
+                        $listevents.= '<div data-id="'.$dcto['_id'].'"  style="background-image:url('.$url.'); background-size: cover" data-hash="'.$dcto['hash'].'" class="item-eventcerca">';
                         $listevents.= '<div class="barra"></div>
                                             <div class="event-right">
                                                         <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>

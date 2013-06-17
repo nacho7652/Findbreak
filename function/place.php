@@ -62,6 +62,12 @@
                    $page_class = 'landing';
                    $page_description = "";
                    break;
+      case 'uploadevento':
+                   $page_title = 'Subiendo evento';
+                   $page_site = 'uploadevento';
+                   $page_class = 'uploadevento';
+                   $page_description = "";
+                   break;
       case 'search': if( isset($_POST['direccion']) != '' && isset($_POST['evento'] ) != '' ){
                     $page_title = 'Search';
                     $page_site = 'search';

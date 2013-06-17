@@ -1096,9 +1096,7 @@ top: -8px;
 }
 .event-left {
     width: 98px;
-    background: url(http://farm4.staticflickr.com/3628/3454011672_08700945f2_z.jpg?zz=1) !important;
     float: left;
-    background-size: cover;
     height: 134px;
     margin: 8px 13px 0px 13px;
     border: 1px solid rgba(221, 187, 187, 0.45);
@@ -1120,6 +1118,8 @@ top: -8px;
     margin-top: 13px;
     margin-bottom: 2px;
     display: block; 
+    height: 20px;
+    overflow: hidden;
     font-size: 0.8em !important;  margin-top: 13px;  margin-bottom: 2px;  display: block;  color: #fff;  font-size: 16px;  font-weight: bold;  text-decoration: none;  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.77);  padding-left: 0px;
 }
 .inner-eveninfo.info-eventcerca {
@@ -1379,7 +1379,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .item-eventcerca {
     box-shadow: 0px 2px 9px -3px #444;
-    width: 447px;  height: 240px;  border-radius: 2px;  margin: 16px 0px 23px 14px;    position: relative;  background: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) no-repeat 0px -140px;  background-size: cover;
+    width: 447px;  height: 240px;  border-radius: 2px;  margin: 16px 0px 23px 14px;    position: relative;    background-size: cover;
     padding-top: 11px;
 }
 .item-eventcerca:hover{
@@ -1772,7 +1772,7 @@ padding: 0px 25px;
     margin-right: 0px;
 }
 .part-left .title-event{
-    width: 362px;
+    width: 743px;
     float: left;
     margin: 8px 0px 0px 14px;
     font-weight: bold;
@@ -1852,7 +1852,7 @@ padding: 0px 25px;
     float: left;
 }
 .descripcion-event {
-    width: 544px;
+    width: 523px;
     margin: 12px 0px 0px 0px;
     max-height: 115px;
     overflow: hidden;
@@ -2382,8 +2382,21 @@ margin: -3px -5px 0px 6px;
     background: url(/findbreak/images/iconos-bg.png);
     box-shadow: 0px 87px 195px -66px rgb(37, 86, 146) inset;
 }
+.content-publicarevent .item-publicar:first-child,  .content-publicarevent .item-publicar:last-child {
+    border-bottom: none !important;
+}
+#guardarevento {
+    float: left;
+    margin: 3px 0px 0px 34px;
+    width: 200px;
+    padding: 12px 0px;
+    font-size: 14px;
+}
 .publicar .item-publicar {
     width: 900px;
+    border-bottom: 1px solid rgb(213, 213, 213);
+    padding-bottom: 27px;
+    position: relative;
 }
 .content-publicarevent {
     width: 900px;
@@ -2491,17 +2504,111 @@ margin: -3px -5px 0px 6px;
     text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
     font-size: 42px;
 }
+.coverfile-galerias{
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+    background: url('/findbreak/images/cam.png') 57px 56px no-repeat rgb(255, 255, 255);  
+    border: 1px dashed rgb(209, 209, 209);  
+    background-size: 34px;
+}
+.fotonoticia-galerias {
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+}
+.fotonoticia-galerias:hover{
+    cursor: pointer;
+}
+.url-puntosventa {
+margin: -11px 0px 2px 0px !important;
+}
 .publicar .field-publicarevent {
     width: 600px !important;
+}
+.nombre-publicarevent.nombre-puntoventa {
+    width: 120px !important;
+    margin: 0px;
+    padding: 1px 0px 0px 5px;
 }
 .publicar .field-publicarevent-m {
     width: 400px !important;
 }
-.publicar .field-publicarevent-s {
+.item-puntoventa {
+    float: left;
+    width: 900px;
+    margin-left: 40px;
+    margin-top: 36px;
+}
+.publicar .field-publicarevent-s2 {
     width: 100px !important;
+}
+.publicar .field-publicarevent-s {
+    width: 50px !important;
+}
+#nuevo-tag {
+margin-top: 6px;
+}
+.divmostrar-agre-tag{
+    display: none;
+}
+.msj-peqeno {
+    font-size: 0.8em !important;
+    font-weight: normal !important;
+    margin: 13px 0px 0px 0px;
+}
+.mostrar-agre-tag {
+color: rgb(59, 113, 172);
+font-weight: bold !important;
+}
+.checkpunto {
+    float: left;
+    width: 20px !important;
+    height: 20px !important;
+    margin: 0px;
+}
+#tags-hidden {
+opacity: 0;
+position: absolute;
+top: 0;
+left: 0;
 }
 .publicar .nombre-publicarevent {
     width: 800px;
+}
+#descripcion-event {
+    height: 206px !important;
+}
+.tag-noselected{
+    background: rgb(223, 223, 223) !important;
+    color: #444 !important;
+}
+.content-tags {
+    float: left;
+    width: 777px;
+    margin: 11px 0px 0px 41px;
+}
+.tag-elegir:hover {
+    background: rgb(38, 69, 170);
+    color: #fff;
+}
+
+.tag-selected {
+    background: rgba(36, 115, 167, 1) !important;
+    color: #fff !important;
+}
+.tag-elegir {
+    float: left;
+    padding: 5px 6px;
+    
+    margin: 0px 9px 10px 0px;
+    border-radius: 2px;
+    font-size: 0.9em;
+}
+.tag-elegir:hover{
+    cursor: pointer;
 }
 #minute-event {
 margin: 0px;
@@ -2561,6 +2668,21 @@ margin: 3px 0px 0px 7px;
     text-align: center;
     width: 268px !important;
 }
+.mensaje-tags {
+    top: -8px !important;
+    left: 385px;
+    width: 227px !important;
+}
+.mensaje-m {
+    left: 217px;
+}
+.mensaje-error.error-obligatorio {
+    width: 194px;
+    top: 24px;
+    right: 244px;
+    position: absolute;
+    display: none;
+}
 .mensaje-error {
     float: left;
     width: 280px;
@@ -2574,7 +2696,13 @@ margin: 3px 0px 0px 7px;
     padding: 5px 5px 9px 0px;
     display: none;
 }
-.item-publicar input[type="text"], .item-publicar input[type="password"], .item-publicar input[type="time"],.item-publicar input[type="date"]{
+.opcional.msj-peqeno {
+    color: rgb(59, 113, 172);
+    text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
+    margin: 0px 0px 0px 8px;
+    float: left;
+}
+.item-publicar input[type="text"], .item-publicar input[type="password"], .item-publicar input[type="time"], .item-publicar input[type="date"], .item-publicar textarea{
     float: left;
     width: 266px;
     padding: 11px 9px;
@@ -2583,17 +2711,23 @@ margin: 3px 0px 0px 7px;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
     color: rgb(80, 80, 80);
 }
-#map_evento {
-    position: absolute !important;
-    right: 7px;
-    top: 0px;
-    z-index: 10;
+.map_evento {
+    border: 1px solid #ddd;  float: left;  margin: 11px 0px 0px 38px;
+
+}
+#nuevo-tag-btn{
+    float: left;
+    margin: 8px 0px 4px 18px;
+    padding: 9px 14px;
+    width: 165px;
+    font-size: 11px;
 }
 #comprobar-event {
     float: left;
-    clear: both;
-    margin: 1px 0px 4px 85px;
-    padding: 5px 7px;
+    margin: 3px 0px 4px 18px;
+    padding: 9px 14px;
+    width: 165px;
+    font-size: 11px;
 }
 #images {
     float: left;
@@ -2607,17 +2741,13 @@ margin: 3px 0px 0px 7px;
     margin-left: 8px;
 }
 .foto-publicarevent {
-    height: 99px;
-    width: 458px;
     float: left;
-    margin: 6px 5px 3px 2px;
+    margin: 6px 5px 3px 35px;
 }
 #photo-event {
     width: 143px;
 }
-#tags-event, #descripcion-event{
-    width: 410px;
-}
+
 .botonguardar {
     float: left;
     width: 144px;

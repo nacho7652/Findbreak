@@ -14,11 +14,11 @@
             require_once 'DAL/evento.php';
             $idproductora = '238928932389892';
             $nombreproductora = 'Nombre de prueba';
-            $nom = 'Boster en chile 2013';
-            $dir = 'Santa Sofia #2092';
-            $arrayfotos = 'foto1.jps, foto2.jpg';
-            $fec = '2013-06-20, 2013-06-21, 2014-06-22';
-            $hor = '22:00:00, 23:15:00';
+            $nom = 'Iron Maiden';//
+            $dir = 'Santa Sofia #2092';//
+            $arrayfotos = 'foto1.jps, foto2.jpg';//
+            $fec = '2013-07-20, 2013-07-21, 2013-07-22';//
+            $hor = '22:00:00, 23:15:00';//
             $hor = explode(',', $hor);
             $fechString = $fec;   
             $fechas = explode(',', $fec);  
@@ -26,27 +26,28 @@
             for($i=0; $i<count($fechas); $i++){
                 $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
             }
-            $tag = 'quilicura carrete';
-            $lat = '-33.342376';
-            $lng = '-70.847788';
-            $desc = '$ 5.000.- por persona';
-            $urltwitter = 'tw';
-            $urlfacebook = 'face';  
+            $tag = 'iron maiden metal rock musica';//
+            $lat = '-33.342555';//
+            $lng = '-70.847888';//
+            $precio = 'Gratis';//
+            $desc = '$ 5.000.- por persona';//
+            $urltwitter = 'tw';//
+            $urlfacebook = 'face';//
             //nuevo
-            $video = 'link de youtube';  
+            $video = 'link de youtube';  //
             $establecimiento = array('id'=>'232323',
                                      'nombre'=>'Estadio Nacional',
-                                     'direccion'=>'Avenida vicuña #32');
-            $precio = 'Gratis';
+                                     'direccion'=>'Avenida vicuña #32');//
+            
             $puntosDeVenta = array( array('id'=>'232323',
                                           'nombre'=>'Ticket Master',
                                           'web'=>'http://www.google.cl'),
                                     array('id'=>'232323',
                                           'nombre'=>'Ticket Master',
-                                          'web'=>'http://www.google.cl')
+                                          'web'=>'http://www.google.cl') //
                                    );
-            $sitioWeb = 'web oficial del evento';
-            $dondeComprar = 'En las boleterias del estadio nacional';
+            $sitioWeb = 'web oficial del evento'; //
+            $dondeComprar = 'En las boleterias del estadio nacional';//demás
             
             $evento = new evento();                      
             echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
@@ -73,9 +74,12 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/stylelanding.css">
         <link rel="stylesheet" href="css/style-encuesta.css">
+        <link rel="stylesheet" type="text/css" href="css/datepick.css"> 
+        
         <meta charset="utf-8">
         
         <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/datepick.js"></script>
          <script src="js/face.js"></script>
 		<script type="text/javascript">
 

@@ -30,21 +30,16 @@
 <div class="more-fotos">
                 <?php 
                    $fotos = $eventfound['fotos'];
-                   $primero = 0;
-                   if(count($eventfound['fotos']) > 1){
+                   
+                   if(count($eventfound['fotos']) >= 1){
                        for($i=0; $i<count($eventfound['fotos']) ; $i++){
-                           if($primero == 0){
-                               $primero = 1;
-                               $url = 'background-size: cover; background-image: url(http://3.bp.blogspot.com/-BDrt8UjnTis/TVq6Yzct59I/AAAAAAAAAZg/9dH2MauSfhk/s1600/millencolin_4.jpg);width: 170px;';
-                           echo ' <div class="foto-event-small" style="'.$url.'"></div>';
-                               
-                           }else{
-                          // $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][$i+1];
-                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
+                           
+                           $url = '/findbreak/images/productoras/'.$folder.'/'.$eventfound['fotos'][$i];
+//                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
                            ?>
                        <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
                 <?php
-                     }}
+                     }
                    }
                ?>
 </div>
@@ -102,7 +97,7 @@
                                     $c+= strlen($w);
                                 }
                         ?>
-                        <div class="descripcion-event"><?php echo $eventfound['descripcion']?></div>
+                        <div class="descripcion-event"><?php echo nl2br($eventfound['descripcion'])?></div>
                         <div class="leer-masevent">
                             <?php 
                                     if($c > 300)//alcanza en todo el cuadro
