@@ -173,7 +173,7 @@
                                  <div class="item-publicar">
                                  
                                  <button id="btnSubmit" style="display: none;">Subir archivo</button>
-                                  <input type="button" class="botongreen" id="guardarevento" value="Siguiente"/>
+                                  <input type="button" class="botongreen" id="guardarevento" value="Publicar"/>
                                  </div>
                                 <input type="hidden" class="lat-event" name="lat-event"/>
                                 <input type="hidden" class="lng-event" name="lng-event"/>

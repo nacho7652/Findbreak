@@ -1,6 +1,7 @@
 <?php
 //    require_once 'function/escalar.php';
     require_once 'DAL/evento.php';
+    require_once 'DAL/relacional/connect_relacional.php';
    
     if(isset($_REQUEST['guardarevento'])){
             //foto1.jps, foto2.jpg
@@ -94,31 +95,26 @@
             $dondeComprar = '-1';//demás
             
                                 
-            echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+            //
+            $usuariorelacional = new usuarioRelacional();
+            $saldo = $usuariorelacional->ValidarSaldo($_SESSION['userid']);
+            if($saldo >= 500)
+            {
+                $usuariorelacional->DisminuirSaldo($_SESSION['userid']);
+              $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
                                    $video, $establecimiento, $precio, $puntosGuardar, $sitioWeb, $dondeComprar,$hashtag);
+            }
+            else
+            {
+                $result = false;
             
+            }
             
             //fin datos
-            
-           
-        echo $result;
-        if($result){
+        if($result && $guardar==1){
             header("location:/findbreak/publicar/success");
-            echo '<br><br><br><br><div id="covermsj-galeria">
-                        <div class="innermsj-galeria">
-                            <div id="calmsj-galeria">
-                                Galería agrega con éxito <a class="volver" href="galerias/">Volver</a>
-                            </div>
-                        </div>
-                    </div>';
         }else{
-            echo '<div id="covermsj-galeria">
-                        <div class="innermsj-galeria">
-                            <div id="calmsj-galeria">
-                                Error, intente nuevamente porfavor <a class="volver" href="galerias/">Volver</a>
-                            </div>
-                        </div>
-                    </div>';
+             header("location:/findbreak/publicar/saldo");
         }
     }
     

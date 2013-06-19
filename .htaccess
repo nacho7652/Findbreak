@@ -555,7 +555,7 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 
   RewriteRule ^productora/([a-z0-9_-]+)/?$ /findbreak/index.php?place=productora&id=$1 [NC,L]
 
-  RewriteRule ^publicar/([a-z0-9_-]+)/?$ /findbreak/index.php?place=publicar&evento-success=$1 [NC,L]
+  RewriteRule ^publicar/([a-z0-9_-]+)/?$ /findbreak/index.php?place=publicar&evento-msj=$1 [NC,L]
 
   
 </IfModule>
