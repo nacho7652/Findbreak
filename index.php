@@ -396,8 +396,8 @@
                      </div>
                      <div id="info-mostrar" style="display:none">  
                          <div class="content-infomostrar">
-                             Publica un evento y obten todos los beneficios que te bindra findbreak
-                             ¿Quieres publicar un evento?
+                             Publica un evento y obtén todos los beneficios que te bindra findbreak
+                             
                          </div>
                          <div class="option-infomostrar">
                                 <?php 

@@ -439,8 +439,10 @@ class usuario {
            }
            else { 
                $re = $this->db->usuario->insert($user); 
+               $usuariorelacional = new usuarioRelacional();
+               $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
                mkdir('../images/productoras/'.(string)$user['_id'],0777);
-               return $re;
+               return $user;
           }
          
      }                          //$user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
@@ -463,8 +465,10 @@ class usuario {
            }
            else{ 
                $re = $this->db->usuario->insert($user); 
+               $usuariorelacional = new usuarioRelacional();
+               $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
                mkdir('C:/wamp/www/findbreak/images/productoras/'.(string)$user['_id'],0777);
-               return $re;
+               return $user;
           }
          
      }
