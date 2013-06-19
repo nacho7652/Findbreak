@@ -66,19 +66,19 @@ html {
 }
 
 #covermsj {
-    display: none;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.26);
     position: fixed;  z-index: 2000000;  
     top: 0;  left: 0;  right: 0;  bottom: 0;
+    display: none;
 }
-.innermsj {     
-    position: relative;  
-    width: 512px;  margin: 70px auto;    
-    background: rgb(255, 255, 255);
-    box-shadow: 0px 0px 32px -4px #424242;  
+.innermsj {       
+    width: 512px;        
     border-radius: 2px;    
+    color: #444;      
+    position: relative;    margin: 70px auto;  
+    box-shadow: 0px 0px 30px -4px black;  background: #fff;
 }
 #covermsj .cerrar {
     width: 32px;
@@ -92,7 +92,13 @@ html {
 }
 #calmsj {
     min-height: 100%;
-    overflow: hidden;            
+    overflow: hidden;                font-size: .9em;  
+    border-radius: 2px;
+    color: rgb(59, 113, 172);  text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
+    margin: 0px auto 0px auto;    
+    padding: 25px 43px;
+    text-align: center;
+    background: url(/findbreak/images/iconos-bg.png) rgb(253, 253, 253);
 }
 .bloq1msj {
     float: left;
@@ -2621,6 +2627,17 @@ width: 20px;
 height: 40px;
 background: url('/findbreak/nuevo/images/sprites.png') no-repeat -39px -260px;
 }
+.hashInput {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 31px;
+    left: 22px;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: rgb(59, 113, 172);
+    text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
+}
 .nombre-publicarevent {
     float: left;
     width: 231px;
@@ -2638,7 +2655,7 @@ font-weight: bold;
 .content-mensaje {
 margin: 3px 0px 0px 7px;
 }
-.username-corr {
+.username-corr, .hashtag-corr {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -24px -204px;
     width: 40px;
     height: 31px;
@@ -2647,7 +2664,10 @@ margin: 3px 0px 0px 7px;
     top: 32px;
     display: none;
 }
-.username-incorr {
+.hashtag-incorr, .hashtag-corr {
+    left: 416px;
+}
+.username-incorr, .hashtag-incorr {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -24px -173px;
     width: 40px;
     height: 31px;
@@ -2662,7 +2682,7 @@ margin: 3px 0px 0px 7px;
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat 213px -233px rgba(255, 169, 169, 0.7) !important;
     text-align: center;
 }
-.error-username {
+.error-username, .error-hashtag {
     padding: 7px 8px !important;
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat 205px -235px rgba(255, 169, 169, 0.7) !important;
     text-align: center;
@@ -2682,6 +2702,10 @@ margin: 3px 0px 0px 7px;
     right: 244px;
     position: absolute;
     display: none;
+}
+.mensaje-error.error-hashtag {
+    left: 427px;
+    top: 26px;
 }
 .mensaje-error {
     float: left;

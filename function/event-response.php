@@ -5,6 +5,46 @@
         require_once '../DAL/usuario.php';
         require_once '../DAL/establecimiento.php';
         require_once '../DAL/comentario.php';
+        require_once 'allfunction.php';
+  if(!empty($_REQUEST["comprobarHashTag"])){
+        $evento = new evento();
+        $conEspacios = $_REQUEST['conEspacios'];
+        //palabras en mayusculas
+        $palabras = explode(" ", $conEspacios);
+        $juntos = '';
+        for($i=0; $i<count($palabras); $i++){
+            $mayusPal = ucwords($palabras[$i]);
+            $juntos.=$mayusPal;
+        }
+//        $enmayusculas = ucwords($juntos);
+        
+        $hashLimpio = clearDir($juntos,false);//lo limpio
+        $hashmin = strtolower($hashLimpio);//lo paso a min
+        $re = $evento->comprobarHashTag($hashmin);//compruebo en contra del hashtag en min
+ 
+        if($re == null){//se puede
+            $final = array('re'=>1,'limpio'=>$hashLimpio);
+            echo json_encode($final);
+        }else{
+            $final = array('re'=>-1,'limpio'=>$hashLimpio);
+            echo json_encode($final);
+        }   
+    }
+    if(!empty($_REQUEST["comprobarHashTag2"])){
+        $evento = new evento();
+        $sinEspacios = $_REQUEST['sinEspacios'];
+        $hashLimpio = clearDir($sinEspacios,false);//lo limpio
+        $hashmin = strtolower($hashLimpio);//lo paso a min
+        $re = $evento->comprobarHashTag($hashmin);//compruebo en contra del hashtag en min
+ 
+        if($re == null){//se puede
+            $final = array('re'=>1,'limpio'=>$hashLimpio);
+            echo json_encode($final);
+        }else{
+            $final = array('re'=>-1,'limpio'=>$hashLimpio);
+            echo json_encode($final);
+        }   
+    }
    if(!empty($_REQUEST["nuevotag"])){
        $evento = new evento();
        $nombre = $_REQUEST['nombre'];

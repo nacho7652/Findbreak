@@ -69,7 +69,7 @@ var fb = {
   getUser : function(callback){
     FB.api('/me', function(r){
       var user = r;
-      user.picture = "https://graph.facebook.com/"+user.id+"/picture?type=large";
+      user.picture = "https://graph.facebook.com/"+user.id+"/picture?height=196&width=180";
       fb.user=user; callback(user); 
     }); 
   },

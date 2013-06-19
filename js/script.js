@@ -22,8 +22,14 @@ $(document).ready(function(){
         fb.login(function(){ 
             if (fb.logged) 
             {
+//                alert(fb.user.name)
+//                alert(fb.user.first_name)
+//                alert(fb.user.last_name)
+//                alert(fb.user.username)
+//                alert(fb.user.email)
+//                alert(fb.user.picture)
                $.ajax({
-                      type:"POST",
+                      type:"GET",
                       dataType:"html",
                       url:"/findbreak/function/facebook-response.php",
                       data:"login=1&name="+fb.user.name+"&first_name="+fb.user.first_name+"&last_name="+fb.user.last_name+"&username="+fb.user.username+"&email="+fb.user.email+"&picture="+fb.user.picture,
@@ -37,6 +43,8 @@ $(document).ready(function(){
                               }
                       }
                   }); 
+            }else{
+                alert('no login facebook :(')
             }
         })
     })

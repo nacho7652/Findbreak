@@ -27,27 +27,28 @@ require 'facebook.php';
 //    );
 //    $loginUrl = $facebook->getLoginUrl($params);
     //header("location:/mooff/home");
-    if(isset($_GET['login']))
-    {
-     session_start();
-     $name=strtolower($_GET['name']);
-     $first_name=strtolower($_GET['first_name']);
-     $last_name=strtolower($_GET['last_name']);
-     $username=strtolower($_GET['username']);
-     $email=$_GET['email'];
-     $picture=$_GET['picture'];
-     $_SESSION['userprofile'] = array(
-         "name"=>$name,
-         "first_name"=>$first_name,
-         "last_name"=>$last_name,
-         "username"=>$username,
-         "email"=>$email,
-         "picture"=>$picture
-     );
-      echo 'ok'; 
-    }
+if(isset($_GET['login']))
+{
+        session_start();
+        $name=strtolower($_GET['name']);
+        $first_name=strtolower($_GET['first_name']);
+        $last_name=strtolower($_GET['last_name']);
+        $username=strtolower($_GET['username']);
+        $email=$_GET['email'];
+        $picture=$_GET['picture'];
+        $_SESSION['userprofile'] = array(
+            "name"=>$name,
+            "first_name"=>$first_name,
+            "last_name"=>$last_name,
+            "username"=>$username,
+            "email"=>$email,
+            "picture"=>$picture
+        );
+         echo 'ok'; 
+}
     
 if(isset($_GET['logout'])){
+        session_start();
         session_destroy();
 //        $user = null;
     }

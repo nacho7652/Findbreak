@@ -134,7 +134,7 @@ class evento {
                                                           //)
                                               ,  'fecha_realizacion'=> array('$gte' => $this->hoy())
                                            )
-                                      )->limit(5);
+                                      )->limit(4);
     }
     
      public function similares($idNo, $words, $limit){//id, array
@@ -164,6 +164,7 @@ class evento {
      }
      
     public function sumarvisita($id){
+         
          $theObjId = new  MongoId($id);
          return $this->db->evento->update(array("_id" => $theObjId), array('$inc'=> array("visitas"=>1)));
      }
@@ -177,13 +178,15 @@ class evento {
      }
 
      public function insertar($userid, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
-                             $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar){ 
+                             $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar, $hashtag){ 
          $arrtags = explode(" ", $tags);
+         $arrtags[] = $nombre;
          $fotos = explode(",", $arrayfotos);
          
          $event = array(
             "nombre" => $nombre,
-            "hash" => $this->crearHash($nombre),
+            "hash" => $hashtag,//$this->crearHash($nombre),
+            "hashmin"=>  strtolower($hashtag),
             "direccion" =>  $direccion,
             "fotos" => $fotos,
             "fecha_realizacion" => $fechaMongo, //para la busqueda por fechas
@@ -228,7 +231,11 @@ class evento {
      public function agregarTag($nombre)
      { 
          $tagdcto = array("nombre"=>$nombre);
-         return $this->db->tags->insert($tagdcto);   
+         return $this->db->tags->insert($tagdcto);  
+     }
+     public function comprobarHashTag($hashmin)
+     { 
+         return $this->db->evento->findOne(array('hashmin'=>$hashmin));    
      }
      public function verTags()
      { 

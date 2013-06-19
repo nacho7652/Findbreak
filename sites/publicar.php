@@ -32,7 +32,17 @@
                                         <div class="content-mensaje">* Debes ingresar el nombre</div>
                                     </div>
                                 </div>
-                                
+                                <div class="item-publicar">
+                                    <div class="nombre-publicarevent">Hashtag</div>
+                                    <div class="hashInput">#</div><input placeholder="HashTagDeTuEvento" class="field-publicarevent field-publicarevent-m obligatorio" type="text" id="hash-event" name="hash-event"/>
+                                    <div class="mensaje-error error-hashtag"></div>
+                                    <div class="username-corr hashtag-corr"></div>
+                                    <div class="hashtag-incorr"></div>
+                                    
+                                    <div class="mensaje-error error-obligatorio mensaje-m">
+                                        <div class="content-mensaje">* Debes ingresar el hashtag</div>
+                                    </div>
+                                </div>
                                 <div class="item-publicar">
                                     <div class="nombre-publicarevent">¿Dónde? *Escribe la dirección y compruébala en el mapa</div>
                                     <input class="field-publicarevent obligatorio" placeholder="Ej: Calle #246, Comuna, Ciudad" type="text" id="addresEvent" name="addresEvent"/> </br>
@@ -115,7 +125,7 @@
                                             <div class="item-puntoventa">
                                                 <input class=" checkpunto " type="checkbox" id="establecimiento-event" name="puntosventa-event<?= $numPunto?>"/>
                                                 <div class="nombre-publicarevent msj-peqeno nombre-puntoventa"><?= $dcto['nombre']?></div>
-                                                <input placeholder="<?= $dcto['web']?>/tuEntrada" class="field-publicarevent field-publicarevent-m url-puntosventa" type="text" id="url-<?= $dcto['_id']?>" name="url-<?= $dcto['_id']?>"/>
+                                                <input placeholder="<?= $dcto['web']?>/tuEntrada" class="field-publicarevent field-publicarevent-m url-puntosventa" type="text" id="linkentrada-<?= $numPunto?>" name="linkentrada-<?= $numPunto?>"/>
                                                 <div class="opcional msj-peqeno">Opcional</div>
                                             </div>
                                     <?php $numPunto++;}?>

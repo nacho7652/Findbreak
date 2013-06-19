@@ -1,5 +1,4 @@
 <?php 
-    
       require_once '/DAL/connect.php';
       require_once '/DAL/evento.php';
       require_once '/DAL/comentario.php';
@@ -10,22 +9,52 @@
       $eventfound = $event->findforhash($_GET['id']);
       $folder = (string)$eventfound['producido_por']['_id'];
       $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
-      $event->sumarvisita($eventfound['_id']); // sumar visita
-     // if(!isset($_SESSION['vi'.(string)$eventfound['_id']]) != "") 
-    //  {
-            if(isset($_SESSION['userid']) && isset($_SESSION['userid']) == 1){
-                
-                $userid = $_SESSION['userid'];
-                
-                $tags = $eventfound['tags'];
-                $re = $usuario->guardarTagsBuscados($userid, $tags);
-                $re2 = $usuario->guardarHistorial($eventfound['_id'], $eventfound['fotos'][0], $eventfound['nombre'],$eventfound['producido_por']['_id'],$userid);
-      //          echo $re;
+      
+      
+      //si pasó una hora elimino la variable de sesion del evento
+      //calcular el tiempo transcurrido
+        if(isset($_SESSION["ultimoAcceso"]))//después de la primera vez
+        {
+            echo 'primer if';
+            $fechaguardada = $_SESSION["ultimoAcceso"];
+            $ahora = date("d:m:y H:i:s");
+            $tiempoTranscurrido = (strtotime($ahora) - strtotime($fechaguardada));
+            //en segundos
+            echo $tiempoTranscurrido;
+            if($tiempoTranscurrido >= 600) //10 minutos = puede sumarse
+            {
+                echo 'entro a modificar';
+                 $_SESSION["ultimoAcceso"] = date("d:m:y H:i:s");//refresco la hora ke entro
+                 $event->sumarvisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
+
+            }
+       }else{
+           echo 'primer else';
+       }  
+             if(isset($_SESSION['username'])){  
+                if(!isset($_SESSION['vi'.(string)$eventfound['_id']])) //la primera vez solamente
+                {
+                   
+                    echo 'primera vez';
+                    $_SESSION['vi'.(string)$eventfound['_id']] = 1;
+                    echo $_SESSION['vi'.(string)$eventfound['_id']];
+                    $_SESSION["ultimoAcceso"] = date("d:m:y H:i:s");
+                    $userid = $_SESSION['userid'];
+                    $tags = $eventfound['tags'];
+                    $re = $usuario->guardarTagsBuscados($userid, $tags);
+                    $re2 = $usuario->guardarHistorial($eventfound['_id'], $eventfound['fotos'][0], $eventfound['nombre'],$eventfound['producido_por']['_id'],$userid);
+                    $event->sumarvisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
+                }else{
+                    echo 'existe la sesion del evento '; 
+                    echo $tiempoTranscurrido;
+                }
+            }else{
+                echo 'no hay userid';
             }
 
       
-          $_SESSION['vi'.(string)$eventfound['_id']] = 1;
-    //  }
+          
+      
 ?>
 <div class="more-fotos">
                 <?php 
@@ -34,7 +63,7 @@
                    if(count($eventfound['fotos']) >= 1){
                        for($i=0; $i<count($eventfound['fotos']) ; $i++){
                            
-                           $url = '/findbreak/images/productoras/'.$folder.'/'.$eventfound['fotos'][$i];
+                           $url = '/findbreak/images/productoras/'.$folder.'/'.$fotos[$i];
 //                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
                            ?>
                        <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
@@ -47,7 +76,7 @@
 <div class="parte-left-parent">
             <div class="part-left divtrans">
                     <div class="part-left-right">
-                        <div class="foto-event" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
+                        <div class="foto-event" style="background-size: cover; background-image: url(<?php echo trim($url) ?>)"></div>
 <!--                        <div class="info-num">
                             <div class="item-info-num">
                                 <div class="topinfo">Visitas</div>

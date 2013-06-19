@@ -107,11 +107,21 @@
                 </div>
             </div>
         </div>
-        <div id="covermsj">
+       <?php 
+       $stiloMensaje = '';
+       $mensajeEvento = '';
+       
+       if(isset($_REQUEST['evento-success']) && $_REQUEST['evento-success'] == 'success'){
+            $stiloMensaje = 'style="display:block"';
+            $mensajeEvento = 'Evento guardo con éxito :)';
+       }
+?>
+        <div id="covermsj" <?= $stiloMensaje?>>
             <div class="innermsj">
                 <!--<div class="cerrar"></div>-->
                 <div id="calmsj">
-                    
+                    <?= $mensajeEvento?>
+                   
                 </div>
             </div>
         </div>
@@ -189,7 +199,7 @@
                                             <div id="loginbtn-fb"></div>
                                             <div class="txtfb">Ingresar con Facebook</div>
                                         </a>
-<!--                                      <fb:login-button show-faces="false" width="200" max-rows="1"></fb:login-button>-->
+                                      <!--<fb:login-button show-faces="false" width="200" max-rows="1"></fb:login-button>-->
                                    </div>
                                    <?php 
                                    

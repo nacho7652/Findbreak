@@ -67,7 +67,7 @@ class usuario {
 ////                                                            array("tags" => new MongoRegex("/asc/"))
 //                                                          )
                                            )
-                                      )->limit(5);
+                                      )->limit(4);
     }
     public function findFriendCitar($buscador)
     {
@@ -426,7 +426,6 @@ class usuario {
             "username"=>$username,
             "email" => $mail,
             "clave" => $pass,
-             "amigos" => array(),
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
@@ -439,7 +438,9 @@ class usuario {
                return -5; //REPETIDO
            }
            else { 
-         return $this->db->usuario->insert($user); 
+               $re = $this->db->usuario->insert($user); 
+               mkdir('../images/productoras/'.(string)$user['_id'],0777);
+               return $re;
           }
          
      }                          //$user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
@@ -449,7 +450,6 @@ class usuario {
             "username"=>$username,
             "email" => $mail,
             "clave" => $pass,
-             "amigos" => array(),
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
@@ -461,9 +461,10 @@ class usuario {
            {
                return -5; //REPETIDO
            }
-           else { 
-             $this->db->usuario->insert($user); 
-             return $user;
+           else{ 
+               $re = $this->db->usuario->insert($user); 
+               mkdir('C:/wamp/www/findbreak/images/productoras/'.(string)$user['_id'],0777);
+               return $re;
           }
          
      }

@@ -46,6 +46,58 @@ $(document).ready(function(){
          })
          return error;
     }
+    //hash-event
+    $('#nom-event').keyup(function(){
+        nombre = $(this).val();
+        if(trim(nombre) == ""){
+            $('#hash-event').val('');
+            $('.hashtag-corr').hide();
+            return false;
+        }
+        $.post('/findbreak/function/event-response.php', {'comprobarHashTag':1, 'conEspacios':nombre}, 
+        function(data){
+            if(data.re == 1){
+                $('#hash-event').val(data.limpio);
+                hashCorrecto();
+            }else{
+                $('#hash-event').val(data.limpio);
+                hashInCorrecto()
+            }
+        }, "json");
+        
+    })
+    function hashCorrecto(){
+         $('.hashtag-incorr').hide();
+         $('.error-hashtag').hide();
+         $('.hashtag-corr').show();
+    }
+    function hashInCorrecto(){
+        $('.hashtag-corr').hide();
+        $('.error-hashtag').html('Este hashtag ya está en uso');
+        $('.hashtag-incorr').show();
+        $('.error-hashtag').show();
+    }
+    $('#hash-event').keyup(function(){
+        nombre = $(this).val();
+        nombreSinEsp = nombre.replace(/ /g,"");
+        $('#hash-event').val(nombreSinEsp)
+        if(trim(nombreSinEsp) == ""){
+            //mostrar mensaje de que no puede estar vacio
+
+            return false;
+        }
+        $.post('/findbreak/function/event-response.php', {'comprobarHashTag2':1, 'sinEspacios':nombreSinEsp}, 
+        function(data){
+            if(data.re == 1){
+                $('#hash-event').val(data.limpio);
+                 hashCorrecto()
+            }else{
+                $('#hash-event').val(data.limpio);
+                 hashInCorrecto()
+            }
+        }, "json");
+       
+    })
     $('#guardarevento').click(function(){
          guardar = true;
          $('.obligatorio').each(function(){
@@ -70,7 +122,7 @@ $(document).ready(function(){
              
          })
          if(guardar){
-            loader('Guardando galería...');
+            loader('Guardando Evento...');
             document.formularioevento.submit();
          }
          
