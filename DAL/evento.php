@@ -1,5 +1,5 @@
 <?php
-
+require_once 'usuarioRelacional.php';
 class evento {
     private $db;
     function __construct() {
@@ -216,7 +216,12 @@ class evento {
 //                                   );
 //         return $this->db->puntos_venta->insert($puntosDeVenta); 
 //        $this->agregarPuntosVenta('Punto Ticket', 'http://www.puntoticket.com/');
-         return $this->db->evento->insert($event);        
+         $re = $this->db->evento->insert($event); 
+         $eventoR = new usuarioRelacional();
+         $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
+         session_start();
+         $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000, 0);
+         return $re;
      }
      
      public function agregarPuntosVenta($nombre, $web)

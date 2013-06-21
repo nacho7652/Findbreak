@@ -103,6 +103,8 @@
                 $usuariorelacional->DisminuirSaldo($_SESSION['userid']);
               $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
                                    $video, $establecimiento, $precio, $puntosGuardar, $sitioWeb, $dondeComprar,$hashtag);
+            
+              
             }
             else
             {

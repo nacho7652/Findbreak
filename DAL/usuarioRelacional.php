@@ -1,5 +1,6 @@
 <?php
     require_once 'relacional/connect_relacional.php';
+    
 
 class usuarioRelacional {
     private $conect;
@@ -19,9 +20,19 @@ class usuarioRelacional {
             return -5;
         }
     }
-    public function GuardarEventoUsuario($idMongo, $nombre, $saldo){
+    public function GuardarEvento($idMongo, $nombre, $precio){
         if($this->conect->conectarse()){
-            $query = "INSERT INTO usuario VALUES('','$idMongo', '$nombre', '$saldo') ";
+            $query = "INSERT INTO evento VALUES('','$idMongo', '$nombre', '$precio') ";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
+    public function GuardarEvento_____Usuario($idMongoEvento,$idMongoUsuario, $valor_compra, $piso){
+        if($this->conect->conectarse()){
+            $query = "INSERT INTO evento_usuario VALUES('','$idMongoEvento','$idMongoUsuario', 1, '$valor_compra', '$piso' ,0) ";
             $re = mysql_query($query);
             
             return $re;
@@ -33,6 +44,17 @@ class usuarioRelacional {
         if($this->conect->conectarse()){
             
             $query = "UPDATE usuario SET saldo = saldo - 500 WHERE _id = '$id'";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
+    public function CambiarVigencia($idEvento){
+        if($this->conect->conectarse()){
+            
+            $query = "UPDATE evento SET vigencia = 0 WHERE _id = '$id' and vigencia = 1";
             $re = mysql_query($query);
             
             return $re;
@@ -53,6 +75,19 @@ class usuarioRelacional {
             return -5;
         }
     }
+//    public function buscarEventoParaComprar($idevento){
+//        if($this->conect->conectarse()){
+//            $query = "select * from evento_usuario where _id='$idevento'";
+//            $result = mysql_query($query);
+//            $evento;
+//            while($re = mysql_fetch_array($result)){
+//                $evento = $re['_id'];
+//            }
+//            return $saldo;
+//        }else{
+//            return -5;
+//        }
+//    }
     public function borrarFotoAntiguas($id){
         if($this->conect->conectarse()){
             $query = "SELECT FOTO_PQ, FOTO_GR FROM NOTICIA WHERE ID = $id";

@@ -4,6 +4,28 @@ $(document).ready(function(){
     var longitud = $('#lng-event').val();
     var map;
     geolocalizar();
+    
+    //Comprar evento
+    
+//    $('#comprar-evento').click(function(){
+//         $.ajax({
+//                data: "comprarevento=1&lat="+lat+"&lng="+lng,
+//                type: "POST",
+//                dataType: "json",
+//                url: "/findbreak/function/event-response.php",
+//                success: function(data){
+//                    
+//                }
+//         });
+//        
+//        
+//    })
+    
+    
+    //find comprar evento dnaiel maestro
+    
+    
+    
 //      alert(lat);alert(lng)
  function geolocalizar(){
             DeletePrintStore();
