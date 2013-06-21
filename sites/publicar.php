@@ -8,8 +8,14 @@
 <input type="hidden" name="guardarevento"/>
 <div class="content-publicarevent">
                                  <div class="item-publicar">
-                                    <div class="title-publicarevent">Crear nuevo evento</div>
+                                    <div class="title-publicarevent">¿Quieres publicar un evento?</div>
                                  </div>
+                                <div class="item-publicar">   
+                                ¿Que obtienes al publicar un evento? 
+                                Findbreak te reembolsa dinero en tu cuenta dependiendo de la cantidad de visitas que tiene tu evento
+                                
+                                
+                                </div>
                                  
                         
                                 
@@ -167,7 +173,7 @@
                                  <div class="item-publicar">
                                  
                                  <button id="btnSubmit" style="display: none;">Subir archivo</button>
-                                  <input type="button" class="botongreen" id="guardarevento" value="Guardar Evento"/>
+                                  <input type="button" class="botongreen" id="guardarevento" value="Publicar"/>
                                  </div>
                                 <input type="hidden" class="lat-event" name="lat-event"/>
                                 <input type="hidden" class="lng-event" name="lng-event"/>

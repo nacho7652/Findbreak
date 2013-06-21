@@ -19,14 +19,10 @@ class usuarioRelacional {
             return -5;
         }
     }
-    public function modificarConFoto($id, $fotoPq, $fotoGr, $titulo, $contenido){
+    public function DisminuirSaldo($id){
         if($this->conect->conectarse()){
-            $this->borrarFotoAntiguas($id);
-            $query = "UPDATE NOTICIA SET FOTO_PQ = '$fotoPq', 
-                                     FOTO_GR = '$fotoGr', 
-                                     TITULO = '$titulo', 
-                                     CONTENIDO = '$contenido'
-                                     WHERE ID = $id";
+            
+            $query = "UPDATE usuario SET saldo = saldo - 500 WHERE _id = '$id'";
             $re = mysql_query($query);
             
             return $re;
@@ -34,14 +30,15 @@ class usuarioRelacional {
             return -5;
         }
     }
-    public function modificarSinFoto($id,$titulo, $contenido){
+    public function ValidarSaldo($id){
         if($this->conect->conectarse()){
-            $query = "UPDATE NOTICIA SET TITULO = '$titulo', 
-                                     CONTENIDO = '$contenido'
-                                     WHERE ID = $id";
-            $re = mysql_query($query);
-            
-            return $re;
+            $query = "select saldo from usuario where _id='$id'";
+            $result = mysql_query($query);
+            $saldo = 0;
+            while($re = mysql_fetch_array($result)){
+                $saldo = $re[0];
+            }
+            return $saldo;
         }else{
             return -5;
         }

@@ -39,7 +39,24 @@
         }
 ?>
 <div class="more-fotos">
+    
+    
+    
                 <?php 
+                
+                if($eventfound['producido_por']['_id'] == $_SESSION['userid'])
+                {
+                    ?> 
+                        
+                        este es Tu eventokadksakakdakkadkd PENE
+    
+                        <?php
+                }
+                if($eventfound['visitas'] == 10000) 
+                {
+                    
+                }
+                
                    $fotos = $eventfound['fotos'];
                    
                    if(count($eventfound['fotos']) >= 1){

@@ -6,6 +6,7 @@
     require_once 'DAL/usuario.php';
     require_once 'DAL/evento.php';
     require_once 'DAL/comentario.php';
+    require_once 'DAL/relacional/connect_relacional.php';
 //    include_once ('function/facebook-response.php');
     $contsol=0;
     
@@ -111,10 +112,20 @@
        $stiloMensaje = '';
        $mensajeEvento = '';
        
-       if(isset($_REQUEST['evento-success']) && $_REQUEST['evento-success'] == 'success'){
+       if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'success'){
             $stiloMensaje = 'style="display:block"';
             $mensajeEvento = 'Evento guardo con éxito :)';
        }
+       if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'saldo'){
+            $stiloMensaje = 'style="display:block"';
+            $mensajeEvento = 'No tienes saldo suficiente, recarga tu cuenta
+                
+            <div>  el diego hace esta wea el booton culiao cancelar / recargar     </div>    
+
+            ';
+            
+       }
+       //saldo
 ?>
         <div id="covermsj" <?= $stiloMensaje?>>
             <div class="innermsj">
@@ -358,9 +369,18 @@
                                          
                                         <div class="groupoption">
                                                 <div class="itemgroup-option publicar-est">
-                                                   Establecimiento nuevo
+                                                  Saldo:<?php 
+                                                  $usuariorelacional = new usuarioRelacional();
+                                                  echo $usuariorelacional->ValidarSaldo($_SESSION['userid']);
+                                                  
+                                                  ?>
                                                 </div>
-                                                
+                                                <div id="cargar-cuenta" class="itemgroup-option last">
+                                                    Cargar cuenta
+                                                </div>
+                                            <div id="mis-publicaciones" class="itemgroup-option last">
+                                                    Mis publicaciones
+                                                </div>
                                                 <div id="boton-logout" class="itemgroup-option last">
                                                     Salir
                                                 </div>
@@ -396,8 +416,8 @@
                      </div>
                      <div id="info-mostrar" style="display:none">  
                          <div class="content-infomostrar">
-                             Publica un evento y obten todos los beneficios que te bindra findbreak
-                             ¿Quieres publicar un evento?
+                             Publica un evento y obtén todos los beneficios que te bindra findbreak
+                             
                          </div>
                          <div class="option-infomostrar">
                                 <?php 
