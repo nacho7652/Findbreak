@@ -351,8 +351,8 @@ html {
 }
 .input-textparent2{
     border-radius: 2px;  
-    height: 31px;
-    width: 255px;
+    height: 39px;
+    width: 385px;
     margin-top: 5px;
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
@@ -395,8 +395,8 @@ html {
     height: 36px;
     background-position: -38px -408px;
     position: absolute;
-    top: 26px;
-    right: 212px;
+    top: 31px;
+    right: 83px;
     border: none;
 }
 #content-top #search{
@@ -435,10 +435,10 @@ html {
     font-size: 11px;
 }
 #search-location {
-    width: 147px;
+    width: 335px;
     margin: 0px 0px 0px 2px;
-    padding: 8px 5px;
-    font-size: 11px;
+    padding: 11px 4px;
+    font-size: 14px;
 }
 .registro-msj {
     float: left !important;
@@ -1045,7 +1045,7 @@ html {
 .title {
     background: rgba(36, 115, 167, 1);  background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
     width: 468px;
-    height: 64px;
+    height: 78px;
     color: #FFF;
     padding: 7px 0px 2px 17px;
     position: fixed;

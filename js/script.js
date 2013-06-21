@@ -572,65 +572,65 @@ $(document).ready(function(){
         $('#user-login .option').mouseleave(function(){
             $(this).find('.content-option').css('color','rgb(219, 219, 219)');
         })
-        var colorfocus = 'rgb(104, 104, 104)';
-        var colorfocusout = 'rgb(145, 145, 145)';
-        $('#search').focus(function(){
-            if($(this).val() == 'Fiestas, deportes, arte, etc.'){
-                $(this).css('color',colorfocus);
-                $(this).val('');
-            }
-        })
-        $('#search').focusout(function(){
-            if($(this).val() == ''){
-                $(this).css('color',colorfocusout);
-                $(this).val('Fiestas, deportes, arte, etc.');
-            }
-        })
-        
-        $('#search-near').focus(function(){
-            if($(this).val() == 'BUSCA LO QUE QUIERAS...'){
-                $(this).css('color',colorfocus);
-                $(this).val('');
-            }
-        })
-        $('#search-near').focusout(function(){
-            if($(this).val() == ''){
-                $(this).css('color',colorfocusout);
-                $(this).val('BUSCA LO QUE QUIERAS...');
-            }
-        })
-         $('#search-location').focus(function(){
-            if($(this).val() == 'UBICACIÓN ACTUAL'){
-                $(this).css('color',colorfocus);
-                $(this).val('');
-                desactivarLocacion();
-            }
-        })
-        $('#search-location').focusout(function(){
-            if($(this).val() == ''){
-                $(this).css('color',colorfocusout);
-                $(this).val('UBICACIÓN ACTUAL');
-                 //activarLocacion();
-            }
-        })
-        //reset location
-        $('#boton-location').click(function(){
-            if($(this).hasClass('loc-desactivado')){
-                activarLocacion();
-            }else{
-                desactivarLocacion();
-                $('#search-location').val('UBICACIÓN ACTUAL');
-            }
-        });
-        
-        function activarLocacion(){
-                $('#boton-location').removeClass('loc-desactivado');
-                $('#boton-location').addClass('loc-activado');
-        }
-        function desactivarLocacion(){
-                $('#boton-location').removeClass('loc-activado');
-                $('#boton-location').addClass('loc-desactivado');
-        }
+//        var colorfocus = 'rgb(104, 104, 104)';
+//        var colorfocusout = 'rgb(145, 145, 145)';
+//        $('#search').focus(function(){
+//            if($(this).val() == 'Fiestas, deportes, arte, etc.'){
+//                $(this).css('color',colorfocus);
+//                $(this).val('');
+//            }
+//        })
+//        $('#search').focusout(function(){
+//            if($(this).val() == ''){
+//                $(this).css('color',colorfocusout);
+//                $(this).val('Fiestas, deportes, arte, etc.');
+//            }
+//        })
+//        
+//        $('#search-near').focus(function(){
+//            if($(this).val() == 'BUSCA LO QUE QUIERAS...'){
+//                $(this).css('color',colorfocus);
+//                $(this).val('');
+//            }
+//        })
+//        $('#search-near').focusout(function(){
+//            if($(this).val() == ''){
+//                $(this).css('color',colorfocusout);
+//                $(this).val('BUSCA LO QUE QUIERAS...');
+//            }
+//        })
+//         $('#search-location').focus(function(){
+//            if($(this).val() == 'UBICACIÓN ACTUAL'){
+//                $(this).css('color',colorfocus);
+//                $(this).val('');
+//                desactivarLocacion();
+//            }
+//        })
+//        $('#search-location').focusout(function(){
+//            if($(this).val() == ''){
+//                $(this).css('color',colorfocusout);
+//                $(this).val('UBICACIÓN ACTUAL');
+//                 //activarLocacion();
+//            }
+//        })
+//        //reset location
+//        $('#boton-location').click(function(){
+//            if($(this).hasClass('loc-desactivado')){
+//                activarLocacion();
+//            }else{
+//                desactivarLocacion();
+//                $('#search-location').val('UBICACIÓN ACTUAL');
+//            }
+//        });
+//        
+//        function activarLocacion(){
+//                $('#boton-location').removeClass('loc-desactivado');
+//                $('#boton-location').addClass('loc-activado');
+//        }
+//        function desactivarLocacion(){
+//                $('#boton-location').removeClass('loc-activado');
+//                $('#boton-location').addClass('loc-desactivado');
+//        }
         
         var outMenuCont = false;
         $(".menu,.groupoption").mouseover(function(){

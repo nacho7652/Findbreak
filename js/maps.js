@@ -1,6 +1,5 @@
 $(document).ready(function(){
     localizame();
-  
     var popupNew;
     var latitud;
     var longitud;
@@ -78,18 +77,120 @@ function geolocalizarManual(address){
          manualLocation = true;
          DeletePrintStore();
          var geocoder = new google.maps.Geocoder();
-        //var address = latitud+","+longitud;//$("#direHidden").val()+', Chile';
-//        alert(latitud +" , "+ longitud);
-//        cargarMapa();
-        geocoder.geocode({'address': address}, geocodeResult);      
+         geocoder.geocode({'address': address}, geocodeResult);      
 }
+tags = '';
+function geolocalizarPorTags(tags){
+     DeletePrintStore();
+     var geocoder = new google.maps.Geocoder();
+     geocoder.geocode({'address': latitud+','+longitud}, geocodeResultPorTags);      
+}
+    function geocodeResultPorTags(results, status) {  
+        if (status == 'OK' && results.length > 0) {
+            var lat = map.getCenter().lat();
+            var lng = map.getCenter().lng();
+            latitud = lat;
+            longitud = lng;
+            //return false;
+//        alert(lat); alert(lng); 
+            $.ajax({
+                data: "findnear-eventos=1&q="+$('#search-location').val(),
+                type: "POST",
+                dataType: "json",
+                url: "/findbreak/function/event-response.php",
+                success: function(data){
+                   $('.loading-events').hide();
+                   $('.event-hidden').html(data.infodiv);
+                   var numberOfCase = parseInt($('#number').text());
+                    if(numberOfCase == 0){
+                        geolocalizarManual($('#search-location').val())
+//                        $('.inner-list-maps').hide();
+//                        $('.no-resultados').show();
+                        return false;
+                    }else{
+                        $('.inner-list-maps').show();
+                        $('.no-resultados').hide();
+                    }        
+                 var infoDiv = "";
+                 var tokens;
+                 var cont = 1;
+                 $('.event-none').hide();
+//                 alert(numberOfCase)
+                 latitud = data.arreglo[0]['lat'];
+                 longitud = data.arreglo[0]['lng'];
+                 cargarMapa();
+                 for(var i=0;i<numberOfCase;i++){
+                     
+                    id = data.arreglo[i]['id'];
+                    hash = data.arreglo[i]['hash'];
+                    //html = data.arreglo[i]['event-right'];
+                    infoCerca = data.arreglo[i]['info'];//$infoEventCerca
+                    tagshidden = data.arreglo[i]['tags'];
+                    nombre = data.arreglo[i]['nombre'];
+                    foto = data.arreglo[i]['foto'];
+                   $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-id',id);
+                   $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-hash',hash);
+                   $('#item-eventcerca'+i).find('.info-eventcerca').html(infoCerca);
+                   $('#item-eventcerca'+i).find('.hash').html('#'+hash);
+                   $('#item-eventcerca'+i).find('.tags-hidden').html(tagshidden);
+                   $('#item-eventcerca'+i).find('.tit-eventcerca').html(nombre); //
+                   $('#item-eventcerca'+i).find('.tit-eventcerca').attr("href","/findbreak/break/"+hash);
+                   $('#item-eventcerca'+i).find('.idevent').val(id);
+                   $('#item-eventcerca'+i).find('.hashevent').val(hash);
+                   $('#item-eventcerca'+i).find('.nombreevent').val(nombre);
+                   $('#item-eventcerca'+i).find('.item-eventcerca').attr('style',foto);
+                   $('#item-eventcerca'+i).find('.event-left').attr('style',foto);
+                   $('#item-eventcerca'+i).show();
+                   infoDiv = $('#info'+i).text();	 
+                   tokens = infoDiv.split("+");
+                   
+                   var note="";
+                   var name = tokens[0];
+                   var address = tokens[1];
+                       lat = parseFloat(tokens[2]); 	 
+                       lng = parseFloat(tokens[3]);
+                   //var distance = parseFloat(tokens[4]); 
+   
+                   var PointMaps = new google.maps.LatLng(lat, lng);
+                   var markerNew = new google.maps.Marker({
+                       position: PointMaps
+                       , map: map
+                       , title: name
+                       //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
+                       , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/marker'+cont+'.png'
+                       
+                   });
+                   //nota es el recuadro que sale en grande cuando se hace click en la clinica
+                   note = '<div id="infoWindow" style=""><p><strong>'+name+'</strong></div>';
+                   
+                   
 
+                   
+                 PrintStore(map,markerNew,note,lat,lng,name, address, cont);  	   
+                 cont++; 
+                }
+                //esconder los eventos tipo que no se usan
+                
+          	   map.setZoom(12); //13
+//                   clickdentista();//IMPORTANTE
+//                   clickPaginador();//para activar la function cuando se carga el DOM
+//                   clickDetalleAtencion();
+//                   clickBotonIr();//activar el desea tomar la hora ?
+              }
+            });
+          
+          }else{ //buscar los eventos
+        	alert("Geocoding no tuvo éxito debido a: " + status);
+                
+        }  
+    }
     
     function geocodeResult(results, status) {
        
         if (status == 'OK' && results.length > 0) {
             //si modificó la direccion manual
             if(manualLocation){
+                        manualLocation = false;
                         var mapOptions = {
                             zoom: 12,
                             center: results[0].geometry.location,
@@ -153,8 +254,8 @@ function geolocalizarManual(address){
                  var infoDiv = "";
                  var tokens;
                  var cont = 1;
-                 //alert(numberOfCase)
                  for(var i=0;i<numberOfCase;i++){
+                     
                     id = data.arreglo[i]['id'];
                     hash = data.arreglo[i]['hash'];
                     //html = data.arreglo[i]['event-right'];
@@ -216,18 +317,7 @@ function geolocalizarManual(address){
           }else{ //buscar los eventos
         	alert("Geocoding no tuvo éxito debido a: " + status);
                 
-                $.ajax({
-                    data: "findnear-eventos=1&q="+$('#search-location').val(),
-                    type: "POST",
-                    dataType: "json",
-                    url: "/findbreak/function/event-response.php",
-                    success: function(data){
-                        alert(data.listevents)
-                        //geolocalizarManual(' -33.5435178,-70.59479449999999');
-                    }
-                });
-        }
-        
+        }  
     }
     
 
@@ -286,20 +376,20 @@ function geolocalizarManual(address){
    //cuando el usuario escriba una dirección en el buscador
    $('#search-location').keypress(function(e){
        if(e.keyCode == 13){
-            geolocalizarManual($(this).val())
+            geolocalizarPorTags($(this).val())
        }
    })
    $('#boton-buscarcerca').click(function(e){
-       geolocalizarManual($('#search-location').val())
+       geolocalizarPorTags($('#search-location').val())
    })
    //cuando quiere location automática
    $('#boton-location').click(function(){
-       if($(this).hasClass('loc-desactivado')){
+//       if($(this).hasClass('loc-desactivado')){
             manualLocation = false;
-            $('#search-location').css('color','rgb(145, 145, 145)');
-            $('#search-location').val('UBICACIÓN ACTUAL');
+//            $('#search-location').css('color','rgb(145, 145, 145)');
+//            $('#search-location').val('UBICACIÓN ACTUAL');
             localizame();
-       }
+//       }
    })
    //guardar evento
    guardarEvento = false;
@@ -476,3 +566,4 @@ $('body').delegate('.verRuta','click',function(){
         }
     
 });
+ 
