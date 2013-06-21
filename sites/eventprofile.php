@@ -7,54 +7,36 @@
       $comentarioEvent = new comentario();
       $event = new evento();
       $eventfound = $event->findforhash($_GET['id']);
+      $visitasEvento = $eventfound['visitas'];
       $folder = (string)$eventfound['producido_por']['_id'];
       $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
       
-      
-      //si pasó una hora elimino la variable de sesion del evento
-      //calcular el tiempo transcurrido
         if(isset($_SESSION["ultimoAcceso"]))//después de la primera vez
-        {
-            echo 'primer if';
-            $fechaguardada = $_SESSION["ultimoAcceso"];
-            $ahora = date("d:m:y H:i:s");
-            $tiempoTranscurrido = (strtotime($ahora) - strtotime($fechaguardada));
-            //en segundos
-            echo $tiempoTranscurrido;
-            if($tiempoTranscurrido >= 600) //10 minutos = puede sumarse
+        {    
+            $inicio = $_SESSION["ultimoAcceso"];
+            $ahora = time();
+            $duracion = $ahora - $inicio; //tiempo transcurrido en segundos
+            $tiempoTranscurrido =  (int)$duracion/3600; //en hora /3600
+            if($tiempoTranscurrido >= 1) //10 minutos = puede sumarse
             {
-                echo 'entro a modificar';
-                 $_SESSION["ultimoAcceso"] = date("d:m:y H:i:s");//refresco la hora ke entro
-                 $event->sumarvisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
-
+             $_SESSION["ultimoAcceso"] = time();//refresco la hora ke entro
+             $event->sumarvisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
+             $visitasEvento++;
             }
-       }else{
-           echo 'primer else';
-       }  
-             if(isset($_SESSION['username'])){  
-                if(!isset($_SESSION['vi'.(string)$eventfound['_id']])) //la primera vez solamente
-                {
-                   
-                    echo 'primera vez';
-                    $_SESSION['vi'.(string)$eventfound['_id']] = 1;
-                    echo $_SESSION['vi'.(string)$eventfound['_id']];
-                    $_SESSION["ultimoAcceso"] = date("d:m:y H:i:s");
-                    $userid = $_SESSION['userid'];
-                    $tags = $eventfound['tags'];
-                    $re = $usuario->guardarTagsBuscados($userid, $tags);
-                    $re2 = $usuario->guardarHistorial($eventfound['_id'], $eventfound['fotos'][0], $eventfound['nombre'],$eventfound['producido_por']['_id'],$userid);
-                    $event->sumarvisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
-                }else{
-                    echo 'existe la sesion del evento '; 
-                    echo $tiempoTranscurrido;
-                }
-            }else{
-                echo 'no hay userid';
+        }
+        if(isset($_SESSION['username'])){  
+            if(!isset($_SESSION['vi'.(string)$eventfound['_id']])) //la primera vez solamente
+            {
+                $_SESSION['vi'.(string)$eventfound['_id']] = 1;
+                $_SESSION["ultimoAcceso"] = time();
+                $userid = $_SESSION['userid'];
+                $tags = $eventfound['tags'];
+                $re = $usuario->guardarTagsBuscados($userid, $tags);
+                $re2 = $usuario->guardarHistorial($eventfound['_id'], $eventfound['fotos'][0], $eventfound['nombre'],$eventfound['producido_por']['_id'],$userid);
+                $event->sumarvisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
+                $visitasEvento++;
             }
-
-      
-          
-      
+        }
 ?>
 <div class="more-fotos">
     
@@ -127,7 +109,7 @@
                                 <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
                                 <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
                                 <div id="visitavent-prof" class="info-event-item">
-                                    <div>Visto por <span class="bold"><?php echo $eventfound['visitas']?></span></div>
+                                    <div>Visto por <span class="bold"><?php echo $visitasEvento?></span></div>
                                     <div id="comentaevent-prof"><?php echo $textoComentario?> </div>
                                     <input type="hidden" id="totalComent" value="<?= $cantidadComentarios?>"/>
                                 </div>

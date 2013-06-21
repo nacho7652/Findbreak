@@ -326,6 +326,8 @@
                                              'info'=>$infoEventCerca,
                                              'tags'=>$tagsHidden,
                                              'foto'=>$url,
+                                             'lat'=>$dcto['loc'][0],
+                                             'lng'=>$dcto['loc'][1],
                                              'nombre'=>$dcto['nombre']);  
                     }
                     //$listevents.= '</div>';
@@ -572,7 +574,7 @@
             $q = $_REQUEST['q'];
             $event = new evento();
             
-            $eventsNears = $event->filtrar($q);
+            $eventsNears = $event->filtrar($q, 10);
             $arr = eventoscernanos($eventsNears);
             $infodiv = $arr['infodiv'];//información para que el mapa lea y muestre los pines con eventos
             $listevents = $arr['listevents'];

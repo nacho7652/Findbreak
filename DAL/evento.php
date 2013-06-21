@@ -15,7 +15,7 @@ class evento {
         $a = $this->hoy();
        // return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ), 'fecha_realizacion'=> array('$gte' => $a )   ))->limit(10);
         //return $this->db->evento->find(array("loc" => array('$near' => 50,30))); //array('$near' =>[50,50])
-                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(100);
+                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(10);
 
     }
     public function verCantidadComentarios($id){
@@ -114,7 +114,10 @@ class evento {
          return $hoy;
      }
      
-      public function filtrar($buscador){
+      public function filtrar($buscador, $limit = false){
+        if(!$limit){
+            $limit = 4;
+        }
         $buscadorSinSp = trim($buscador);
         $words = explode(" ", $buscadorSinSp);
         
@@ -134,7 +137,7 @@ class evento {
                                                           //)
                                               ,  'fecha_realizacion'=> array('$gte' => $this->hoy())
                                            )
-                                      )->limit(4);
+                                      )->sort(array("visitas" => -1 ))->limit($limit);
     }
     
      public function similares($idNo, $words, $limit){//id, array
@@ -165,8 +168,8 @@ class evento {
      
     public function sumarvisita($id){
          
-         $theObjId = new  MongoId($id);
-         return $this->db->evento->update(array("_id" => $theObjId), array('$inc'=> array("visitas"=>1)));
+         //$theObjId = new  MongoId($id);
+         return $this->db->evento->update(array("_id" => $id), array('$inc'=> array("visitas"=>1)));
      }
      private function crearHash($nom){
          $arr = explode(' ', $nom);
