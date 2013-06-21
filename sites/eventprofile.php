@@ -72,7 +72,7 @@
                 }
                 if($eventfound['visitas'] == 10000) 
                 {
-                    
+                    ///
                 }
                 
                    $fotos = $eventfound['fotos'];

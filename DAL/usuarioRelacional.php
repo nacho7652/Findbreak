@@ -19,6 +19,16 @@ class usuarioRelacional {
             return -5;
         }
     }
+    public function GuardarEventoUsuario($idMongo, $nombre, $saldo){
+        if($this->conect->conectarse()){
+            $query = "INSERT INTO usuario VALUES('','$idMongo', '$nombre', '$saldo') ";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
     public function DisminuirSaldo($id){
         if($this->conect->conectarse()){
             
