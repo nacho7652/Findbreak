@@ -76,6 +76,20 @@ class usuarioRelacional {
         }
     }
     
+    public function VerPiso($idUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            $query = "select piso1 from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $result = mysql_query($query);
+            $saldo = 0;
+            while($re = mysql_fetch_array($result)){
+                $saldo = $re[0];
+            }
+            return $saldo;
+        }else{
+            return -5;
+        }
+    }
+    
     
     
     
