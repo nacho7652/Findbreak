@@ -42,9 +42,13 @@
 ?>
 <div class="more-fotos">
     
-    
-    
+                
+                <div style="background: blueviolet">
+                    PRECIO:
                 <?php 
+                 echo $pagar->VerPrecioEvento($pagar->VerUltimoProductocidoPorVigencia($eventfound['_id']), $eventfound['_id']);
+                ?>
+                </div> <?php
                 if(!empty($_SESSION['userid']))
                 {
                 if($pagar->VerVigenciaYProducidoPor($_SESSION['userid'], $eventfound['_id']) == 1 )
