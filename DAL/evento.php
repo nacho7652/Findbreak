@@ -231,6 +231,19 @@ class evento {
                                 );
          return $this->db->puntos_venta->insert($puntosDeVenta);   
      }
+     public function reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $fotoGr)
+     { 
+        unlink($urlBorrar);
+        $theObjId = new MongoId($idEvento);
+      //  $this->db->tags_buscados->update(array("userid"=>$userid, "tags.tag"=>$tags[$i]), array('$set'=>array("tags.$.fecha"=>$fechahoy)));
+        return $this->db->evento->update( array("_id"=>$theObjId,"fotos"=>$nombreBorrar), array('$set'=> array("fotos.$"=>$fotoGr) ));
+       // $this->db->evento->update( array("_id"=>$theObjId), array('$push'=> array("fotos"=>$fotoGr) ));   
+     }
+     public function nuevaFoto($idEvento,$fotoGr)
+     { 
+        $theObjId = new MongoId($idEvento);
+        return $this->db->evento->update( array("_id"=>$theObjId), array('$push'=> array("fotos"=>$fotoGr) ));   
+     }
      public function verPuntosVenta()
      { 
          return $this->db->puntos_venta->find();    
@@ -238,6 +251,10 @@ class evento {
      public function comprobarPuntosVenta($idEvento, $idPunto)
      { 
          return $this->db->evento->findOne(array('_id'=>$idEvento, 'puntos_de_venta.id'=>$idPunto), array("puntos_de_venta" => 1));       
+     }
+     public function comprobarTags($idEvento, $tag)
+     { 
+         return $this->db->evento->findOne(array('_id'=>$idEvento, 'tags'=>$tag), array("tags" => 1));       
      }
      public function agregarTag($nombre)
      { 
