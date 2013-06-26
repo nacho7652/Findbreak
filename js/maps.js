@@ -5,7 +5,14 @@ $(document).ready(function(){
     var longitud;
     var map;
     var manualLocation = false;
-
+    var editarEvento = $('#addresEvent').val();
+    if(editarEvento != undefined)//estoy en editar
+    {
+         manualLocation = true;
+         DeletePrintStore();
+         var geocoder = new google.maps.Geocoder();
+         geocoder.geocode({'address': editarEvento}, geocodeResult);     
+    }
   function cargarMapa() {
 //           alert('lat: '+latitud)
 //           alert('long: '+longitud)

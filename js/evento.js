@@ -8,15 +8,17 @@ $(document).ready(function(){
     //Comprar evento
     
     $('#comprar-evento').click(function(){
-        
-                item = $(this).parent();
+                
+                item = $(this)
                 idevento = item.attr('data-idevent');
                 idproducidopor = item.attr('data-idproducido');
+//                alert(idevento);
+//                alert(idproducidopor); return false;
                 
          $.ajax({
                 data: "comprarevento=1&idevento="+idevento+"&idproducido="+idproducidopor,
                 type: "POST",
-                dataType: "json",
+                dataType: "html",//debe ser hmtl :(
                 url: "/findbreak/function/event-response.php",
                 success: function(data){
                     

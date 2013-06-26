@@ -235,7 +235,10 @@ class evento {
      { 
          return $this->db->puntos_venta->find();    
      }
-     
+     public function comprobarPuntosVenta($idEvento, $idPunto)
+     { 
+         return $this->db->evento->findOne(array('_id'=>$idEvento, 'puntos_de_venta.id'=>$idPunto), array("puntos_de_venta" => 1));       
+     }
      public function agregarTag($nombre)
      { 
          $tagdcto = array("nombre"=>$nombre);

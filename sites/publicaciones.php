@@ -3,8 +3,8 @@
         
         if(isset($_SESSION["userid"]))
         {
-        $evento = new evento();
-        $misEventos = $evento->EventosPorRealizarPorIdProductora($_SESSION["userid"]);
+        $event = new evento();
+        $misEventos = $event->EventosPorRealizarPorIdProductora($_SESSION["userid"]);
         $folder = (string)$_SESSION["userid"];
 ?>
 <div class="content-publicarevent">
@@ -22,8 +22,18 @@
         
                            <?php foreach($misEventos as $dcto){
                                  
-                                 $url = 'images/productoras/'.$folder.'/'.$dcto['fotos'][0];  
-                                 //$url = 'images/productora/'.$_SESSION['userid'].'/'.$dcto['fotos'][0];
+                                $url = 'images/productoras/'.$folder.'/'.$dcto['fotos'][0];  
+                                $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio']);
+                                $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
+                                $textoComentario = '';
+                                if($cantidadComentarios == 0){
+                                    $textoComentario = 'Se el primero en comentar!';
+                                }elseif($cantidadComentarios == 1){
+                                    $textoComentario = 'Un comentario';
+                                }else{
+                                    $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
+                                }
+                                   
                                ?> 
                                 <div class="item-publicar">   
                                    <div class="content-eventpublicar">  
@@ -33,27 +43,27 @@
                                            <div class="info-eventcerca infot-eventpublicar">
                                                            <div class="item-infocerca">
                                                                
-                                                               <div id="fechaevent" class="resp-cuando">Miercoles, 20 de Mayo del 2013</div>
+                                                               <div id="fechaevent" class="resp-cuando"><?php echo $realizacion['fecha']?></div>
                                                            </div>
                                                             <div class="item-infocerca">
-                                                                    <div id="horaevent" class="resp-cuando">22:00:00 hrs.</div>
+                                                                    <div id="horaevent" class="resp-cuando"><?php echo $realizacion['hora']?> hrs.</div>
                                                            </div>
                                                            <div class="item-infocerca">
                                                                 
-                                                                <div id="dondeevent" class="resp-cuando">Santa Sofia #2092</div>
+                                                                <div id="dondeevent" class="resp-cuando"><?php echo $dcto['direccion'];?></div>
                                                             </div>
                                                             
                                                             
                                                             
                                                             <div class="item-infocerca">
                                                                 <div id="visitavent-prof" class="info-event-item resp-cuando">
-                                                                   <div>Visto por <span class="bold">181</span></div>
-                                                                   <div id="comentaevent-prof"><span class="bold">70</span> Comentarios</div>
+                                                                   <div>Visto por <span class="bold"><?php echo $dcto['visitas'];?></span></div>
+                                                                   <div id="comentaevent-prof"><span class="bold"><?php echo $textoComentario ?></span></div>
                                                                    <input type="hidden" id="totalComent" value="70">
                                                                </div>  
                                                            </div>
-                                                           <div class="botonitemcerca botonblue">Ver comentarios</div>
-                                                           <a href="" class="editarEvento botongreen">Editar</a>
+                                                           <!--<div class="botonitemcerca botonblue">Ver comentarios</div>-->
+                                                           <a href="/findbreak/editar-evento/<?= $dcto['_id']?>" class="editarEvento botongreen">Editar</a>
                                             </div>
                                        
                                      </div>

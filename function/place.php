@@ -7,7 +7,12 @@
                    $page_class = 'inicio';
                    $page_description = "Encuentra un quiebre a tu rutina";
                    break;
-    case 'publicar': $page_title = 'Findbreak';
+      case 'editar-evento': $page_title = 'Findbreak';
+                   $page_site = 'editarevento';
+                   $page_class = 'publicar';
+                   $page_description = "Encuentra un quiebre a tu rutina";
+                   break;
+     case 'publicar': $page_title = 'Findbreak';
                    $page_site = 'publicar';
                    $page_class = 'publicar';
                    $page_description = "Encuentra un quiebre a tu rutina";

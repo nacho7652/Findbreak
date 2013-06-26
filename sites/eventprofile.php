@@ -95,7 +95,7 @@
                     
                     ?> 
                         
-                        <div id="comprar-evento" data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $eventfound['producido_por']['_id']?>' style="background: floralwhite ; width:66px ;">  Comprar evento </div>  
+                        <div id="comprar-evento"  data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $eventfound['producido_por']['_id']?>' style="background: floralwhite ; width:66px ;">  Comprar evento </div>  
                         <?php
                 }
                 }
