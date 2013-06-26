@@ -30,9 +30,9 @@ class usuarioRelacional {
             return -5;
         }
     }
-    public function GuardarEvento_____Usuario($idMongoEvento,$idMongoUsuario, $valor_compra, $piso){
+    public function GuardarEvento_____Usuario($idMongoEvento,$idMongoUsuario, $valor_compra){
         if($this->conect->conectarse()){
-            $query = "INSERT INTO evento_usuario VALUES('','$idMongoEvento','$idMongoUsuario', 1, '$valor_compra', '$piso' ,0) ";
+            $query = "INSERT INTO evento_usuario VALUES('','$idMongoEvento','$idMongoUsuario', 1, '$valor_compra', 1 ,0) ";
             $re = mysql_query($query);
             
             return $re;
@@ -51,10 +51,10 @@ class usuarioRelacional {
             return -5;
         }
     }
-    public function CambiarVigencia($idEvento){
+    public function PagoVisitas($dinero, $idUsuario){
         if($this->conect->conectarse()){
             
-            $query = "UPDATE evento SET vigencia = 0 WHERE _id = '$id' and vigencia = 1";
+            $query = "UPDATE usuario SET saldo = saldo+'$dinero' WHERE _id = '$idUsuario'";
             $re = mysql_query($query);
             
             return $re;
@@ -71,6 +71,32 @@ class usuarioRelacional {
                 $saldo = $re[0];
             }
             return $saldo;
+        }else{
+            return -5;
+        }
+    }
+    
+    public function VerPiso($idUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            $query = "select piso1 from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $result = mysql_query($query);
+            $saldo = 0;
+            while($re = mysql_fetch_array($result)){
+                $saldo = $re[0];
+            }
+            return $saldo;
+        }else{
+            return -5;
+        }
+    }
+    
+    public function CambiarPiso($idUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            
+            $query = "UPDATE evento_usuario SET piso1 = piso1+1 where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $re = mysql_query($query);
+            
+            return $re;
         }else{
             return -5;
         }

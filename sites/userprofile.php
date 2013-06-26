@@ -170,6 +170,7 @@
                     </div>
                     <div class="item-info-num">
                         <div class="topinfo">Seguidores</div>
+                        <div class="topinfo">PUBLICACIONES DEL USUARIO?</div>
                         <div class="num-topinfo">
                             <?php if(isset($usuariofound['seguidores']))
                                         echo count($usuariofound['seguidores']);

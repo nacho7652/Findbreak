@@ -220,7 +220,7 @@ class evento {
          $eventoR = new usuarioRelacional();
          $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
          session_start();
-         $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000, 0);
+         $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000);
          return $re;
      }
      
