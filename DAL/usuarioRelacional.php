@@ -175,11 +175,11 @@ class usuarioRelacional {
         if($this->conect->conectarse()){
             $query = "select id_evento from evento_usuario where id_usuario='$idUsuario' and vigencia=1";
             $result = mysql_query($query);
-            $saldo = 0;
+            $eventos = array();
             while($re = mysql_fetch_array($result)){
-                $saldo = $re[0];
+                $eventos[]= $re[0];
             }
-            return $saldo;
+            return $eventos;
         }else{
             return -5;
         }

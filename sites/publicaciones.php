@@ -20,11 +20,11 @@
                                     <a href="#">ver tabla de premios!</a>
                                     </div>
                                 </div>
-    <div class="list boxscroll">
+    <div >
         
                            <?php 
                            
-                           
+//                           print_r($resp);
                           foreach($resp as $idEventosRelacional){
                                 $dcto = $event->findforid($idEventosRelacional);  
                                 $url = 'images/productoras/'.$folder.'/'.$dcto['fotos'][0];  
