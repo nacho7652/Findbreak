@@ -3,6 +3,7 @@
       require_once '/DAL/evento.php';
       require_once '/DAL/comentario.php';
       require_once '/DAL/usuario.php';
+    
       $usuario = new usuario();
       $comentarioEvent = new comentario();
       $event = new evento();
@@ -43,19 +44,62 @@
     
     
                 <?php 
-                
-                if($eventfound['producido_por']['_id'] == $_SESSION['userid'])
+                if(!empty($_SESSION['userid']))
+                {
+                if($eventfound['producido_por']['_id'] == $_SESSION['userid'] )
                 {
                     ?> 
-                        
-                        este es Tu eventokadksakakdakkadkd PENE
-    
+                        <div style="color: blanchedalmond">
+                        Esté evento fue publicado por ti.
+                        Deseas MODIFICAR alguna informacion? 
+                        </div>
+                            <input type="button" id="boton-editar" value="Editar">
                         <?php
+                        $pagar = new usuarioRelacional();
+                        //PISOS 
+                        if( $eventfound['visitas'] < 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
+                        {
+                                ?>    
+                                    <div style="background: floralwhite ; "> Estas en el piso 1, te faltan <?php echo 12000-$eventfound['visitas'] ?> visitas para los 990 pesos :) </div>
+                               <?php
+                        }
+                        if( $eventfound['visitas'] >= 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
+                        {
+                                $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
+                                $pagar->PagoVisitas(990, $_SESSION['userid']); //Esto depende del piso, en este caso piso 1
+                                ?>    
+                                    <div style="background: floralwhite ; width:66px ;"> Estas en el piso 2, te faltan <?php echo 24000-$eventfound['visitas'] ?> visitas para los 1390 pesos :) </div>
+                               <?php
+                        }
+                        if( $eventfound['visitas'] >= 24000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 2  ) // && PISO igual 1 [consulta a bd]
+                        {
+                                $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
+                                $pagar->PagoVisitas(1390, $_SESSION['userid']); 
+                                ?>    
+                                    <div style="background: floralwhite ; width:66px ;"> Estas en el piso 3, te faltan <?php echo 48000-$eventfound['visitas'] ?> visitas para los 2990 pesos :) </div>
+                               <?php
+                        }
+                        //FALTAN AGREGAR MAS PISOS
+//                        
+//                        
+//                        
+//                        
+//                        
+//                        
+//                        
+//                        
+                        
                 }
-                if($eventfound['visitas'] == 10000) 
+                else
                 {
                     
+                    ?> 
+                        
+                        <div id="comprar-evento" data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $eventfound['producido_por']['_id']?>' style="background: floralwhite ; width:66px ;">  Comprar evento </div>  
+                        <?php
                 }
+                }
+                
                 
                    $fotos = $eventfound['fotos'];
                    
@@ -108,6 +152,7 @@
                                 <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
                                 <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
                                 <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
+                                <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['producido_por']['nombre']?></div>
                                 <div id="visitavent-prof" class="info-event-item">
                                     <div>Visto por <span class="bold"><?php echo $visitasEvento?></span></div>
                                     <div id="comentaevent-prof"><?php echo $textoComentario?> </div>

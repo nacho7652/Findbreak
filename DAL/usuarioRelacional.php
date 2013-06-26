@@ -1,5 +1,6 @@
 <?php
     require_once 'relacional/connect_relacional.php';
+    
 
 class usuarioRelacional {
     private $conect;
@@ -19,10 +20,41 @@ class usuarioRelacional {
             return -5;
         }
     }
+    public function GuardarEvento($idMongo, $nombre, $precio){
+        if($this->conect->conectarse()){
+            $query = "INSERT INTO evento VALUES('','$idMongo', '$nombre', '$precio') ";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
+    public function GuardarEvento_____Usuario($idMongoEvento,$idMongoUsuario, $valor_compra){
+        if($this->conect->conectarse()){
+            $query = "INSERT INTO evento_usuario VALUES('','$idMongoEvento','$idMongoUsuario', 1, '$valor_compra', 1 ,0) ";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
     public function DisminuirSaldo($id){
         if($this->conect->conectarse()){
             
             $query = "UPDATE usuario SET saldo = saldo - 500 WHERE _id = '$id'";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
+    public function PagoVisitas($dinero, $idUsuario){
+        if($this->conect->conectarse()){
+            
+            $query = "UPDATE usuario SET saldo = saldo+'$dinero' WHERE _id = '$idUsuario'";
             $re = mysql_query($query);
             
             return $re;
@@ -43,6 +75,76 @@ class usuarioRelacional {
             return -5;
         }
     }
+    
+    public function VerPiso($idUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            $query = "select piso1 from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $result = mysql_query($query);
+            $saldo = 0;
+            while($re = mysql_fetch_array($result)){
+                $saldo = $re[0];
+            }
+            return $saldo;
+        }else{
+            return -5;
+        }
+    }
+    
+    
+    
+    
+    public function VerPrecioEvento($idUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            $query = "select valor_compra from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $result = mysql_query($query);
+            $saldo = 0;
+            while($re = mysql_fetch_array($result)){
+                $saldo = $re[0];
+            }
+            return $saldo;
+        }else{
+            return -5;
+        }
+    }
+    
+    public function CambiarPiso($idUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            
+            $query = "UPDATE evento_usuario SET piso1 = piso1+1 where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
+    
+    public function CambiarVigencia($producidoPorIdUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            
+            $query = "UPDATE evento_usuario SET vigencia = 0 where id_evento='$idEvento' and id_usuario='$producidoPorIdUsuario'";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
+    
+    
+//    public function buscarEventoParaComprar($idevento){
+//        if($this->conect->conectarse()){
+//            $query = "select * from evento_usuario where _id='$idevento'";
+//            $result = mysql_query($query);
+//            $evento;
+//            while($re = mysql_fetch_array($result)){
+//                $evento = $re['_id'];
+//            }
+//            return $saldo;
+//        }else{
+//            return -5;
+//        }
+//    }
     public function borrarFotoAntiguas($id){
         if($this->conect->conectarse()){
             $query = "SELECT FOTO_PQ, FOTO_GR FROM NOTICIA WHERE ID = $id";

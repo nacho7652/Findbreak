@@ -5,7 +5,25 @@
         require_once '../DAL/usuario.php';
         require_once '../DAL/establecimiento.php';
         require_once '../DAL/comentario.php';
+        require_once '../DAL/usuarioRelacional.php';
         require_once 'allfunction.php';
+        
+        if(!empty($_REQUEST['comprarevento']))
+        {
+            $idEvento = $_REQUEST['idevento'];
+            $idProducidoPor = $_REQUEST['idproducido'];
+            $resp = new usuarioRelacional();
+            if($resp->ValidarSaldo($_SESSION['userid']) >= $resp->VerPrecioEvento($idProducidoPor, $idEvento))
+            {
+                echo "SALDO OK";
+            }
+            else
+                echo "INSUFICIENTE";
+           // $eventoR->GuardarEvento_____Usuario($idMongoEvento, $_SESSION['userid'], $valor_compra, $piso);
+            
+        }
+        
+        
   if(!empty($_REQUEST["comprobarHashTag"])){
         $evento = new evento();
         $conEspacios = $_REQUEST['conEspacios'];
