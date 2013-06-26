@@ -8,6 +8,7 @@
       $comentarioEvent = new comentario();
       $event = new evento();
       $eventfound = $event->findforhash($_GET['id']);
+      $pagar = new usuarioRelacional();
       $visitasEvento = $eventfound['visitas'];
       $folder = (string)$eventfound['producido_por']['_id'];
       $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
@@ -46,7 +47,7 @@
                 <?php 
                 if(!empty($_SESSION['userid']))
                 {
-                if($eventfound['producido_por']['_id'] == $_SESSION['userid'] )
+                if($pagar->VerVigenciaYProducidoPor($_SESSION['userid'], $eventfound['_id']) == 1 )
                 {
                     ?> 
                         <div style="color: blanchedalmond">
@@ -55,28 +56,28 @@
                         </div>
                             <input type="button" id="boton-editar" value="Editar">
                         <?php
-                        $pagar = new usuarioRelacional();
+                        
                         //PISOS 
-                        if( $eventfound['visitas'] < 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
+                        if( $visitasEvento < 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
                         {
                                 ?>    
-                                    <div style="background: floralwhite ; "> Estas en el piso 1, te faltan <?php echo 12000-$eventfound['visitas'] ?> visitas para los 990 pesos :) </div>
+                                    <div style="background: floralwhite ; "> Estas en el piso 1, te faltan <?php echo 12000-$visitasEvento ?> visitas para los 990 pesos :) </div>
                                <?php
                         }
-                        if( $eventfound['visitas'] >= 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
+                        if( $visitasEvento >= 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
                         {
                                 $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
                                 $pagar->PagoVisitas(990, $_SESSION['userid']); //Esto depende del piso, en este caso piso 1
                                 ?>    
-                                    <div style="background: floralwhite ; width:66px ;"> Estas en el piso 2, te faltan <?php echo 24000-$eventfound['visitas'] ?> visitas para los 1390 pesos :) </div>
+                                    <div style="background: floralwhite ; width:66px ;"> Estas en el piso 2, te faltan <?php echo 24000-$visitasEvento ?> visitas para los 1390 pesos :) </div>
                                <?php
                         }
-                        if( $eventfound['visitas'] >= 24000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 2  ) // && PISO igual 1 [consulta a bd]
+                        if( $visitasEvento >= 24000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 2  ) // && PISO igual 1 [consulta a bd]
                         {
                                 $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
                                 $pagar->PagoVisitas(1390, $_SESSION['userid']); 
                                 ?>    
-                                    <div style="background: floralwhite ; width:66px ;"> Estas en el piso 3, te faltan <?php echo 48000-$eventfound['visitas'] ?> visitas para los 2990 pesos :) </div>
+                                    <div style="background: floralwhite ; width:66px ;"> Estas en el piso 3, te faltan <?php echo 48000-$visitasEvento ?> visitas para los 2990 pesos :) </div>
                                <?php
                         }
                         //FALTAN AGREGAR MAS PISOS
@@ -95,7 +96,7 @@
                     
                     ?> 
                         
-                        <div id="comprar-evento"  data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $eventfound['producido_por']['_id']?>' style="background: floralwhite ; width:66px ;">  Comprar evento </div>  
+                                    <div id="comprar-evento"  data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $pagar->VerUltimoProductocidoPorVigencia($eventfound['_id'])?>' style="background: floralwhite ; width:66px ;">  Comprar evento </div>  
                         <?php
                 }
                 }

@@ -15,10 +15,18 @@
             $resp = new usuarioRelacional();
             if($resp->ValidarSaldo($_SESSION['userid']) >= $resp->VerPrecioEvento($idProducidoPor, $idEvento))
             {
-                echo "SALDO OK";
+                $resp->CambiarVigencia($idProducidoPor, $idEvento);
+                $precioEvent = $resp->VerPrecioEvento($idProducidoPor, $idEvento);
+                $pafindbreak = $precioEvent*0.2;
+                $RestarSaldoUsuario = $precioEvent;
+                $SumarSaldoAUsuario = $precioEvent-$pafindbreak;
+                $resp->PagoCompraEvento($SumarSaldoAUsuario, $idProducidoPor);
+                $resp->PagoCompraEvento(-1*$RestarSaldoUsuario, $_SESSION['userid']);
+                $resp->GuardarEvento_____Usuario($idEvento, $_SESSION['userid'], ($precioEvent+($precioEvent/2)), $resp->VerPiso($idProducidoPor, $idEvento), $pafindbreak);
+                echo "ok";
             }
             else
-                echo "INSUFICIENTE";
+                echo "SALDO INSUFICIENTE";
            // $eventoR->GuardarEvento_____Usuario($idMongoEvento, $_SESSION['userid'], $valor_compra, $piso);
             
         }

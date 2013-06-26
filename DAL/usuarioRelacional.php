@@ -30,9 +30,9 @@ class usuarioRelacional {
             return -5;
         }
     }
-    public function GuardarEvento_____Usuario($idMongoEvento,$idMongoUsuario, $valor_compra){
+    public function GuardarEvento_____Usuario($idMongoEvento,$idMongoUsuario, $valor_compra,$piso,$pafindbreak){
         if($this->conect->conectarse()){
-            $query = "INSERT INTO evento_usuario VALUES('','$idMongoEvento','$idMongoUsuario', 1, '$valor_compra', 1 ,0) ";
+            $query = "INSERT INTO evento_usuario VALUES('','$idMongoEvento','$idMongoUsuario', 1, '$valor_compra', $piso ,$pafindbreak) ";
             $re = mysql_query($query);
             
             return $re;
@@ -62,6 +62,17 @@ class usuarioRelacional {
             return -5;
         }
     }
+    public function PagoCompraEvento($dinero, $idUsuario){
+        if($this->conect->conectarse()){
+            
+            $query = "UPDATE usuario SET saldo = saldo+'$dinero' WHERE _id = '$idUsuario'";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
     public function ValidarSaldo($id){
         if($this->conect->conectarse()){
             $query = "select saldo from usuario where _id='$id'";
@@ -79,6 +90,34 @@ class usuarioRelacional {
     public function VerPiso($idUsuario, $idEvento){
         if($this->conect->conectarse()){
             $query = "select piso1 from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $result = mysql_query($query);
+            $saldo = 0;
+            while($re = mysql_fetch_array($result)){
+                $saldo = $re[0];
+            }
+            return $saldo;
+        }else{
+            return -5;
+        }
+    }
+    
+    
+    public function VerVigenciaYProducidoPor($idUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            $query = "select vigencia from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $result = mysql_query($query);
+            $saldo = 0;
+            while($re = mysql_fetch_array($result)){
+                $saldo = $re[0];
+            }
+            return $saldo;
+        }else{
+            return -5;
+        }
+    }
+    public function VerUltimoProductocidoPorVigencia($idEvento){
+        if($this->conect->conectarse()){
+            $query = "select id_usuario from evento_usuario where id_evento='$idEvento' and vigencia='1'";
             $result = mysql_query($query);
             $saldo = 0;
             while($re = mysql_fetch_array($result)){
@@ -132,6 +171,19 @@ class usuarioRelacional {
     }
     
     
+    public function EventosVigentesPorUsuario($idUsuario){
+        if($this->conect->conectarse()){
+            $query = "select id_evento from evento_usuario where id_usuario='$idUsuario' and vigencia=1";
+            $result = mysql_query($query);
+            $saldo = 0;
+            while($re = mysql_fetch_array($result)){
+                $saldo = $re[0];
+            }
+            return $saldo;
+        }else{
+            return -5;
+        }
+    }
 //    public function buscarEventoParaComprar($idevento){
 //        if($this->conect->conectarse()){
 //            $query = "select * from evento_usuario where _id='$idevento'";

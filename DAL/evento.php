@@ -220,7 +220,7 @@ class evento {
          $eventoR = new usuarioRelacional();
          $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
          session_start();
-         $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000);
+         $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000,1,0);
          return $re;
      }
      
@@ -272,6 +272,10 @@ class evento {
      public function EventosPorRealizarPorIdProductora($idProductora)
      { 
          return $this->db->evento->find(array('producido_por._id'=>$idProductora, 'fecha_realizacion'=> array('$gte' => $this->hoy()) ));    
+         }
+     public function EventosVigentes($idEvento) //NO SE Q ES LO DE LA FECHA.
+     { 
+         return $this->db->evento->find(array('_id'=>$idEvento, 'fecha_realizacion'=> array('$gte' => $this->hoy()) ));    
          }
      
      public function EventosDONEPorIdProductora($idProductora)
