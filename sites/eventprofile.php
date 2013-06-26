@@ -157,7 +157,7 @@
                                 <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
                                 <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
                                 <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
-                                <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['producido_por']['nombre']?></div>
+                                <div id="precioevent-prof" class="info-event-item"><?php echo $pagar->VerUltimoProductocidoPorVigencia($eventfound['_id']) ?></div>
                                 <div id="visitavent-prof" class="info-event-item">
                                     <div>Visto por <span class="bold"><?php echo $visitasEvento?></span></div>
                                     <div id="comentaevent-prof"><?php echo $textoComentario?> </div>
