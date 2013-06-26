@@ -7,19 +7,31 @@ $(document).ready(function(){
     
     //Comprar evento
     
-//    $('#comprar-evento').click(function(){
-//         $.ajax({
-//                data: "comprarevento=1&lat="+lat+"&lng="+lng,
-//                type: "POST",
-//                dataType: "json",
-//                url: "/findbreak/function/event-response.php",
-//                success: function(data){
-//                    
-//                }
-//         });
-//        
-//        
-//    })
+    $('#comprar-evento').click(function(){
+        
+                item = $(this).parent();
+                idevento = item.attr('data-idevent');
+                idproducidopor = item.attr('data-idproducido');
+                
+         $.ajax({
+                data: "comprarevento=1&idevento="+idevento+"&idproducido="+idproducidopor,
+                type: "POST",
+                dataType: "json",
+                url: "/findbreak/function/event-response.php",
+                success: function(data){
+                    
+                    if(data == 1)
+                        {
+                            alert("Saldo suficiente");
+                        }
+                        else
+                            alert("saldo insuficiente");
+                    
+                }
+         });
+        
+        
+    })
     
     
     //find comprar evento dnaiel maestro

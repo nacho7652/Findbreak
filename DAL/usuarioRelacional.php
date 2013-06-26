@@ -76,9 +76,12 @@ class usuarioRelacional {
         }
     }
     
-    public function VerPiso($idUsuario, $idEvento){
+    
+    
+    
+    public function VerPrecioEvento($idUsuario, $idEvento){
         if($this->conect->conectarse()){
-            $query = "select piso1 from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $query = "select valor_compra from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
             $result = mysql_query($query);
             $saldo = 0;
             while($re = mysql_fetch_array($result)){
@@ -101,6 +104,20 @@ class usuarioRelacional {
             return -5;
         }
     }
+    
+    public function CambiarVigencia($producidoPorIdUsuario, $idEvento){
+        if($this->conect->conectarse()){
+            
+            $query = "UPDATE evento_usuario SET vigencia = 0 where id_evento='$idEvento' and id_usuario='$producidoPorIdUsuario'";
+            $re = mysql_query($query);
+            
+            return $re;
+        }else{
+            return -5;
+        }
+    }
+    
+    
 //    public function buscarEventoParaComprar($idevento){
 //        if($this->conect->conectarse()){
 //            $query = "select * from evento_usuario where _id='$idevento'";

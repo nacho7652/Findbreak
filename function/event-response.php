@@ -8,16 +8,22 @@
         require_once '../DAL/usuarioRelacional.php';
         require_once 'allfunction.php';
         
-//        if(!empty($_REQUEST['comprarevento']))
-//        {
-//            
-//            $eventoR = new usuarioRelacional();
-//            session_start();
-//           // $eventoR->GuardarEvento_____Usuario($idMongoEvento, $_SESSION['userid'], $valor_compra, $piso);
-//            
-//        }
-//        
-//        
+        if(!empty($_REQUEST['comprarevento']))
+        {
+            $idEvento = $_REQUEST['idevento'];
+            $idProducidoPor = $_REQUEST['idproducido'];
+            $resp = new usuarioRelacional();
+            if($resp->ValidarSaldo($_SESSION['userid']) >= $resp->VerPrecioEvento($idProducidoPor, $idEvento))
+            {
+                echo 1;
+            }
+            else
+                echo 2;
+           // $eventoR->GuardarEvento_____Usuario($idMongoEvento, $_SESSION['userid'], $valor_compra, $piso);
+            
+        }
+        
+        
   if(!empty($_REQUEST["comprobarHashTag"])){
         $evento = new evento();
         $conEspacios = $_REQUEST['conEspacios'];
