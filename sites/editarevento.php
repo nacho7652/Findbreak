@@ -9,7 +9,7 @@
         $folder = (string)$_SESSION["userid"];
 ?>
 <form method="POST" action="/findbreak/uploadevento" name="formularioevento" enctype="multipart/form-data">
-<input type="hidden" name="guardarevento"/>
+<input type="hidden" name="editarevento"/>
 <div class="content-publicarevent">
                                  <div class="item-publicar">
                                     <div class="title-publicarevent">Edita información de <?= $evento['nombre']?></div>
@@ -25,21 +25,21 @@
                         
                                 
                                 <div class="item-publicar">
-                                     <div class="nombre-publicarevent">Selecciona fotos para tu evento, la primera será la principal</div>
+                                     <div class="nombre-publicarevent">Pincha una foto y reemplazala o agrega nuevas fotos a tu evento</div>
 <!--                                     <input type="file" id="images" name="images[]"/>
 -->                                     <div class="foto-publicarevent">
                                             <?php for($i=0; $i< count($evento['fotos']); $i++){ 
                                                       $url = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i];  
                                                 ?>
-                                                   <div style="background-image: url(<?= $url ?>); background-size:cover; background-position: 0px 0px;" class="coverfile-galerias" data-cant="<?= $i?>">
-                                                        <input type="file"  id="images-galerias" name="images-galerias<?= $i?>" class="fotonoticia-galerias"/>
+                                                   <div data-urlsin="<?= 'images/productoras/'.$folder ?>" data-url="<?= $url ?>" data-nombre="<?= $evento['fotos'][$i] ?>" style="background-image: url(<?= $url ?>); background-size:cover; background-position: 0px 0px;" class="coverfile-galerias" data-cant="<?= $i?>">
+                                                        <input type="file" id="images-evento-upd" name="images-evento-upd" class="fotonoticia-galerias" />
                                                     </div>
                                             <?php }?>
         
     
                                             <?php for($j=$i; $j<5; $j++){ ?>
                                                    <div class="coverfile-galerias" data-cant="<?= $i?>">
-                                                        <input type="file"  id="images-galerias" name="images-galerias<?= $i?>" class="fotonoticia-galerias"/>
+                                                        <input type="file"  id="images-evento-nueva" name="images-evento-nueva" class="fotonoticia-galerias"/>
                                                     </div>
                                             <?php }?>
                                        </div>
@@ -101,7 +101,15 @@
     
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">Agrega las palabras claves para que encuentren tu evento</div>
-                                    <input type="text" class="obligatorio" id="tags-hidden" name="tags-hidden"/>
+                                    <?php 
+                                        $valueTags = '';
+                                        if(count($evento['tags']) > 0){
+                                            for($i=0; $i< count($evento['tags']); $i++){
+                                                $valueTags.=' '.$evento['tags'][$i];
+                                            }
+                                        }
+                                    ?>
+                                    <input value="<?= $valueTags?>" type="text" class="obligatorio" id="tags-hidden" name="tags-hidden"/>
                                     <div class="mensaje-error error-obligatorio mensaje-tags">
                                         <div class="content-mensaje">* Ingresa al menos una palabra clave</div>
                                     </div>
@@ -109,23 +117,16 @@
                                            <?php 
                                            
                                            $tags = $eventoFound->verTags();
-                                           $tagsEvento = $evento['tags'];
-                                           $pos = 0;
-                                           foreach($tags as $dcto){
-                                               foreach($tagsEvento as $dcto2){
-                                                  
-                                                  if($dcto['nombre'] == $dcto2){ ?>
-                                                    <div class="tag-elegir tag-selected"><?=$dcto['nombre']?></div>
-
-                                           <?php 
-                                                    unset($tagsEvento[$pos]);
-                                                    $pos++;
-                                                    break;
-                                                   }else{?>
-                                                    <div class="tag-elegir tag-noselected"><?=$dcto['nombre']?></div>   
-                                            <?php  }
-                                           }
                                            
+                                           foreach($tags as $dcto){ 
+                                               $tagEncontrado = $eventoFound->comprobarTags($evento['_id'], $dcto['nombre']);
+                                               if(count($tagEncontrado) > 0){
+                                               ?>
+                                                   
+                                                    <div class="tag-elegir tag-selected"><?=$dcto['nombre']?></div>   
+                                            <?php  }else{ ?>
+                                                <div class="tag-elegir tag-noselected"><?=$dcto['nombre']?></div>  
+                                   <?php    } 
                                            }?>
                                             
 
@@ -220,10 +221,11 @@
                                  <div class="item-publicar">
                                  
                                  <button id="btnSubmit" style="display: none;">Subir archivo</button>
-                                  <input type="button" class="botongreen" id="guardarevento" value="Publicar"/>
+                                  <input type="button" class="botongreen" id="modificarevento" value="Guardar cambios"/>
                                  </div>
-                                <input type="hidden" class="lat-event" name="lat-event"/>
-                                <input type="hidden" class="lng-event" name="lng-event"/>
+                                <input value="<?= $evento['loc'][0]?>" type="hidden" class="lat-event" name="lat-event"/>
+                                <input value="<?= $evento['loc'][1]?>" type="hidden" class="lng-event" name="lng-event"/>
+                                <input value="<?= $evento['_id']?>" type="hidden" id="idevent" name="idevent"/>
       </div>
 </form>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>

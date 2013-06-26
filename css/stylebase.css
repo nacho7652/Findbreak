@@ -2460,7 +2460,7 @@ margin: -3px -5px 0px 6px;
 .content-publicarevent .item-publicar:first-child,  .content-publicarevent .item-publicar:last-child {
     border-bottom: none !important;
 }
-#guardarevento {
+#guardarevento,#modificarevento {
     float: left;
     margin: 3px 0px 0px 34px;
     width: 200px;

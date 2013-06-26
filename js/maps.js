@@ -8,10 +8,7 @@ $(document).ready(function(){
     var editarEvento = $('#addresEvent').val();
     if(editarEvento != undefined)//estoy en editar
     {
-         manualLocation = true;
-         DeletePrintStore();
-         var geocoder = new google.maps.Geocoder();
-         geocoder.geocode({'address': editarEvento}, geocodeResult);     
+         geolocalizarManual(editarEvento)   
     }
   function cargarMapa() {
 //           alert('lat: '+latitud)
@@ -244,7 +241,9 @@ function geolocalizarPorTags(){
             var lng = map.getCenter().lng();
             latitud = lat;
             longitud = lng;
+            
             if(guardarEvento){
+                
                 $('.lat-event').val(lat);
                 $('.lng-event').val(lng);
                 return false;
