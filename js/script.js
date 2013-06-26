@@ -28,6 +28,10 @@ $(document).ready(function(){
 //                alert(fb.user.username)
 //                alert(fb.user.email)
 //                alert(fb.user.picture)
+               if(fb.user.name == 'undefined'){
+                   alert('undefined')
+                   return false;
+               }
                $.ajax({
                       type:"GET",
                       dataType:"html",

@@ -238,16 +238,9 @@
                                 $dcto['loc'][0]."+".$dcto['loc'][1].'</div>'."\n";
                          $cont++;
                        //----0----   
-                       
-
                      //   $mongotime = New Mongodate(strtotime($realtime));
                         $folder = (string)$dcto['producido_por']['_id'];
                         $url = 'background:url("/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0].'"); background-size: cover';
-                       // $listevents.= '<div data-id="'.$dcto['_id'].'" data-hash="'.$dcto['hash'].'" class="item-eventcerca">';
-                        $listevents.= '
-                                           
-                          <div class="event-left"></div>
-                                 <div class="num-event"></div>';
                                   $nombreLink = str_replace(' ', '-', $dcto['nombre']);
                                   $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'],1);
                                   $cantidadComentarios = $e->verCantidadComentarios($dcto['_id']);
@@ -259,34 +252,6 @@
                                     }else{
                                         $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
                                     }
-                                  $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['hash'].'" class="tit-eventcerca" >'.$dcto['nombre'].'</a>
-                                                       <div class="info-eventcerca info-eventcercawhte">
-                                                           <div class="item-infocerca">
-                                                               
-                                                               <div id="fechaevent" class="resp-cuando">'.$realizacion['fecha'].'</div>
-                                                           </div>
-                                                            <div class="item-infocerca">
-                                                                    <div id="horaevent" class="resp-cuando">'.$realizacion['hora'].' hrs.</div>
-                                                           </div>
-                                                           <div class="item-infocerca">
-                                                                
-                                                                <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
-                                                            </div>
-                                                            
-                                                            
-                                                            
-                                                            <div class="item-infocerca">
-                                                                <div id="visitavent-prof" class="info-event-item resp-cuando">
-                                                                   <div>Visto por <span class="bold">'.$dcto['visitas'].'</span></div>
-                                                                   <div id="comentaevent-prof">'.$textoComentario.'</div>
-                                                                   <input type="hidden" id="totalComent" value="'.$cantidadComentarios.'"/>
-                                                               </div>  
-                                                           </div>
-                                                           <div class="botonitemcerca botonblue">Ver comentarios</div>
-                                                        
-                                                      </div>
-                                                     
-                                                 '; 
                                      $infoEventCerca = '
                                                            <div class="item-infocerca">
                                                                
@@ -298,6 +263,7 @@
                                                            <div class="item-infocerca">
                                                                 
                                                                 <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
+                                                                <a id="verEnMapa'.$cont.'" href="#" class="verEnMapa">Ver en mapa</a> 
                                                                 <input type="hidden" value="'.$dcto['loc'][0].'" class="latHidden"/>
                                                                 <input type="hidden" value="'.$dcto['loc'][1].'" class="lngHidden"/>
                                                             </div>
@@ -319,10 +285,9 @@
                                                             $tagsHidden.= $tags;
                                                             $tagsHidden.= ',';
                                                     }
-                                                $listevents.= '</div>';                              
+                                                                 
                           $arreglo[] = array('id'=>(string)$dcto['_id'],
                                              'hash'=>$dcto['hash'],
-                                             'event-right'=>$listevents,
                                              'info'=>$infoEventCerca,
                                              'tags'=>$tagsHidden,
                                              'foto'=>$url,
@@ -573,7 +538,7 @@
        if(isset($_REQUEST['findnear-eventos'])){
             $q = $_REQUEST['q'];
             $event = new evento();
-            
+            $q = trim(strtolower($q));
             $eventsNears = $event->filtrar($q, 10);
             $arr = eventoscernanos($eventsNears);
             $infodiv = $arr['infodiv'];//información para que el mapa lea y muestre los pines con eventos

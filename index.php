@@ -368,7 +368,7 @@
                                         </div>
                                          
                                         <div class="groupoption">
-                                                <div class="itemgroup-option publicar-est">
+                                                <div class="itemgroup-option itemgroup-option last">
                                                   Saldo:<?php 
                                                   $usuariorelacional = new usuarioRelacional();
                                                   echo $usuariorelacional->ValidarSaldo($_SESSION['userid']);
@@ -378,9 +378,9 @@
                                                 <div id="cargar-cuenta" class="itemgroup-option last">
                                                     Cargar cuenta
                                                 </div>
-                                            <div id="mis-publicaciones" class="itemgroup-option last">
+                                                <a href="/findbreak/publicaciones" id="mis-publicaciones" class="itemgroup-option last">
                                                     Mis publicaciones
-                                                </div>
+                                                </a>
                                                 <div id="boton-logout" class="itemgroup-option last">
                                                     Salir
                                                 </div>
@@ -412,7 +412,6 @@
                      
                      <div id="info-publicar" class="botongreen"> 
                          Publicar
-                         
                      </div>
                      <div id="info-mostrar" style="display:none">  
                          <div class="content-infomostrar">

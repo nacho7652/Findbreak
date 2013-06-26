@@ -11,10 +11,11 @@
                                     <div class="title-publicarevent">¿Quieres publicar un evento?</div>
                                  </div>
                                 <div class="item-publicar">   
-                                ¿Que obtienes al publicar un evento? 
-                                Findbreak te reembolsa dinero en tu cuenta dependiendo de la cantidad de visitas que tiene tu evento
-                                
-                                
+                                    <div id="info-mostrar">
+                                    ¿Que obtienes al publicar un evento? 
+                                    Findbreak te reembolsa dinero en tu cuenta dependiendo de la cantidad de visitas que tiene tu evento
+                                    <a href="#">ver tabla de premios!</a>
+                                    </div>
                                 </div>
                                  
                         

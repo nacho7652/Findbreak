@@ -183,7 +183,7 @@ class evento {
      public function insertar($userid, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
                              $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar, $hashtag){ 
          $arrtags = explode(" ", $tags);
-         $arrtags[] = $nombre;
+         $arrtags[] = strtolower($nombre);
          $fotos = explode(",", $arrayfotos);
          
          $event = array(

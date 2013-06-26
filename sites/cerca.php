@@ -4,14 +4,16 @@
 <div class="content-cerca">
     <div class="first-partevent">
         <div class="divevents">
-                     <div class="title"> 
-                          <div class="text-cerca"> EVENTOS CERCA TUYO </div>
+                     <div class="title">
+                          <div class="logo"></div>
+                          <div class="text-cerca">Eventos: <span class="tipoBusqueda">cerca de <b>mi ubicación actual</b></span></div>
 
                           <div class="input-textparent2">
                             <input type="text" placeholder="¿Qué buscas?" id="search-location" class="input-transf"/>
                             <input id="boton-buscarcerca" type="button" class="sprites" />
                           </div> 
                           <input id="boton-location" type="button" class="sprites loc-activado" />
+                          <div class="mensaje-location">Usando tu ubicación actual</div>
 <!--                          <div class="input-textparent3">
                             <input type="text" value="UBICACIÓN ACTUAL" id="search-location" class="input-transf"/>
                             <input id="boton-location" type="button" class="sprites loc-activado" />
@@ -19,13 +21,13 @@
                       </div>
                
             <div class="list-maps">
-              <div class="loading-events tit">Buscando eventos...</div>
-              <div class="loading-events no-resultados">No hay carrete cerca de la ubicacion, prueba con otra dirección...</div>
+              <div class="loading-events tit advert mjscoment">Buscando eventos...</div>
+              <div class="loading-events no-resultados advert mjscoment">No hemos encontrado resultados :(</div>
                 <div class="inner-list-maps">
                     
                     <?php $j=0; for($i=0; $i<=10; $i++){?> 
                        <div class="content-eventcerca event-none" id="item-eventcerca<?=$i?>">  
-                         <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca" style="background-image:url(../images/productoras/238928932389892/foto1.jps); background-size: cover">
+                         <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca" style="">
                                             <div class="barra"></div>
                                             <div class="event-right">
                                                         <div class="event-left" ></div>

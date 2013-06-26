@@ -12,6 +12,11 @@
                    $page_class = 'publicar';
                    $page_description = "Encuentra un quiebre a tu rutina";
                    break;
+     case 'publicaciones': $page_title = 'Findbreak';
+                   $page_site = 'publicaciones';
+                   $page_class = 'publicaciones';
+                   $page_description = "Encuentra un quiebre a tu rutina";
+                   break;
      case 'login': $page_title = 'Findbreak';
                    $page_site = 'login';
                    $page_class = 'login';
