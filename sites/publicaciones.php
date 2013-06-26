@@ -1,9 +1,11 @@
 
 <?php  
-        
+        $vigencia = new usuarioRelacional();
         if(isset($_SESSION["userid"]))
         {
         $event = new evento();
+        $resp = $vigencia->EventosVigentesPorUsuario($_SESSION['userid']); 
+        
         $misEventos = $event->EventosPorRealizarPorIdProductora($_SESSION["userid"]);
         $folder = (string)$_SESSION["userid"];
 ?>
@@ -20,7 +22,11 @@
                                 </div>
     <div class="list boxscroll">
         
-                           <?php foreach($misEventos as $dcto){
+                           <?php 
+                           
+                           
+                           
+                           foreach($misEventos as $dcto){
                                  
                                 $url = 'images/productoras/'.$folder.'/'.$dcto['fotos'][0];  
                                 $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio']);
