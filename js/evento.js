@@ -20,12 +20,7 @@ $(document).ready(function(){
                 url: "/findbreak/function/event-response.php",
                 success: function(data){
                     
-                    if(data == 1)
-                        {
-                            alert("Saldo suficiente");
-                        }
-                        else
-                            alert("saldo insuficiente");
+                    alert(data);
                     
                 }
          });

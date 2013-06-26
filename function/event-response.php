@@ -15,10 +15,10 @@
             $resp = new usuarioRelacional();
             if($resp->ValidarSaldo($_SESSION['userid']) >= $resp->VerPrecioEvento($idProducidoPor, $idEvento))
             {
-                echo 1;
+                echo "SALDO OK";
             }
             else
-                echo 2;
+                echo "INSUFICIENTE";
            // $eventoR->GuardarEvento_____Usuario($idMongoEvento, $_SESSION['userid'], $valor_compra, $piso);
             
         }
