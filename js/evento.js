@@ -4,7 +4,7 @@ $(document).ready(function(){
     var longitud = $('#lng-event').val();
     var map;
     geolocalizar();
-    
+  
     //Comprar evento
     
     $('#comprar-evento').click(function(){

@@ -100,6 +100,33 @@ $(document).ready(function(){
         }, "json");
        
     })
+    $('#guardarevento-form, #editarevento-form').submit(function(){
+        respuesta = true;
+        $('.obligatorio').each(function(){
+             valor = $(this).val();
+             error = $(this).parent().find('.error-obligatorio');
+             if(trim(valor) == ""){//si está vacío mostrar msj
+                    guardar = false;
+                    $(this).focus();
+                     $('html, body').animate({
+                         'scrollTop': $(this).offset().top - 90 + "px" 
+                     },
+                     {
+                        duration:500,
+                        easing:"swing"
+                     }
+                     );
+                     error.fadeIn(200); 
+                     respuesta = false;
+                     return  false;
+                     
+             }else{
+                      error.fadeOut(200); 
+                 }
+             
+         })
+         return respuesta;
+    });
     $('#guardarevento').click(function(){
          guardar = true;
          $('.obligatorio').each(function(){
@@ -201,7 +228,7 @@ $(document).ready(function(){
          tagsElegidos = '';
          $('.tag-elegir').each(function(){
             if($(this).hasClass('tag-selected')){
-                tagsElegidos+= $(this).html()+' ';
+                tagsElegidos+= $(this).html()+',';
             }
          })
          $('#tags-hidden').val(tagsElegidos)
@@ -272,12 +299,13 @@ $(document).ready(function(){
         var claveusuario = $('#clave-usuario').val();
 //        alert("adads"); return;
                         $.ajax({
-                                 dataType:"JSON",
+                                 dataType:"html",
                                  url : '/findbreak/function/users-response.php',
                                  type : 'POST',
                                  data : "guardaruser=1&nomuser="+nomeuser+"&username="+username+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
                                  success : function(res){                      
                                      //modificar la foto con el mail
+                                    
                                      if(res == 1){
                                           $.ajax({
                                                     type: "POST",
@@ -288,7 +316,9 @@ $(document).ready(function(){
                                                     {  
                                                         if(data.exito)
                                                             { 
+                                                                
                                                                 if(data.usertype == 1){
+                                                                  
                                                                   window.location.reload();//es usuario y recargo la página donde esté
                                                                 }   
                                                             }

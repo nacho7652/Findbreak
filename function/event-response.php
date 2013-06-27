@@ -13,6 +13,8 @@
             $idEvento = $_REQUEST['idevento'];
             $idProducidoPor = $_REQUEST['idproducido'];
             $resp = new usuarioRelacional();
+            $usuario = new usuario();
+            $evento = new evento();
             if($resp->ValidarSaldo($_SESSION['userid']) >= $resp->VerPrecioEvento($idProducidoPor, $idEvento))
             {
                 $resp->CambiarVigencia($idProducidoPor, $idEvento);
@@ -23,6 +25,11 @@
                 $resp->PagoCompraEvento($SumarSaldoAUsuario, $idProducidoPor);
                 $resp->PagoCompraEvento(-1*$RestarSaldoUsuario, $_SESSION['userid']);
                 $resp->GuardarEvento_____Usuario($idEvento, $_SESSION['userid'], ($precioEvent+($precioEvent/2)), $resp->VerPiso($idProducidoPor, $idEvento), $pafindbreak);
+                //notificar
+                $nombre_id_event = $evento->verNombre($idEvento);
+                $fecha = date('Y-m-d H:i:s');
+                $fechaMongo = new MongoDate(strtotime($fecha));
+                $usuario->guardarNotificacion3($_SESSION['userid'], $idProducidoPor,$nombre_id_event, $fechaMongo, $fecha);
                 echo "ok";
             }
             else

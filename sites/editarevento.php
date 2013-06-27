@@ -8,7 +8,7 @@
         $evento = $eventoFound->findforid($id);
         $folder = (string)$_SESSION["userid"];
 ?>
-<form method="POST" action="/findbreak/uploadevento" name="formularioevento" enctype="multipart/form-data">
+<form id="editarevento-form" method="POST" action="/findbreak/uploadevento" name="formularioevento" enctype="multipart/form-data">
 <input type="hidden" name="editarevento"/>
 <div class="content-publicarevent">
                                  <div class="item-publicar">
@@ -105,7 +105,7 @@
                                         $valueTags = '';
                                         if(count($evento['tags']) > 0){
                                             for($i=0; $i< count($evento['tags']); $i++){
-                                                $valueTags.=' '.$evento['tags'][$i];
+                                                $valueTags.=$evento['tags'][$i].',';
                                             }
                                         }
                                     ?>
@@ -211,7 +211,7 @@
                                 
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">URL Youtube del evento</div>
-                                 <input value="<?= $evento['redes'][1]?>" placeholder="http://www.youtube.com/tuevento" class="field-publicarevent" type="text" id="urlyoutube" name="url-youtube"/>
+                                 <input value="<?= $evento['redes'][2]?>" placeholder="http://www.youtube.com/tuevento" class="field-publicarevent" type="text" id="urlyoutube" name="url-youtube"/>
                                 </div>
                                 
                                 
@@ -220,7 +220,7 @@
                                 
                                  <div class="item-publicar">
                                  
-                                 <button id="btnSubmit" style="display: none;">Subir archivo</button>
+                                  <button id="btnSubmit" style="display: none;">Subir archivo</button>
                                   <input type="button" class="botongreen" id="modificarevento" value="Guardar cambios"/>
                                  </div>
                                 <input value="<?= $evento['loc'][0]?>" type="hidden" class="lat-event" name="lat-event"/>

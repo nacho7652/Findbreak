@@ -120,41 +120,10 @@
         }
     }
     if(isset($_REQUEST['editarevento'])){
-            //foto1.jps, foto2.jpg
+            
             $evento = new evento();  
-            $rutasFotos = '';
-            $re1 = true;$re2 = true;$re3 = true;$re4 = true;$re5 = true;
-            if($_FILES['images-galerias1']['error'] == UPLOAD_ERR_OK ){
-                $exito1 = subir($_FILES['images-galerias1']['name'], $_FILES['images-galerias1']['tmp_name']);
-                $rutasFotos.= trim($exito1['fotoGr']);
-                $re1 = $exito1['re'];
-            }
-            if($_FILES['images-galerias2']['error'] == UPLOAD_ERR_OK ){
-                $exito2 = subir($_FILES['images-galerias2']['name'], $_FILES['images-galerias2']['tmp_name']);
-                $rutasFotos.= trim(','.$exito2['fotoGr']);
-                $re2 = $exito2['re'];
-            }
-            if($_FILES['images-galerias3']['error'] == UPLOAD_ERR_OK){
-                $exito3 = subir($_FILES['images-galerias3']['name'], $_FILES['images-galerias3']['tmp_name']);
-                $rutasFotos.= trim(','.$exito3['fotoGr']);
-                $re3 = $exito3['re'];
-            }
-            if($_FILES['images-galerias4']['error'] == UPLOAD_ERR_OK){
-                $exito4 = subir($_FILES['images-galerias4']['name'], $_FILES['images-galerias4']['tmp_name']);
-                $rutasFotos.= trim(','.$exito4['fotoGr']);
-                $re4 = $exito4['re'];
-            }
-            if($_FILES['images-galerias5']['error'] == UPLOAD_ERR_OK){
-                $exito5 = subir($_FILES['images-galerias5']['name'], $_FILES['images-galerias5']['tmp_name']);
-                $rutasFotos.= trim(','.$exito5['fotoGr']);
-                $re5 = $exito5['re'];
-            }
-            
-            
-            if($re1 && $re2 && $re3 && $re4 && $re5){
-                $result = true;
-            }
             //datos
+            $idEvento = $_REQUEST['idevent'];
             $idproductora = $_SESSION['userid'];
             $nombreproductora = $_SESSION['username'];;
             $nom = trim($_REQUEST['nom-event']);//
@@ -209,28 +178,12 @@
 //                                   );
             $sitioWeb = trim($_REQUEST["sitioevento"]); //
             $dondeComprar = '-1';//demás
-            
-                                
-            //
-            $usuariorelacional = new usuarioRelacional();
-            $saldo = $usuariorelacional->ValidarSaldo($_SESSION['userid']);
-            if($saldo >= 500)
-            {
-                $usuariorelacional->DisminuirSaldo($_SESSION['userid']);
-              $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+            $guardar = $evento->modificar($idEvento, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
                                    $video, $establecimiento, $precio, $puntosGuardar, $sitioWeb, $dondeComprar,$hashtag);
             
-              
-            }
-            else
-            {
-                $result = false;
-            
-            }
-            
             //fin datos
-        if($result && $guardar==1){
-            header("location:/findbreak/publicar/success");
+        if($guardar==1){
+            header("location:/findbreak/publicar/success-upd");
         }else{
              header("location:/findbreak/publicar/saldo");
         }

@@ -116,6 +116,10 @@
             $stiloMensaje = 'style="display:block"';
             $mensajeEvento = 'Evento guardo con éxito :)';
        }
+       if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'success-upd'){
+            $stiloMensaje = 'style="display:block"';
+            $mensajeEvento = 'Evento modificado con éxito :)';
+       }
        if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'saldo'){
             $stiloMensaje = 'style="display:block"';
             $mensajeEvento = 'No tienes saldo suficiente, recarga tu cuenta
@@ -311,7 +315,29 @@
 
                                                         $divMenciones.=   '</div>';
                                                  }   
-                                                 
+                                                 if($not['tipo'] == 3){
+                                                        $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
+                                                        $user = $usuario->findforid($not['quien']);
+                                                        $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not2 item-search-friend"> 
+                                                                           <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                  
+                                                                            
+                                                                            <div class="item-friends-msj">
+                                                                                   <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
+                                                                                   <span class="msjmencion">te ha comprado el evento</span>
+                                                                                   <span class="tit-gray msjmencion msjeventonom">'.$not['evento']['nombre'].' </span>
+                                                                               </div>
+                                                                               <div class="item-friends-eventpic">
+                                                                                <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                               </div>
+                                                                           <div class="bloq3">
+                                                                               <div class="hacecuant">'.$realizacion.'</div>
+                                                                           </div>
+                                                                           <div style="display:none" class="id-item-search">'.$user['_id'].'</div>
+                                                                           ';
+
+                                                        $divMenciones.=   '</div>';
+                                                 } 
                                                  
                                                  
                                              }
