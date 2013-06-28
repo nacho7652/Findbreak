@@ -407,32 +407,34 @@
                                                     Monto debe ser mayor a 950: <input type="text" name="price"> 
                                                     <input type="image" src="http://www.deporbox.com/imagenes/emoti-mano.png" border="0" alt="">
                                                     <input type="hidden" name="acc_id" value="6030853">
-                                                    <input type="hidden" name="url_cancel" value="http://localhost/findbreak/cerca?re=21ca">
+                                                    <input type="hidden" name="url_cancel" value="http://localhost/findbreak/cerca?re=2">
                                                     <input type="hidden" name="item_id" value="222">
                                                     <input type="hidden" name="name" value="CARGAR CUENTA FINDBREAK">
                                                     <input type="hidden" name="currency" value="CHI"
                                                     <input type="hidden" name="url_process" value="http://localhost/findbreak/cerca">
-                                                    <input type="hidden" name="url_succesfull" value="http://localhost/findbreak/cerca?re=998c ">
+                                                    <input type="hidden" name="url_succesfull" value="http://localhost/findbreak/cerca?re=1">
                                                     <input type="hidden" name="url_post" value="1">
                                                     <input type="hidden" name="shipping_cost" value="">
                                                     <input type="hidden" name="enc" value="NJKVVWpx1581SmPvti51BuYh8dU%3D">
                                                     <input type="hidden" name="extraPar" value="">
                                                     
-                                            <?php 
+                                                    <?php //BORRAR
                                             if(!empty($_REQUEST['re']))
                                             {
                                             $re = $_REQUEST['re'];
-                                            if($re == "998c")
+                                            if($re == "1")
                                             {
                                                 echo "YESSSS";
                                             }
                                             else
                                             {
-                                                if($re == "21ca")
+                                                if($re == "2")
+                                                {
                                                 echo "NOOOOU";
+                                                }
                                             }
                                             }
-                                            ?>
+                                         //BORRAR   ?>
                                                     </form>
                                                 </div>
                                                 <a href="/findbreak/publicaciones" id="mis-publicaciones" class="itemgroup-option last">
