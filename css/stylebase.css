@@ -565,6 +565,7 @@ html {
 #show-solicitud .msjmencion {
     font-size: 0.7em;
     float: left;
+    width: 246px;
 }
 .tit-gray.msjmencion.msjeventonom {
     margin-top: 2px;

@@ -182,10 +182,12 @@ class evento {
 
      public function insertar($userid, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
                              $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar, $hashtag){ 
-         $arrtags = explode(" ", $tags);
+         $arrtags = explode(",", $tags);
          $arrtags[] = strtolower($nombre);
-         $fotos = explode(",", $arrayfotos);
+//         unset($arrtags[count($arrtags)-2]);
          
+         $fotos = explode(",", $arrayfotos);
+
          $event = array(
             "nombre" => $nombre,
             "hash" => $hashtag,//$this->crearHash($nombre),
@@ -208,14 +210,6 @@ class evento {
              "sitio_web"=>$sitioWeb,
              "donde_comprar"=>$dondeComprar
         );
-         //MODIFICAR EVENTOS PUBLICADOS
-//         
-//          $puntosDeVenta = array( 'nombre'=>'Ticket Master',
-//                                          'web'=>'http://www.ticketmaster.com.mx/'
-//                                  
-//                                   );
-//         return $this->db->puntos_venta->insert($puntosDeVenta); 
-//        $this->agregarPuntosVenta('Punto Ticket', 'http://www.puntoticket.com/');
          $re = $this->db->evento->insert($event); 
          $eventoR = new usuarioRelacional();
          $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
@@ -223,7 +217,34 @@ class evento {
          $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000,1,0);
          return $re;
      }
-     
+     public function modificar($id, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
+                             $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar, $hashtag){ 
+         $arrtags = explode(",", $tags);
+         unset($arrtags[count($arrtags)-1]);
+//         $arrtags[] = strtolower($nombre);
+        // $db->users->update(array("b" => "q"), array('$set' => array("a" => 1)));
+         $theObjId = new MongoId($id); 
+         return $this->db->evento->update(array("_id" => $theObjId), 
+                                          array(
+                                            '$set'=> array("nombre"=>$nombre,
+                                                           "direccion"=>$direccion,
+                                                           "fecha_realizacion"=>$fechaMongo,
+                                                           "fecha_muestra"=>$fechaString,
+                                                           "hora_inicio"=>$hor,
+                                                           "tags"=>$arrtags,
+                                                           "loc"=>array((float)$lat, (float)$lng),
+                                                           "descripcion"=>$desc,
+                                                           "redes" => array($urlfb, $urltw,$video),
+                                                           "establecimiento" => $establecimiento,
+                                                           "precio"=>$precio,
+                                                           "puntos_de_venta"=>$puntosDeVenta,
+                                                           "sitio_web"=>$sitioWeb,
+                                                           "donde_comprar"=>$dondeComprar
+                                                           
+                                                            )
+                                          ));
+    
+     }
      public function agregarPuntosVenta($nombre, $web)
      { 
          $puntosDeVenta = array( 'nombre'=>$nombre,

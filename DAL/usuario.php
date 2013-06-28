@@ -1,8 +1,9 @@
 <?php
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+  notif. 1 = menciones
+  notf. 2 = seguidores
+  notf. 3 = evento comprado
  */
 require_once 'usuarioRelacional.php';
 /**
@@ -32,6 +33,21 @@ class usuario {
                         "estado"=>0
                       );
                     $this->db->notificaciones->insert($noti2);
+             
+    }
+     public function guardarNotificacion3($quien, $aquien,$evento,$fechaMongo, $fecha){
+                    $idM1 = new MongoId($quien);
+                    $idM2 = new MongoId($aquien);
+                    $noti3 = array(
+                        "quien"=>$idM1,
+                        "aquien"=>$idM2,
+                        "evento"=>$evento,
+                        "tipo"=>3,
+                        "fechaMongo"=>$fechaMongo,
+                        "fechaMuestra"=>$fecha,
+                        "estado"=>0
+                      );
+                    $this->db->notificaciones->insert($noti3);
              
     }
     public function verNotificaciones($id){

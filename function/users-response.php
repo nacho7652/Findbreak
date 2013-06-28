@@ -273,7 +273,11 @@
         
         $resp = $usuario->insertar(strtolower($name), $username, strtolower($mail), $pass);
         $_SESSION['mailuser'] = $mail;
-        echo $resp;
+        if($resp != -5){
+            echo 1;
+        }else{
+            echo $resp;//aquí imprimira -5
+        }
         
         
     }
