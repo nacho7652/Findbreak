@@ -147,7 +147,7 @@ class usuarioRelacional {
     }
     public function VerPrecioEventoMasCaroPorUsuario_evento($idUsuario, $idEvento){
         if($this->conect->conectarse()){
-            $query = "select max(valor_compra) from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $query = "select max(valor_compra) from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario' and vigencia=0";
             $result = mysql_query($query);
             $saldo = 0;
             while($re = mysql_fetch_array($result)){
