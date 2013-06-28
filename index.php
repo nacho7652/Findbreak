@@ -7,57 +7,9 @@
     require_once 'DAL/evento.php';
     require_once 'DAL/comentario.php';
     require_once 'DAL/relacional/connect_relacional.php';
+    $usuariorelacional = new usuarioRelacional();
 //    include_once ('function/facebook-response.php');
     $contsol=0;
-    
-    $agregarEvento = 1;
-    if($agregarEvento == 0){
-            require_once 'DAL/evento.php';
-            $idproductora = '238928932389892';
-            $nombreproductora = 'Nombre de prueba';
-            $nom = 'Iron Maiden';//
-            $dir = 'Santa Sofia #2092';//
-            $arrayfotos = 'foto1.jps, foto2.jpg';//
-            $fec = '2013-07-20, 2013-07-21, 2013-07-22';//
-            $hor = '22:00:00, 23:15:00';//
-            $hor = explode(',', $hor);
-            $fechString = $fec;   
-            $fechas = explode(',', $fec);  
-            $fechMongo = array();
-            for($i=0; $i<count($fechas); $i++){
-                $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
-            }
-            $tag = 'iron maiden metal rock musica';//
-            $lat = '-33.342555';//
-            $lng = '-70.847888';//
-            $precio = 'Gratis';//
-            $desc = '$ 5.000.- por persona';//
-            $urltwitter = 'tw';//
-            $urlfacebook = 'face';//
-            //nuevo
-            $video = 'link de youtube';  //
-            $establecimiento = array('id'=>'232323',
-                                     'nombre'=>'Estadio Nacional',
-                                     'direccion'=>'Avenida vicuña #32');//
-            
-            $puntosDeVenta = array( array('id'=>'232323',
-                                          'nombre'=>'Ticket Master',
-                                          'web'=>'http://www.google.cl'),
-                                    array('id'=>'232323',
-                                          'nombre'=>'Ticket Master',
-                                          'web'=>'http://www.google.cl') //
-                                   );
-            $sitioWeb = 'web oficial del evento'; //
-            $dondeComprar = 'En las boleterias del estadio nacional';//demás
-            
-            $evento = new evento();                      
-            echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
-                                   $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar);
-    }
-//    if(isset($_POST['cerrarsession'])){
-//        session_destroy();
-//        header("location:../home/");
-//    }
 ?>
 <!DOCTYPE html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
@@ -109,12 +61,14 @@
             </div>
         </div>
        <?php 
+      
+       //MENSAJES DE EVENTO
        $stiloMensaje = '';
        $mensajeEvento = '';
        
        if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'success'){
             $stiloMensaje = 'style="display:block"';
-            $mensajeEvento = 'Evento guardo con éxito :)';
+            $mensajeEvento = 'Evento publicado con éxito :)';
        }
        if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'success-upd'){
             $stiloMensaje = 'style="display:block"';
@@ -126,10 +80,30 @@
                 
             <div>  el diego hace esta wea el booton culiao cancelar / recargar     </div>    
 
-            ';
-            
+            ';       
        }
-       //saldo
+       //FIN DE MENSAJES DE EVENTO
+       
+       //MENSAJES TRANSACCIÓN
+       //if(isset($_SESSION['valorDeCarga']) != -1){
+            if(isset($_REQUEST['tran-msj']) && $_REQUEST['tran-msj'] == 'tran-cancel'){
+                 $stiloMensaje = 'style="display:block"';
+                 $valorDeCarga = $_SESSION['valorDeCarga'];
+                 
+                 $mensajeEvento = 'Haz cargado en tu cuenta $'.$valorDeCarga;
+                 $usuariorelacional->PagoCompraEvento($valorDeCarga, $_SESSION['userid']);
+            //     $_SESSION['valorDeCarga'] = null;
+            }
+            if(isset($_REQUEST['tran-msj']) && $_REQUEST['tran-msj'] == 'tran-success'){
+                 $stiloMensaje = 'style="display:block"';
+                 $valorDeCarga = $_SESSION['valorDeCarga'];
+                 $mensajeEvento = 'Haz cargado en tu cuaaaaenta $'.$valorDeCarga;
+            //     $_SESSION['valorDeCarga'] = null;
+            }
+      // }
+       //FIN DE MENSAJES TRANSACCIÓN
+        
+        
 ?>
         <div id="covermsj" <?= $stiloMensaje?>>
             <div class="innermsj">
@@ -154,7 +128,7 @@
                     <!--<div id="hover-response">-->
                      <?php if($page_site != 'cerca'){?>
                         <div class="input-textparent1">
-                            <input value="Fiestas, deportes, arte, etc." type="text" id="search" class="input-transf">
+                            <input placeholder="Fiestas, deportes, arte, etc." type="text" id="search" class="input-transf">
                             <input id="boton-buscar" type="button" class="sprites" />
                         </div>
                     <?php }?>
@@ -176,7 +150,7 @@
                                    $_SESSION['userid'] = $comp['_id'];
                                    $_SESSION['username'] = $comp['username'];
                                    $_SESSION['nombre'] = $comp['nombre'];
-                                   if($comp['foto'] == -1)
+                                   if($comp['foto'] == '/findbreak/images/user-default.png')
                                    {
                                       $us->updatePhoto($comp['_id'], $user_profile['picture']);
                                       $_SESSION['foto']=$user_profile['picture'];
@@ -326,7 +300,7 @@
                                                         $user = $usuario->findforid($not['quien']);
                                                         //$evento = $evento->findforid($not['evento']['_id']);
                                                         $url = $evento->verFoto($not['evento']['_id']);
-                                                        $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not2 item-search-friend"> 
+                                                        $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not3 item-search-friend"> 
                                                                            <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
                                                                   
                                                                             
@@ -336,7 +310,7 @@
                                                                                    <span class="tit-gray msjmencion msjeventonom">'.$not['evento']['nombre'].' </span>
                                                                                </div>
                                                                                <div class="item-friends-eventpic">
-                                                                                <div style="background-image:url('.$url.')" class="item-friends-userpic"></div>
+                                                                                <div style="background-image:url('.$url.')" class="itemfoto-eve"></div>
                                                                                </div>
                                                                            <div class="bloq3">
                                                                                <div class="hacecuant">'.$realizacion.'</div>
@@ -404,46 +378,25 @@
                                         <div class="groupoption">
                                                 <div class="itemgroup-option itemgroup-option last">
                                                   Saldo:<?php 
-                                                  $usuariorelacional = new usuarioRelacional();
+                                                  
                                                   echo $usuariorelacional->ValidarSaldo($_SESSION['userid']);
                                                   
                                                   ?>
                                                 </div>
                                                 <div id="cargar-cuenta" class="itemgroup-option last">
                                                     Cargar cuenta
-                                                    <form target="MercadoPago" action="https://www.mercadopago.com/mlc/buybutton" method="GET">
-                                                    Monto debe ser mayor a 950: <input type="text" name="price"> 
-                                                    <input type="image" src="http://www.deporbox.com/imagenes/emoti-mano.png" border="0" alt="">
-                                                    <input type="hidden" name="acc_id" value="6030853">
-                                                    <input type="hidden" name="url_cancel" value="http://localhost/findbreak/cerca?re=2">
-                                                    <input type="hidden" name="item_id" value="222">
-                                                    <input type="hidden" name="name" value="CARGAR CUENTA FINDBREAK">
-                                                    <input type="hidden" name="currency" value="CHI"
-                                                    <input type="hidden" name="url_process" value="http://localhost/findbreak/cerca">
-                                                    <input type="hidden" name="url_succesfull" value="http://localhost/findbreak/cerca?re=1">
-                                                    <input type="hidden" name="url_post" value="1">
-                                                    <input type="hidden" name="shipping_cost" value="">
-                                                    <input type="hidden" name="enc" value="NJKVVWpx1581SmPvti51BuYh8dU%3D">
-                                                    <input type="hidden" name="extraPar" value="">
-                                                    
-                                                    <?php //BORRAR
-                                            if(!empty($_REQUEST['re']))
-                                            {
-                                            $re = $_REQUEST['re'];
-                                            if($re == "1")
-                                            {
-                                                echo "YESSSS";
-                                            }
-                                            else
-                                            {
-                                                if($re == "2")
-                                                {
-                                                echo "NOOOOU";
-                                                }
-                                            }
-                                            }
-                                         //BORRAR   ?>
-                                                    </form>
+                                                    <?php 
+                                                        if(isset($_POST['price']) != null && is_numeric($_POST['price'])){//si llega la plata
+                                                              $_SESSION['valorDeCarga'] =  $_REQUEST['price'];  
+                                                               //echo $_SESSION['valorDeCarga'];
+                                                               header('location:https://www.mercadopago.com/mlc/buybutton?acc_id=6030853&url_cancel="http://localhost/findbreak/cerca/tran-cancel?item_id=222&name=CARGAR CUENTA FINDBREAK&currency=CHI&url_process=http://localhost/findbreak/cerca&url_succesfull=http://localhost/findbreak/!'.$_SESSION['username'].'/tran-success&url_post=1&shipping_cost=&enc=NJKVVWpx1581SmPvti51BuYh8dU%3D&extraPar=&price='.$_REQUEST['price']);
+                                                        }
+                                                        
+                                                    ?>
+                                                    <form id="mercagoPago" action="/findbreak/cerca" method="POST">
+                                                        Monto debe ser mayor a 950: <input type="text" name="price" id="price"> 
+<!--                                    
+-->                                                    </form>
                                                 </div>
                                                 <a href="/findbreak/publicaciones" id="mis-publicaciones" class="itemgroup-option last">
                                                     Mis publicaciones
@@ -452,26 +405,11 @@
                                                     Salir
                                                 </div>
                    
-                                        </div>  
+                                        </div> 
                                    
                                    
                                    <?php }if($usertype == 2){?>
-                                    <div class="option user-photo">
-                                        <div class="content-option content-option-first"
-                                        style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat">
-                                        </div> 
-                                   </div>
-                                   <a href="../productora/<?php echo $_SESSION['userid']; ?>" class="option user-name" >
-                                        <div class="content-option">
-                                            <?php echo $_SESSION['username'] ?>
-                                        </div>
-                                   </a>
-                                        <div class="option publicar-event">
-                                            <div class="content-option content-option-last">Publicar</div>
-                                        </div>
-                                         <div id="boton-logout" class="option content-option-last cerrar">
-                                                    Salir
-                                         </div>
+
                                        
                                    <?php }?>
                                </div>

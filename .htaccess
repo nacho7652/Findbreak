@@ -551,15 +551,16 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 
   RewriteRule ^(![\w.\-_]+)/?$ /findbreak/index.php?place=userprofile&id=$1 [NC,L]
   
-  RewriteRule ^break/([\w.\-_]+)?$ /findbreak/index.php?place=eventprofile&id=$1 [NC,L]
+  RewriteRule ^break/([\w.\-_]+)/([a-z0-9_-]+)?$ /findbreak/index.php?place=eventprofile&id=$1&evento-msj=$2 [NC,L]
+
+  RewriteRule ^break/([\w.\-_]+)/?$ /findbreak/index.php?place=eventprofile&id=$1 [NC,L]
 
   RewriteRule ^productora/([a-z0-9_-]+)/?$ /findbreak/index.php?place=productora&id=$1 [NC,L]
 
-  RewriteRule ^publicar/([a-z0-9_-]+)/?$ /findbreak/index.php?place=publicar&evento-msj=$1 [NC,L]
-
   RewriteRule ^editar-evento/([a-z0-9_-]+)/?$ /findbreak/index.php?place=editar-evento&id=$1 [NC,L]
 
-
+  RewriteRule ^cerca/([a-z0-9_-]+)/?$ /findbreak/index.php?place=cerca&tran-msj=$1 [NC,L]
+  
   
 </IfModule>
 

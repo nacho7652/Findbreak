@@ -7,7 +7,7 @@
         require_once '../DAL/comentario.php';
         require_once '../DAL/usuarioRelacional.php';
         require_once 'allfunction.php';
-        
+        //price
         if(!empty($_REQUEST['comprarevento']))
         {
             $idEvento = $_REQUEST['idevento'];

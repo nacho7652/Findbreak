@@ -10,6 +10,7 @@
 ?>
 <form id="editarevento-form" method="POST" action="/findbreak/uploadevento" name="formularioevento" enctype="multipart/form-data">
 <input type="hidden" name="editarevento"/>
+<input type="hidden" name="hash-event" value="<?= $evento['hash']?>"/>
 <div class="content-publicarevent">
                                  <div class="item-publicar">
                                     <div class="title-publicarevent">Edita información de <?= $evento['nombre']?></div>

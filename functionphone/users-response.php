@@ -2,7 +2,7 @@
     require_once '../DAL/connect.php';
     require_once '../DAL/usuario.php';
     date_default_timezone_set("Chile/Continental");
-    if(!empty($_POST["comprobar-username"]))
+    if(!empty($_REQUEST["username"]))
     {
         $username = $_POST["username"];
         $usuario = new usuario();
@@ -179,7 +179,7 @@
                 $hayuser = true;
                 $cuadrouser.= 
                 '<a href="/findbreak/!'.$dcto["username"].'" class="'.$classPrimero.' item-search item-search-friend">
-                   <div style="background:url('.$dcto["foto"].'); background-size:cover" class="foto-item-search"></div>
+                   <div class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';
@@ -197,11 +197,10 @@
              $hayevents = false;
              foreach($coincidenciaevento as $dcto)
             {
-                $fotoEvento = $evento->verFoto($dcto['_id']);
                 $hayevents = true;
                 $cuadroevento.= 
                 '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="item-search item-search-event">
-                   <div style="background:url('.$fotoEvento.'); background-size:cover" class="foto-item-search"></div>
+                   <div class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';
@@ -274,11 +273,7 @@
         
         $resp = $usuario->insertar(strtolower($name), $username, strtolower($mail), $pass);
         $_SESSION['mailuser'] = $mail;
-        if($resp != -5){
-            echo 1;
-        }else{
-            echo $resp;//aquí imprimira -5
-        }
+        echo $resp;
         
         
     }

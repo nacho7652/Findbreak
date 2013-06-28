@@ -552,8 +552,8 @@ html {
     height: 40px;
     float: left;
     background-size: cover;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 7px;
+    margin-right: 8px;
 }
 #show-solicitud .item-friends-username {
     float: left;
@@ -563,7 +563,7 @@ html {
     margin-right: 4px;
 }
 #show-solicitud .msjmencion {
-    font-size: 0.7em;
+    font-size: 0.8em;
     float: left;
     width: 246px;
 }
@@ -1290,7 +1290,30 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     border: 1px solid rgba(65, 169, 94, 0);    
     -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);            background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
     color: #FFF;
-    border: 1px solid rgba(48, 156, 39, 1);        border-top-color: rgba(77, 184, 67, 1);        border-bottom-color: rgba(41, 134, 33, 1);
+    border: 1px solid rgba(48, 156, 39, 1);      
+    border-top-color: rgba(77, 184, 67, 1);      
+    border-bottom-color: rgba(41, 134, 33, 1);
+}
+.botonred{
+    display: block;
+    border-radius: 2px;
+    text-align: center;
+    float: right;
+    font-size: 0.7em;
+    margin: -6px 11px 0px 0px;
+    padding: 7px 18px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-repeat: repeat-x;
+    border: 1px solid rgba(65, 115, 169, 0.34);                  
+    border: 1px solid rgba(65, 169, 94, 0);    
+    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2); 
+    box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);          
+    background: -webkit-linear-gradient(top,rgb(239, 62, 54), rgb(196, 52, 46));
+    color: #FFF;                
+}
+.botonred:hover {
+    cursor: pointer;
+    background: -webkit-linear-gradient(top,rgb(235, 84, 77), rgb(196, 52, 46));    
 }
 .botongreen {
     display: block;
@@ -1856,9 +1879,12 @@ padding: 0px 25px;
 .face img, .twitt img{
     width: 26px
 }
+#comprarevent-prof {
+background: url('/findbreak/nuevo/images/sprites.png') no-repeat -62px -136px;
+line-height: 19px;
+}
 #fechaevent-prof {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -63px -2px;
-    line-height: 19px;
 }
 #dondeevent-prof{
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -25px;
@@ -1875,6 +1901,9 @@ padding: 0px 25px;
 }
 .item-infocerca #visitavent-prof {
     height: 22px;
+}
+.publicaciones #visitavent-prof {
+    width: 332px;
 }
 .bold{
     font-weight: bold;
@@ -1893,8 +1922,8 @@ padding: 0px 25px;
 .part-left .info-event-item{
     float: left;
     margin: 8px 0px 6px 0px;
-    padding: 1px 0px 5px 24px;
-    font-size: 0.7em;
+    padding: 1px 0px 3px 24px;
+    font-size: 12px;  line-height: 1.38;
     width: 334px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
 }
@@ -1952,7 +1981,7 @@ padding: 0px 25px;
     border-bottom: none;
 }
 .boxscrollEvents{
-    max-height: 182px !important;
+    max-height: 275px !important;
 }
 .divtrans{
     background: rgb(255, 255, 255);
@@ -2065,6 +2094,10 @@ padding: 0px 25px;
     margin: 17px 0px 3px 5px;
     font-weight: bold;
     color: #444;
+}
+#videoEvento {
+    width: 400px;
+    height: 400px;
 }
 .cercanos {
     width: 591px;
@@ -2386,6 +2419,31 @@ margin: -3px -5px 0px 6px;
     color: rgb(88, 88, 88) !important;
     word-wrap: break-word;
 }
+
+#comprar-evento {
+    position: absolute;
+    top: 311px;
+    left: -173px;
+    padding: 10px 9px;
+    
+    text-shadow: 0px 1px 0px #444;
+    box-shadow: 0px 0px 7px -2px #000;
+    font-size: 18px;
+    z-index: 8;
+}
+#editar-mievento {
+    text-decoration: none;
+    position: absolute;
+    top: 305px;
+    left: -186px;
+    width: 146px;
+    padding: 10px 16px;
+    
+    text-shadow: 0px 1px 0px #444;
+    box-shadow: 0px 0px 7px -2px #000;
+    font-size: 18px;
+    z-index: 8;
+}
 .more-fotos {
     float: left;
     width: 100%;
@@ -2600,7 +2658,7 @@ margin: -3px -5px 0px 6px;
     margin: 7px 0px 0px 13px;
 }
 .infot-eventpublicar {
-    width: 300px;
+    width: 359px;
     float: left;
     font-size: 1.2em;
 }

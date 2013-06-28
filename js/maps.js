@@ -57,12 +57,26 @@ $(document).ready(function(){
             
  function localizame() {   
             if (navigator.geolocation) { /* Si el navegador tiene geolocalizacion */
-                navigator.geolocation.getCurrentPosition(coordenadas);
+                navigator.geolocation.getCurrentPosition(coordenadas, errores);
             }else{
                 alert('Oops! Tu navegador no soporta geolocalizaci�n. B�jate Chrome, que es gratis!');
             }
         }
-        
+function errores(err) {
+            /*Controlamos los posibles errores */
+            if (err.code == 0) {
+              alert("Oops! Algo ha salido mal");
+            }
+            if (err.code == 1) {
+              alert("Oops! No has aceptado compartir tu posici�n");
+            }
+            if (err.code == 2) {
+              alert("Oops! No se puede obtener la posici�n actual");
+            }
+            if (err.code == 3) {
+              alert("Oops! Hemos superado el tiempo de espera");
+            }
+        }        
 function coordenadas(position) {
             latitud = position.coords.latitude; /*Guardamos nuestra latitud*/
             longitud = position.coords.longitude;

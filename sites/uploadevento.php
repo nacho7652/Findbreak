@@ -63,6 +63,7 @@
             $urlfacebook = trim($_REQUEST['url-face']);//
             //nuevo
             $video = trim($_REQUEST['url-youtube']);//
+            
             $hashtag = trim($_REQUEST['hash-event']);
             $establecimiento = array('id'=>'-1',
                                      'nombre'=>trim($_REQUEST['establecimiento-event']),
@@ -114,7 +115,7 @@
             
             //fin datos
         if($result && $guardar==1){
-            header("location:/findbreak/publicar/success");
+            header("location:/findbreak/break/".$hashtag."/success");
         }else{
              header("location:/findbreak/publicar/saldo");
         }
@@ -147,7 +148,7 @@
             $urltwitter = trim($_REQUEST['url-twitter']);//
             $urlfacebook = trim($_REQUEST['url-face']);//
             //nuevo
-            $video = trim($_REQUEST['url-youtube']);//
+            $video= trim($_REQUEST['url-youtube']);//
             $hashtag = trim($_REQUEST['hash-event']);
             $establecimiento = array('id'=>'-1',
                                      'nombre'=>trim($_REQUEST['establecimiento-event']),
@@ -183,7 +184,8 @@
             
             //fin datos
         if($guardar==1){
-            header("location:/findbreak/publicar/success-upd");
+//            header("location:/findbreak/publicar/success-upd");
+            header("location:/findbreak/break/".$hashtag."/success");
         }else{
              header("location:/findbreak/publicar/saldo");
         }
