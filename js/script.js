@@ -374,6 +374,24 @@ $(document).ready(function(){
                 }
             })   
         })
+        $('body').delegate('.not3','click',function(){
+            var id = $(this).attr('id');
+            if($(this).hasClass('norevi')){
+                $(this).removeClass('norevi');
+                descontarNotificacion();
+            }
+            $.ajax({           
+                type:"POST",
+                dataType:"html",
+                url: "/findbreak/function/zoom.php",
+                data: "noti-compra=1&id="+id,
+                success: function (data)
+                { 
+                    
+                    popup("Te han comprado el evento en"+data+", se te ha cargado: "+(parseInt(data))*0.8+" Finbreak desconto el 20% equibalente a "+(parseInt(data))*0.2 );
+                }
+            })   
+        })
         var overcoment = false;
         $('.coments').hover(function(){
             

@@ -1,15 +1,24 @@
 <?php
-    if(isset($_REQUEST['a'])){
+    if(isset($_REQUEST['noti-compra'])){
          session_start();
          require_once '../DAL/connect.php';  
          require_once '../DAL/usuario.php';
-         $solicitante = $_SESSION['userid'];
-         $idSolicitado = $_REQUEST['idSolicitado'];
-         $usuario = new usuario();
-         $resp = -1;
-         $resp = $usuario->dejarDeSeguir($solicitante, $idSolicitado);
+         require_once '../DAL/usuarioRelacional.php';
+         
+         $idNoti = $_REQUEST['id'];
+         $usuario = new comentario();
+         $not3 =$usuario->findNotificacionForId($idNoti);
+         $quiencompro = $not3['quien'];
+         $sesion = $not3['aquien'];
+         $evento = $not3['evento']['_id'];
+         $ur = new usuarioRelacional();
+         $valorEventoComprado = $ur->VerPrecioEventoMasCaroPorUsuario_evento($quiencompro, $evento);
+         
+         
+         
         
-         echo $resp;
+        
+         echo $valorEventoComprado;
         // print_r($usuario->comprobarSiLoSigo($solicitante, $idSolicitado));
     }
     if(isset($_REQUEST['popup-user'])){
