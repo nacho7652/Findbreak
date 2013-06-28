@@ -43,46 +43,45 @@
 <div class="more-fotos">
     
                 
-                <div style="background: blueviolet">
-                    PRECIO:
+                <div id="precioEvento" style="background: blueviolet">
+                   
                 <?php 
-                 echo $pagar->VerPrecioEvento($pagar->VerUltimoProductocidoPorVigencia($eventfound['_id']), $eventfound['_id']);
+                 $precioEvento =  $pagar->VerPrecioEvento($pagar->VerUltimoProductocidoPorVigencia($eventfound['_id']), $eventfound['_id']);
                 ?>
                 </div> <?php
                 if(!empty($_SESSION['userid']))
                 {
+                $mio = false;
                 if($pagar->VerVigenciaYProducidoPor($_SESSION['userid'], $eventfound['_id']) == 1 )
                 {
+                    $mio = true;
+                    $mensajePremio = '';
                     ?> 
-                        <div style="color: blanchedalmond">
-                        Esté evento fue publicado por ti.
-                        Deseas MODIFICAR alguna informacion? 
-                        </div>
-                            <input type="button" id="boton-editar" value="Editar">
+                            <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar información</a>
                         <?php
                         
                         //PISOS 
                         if( $visitasEvento < 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
                         {
-                                ?>    
-                                    <div style="background: floralwhite ; "> Estas en el piso 1, te faltan <?php echo 12000-$visitasEvento ?> visitas para los 990 pesos :) </div>
-                               <?php
+                             $mensajePremio =  "Estas en el piso 1, te faltan ".(12000-$visitasEvento)." visitas para los 990 pesos :)";
                         }
-                        if( $visitasEvento >= 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
+                        if( $visitasEvento >= 12000) // && PISO igual 1 [consulta a bd]
                         {
+                            if($pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ){
                                 $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
                                 $pagar->PagoVisitas(990, $_SESSION['userid']); //Esto depende del piso, en este caso piso 1
-                                ?>    
-                                    <div style="background: floralwhite ; width:66px ;"> Estas en el piso 2, te faltan <?php echo 24000-$visitasEvento ?> visitas para los 1390 pesos :) </div>
-                               <?php
+                            }
+                                $mensajePremio = "Estas en el piso 2, te faltan ".(24000-$visitasEvento)." visitas para los 1390 pesos :)";
+                               
                         }
-                        if( $visitasEvento >= 24000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 2  ) // && PISO igual 1 [consulta a bd]
+                        if( $visitasEvento >= 24000 ) // && PISO igual 1 [consulta a bd]
                         {
+                              if($pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 2 ){
                                 $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
                                 $pagar->PagoVisitas(1390, $_SESSION['userid']); 
-                                ?>    
-                                    <div style="background: floralwhite ; width:66px ;"> Estas en el piso 3, te faltan <?php echo 48000-$visitasEvento ?> visitas para los 2990 pesos :) </div>
-                               <?php
+                              }
+                                $mensajePremio = "Estas en el piso 3, te faltan ".(48000-$visitasEvento)." visitas para los 2990 pesos :)";
+                                
                         }
                         //FALTAN AGREGAR MAS PISOS
 //                        
@@ -100,7 +99,7 @@
                     
                     ?> 
                         
-                                    <div id="comprar-evento"  data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $pagar->VerUltimoProductocidoPorVigencia($eventfound['_id'])?>' style="background: floralwhite ; width:66px ;">  Comprar evento </div>  
+                                    <div id="comprar-evento" class="botonred" data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $pagar->VerUltimoProductocidoPorVigencia($eventfound['_id'])?>'>  Comprar evento </div>  
                         <?php
                 }
                 }
@@ -118,13 +117,14 @@
                 <?php
                      }
                    }
+                   $urlPrincipal = '/findbreak/images/productoras/'.$folder.'/'.$fotos[0];
                ?>
 </div>
 
 <div class="parte-left-parent">
             <div class="part-left divtrans">
                     <div class="part-left-right">
-                        <div class="foto-event" style="background-size: cover; background-image: url(<?php echo trim($url) ?>)"></div>
+                        <div class="foto-event" style="background-size: cover; background-image: url(<?php echo trim($urlPrincipal) ?>)"></div>
 <!--                        <div class="info-num">
                             <div class="item-info-num">
                                 <div class="topinfo">Visitas</div>
@@ -152,7 +152,14 @@
                                             $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
                                         }
                                     ?>
-
+                              <?php 
+                               if(isset($_SESSION['userid']))
+                               if($mio){?>
+                                <div id="comprarevent-prof" class="info-event-item"><?php echo $mensajePremio?></div>
+                                 
+                                <?php } ?>
+                                
+                                <div id="comprarevent-prof" class="info-event-item"><?php echo "Compra este evento a: <b>$".number_format($precioEvento, 0, ",", ".")."</b>"?></div>
                                 <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
                                 <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
                                 <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
@@ -191,6 +198,19 @@
              </div>
     
     <div class="cercanos">
+        <div id="videoEvento">
+            <?php 
+            $videoCompleto = $eventfound['redes'][2];//
+            $youtube = '';
+            if($videoCompleto != ''){
+                $videoPartes = explode('=', $videoCompleto);
+                $video = $videoPartes[1];
+
+                $youtube = '<iframe width="591" height="326" src="//www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
+            }
+            ?>
+            <?= $youtube?>
+        </div>
             <!--<div class="tit tit1">Establecimientos cercanos al evento</div>-->
            <div id='map_establecimientos' style='width:100%; height:175px;'></div>
             <div id="list-establec">
@@ -320,8 +340,9 @@
                             <!--<div class="eventsfavo">-->
                                 <?php 
 //                                if(isset($_SESSION['userid'])){
-                                $similares = $event->similares('$idNo', $eventfound['tags'],5);
+                                $similares = $event->similares($eventfound['_id'], $eventfound['tags'],5);
                                 foreach($similares as $dcto){
+                                    $fotoEvento = $event->verFoto($dcto['_id']);
                                     $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
                                         $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                         $textoComentario = '';
@@ -336,7 +357,7 @@
                                    // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                 ?>
                                 <div class="item-event">   
-                                     <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
+                                     <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
                                         <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                         <div class="inner-eventpeq">  
@@ -364,6 +385,7 @@
 //                                if(isset($_SESSION['userid'])){
                                 $pop = $event->findpopular(4);
                                 foreach($pop as $dcto){
+                                    $fotoEvento = $event->verFoto($dcto['_id']);
                                     $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
                                         $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                         $textoComentario = '';
@@ -378,7 +400,7 @@
                                    // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                 ?>
                                 <div class="item-event">   
-                                     <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
+                                     <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
                                         <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                         <div class="inner-eventpeq">  

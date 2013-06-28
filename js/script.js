@@ -466,7 +466,7 @@ $(document).ready(function(){
          ultimoComentario = parseInt(ultimoComentario) +2;
          totalComent++;
          coment = hashevent+' '+coment;
-        alert(eventid);
+        
          $.ajax({           
              type:"POST",
              dataType:"html",

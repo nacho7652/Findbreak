@@ -445,7 +445,7 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>-1    
+            "foto"=>'/findbreak/images/user-default.png'   
         );
          
          $emailRepetido = $this->findforemail($mail);
