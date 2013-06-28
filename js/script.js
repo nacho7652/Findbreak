@@ -362,6 +362,7 @@ $(document).ready(function(){
                 $(this).removeClass('norevi');
                 descontarNotificacion();
             }
+            alert('not 1')
             $.ajax({           
                 type:"POST",
                 dataType:"html",
@@ -375,19 +376,21 @@ $(document).ready(function(){
             })   
         })
         $('body').delegate('.not3','click',function(){
+            
             var id = $(this).attr('id');
             if($(this).hasClass('norevi')){
                 $(this).removeClass('norevi');
                 descontarNotificacion();
             }
+            alert(id)
             $.ajax({           
                 type:"POST",
                 dataType:"html",
-                url: "/findbreak/function/zoom.php",
+                url: "/findbreak/json/zoom.php",
                 data: "noti-compra=1&id="+id,
                 success: function (data)
                 { 
-                    
+                    alert(data)
                     popup("Te han comprado el evento en"+data+", se te ha cargado: "+(parseInt(data))*0.8+" Finbreak desconto el 20% equibalente a "+(parseInt(data))*0.2 );
                 }
             })   
@@ -1243,7 +1246,7 @@ $(document).ready(function(){
       
       //Solicitud Amigos
       var idSolicitado;
-     $('body').delegate('.item-search-friend','click',function(){
+     $('body').delegate('.not2','click',function(){
          idSolicitado = $(this).find('.id-item-search').html();
          if($(this).hasClass('norevi')){
              $(this).removeClass('norevi');

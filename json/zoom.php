@@ -4,7 +4,7 @@
          require_once '../DAL/connect.php';  
          require_once '../DAL/usuario.php';
          require_once '../DAL/usuarioRelacional.php';
-         
+         require_once '../DAL/comentario.php';
          $idNoti = $_REQUEST['id'];
          $usuario = new comentario();
          $not3 =$usuario->findNotificacionForId($idNoti);
