@@ -552,8 +552,8 @@ html {
     height: 40px;
     float: left;
     background-size: cover;
-    margin-left: 6px;
-    margin-right: 8px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 #show-solicitud .item-friends-username {
     float: left;
@@ -1719,8 +1719,7 @@ padding: 0px 25px;
     width: 49px;
     height: 56px;
     float: left;
-    margin: 0px 0px 0px 1px;
-    background-image: url(http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg) !important;  
+    margin: 0px 0px 0px 1px;  
     border: 1px solid rgba(24, 24, 24, 0.16);  
 }
 

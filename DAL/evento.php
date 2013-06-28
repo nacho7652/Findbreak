@@ -29,6 +29,7 @@ class evento {
          $nombres = '';
          $fotos = '';
          $foto = '';
+         $cuantos = count($idEventos);
          for($i=0;$i<count($idEventos);$i++){
              $id = $idEventos[$i]['id'];
              $nombre = $this->verNombre($id);
@@ -38,12 +39,12 @@ class evento {
          {           
              $id = $idEventos[0]['id'];
              $foto = $this->verFoto($id);
-             $fotos = '<div style="background:url('.$foto['fotos'][0].') no-repeat" class="itemfoto-eve"></div>';
+             $fotos = '<div style="background:url('.$foto.') no-repeat" class="itemfoto-eve"></div>';
          }else{//tomo dos eventos 
               for($i=0;$i<count($idEventos);$i++){
                 $id = $idEventos[$i]['id'];
                 $foto = $this->verFoto($id);
-                $fotos.= '<div style="background:url('.$foto['fotos'][0].') no-repeat" class="itemfoto-eve-doble"></div>';
+                $fotos.= '<div style="background:url('.$foto.') no-repeat" class="itemfoto-eve-doble"></div>';
              }
          }
          $re = array('nombre'=>$nombres,'fotos'=>$fotos);
@@ -62,7 +63,10 @@ class evento {
      }
       public function verFoto($id){
          $theObjId = new MongoId($id); 
-         return $this->db->evento->findOne(array("_id" => $theObjId), array("fotos" => 1));
+         $carpeta = $this->db->evento->findOne(array("_id" => $theObjId), array("producido_por" => 1));
+         $nombreFoto = $this->db->evento->findOne(array("_id" => $theObjId), array("fotos" => 1));
+         $url = 'images/productoras/'.(string)$carpeta['producido_por']['_id'].'/'.$nombreFoto['fotos'][0];
+         return $url;
      }
      public function verNombre($id){
          $theObjId = new MongoId($id); 

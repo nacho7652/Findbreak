@@ -27,7 +27,7 @@
 //                           print_r($resp);
                           foreach($resp as $idEventosRelacional){
                                 $dcto = $event->findforid($idEventosRelacional);  
-                                $url = 'images/productoras/'.$folder.'/'.$dcto['fotos'][0];  
+                                $url = 'images/productoras/'.$dcto['producido_por']['_id'].'/'.$dcto['fotos'][0];  
                                 $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio']);
                                 $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                 $textoComentario = '';

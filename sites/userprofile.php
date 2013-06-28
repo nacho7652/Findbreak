@@ -38,7 +38,7 @@
                     <div class="part-left-cent">
                        
                                 <?php 
-                                        $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
+                                      //  $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
                                         $cantidadComentariosUser = $usuario->verCantidadComentarios($userid);
 //                                        $textoComentario = '';
 //                                        if($cantidadComentarios == 0){
@@ -62,6 +62,7 @@
                                                         if(count($usuariofound['tags_buscados']) > 0){
                                                         $pop = $usuario->verEventosFavoritos($usuariofound['tags_buscados']);
                                                         foreach($pop as $dcto){
+                                                            $fotoEvento = $event->verFoto($dcto['_id']);
                                                             $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
                                                                 $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                                                 $textoComentario = '';
@@ -76,7 +77,7 @@
                                                            // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                                         ?>
                                                         <div class="item-event">   
-                                                             <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
+                                                             <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
                                                              <div class="info-event">
                                                                 <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                                                 <div class="inner-eventpeq">  
@@ -114,6 +115,7 @@
                                                         if(count($usuariofound['tags_buscados']) > 0){
                                                         $pop = $usuario->verEventosFavoritos($usuariofound['tags_buscados']);
                                                         foreach($pop as $dcto){
+                                                            $fotoEvento = $event->verFoto($dcto['_id']);
                                                             $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
                                                                 $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                                                 $textoComentario = '';
@@ -128,7 +130,7 @@
                                                            // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                                         ?>
                                                         <div class="item-event">   
-                                                             <div style="background-image:url(<?php echo $url?>); background-size: cover" class="foto-event-peq"></div>
+                                                             <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
                                                              <div class="info-event">
                                                                 <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                                                 <div class="inner-eventpeq">  

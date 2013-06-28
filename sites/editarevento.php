@@ -6,7 +6,7 @@
         $id = $_REQUEST['id'];
         $eventoFound = new evento();
         $evento = $eventoFound->findforid($id);
-        $folder = (string)$_SESSION["userid"];
+        $folder = $evento["producido_por"]['_id'];
 ?>
 <form id="editarevento-form" method="POST" action="/findbreak/uploadevento" name="formularioevento" enctype="multipart/form-data">
 <input type="hidden" name="editarevento"/>
