@@ -377,6 +377,37 @@
                                                 </div>
                                                 <div id="cargar-cuenta" class="itemgroup-option last">
                                                     Cargar cuenta
+                                                    <form target="MercadoPago" action="https://www.mercadopago.com/mlc/buybutton" method="GET">
+                                                    Monto debe ser mayor a 950: <input type="text" name="price"> 
+                                                    <input type="image" src="http://www.deporbox.com/imagenes/emoti-mano.png" border="0" alt="">
+                                                    <input type="hidden" name="acc_id" value="6030853">
+                                                    <input type="hidden" name="url_cancel" value="http://localhost/findbreak/cerca?re=21ca">
+                                                    <input type="hidden" name="item_id" value="222">
+                                                    <input type="hidden" name="name" value="CARGAR CUENTA FINDBREAK">
+                                                    <input type="hidden" name="currency" value="CHI"
+                                                    <input type="hidden" name="url_process" value="http://localhost/findbreak/cerca">
+                                                    <input type="hidden" name="url_succesfull" value="http://localhost/findbreak/cerca?re=998c ">
+                                                    <input type="hidden" name="url_post" value="1">
+                                                    <input type="hidden" name="shipping_cost" value="">
+                                                    <input type="hidden" name="enc" value="NJKVVWpx1581SmPvti51BuYh8dU%3D">
+                                                    <input type="hidden" name="extraPar" value="">
+                                                    
+                                            <?php 
+                                            if(!empty($_REQUEST['re']))
+                                            {
+                                            $re = $_REQUEST['re'];
+                                            if($re == "998c")
+                                            {
+                                                echo "YESSSS";
+                                            }
+                                            else
+                                            {
+                                                if($re == "21ca")
+                                                echo "NOOOOU";
+                                            }
+                                            }
+                                            ?>
+                                                    </form>
                                                 </div>
                                                 <a href="/findbreak/publicaciones" id="mis-publicaciones" class="itemgroup-option last">
                                                     Mis publicaciones
