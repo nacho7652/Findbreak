@@ -68,6 +68,14 @@ class evento {
          $url = 'images/productoras/'.(string)$carpeta['producido_por']['_id'].'/'.$nombreFoto['fotos'][0];
          return $url;
      }
+     public function verProductora($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->evento->findOne(array("_id" => $theObjId), array("producido_por" => 1));
+     }
+     public function verFotos($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->evento->findOne(array("_id" => $theObjId), array("fotos" => 1));
+     }
      public function verNombre($id){
          $theObjId = new MongoId($id); 
          return $this->db->evento->findOne(array("_id" => $theObjId), array("nombre" => 1));

@@ -33,14 +33,14 @@
                                                       $url = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i];  
                                                 ?>
                                                    <div data-urlsin="<?= 'images/productoras/'.$folder ?>" data-url="<?= $url ?>" data-nombre="<?= $evento['fotos'][$i] ?>" style="background-image: url(<?= $url ?>); background-size:cover; background-position: 0px 0px;" class="coverfile-galerias" data-cant="<?= $i?>">
-                                                        <input type="file" id="images-evento-upd" name="images-evento-upd" class="fotonoticia-galerias" />
+                                                        <input type="file" id="images-evento-upd" data-num="<?= $i ?>" name="images-evento-upd" class="fotonoticia-galerias" />
                                                     </div>
                                             <?php }?>
         
     
                                             <?php for($j=$i; $j<5; $j++){ ?>
                                                    <div class="coverfile-galerias" data-cant="<?= $i?>">
-                                                        <input type="file"  id="images-evento-nueva" name="images-evento-nueva" class="fotonoticia-galerias"/>
+                                                        <input type="file"  id="images-evento-upd" data-num="<?= $i ?>" name="images-evento-upd" class="fotonoticia-galerias"/>
                                                     </div>
                                             <?php }?>
                                        </div>

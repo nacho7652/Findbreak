@@ -123,8 +123,75 @@
     if(isset($_REQUEST['editarevento'])){
             
             $evento = new evento();  
-            //datos
             $idEvento = $_REQUEST['idevent'];
+            $fotosActuales = $evento->verFotos($idEvento);
+            $producidoPor = $evento->verProductora($idEvento);
+            $urlFotos = 'images/productoras/'.$producidoPor['producido_por']['_id'];
+            //fotos
+            $re1 = true;$re2 = true;$re3 = true;$re4 = true;$re5 = true;
+            if($_FILES['images-evento-nueva0']['name'] != '' ){
+                 if(isset($fotosActuales['fotos'][0])){//reemplazar
+                    $foto0 = $fotosActuales['fotos'][0];
+                    $urlBorrar = $urlFotos.'/'.$foto0;
+                    $nombreBorrar = $foto0;
+                    $exito1 = subir($_FILES['images-evento-nueva0']['name'], $_FILES['images-evento-nueva0']['tmp_name']);
+                    $re1 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito1['fotoGr']);
+                 }else{
+                     $exito1 = subir($_FILES['images-evento-nueva0']['name'], $_FILES['images-evento-nueva0']['tmp_name']);
+                     $re1 = $evento->nuevaFoto($idEvento, $exito1['fotoGr']);
+                 }
+            }
+            if($_FILES['images-evento-nueva1']['name'] != ''){
+                if(isset($fotosActuales['fotos'][1])){//reemplazar
+                    $foto1 = $fotosActuales['fotos'][1];
+                    $urlBorrar = $urlFotos.'/'.$foto1;
+                    $nombreBorrar = $foto1;
+                    $exito2 = subir($_FILES['images-evento-nueva1']['name'], $_FILES['images-evento-nueva1']['tmp_name']);
+                    $re2 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito2['fotoGr']);
+                }else{//nueva
+                    $exito2 = subir($_FILES['images-evento-nueva1']['name'], $_FILES['images-evento-nueva1']['tmp_name']);
+                    $re2 = $evento->nuevaFoto($idEvento, $exito2['fotoGr']);
+                }
+            }
+            if($_FILES['images-evento-nueva2']['name'] != ''){
+                if(isset($fotosActuales['fotos'][2])){//reemplazar
+                    $foto2 = $fotosActuales['fotos'][2];
+                    $urlBorrar = $urlFotos.'/'.$foto2;
+                    $nombreBorrar = $foto2;
+                    $exito3 = subir($_FILES['images-evento-nueva2']['name'], $_FILES['images-evento-nueva2']['tmp_name']);
+                    $re3 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito3['fotoGr']);
+                }else{//nueva
+                    $exito3 = subir($_FILES['images-evento-nueva2']['name'], $_FILES['images-evento-nueva2']['tmp_name']);
+                    $re3 = $evento->nuevaFoto($idEvento, $exito3['fotoGr']);
+                }
+            }
+            if($_FILES['images-evento-nueva3']['name'] != ''){
+                if(isset($fotosActuales['fotos'][3])){//reemplazar
+                    $foto3 = $fotosActuales['fotos'][3];
+                    $urlBorrar = $urlFotos.'/'.$foto3;
+                    $nombreBorrar = $foto3;
+                    $exito4 = subir($_FILES['images-evento-nueva3']['name'], $_FILES['images-evento-nueva3']['tmp_name']);
+                    $re4 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito4['fotoGr']);
+                }else{//nueva
+                    $exito4 = subir($_FILES['images-evento-nueva3']['name'], $_FILES['images-evento-nueva3']['tmp_name']);
+                    $re4 = $evento->nuevaFoto($idEvento, $exito4['fotoGr']);
+                }
+            }
+            if($_FILES['images-evento-nueva4']['name'] != ''){
+                if(isset($fotosActuales['fotos'][4])){//reemplazar
+                    $foto4 = $fotosActuales['fotos'][4];
+                    $urlBorrar = $urlFotos.'/'.$foto4;
+                    $nombreBorrar = $foto4;
+                    $exito5 = subir($_FILES['images-evento-nueva4']['name'], $_FILES['images-evento-nueva4']['tmp_name']);
+                    $re5 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito5['fotoGr']);
+                }else{//nueva
+                    $exito5 = subir($_FILES['images-evento-nueva4']['name'], $_FILES['images-evento-nueva4']['tmp_name']);
+                    $re5 = $evento->nuevaFoto($idEvento, $exito5['fotoGr']);
+                }
+            }
+            //fin fotos
+            //datos
+            
             $idproductora = $_SESSION['userid'];
             $nombreproductora = $_SESSION['username'];;
             $nom = trim($_REQUEST['nom-event']);//

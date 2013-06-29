@@ -85,22 +85,22 @@
        //FIN DE MENSAJES DE EVENTO
        
        //MENSAJES TRANSACCIÓN
-       //if(isset($_SESSION['valorDeCarga']) != -1){
+       if(isset($_SESSION['valorDeCarga']) && $_SESSION['valorDeCarga']  != -1){
             if(isset($_REQUEST['tran-msj']) && $_REQUEST['tran-msj'] == 'tran-cancel'){
                  $stiloMensaje = 'style="display:block"';
                  $valorDeCarga = $_SESSION['valorDeCarga'];
                  
                  $mensajeEvento = 'Haz cargado en tu cuenta $'.$valorDeCarga;
                  $usuariorelacional->PagoCompraEvento($valorDeCarga, $_SESSION['userid']);
-            //     $_SESSION['valorDeCarga'] = null;
+                 $_SESSION['valorDeCarga'] = -1;
             }
             if(isset($_REQUEST['tran-msj']) && $_REQUEST['tran-msj'] == 'tran-success'){
                  $stiloMensaje = 'style="display:block"';
                  $valorDeCarga = $_SESSION['valorDeCarga'];
                  $mensajeEvento = 'Haz cargado en tu cuaaaaenta $'.$valorDeCarga;
-            //     $_SESSION['valorDeCarga'] = null;
+                 $_SESSION['valorDeCarga'] = -1;
             }
-      // }
+       }
        //FIN DE MENSAJES TRANSACCIÓN
         
         

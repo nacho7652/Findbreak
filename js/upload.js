@@ -361,7 +361,10 @@ $(document).ready(function(){
       
   //Aplicamos la subida de imágenes al evento change del input file
     $('body').delegate('#images-evento-upd','change',function(evt){
-       
+        num = $(this).attr('data-num');
+        
+        $(this).attr('name','images-evento-nueva'+num);
+         
 //        alert('a'); 
 //        return false;
             var i = 0, len = this.files.length, img, reader, file;
@@ -383,139 +386,7 @@ $(document).ready(function(){
                             //Cuando termina el evento onloadend es llamado
                             reader.readAsDataURL(file);
                         }
-                        //Si existe una instancia de FormData
-                        if(formdata){
-                            //Usamos el método append, cuyos parámetros son:
-                                //name : El nombre del campo
-                                //value: El valor del campo (puede ser de tipo Blob, File e incluso string)
-                            formdata.append('images-evento-upd', file);
-                              
-                                var url = '../'+$(this).parent().attr('data-url');
-                                var idEvento = $('#idevent').val();
-                                var nombre = $(this).parent().attr('data-nombre');
-                                var urlSinImg = $(this).parent().attr('data-urlsin');
-//                                alert(url)
-//                                alert(idEvento)
-//                                alert(nombre)
-//                                return false;
-                                if(formdata){
-                                    $.ajax({
-                                       url : '/findbreak/function/uploadfoto.php',
-                                       type : 'POST',
-                                       data : formdata,
-                                       processData : false, 
-                                       beforeSend: function(){
-                                                     loader('Subiendo foto nueva...');  
-                                                   },
-                                       contentType : false, 
-                                       dataType: "JSON",
-                                       success : function(res){
-//                                                alert(res.exito); return false;
-                                                if(res.exito){
-                                                  
-                                                    var fotoGr = res.nombrefotoGr;
-                                                    $.ajax({
-                                                        url : '/findbreak/function/event-response.php',
-                                                        type : 'POST',
-                                                        data : 'modificarFotos=1&idEvento='+idEvento+"&urlBorrar="+url+"&nombreBorrar="+nombre+"&fotoGr="+fotoGr,
-                                                        success : function(res){
-                                                                 
-                                                            if(res == 1){
-                                                                 este.attr('data-urlsin',urlSinImg);
-                                                                 este.attr('data-url',urlSinImg+'/'+fotoGr);
-                                                                 este.attr('data-nombre',fotoGr);
-                                                                 msjSucess('Foto modificada con éxito');
-                                                            }else{
-                                                                 msjError('Error, error en guardar la foto cod: 2');
-                                                            }
-                                                        }                
-                                                    });
-                                                }else{
-                                                    msjError('Error, vuelva a cargar la foto cod: 1');
-                                                }
-                                       }                
-                                    });
-                                }
-                        }
-                       
                     }
-        });
-              //Aplicamos la subida de imágenes al evento change del input file
-    $('body').delegate('#images-evento-nueva','change',function(evt){
-            var i = 0, len = this.files.length, img, reader, file;
-            var este = $(this).parent();
-                 //for( ; i < len; i++){
-                    file = this.files[0];
-                    //Una pequeña validación para subir imágenes
-                    if(!!file.type.match(/image.*/)){
-                        //Si el navegador soporta el objeto FileReader
-                        if(window.FileReader){
-                            reader = new FileReader();
-                            //Llamamos a este evento cuando la lectura del archivo es completa
-                            //Después agregamos la imagen en una lista
-                            reader.onloadend = function(e){
-
-                                mostrarImagenSubida(e.target.result, este);
-                            };
-                            //Comienza a leer el archivo
-                            //Cuando termina el evento onloadend es llamado
-                            reader.readAsDataURL(file);
-                        }
-                        //Si existe una instancia de FormData
-                        if(formdata){
-                            //Usamos el método append, cuyos parámetros son:
-                                //name : El nombre del campo
-                                //value: El valor del campo (puede ser de tipo Blob, File e incluso string)
-                            formdata.append('images-evento-nueva', file);
-                                
-                                if(formdata){
-                                     var idEvento = $('#idevent').val();
-                                    $.ajax({
-                                       url : '/findbreak/function/uploadfotonueva.php',
-                                       type : 'POST',
-                                       data : formdata,
-                                       processData : false, 
-                                       beforeSend: function(){
-                                                     loader('Subiendo foto nueva...');  
-                                                   },
-                                       contentType : false, 
-                                       dataType: "JSON",
-                                       success : function(res){
-//                                                   alert(res.exito); return false;
-                                                if(res.exito){
-                                                  
-                                                    var fotoGr = res.nombrefotoGr;
-                                                    $.ajax({
-                                                        url : '/findbreak/function/event-response.php',
-                                                        type : 'POST',
-                                                        dataType:"json",
-                                                        data : 'nuevaFoto=1&idEvento='+idEvento+"&fotoGr="+fotoGr,
-                                                        success : function(res){
-                                                                 
-                                                            if(res.re == 1){
-                                                                 este.attr('data-urlsin',res.urlSinImg);
-                                                                 este.attr('data-url',res.urlSinImg+'/'+fotoGr);
-                                                                 este.attr('data-nombre',fotoGr);
-                                                                 msjSucess('Foto agregada con éxito');
-                                                            }else{
-                                                                 msjError('Error, error en guardar la foto cod: 2');
-                                                            }
-                                                        }                
-                                                    });
-                                                }else{
-                                                    msjError('Error, vuelva a cargar la foto cod: 1');
-                                                }
-                                       }                
-                                    });
-                                }
-                        }
-                       
-                    }
-          // }
-            
-            //Por último hacemos uso del método proporcionado por jQuery para hacer la petición ajax
-            //Como datos a enviar, el objeto FormData que contiene la información de las imágenes
-            
         });
    function trim(cadena){
         // USO: Devuelve un string como el parámetro cadena pero quitando los espacios en blanco de los bordes.
