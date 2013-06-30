@@ -10,10 +10,32 @@
       $usuariofound = $usuario->findforusername($usernameUrl);
       $userid = $usuariofound['_id'];
       $comentarioUser = new comentario();
+      $publicaciones = $usuario->verCantidadPublicaciones($usuariofound['_id']);
       $event = new evento();
       $eventfound = $event->findforid('516aed144de8b4a003000003');
       $folder = (string)$eventfound['producido_por']['_id'];
       $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
+      
+        $buttonFriend = '<div id="seguiramigo" class="botoncancel">Seguir</div>';
+         
+         //si está logeado buscar las posibles solicitudes
+         $idSolicitado = $usuariofound['_id'];
+         if(!empty($_SESSION['userid'])) //si está logeado
+         {           
+                $solicitante = $_SESSION['userid'];
+                if($solicitante == new MongoId($idSolicitado))
+                {//si me busco a mi mismo
+                    $buttonFriend = '';//no quiero que aparesca el boton de amigos
+                }else{//si busco a otra persona
+                        $usuarioSig = $usuario->comprobarSiLoSigo($solicitante, $idSolicitado);
+                        if(isset($usuarioSig['_id'])){ //lo sigo
+                             $buttonFriend = '<div id="desseguiramigo" class="botongreen">Siguiendo</div>'; 
+                        }
+                      // $buttonFriend = '<div id="send-req" class="button-friend">'.$valueButton.'</div>';
+                }
+         }else{//no esta logeado
+                        $buttonFriend = '<div id="logeate-friend" class="botongreen">Inicia sesión</div>';
+         }
 ?>
 <div class="more-fotos">
                 
@@ -162,6 +184,7 @@
 <div class="parte-der">
     <div class="part-right divtrans2">
           <div class="foto-user" style="background-size: cover; background-image: url(<?php echo $usuariofound['foto'] ?>)"></div>
+          
           <div class="bloque-info info-event-item">
               <div class="title-user tit-gray"><?php echo ucwords($usuariofound['nombre']) ?></div>
               <div class="username">@<?= $usuariofound['username']?></div>
@@ -172,7 +195,7 @@
                     </div>
                     <div class="item-info-num">
                         <div class="topinfo">Seguidores</div>
-                        <div class="topinfo">PUBLICACIONES DEL USUARIO?</div>
+                        
                         <div class="num-topinfo">
                             <?php if(isset($usuariofound['seguidores']))
                                         echo count($usuariofound['seguidores']);
@@ -182,7 +205,7 @@
                         
                         </div>
                     </div>
-                    <div class="item-info-num item-info-num2">
+                    <div class="item-info-num">
                         <div class="topinfo">Siguiendo</div>
                         <div class="num-topinfo">
                             <?php if(isset($usuariofound['siguiendo']))
@@ -193,11 +216,18 @@
                         
                         </div>
                     </div>
+                  <div class="item-info-num item-info-num2">
+                      <div class="topinfo">Publicaciones</div>
+                      <div class="num-topinfo">
+                          <?= $publicaciones ?>                       
+                      </div>
+                  </div>
               </div>
-              <div class="info-num moreinfouser"></div>
+              
+              <!--<div class="info-num moreinfouser"></div>-->
           </div>
           <!--<div class="tit tit1">Comenta el evento</div>-->
-       
+          <?= $buttonFriend?>
           <div class="part-right divtrans3">
                  <?php if(isset($_SESSION['userid'])){ 
                          if($_SESSION['userid'] == $userid)

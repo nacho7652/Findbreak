@@ -250,7 +250,7 @@ $(document).ready(function(){
     function preguntar(pregunta, cuerpo, pie){
             $("#covermsj").fadeIn(0);
             $(".innermsj").fadeIn(0);
-            $('#calmsj').html(pregunta+cuerpo+pie);
+            $('#calmsj').html('<div class="content-preguntar">'+pregunta+cuerpo+pie+'</div>');
     }    
     $('body').delegate('#cancelar','click',function(){
            covermsjclose();
@@ -556,7 +556,49 @@ $(document).ready(function(){
                 
               preguntar(pregunta, cuerpo, pie)
           });
-        //delcoment
+          //editarEvento
+          //
+          $('body').delegate('.eliminarEvento','click',function(){
+               padre = $(this).parent().parent();
+               foto = padre.find('.foto-event-pubicar').attr('style')
+               nombre = padre.find('.nombre-event-pubicar').html();
+              var dataid = $(this).attr('data-id');
+              var pregunta = '<div class="bloq1msj">¿Realmente deseas borrar este evento?</div>';
+              var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
+                  cuerpo+=   '<div style="'+foto+'" class="bloq1"></div>';
+                  cuerpo+=   '<div class="bloq2msjinner">';
+                  cuerpo+=       '<div class="nomusercom tit-gray">'+nombre+'</div>';
+                  cuerpo+=       '';
+                  cuerpo+=   '</div>';
+                  cuerpo+= '<div class="bloq3msjinner">';
+                  cuerpo+=    '';
+                  cuerpo+= '</div></div></div>';
+             
+             var pie = '<div class="bloq3msj"><div data-id="'+dataid+'" id="aceptarDelEvento" class="botonblue">Aceptar</div>';
+                 pie+= '<div id="cancelar" class="botoncancel">Cancelar</div></div>';
+                 
+                
+              preguntar(pregunta, cuerpo, pie)
+              return false;
+          });
+        //aceptarDelEvento
+         $('#covermsj').delegate('#aceptarDelEvento','click',function(){
+           
+           var dataid = $(this).attr('data-id');
+         
+            $.ajax({           
+               type:"POST",
+               dataType:"html",
+               url: "/findbreak/function/event-response.php",
+               data: "delEvento=1&dataid="+dataid,
+               success: function (data)
+               {
+               
+                 window.location.reload();
+                   
+               }
+           })
+        })
         $('#covermsj').delegate('#aceptarcoment','click',function(){
            
            var dataid = $(this).attr('data-id');

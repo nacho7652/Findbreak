@@ -30,6 +30,17 @@ class usuarioRelacional {
             return -5;
         }
     }
+    public function EliminarEvento($idMongo){
+        if($this->conect->conectarse()){
+            $query = "DELETE FROM evento WHERE _id = '$idMongo' ";
+            $re = mysql_query($query);
+            $query2 = "DELETE FROM evento_usuario WHERE id_evento = '$idMongo' ";
+            mysql_query($query2);
+            return $re;
+        }else{
+            return -5;
+        }
+    }
     public function GuardarEvento_____Usuario($idMongoEvento,$idMongoUsuario, $valor_compra,$piso,$pafindbreak){
         if($this->conect->conectarse()){
             $query = "INSERT INTO evento_usuario VALUES('','$idMongoEvento','$idMongoUsuario', 1, '$valor_compra', $piso ,$pafindbreak) ";

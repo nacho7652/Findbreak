@@ -49,7 +49,23 @@
             $re = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $fotoGr);
             echo $re;
         }  
-  //'nuevaFoto=1&idEvento='+idEvento+"&fotoGr="+fotoGr,
+   if(!empty($_REQUEST['eliminarFoto']))
+        {
+            $evento = new evento();
+            $idEvento = $_REQUEST['idEvento'];
+            $urlBorrar = $_REQUEST['urlBorrar'];
+            $nombreBorrar = $_REQUEST['nombreBorrar'];
+            $re = $evento->eliminarFoto($idEvento, $urlBorrar, $nombreBorrar);
+            echo $re;
+        }  
+   if(!empty($_REQUEST['delEvento']))
+        {
+            $evento = new evento();
+            $idEvento = $_REQUEST['dataid'];
+            $re = $evento->eliminar($idEvento);
+            echo $re;
+        }  
+ //delEvento
         if(!empty($_REQUEST['nuevaFoto']))
         {
             $evento = new evento();

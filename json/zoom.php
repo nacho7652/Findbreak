@@ -47,33 +47,71 @@
                         $buttonFriend = '<div id="logeate-friend" class="botongreen">Inicia sesión</div>';
          }
          $usuariofound = $usuario->findforid($idSolicitado);
+         $cantidadComentariosUser = $usuario->verCantidadComentarios($idSolicitado);
+         $seguidores = 0;
+         $siguiendo = 0;
+         if(isset($usuariofound['seguidores']))
+             $seguidores = count($usuariofound['seguidores']);
+         
+         if(isset($usuariofound['siguiendo']))
+             $siguiendo = count($usuariofound['siguiendo']);
+         
+         $publicaciones = $usuario->verCantidadPublicaciones($idSolicitado);
          $divProfileUser = '<div class="profileuser">';
          $divProfileUser.=   '<div class="left-user">
                                 <div class="pic-user"></div>
                                 '.$buttonFriend.'
                               </div>
                               <div class="info-user">';
-         $divProfileUser.=     '<a href="/findbreak/!'.$usuariofound['username'].'" class="name-user tit">'.ucwords($usuariofound['nombre']).'</a>
-                                
+         $divProfileUser.=     '
+                                <div class="bloque-info info-event-item">
+                                            <a href="/findbreak/!'.$usuariofound['username'].'" class="title-user tit-gray">'.ucwords($usuariofound['nombre']).'</a>
+                                            <div class="username">'.$usuariofound['username'].'</div>
+                                            <div class="info-num">
+                                                  <div class="item-info-num">
+                                                      <div class="topinfo">Comentarios</div>
+                                                      <div id="totalComent" class="num-topinfo">'.$cantidadComentariosUser.'</div>
+                                                  </div>
+                                                  <div class="item-info-num">
+                                                      <div class="topinfo">Seguidores</div>
+                                                      <div class="num-topinfo">'.
+                                                        $seguidores                          
+                                                      .'</div>
+                                                  </div>
+                                                  <div class="item-info-num">
+                                                      <div class="topinfo">Siguiendo</div>
+                                                      <div class="num-topinfo">'.
+                                                        $siguiendo                                  
+                                                      .'</div>
+                                                  </div>
+                                                  <div class="item-info-num item-info-num2">
+                                                      <div class="topinfo">Publicaciones</div>
+                                                      <div class="num-topinfo">'.
+                                                          $publicaciones                        
+                                                      .'</div>
+                                                  </div>
+                                            </div>
+                                            
+                                        </div>
                                </div>';
-         if(isset($usuariofound['seguidores']) && count($usuariofound['seguidores']) > 0){//si tiene 1 o muchos seguidores
-            $seguidores = $usuariofound['seguidores'];
-            $divProfileUser.=   '<div class="friends-user"> 
-                                    <div class="tittle-friends"> 
-                                            Seguidores de '.$usuariofound['nombre'].
-                                    '</div>';
-            foreach($seguidores as $item){
-                $divProfileUser.=   '<div data-id="'.$item['_id'].'" class="item-friends-user">
-                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-                                        <a href="/findbreak/!#'.$item['_id'].'" class="item-friends-username">'.ucwords($item['nombre']).'</a>
-                                    </div>';
-            }
-             $divProfileUser.=   '</div>';
-         }else{
-             $divProfileUser.=   '<div class="friends-user">
-                                        <div class="mjscoment"> '.ucwords($usuariofound['nombre']).' aún no posee seguidores</div>
-                                  </div>';
-         }
+//         if(isset($usuariofound['seguidores']) && count($usuariofound['seguidores']) > 0){//si tiene 1 o muchos seguidores
+//            $seguidores = $usuariofound['seguidores'];
+//            $divProfileUser.=   '<div class="friends-user"> 
+//                                    <div class="tittle-friends"> 
+//                                            Seguidores de '.$usuariofound['nombre'].
+//                                    '</div>';
+//            foreach($seguidores as $item){
+//                $divProfileUser.=   '<div data-id="'.$item['_id'].'" class="item-friends-user">
+//                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
+//                                        <a href="/findbreak/!#'.$item['_id'].'" class="item-friends-username">'.ucwords($item['nombre']).'</a>
+//                                    </div>';
+//            }
+//             $divProfileUser.=   '</div>';
+//         }else{
+//             $divProfileUser.=   '<div class="friends-user">
+//                                        <div class="mjscoment"> '.ucwords($usuariofound['nombre']).' aún no posee seguidores</div>
+//                                  </div>';
+//         }
          
          $divProfileUser.= '</div>';
         

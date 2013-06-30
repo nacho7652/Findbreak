@@ -92,6 +92,7 @@ function geolocalizar(){
         geocoder.geocode({'address': address}, geocodeResult);
 }
 function geolocalizarManual(address){
+   
          manualLocation = true;
          DeletePrintStore();
          var geocoder = new google.maps.Geocoder();
@@ -99,7 +100,6 @@ function geolocalizarManual(address){
 }
 
 function geolocalizarPorTags(){
-    
      desactivarLocation();
      DeletePrintStore();
      var geocoder = new google.maps.Geocoder();
@@ -123,9 +123,12 @@ function geolocalizarPorTags(){
                    $('.loading-events').hide();
                    $('.event-hidden').html(data.infodiv);
                    var numberOfCase = parseInt($('#number').text());
+                   
                     if(numberOfCase == 0){
-                        $('.tipoBusqueda').html('cerca de <b>'+$('#search-location').val()+'</b>');
-                        geolocalizarManual($('#search-location').val())
+                        
+                        $('.tipoBusqueda').html('relacionados con <b>'+$('#search-location').val()+'</b>');
+                        $('.inner-list-maps').hide();
+                        $('.no-resultados').show();
                         return false;
                     }else{
                         if($('#search-location').val() == ''){
@@ -218,8 +221,8 @@ function geolocalizarPorTags(){
         if (status == 'OK' && results.length > 0) {
             //si modificó la direccion manual
             if(manualLocation){
+                       
                         
-                        manualLocation = false;
                         var mapOptions = {
                             zoom: 12,
                             center: results[0].geometry.location,
@@ -255,18 +258,11 @@ function geolocalizarPorTags(){
             var lng = map.getCenter().lng();
             latitud = lat;
             longitud = lng;
-            
             if(guardarEvento){
                 
                 $('.lat-event').val(lat);
                 $('.lng-event').val(lng);
                 return false;
-            }
-            if(geolocation){
-                geolocation = false;
-                $('.tipoBusqueda').html('cerca de <b>mi ubicación actual</b>');
-                $('#search-location').val('');
-                
             }
             //return false;
 //        alert(lat); alert(lng); 
@@ -281,11 +277,23 @@ function geolocalizarPorTags(){
                    $('.loading-events').hide();
                    $('.event-hidden').html(data.infodiv);
                    var numberOfCase = parseInt($('#number').text());
+                   
                     if(numberOfCase == 0){
-                        $('.inner-list-maps').hide();
-                        $('.no-resultados').show();
-                        return false;
+                        
+                        geolocalizarPorTags();
+                        return false;                       
                     }else{
+                        if(geolocation){
+                            geolocation = false;
+                            $('.tipoBusqueda').html('cerca de <b>mi ubicación actual</b>');
+                            $('#search-location').val('');
+
+                        }else{
+                            if(manualLocation){
+                                $('.tipoBusqueda').html('cerca de <b>'+$('#search-location').val()+'</b>');
+                                manualLocation = false;
+                            }
+                        }
                         $('.inner-list-maps').show();
                         $('.no-resultados').hide();
                     }        
@@ -354,8 +362,7 @@ function geolocalizarPorTags(){
             });
           
           }else{ //buscar los eventos
-        	$('.inner-list-maps').hide();
-                $('.no-resultados').show();
+                geolocalizarPorTags();
                 return false;
                 
         }  
@@ -431,11 +438,12 @@ function geolocalizarPorTags(){
    //cuando el usuario escriba una dirección en el buscador
    $('#search-location').keypress(function(e){
        if(e.keyCode == 13){
-            geolocalizarPorTags($(this).val())
+           geolocalizarManual($(this).val())
+           // geolocalizarPorTags($(this).val())
        }
    })
    $('#boton-buscarcerca').click(function(e){
-       geolocalizarPorTags($('#search-location').val())
+       geolocalizarManual($('#search-location').val())
    })
    //cuando quiere location automática
    $('#boton-location').hover(function(){

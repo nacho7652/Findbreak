@@ -32,16 +32,20 @@
                                             <?php for($i=0; $i< count($evento['fotos']); $i++){ 
                                                       $url = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i];  
                                                 ?>
-                                                   <div data-urlsin="<?= 'images/productoras/'.$folder ?>" data-url="<?= $url ?>" data-nombre="<?= $evento['fotos'][$i] ?>" style="background-image: url(<?= $url ?>); background-size:cover; background-position: 0px 0px;" class="coverfile-galerias" data-cant="<?= $i?>">
+                                                   <div  style="background-image: url(<?= $url ?>); background-size:cover; background-position: 0px 0px;" class="coverfile-galerias" data-cant="<?= $i?>">
                                                         <input type="file" id="images-evento-upd" data-num="<?= $i ?>" name="images-evento-upd" class="fotonoticia-galerias" />
-                                                    </div>
+                                                        <?php if($i!=0){?>
+                                                            <a data-urlsin="<?= 'images/productoras/'.$folder ?>" data-url="<?= $url ?>" data-nombre="<?= $evento['fotos'][$i] ?>" class="borrarFotoEvento" href="#">borrar</a>
+                                                        <?php }?>
+                                                   </div>
                                             <?php }?>
         
     
                                             <?php for($j=$i; $j<5; $j++){ ?>
                                                    <div class="coverfile-galerias" data-cant="<?= $i?>">
                                                         <input type="file"  id="images-evento-upd" data-num="<?= $i ?>" name="images-evento-upd" class="fotonoticia-galerias"/>
-                                                    </div>
+                                                        
+                                                   </div>
                                             <?php }?>
                                        </div>
                                 </div>

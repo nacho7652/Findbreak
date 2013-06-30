@@ -22,6 +22,10 @@ class usuario {
          $theObjId = new MongoId($id); 
          return $this->db->comentariosEvento->find(array("_userId" => $theObjId))->count();
      }
+    public function verCantidadPublicaciones($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->evento->find(array("producido_por._id" => $theObjId))->count();
+     }
     public function guardarNotificacion2($quien, $aquien, $fechaMongo, $fecha){
                    // $idM = new MongoId($aquien['_id']);   
                     $noti2 = array(

@@ -48,6 +48,39 @@ $(document).ready(function(){
          })
          return error;
     }
+    $('body').delegate('.borrarFotoEvento2','click',function(){
+        var padre =  $(this).parent();
+         padre.attr('style','');
+         valorTemporal = padre.find('input').val();
+         if(valorTemporal != ''){
+             padre.find('input').val('');
+         } 
+         padre.find('.borrarFotoEvento2').hide();
+         return false;
+    });
+    $('.borrarFotoEvento').click(function(){
+       var padre =  $(this).parent();
+        var url = '../'+$(this).attr('data-url');
+        var idEvento = $('#idevent').val();
+        var nombre = $(this).attr('data-nombre');
+        loader('Eliminando foto...');
+        $.ajax({
+            url : '/findbreak/function/event-response.php',
+            type : 'POST',
+            data : 'eliminarFoto=1&idEvento='+idEvento+"&urlBorrar="+url+"&nombreBorrar="+nombre,
+            success : function(res){
+                
+                if(res == 1){
+                    padre.attr('style','');
+                    padre.find('.borrarFotoEvento').hide();
+                    msjSucess('Foto eliminada con éxito');
+                }else{
+                     msjError('Error, error al eliminar la foto cod: 2');
+                }
+            }                
+        });
+        return false;
+    })
     //hash-event
     $('#nom-event').keyup(function(){
         nombre = $(this).val();
@@ -102,6 +135,7 @@ $(document).ready(function(){
     })
     $('#guardarevento-form, #editarevento-form').submit(function(){
         respuesta = true;
+        
         $('.obligatorio').each(function(){
              valor = $(this).val();
              error = $(this).parent().find('.error-obligatorio');
@@ -240,7 +274,7 @@ $(document).ready(function(){
     function mostrarImagenSubida(source, este){
         var    img  = document.createElement('img');
         img.src = source;
-        
+        este.append('<a class="borrarFotoEvento2" href="#">borrar</a>');
         este.css('background-image','url('+source+')');
         este.css('background-size','cover');
         este.css('background-position','0px 0px');

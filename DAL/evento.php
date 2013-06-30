@@ -177,9 +177,37 @@ class evento {
      public function findall(){
          return $this->db->evento->find();
      }
-     
-    public function sumarvisita($id){
+     public function registrarVisita($idEvento){
+         $ahora = time();
+         $ultimaVisita = $this->verificarVisita($idEvento);
+         if($ultimaVisita == null){//si aun no se registra su visita
+              $vistas_evento = array(
+                       "evento"=>$idEvento,
+                       "usuario"=>$_SESSION['userid'],
+                       "hora_visita"=>$ahora
+                       );
+            $this->db->vistas_evento->insert($vistas_evento);
+            $this->sumarvisita($idEvento);
+             return 1;
+         }else{//verifico la hora
+            $inicio = $ultimaVisita["hora_visita"];
+            $duracion = $ahora - $inicio; //tiempo transcurrido en segundos
+            $tiempoTranscurrido =  (int)$duracion/3600; //en hora /3600
+            if($tiempoTranscurrido >= 1) //10 minutos = puede sumarse
+            {
+                $this->db->vistas_evento->update(array("evento" => $idEvento), array('$set'=> array("hora_visita"=>$ahora)));
+                $this->sumarvisita($idEvento);
+                return 1;
+            }else{
+                return 0;
+            }
+         }
          
+     }
+      public function verificarVisita($idEvento){
+         return $this->db->vistas_evento->findOne(array('evento'=>$idEvento, 'usuario'=>$_SESSION['userid']));
+     }
+    public function sumarvisita($id){      
          //$theObjId = new  MongoId($id);
          return $this->db->evento->update(array("_id" => $id), array('$inc'=> array("visitas"=>1)));
      }
@@ -271,6 +299,31 @@ class evento {
       //  $this->db->tags_buscados->update(array("userid"=>$userid, "tags.tag"=>$tags[$i]), array('$set'=>array("tags.$.fecha"=>$fechahoy)));
         return $this->db->evento->update( array("_id"=>$theObjId,"fotos"=>$nombreBorrar), array('$set'=> array("fotos.$"=>$fotoGr) ));
        // $this->db->evento->update( array("_id"=>$theObjId), array('$push'=> array("fotos"=>$fotoGr) ));   
+     }
+     public function eliminarFoto($idEvento, $urlBorrar, $nombreBorrar)
+     { 
+        unlink($urlBorrar);
+        $theObjId = new MongoId($idEvento);
+       // return $this->db->evento->update( array("_id"=>$theObjId,"fotos"=>$nombreBorrar), array('$set'=> array("fotos.$"=>$fotoGr) ));
+        return $this->db->evento->update( array("_id"=>$theObjId), array('$pull'=> array("fotos"=>$nombreBorrar) ));   
+     }
+      public function eliminarFotos($id){
+         $theObjId = new MongoId($id); 
+         $carpeta = $this->db->evento->findOne(array("_id" => $theObjId), array("producido_por" => 1));
+         $todasLasFotos = $this->verFotos($id);
+         for($i=0; $i< count($todasLasFotos['fotos']); $i++){
+             $url = '../images/productoras/'.(string)$carpeta['producido_por']['_id'].'/'.$todasLasFotos['fotos'][$i];
+             unlink($url);
+         }
+     }
+     public function eliminar($idEvento)
+     { 
+        $theObjId = new MongoId($idEvento);
+        $this->eliminarFotos($idEvento);
+        $eventoR = new usuarioRelacional();
+        $eventoR->EliminarEvento($idEvento);
+       // return $this->db->evento->update( array("_id"=>$theObjId,"fotos"=>$nombreBorrar), array('$set'=> array("fotos.$"=>$fotoGr) ));
+        return $this->db->evento->remove( array("_id"=>$theObjId));   
      }
      public function nuevaFoto($idEvento,$fotoGr)
      { 

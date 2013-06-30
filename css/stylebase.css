@@ -74,7 +74,7 @@ html {
     display: none;
 }
 .innermsj {       
-    width: 512px;        
+    width: 100%;        
     border-radius: 2px;    
     color: #444;      
     position: relative;    margin: 70px auto;  
@@ -703,11 +703,12 @@ html {
 }
 /*PROFILE USER*/
 .profileuser {    
-    padding: 0px 0px 0px 20px;   
+    padding: 35px 0px 9px 18px;   
     border-top: 1px solid rgba(211, 211, 211, 0.31);    
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
     float: left;
     width: 666px;
+    background: url("/findbreak/images/iconos-bg.png") repeat scroll 0% 0% transparent;
 }
 .left-user {
     width: 164px;
@@ -746,10 +747,11 @@ html {
     text-decoration: underline;
 }
 .info-user {
-    width: 288px;
+    width: 479px;
     float: left;
     min-height: 227px;
-    margin-top: 5px;
+    margin-top: -24px;
+    margin-left: 5px;
 }
 .profileuser .friends-user {
     float: right;
@@ -1210,7 +1212,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
 }
 #desseguiramigo, #seguiramigo, #logeate-friend {
     float: left;
-    margin: 13px 0px 0px 31px;
+    margin: 13px 0px 0px 21px;
 }
 .paracoment {
     margin: 10px 173px 0px 0px !important;
@@ -1298,6 +1300,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     display: block;
     border-radius: 2px;
     text-align: center;
+    text-decoration: none;
     float: right;
     font-size: 0.7em;
     margin: -6px 11px 0px 0px;
@@ -1611,7 +1614,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .info-num {
     float: left;
-    width: 357px;
+    width: 402px;
     height: 40px;
     margin: 7px 0px 20px -1px;
     border-bottom: 1px solid #e8e8e8;
@@ -1999,6 +2002,10 @@ line-height: 19px;
 }
 .perfiluser .part-right{
     width: 661px;
+}
+.perfiluser #seguiramigo {
+    clear: both;
+    margin: 11px 0px 0px 23px;
 }
 .divtrans2{
     background: rgb(255, 255, 255);
@@ -2414,7 +2421,7 @@ margin: -3px -5px 0px 6px;
     overflow: hidden;
 }
 .comentuser {
-    font-size: 0.7em;
+    font-size: 12px;
     margin: 2px 0px 0px 5px;
     color: rgb(88, 88, 88) !important;
     word-wrap: break-word;
@@ -2657,6 +2664,10 @@ margin: -3px -5px 0px 6px;
     float: left;
     margin: 7px 0px 0px 13px;
 }
+.eliminarEvento{
+    float: left;
+    margin: 7px 0px 0px 13px;
+}
 .infot-eventpublicar {
     width: 359px;
     float: left;
@@ -2673,10 +2684,23 @@ margin: -3px -5px 0px 6px;
     text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
     font-size: 42px;
 }
+.borrarFotoEvento, .borrarFotoEvento2 {
+    color: rgb(59, 113, 172);
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+    margin-top: 7px;
+    display: block;
+}
+.borrarFotoEvento:hover, .borrarFotoEvento2:hover {
+    color: rgb(223, 21, 21);
+    text-decoration: underline;
+}
 .coverfile-galerias{
     width: 150px;
     height: 150px;
     float: left;
+    text-align: center;
     margin-left: 5px;
     margin-top: 5px;
     background: url('/findbreak/images/cam.png') 57px 56px no-repeat rgb(255, 255, 255);  
