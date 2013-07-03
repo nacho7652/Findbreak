@@ -55,7 +55,53 @@ $(document).ready(function(){
          if(valorTemporal != ''){
              padre.find('input').val('');
          } 
-         padre.find('.borrarFotoEvento2').hide();
+//         padre.find('.borrarFotoEvento2').hide();
+         return false;
+    });
+    $('body').delegate('#modificarclave','click',function(){
+        claveactual = $('#clave-actual').val();
+        clavenueva1 = $('#clave-nueva1').val();
+        clavenueva2 = $('#clave-nueva2').val();
+        //verificar su su contraseña es la actual
+        $.ajax({
+            url : '/findbreak/function/users-response.php',
+            type : 'POST',
+            data : 'comprobarClave=1&claveactual='+claveactual,
+            success : function(res){
+                
+                if(res == 1){
+                   if(trim(clavenueva1) != "" && trim(clavenueva2) != ""){
+                       if(trim(clavenueva1) != trim(clavenueva2)){
+                        loader('Las contraseñas no coinciden !');
+                        return false;
+                      }
+                   }else{
+                       loader('Las contraseñas no pueden estár vacias !');
+                       return false;
+                   }
+                   $.ajax({
+                            url : '/findbreak/function/users-response.php',
+                            type : 'POST',
+                            data : 'cambiarClave=1&clave='+clavenueva2,
+                            success : function(res){
+
+                                if(res == 1){
+                                   loader('Contraseña modificada con éxito :)');
+                                   $('#clave-actual').val('');
+                                   $('#clave-nueva1').val('');
+                                   $('#clave-nueva2').val('');
+                                }else{
+                                     loader('Tu contraseña no se pudo editar');
+                                }
+                            }                
+                        });
+                }else{
+                     loader('Tu contraseña antigua no coincide');
+                }
+            }                
+        });
+        //
+        
          return false;
     });
     $('.borrarFotoEvento').click(function(){
@@ -133,9 +179,39 @@ $(document).ready(function(){
         }, "json");
        
     })
-    $('#guardarevento-form, #editarevento-form').submit(function(){
+    //editaruser
+    $('#editaruser').click(function(){
+         guardar = true;
+         $('.obligatorio').each(function(){
+             valor = $(this).val();
+             error = $(this).parent().find('.error-obligatorio');
+             if(trim(valor) == ""){//si está vacío mostrar msj
+                    guardar = false;
+                    $(this).focus();
+                     $('html, body').animate({
+                         'scrollTop': $(this).offset().top - 90 + "px" 
+                     },
+                     {
+                        duration:500,
+                        easing:"swing"
+                     }
+                     );
+                     error.fadeIn(200); 
+                     return false;
+             }else{
+                      error.fadeOut(200); 
+                 }
+             
+         })
+         if(guardar){
+            loader('Guardando cambios...');
+            document.formulariousuario.submit();
+         }
+         
+    }); 
+    $('#guardarevento-form, #editarevento-form, #editarusuario-form').submit(function(){
         respuesta = true;
-        
+        //comprar al menos una foto>ZadaerWDJFG
         $('.obligatorio').each(function(){
              valor = $(this).val();
              error = $(this).parent().find('.error-obligatorio');
@@ -274,7 +350,7 @@ $(document).ready(function(){
     function mostrarImagenSubida(source, este){
         var    img  = document.createElement('img');
         img.src = source;
-        este.append('<a class="borrarFotoEvento2" href="#">borrar</a>');
+       
         este.css('background-image','url('+source+')');
         este.css('background-size','cover');
         este.css('background-position','0px 0px');
@@ -367,7 +443,7 @@ $(document).ready(function(){
                               });
       
   })
-
+    
       $('body').delegate('#user-name','keyup',function(e){
           username = $(this).val();
           if(username == ""){
@@ -376,7 +452,8 @@ $(document).ready(function(){
               return false;
           }
           $.post("/findbreak/function/users-response.php", {'comprobar-username':1,'username':username}, function(data){
-                if(data == 1){//se puede
+              
+               if(data == 1){//se puede
                     $('.username-corr').show();
                     $('.username-incorr').hide();
                     $('.error-username').hide();
@@ -398,6 +475,35 @@ $(document).ready(function(){
         num = $(this).attr('data-num');
         
         $(this).attr('name','images-evento-nueva'+num);
+         
+//        alert('a'); 
+//        return false;
+            var i = 0, len = this.files.length, img, reader, file;
+            var este = $(this).parent();
+                 //for( ; i < len; i++){
+                    file = this.files[0];
+                    //Una pequeña validación para subir imágenes
+                    if(!!file.type.match(/image.*/)){
+                        //Si el navegador soporta el objeto FileReader
+                        if(window.FileReader){
+                            reader = new FileReader();
+                            //Llamamos a este evento cuando la lectura del archivo es completa
+                            //Después agregamos la imagen en una lista
+                            reader.onloadend = function(e){
+
+                                mostrarImagenSubida(e.target.result, este);
+                            };
+                            //Comienza a leer el archivo
+                            //Cuando termina el evento onloadend es llamado
+                            reader.readAsDataURL(file);
+                        }
+                    }
+        });
+        //fotousuario
+        $('body').delegate('#fotousuario','change',function(evt){
+        num = $(this).attr('data-num');
+        
+       
          
 //        alert('a'); 
 //        return false;

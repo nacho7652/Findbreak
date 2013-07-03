@@ -16,7 +16,7 @@
       $folder = (string)$eventfound['producido_por']['_id'];
       $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
       
-        $buttonFriend = '<div id="seguiramigo" class="botoncancel">Seguir</div>';
+        $buttonFriend = '<div id="seguiramigo-perfil" data-userid="'.$userid.'" class="boton-perfiluser botoncancel">Seguir</div>';
          
          //si está logeado buscar las posibles solicitudes
          $idSolicitado = $usuariofound['_id'];
@@ -29,12 +29,12 @@
                 }else{//si busco a otra persona
                         $usuarioSig = $usuario->comprobarSiLoSigo($solicitante, $idSolicitado);
                         if(isset($usuarioSig['_id'])){ //lo sigo
-                             $buttonFriend = '<div id="desseguiramigo" class="botongreen">Siguiendo</div>'; 
+                             $buttonFriend = '<div id="desseguiramigo-perfil" data-userid="'.$userid.'" class="boton-perfiluser botongreen">Siguiendo</div>'; 
                         }
                       // $buttonFriend = '<div id="send-req" class="button-friend">'.$valueButton.'</div>';
                 }
          }else{//no esta logeado
-                        $buttonFriend = '<div id="logeate-friend" class="botongreen">Inicia sesión</div>';
+                        $buttonFriend = '<div id="logeate-friend" class="boton-perfiluser botongreen">Inicia sesión</div>';
          }
 ?>
 <div class="more-fotos">
@@ -196,7 +196,7 @@
                     <div class="item-info-num">
                         <div class="topinfo">Seguidores</div>
                         
-                        <div class="num-topinfo">
+                        <div id="num-seguidores" class="num-topinfo">
                             <?php if(isset($usuariofound['seguidores']))
                                         echo count($usuariofound['seguidores']);
                                    else

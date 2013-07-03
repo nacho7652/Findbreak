@@ -1,6 +1,8 @@
 <?php
 //    require_once 'function/escalar.php';
+    session_start();
     require_once 'DAL/evento.php';
+    require_once 'DAL/usuario.php';
     require_once 'DAL/relacional/connect_relacional.php';
    
     if(isset($_REQUEST['guardarevento'])){
@@ -119,6 +121,26 @@
         }else{
              header("location:/findbreak/publicar/saldo");
         }
+    }
+    if(isset($_REQUEST['editarusuario'])){
+        
+        $usuario = new usuario();
+        $userid = $_SESSION['userid'];
+        $foto = $usuario->verFoto($userid);
+        $userface = $usuario->comprobarUserFace($userid);
+        $numUserFce = $userface['userface'];//face = 1 / nada = 0
+        
+        if($_FILES['fotousuario']['name'] != '' ){//llega foto
+                    unlink($foto['foto']);
+                    $exito1 = subir($_FILES['fotousuario']['name'], $_FILES['fotousuario']['tmp_name']);
+                    $re1 = $usuario->reemplazarFoto($userid, $exito1['fotoGr']);
+            }
+        $nombre = trim($_REQUEST['nombreuser']);
+        $username = trim($_REQUEST['username']);
+        $mail = trim($_REQUEST['email']);
+        $resp = $usuario->modificar($userid, $username, $nombre, $mail);
+        $_SESSION['username'] = $username;
+        header("location:/findbreak/editar-user/!".$username."");
     }
     if(isset($_REQUEST['editarevento'])){
             
@@ -295,4 +317,5 @@
         $resp = array("re"=>$re,"fotoGr"=>$nameconcateGr);
         return $resp;
     }
+
 ?>

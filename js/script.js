@@ -30,7 +30,7 @@ $(document).ready(function(){
 //                alert(fb.user.email)
 //                alert(fb.user.picture)
                if(fb.user.name == 'undefined'){
-                   alert('undefined')
+                   loader('Intenta nuevamente en un momento :(')
                    return false;
                }
                $.ajax({
@@ -541,7 +541,7 @@ $(document).ready(function(){
               var comentario = $(this).parent().parent().find('.comentuser').html();
               
               var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
-                  cuerpo+=   '<div style="background: url('+foto+')" class="bloq1"></div>';
+                  cuerpo+=   '<div style="background:'+foto+'" class="bloq1"></div>';
                   cuerpo+=   '<div class="bloq2msjinner">';
                   cuerpo+=       '<div class="nomusercom tit-gray">'+nombre+'</div>';
                   cuerpo+=       '<div class="comentuser">'+comentario+'</div>';
@@ -1311,13 +1311,44 @@ $(document).ready(function(){
        return false;  
      })
      //seguiramigo
-     $('#coverall').delegate('#desseguiramigo','hover',function(){
+     $('body').delegate('#desseguiramigo, #desseguiramigo-perfil','hover',function(){
          $(this).html('Dejar de seguir')
      });
-     $('#coverall').delegate('#desseguiramigo','mouseleave',function(){
+     $('body').delegate('#desseguiramigo, #desseguiramigo-perfil','mouseleave',function(){
          $(this).html('Siguiendo')
      });
-        $('#coverall').delegate('#seguiramigo','click',function(){
+     //seguiramigo-perfil
+     $('body').delegate('#seguiramigo-perfil','click',function(){
+         boton = $(this);
+         userid = $(this).attr('data-userid');
+         $.ajax({
+                          type: "POST",
+                          dataType: "json",
+                          url: "/findbreak/function/users-response.php",
+                          data: "seguirpersona=1&idSolicitado="+userid,
+                          success : function (data)
+                          {    
+                               if(data.re==1)
+                                   {
+                                        //id="seguiramigo" class="botoncancel"
+                                        boton.removeClass('botoncancel');
+                                        boton.addClass('botongreen');
+                                        boton.attr('id','desseguiramigo-perfil');
+                                        boton.html("Siguiendo");
+                                        numeroSeguidores = parseInt($('#num-seguidores').html());
+                                        $('#num-seguidores').html(numeroSeguidores+1);
+                                   }else
+                                       {
+                                   
+                                           $('.button-friend').html("No se puede");
+                                       }
+                                
+                          }
+         })
+     });
+     
+     //fin seguir amigo
+        $('body').delegate('#seguiramigo','click',function(){
          var boton = $(this);
          $.ajax({
                           type: "POST",
@@ -1344,7 +1375,37 @@ $(document).ready(function(){
          })
          
      })
+     //deseguir-perfiluser
      
+      $('body').delegate('#desseguiramigo-perfil','click',function(){
+         var boton = $(this);
+         userid = $(this).attr('data-userid');
+         $.ajax({
+                          type: "POST",
+                          dataType: "json",
+                          url: "/findbreak/function/users-response.php",
+                          data: "dejardeseguirpersona=1&idSolicitado="+userid,
+                          success : function (data)
+                          {    
+                               if(data.re==1)
+                                   {
+                                        boton.removeClass('botongreen');
+                                        boton.addClass('botoncancel');
+                                        boton.attr('id','seguiramigo-perfil');
+                                        boton.html("Seguir");
+                                        numeroSeguidores = parseInt($('#num-seguidores').html());
+                                        $('#num-seguidores').html(numeroSeguidores-1);
+                                   }else
+                                       {
+                                   
+                                           $('.button-friend').html("No se puede");
+                                       }
+                                
+                          }
+         })
+         
+     })
+     //fin-desseguir-perfil
       $('#coverall').delegate('#desseguiramigo','click',function(){
          var boton = $(this);
          $.ajax({

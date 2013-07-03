@@ -44,7 +44,7 @@
                                             <?php for($j=$i; $j<5; $j++){ ?>
                                                    <div class="coverfile-galerias" data-cant="<?= $i?>">
                                                         <input type="file"  id="images-evento-upd" data-num="<?= $i ?>" name="images-evento-upd" class="fotonoticia-galerias"/>
-                                                        
+                                                        <a class="borrarFotoEvento2" href="#">borrar</a>
                                                    </div>
                                             <?php }?>
                                        </div>

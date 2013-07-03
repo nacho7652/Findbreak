@@ -326,16 +326,13 @@
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>
                                         <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
-                                            <div class="content-option content-option-first">
-                                            </div> 
+                                            
                                         </a>
                                    <?php }
                                    else
                                    {?>
-                                    <a href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
-                                            <div class="content-option content-option-first"
-                                            style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat">
-                                            </div> 
+                                    <a style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
+                                 
                                         </a>
                                    
                                    <?php } ?>
@@ -376,6 +373,9 @@
                                         </div>
                                          
                                         <div class="groupoption">
+                                                <a href="/findbreak/editar-user/!<?=$_SESSION['username']?>"id="editar-info" class="itemgroup-option last">
+                                                    Editar mi perfil
+                                                </a>
                                                 <div class="itemgroup-option itemgroup-option last">
                                                   Saldo:<?php 
                                                   
