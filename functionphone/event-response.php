@@ -25,12 +25,15 @@
             echo json_encode($respuesta);
        }
 	   
-	   if(isset($_REQUEST['eventprofie']))
+	   if(isset($_GET['profie']))
 	   {
 			$id = $_REQUEST['id'];
+			$respuesta = array("id"=>$id);
+			echo json_encode($respuesta);
 			$event = new evento();
 			$eventprofile = $event->findforid($id);
-			echo json_encode($eventprofile);
+			$resp = json_encode($eventprofile);
+			echo $resp;
 	   }
        
 ?>
