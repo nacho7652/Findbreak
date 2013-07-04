@@ -26,7 +26,7 @@
             echo json_encode($respuesta);
        }
 	   
-	   if(isset($_GET['profie']))
+	   if(isset($_GET['eventprofile']))
 	   {
 			$id = $_REQUEST['id'];
 			$respuesta = array("id"=>$id);
