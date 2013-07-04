@@ -30,6 +30,17 @@ class usuarioRelacional {
             return -5;
         }
     }
+    public function EliminarEvento($idMongo){
+        if($this->conect->conectarse()){
+            $query = "DELETE FROM evento WHERE _id = '$idMongo' ";
+            $re = mysql_query($query);
+            $query2 = "DELETE FROM evento_usuario WHERE id_evento = '$idMongo' ";
+            mysql_query($query2);
+            return $re;
+        }else{
+            return -5;
+        }
+    }
     public function GuardarEvento_____Usuario($idMongoEvento,$idMongoUsuario, $valor_compra,$piso,$pafindbreak){
         if($this->conect->conectarse()){
             $query = "INSERT INTO evento_usuario VALUES('','$idMongoEvento','$idMongoUsuario', 1, '$valor_compra', $piso ,$pafindbreak) ";
@@ -147,7 +158,7 @@ class usuarioRelacional {
     }
     public function VerPrecioEventoMasCaroPorUsuario_evento($idUsuario, $idEvento){
         if($this->conect->conectarse()){
-            $query = "select max(valor_compra) from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
+            $query = "select max(valor_compra) from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario' and vigencia = 0";
             $result = mysql_query($query);
             $saldo = 0;
             while($re = mysql_fetch_array($result)){

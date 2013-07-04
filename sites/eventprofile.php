@@ -12,32 +12,13 @@
       $visitasEvento = $eventfound['visitas'];
       $folder = (string)$eventfound['producido_por']['_id'];
       $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
-      
-        if(isset($_SESSION["ultimoAcceso"]))//después de la primera vez
-        {    
-            $inicio = $_SESSION["ultimoAcceso"];
-            $ahora = time();
-            $duracion = $ahora - $inicio; //tiempo transcurrido en segundos
-            $tiempoTranscurrido =  (int)$duracion/3600; //en hora /3600
-            if($tiempoTranscurrido >= 1) //10 minutos = puede sumarse
-            {
-             $_SESSION["ultimoAcceso"] = time();//refresco la hora ke entro
-             $event->sumarvisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
-             $visitasEvento++;
-            }
-        }
         if(isset($_SESSION['username'])){  
-            if(!isset($_SESSION['vi'.(string)$eventfound['_id']])) //la primera vez solamente
-            {
-                $_SESSION['vi'.(string)$eventfound['_id']] = 1;
-                $_SESSION["ultimoAcceso"] = time();
                 $userid = $_SESSION['userid'];
                 $tags = $eventfound['tags'];
                 $re = $usuario->guardarTagsBuscados($userid, $tags);
                 $re2 = $usuario->guardarHistorial($eventfound['_id'], $eventfound['fotos'][0], $eventfound['nombre'],$eventfound['producido_por']['_id'],$userid);
-                $event->sumarvisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
-                $visitasEvento++;
-            }
+                $visitaResp = $event->registrarVisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
+                $visitasEvento+= $visitaResp;
         }
 ?>
 <div class="more-fotos">
@@ -204,8 +185,11 @@
             $youtube = '';
             if($videoCompleto != ''){
                 $videoPartes = explode('=', $videoCompleto);
-                $video = $videoPartes[1];
-
+                if(count($videoPartes) > 1){
+                    $video = $videoPartes[1];
+                }else{
+                    $video = '';//link roto poner video fbk
+                }
                 $youtube = '<iframe width="591" height="326" src="//www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
             }
             ?>

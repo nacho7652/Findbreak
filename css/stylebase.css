@@ -74,7 +74,7 @@ html {
     display: none;
 }
 .innermsj {       
-    width: 512px;        
+    width: 100%;        
     border-radius: 2px;    
     color: #444;      
     position: relative;    margin: 70px auto;  
@@ -100,16 +100,20 @@ html {
     text-align: center;
     background: url(/findbreak/images/iconos-bg.png) rgb(253, 253, 253);
 }
+.content-preguntar {
+    width: 508px;
+    margin: 0px auto;
+    font-size: 1.2em;
+}
 .bloq1msj {
     float: left;
     width: 511px;
     height: 25px;
     text-align: center;
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-weight: bold;
-    color: #555;
+    color: rgba(36, 115, 167, 1);
     padding: 10px 5px 2px 5px;
-    background: rgba(236, 236, 236, 0.52);
 }
 .bloq2msj {
     float: left;
@@ -166,6 +170,10 @@ html {
     background: rgba(238, 238, 238, 0.64);
     border-bottom: 1px solid rgba(211, 211, 211, 0.5);
     border-top: 1px solid rgba(211, 211, 211, 0.5);
+}
+.content-preguntar .comentuser {
+    float: left;
+    clear: both;
 }
 .itemcomentmsj {
     width: 505px;
@@ -703,11 +711,12 @@ html {
 }
 /*PROFILE USER*/
 .profileuser {    
-    padding: 0px 0px 0px 20px;   
+    padding: 35px 0px 9px 18px;   
     border-top: 1px solid rgba(211, 211, 211, 0.31);    
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
     float: left;
     width: 666px;
+    background: url("/findbreak/images/iconos-bg.png") repeat scroll 0% 0% transparent;
 }
 .left-user {
     width: 164px;
@@ -746,10 +755,11 @@ html {
     text-decoration: underline;
 }
 .info-user {
-    width: 288px;
+    width: 479px;
     float: left;
     min-height: 227px;
-    margin-top: 5px;
+    margin-top: -24px;
+    margin-left: 5px;
 }
 .profileuser .friends-user {
     float: right;
@@ -1208,9 +1218,14 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     background-image: -o-linear-gradient(#f8f8f8,#d8d8d8);  
     background-image: linear-gradient(rgb(235, 235, 235),#d8d8d8);  
 }
+.boton-perfiluser {
+    clear: both;
+    margin: 9px 0px 0px 26px !important;
+    float: left !important;
+}
 #desseguiramigo, #seguiramigo, #logeate-friend {
     float: left;
-    margin: 13px 0px 0px 31px;
+    margin: 13px 0px 0px 21px;
 }
 .paracoment {
     margin: 10px 173px 0px 0px !important;
@@ -1298,6 +1313,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     display: block;
     border-radius: 2px;
     text-align: center;
+    text-decoration: none;
     float: right;
     font-size: 0.7em;
     margin: -6px 11px 0px 0px;
@@ -1611,7 +1627,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .info-num {
     float: left;
-    width: 357px;
+    width: 402px;
     height: 40px;
     margin: 7px 0px 20px -1px;
     border-bottom: 1px solid #e8e8e8;
@@ -1999,6 +2015,10 @@ line-height: 19px;
 }
 .perfiluser .part-right{
     width: 661px;
+}
+.perfiluser #seguiramigo {
+    clear: both;
+    margin: 11px 0px 0px 23px;
 }
 .divtrans2{
     background: rgb(255, 255, 255);
@@ -2414,7 +2434,7 @@ margin: -3px -5px 0px 6px;
     overflow: hidden;
 }
 .comentuser {
-    font-size: 0.7em;
+    font-size: 12px;
     margin: 2px 0px 0px 5px;
     color: rgb(88, 88, 88) !important;
     word-wrap: break-word;
@@ -2519,12 +2539,16 @@ margin: -3px -5px 0px 6px;
 .content-publicarevent .item-publicar:first-child,  .content-publicarevent .item-publicar:last-child {
     border-bottom: none !important;
 }
-#guardarevento,#modificarevento {
+#guardarevento,#modificarevento, #editaruser {
     float: left;
     margin: 3px 0px 0px 34px;
     width: 200px;
     padding: 12px 0px;
     font-size: 14px;
+}
+#editaruser{
+    position: absolute;
+    top: -168px;
 }
 #info-mostrar a {
     text-shadow: none;
@@ -2547,6 +2571,38 @@ margin: -3px -5px 0px 6px;
     max-height: 800px;
     margin-top: 11px;
     margin-left: 7px;
+}
+.item-publicar.item-publicar-small {
+    width: 280px !important;
+    border-bottom: none !important;
+}
+.input-edituser {
+    width: 446px !important;
+    float: left !important;
+    background: rgba(68, 68, 68, 0.04);
+}
+.bloq-special {
+    padding: 22px 0px;
+    overflow: hidden;
+    float: left;
+}
+#modificarclave {
+    padding: 10px 19px;
+    width: 161px;
+    font-size: 13px;
+    position: absolute;
+    right: -15px;
+}
+.item-editaruser {
+    width: 500px;
+    height: 40px;
+    margin-bottom: 14px;
+    float: left;
+    position: relative;
+}
+.item-publicar.item-publicar-medium{
+    width: 616px !important;
+    border-bottom: none !important;
 }
 .publicar .item-publicar, .publicaciones .item-publicar {
     width: 900px;
@@ -2657,6 +2713,10 @@ margin: -3px -5px 0px 6px;
     float: left;
     margin: 7px 0px 0px 13px;
 }
+.eliminarEvento{
+    float: left;
+    margin: 7px 0px 0px 13px;
+}
 .infot-eventpublicar {
     width: 359px;
     float: left;
@@ -2673,10 +2733,27 @@ margin: -3px -5px 0px 6px;
     text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
     font-size: 42px;
 }
+.borrarFotoEvento, .borrarFotoEvento2 {
+    color: rgb(59, 113, 172);
+    font-weight: bold;
+    font-size: 12px;
+    text-decoration: none;
+    margin-top: 7px;
+    display: block;
+}
+.borrarFotoEvento:hover, .borrarFotoEvento2:hover {
+    color: rgb(223, 21, 21);
+    text-decoration: underline;
+}
+.foto-publicaruser .coverfile-galerias, .foto-publicaruser .fotonoticia-galerias {
+    width: 200px !important;
+    height: 200px !important;
+}
 .coverfile-galerias{
     width: 150px;
     height: 150px;
     float: left;
+    text-align: center;
     margin-left: 5px;
     margin-top: 5px;
     background: url('/findbreak/images/cam.png') 57px 56px no-repeat rgb(255, 255, 255);  
@@ -2818,6 +2895,10 @@ font-weight: bold;
 .content-mensaje {
 margin: 3px 0px 0px 7px;
 }
+.item-editaruser .username-corr, .item-editaruser .username-incorr {
+    right: -3px;
+    top: 6px;
+}
 .username-corr, .hashtag-corr {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -24px -204px;
     width: 40px;
@@ -2859,6 +2940,10 @@ margin: 3px 0px 0px 7px;
 .mensaje-m {
     left: 217px;
 }
+.item-editaruser .mensaje-error.error-obligatorio {
+    top: -2px;
+    right: -2px;
+}
 .mensaje-error.error-obligatorio {
     width: 194px;
     top: 24px;
@@ -2869,6 +2954,10 @@ margin: 3px 0px 0px 7px;
 .mensaje-error.error-hashtag {
     left: 427px;
     top: 26px;
+}
+.item-editaruser .mensaje-error.error-username {
+    right: 0px;
+    top: 0px;
 }
 .mensaje-error {
     float: left;
@@ -2926,6 +3015,10 @@ margin: 3px 0px 0px 7px;
     height: 100px;
     float: left;
     margin-left: 8px;
+}
+.foto-publicaruser{
+    float: left;
+    margin: 0px 5px 3px 35px;
 }
 .foto-publicarevent {
     float: left;
