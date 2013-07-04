@@ -1,18 +1,43 @@
 <?php
+      session_start();
     require_once '../DAL/connect.php';
     require_once '../DAL/usuario.php';
     date_default_timezone_set("Chile/Continental");
-    if(!empty($_POST["comprobar-username"]))
+
+    if(!empty($_POST["cambiarClave"]))
     {
-        $username = $_POST["username"];
+        $clave = $_POST["clave"];
+        $userid = $_SESSION['userid'];
         $usuario = new usuario();
-        $encontrado = $usuario->findforusername($username);
-        if($encontrado['_id'] == null){ //se puede
+        echo $usuario->updateClave($userid, $clave);
+    }
+    if(!empty($_POST["comprobarClave"]))
+    {
+        $claveactual = $_POST["claveactual"];
+        $usuario = new usuario();
+        $encontrado = $usuario->comprobarClave($claveactual);
+        if($encontrado['_id'] != null){ //se puede
             echo 1;
         }else{
             echo -1;
         }
        
+    }
+    if(!empty($_POST["comprobar-username"]))
+    {
+        $re = -1;
+        $username = $_POST["username"];
+        $usuario = new usuario();
+        $encontrado = $usuario->findforusername($username);
+        if(isset($_SESSION['username'])){
+            if($_SESSION['username'] == $username){
+                 $re = 1;
+            }
+        }
+        if($encontrado['_id'] == null){ //se puede
+            $re = 1;
+        }
+       echo $re;
     }
     //reemplazarBr
     if(!empty($_POST["reemplazarBr"]))
@@ -69,7 +94,7 @@
                         //break;
                    }
                 }
-               session_start();
+             
                $usuario = new usuario();
                $id = $_SESSION['userid'];
                $textoAmigoSinArroa = str_replace('@', '', $textoAmigo);
@@ -82,9 +107,11 @@
                         foreach ($yo['siguiendo'] as $item){
                             if($limit > 0){
                                 $username = $usuario->verUserName($item['_id']);
+                                $nombre = $usuario->verNombre($item['_id']);
+                                $foto = $usuario->verFoto($item['_id']);
                                 $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
-                                                       <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-                                                       <div class="item-friends-name">'.$item['nombre'].'</div>
+                                                       <div style="background-image:url('.$foto['foto'].')" class="item-friends-userpic"></div>
+                                                       <div class="item-friends-name">'.$nombre['nombre'].'</div>
                                                        <span class="arr-username username">@</span>
                                                        <div class="item-friends-username username">'.$username['username'].'</div>
                                                    </div>';
@@ -99,11 +126,14 @@
                     if($textoAmigoSinArroa != ''){
                          if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
                                   foreach ($yo['siguiendo'] as $item){
-                                      if(strpos($item['nombre'], $textoAmigoSinArroa) !== false){
+                                      $nombre = $usuario->verNombre($item['_id']);
+                                      if(strpos($nombre['nombre'], $textoAmigoSinArroa) !== false){
                                           $username = $usuario->verUserName($item['_id']);
+                                          $nombre = $usuario->verNombre($item['_id']);
+                                          $foto = $usuario->verFoto($item['_id']);
                                           $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
-                                                                 <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-                                                                 <div class="item-friends-username">'.$item['nombre'].'</div>
+                                                                 <div style="background-image:url('.$foto['foto'].')" class="item-friends-userpic"></div>
+                                                                 <div class="item-friends-username">'.$nombre['nombre'].'</div>
                                                                  <span class="username arr-username">@</span>
                                                                  <div class="item-friends-username username">'.$username['username'].'</div>
                                                              </div>';
@@ -125,7 +155,7 @@
     }
     if(!empty($_POST["search-friend-cit"]))
     {
-                    session_start();
+               
                     $usuario = new usuario();
                     $id = $_SESSION['userid'];
                     $yo = $usuario->findforid($id);
@@ -135,9 +165,11 @@
                         foreach ($yo['siguiendo'] as $item){
                             if($limite > 0){
                                 $username = $usuario->verUserName($item['_id']);
+                                $nombre = $usuario->verNombre($item['_id']);
+                                $foto = $usuario->verFoto($item['_id']);
                                 $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
-                                                       <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-                                                       <div class="item-friends-name">'.$item['nombre'].'</div>
+                                                       <div style="background-image:url('.$foto['foto'].')" class="item-friends-userpic"></div>
+                                                       <div class="item-friends-name">'.$nombre['nombre'].'</div>
                                                        <span class="arr-username username">@</span>
                                                        <div class="item-friends-username username">'.$username['username'].'</div>
                                                    </div>';
@@ -220,7 +252,7 @@
            
     if(!empty($_REQUEST["seguirpersona"]))
     {
-        session_start();
+       
         $quien = $_SESSION["userid"];
         $aquien = $_REQUEST['idSolicitado'];
         $solicitud = new usuario();
@@ -247,7 +279,7 @@
     
     if(!empty($_REQUEST["dejardeseguirpersona"]))
     {
-        session_start();
+        
         $quien = $_SESSION["userid"];
         $aquien = $_REQUEST['idSolicitado'];
         $solicitud = new usuario();

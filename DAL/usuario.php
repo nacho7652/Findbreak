@@ -22,6 +22,10 @@ class usuario {
          $theObjId = new MongoId($id); 
          return $this->db->comentariosEvento->find(array("_userId" => $theObjId))->count();
      }
+    public function verCantidadPublicaciones($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->evento->find(array("producido_por._id" => $theObjId))->count();
+     }
     public function guardarNotificacion2($quien, $aquien, $fechaMongo, $fecha){
                    // $idM = new MongoId($aquien['_id']);   
                     $noti2 = array(
@@ -110,8 +114,8 @@ class usuario {
     }
     public function login($mail, $pass)
     {
-        
-        $result = $this->db->usuario->findOne(array("email"=>$mail,"clave"=>$pass ));
+        $passEncript = md5($pass);
+        $result = $this->db->usuario->findOne(array("email"=>$mail,"clave"=>$passEncript ));
         return $result;
          //this->db->$coll->find(array("nombre"=>"LOLAPALUSA", "direccion"=>"San carlos #294"))
     }
@@ -119,7 +123,7 @@ class usuario {
     public function loginFace($mail)
     {
         
-        $result = $this->db->usuario->findOne(array("email"=>$mail ));
+        $result = $this->db->usuario->findOne(array("email_face"=>$mail ));
         return $result;
          //this->db->$coll->find(array("nombre"=>"LOLAPALUSA", "direccion"=>"San carlos #294"))
     }
@@ -132,6 +136,10 @@ class usuario {
      public function findforusername($username){
          return $this->db->usuario->findOne(array("username" => $username));
      }
+     public function comprobarClave($clave){
+         $clave = md5($clave);
+         return $this->db->usuario->findOne(array("clave" => $clave));
+     }
      public function findforemail($email){
           
          return $this->db->usuario->findOne(array("email" => $email));
@@ -140,8 +148,47 @@ class usuario {
          return $this->db->usuario->findOne(array("_id" => $id), array("foto" => 1));
          //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
      }
+     public function comprobarUserFace($id){
+         return $this->db->usuario->findOne(array("_id" => $id), array("userface" => 1));
+         //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
+     }
+     public function reemplazarFoto($userid,$fotoGr)
+     { 
+        $_SESSION['foto'] = "images/productoras/".$_SESSION['userid']."/".$fotoGr;
+        return $this->db->usuario->update( array("_id"=>$userid), array('$set'=> array("foto"=>"images/productoras/".$_SESSION['userid']."/".$fotoGr) ));   
+     }
+     public function modificar($id, $username, $nombre, $mail){ 
+//         $theObjId = new MongoId($id); 
+        return $this->db->usuario->update(array("_id" => $id), 
+                                          array(
+                                            '$set'=> array("nombre"=>$nombre,
+                                                           "email"=>$mail,
+                                                           "username"=>$username      
+                                                            )
+                                          ));
+    
+     }
+//      private function modificarEnOtrosDctos($id, $username, $nombre, $mail){ 
+////         $theObjId = new MongoId($id); 
+//         
+//         return $this->db->usuario->update(array('siguiendo._id'=>$id), 
+//                                          array(
+//                                            '$set'=> array("siguiendo.$.nombre"=>$nombre
+//                                                            )
+//                                          ));
+////         return $this->db->usuario->update(array('seguidores.$._id'=>$theObjId), 
+////                                          array(
+////                                            '$set'=> array("seguidores.$.nombre"=>$nombre
+////                                                            )
+////                                          ));
+//    
+//     }
       public function verUserName($id){
          return $this->db->usuario->findOne(array("_id" => $id), array("username" => 1));
+         //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
+     }
+     public function verNombre($id){
+         return $this->db->usuario->findOne(array("_id" => $id), array("nombre" => 1));
          //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
      }
     public function dejarDeSeguir($quien, $aquien)
@@ -160,9 +207,7 @@ class usuario {
     {
         $aquienId = new MongoId($aquien['_id']);
         $user = array(
-            "_id"=> $aquienId,
-            "nombre"=> $aquien['nombre'],
-            'foto'=> $aquien['foto']
+            "_id"=> $aquienId
         );
         
         return $this->db->usuario->update( array("_id"=>$quien['_id']), array('$push'=> array("siguiendo"=>($user))   )    );
@@ -172,9 +217,7 @@ class usuario {
     {
         $aquienId = new MongoId($aquien['_id']);
         $user = array(
-            "_id"=> $quien['_id'],
-            "nombre"=> $quien['nombre'],
-            'foto'=> $quien['foto']
+            "_id"=> $quien['_id']
         );
         
         return $this->db->usuario->update( array("_id"=>$aquienId), array('$push'=> array("seguidores"=>($user))   )    );
@@ -437,11 +480,13 @@ class usuario {
     }
     
     public function insertar($name, $username, $mail, $pass){ 
+         $passEncript = md5($pass);
          $user = array(
             "nombre" => $name,
             "username"=>$username,
             "email" => $mail,
-            "clave" => $pass,
+            "user_face" => 0,
+            "clave" => $passEncript,
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
@@ -467,9 +512,11 @@ class usuario {
             "nombre" => $name,
             "username"=>$username,
             "email" => $mail,
+            "email_face" => $mail,
+            "user_face" => 1,
             "clave" => $pass,
-             "tags_buscados" => array(),
-             "historial_eventos" => array(),
+            "tags_buscados" => array(),
+            "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
             "foto" => $foto
         );
@@ -491,7 +538,11 @@ class usuario {
      public function updatePhoto($userid, $photo){ 
          return $this->db->usuario->update(array("_id"=>$userid),array('$set'=>array("foto"=>$photo))); 
      }
-    
+    public function updateClave($userid, $clave){ 
+         $clave = md5($clave);
+         
+         return $this->db->usuario->update(array("_id"=>$userid),array('$set'=>array("clave"=>$clave))); 
+     }
     public function hoy(){
          $a = date('Y-m-d 00:00:00'); // date("d-m-Y H:i:s");
          $hoy = new MongoDate(strtotime($a));

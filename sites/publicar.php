@@ -27,6 +27,7 @@
                                             <?php for($i=1; $i<=5; $i++){ ?>
                                                    <div class="coverfile-galerias" data-cant="<?= $i?>">
                                                         <input type="file"  id="images-galerias" name="images-galerias<?= $i?>" class="fotonoticia-galerias"/>
+                                                        <a class="borrarFotoEvento2" href="#">borrar</a>
                                                     </div>
                                             <?php }?>
                                        </div>

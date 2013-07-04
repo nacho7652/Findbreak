@@ -69,6 +69,7 @@
                                                            </div>
                                                            <!--<div class="botonitemcerca botonblue">Ver comentarios</div>-->
                                                            <a href="/findbreak/editar-evento/<?= $dcto['_id']?>" class="editarEvento botongreen">Editar</a>
+                                                           <a href="#" data-id="<?php echo $dcto['_id'];?>" class="eliminarEvento botonred">Eliminar evento</a>
                                             </div>
                                        
                                      </div>

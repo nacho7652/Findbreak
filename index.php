@@ -85,22 +85,22 @@
        //FIN DE MENSAJES DE EVENTO
        
        //MENSAJES TRANSACCIÓN
-       //if(isset($_SESSION['valorDeCarga']) != -1){
+       if(isset($_SESSION['valorDeCarga']) && $_SESSION['valorDeCarga']  != -1){
             if(isset($_REQUEST['tran-msj']) && $_REQUEST['tran-msj'] == 'tran-cancel'){
                  $stiloMensaje = 'style="display:block"';
                  $valorDeCarga = $_SESSION['valorDeCarga'];
                  
                  $mensajeEvento = 'Haz cargado en tu cuenta $'.$valorDeCarga;
                  $usuariorelacional->PagoCompraEvento($valorDeCarga, $_SESSION['userid']);
-            //     $_SESSION['valorDeCarga'] = null;
+                 $_SESSION['valorDeCarga'] = -1;
             }
             if(isset($_REQUEST['tran-msj']) && $_REQUEST['tran-msj'] == 'tran-success'){
                  $stiloMensaje = 'style="display:block"';
                  $valorDeCarga = $_SESSION['valorDeCarga'];
                  $mensajeEvento = 'Haz cargado en tu cuaaaaenta $'.$valorDeCarga;
-            //     $_SESSION['valorDeCarga'] = null;
+                 $_SESSION['valorDeCarga'] = -1;
             }
-      // }
+       }
        //FIN DE MENSAJES TRANSACCIÓN
         
         
@@ -326,16 +326,13 @@
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>
                                         <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
-                                            <div class="content-option content-option-first">
-                                            </div> 
+                                            
                                         </a>
                                    <?php }
                                    else
                                    {?>
-                                    <a href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
-                                            <div class="content-option content-option-first"
-                                            style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat">
-                                            </div> 
+                                    <a style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
+                                 
                                         </a>
                                    
                                    <?php } ?>
@@ -376,6 +373,9 @@
                                         </div>
                                          
                                         <div class="groupoption">
+                                                <a href="/findbreak/editar-user/!<?=$_SESSION['username']?>"id="editar-info" class="itemgroup-option last">
+                                                    Editar mi perfil
+                                                </a>
                                                 <div class="itemgroup-option itemgroup-option last">
                                                   Saldo:<?php 
                                                   

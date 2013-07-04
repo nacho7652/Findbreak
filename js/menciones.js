@@ -46,7 +46,7 @@ $(document).ready(function(){
           if(focusArroa != false || focusArroa == 0){
               //tomo el nombre de usuario y tomo el largo
                 var id = $('.itemCitar.itemCitarSelected').attr('data-id');
-                var nombre = $('.itemCitar.itemCitarSelected').find('.item-friends-username').html();
+                var nombre = $('.itemCitar.itemCitarSelected').find('.item-friends-username.username').html();
                 nuevoTexto = comentGlobal.val();
 //                usuarioAcitar = '!#skumblue1';
                 usuarioAcitar = nombre;
@@ -230,7 +230,8 @@ $(document).ready(function(){
              if(HayArroa() || apretoFuera){
                 
                 var id = padreComent.find('.itemCitar.itemCitarSelected').attr('data-id');
-                var nombre = padreComent.find('.itemCitar.itemCitarSelected').find('.item-friends-username').html(); 
+                var nombre = padreComent.find('.itemCitar.itemCitarSelected').find('.item-friends-username.username').html(); 
+                
                 citar(nombre);
                 reemplazar();
                 conocerElFocusFinal();
@@ -272,7 +273,7 @@ $(document).ready(function(){
         //itemCitar
         $('body').delegate('.itemCitar','click',function(){
             var id = $(this).attr('data-id');
-            var nombre = $(this).find('.item-friends-username').html();
+            var nombre = $(this).find('.item-friends-username.username').html();
             comentGlobal.val(comentGlobal.val()+ ' #'+nombre)
 //            citar(nombre)
 //            alert(nombre)

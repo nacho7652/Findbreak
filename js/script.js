@@ -30,7 +30,7 @@ $(document).ready(function(){
 //                alert(fb.user.email)
 //                alert(fb.user.picture)
                if(fb.user.name == 'undefined'){
-                   alert('undefined')
+                   loader('Intenta nuevamente en un momento :(')
                    return false;
                }
                $.ajax({
@@ -250,7 +250,7 @@ $(document).ready(function(){
     function preguntar(pregunta, cuerpo, pie){
             $("#covermsj").fadeIn(0);
             $(".innermsj").fadeIn(0);
-            $('#calmsj').html(pregunta+cuerpo+pie);
+            $('#calmsj').html('<div class="content-preguntar">'+pregunta+cuerpo+pie+'</div>');
     }    
     $('body').delegate('#cancelar','click',function(){
            covermsjclose();
@@ -362,6 +362,7 @@ $(document).ready(function(){
                 $(this).removeClass('norevi');
                 descontarNotificacion();
             }
+            alert('not 1')
             $.ajax({           
                 type:"POST",
                 dataType:"html",
@@ -375,19 +376,21 @@ $(document).ready(function(){
             })   
         })
         $('body').delegate('.not3','click',function(){
+            
             var id = $(this).attr('id');
             if($(this).hasClass('norevi')){
                 $(this).removeClass('norevi');
                 descontarNotificacion();
             }
+            alert(id)
             $.ajax({           
                 type:"POST",
                 dataType:"html",
-                url: "/findbreak/function/zoom.php",
+                url: "/findbreak/json/zoom.php",
                 data: "noti-compra=1&id="+id,
                 success: function (data)
                 { 
-                    
+                    alert(data)
                     popup("Te han comprado el evento en"+data+", se te ha cargado: "+(parseInt(data))*0.8+" Finbreak desconto el 20% equibalente a "+(parseInt(data))*0.2 );
                 }
             })   
@@ -538,7 +541,7 @@ $(document).ready(function(){
               var comentario = $(this).parent().parent().find('.comentuser').html();
               
               var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
-                  cuerpo+=   '<div style="background: url('+foto+')" class="bloq1"></div>';
+                  cuerpo+=   '<div style="background:'+foto+'" class="bloq1"></div>';
                   cuerpo+=   '<div class="bloq2msjinner">';
                   cuerpo+=       '<div class="nomusercom tit-gray">'+nombre+'</div>';
                   cuerpo+=       '<div class="comentuser">'+comentario+'</div>';
@@ -553,7 +556,49 @@ $(document).ready(function(){
                 
               preguntar(pregunta, cuerpo, pie)
           });
-        //delcoment
+          //editarEvento
+          //
+          $('body').delegate('.eliminarEvento','click',function(){
+               padre = $(this).parent().parent();
+               foto = padre.find('.foto-event-pubicar').attr('style')
+               nombre = padre.find('.nombre-event-pubicar').html();
+              var dataid = $(this).attr('data-id');
+              var pregunta = '<div class="bloq1msj">¿Realmente deseas borrar este evento?</div>';
+              var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
+                  cuerpo+=   '<div style="'+foto+'" class="bloq1"></div>';
+                  cuerpo+=   '<div class="bloq2msjinner">';
+                  cuerpo+=       '<div class="nomusercom tit-gray">'+nombre+'</div>';
+                  cuerpo+=       '';
+                  cuerpo+=   '</div>';
+                  cuerpo+= '<div class="bloq3msjinner">';
+                  cuerpo+=    '';
+                  cuerpo+= '</div></div></div>';
+             
+             var pie = '<div class="bloq3msj"><div data-id="'+dataid+'" id="aceptarDelEvento" class="botonblue">Aceptar</div>';
+                 pie+= '<div id="cancelar" class="botoncancel">Cancelar</div></div>';
+                 
+                
+              preguntar(pregunta, cuerpo, pie)
+              return false;
+          });
+        //aceptarDelEvento
+         $('#covermsj').delegate('#aceptarDelEvento','click',function(){
+           
+           var dataid = $(this).attr('data-id');
+         
+            $.ajax({           
+               type:"POST",
+               dataType:"html",
+               url: "/findbreak/function/event-response.php",
+               data: "delEvento=1&dataid="+dataid,
+               success: function (data)
+               {
+               
+                 window.location.reload();
+                   
+               }
+           })
+        })
         $('#covermsj').delegate('#aceptarcoment','click',function(){
            
            var dataid = $(this).attr('data-id');
@@ -1243,7 +1288,7 @@ $(document).ready(function(){
       
       //Solicitud Amigos
       var idSolicitado;
-     $('body').delegate('.item-search-friend','click',function(){
+     $('body').delegate('.not2','click',function(){
          idSolicitado = $(this).find('.id-item-search').html();
          if($(this).hasClass('norevi')){
              $(this).removeClass('norevi');
@@ -1266,13 +1311,44 @@ $(document).ready(function(){
        return false;  
      })
      //seguiramigo
-     $('#coverall').delegate('#desseguiramigo','hover',function(){
+     $('body').delegate('#desseguiramigo, #desseguiramigo-perfil','hover',function(){
          $(this).html('Dejar de seguir')
      });
-     $('#coverall').delegate('#desseguiramigo','mouseleave',function(){
+     $('body').delegate('#desseguiramigo, #desseguiramigo-perfil','mouseleave',function(){
          $(this).html('Siguiendo')
      });
-        $('#coverall').delegate('#seguiramigo','click',function(){
+     //seguiramigo-perfil
+     $('body').delegate('#seguiramigo-perfil','click',function(){
+         boton = $(this);
+         userid = $(this).attr('data-userid');
+         $.ajax({
+                          type: "POST",
+                          dataType: "json",
+                          url: "/findbreak/function/users-response.php",
+                          data: "seguirpersona=1&idSolicitado="+userid,
+                          success : function (data)
+                          {    
+                               if(data.re==1)
+                                   {
+                                        //id="seguiramigo" class="botoncancel"
+                                        boton.removeClass('botoncancel');
+                                        boton.addClass('botongreen');
+                                        boton.attr('id','desseguiramigo-perfil');
+                                        boton.html("Siguiendo");
+                                        numeroSeguidores = parseInt($('#num-seguidores').html());
+                                        $('#num-seguidores').html(numeroSeguidores+1);
+                                   }else
+                                       {
+                                   
+                                           $('.button-friend').html("No se puede");
+                                       }
+                                
+                          }
+         })
+     });
+     
+     //fin seguir amigo
+        $('body').delegate('#seguiramigo','click',function(){
          var boton = $(this);
          $.ajax({
                           type: "POST",
@@ -1299,7 +1375,37 @@ $(document).ready(function(){
          })
          
      })
+     //deseguir-perfiluser
      
+      $('body').delegate('#desseguiramigo-perfil','click',function(){
+         var boton = $(this);
+         userid = $(this).attr('data-userid');
+         $.ajax({
+                          type: "POST",
+                          dataType: "json",
+                          url: "/findbreak/function/users-response.php",
+                          data: "dejardeseguirpersona=1&idSolicitado="+userid,
+                          success : function (data)
+                          {    
+                               if(data.re==1)
+                                   {
+                                        boton.removeClass('botongreen');
+                                        boton.addClass('botoncancel');
+                                        boton.attr('id','seguiramigo-perfil');
+                                        boton.html("Seguir");
+                                        numeroSeguidores = parseInt($('#num-seguidores').html());
+                                        $('#num-seguidores').html(numeroSeguidores-1);
+                                   }else
+                                       {
+                                   
+                                           $('.button-friend').html("No se puede");
+                                       }
+                                
+                          }
+         })
+         
+     })
+     //fin-desseguir-perfil
       $('#coverall').delegate('#desseguiramigo','click',function(){
          var boton = $(this);
          $.ajax({
