@@ -37,7 +37,8 @@
                 {
                     $mio = true;
                     ?> 
-                            <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar información</a>
+                            <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar NOTIFICACION CUANDO LLEGE A 10000 VISItaS</a>
+                            
                         <?php
                         
 //                        if( $visitasEvento%10000 <= 0 ) 

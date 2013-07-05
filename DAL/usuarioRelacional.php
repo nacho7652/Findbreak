@@ -65,7 +65,7 @@ class usuarioRelacional {
     public function PagoVisitas($idUsuario){
         if($this->conect->conectarse()){
             
-            $query = "UPDATE usuario SET saldo = saldo+1000 WHERE _id = '$idUsuario'";
+            $query = "UPDATE usuario SET saldo = saldo + 1000 WHERE _id = '$idUsuario'";
             $re = mysql_query($query);
             
             return $re;

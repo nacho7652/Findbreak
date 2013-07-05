@@ -180,6 +180,8 @@ class evento {
      public function registrarVisita($idEvento){
          $ahora = time();
          $ultimaVisita = $this->verificarVisita($idEvento);
+         $usuarioR = new usuarioRelacional();
+         $usuario = new usuario();
          if($ultimaVisita == null){//si aun no se registra su visita
               $vistas_evento = array(
                        "evento"=>$idEvento,
@@ -187,7 +189,16 @@ class evento {
                        "hora_visita"=>$ahora
                        );
             $this->db->vistas_evento->insert($vistas_evento);
-            $this->sumarvisita($idEvento);
+            $this->sumarvisita($idEvento);     
+            $cant = $this->cantidadVisitas($idEvento);
+            $cantF = $cant['visitas'];
+            if($cantF%10000 == 0)
+            {
+                $ev = $this->findforid((string)$idEvento);
+                $usuarioR->PagoVisitas((string)$ev['producido_por']['_id']);
+                
+            }
+                
              return 1;
          }else{//verifico la hora
             $inicio = $ultimaVisita["hora_visita"];
@@ -196,7 +207,17 @@ class evento {
             if($tiempoTranscurrido >= 1) //10 minutos = puede sumarse
             {
                 $this->db->vistas_evento->update(array("evento" => $idEvento), array('$set'=> array("hora_visita"=>$ahora)));
-                $this->sumarvisita($idEvento);
+                $this->sumarvisita($idEvento);     
+                $cant = $this->cantidadVisitas($idEvento);
+                $cantF = $cant['visitas'];
+                if($cantF%10000 == 0)
+                {
+                    $ev = $this->findforid((string)$idEvento);
+                    $usuarioR->PagoVisitas((string)$ev['producido_por']['_id']);
+
+                }
+                
+                
                 return 1;
             }else{
                 return 0;
@@ -208,9 +229,16 @@ class evento {
          return $this->db->vistas_evento->findOne(array('evento'=>$idEvento, 'usuario'=>$_SESSION['userid']));
      }
     public function sumarvisita($id){      
-         //$theObjId = new  MongoId($id);
-         return $this->db->evento->update(array("_id" => $id), array('$inc'=> array("visitas"=>1)));
+         $theObjId = new  MongoId($id);
+         return $this->db->evento->update(array("_id" => $theObjId), array('$inc'=> array("visitas"=>1)));
      }
+     public function cantidadVisitas($id){      
+//         $theObjId = new  MongoId($id);
+         return $this->db->evento->findOne(array("_id" => $id), array("visitas"=>1));
+     }
+     
+     
+     
      private function crearHash($nom){
          $arr = explode(' ', $nom);
          $hash = '';
