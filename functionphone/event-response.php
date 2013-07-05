@@ -30,10 +30,10 @@
 			$id = $_REQUEST['id'];
 			$respuesta = array("id"=>$id);
 			echo json_encode($respuesta);
-			$event = new evento();
-			$eventprofile = $event->findforid($id);
-			$resp = json_encode($eventprofile);
-			echo $resp;
+			//$event = new evento();
+			//$eventprofile = $event->findforid($id);
+			//$resp = json_encode($eventprofile);
+			//echo $resp;
 	   }
        
 ?>
