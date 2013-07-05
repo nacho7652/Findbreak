@@ -10,22 +10,23 @@
             $eventsNears = $event->findnear((float)$lat, (float)$long);
 			$resp = array();
 			$cont = 0;
-            foreach($eventsNears as $dcto)
-			{
-				$cont++;
-				$resp[] = array("lat"=>$dcto['loc'][0],
-                          "lon"=>$dcto['loc'][1],
-                          "nombre"=>$dcto['nombre'],
-						  "id"=>$dcto['_id']
-                         );
-			}
-			$respuesta = array("cont"=>$cont,
-							   "event"=>$resp
-							   );
+            foreach($eventsNears as $dcto)//TABULA PO BIGOTE ¬¬
+		   {
+		         $cont++;
+		         $resp[] = array(
+                                        "lat"=>$dcto['loc'][0],
+                                        "lon"=>$dcto['loc'][1],
+                                        "nombre"=>$dcto['nombre'],
+					"id"=>$dcto['_id']
+                                        );
+	           }
+                    $respuesta = array("cont"=>$cont,
+                                       "event"=>$resp
+                                       );
             echo json_encode($respuesta);
        }
 	   
-	   if(isset($_GET['profie']))
+	   if(isset($_GET['eventprofile']))
 	   {
 			$id = $_REQUEST['id'];
 			$respuesta = array("id"=>$id);

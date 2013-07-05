@@ -10,9 +10,26 @@
 		$id = $_REQUEST['id'];
 		$cont = 0;
 		$com = $comentario->verMisComentarios($id,10);
-		$cont = count($com);
-		$resp = array("cont"=>$cont,
-					  "comentarios"=>$com);
-        echo json_encode($resp);
+//		$cont = count($com);
+//                $a = '';
+//                foreach($com as $dcto){
+//                    $a.='comentario: '.$dcto['comentario'];
+//                }
+//		$resp = array("cont"=>$cont,
+//					  "comentarios"=>$a);
+                foreach($com as $dcto)//TABULA PO BIGOTE ¬¬
+		   {
+		         $cont++;
+		         $resp[] = array(
+                                        "username"=>$dcto['userName'],
+                                        "nombre"=>$dcto['comentario'],
+					"_userId"=>$dcto['_userId']
+                                        );
+	           }
+                    $respuesta = array("cont"=>$cont,
+                                       "event"=>$resp
+                                       );
+            echo json_encode($respuesta);
+//        echo json_encode($resp);
     }  
 ?>                    

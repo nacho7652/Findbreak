@@ -126,7 +126,8 @@
                     if($textoAmigoSinArroa != ''){
                          if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
                                   foreach ($yo['siguiendo'] as $item){
-                                      if(strpos($item['nombre'], $textoAmigoSinArroa) !== false){
+                                      $nombre = $usuario->verNombre($item['_id']);
+                                      if(strpos($nombre['nombre'], $textoAmigoSinArroa) !== false){
                                           $username = $usuario->verUserName($item['_id']);
                                           $nombre = $usuario->verNombre($item['_id']);
                                           $foto = $usuario->verFoto($item['_id']);
