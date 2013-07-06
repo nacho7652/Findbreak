@@ -245,7 +245,7 @@
             }
             //ESTABLECIMIENTOS
             if($hayevents == false && $hayuser == false){
-             echo "no";
+             echo '<div class="nohaycoinci">No hay coincidencias</div>';
             }else
             echo $cuadrouser.$cuadroevento;
     }

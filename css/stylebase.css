@@ -105,6 +105,7 @@ html {
     margin: 0px auto;
     font-size: 1.2em;
 }
+
 .bloq1msj {
     float: left;
     width: 511px;
@@ -495,20 +496,23 @@ html {
     position: relative;
 }
 #user-login .groupoption {
-    width: 174px;
-    background: #CCC;
+    width: 196px;
+    background: #fff;
     color: #444;
-    font-size: 11px;
+    font-size: 12px;
     position: absolute;
     right: 0px;
     top: 43px;
     display: none;  
     box-shadow: 0px 1px 10px -2px rgb(117, 117, 117);  
+    border-radius: 2px;
 }
 #user-login .itemgroup-option {
-    background: white;
-    border-bottom: 1px solid #D8D8D8;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.31);
     padding: 10px 9px 10px 9px;
+    display: block;
+    text-decoration: none;
+    color: #444;
 }
 #user-login .itemgroup-option.last{
     border-bottom: none !important;
@@ -1825,13 +1829,17 @@ padding: 0px 25px;
 /*END-HOME*/
 /*EVENT PROFILE*/
 .eventprofile {
-    top: -143px !important;
-    padding-top: 135px !important;
+    width: 100% !important;
+    margin: 0px auto 11px auto !important;  overflow: hidden !important;  position: relative;
+}
+.content-perfilevento{
+    width: 1000px;
+    margin: -8px auto 0px auto;
 }
 .perfiluser{
     padding-top: 56px !important;
 }
-.eventprofile,.productora, .perfilest, .perfiluser{
+.productora, .perfilest, .perfiluser{
     width: 968px !important;
     margin: 0px auto 11px auto !important;    
     overflow: hidden !important;
@@ -1842,6 +1850,7 @@ padding: 0px 25px;
     width: 100%;
     height: 107px;
     margin: 51px 0px 0px 0px;
+    z-index: -36;
 }
 .parte-left-parent {
     width: 609px;
@@ -2051,15 +2060,22 @@ line-height: 19px;
     font-size: 0.7em;
 }
 #map_establecimientos {
-    border: 1px solid rgba(211, 211, 211, 0.24);
     margin: 4px 0px 0px 0px;
+    position: absolute !important;
+    z-index: 10000000000000000000000000000000000000000000;
+    top: -4px;
+    left: -200px;
+}
+#content-mapaenvento{
+    left: 40000px;
+    position: absolute;
 }
 .part-right {
     float: left;
     width: 352px;
     padding-top: 0px;
     margin: 8px 0px 0px 0px;
-    overflow: hidden;
+    overflow: visible;
 }
 .publicidad-media{
     width: 350px !important;
@@ -2443,7 +2459,7 @@ margin: -3px -5px 0px 6px;
 #comprar-evento {
     position: absolute;
     top: 311px;
-    left: -173px;
+    left: 201px;
     padding: 10px 9px;
     
     text-shadow: 0px 1px 0px #444;
@@ -2465,13 +2481,12 @@ margin: -3px -5px 0px 6px;
     z-index: 8;
 }
 .more-fotos {
-    float: left;
-    width: 100%;
-    margin: 0px 0px 23px 0px;
-    padding-left: 39px;
-    position: absolute;
-    top: 36px;
-    left: 200px;
+    width: 1000px;
+    margin: 0px auto;
+    top: -3px;
+    position: relative;
+    height: 110px;
+    padding-left: 392px;
 }
 .foto-event-small {
     width: 92px;

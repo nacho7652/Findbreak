@@ -118,7 +118,7 @@
         <div id="top">
             <div id="content-top">
                 <div class="top-left">
-                    <a href="/findbreak/inicio">
+                    <a href="/findbreak/cerca">
                         <div class="logoper"></div>
                         <div class="logo"></div>
                     </a>
@@ -331,7 +331,7 @@
                                    <?php }
                                    else
                                    {?>
-                                    <a style="background: url('images/users/<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
+                                    <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
                                  
                                         </a>
                                    
@@ -457,12 +457,6 @@
                     <div class="btnslide"></div>
                 </div>
            <?php } ?>
-       
-           <?php if($page_site == 'eventprofile'){?> 
-            <div class="topevent">
-                <div class="shadow-event"></div>
-            </div>
-          <?php } ?>
             
         <div id="body" <?= $page_class ?>>
             

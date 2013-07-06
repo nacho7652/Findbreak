@@ -485,6 +485,7 @@ class usuario {
             "nombre" => $name,
             "username"=>$username,
             "email" => $mail,
+            "email_face" => $mail,
             "user_face" => 0,
             "clave" => $passEncript,
              "tags_buscados" => array(),

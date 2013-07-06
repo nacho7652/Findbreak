@@ -44,7 +44,7 @@ $(document).ready(function(){
             var address = latitud+","+longitud;//$("#direHidden").val()+', Chile';
             cargarMapa();
             //geocoder : es lo que busca alrededor
-            geocoder.geocode({'address': address}, geocodeResult);
+           // geocoder.geocode({'address': address}, geocodeResult);
     }
     
   function cargarMapa() {

@@ -181,6 +181,10 @@ $(document).ready(function(){
     })
     //editaruser
     $('#editaruser').click(function(){
+         if(!validarCorreo($('#email').val())){
+            loader('Correo electrónico inválido');
+            return false;
+         }
          guardar = true;
          $('.obligatorio').each(function(){
              valor = $(this).val();
@@ -237,6 +241,7 @@ $(document).ready(function(){
          })
          return respuesta;
     });
+
     $('#guardarevento').click(function(){
          guardar = true;
          $('.obligatorio').each(function(){
@@ -260,6 +265,19 @@ $(document).ready(function(){
                  }
              
          })
+         if(!validarSiEsNumero($('#hour-event').val()) || !validarSiEsNumero($('#minute-event').val())){
+             guardar = false;
+             error = $('#hour-event').parent().find('.error-obligatorio');
+                     $('html, body').animate({
+                         'scrollTop': $('#hour-event').offset().top - 90 + "px" 
+                     },
+                     {
+                        duration:500,
+                        easing:"swing"
+                     }
+                     );
+                     error.fadeIn(200); 
+         }
          if(guardar){
             loader('Guardando Evento...');
             document.formularioevento.submit();
@@ -393,6 +411,11 @@ $(document).ready(function(){
       }
   $('#coverall').delegate('#guardarusuario','click',function()
   {
+       if(!validarCorreo($('#correo-usuario').val())){
+           $('.todosloscampos .content-mensaje').html('Correo electrónico inválido');
+           $('.todosloscampos').show();
+           return false;
+       }
        if(comprobarCampos()){
            $('.todosloscampos .content-mensaje').html('Debes completar todos los campos');
            $('.todosloscampos').show();
@@ -534,6 +557,22 @@ $(document).ready(function(){
         retorno=retorno.replace(/\s+$/g,'');
         return retorno;
         }
-  
+  function validarSiEsNumero(numero){
+         var expre = /^([0-9])*$/;
+         if(expre.test(numero)){
+             return true;
+         }else{
+             return false;
+         }
+  }
+  function validarCorreo(correo){
+         var expre = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+         if(expre.test(correo)){
+             return true;
+         }else{
+             return false;
+         }
+  }
+
 })
 

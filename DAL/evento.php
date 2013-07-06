@@ -208,7 +208,7 @@ class evento {
          return $this->db->vistas_evento->findOne(array('evento'=>$idEvento, 'usuario'=>$_SESSION['userid']));
      }
     public function sumarvisita($id){      
-         //$theObjId = new  MongoId($id);
+         //CARGAR PLATA AL WEON
          return $this->db->evento->update(array("_id" => $id), array('$inc'=> array("visitas"=>1)));
      }
      private function crearHash($nom){

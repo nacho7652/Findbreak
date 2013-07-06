@@ -252,9 +252,10 @@
                     $primero = 1;
                     $classPrimero = 'itemCitarSelected';
                 }
+                $fotoEvento = $evento->verFoto($dcto['_id']);
                 $cuadroevento.= 
                 '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
-                   <div class="foto-item-search"></div>
+                   <div style="background:url('.$fotoEvento.'); background-size:cover"  class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';
@@ -283,9 +284,10 @@
                     $primero = 1;
                     $classPrimero = 'itemCitarSelected';
                 }
+                $fotoEvento = $evento->verFoto($dcto['_id']);
                 $cuadroevento.= 
                 '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
-                   <div class="foto-item-search"></div>
+                   <div style="background:url('.$fotoEvento.'); background-size:cover" class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';

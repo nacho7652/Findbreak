@@ -212,7 +212,8 @@ $(document).ready(function(){
 				$("html").css("overflow-y", "scroll");
                                 $("#top").css("right","0px");
                                 $(".eventprofile").css("right","0px");
-				$("#caloader").html("");								
+				$("#caloader").html("");
+                                $('#content-mapaenvento').css('left','40000px');
 			}
 		);
 	}
@@ -1219,11 +1220,9 @@ $(document).ready(function(){
           
       })
       $("#boton-login2").click(function(){
-          
           //var textoAmigo = $('#amigo').val();
           var mail = $('#mail2').val();
           var pass = $('#pass2').val();
-          
           if(mail=="" || pass=="")
               {
                   alert('Email o contraseña no son validos');
@@ -1447,6 +1446,12 @@ $(document).ready(function(){
       
       
       //PUBLICAR EVENTOS
+    $('#vermapaEvento').click(function(){
+//        alert('ads')
+            $('#content-mapaenvento').css('left','380px');
+            popup("");
+            return false;
+    })
       $('.publicar-event').click(function(){
             $.post("../json/zoom.php", {'popup-publicarevent':1}, function(data){
                 popup(data);
