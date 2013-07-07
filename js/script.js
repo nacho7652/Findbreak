@@ -376,6 +376,16 @@ $(document).ready(function(){
                 }
             })   
         })
+        $('.verMapaEvento').click(function(){
+            popup('')
+            $('html, body').animate({
+                         'scrollTop': 0 + "px" 
+                     }, 500, function() {
+                    $('#content-mapaenvento').css('left','383px');
+                  });
+            
+            return false;
+        })
         $('body').delegate('.not3','click',function(){
             
             var id = $(this).attr('id');

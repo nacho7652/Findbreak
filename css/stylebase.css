@@ -1232,7 +1232,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     margin: 13px 0px 0px 21px;
 }
 .paracoment {
-    margin: 10px 173px 0px 0px !important;
+    margin: 10px 80px 0px 0px !important;
     float: left;
 }
 .perfiluser .login-fb{
@@ -1834,10 +1834,12 @@ padding: 0px 25px;
 }
 .content-perfilevento{
     width: 1000px;
-    margin: -8px auto 0px auto;
+    margin: -3px auto 0px auto;
+    overflow: visible;
 }
 .perfiluser{
     padding-top: 56px !important;
+    padding-bottom: 16px;
 }
 .productora, .perfilest, .perfiluser{
     width: 968px !important;
@@ -1903,6 +1905,9 @@ padding: 0px 25px;
 }
 .face img, .twitt img{
     width: 26px
+}
+.verMapaEvento{
+    float: right;
 }
 #comprarevent-prof {
 background: url('/findbreak/nuevo/images/sprites.png') no-repeat -62px -136px;
@@ -2069,6 +2074,8 @@ line-height: 19px;
 #content-mapaenvento{
     left: 40000px;
     position: absolute;
+    width: 963px;
+    top: 51px;
 }
 .part-right {
     float: left;
@@ -2249,7 +2256,7 @@ line-height: 19px;
 .mjscoment{
     font-size: 0.8em;
     color: rgb(88, 88, 88) !important;
-    width: 342px;
+    width: 321px;
     height: 40px;
     font-weight: bold;
 }
@@ -2456,15 +2463,15 @@ margin: -3px -5px 0px 6px;
     word-wrap: break-word;
 }
 
-#comprar-evento {
+#denunciar-evento {
     position: absolute;
-    top: 311px;
-    left: 201px;
-    padding: 10px 9px;
+    top: 306px;
+    left: 192px;
+    padding: 0px 9px;
     
     text-shadow: 0px 1px 0px #444;
     box-shadow: 0px 0px 7px -2px #000;
-    font-size: 18px;
+    font-size: 11px;
     z-index: 8;
 }
 #editar-mievento {
@@ -2482,11 +2489,12 @@ margin: -3px -5px 0px 6px;
 }
 .more-fotos {
     width: 1000px;
-    margin: 0px auto;
-    top: -3px;
+    margin: 45px auto 0px auto;
+    top: 5px;
     position: relative;
     height: 110px;
-    padding-left: 392px;
+    padding-left: 417px;
+    background: url('/findbreak/images/superpos-bg.png') rgb(22, 23, 24);
 }
 .foto-event-small {
     width: 92px;

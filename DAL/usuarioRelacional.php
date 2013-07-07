@@ -62,10 +62,10 @@ class usuarioRelacional {
             return -5;
         }
     }
-    public function PagoVisitas($dinero, $idUsuario){
+    public function PagoVisitas($idUsuario){
         if($this->conect->conectarse()){
             
-            $query = "UPDATE usuario SET saldo = saldo+'$dinero' WHERE _id = '$idUsuario'";
+            $query = "UPDATE usuario SET saldo = saldo + 1000 WHERE _id = '$idUsuario'";
             $re = mysql_query($query);
             
             return $re;
@@ -146,19 +146,6 @@ class usuarioRelacional {
     public function VerPrecioEvento($idUsuario, $idEvento){
         if($this->conect->conectarse()){
             $query = "select valor_compra from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario'";
-            $result = mysql_query($query);
-            $saldo = 0;
-            while($re = mysql_fetch_array($result)){
-                $saldo = $re[0];
-            }
-            return $saldo;
-        }else{
-            return -5;
-        }
-    }
-    public function VerPrecioEventoMasCaroPorUsuario_evento($idUsuario, $idEvento){
-        if($this->conect->conectarse()){
-            $query = "select max(valor_compra) from evento_usuario where id_evento='$idEvento' and id_usuario='$idUsuario' and vigencia = 0";
             $result = mysql_query($query);
             $saldo = 0;
             while($re = mysql_fetch_array($result)){

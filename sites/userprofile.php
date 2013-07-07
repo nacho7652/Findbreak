@@ -37,10 +37,6 @@
                         $buttonFriend = '<div id="logeate-friend" class="boton-perfiluser botongreen">Inicia sesión</div>';
          }
 ?>
-<div class="more-fotos">
-                
-</div>
-
 <div class="parte-left-parent">
             <div class="part-left divtrans2">
                     <div class="part-left-right">
@@ -106,10 +102,6 @@
                                                                     <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
 
                                                                  </div>
-                                                                <div id="visitavent-prof" class="info-event-item">
-                                                                        <div><span class="bold"><?php echo $dcto['visitas']?></span></div>
-
-                                                                    </div>
                                                             </div>
                                                         </div>
                                                         <?php 
@@ -159,10 +151,6 @@
                                                                     <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
 
                                                                  </div>
-                                                                <div id="visitavent-prof" class="info-event-item">
-                                                                        <div><span class="bold"><?php echo $dcto['visitas']?></span></div>
-
-                                                                    </div>
                                                             </div>
                                                         </div>
                                                         <?php 

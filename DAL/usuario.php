@@ -26,6 +26,19 @@ class usuario {
          $theObjId = new MongoId($id); 
          return $this->db->evento->find(array("producido_por._id" => $theObjId))->count();
      }
+     public function guardarDenuncia($userid, $evento, $denuncia, $fecha){
+                   // $idM = new MongoId($aquien['_id']);   
+                    $denuncias = array(
+                        "usuario"=>$userid,
+                        "evento"=>$evento,
+                        "denuncia"=>$denuncia,
+                        "fechaMongo"=>$fecha,
+                        "revisado"=>0
+                      );
+                    $this->db->denuncias->insert($denuncias);
+             
+    }
+     
     public function guardarNotificacion2($quien, $aquien, $fechaMongo, $fecha){
                    // $idM = new MongoId($aquien['_id']);   
                     $noti2 = array(
@@ -63,6 +76,10 @@ class usuario {
         $idM = new MongoId($id);
         $mencionesFound = $this->db->comentariosEvento->find( array("mencionados.id"=>$idM))->sort(array("fechaMongo" => -1 ));;
         return $mencionesFound;
+    }
+    public function ultimaFechaDenuncia($id, $idEvento){
+        $idM = new MongoId($id);
+        return $this->db->denuncias->find( array("usuario"=>$id,"evento"=>$idEvento ))->sort(array("fechaMongo" => -1 ))->limit(1);
     }
 
 
