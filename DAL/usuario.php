@@ -81,16 +81,6 @@ class usuario {
         $idM = new MongoId($id);
         return $this->db->denuncias->find( array("usuario"=>$id,"evento"=>$idEvento ))->sort(array("fechaMongo" => -1 ))->limit(1);
     }
-    public function ultimaFechaDenuncia($id, $idEvento){
-        $idM = new MongoId($id);
-        return $this->db->denuncias->find( array("usuario"=>$id,"evento"=>$idEvento ))->sort(array("fechaMongo" => -1 ))->limit(1);
-    }
-    public function ultimaFechaDenuncia($id, $idEvento){
-        $idM = new MongoId($id);
-        return $this->db->denuncias->find( array("usuario"=>$id,"evento"=>$idEvento ))->sort(array("fechaMongo" => -1 ))->limit(1);
-    }
-
-
     public function findFriend($buscador)
     {
         
