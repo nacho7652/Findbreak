@@ -297,17 +297,20 @@
                                                  }   
                                                  if($not['tipo'] == 3){
                                                         $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
-                                                        $user = $usuario->findforid($not['quien']);
+                                                        $user = $usuario->findforid($not['aquien']);
                                                         //$evento = $evento->findforid($not['evento']['_id']);
-                                                        $url = $evento->verFoto($not['evento']['_id']);
-                                                        $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not3 item-search-friend"> 
+                                                        $url = $evento->verFoto($not['evento']);
+                                                        $hashevent = $evento->verUrl($not['evento']);
+                                                        $nombreevent = $evento->verNombre($not['evento']);
+                                                        $divMenciones.='<a href="/findbreak/break/'.$hashevent['hash'].'" id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend item-search-friend"> 
                                                                            <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
                                                                   
                                                                             
                                                                             <div class="item-friends-msj">
                                                                                    <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
-                                                                                   <span class="msjmencion">te ha comprado el evento</span>
-                                                                                   <span class="tit-gray msjmencion msjeventonom">'.$not['evento']['nombre'].' </span>
+                                                                                   <span class="msjmencion">!FELICITACIONES! Tu evento: </span>
+                                                                                   <span class="tit-gray msjmencion msjeventonom">'.$nombreevent['nombre'].' </span>
+                                                                                   <span class="msjmencion">Llegó a '.$not['visitas'].' visitas !, se han cargado <span class="tit-gray">$1.000 en tu cuenta :)</span></span>
                                                                                </div>
                                                                                <div class="item-friends-eventpic">
                                                                                 <div style="background-image:url('.$url.')" class="itemfoto-eve"></div>
@@ -318,7 +321,7 @@
                                                                            <div style="display:none" class="id-item-search">'.$user['_id'].'</div>
                                                                            ';
 
-                                                        $divMenciones.=   '</div>';
+                                                        $divMenciones.=   '</a>';
                                                  } 
                                                  
                                                  

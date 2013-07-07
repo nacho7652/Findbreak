@@ -363,7 +363,6 @@ $(document).ready(function(){
                 $(this).removeClass('norevi');
                 descontarNotificacion();
             }
-            alert('not 1')
             $.ajax({           
                 type:"POST",
                 dataType:"html",

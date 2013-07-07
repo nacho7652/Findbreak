@@ -122,7 +122,19 @@
                                     <a href="#" class="verMapaEvento hashlink">ver en mapa</a>
                                 </div>     
                                 <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
-                                <div id="precioevent-prof" class="info-event-item"><?php echo $pagar->VerUltimoProductocidoPorVigencia($eventfound['_id']) ?></div>
+                                <?php 
+                                    $idMongoUsuario = new MongoId($eventfound['producido_por']['_id']);
+                                    $nombreproductora = $usuario->verNombre($idMongoUsuario);
+                                    $usernameProductora = $usuario->verUserName($idMongoUsuario);
+                                ?>
+                                <div id="precioevent-prof" class="info-event-item">
+                                  <span class="producidoPor">Producido por: </span>
+                                  <a style="float:left; margin-top: 0px; " class="hashlink" href="/findbreak/!<?= $usernameProductora['username']?>">
+                                    <?php echo $nombreproductora['nombre'] ?>
+                                  </a>
+                                    <span class="username usernamecom">@<?= $usernameProductora['username']?></span>
+                                  
+                                </div>
                                 <div id="visitavent-prof" class="info-event-item">
                                     <div>Visto por <span class="bold"><?php echo $visitasEvento?></span></div>
                                     <div id="comentaevent-prof"><?php echo $textoComentario?> </div>

@@ -52,13 +52,12 @@ class usuario {
                     $this->db->notificaciones->insert($noti2);
              
     }
-     public function guardarNotificacion3($quien, $aquien,$evento,$fechaMongo, $fecha){
-                    $idM1 = new MongoId($quien);
-                    $idM2 = new MongoId($aquien);
+     public function guardarNotificacion3( $aquien,$evento,$visitas,$fechaMongo, $fecha){
+                    $aquienM = new MongoId($aquien);
                     $noti3 = array(
-                        "quien"=>$idM1,
-                        "aquien"=>$idM2,
+                        "aquien"=>$aquienM,
                         "evento"=>$evento,
+                        "visitas"=>$visitas,
                         "tipo"=>3,
                         "fechaMongo"=>$fechaMongo,
                         "fechaMuestra"=>$fecha,

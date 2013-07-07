@@ -59,6 +59,10 @@ html {
     z-index: 110;
     cursor: pointer;
 }
+.divmencionevent {
+    padding: 16px 15px 18px 0px;
+    overflow: hidden;
+}
 #coverall #caloader {
     min-height: 100%;
     overflow: hidden;            
@@ -532,7 +536,10 @@ html {
     font-size: 11px;
     text-decoration: none;
 }
-
+.option.user-name {
+max-width: 89px !important;
+overflow: hidden;
+}
 #user-login .option.user-photo {
     background-repeat: no-repeat;
     background-size: cover !important;
@@ -569,7 +576,7 @@ html {
 }
 #show-solicitud .item-friends-username {
     float: left;
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin-left: 0px;
     margin-top: 0px;
     margin-right: 4px;
@@ -1918,6 +1925,10 @@ line-height: 19px;
 }
 #dondeevent-prof{
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -25px;
+}
+.producidoPor {
+    float: left;
+    margin-right: 2px;
 }
 #precioevent-prof{
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -44px;

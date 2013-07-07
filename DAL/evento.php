@@ -81,6 +81,11 @@ class evento {
          return $this->db->evento->findOne(array("_id" => $theObjId), array("nombre" => 1));
          //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
      }
+     public function verUrl($id){
+         $theObjId = new MongoId($id); 
+         return $this->db->evento->findOne(array("_id" => $theObjId), array("hash" => 1));
+         //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
+     }
      public function findpopularPorProductora($idProductora, $cuando){
          if($cuando > 0){//el evento más popular por realizarse
             return $this->db->evento->find(array('producido_por._id'=>$idProductora, 'visitas' => array('$gt'=>0) ))->sort(array("visitas" => -1 ))->limit(1);  
@@ -196,7 +201,9 @@ class evento {
             {
                 $ev = $this->findforid((string)$idEvento);
                 $usuarioR->PagoVisitas((string)$ev['producido_por']['_id']);
-                
+                $fecha = date('Y-m-d H:i:s');
+                $fechaMongo = new MongoDate(strtotime($fecha));
+                $usuario->guardarNotificacion3($_SESSION['userid'], $idEvento, $cantF, $fechaMongo, $fecha);
             }
                 
              return 1;
@@ -214,7 +221,9 @@ class evento {
                 {
                     $ev = $this->findforid((string)$idEvento);
                     $usuarioR->PagoVisitas((string)$ev['producido_por']['_id']);
-
+                    $fecha = date('Y-m-d H:i:s');
+                    $fechaMongo = new MongoDate(strtotime($fecha));
+                    $usuario->guardarNotificacion3($_SESSION['userid'], $idEvento, $cantF, $fechaMongo, $fecha);
                 }
                 
                 
