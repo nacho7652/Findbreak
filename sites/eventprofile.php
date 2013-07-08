@@ -22,65 +22,42 @@
         }
 ?>
 <div class="more-fotos">
-    
-                
-                <div id="precioEvento" style="background: blueviolet">
-                   
-                <?php 
-                 $precioEvento =  $pagar->VerPrecioEvento($pagar->VerUltimoProductocidoPorVigencia($eventfound['_id']), $eventfound['_id']);
-                ?>
-                </div> <?php
+             <?php
                 if(!empty($_SESSION['userid']))
                 {
                 $mio = false;
                 if($pagar->VerVigenciaYProducidoPor($_SESSION['userid'], $eventfound['_id']) == 1 )
                 {
                     $mio = true;
-                    $mensajePremio = '';
                     ?> 
-                            <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar información</a>
+                            <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar NOTIFICACION CUANDO LLEGE A 10000 VISItaS</a>
+                            
                         <?php
                         
-                        //PISOS 
-                        if( $visitasEvento < 12000  && $pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ) // && PISO igual 1 [consulta a bd]
-                        {
-                             $mensajePremio =  "Estas en el piso 1, te faltan ".(12000-$visitasEvento)." visitas para los 990 pesos :)";
-                        }
-                        if( $visitasEvento >= 12000) // && PISO igual 1 [consulta a bd]
-                        {
-                            if($pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ){
-                                $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
-                                $pagar->PagoVisitas(990, $_SESSION['userid']); //Esto depende del piso, en este caso piso 1
-                            }
-                                $mensajePremio = "Estas en el piso 2, te faltan ".(24000-$visitasEvento)." visitas para los 1390 pesos :)";
-                               
-                        }
-                        if( $visitasEvento >= 24000 ) // && PISO igual 1 [consulta a bd]
-                        {
-                              if($pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 2 ){
-                                $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
-                                $pagar->PagoVisitas(1390, $_SESSION['userid']); 
-                              }
-                                $mensajePremio = "Estas en el piso 3, te faltan ".(48000-$visitasEvento)." visitas para los 2990 pesos :)";
-                                
-                        }
-                        //FALTAN AGREGAR MAS PISOS
-//                        
-//                        
-//                        
-//                        
-//                        
-//                        
-//                        
-//                        
-                        
+//                        if( $visitasEvento%10000 <= 0 ) 
+//                        {
+//                            if($pagar->VerPiso($_SESSION['userid'], $eventfound['_id']) == 1  ){
+//                                $pagar->CambiarPiso($_SESSION['userid'], $eventfound['_id']);
+//                                $pagar->PagoVisitas($_SESSION['userid']); //Esto depende del piso, en este caso piso 1
+//                            }
+//                                $mensajePremio = "Estas en el piso 2, te faltan ".(24000-$visitasEvento)." visitas para los 1390 pesos :)";
+//                        }
+                      // ES MI ES MI O ES MIO EMSI O EMOS MEISMO ESMI ES MIO
+//                               
                 }
                 else
                 {
                     
                     ?> 
                         
-                                    <div id="comprar-evento" class="botonred" data-idevent='<?php echo $eventfound['_id']?>' data-idproducido='<?php echo $pagar->VerUltimoProductocidoPorVigencia($eventfound['_id'])?>'>  Comprar evento </div>  
+                                    <div id="denunciar-evento" class="botonred" >  
+                                            Denunciar 
+                                        <div style="display:none" id="enviar-denuncia">
+                                            <textarea id="text-denuncia">      </textarea>
+                                            <input type="button" id="boton-denuncia" value="Enviar" data-idevent='<?php echo $eventfound['_id']?>' data-userid='<?php echo $_SESSION['userid'] ?>'>
+                                        </div>
+                                        
+                                    </div>  
                         <?php
                 }
                 }
@@ -101,7 +78,11 @@
                    $urlPrincipal = '/findbreak/images/productoras/'.$folder.'/'.$fotos[0];
                ?>
 </div>
-
+<div class="content-perfilevento">
+    <div id="content-mapaenvento">
+        <div id='map_establecimientos' style='width:100%; height:250px;'></div>
+    </div>
+ 
 <div class="parte-left-parent">
             <div class="part-left divtrans">
                     <div class="part-left-right">
@@ -133,19 +114,27 @@
                                             $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
                                         }
                                     ?>
-                              <?php 
-                               if(isset($_SESSION['userid']))
-                               if($mio){?>
-                                <div id="comprarevent-prof" class="info-event-item"><?php echo $mensajePremio?></div>
-                                 
-                                <?php } ?>
-                                
-                                <div id="comprarevent-prof" class="info-event-item"><?php echo "Compra este evento a: <b>$".number_format($precioEvento, 0, ",", ".")."</b>"?></div>
+                              
+                               
                                 <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
                                 <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
-                                <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?></div>     
+                                <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?>
+                                    <a href="#" class="verMapaEvento hashlink">ver en mapa</a>
+                                </div>     
                                 <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
-                                <div id="precioevent-prof" class="info-event-item"><?php echo $pagar->VerUltimoProductocidoPorVigencia($eventfound['_id']) ?></div>
+                                <?php 
+                                    $idMongoUsuario = new MongoId($eventfound['producido_por']['_id']);
+                                    $nombreproductora = $usuario->verNombre($idMongoUsuario);
+                                    $usernameProductora = $usuario->verUserName($idMongoUsuario);
+                                ?>
+                                <div id="precioevent-prof" class="info-event-item">
+                                  <span class="producidoPor">Producido por: </span>
+                                  <a style="float:left; margin-top: 0px; " class="hashlink" href="/findbreak/!<?= $usernameProductora['username']?>">
+                                    <?php echo $nombreproductora['nombre'] ?>
+                                  </a>
+                                    <span class="username usernamecom">@<?= $usernameProductora['username']?></span>
+                                  
+                                </div>
                                 <div id="visitavent-prof" class="info-event-item">
                                     <div>Visto por <span class="bold"><?php echo $visitasEvento?></span></div>
                                     <div id="comentaevent-prof"><?php echo $textoComentario?> </div>
@@ -196,15 +185,7 @@
             <?= $youtube?>
         </div>
             <!--<div class="tit tit1">Establecimientos cercanos al evento</div>-->
-           <div id='map_establecimientos' style='width:100%; height:175px;'></div>
-            <div id="list-establec">
-
-
-
-
-            </div>
-
-            
+          
             <div class="description-event">
                 <?php echo $eventfound['descripcion']; ?>
             </div>
@@ -348,10 +329,6 @@
                                             <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
                                             
                                          </div>
-                                        <div id="visitavent-prof" class="info-event-item">
-                                                <div><span class="bold"><?php echo $dcto['visitas']?></span></div>
-                                               
-                                            </div>
                                     </div>
                                 </div>
                                 <?php 
@@ -391,10 +368,6 @@
                                             <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
                                             
                                          </div>
-                                        <div id="visitavent-prof" class="info-event-item">
-                                                <div><span class="bold"><?php echo $dcto['visitas']?></span></div>
-                                               
-                                            </div>
                                     </div>
                                 </div>
                                 <?php 
@@ -422,4 +395,5 @@
 <input id="lng-event" type="hidden" value="<?php echo $loc[1] //lng ?>"/>
 <div class="est-hidden">
    
+</div>
 </div>

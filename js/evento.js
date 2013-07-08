@@ -4,34 +4,53 @@ $(document).ready(function(){
     var longitud = $('#lng-event').val();
     var map;
     geolocalizar();
-  
+  function loader(msj){
+            $("#covermsj").fadeIn(0);	
+            $("#covermsj > .innermsj").fadeIn(0);
+            $('#calmsj').html(msj);
+        }
     //Comprar evento
     
-    $('#comprar-evento').click(function(){
+    $('#denunciar-evento').click(function(){
                 
-                item = $(this)
+                $('#enviar-denuncia').show();       
+     });
+        
+    $('#boton-denuncia').click(function(){
+        
+                item = $(this);
                 idevento = item.attr('data-idevent');
-                idproducidopor = item.attr('data-idproducido');
+                iduser = item.attr('data-userid');
+                denuncia = $('#text-denuncia').val();
+                
 //                alert(idevento);
 //                alert(idproducidopor); return false;
                 
          $.ajax({
-                data: "comprarevento=1&idevento="+idevento+"&idproducido="+idproducidopor,
-                type: "POST",
-                dataType: "html",//debe ser hmtl :(
-                url: "/findbreak/function/event-response.php",
-                success: function(data){
-                    
-                    alert(data);
-                    //recargar pagina
-                    window.location.reload();
-                    
-                }
-         });
-        
-        
+             
+                    data: "denuncia-evento=1&idevento="+idevento+"&iduser="+iduser+"&comentario="+denuncia,
+                    type: "POST",
+                    dataType: "html",//debe ser hmtl :(
+                    url: "/findbreak/function/event-response.php",
+                    success: function(data){
+                       // window.location.reload();
+                        if(data == 1)
+                            {
+                                loader("La denuncia ha sido enviada, te enviaremos un email con la respuesta");
+                            }
+                            else
+                                {
+                                    loader("Se puede enviar solo una denuncia por dia");
+                                }
+                        
+
+                    }
+                });
+            
+            
     })
     
+           
     
     //find comprar evento dnaiel maestro
     
@@ -44,7 +63,7 @@ $(document).ready(function(){
             var address = latitud+","+longitud;//$("#direHidden").val()+', Chile';
             cargarMapa();
             //geocoder : es lo que busca alrededor
-            geocoder.geocode({'address': address}, geocodeResult);
+           // geocoder.geocode({'address': address}, geocodeResult);
     }
     
   function cargarMapa() {

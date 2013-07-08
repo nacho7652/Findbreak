@@ -8,32 +8,58 @@
         require_once '../DAL/usuarioRelacional.php';
         require_once 'allfunction.php';
         //price
-        if(!empty($_REQUEST['comprarevento']))
+        if(!empty($_REQUEST['denuncia-evento']))
         {
             $idEvento = $_REQUEST['idevento'];
-            $idProducidoPor = $_REQUEST['idproducido'];
+            $iduser = $_SESSION['userid'];
             $resp = new usuarioRelacional();
             $usuario = new usuario();
             $evento = new evento();
-            if($resp->ValidarSaldo($_SESSION['userid']) >= $resp->VerPrecioEvento($idProducidoPor, $idEvento))
-            {
-                $resp->CambiarVigencia($idProducidoPor, $idEvento);
-                $precioEvent = $resp->VerPrecioEvento($idProducidoPor, $idEvento);
-                $pafindbreak = $precioEvent*0.2;
-                $RestarSaldoUsuario = $precioEvent;
-                $SumarSaldoAUsuario = $precioEvent-$pafindbreak;
-                $resp->PagoCompraEvento($SumarSaldoAUsuario, $idProducidoPor);
-                $resp->PagoCompraEvento(-1*$RestarSaldoUsuario, $_SESSION['userid']);
-                $resp->GuardarEvento_____Usuario($idEvento, $_SESSION['userid'], ($precioEvent+($precioEvent/2)), $resp->VerPiso($idProducidoPor, $idEvento), $pafindbreak);
-                //notificar
-                $nombre_id_event = $evento->verNombre($idEvento);
-                $fecha = date('Y-m-d H:i:s');
-                $fechaMongo = new MongoDate(strtotime($fecha));
-                $usuario->guardarNotificacion3($_SESSION['userid'], $idProducidoPor,$nombre_id_event, $fechaMongo, $fecha);
-                echo "ok";
+            $comentario = $_REQUEST['comentario'];
+            $fecha = date('Y-m-d H:i:s');
+            $fechaMongo = new MongoDate(strtotime($fecha));
+            $compfecha = $usuario->ultimaFechaDenuncia($iduser, $idEvento);
+            $ultimaFecha = null;
+            foreach($compfecha as $key){
+                $ultimaFecha = $key['fechaMongo'];
             }
-            else
-                echo "SALDO INSUFICIENTE";
+            
+            $re = 0;
+            if($ultimaFecha == null){//se puede
+                $usuario->guardarDenuncia($iduser,$idEvento, $comentario,$fechaMongo );
+                $re = 1;
+            }else{
+                if(strtotime($ultimaFecha) == strtotime($fechaMongo))
+                {
+                    $re = -1;
+                }
+                else 
+                {
+
+                    $usuario->guardarDenuncia($iduser,$idEvento, $comentario,$fechaMongo );
+                    $re = 1;
+                }
+            }
+            echo $re;
+//            if($resp->ValidarSaldo($_SESSION['userid']) >= $resp->VerPrecioEvento($idProducidoPor, $idEvento))
+//            {
+//                $resp->CambiarVigencia($idProducidoPor, $idEvento);
+//                $precioEvent = $resp->VerPrecioEvento($idProducidoPor, $idEvento);
+//                $pafindbreak = $precioEvent*0.2;
+//                $RestarSaldoUsuario = $precioEvent;
+//                $SumarSaldoAUsuario = $precioEvent-$pafindbreak;
+//                $resp->PagoCompraEvento($SumarSaldoAUsuario, $idProducidoPor);
+//                $resp->PagoCompraEvento(-1*$RestarSaldoUsuario, $_SESSION['userid']);
+//                $resp->GuardarEvento_____Usuario($idEvento, $_SESSION['userid'], ($precioEvent+($precioEvent/2)), $resp->VerPiso($idProducidoPor, $idEvento), $pafindbreak);
+//                //notificar
+//                $nombre_id_event = $evento->verNombre($idEvento);
+//                $fecha = date('Y-m-d H:i:s');
+//                $fechaMongo = new MongoDate(strtotime($fecha));
+//                $usuario->guardarNotificacion3($_SESSION['userid'], $idProducidoPor,$nombre_id_event, $fechaMongo, $fecha);
+//                echo "ok";
+//            }
+//            else
+//                echo "SALDO INSUFICIENTE";
            // $eventoR->GuardarEvento_____Usuario($idMongoEvento, $_SESSION['userid'], $valor_compra, $piso);
             
         }
@@ -252,9 +278,10 @@
                     $primero = 1;
                     $classPrimero = 'itemCitarSelected';
                 }
+                $fotoEvento = $evento->verFoto($dcto['_id']);
                 $cuadroevento.= 
                 '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
-                   <div class="foto-item-search"></div>
+                   <div style="background:url('.$fotoEvento.'); background-size:cover"  class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';
@@ -283,9 +310,10 @@
                     $primero = 1;
                     $classPrimero = 'itemCitarSelected';
                 }
+                $fotoEvento = $evento->verFoto($dcto['_id']);
                 $cuadroevento.= 
                 '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="'.$classPrimero.' item-search item-search-event">
-                   <div class="foto-item-search"></div>
+                   <div style="background:url('.$fotoEvento.'); background-size:cover" class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';

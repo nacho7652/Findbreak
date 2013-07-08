@@ -26,6 +26,19 @@ class usuario {
          $theObjId = new MongoId($id); 
          return $this->db->evento->find(array("producido_por._id" => $theObjId))->count();
      }
+     public function guardarDenuncia($userid, $evento, $denuncia, $fecha){
+                   // $idM = new MongoId($aquien['_id']);   
+                    $denuncias = array(
+                        "usuario"=>$userid,
+                        "evento"=>$evento,
+                        "denuncia"=>$denuncia,
+                        "fechaMongo"=>$fecha,
+                        "revisado"=>0
+                      );
+                    $this->db->denuncias->insert($denuncias);
+             
+    }
+     
     public function guardarNotificacion2($quien, $aquien, $fechaMongo, $fecha){
                    // $idM = new MongoId($aquien['_id']);   
                     $noti2 = array(
@@ -39,13 +52,12 @@ class usuario {
                     $this->db->notificaciones->insert($noti2);
              
     }
-     public function guardarNotificacion3($quien, $aquien,$evento,$fechaMongo, $fecha){
-                    $idM1 = new MongoId($quien);
-                    $idM2 = new MongoId($aquien);
+     public function guardarNotificacion3( $aquien,$evento,$visitas,$fechaMongo, $fecha){
+                    $aquienM = new MongoId($aquien);
                     $noti3 = array(
-                        "quien"=>$idM1,
-                        "aquien"=>$idM2,
+                        "aquien"=>$aquienM,
                         "evento"=>$evento,
+                        "visitas"=>$visitas,
                         "tipo"=>3,
                         "fechaMongo"=>$fechaMongo,
                         "fechaMuestra"=>$fecha,
@@ -64,8 +76,10 @@ class usuario {
         $mencionesFound = $this->db->comentariosEvento->find( array("mencionados.id"=>$idM))->sort(array("fechaMongo" => -1 ));;
         return $mencionesFound;
     }
-
-
+    public function ultimaFechaDenuncia($id, $idEvento){
+        $idM = new MongoId($id);
+        return $this->db->denuncias->find( array("usuario"=>$id,"evento"=>$idEvento ))->sort(array("fechaMongo" => -1 ))->limit(1);
+    }
     public function findFriend($buscador)
     {
         
@@ -485,6 +499,7 @@ class usuario {
             "nombre" => $name,
             "username"=>$username,
             "email" => $mail,
+            "email_face" => $mail,
             "user_face" => 0,
             "clave" => $passEncript,
              "tags_buscados" => array(),

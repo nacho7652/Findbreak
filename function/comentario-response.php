@@ -23,8 +23,9 @@
         $coment = $comentarios->findcomentarioforid($not['idComentario']);
         $event = $evento->findforid($coment['_eventId']);
         $quienCito = $usuario->findforid($coment['_userId']);
+      //  $fotoEvento = $evento->verFoto($coment['_eventId']);
         $cuerpo = '<div class="divmencionevent">';
-        $cuerpo.= '<div class="foto-event"></div>';//$event['foto'][0]
+       // $cuerpo.= '<div style="background: url('.$fotoEvento.'); background-size: cover" class="foto-event"></div>';//$event['foto'][0]
         $cuerpo.= '<div class="tit title-event">'.$event['nombre'].'</div>';
         $cuerpo.= '<div class="bloq2msj"><div class="itemcomentmsj">';
         $cuerpo.=   '<div style="background: url('.$quienCito['foto'].')" class="bloq1"></div>';
@@ -39,43 +40,43 @@
         
         $theObjId = new MongoId($coment['_eventId']);
         $todosComent = $comentarios->findOtrasMenciones($_SESSION['userid'], 4);
-        $html = '<div class="otroscoment">
-                   <div class="tit titotros">Otras menciones</div>';
-        foreach ($todosComent as $dcto){
-            if($dcto['_id'] != $not['idComentario']){
-                $userFoto = $usuario->verFoto($dcto['_userId']);
-                $useridComent = $dcto['_userId'];
-                $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
-                $html.='<div class="itemcoment">
-                            <div class="line"></div>
-                            <div class="bloq1" style="'.$userFoto['foto'].'"></div>
-                            <div class="bloq2">
-                                
-                                <div class="titu-usercom">
-                                    <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
-                                    <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
-                                </div>
-                                <div class="comentuser">
-                                <!--<a href="/findbreak/break/'.$event['hash'].' " class="hashlink">'.$event['hash'].'</a>-->
-                                                        '.$dcto['comentario'].'
-                                </div>
-                            </div>
-                            <div class="bloq3">
-                                    <div class="hacecuant">
-                                        '.$realizacion.'
-                                    </div>';
-                                if($useridComent == $_SESSION['userid']){
-                                   $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
-                               }else{
-                                   $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
-                               }
-                        $html.='
-                              </div>
-                          </div>';
-            }
-        }
-        $html.='</div>';
-        $re = $cuerpo.$html;  
+//        $html = '<div class="otroscoment">
+//                   <div class="tit titotros">Otras menciones</div>';
+//        foreach ($todosComent as $dcto){
+//            if($dcto['_id'] != $not['idComentario']){
+//                $userFoto = $usuario->verFoto($dcto['_userId']);
+//                $useridComent = $dcto['_userId'];
+//                $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
+//                $html.='<div class="itemcoment">
+//                            <div class="line"></div>
+//                            <div class="bloq1" style="'.$userFoto['foto'].'"></div>
+//                            <div class="bloq2">
+//                                
+//                                <div class="titu-usercom">
+//                                    <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
+//                                    <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
+//                                </div>
+//                                <div class="comentuser">
+//                                <!--<a href="/findbreak/break/'.$event['hash'].' " class="hashlink">'.$event['hash'].'</a>-->
+//                                                        '.$dcto['comentario'].'
+//                                </div>
+//                            </div>
+//                            <div class="bloq3">
+//                                    <div class="hacecuant">
+//                                        '.$realizacion.'
+//                                    </div>';
+//                                if($useridComent == $_SESSION['userid']){
+//                                   $html.= '<div data-id="'.$dcto['_id'].'" id="delcoment" class="aparececom">Eliminar</div>';
+//                               }else{
+//                                   $html.= '<div data-id="'.$dcto['_id'].'" id="compartircoment" class="aparececom">Compartir</div>';
+//                               }
+//                        $html.='
+//                              </div>
+//                          </div>';
+//            }
+//        }
+//        $html.='</div>';
+        $re = $cuerpo; //.$html  
         echo $re;
     }
     

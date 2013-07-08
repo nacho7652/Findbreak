@@ -59,6 +59,10 @@ html {
     z-index: 110;
     cursor: pointer;
 }
+.divmencionevent {
+    padding: 16px 15px 18px 0px;
+    overflow: hidden;
+}
 #coverall #caloader {
     min-height: 100%;
     overflow: hidden;            
@@ -105,6 +109,7 @@ html {
     margin: 0px auto;
     font-size: 1.2em;
 }
+
 .bloq1msj {
     float: left;
     width: 511px;
@@ -495,20 +500,23 @@ html {
     position: relative;
 }
 #user-login .groupoption {
-    width: 174px;
-    background: #CCC;
+    width: 196px;
+    background: #fff;
     color: #444;
-    font-size: 11px;
+    font-size: 12px;
     position: absolute;
     right: 0px;
     top: 43px;
     display: none;  
     box-shadow: 0px 1px 10px -2px rgb(117, 117, 117);  
+    border-radius: 2px;
 }
 #user-login .itemgroup-option {
-    background: white;
-    border-bottom: 1px solid #D8D8D8;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.31);
     padding: 10px 9px 10px 9px;
+    display: block;
+    text-decoration: none;
+    color: #444;
 }
 #user-login .itemgroup-option.last{
     border-bottom: none !important;
@@ -528,7 +536,10 @@ html {
     font-size: 11px;
     text-decoration: none;
 }
-
+.option.user-name {
+max-width: 89px !important;
+overflow: hidden;
+}
 #user-login .option.user-photo {
     background-repeat: no-repeat;
     background-size: cover !important;
@@ -565,7 +576,7 @@ html {
 }
 #show-solicitud .item-friends-username {
     float: left;
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin-left: 0px;
     margin-top: 0px;
     margin-right: 4px;
@@ -1228,7 +1239,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     margin: 13px 0px 0px 21px;
 }
 .paracoment {
-    margin: 10px 173px 0px 0px !important;
+    margin: 10px 80px 0px 0px !important;
     float: left;
 }
 .perfiluser .login-fb{
@@ -1825,13 +1836,19 @@ padding: 0px 25px;
 /*END-HOME*/
 /*EVENT PROFILE*/
 .eventprofile {
-    top: -143px !important;
-    padding-top: 135px !important;
+    width: 100% !important;
+    margin: 0px auto 11px auto !important;  overflow: hidden !important;  position: relative;
+}
+.content-perfilevento{
+    width: 1000px;
+    margin: -3px auto 0px auto;
+    overflow: visible;
 }
 .perfiluser{
     padding-top: 56px !important;
+    padding-bottom: 16px;
 }
-.eventprofile,.productora, .perfilest, .perfiluser{
+.productora, .perfilest, .perfiluser{
     width: 968px !important;
     margin: 0px auto 11px auto !important;    
     overflow: hidden !important;
@@ -1842,6 +1859,7 @@ padding: 0px 25px;
     width: 100%;
     height: 107px;
     margin: 51px 0px 0px 0px;
+    z-index: -36;
 }
 .parte-left-parent {
     width: 609px;
@@ -1895,6 +1913,9 @@ padding: 0px 25px;
 .face img, .twitt img{
     width: 26px
 }
+.verMapaEvento{
+    float: right;
+}
 #comprarevent-prof {
 background: url('/findbreak/nuevo/images/sprites.png') no-repeat -62px -136px;
 line-height: 19px;
@@ -1904,6 +1925,10 @@ line-height: 19px;
 }
 #dondeevent-prof{
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -25px;
+}
+.producidoPor {
+    float: left;
+    margin-right: 2px;
 }
 #precioevent-prof{
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -44px;
@@ -2051,15 +2076,24 @@ line-height: 19px;
     font-size: 0.7em;
 }
 #map_establecimientos {
-    border: 1px solid rgba(211, 211, 211, 0.24);
     margin: 4px 0px 0px 0px;
+    position: absolute !important;
+    z-index: 10000000000000000000000000000000000000000000;
+    top: -4px;
+    left: -200px;
+}
+#content-mapaenvento{
+    left: 40000px;
+    position: absolute;
+    width: 963px;
+    top: 51px;
 }
 .part-right {
     float: left;
     width: 352px;
     padding-top: 0px;
     margin: 8px 0px 0px 0px;
-    overflow: hidden;
+    overflow: visible;
 }
 .publicidad-media{
     width: 350px !important;
@@ -2233,7 +2267,7 @@ line-height: 19px;
 .mjscoment{
     font-size: 0.8em;
     color: rgb(88, 88, 88) !important;
-    width: 342px;
+    width: 321px;
     height: 40px;
     font-weight: bold;
 }
@@ -2440,15 +2474,15 @@ margin: -3px -5px 0px 6px;
     word-wrap: break-word;
 }
 
-#comprar-evento {
+#denunciar-evento {
     position: absolute;
-    top: 311px;
-    left: -173px;
-    padding: 10px 9px;
+    top: 306px;
+    left: 192px;
+    padding: 0px 9px;
     
     text-shadow: 0px 1px 0px #444;
     box-shadow: 0px 0px 7px -2px #000;
-    font-size: 18px;
+    font-size: 11px;
     z-index: 8;
 }
 #editar-mievento {
@@ -2465,13 +2499,13 @@ margin: -3px -5px 0px 6px;
     z-index: 8;
 }
 .more-fotos {
-    float: left;
-    width: 100%;
-    margin: 0px 0px 23px 0px;
-    padding-left: 39px;
-    position: absolute;
-    top: 36px;
-    left: 200px;
+    width: 1000px;
+    margin: 45px auto 0px auto;
+    top: 5px;
+    position: relative;
+    height: 110px;
+    padding-left: 417px;
+    background: url('/findbreak/images/superpos-bg.png') rgb(22, 23, 24);
 }
 .foto-event-small {
     width: 92px;
