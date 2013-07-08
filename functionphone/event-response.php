@@ -17,7 +17,9 @@
                                         "lat"=>$dcto['loc'][0],
                                         "lon"=>$dcto['loc'][1],
                                         "nombre"=>$dcto['nombre'],
-					"id"=>$dcto['_id']
+										"id"=>$dcto['_id'],
+										"dir"=>$dcto['direccion'],
+										"fecha"=>$dcto['fecha_muestra'],
                                         );
 	           }
                     $respuesta = array("cont"=>$cont,
@@ -29,12 +31,12 @@
 	   if(isset($_GET['eventprofile']))
 	   {
 			$id = $_REQUEST['id'];
-			$respuesta = array("id"=>$id);
-			echo json_encode($respuesta);
-			//$event = new evento();
-			//$eventprofile = $event->findforid($id);
-			//$resp = json_encode($eventprofile);
-			//echo $resp;
+			//$respuesta = array("id"=>$id);
+			//echo json_encode($respuesta);
+			$event = new evento();
+			$eventprofile = $event->findforid($id);
+			$resp = json_encode($eventprofile);
+			echo $resp;
 	   }
        
 ?>

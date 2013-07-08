@@ -22,12 +22,12 @@
 		         $cont++;
 		         $resp[] = array(
                                         "username"=>$dcto['userName'],
-                                        "nombre"=>$dcto['comentario'],
-					"_userId"=>$dcto['_userId']
+                                        "com"=>$dcto['comentario'],
+										"fecha"=>$dcto['fechaMuestra']
                                         );
 	           }
-                    $respuesta = array("cont"=>$cont,
-                                       "event"=>$resp
+                    $respuesta = array("contador"=>$cont,
+                                       "eventos"=>$resp
                                        );
             echo json_encode($respuesta);
 //        echo json_encode($resp);
