@@ -12,12 +12,15 @@
                                  </div>
                                 <div class="item-publicar">   
                                     <div id="info-mostrar">
-                                    ¿Que obtienes al publicar un evento? 
-                                    Potenciar la publicidad de tus anuncios.
-                                    Que tus anuncios sean vistos por las personas que ingresen a la aplicacion cerca de la ubicacion del evento o suceso.
+                                    ¿Que ganas tú al publicar un anuncio o evento? <br>
+                                    
+                                    <b> Claramente potenciar la publicidad de tus anuncios.</b><br>
+                                    <b>Que tus anuncios sean vistos por las personas que ingresen a la aplicacion cerca de la ubicacion del anuncio o suceso.</b><br>
+                                    <b>Publica gratuitamente!</b>
 <!--                                    <a href="#">ver tabla de premios!</a>-->
                                     </div>
                                 </div>
+ 
                                  
                         
                                 

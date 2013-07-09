@@ -128,7 +128,7 @@
                                     $usernameProductora = $usuario->verUserName($idMongoUsuario);
                                 ?>
                                 <div id="precioevent-prof" class="info-event-item">
-                                  <span class="producidoPor">Producido por: </span>
+                                  <span class="producidoPor">Publicado por: </span>
                                   <a style="float:left; margin-top: 0px; " class="hashlink" href="/findbreak/!<?= $usernameProductora['username']?>">
                                     <?php echo $nombreproductora['nombre'] ?>
                                   </a>

@@ -366,7 +366,7 @@
                                          </div>-->
                                          <a href="/findbreak/cerca"  class="option ">
                                             <div id="optionhome"  class="content-option">
-                                                Inicio
+                                                Mapa
                                             </div>
                                         </a>
                                          <div class="option  menu">
@@ -380,28 +380,28 @@
                                                 <a href="/findbreak/editar-user/!<?=$_SESSION['username']?>"id="editar-info" class="itemgroup-option last">
                                                     Editar mi perfil
                                                 </a>
-                                                <div class="itemgroup-option itemgroup-option last">
+<!--                                                <div class="itemgroup-option itemgroup-option last">
                                                   Saldo:<?php 
                                                   
-                                                  echo $usuariorelacional->ValidarSaldo($_SESSION['userid']);
+                                               //   echo $usuariorelacional->ValidarSaldo($_SESSION['userid']);
                                                   
                                                   ?>
-                                                </div>
-                                                <div id="cargar-cuenta" class="itemgroup-option last">
+                                                </div>-->
+<!--                                                <div id="cargar-cuenta" class="itemgroup-option last">
                                                     Cargar cuenta
                                                     <?php 
-                                                        if(isset($_POST['price']) != null && is_numeric($_POST['price'])){//si llega la plata
-                                                              $_SESSION['valorDeCarga'] =  $_REQUEST['price'];  
-                                                               //echo $_SESSION['valorDeCarga'];
-                                                               header('location:https://www.mercadopago.com/mlc/buybutton?acc_id=6030853&url_cancel="http://localhost/findbreak/cerca/tran-cancel?item_id=222&name=CARGAR CUENTA FINDBREAK&currency=CHI&url_process=http://localhost/findbreak/cerca&url_succesfull=http://localhost/findbreak/!'.$_SESSION['username'].'/tran-success&url_post=1&shipping_cost=&enc=NJKVVWpx1581SmPvti51BuYh8dU%3D&extraPar=&price='.$_REQUEST['price']);
-                                                        }
+//                                                        if(isset($_POST['price']) != null && is_numeric($_POST['price'])){//si llega la plata
+//                                                              $_SESSION['valorDeCarga'] =  $_REQUEST['price'];  
+//                                                               //echo $_SESSION['valorDeCarga'];
+//                                                               header('location:https://www.mercadopago.com/mlc/buybutton?acc_id=6030853&url_cancel="http://localhost/findbreak/cerca/tran-cancel?item_id=222&name=CARGAR CUENTA FINDBREAK&currency=CHI&url_process=http://localhost/findbreak/cerca&url_succesfull=http://localhost/findbreak/!'.$_SESSION['username'].'/tran-success&url_post=1&shipping_cost=&enc=NJKVVWpx1581SmPvti51BuYh8dU%3D&extraPar=&price='.$_REQUEST['price']);
+//                                                        }
                                                         
                                                     ?>
                                                     <form id="mercagoPago" action="/findbreak/cerca" method="POST">
                                                         Monto debe ser mayor a 950: <input type="text" name="price" id="price"> 
-<!--                                    
--->                                                    </form>
-                                                </div>
+                                    
+                                                    </form>
+                                                </div>-->
                                                 <a href="/findbreak/publicaciones" id="mis-publicaciones" class="itemgroup-option last">
                                                     Mis publicaciones
                                                 </a>

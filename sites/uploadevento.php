@@ -98,12 +98,12 @@
             $dondeComprar = '-1';//demás
             
                                 
-            //
+            
             $usuariorelacional = new usuarioRelacional();
             $saldo = $usuariorelacional->ValidarSaldo($_SESSION['userid']);
-            if($saldo >= 500)
+            if($saldo >= 0)
             {
-                $usuariorelacional->DisminuirSaldo($_SESSION['userid']);
+                //$usuariorelacional->DisminuirSaldo($_SESSION['userid']);
               $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
                                    $video, $establecimiento, $precio, $puntosGuardar, $sitioWeb, $dondeComprar,$hashtag);
             
