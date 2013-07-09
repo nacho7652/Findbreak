@@ -155,7 +155,7 @@
                         <div class="descripcion-event"><?php echo nl2br($eventfound['descripcion'])?></div>
                         <div class="leer-masevent">
                             <?php 
-                                    if($c > 300)//alcanza en todo el cuadro
+                                    if($c > 100)//alcanza en todo el cuadro
                                   {
                                        echo '<a href="#" class="readmore">Leer más...</a>';
                                   }

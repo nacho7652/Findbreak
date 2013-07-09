@@ -56,10 +56,11 @@
          if(isset($usuariofound['siguiendo']))
              $siguiendo = count($usuariofound['siguiendo']);
          
+         $fotoUsuario = $usuariofound['foto'];
          $publicaciones = $usuario->verCantidadPublicaciones($idSolicitado);
          $divProfileUser = '<div class="profileuser">';
          $divProfileUser.=   '<div class="left-user">
-                                <div class="pic-user"></div>
+                                <div style="background: url('.$fotoUsuario.'); background-size: cover" class="pic-user"></div>
                                 '.$buttonFriend.'
                               </div>
                               <div class="info-user">';

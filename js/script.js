@@ -427,8 +427,12 @@ $(document).ready(function(){
             $('.list').attr('style','outline: none; tabindex="5000; overflow-y:none"');
         })
         $('body').delegate('.btn-comentar-cerca','click',function(){
+         
          padre = $(this).parent().parent();
          var coment = padre.find('#coment').val();
+          if(trim(coment) == ""){
+            return false;
+        }
          var eventid = padre.find('.idevent').val();
          var nombreevent = padre.find('.nombreevent').val();
          var hashevent = padre.find('.hashevent').val();
@@ -489,6 +493,10 @@ $(document).ready(function(){
         })
         $('body').delegate('#btn-comentar','click',function(){
          var coment = $('#coment').val();
+         if(trim(coment) == ""){
+            return false;
+        }
+        alert(coment)
          var eventid = $('.idevent').val();
          var nombreevent = $('.title-event').html();       
          var hashevent = $('#hashevent').val();

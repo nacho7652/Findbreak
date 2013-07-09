@@ -24,6 +24,9 @@ $(document).ready(function(){
            // $('#hasheventos').val($('#hasheventos').val()+ ''+hash)
     });
     $('#btn-comentar-puser').click(function(){
+        if($('#coment').val() == ""){
+            return false;
+        }
         comentario = $('#hasheventos').val()+' '+$('#coment').val();
         padre = $(this).parent().parent().parent().parent().parent();
          var coment = comentario;

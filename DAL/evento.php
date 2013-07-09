@@ -203,7 +203,7 @@ class evento {
                 $usuarioR->PagoVisitas((string)$ev['producido_por']['_id']);
                 $fecha = date('Y-m-d H:i:s');
                 $fechaMongo = new MongoDate(strtotime($fecha));
-                $usuario->guardarNotificacion3($_SESSION['userid'], $idEvento, $cantF, $fechaMongo, $fecha);
+                $usuario->guardarNotificacion3($ev['producido_por']['_id'], $idEvento, $cantF, $fechaMongo, $fecha);
             }
                 
              return 1;
@@ -223,7 +223,7 @@ class evento {
                     $usuarioR->PagoVisitas((string)$ev['producido_por']['_id']);
                     $fecha = date('Y-m-d H:i:s');
                     $fechaMongo = new MongoDate(strtotime($fecha));
-                    $usuario->guardarNotificacion3($_SESSION['userid'], $idEvento, $cantF, $fechaMongo, $fecha);
+                    $usuario->guardarNotificacion3($ev['producido_por']['_id'], $idEvento, $cantF, $fechaMongo, $fecha);
                 }
                 
                 
@@ -484,7 +484,7 @@ class evento {
                         case '12': $nombremes = 'Diciembre'; break; 
                     }
                    
-                    $formato.= $nombredia.", ".$dia." de ".$nombremes." del ".$anio;
+                    $formato.= $dia." de ".$nombremes." del ".$anio;
                     if(isset($masfechas[$i+1]) && $cantidadFechas != 1) {
                         $formato.=" <br> ";
                     }

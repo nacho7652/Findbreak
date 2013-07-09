@@ -78,7 +78,7 @@
             $stiloMensaje = 'style="display:block"';
             $mensajeEvento = 'No tienes saldo suficiente, recarga tu cuenta
                 
-            <div>  el diego hace esta wea el booton culiao cancelar / recargar     </div>    
+            <div>Opciones -> Cargar cuenta</div>    
 
             ';       
        }
@@ -376,6 +376,7 @@
                                         </div>
                                          
                                         <div class="groupoption">
+                                                <a class="itemgroup-option itemgroup-option last" href="/findbreak/publicar">Publicar !</a>
                                                 <a href="/findbreak/editar-user/!<?=$_SESSION['username']?>"id="editar-info" class="itemgroup-option last">
                                                     Editar mi perfil
                                                 </a>
@@ -418,9 +419,9 @@
                                </div>
                                <?php } ?>
                      
-                     <div id="info-publicar" class="botongreen"> 
+<!--                     <div id="info-publicar" class="botongreen"> 
                          Publicar
-                     </div>
+                     </div>-->
                      <div id="info-mostrar" style="display:none">  
                          <div class="content-infomostrar">
                              Publica un evento y obtén todos los beneficios que te bindra findbreak
