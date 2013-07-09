@@ -13,7 +13,8 @@
                                 <div class="item-publicar">   
                                     <div id="info-mostrar">
                                     ¿Que obtienes al publicar un evento? 
-                                    Findbreak te reembolsa dinero en tu cuenta dependiendo de la cantidad de visitas que tiene tu evento
+                                    Potenciar la publicidad de tus anuncios.
+                                    Que tus anuncios sean vistos por las personas que ingresen a la aplicacion cerca de la ubicacion del evento o suceso.
 <!--                                    <a href="#">ver tabla de premios!</a>-->
                                     </div>
                                 </div>
