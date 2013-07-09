@@ -32,7 +32,7 @@ if(isset($_REQUEST['login']))
 			{
 				$cantSig = 0;
 			}
-			$id = $encontrado['_id'];
+			$id = (string)$encontrado['_id'];
         }
         $respuesta = array("exito"=>$exito,
                            "username"=>$nom,
