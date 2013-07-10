@@ -1982,11 +1982,26 @@ line-height: 19px;
 .info-dire {
 float: left;
 }
+.redes-event {
+    position: absolute;
+    bottom: 6px;
+}
+.fb-share-button.fb_iframe_widget {
+    position: relative;
+    right: -12px;
+    bottom: 15px;
+}
+.twitter-share-button.twitter-count-horizontal {
+    position: relative;
+    right: -34px;
+    bottom: 9px;
+}
 .part-left-lf {
     width: 495px;
     float: left;
     padding: 0px 0px 0px 11px;
     margin-top: 28px;
+    position: relative;
 }
 #icondescrip {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -134px;

@@ -33,19 +33,7 @@
 </script>
 
 <div class="more-fotos">
-    <!--para redes sociales-->
-                       <div class="fb-like" data-href="http://www.findbreak.com/break/<?= $_GET['id']?>" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
-                      
-                      <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
-                       <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
-                       </script>
-                       <a href='http://www.findbreak.com/break/<?= $_GET['id']?>' name='fb_share' type='button_count' >Compartir</a>
-                       
-                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com/break/<?= $_GET['id']?>" data-hashtags="<?= $_GET['id']?>">Tweet</a>
-                       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                       
-                      <!--</b>-->
-      <!--redes sociales-->
+    
              <?php
                 if(!empty($_SESSION['userid']))
                 {
@@ -174,11 +162,25 @@
                                         <input type="hidden" id="totalComent" value="<?= $cantidadComentarios?>"/>
                                     </div>
                                 </div>
-
+                                
                         </div>
                     </div>
 
                     <div class="part-left-lf">
+                        <!--para redes sociales-->
+                                <div class="redes-event">
+                                            <div class="fb-like" data-href="http://www.findbreak.com/break/<?= $_GET['id']?>" data-send="false" data-width="200" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
+
+                                           <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
+                                            <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
+                                            </script>
+                                            <a id="sharefb-evento" href='http://www.findbreak.com/break/<?= $_GET['id']?>' name='fb_share' type='button_count' >Compartir</a>
+
+                                            <a id="tw-evento" href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com/break/<?= $_GET['id']?>" data-hashtags="<?= $_GET['id']?>">Tweet</a>
+                                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                                </div>
+                                           <!--</b>-->
+                           <!--redes sociales-->
                         <div id="icondescrip"></div>
                         <?php 
                                 $c = 0;
