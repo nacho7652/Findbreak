@@ -10,16 +10,17 @@
         $folder = (string)$_SESSION["userid"];
 ?>
 <div class="content-publicarevent">
+    <br>
                                  <div class="item-publicar">
-                                    <div class="title-publicarevent">Mis eventos</div>
+                                    <div class="title-publicarevent">Tus publicaciones</div>
                                  </div>
-                                <div class="item-publicar">   
+<!--                                <div class="item-publicar">   
                                     <div id="info-mostrar">
                                     ¿Que obtienes al publicar un evento? 
                                     Findbreak te reembolsa dinero en tu cuenta dependiendo de la cantidad de visitas que tiene tu evento
                                     <a href="#">ver tabla de premios!</a>
                                     </div>
-                                </div>
+                                </div>-->
     <div >
         
                            <?php 
@@ -63,7 +64,7 @@
                                                            </div>
                                                            <!--<div class="botonitemcerca botonblue">Ver comentarios</div>-->
                                                            <a href="/findbreak/editar-evento/<?= $dcto['_id']?>" class="editarEvento botongreen">Editar</a>
-                                                           <a href="#" data-id="<?php echo $dcto['_id'];?>" class="eliminarEvento botonred">Eliminar evento</a>
+                                                           <a href="#" data-id="<?php echo $dcto['_id'];?>" class="eliminarEvento botonred">Eliminar publicación</a>
                                             </div>
                                        
                                      </div>
