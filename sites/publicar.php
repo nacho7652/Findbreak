@@ -67,15 +67,15 @@
                                 
                                 
                                 
-                                <div class="item-publicar">
+<!--                                <div class="item-publicar">
                                  <div class="nombre-publicarevent">Fecha(s) del evento (yyyy-mm-dd)</div>
                                  <input type="text" class="field-publicarevent field-publicarevent-m obligatorio" id="date-event" name="date-event"/>
                                  <div class="mensaje-error error-obligatorio mensaje-m">
                                         <div class="content-mensaje ">* Debes ingresar una fecha</div>
                                  </div>
-                                </div>
+                                </div>-->
                                 
-                                <div class="item-publicar">
+<!--                                <div class="item-publicar">
                                  <div class="nombre-publicarevent">Hora de inicio(22:00)</div>
                                  <input placeholder="22" class="field-publicarevent field-publicarevent-s obligatorio" type="text" id="hour-event" name="hour-event"/>
                                  <div class="dospuntos"></div>
@@ -83,7 +83,7 @@
                                  <div class="mensaje-error error-obligatorio mensaje-m">
                                         <div class="content-mensaje">* Debes ingresar la hora de inicio</div>
                                  </div>
-                                </div>
+                                </div>-->
                                 
     
                                 <div class="item-publicar">
@@ -114,39 +114,23 @@
                                 </div>
                                 
     
-                                <div class="item-publicar">
+<!--                                <div class="item-publicar">
                                     <div class="nombre-publicarevent">Precio</div>
                                     <input placeholder="$5.000 pesos / entrada liberada" class="obligatorio field-publicarevent field-publicarevent-m " type="text" id="precio-event" name="precio-event"/>
                                     <div class="mensaje-error error-obligatorio mensaje-m">
                                         <div class="content-mensaje">* Debes ingresar el precio</div>
                                     </div>
-                                </div>
-                                <div class="item-publicar">
+                                </div>-->
+<!--                                <div class="item-publicar">
                                     <div class="nombre-publicarevent">Establecimiento a realizar</div>
                                     <input placeholder="Ej: Estadio Nacional" class="field-publicarevent field-publicarevent-m " type="text" id="establecimiento-event" name="establecimiento-event"/>
                                     
-                                </div>
-                                <div class="item-publicar">
-                                    <div class="nombre-publicarevent">Puntos de venta</div>
-                                    <?php  
-                                       
-                                      $puntosDeVenta = $evento->verPuntosVenta();
-                                      $numPunto = 1;
-                                        foreach($puntosDeVenta as $dcto){
-                                        ?>
-                                            <div class="item-puntoventa">
-                                                <input class=" checkpunto " type="checkbox" id="establecimiento-event" name="puntosventa-event<?= $numPunto?>"/>
-                                                <div class="nombre-publicarevent msj-peqeno nombre-puntoventa"><?= $dcto['nombre']?></div>
-                                                <input placeholder="<?= $dcto['web']?>/tuEntrada" class="field-publicarevent field-publicarevent-m url-puntosventa" type="text" id="linkentrada-<?= $numPunto?>" name="linkentrada-<?= $numPunto?>"/>
-                                                <div class="opcional msj-peqeno">Opcional</div>
-                                            </div>
-                                    <?php $numPunto++;}?>
-                                    <!--<input placeholder="Ej: Estadio Nacional" class="field-publicarevent field-publicarevent-m " type="text" id="establecimiento-event" name="establecimiento-event"/>-->
-                                </div>
+                                </div>-->
+                                
     
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">Descripción</div>
-                                 <textarea placeholder="Detalla la información de tu anuncio, fechas, horas, ubicacion, etc." class="field-publicarevent obligatorio" rows="4" cols="50" id="descripcion-event" name="descripcion-event"></textarea>
+                                 <textarea placeholder="Detalla la información de tu anuncio, fechas, horas, precios, ubicacion, etc." class="field-publicarevent obligatorio" rows="4" cols="50" id="descripcion-event" name="descripcion-event"></textarea>
                                  <div class="mensaje-error error-obligatorio">
                                         <div class="content-mensaje">* Ingresa una drescripción</div>
                                  </div>
@@ -178,7 +162,7 @@
                                 
                                  <div class="item-publicar">
                                  
-                                 <button id="btnSubmit" style="display: none;">Subir archivo</button>
+                                
                                   <input type="button" class="botongreen" id="guardarevento" value="Publicar"/>
                                  </div>
                                 <input type="hidden" class="lat-event" name="lat-event"/>
