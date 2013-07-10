@@ -17,22 +17,22 @@
             }
             if($_FILES['images-galerias2']['error'] == UPLOAD_ERR_OK ){
                 $exito2 = subir($_FILES['images-galerias2']['name'], $_FILES['images-galerias2']['tmp_name']);
-                $rutasFotos[]= array(trim($exito1['fotoGr']), trim($exito1['fotoPe']));
+                $rutasFotos[]= array(trim($exito2['fotoGr']), trim($exito2['fotoPe']));
                 $re2 = $exito2['re'];
             }
             if($_FILES['images-galerias3']['error'] == UPLOAD_ERR_OK){
                 $exito3 = subir($_FILES['images-galerias3']['name'], $_FILES['images-galerias3']['tmp_name']);
-                $rutasFotos[]= array(trim($exito1['fotoGr']), trim($exito1['fotoPe']));
+                $rutasFotos[]= array(trim($exito3['fotoGr']), trim($exito3['fotoPe']));
                 $re3 = $exito3['re'];
             }
             if($_FILES['images-galerias4']['error'] == UPLOAD_ERR_OK){
                 $exito4 = subir($_FILES['images-galerias4']['name'], $_FILES['images-galerias4']['tmp_name']);
-                $rutasFotos[]= array(trim($exito1['fotoGr']), trim($exito1['fotoPe']));
+                $rutasFotos[]= array(trim($exito4['fotoGr']), trim($exito4['fotoPe']));
                 $re4 = $exito4['re'];
             }
             if($_FILES['images-galerias5']['error'] == UPLOAD_ERR_OK){
                 $exito5 = subir($_FILES['images-galerias5']['name'], $_FILES['images-galerias5']['tmp_name']);
-                $rutasFotos[]= array(trim($exito1['fotoGr']), trim($exito1['fotoPe']));
+                $rutasFotos[]= array(trim($exito5['fotoGr']), trim($exito5['fotoPe']));
                 $re5 = $exito5['re'];
             }
             
@@ -104,8 +104,8 @@
             if($saldo >= 0)
             {
                 //$usuariorelacional->DisminuirSaldo($_SESSION['userid']);
-              $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechString, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
-                                   $video, $establecimiento, $precio, $puntosGuardar, $sitioWeb, $dondeComprar,$hashtag);
+              $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+                                   $video, $sitioWeb,$hashtag);
             
               
             }
@@ -156,11 +156,9 @@
                     $foto0 = $fotosActuales['fotos'][0];
                     $urlBorrar = $urlFotos.'/'.$foto0[0];//gr
                     $urlBorrarPe = $urlFotos.'/'.$foto0[1];//pe
-                    $nombreBorrar = $foto0[0];
-                    $nombreBorrarPe = $foto0[1];
                     $exito1 = subir($_FILES['images-evento-nueva0']['name'], $_FILES['images-evento-nueva0']['tmp_name']);
-                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $nombreBorrarPe, $exito1['fotoPe'],0,0);
-                    $re1 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito1['fotoGr'],0,1);
+                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $exito1['fotoPe'],0,1);
+                    $re1 = $evento->reemplazarFoto($idEvento, $urlBorrar, $exito1['fotoGr'],0,0);
                  }else{
                      $exito1 = subir($_FILES['images-evento-nueva0']['name'], $_FILES['images-evento-nueva0']['tmp_name']);
                      $re1 = $evento->nuevaFoto($idEvento, $exito1['fotoGr'], $exito1['fotoPe']);
@@ -171,11 +169,9 @@
                     $foto1 = $fotosActuales['fotos'][1];
                     $urlBorrar = $urlFotos.'/'.$foto1[0];
                     $urlBorrarPe = $urlFotos.'/'.$foto1[1];//pe
-                    $nombreBorrar = $foto1[0];
-                    $nombreBorrarPe = $foto1[1];
                     $exito2 = subir($_FILES['images-evento-nueva1']['name'], $_FILES['images-evento-nueva1']['tmp_name']);
-                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $nombreBorrarPe, $exito2['fotoPe'],1,0);
-                    $re2 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito2['fotoGr'],1,1);
+                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $exito2['fotoPe'],1,1);
+                    $re2 = $evento->reemplazarFoto($idEvento, $urlBorrar, $exito2['fotoGr'],1,0);
                 }else{//nueva
                     $exito2 = subir($_FILES['images-evento-nueva1']['name'], $_FILES['images-evento-nueva1']['tmp_name']);
                     $re2 = $evento->nuevaFoto($idEvento, $exito2['fotoGr'], $exito2['fotoPe']);
@@ -186,11 +182,9 @@
                     $foto2 = $fotosActuales['fotos'][2];
                     $urlBorrar = $urlFotos.'/'.$foto2[0];
                     $urlBorrarPe = $urlFotos.'/'.$foto2[1];//pe
-                    $nombreBorrar = $foto2[0];
-                    $nombreBorrarPe = $foto2[1];
                     $exito3 = subir($_FILES['images-evento-nueva2']['name'], $_FILES['images-evento-nueva2']['tmp_name']);
-                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $nombreBorrarPe, $exito3['fotoPe'],2,0);
-                    $re3 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito3['fotoGr'],2,1);
+                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $exito3['fotoPe'],2,1);
+                    $re3 = $evento->reemplazarFoto($idEvento, $urlBorrar, $exito3['fotoGr'],2,0);
                 }else{//nueva
                     $exito3 = subir($_FILES['images-evento-nueva2']['name'], $_FILES['images-evento-nueva2']['tmp_name']);
                     $re3 = $evento->nuevaFoto($idEvento, $exito3['fotoGr'], $exito3['fotoPe']);
@@ -201,11 +195,9 @@
                     $foto3 = $fotosActuales['fotos'][3];
                     $urlBorrar = $urlFotos.'/'.$foto3[0];
                     $urlBorrarPe = $urlFotos.'/'.$foto3[1];//pe
-                    $nombreBorrar = $foto3[0];
-                    $nombreBorrarPe = $foto3[1];
                     $exito4 = subir($_FILES['images-evento-nueva3']['name'], $_FILES['images-evento-nueva3']['tmp_name']);
-                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $nombreBorrarPe, $exito4['fotoPe'],3,0);
-                    $re4 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito4['fotoGr'],3,1);
+                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $exito4['fotoPe'],3,1);
+                    $re4 = $evento->reemplazarFoto($idEvento, $urlBorrar, $exito4['fotoGr'],3,0);
                 }else{//nueva
                     $exito4 = subir($_FILES['images-evento-nueva3']['name'], $_FILES['images-evento-nueva3']['tmp_name']);
                     $re4 = $evento->nuevaFoto($idEvento, $exito4['fotoGr'], $exito4['fotoPe']);
@@ -219,8 +211,8 @@
                     $nombreBorrar = $foto4[0];
                     $nombreBorrarPe = $foto4[1];
                     $exito5 = subir($_FILES['images-evento-nueva4']['name'], $_FILES['images-evento-nueva4']['tmp_name']);
-                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $nombreBorrarPe, $exito5['fotoPe'],4,0);
-                    $re5 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito5['fotoGr'],4,1);
+                    $rePe =$evento->reemplazarFoto($idEvento, $urlBorrarPe, $nombreBorrarPe, $exito5['fotoPe'],4,1);
+                    $re5 = $evento->reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $exito5['fotoGr'],4,0);
                 }else{//nueva
                     $exito5 = subir($_FILES['images-evento-nueva4']['name'], $_FILES['images-evento-nueva4']['tmp_name']);
                     $re5 = $evento->nuevaFoto($idEvento, $exito5['fotoGr'], $exito5['fotoPe']);

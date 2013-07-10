@@ -257,37 +257,52 @@ class evento {
          return $hash;
      }
 
-     public function insertar($userid, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
-                             $video, $establecimiento, $precio, $puntosDeVenta, $sitioWeb, $dondeComprar, $hashtag){ 
-         $arrtags = explode(",", $tags);
+     public function insertar($idproductora, $nombreproductora, $nombre, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+                                   $video, $sitioWeb,$hashtag){ 
+         $arrtags = explode(",", $tag);
          $arrtags[] = strtolower($nombre);
-//         unset($arrtags[count($arrtags)-2]);
-         
-         $fotos = explode(",", $arrayfotos);
-
-         $event = array(
+////         unset($arrtags[count($arrtags)-2]);
+//         
+//         $fotos = explode(",", $arrayfotos);
+          $event = array(
             "nombre" => $nombre,
             "hash" => $hashtag,//$this->crearHash($nombre),
             "hashmin"=>  strtolower($hashtag),
-            "direccion" =>  $direccion,
+            "direccion" =>  $dir,
             "fotos" => $arrayfotos,
-            "fecha_realizacion" => $fechaMongo, //para la busqueda por fechas
-            "fecha_muestra" => $fechaString, //para mostrar
-            "hora_inicio"=>$hor,
             "estado"=> "pendiente",
-            "producido_por"=>(object)array("_id"=>$userid, "nombre"=>$username),
+            "producido_por"=>(object)array("_id"=>$idproductora, "nombre"=>$nombreproductora),
             "tags" => $arrtags,
             "loc"=> array((float)$lat, (float)$lng),
             "descripcion"=>  $desc,
              "visitas"=>0,
-             "redes" => array($urlfb, $urltw,$video),
-             "establecimiento"=> $establecimiento,
-             "precio"=>$precio,
-             "puntos_de_venta"=>$puntosDeVenta,
+             "redes" => array($urlfacebook, $urltwitter,$video),
              "sitio_web"=>$sitioWeb,
-             "donde_comprar"=>$dondeComprar,
              "verificacion"=>0
         );
+//         $event = array(
+//            "nombre" => $nombre,
+//            "hash" => $hashtag,//$this->crearHash($nombre),
+//            "hashmin"=>  strtolower($hashtag),
+//            "direccion" =>  $direccion,
+//            "fotos" => $arrayfotos,
+//            "fecha_realizacion" => $fechaMongo, //para la busqueda por fechas
+//            "fecha_muestra" => $fechaString, //para mostrar
+//            "hora_inicio"=>$hor,
+//            "estado"=> "pendiente",
+//            "producido_por"=>(object)array("_id"=>$userid, "nombre"=>$username),
+//            "tags" => $arrtags,
+//            "loc"=> array((float)$lat, (float)$lng),
+//            "descripcion"=>  $desc,
+//             "visitas"=>0,
+//             "redes" => array($urlfb, $urltw,$video),
+//             "establecimiento"=> $establecimiento,
+//             "precio"=>$precio,
+//             "puntos_de_venta"=>$puntosDeVenta,
+//             "sitio_web"=>$sitioWeb,
+//             "donde_comprar"=>$dondeComprar,
+//             "verificacion"=>0
+//        );
          $re = $this->db->evento->insert($event); 
          //$eventoR = new usuarioRelacional();
         // $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
@@ -330,12 +345,12 @@ class evento {
                                 );
          return $this->db->puntos_venta->insert($puntosDeVenta);   
      }
-     public function reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $fotoGr, $numero, $tam) 
+     public function reemplazarFoto($idEvento, $urlBorrar, $foto, $numero, $tam) 
      { 
         unlink($urlBorrar);
         $theObjId = new MongoId($idEvento);
       //  $this->db->tags_buscados->update(array("userid"=>$userid, "tags.tag"=>$tags[$i]), array('$set'=>array("tags.$.fecha"=>$fechahoy)));
-        return $this->db->evento->update( array("_id"=>$theObjId,"fotos.$numero.$tam"=>$nombreBorrar), array('$set'=> array("fotos.$numero.$tam"=>$fotoGr) ));
+        return $this->db->evento->update( array("_id"=>$theObjId), array('$set'=> array("fotos.$numero.$tam"=>$foto) ));
        // $this->db->evento->update( array("_id"=>$theObjId), array('$push'=> array("fotos"=>$fotoGr) ));   
      }
      public function eliminarFoto($idEvento, $urlBorrar, $nombreBorrar)

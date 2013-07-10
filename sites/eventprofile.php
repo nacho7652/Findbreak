@@ -11,7 +11,7 @@
       $pagar = new usuarioRelacional();
       $visitasEvento = $eventfound['visitas'];
       $folder = (string)$eventfound['producido_por']['_id'];
-      $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0];
+      $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0][0];
         if(isset($_SESSION['username'])){  
                 $userid = $_SESSION['userid'];
                 $tags = $eventfound['tags'];
@@ -80,14 +80,14 @@
                    if(count($eventfound['fotos']) >= 1){
                        for($i=0; $i<count($eventfound['fotos']) ; $i++){
                            
-                           $url = '/findbreak/images/productoras/'.$folder.'/'.$fotos[$i];
+                           $url = '/findbreak/images/productoras/'.$folder.'/'.$fotos[$i][0];
 //                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
                            ?>
                        <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
                 <?php
                      }
                    }
-                   $urlPrincipal = '/findbreak/images/productoras/'.$folder.'/'.$fotos[0];
+                   $urlPrincipal = '/findbreak/images/productoras/'.$folder.'/'.$fotos[0][0];
                ?>
 </div>
 <div class="content-perfilevento">
@@ -115,7 +115,7 @@
                         <div class="title-event tit"><?php echo $eventfound['nombre']; ?></div>
                         <div class="inner-eveninfo info-eventcerca">
                                 <?php 
-                                        $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
+                                        
                                         $cantidadComentarios = $event->verCantidadComentarios($eventfound['_id']);
                                         $textoComentario = '';
                                         if($cantidadComentarios == 0){
@@ -128,29 +128,37 @@
                                     ?>
                               
                                
-                                <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>
-                                <div id="horaevent-prof" class="info-event-item"><?php echo $realizacion['hora']?> hrs.</div>
-                                <div id="dondeevent-prof" class="info-event-item"><?php  echo $eventfound['direccion'];?>
+                                <div class="info-event-item">
+                                    <div id="dondeevent-prof"></div>
+                                    <div class="info-dire"><?php  echo $eventfound['direccion'];?></div>
                                     <a href="#" class="verMapaEvento hashlink">ver en mapa</a>
                                 </div>     
-                                <div id="precioevent-prof" class="info-event-item"><?php echo $eventfound['precio']?></div>
+                               
                                 <?php 
                                     $idMongoUsuario = new MongoId($eventfound['producido_por']['_id']);
                                     $nombreproductora = $usuario->verNombre($idMongoUsuario);
                                     $usernameProductora = $usuario->verUserName($idMongoUsuario);
                                 ?>
-                                <div id="precioevent-prof" class="info-event-item">
+                                <div  class="info-event-item">
+                                  <div id="precioevent-prof"></div>
                                   <span class="producidoPor">Publicado por: </span>
                                   <a style="float:left; margin-top: 0px; " class="hashlink" href="/findbreak/!<?= $usernameProductora['username']?>">
-                                    <?php echo $nombreproductora['nombre'] ?>
+                                    <?php echo $usernameProductora['username'] ?>
                                   </a>
-                                    <span class="username usernamecom">@<?= $usernameProductora['username']?></span>
+                                   
                                   
                                 </div>
-                                <div id="visitavent-prof" class="info-event-item">
-                                    <div>Visto por <span class="bold"><?php echo $visitasEvento?></span></div>
-                                    <div id="comentaevent-prof"><?php echo $textoComentario?> </div>
-                                    <input type="hidden" id="totalComent" value="<?= $cantidadComentarios?>"/>
+                                <div class="info-event-item">
+                                    <div class="item-visita">
+                                        <div id="visitavent-prof"></div>
+                                        <span>Visto por </span>
+                                        <span class="bold"><?php echo $visitasEvento?></span>
+                                    </div>
+                                    <div class="item-visita">
+                                        <div id="comentaevent-prof"></div>
+                                        <div><?php echo $textoComentario?> </div>
+                                        <input type="hidden" id="totalComent" value="<?= $cantidadComentarios?>"/>
+                                    </div>
                                 </div>
 
                         </div>
@@ -269,7 +277,7 @@
                     <div class="bloq1" style="background: url('<?php echo $userFoto['foto']?>') no-repeat"></div>
                     <div class="bloq2">
                         <div class="titu-usercom">
-                            <a href="/findbreak/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo $dcto['nombreUsuario'] ?></a>
+                            <a href="/findbreak/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo ucwords($dcto['nombreUsuario'])?></a>
                             <spam class="username usernamecom">@<?php echo $dcto['userName']?></spam>
                         </div> 
                         <div class="comentuser">

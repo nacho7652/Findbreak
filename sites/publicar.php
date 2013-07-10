@@ -10,7 +10,7 @@
                                  <div class="item-publicar">
                                     <div class="title-publicarevent">¿Quieres publicar un evento?</div>
                                  </div>
-                                <div class="item-publicar">   
+                                <div class="item-publicar item-publicar-queganas">   
                                     <div id="info-mostrar">
                                     ¿Que ganas tú al publicar un anuncio o evento? <br>
                                     

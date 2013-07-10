@@ -265,19 +265,19 @@ $(document).ready(function(){
                  }
              
          })
-         if(!validarSiEsNumero($('#hour-event').val()) || !validarSiEsNumero($('#minute-event').val())){
-             guardar = false;
-             error = $('#hour-event').parent().find('.error-obligatorio');
-                     $('html, body').animate({
-                         'scrollTop': $('#hour-event').offset().top - 90 + "px" 
-                     },
-                     {
-                        duration:500,
-                        easing:"swing"
-                     }
-                     );
-                     error.fadeIn(200); 
-         }
+//         if(!validarSiEsNumero($('#hour-event').val()) || !validarSiEsNumero($('#minute-event').val())){
+//             guardar = false;
+//             error = $('#hour-event').parent().find('.error-obligatorio');
+//                     $('html, body').animate({
+//                         'scrollTop': $('#hour-event').offset().top - 90 + "px" 
+//                     },
+//                     {
+//                        duration:500,
+//                        easing:"swing"
+//                     }
+//                     );
+//                     error.fadeIn(200); 
+//         }
          if(guardar){
             loader('Guardando Evento...');
             document.formularioevento.submit();
