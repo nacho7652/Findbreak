@@ -20,6 +20,7 @@
          
          //si está logeado buscar las posibles solicitudes
          $idSolicitado = $usuariofound['_id'];
+         
          if(!empty($_SESSION['userid'])) //si está logeado
          {           
                 $solicitante = $_SESSION['userid'];
@@ -37,6 +38,9 @@
                         $buttonFriend = '<div id="logeate-friend" class="boton-perfiluser botongreen">Inicia sesión</div>';
          }
 ?>
+<!--redes sociales-->
+<div class="fb-like" data-href="http://www.findbreak.com/<?= $_GET['id'] ?>" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
+<!--redes sociales-->
 <div class="parte-left-parent">
             <div class="part-left divtrans2">
                     <div class="part-left-right">

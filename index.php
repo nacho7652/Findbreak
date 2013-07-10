@@ -128,16 +128,39 @@
                     <!--<div id="hover-response">-->
                      <?php if($page_site != 'cerca'){?>
                         <div class="input-textparent1">
-                            <input placeholder="Fiestas, deportes, arte, etc." type="text" id="search" class="input-transf">
+                            <input placeholder="Busca lo que quieras" type="text" id="search" class="input-transf">
                             <input id="boton-buscar" type="button" class="sprites" />
                         </div>
                     <?php }?>
                         <div id="response-friend" >
-
-                        </div>
+                                
+                        </div>    
                     <!--</div>-->
+                    <!--para redes sociales-->
+                    <?php 
+                    if($page_site=='cerca')
+                    {
+                        
+                    ?>
+                    <div class="redes-sociales">
+                                                       <div class="fb-like" data-href="http://www.findbreak.com" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
+
+                                                      <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
+                                                       <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
+                                                       </script>
+                                                       <a href='http://www.findbreak.com' name='fb_share' type='button_count' >Compartir</a>
+
+                                                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com" data-hashtags="findbreak">Tweet</a>
+                                                       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    <!--</b>-->
+                                      <!--redes sociales-->
+                                     
+                    </div>
+                <?php } ?>                            
+                    
                 </div>
                  <div class="top-right">
+                                        
                             <?php
                             if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
                                 $us = new usuario();
@@ -566,4 +589,6 @@
 //            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 //        }());
      </script>
+    
+     
 </html>
