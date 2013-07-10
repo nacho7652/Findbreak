@@ -4,9 +4,9 @@
         if(isset($_SESSION["userid"]))
         {
         $event = new evento();
-        $resp = $vigencia->EventosVigentesPorUsuario($_SESSION['userid']); 
-        
-        $misEventos = $event->EventosPorRealizarPorIdProductora($_SESSION["userid"]);
+//        $resp = $vigencia->EventosVigentesPorUsuario($_SESSION['userid']); 
+//        
+        $misEventos = $event->EventosPorProductura($_SESSION["userid"]);
         $folder = (string)$_SESSION["userid"];
 ?>
 <div class="content-publicarevent">
@@ -25,10 +25,10 @@
                            <?php 
                            
 //                           print_r($resp);
-                          foreach($resp as $idEventosRelacional){
-                                $dcto = $event->findforid($idEventosRelacional);  
-                                $url = 'images/productoras/'.$dcto['producido_por']['_id'].'/'.$dcto['fotos'][0];  
-                                $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio']);
+                          foreach($misEventos as $dcto){
+                                  
+                                $url = 'images/productoras/'.$folder.'/'.$dcto['fotos'][0][0];  
+//                                $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio']);
                                 $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                 $textoComentario = '';
                                 if($cantidadComentarios == 0){
@@ -46,13 +46,7 @@
                                        <a href="/findbreak/break/<?= $dcto['hash']?>" class="nombre-event-pubicar title-publicarevent"><?= $dcto['nombre']?></a>
 
                                            <div class="info-eventcerca infot-eventpublicar">
-                                                           <div class="item-infocerca">
-                                                               
-                                                               <div id="fechaevent" class="resp-cuando"><?php echo $realizacion['fecha']?></div>
-                                                           </div>
-                                                            <div class="item-infocerca">
-                                                                    <div id="horaevent" class="resp-cuando"><?php echo $realizacion['hora']?> hrs.</div>
-                                                           </div>
+                                                           
                                                            <div class="item-infocerca">
                                                                 
                                                                 <div id="dondeevent" class="resp-cuando"><?php echo $dcto['direccion'];?></div>

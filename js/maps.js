@@ -386,7 +386,10 @@ function geolocalizarPorTags(){
                                            }
                                }
                    //nota es el recuadro que sale en grande cuando se hace click en la clinica
-                   note = '<div id="infoWindow" style=""><p><strong>'+name+'</strong></div>';
+                   note = '<div id="infoWindow" style="">\n\
+                                <img src="http://localhost/findbreak/images/productoras/51db0b624de8b43002000000/130708-1373311156-63_gr.jpg" />\n\
+                                <strong>'+name+'sadsadads</strong>\n\
+                            <div>';
                    
                    
 

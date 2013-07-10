@@ -270,7 +270,7 @@ class evento {
             "hash" => $hashtag,//$this->crearHash($nombre),
             "hashmin"=>  strtolower($hashtag),
             "direccion" =>  $direccion,
-            "fotos" => $fotos,
+            "fotos" => $arrayfotos,
             "fecha_realizacion" => $fechaMongo, //para la busqueda por fechas
             "fecha_muestra" => $fechaString, //para mostrar
             "hora_inicio"=>$hor,
@@ -330,12 +330,12 @@ class evento {
                                 );
          return $this->db->puntos_venta->insert($puntosDeVenta);   
      }
-     public function reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $fotoGr)
+     public function reemplazarFoto($idEvento, $urlBorrar, $nombreBorrar, $fotoGr, $numero, $tam) 
      { 
         unlink($urlBorrar);
         $theObjId = new MongoId($idEvento);
       //  $this->db->tags_buscados->update(array("userid"=>$userid, "tags.tag"=>$tags[$i]), array('$set'=>array("tags.$.fecha"=>$fechahoy)));
-        return $this->db->evento->update( array("_id"=>$theObjId,"fotos"=>$nombreBorrar), array('$set'=> array("fotos.$"=>$fotoGr) ));
+        return $this->db->evento->update( array("_id"=>$theObjId,"fotos.$numero.$tam"=>$nombreBorrar), array('$set'=> array("fotos.$numero.$tam"=>$fotoGr) ));
        // $this->db->evento->update( array("_id"=>$theObjId), array('$push'=> array("fotos"=>$fotoGr) ));   
      }
      public function eliminarFoto($idEvento, $urlBorrar, $nombreBorrar)
@@ -363,10 +363,10 @@ class evento {
        // return $this->db->evento->update( array("_id"=>$theObjId,"fotos"=>$nombreBorrar), array('$set'=> array("fotos.$"=>$fotoGr) ));
         return $this->db->evento->remove( array("_id"=>$theObjId));   
      }
-     public function nuevaFoto($idEvento,$fotoGr)
+     public function nuevaFoto($idEvento,$fotoGr, $fotoPe)
      { 
         $theObjId = new MongoId($idEvento);
-        return $this->db->evento->update( array("_id"=>$theObjId), array('$push'=> array("fotos"=>$fotoGr) ));   
+        return $this->db->evento->update( array("_id"=>$theObjId), array('$push'=> array("fotos"=>array($fotoGr,$fotoPe) )));   
      }
      public function verPuntosVenta()
      { 
@@ -393,10 +393,14 @@ class evento {
      { 
          return $this->db->tags->find();    
      }
+     public function EventosPorProductura($idProductora)
+     { 
+         return $this->db->evento->find(array('producido_por._id'=>$idProductora));    
+     }
      public function EventosPorRealizarPorIdProductora($idProductora)
      { 
          return $this->db->evento->find(array('producido_por._id'=>$idProductora, 'fecha_realizacion'=> array('$gte' => $this->hoy()) ));    
-         }
+     }
      public function EventosVigentes($idEvento) //NO SE Q ES LO DE LA FECHA.
      { 
          return $this->db->evento->find(array('_id'=>$idEvento, 'fecha_realizacion'=> array('$gte' => $this->hoy()) ));    
@@ -419,7 +423,6 @@ class evento {
          if(count($masfechas) == 1){
 //            $datos = explode(' ', $fecha);
 //            $fecha = $datos[0];
-
             $itemfecha = explode('-', $fecha);
             $anio = $itemfecha[0];
             $mes = $itemfecha[1];
