@@ -6,7 +6,7 @@
         <div class="divevents">
                      <div class="title">
                           <div class="logo"></div>
-                          <div class="text-cerca">Eventos: <span class="tipoBusqueda">cerca de <b>mi ubicación actual</b></span></div>
+                          <div class="text-cerca">Anuncios: <span class="tipoBusqueda">cerca de <b>mi ubicación actual</b></span></div>
 
                           <div class="input-textparent2">
                             <input type="text" placeholder="¿Qué buscas?" id="search-location" class="input-transf"/>

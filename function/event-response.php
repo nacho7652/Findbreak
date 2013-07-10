@@ -391,7 +391,9 @@
                                              'foto'=>$url,
                                              'lat'=>$dcto['loc'][0],
                                              'lng'=>$dcto['loc'][1],
-                                             'nombre'=>$dcto['nombre']);  
+                                             'nombre'=>$dcto['nombre'],
+                                             'verificacion'=>$dcto['verificacion']
+                                  );  
                     }
                     //$listevents.= '</div>';
                     $infodiv.= '<div id="number">'.$cont.'</div>';
@@ -624,7 +626,10 @@
             $arr = eventoscernanos($eventsNears);
             $infodiv = $arr['infodiv'];//información para que el mapa lea y muestre los pines con eventos
             $listevents = $arr['listevents'];
+            $verif = $arr['verificacion'];
             $arreglo =  $arr['arreglo'];
+            
+            
             //$number = $arr['number'];
             $resp = array("infodiv"=>$infodiv,
                           "listevents"=>$listevents,

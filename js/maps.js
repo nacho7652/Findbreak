@@ -310,6 +310,7 @@ function geolocalizarPorTags(){
                     tagshidden = data.arreglo[i]['tags'];
                     nombre = data.arreglo[i]['nombre'];
                     foto = data.arreglo[i]['foto'];
+                    verif = data.arreglo[i]['verificacion'];
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-id',id);
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-hash',hash);
                    $('#item-eventcerca'+i).find('.info-eventcerca').html(infoCerca);
@@ -334,14 +335,56 @@ function geolocalizarPorTags(){
                    //var distance = parseFloat(tokens[4]); 
    
                    var PointMaps = new google.maps.LatLng(lat, lng);
-                   var markerNew = new google.maps.Marker({
+                  
+                       var markerNew = new google.maps.Marker({
                        position: PointMaps
                        , map: map
                        , title: name
                        //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
-                       , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/marker'+cont+'.png'
                        
+                       , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/marker'+cont+'.png' 
                    });
+                       
+                       if(verif==0 || verif == null)
+                           {
+                      
+                                   var markerNew = new google.maps.Marker({
+                                   position: PointMaps
+                                   , map: map
+                                   , title: name
+                                   //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
+
+                                   , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/marker'+cont+'.png'
+                               })
+                           }
+                           else
+                               {
+                                   if(verif==1)
+                                       {
+                                           var markerNew = new google.maps.Marker({
+                                   position: PointMaps
+                                   , map: map
+                                   , title: name
+                                   //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
+
+                                   , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/marker'+cont+'.png'
+                               })
+                                       }
+                                       else
+                                           {
+                                               if(verif==2)
+                                                   {
+                                                       var markerNew = new google.maps.Marker({
+                                                       position: PointMaps
+                                                       , map: map
+                                                       , title: name
+                                                       //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
+
+                                                       , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/green/marker'+cont+'.png'
+                                                   })
+                                                   }
+                                           }
+                               }
                    //nota es el recuadro que sale en grande cuando se hace click en la clinica
                    note = '<div id="infoWindow" style=""><p><strong>'+name+'</strong></div>';
                    

@@ -285,13 +285,14 @@ class evento {
              "precio"=>$precio,
              "puntos_de_venta"=>$puntosDeVenta,
              "sitio_web"=>$sitioWeb,
-             "donde_comprar"=>$dondeComprar
+             "donde_comprar"=>$dondeComprar,
+             "verificacion"=>0
         );
          $re = $this->db->evento->insert($event); 
-         $eventoR = new usuarioRelacional();
-         $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
-         session_start();
-         $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000,1,0);
+         //$eventoR = new usuarioRelacional();
+        // $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
+        // session_start();
+        // $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000,1,0);
          return $re;
      }
      public function modificar($id, $username, $nombre, $direccion, $arrayfotos, $fechaString,$fechaMongo ,$hor, $tags, $lat, $lng, $desc, $urlfb, $urltw, 
