@@ -496,7 +496,6 @@ $(document).ready(function(){
          if(trim(coment) == ""){
             return false;
         }
-        alert(coment)
          var eventid = $('.idevent').val();
          var nombreevent = $('.title-event').html();       
          var hashevent = $('#hashevent').val();
