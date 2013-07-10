@@ -38,7 +38,7 @@
                                 </div>
                                 
                                 <div class="item-publicar">
-                                    <div class="nombre-publicarevent">Nombre</div>
+                                    <div class="nombre-publicarevent">Nombre del anuncio</div>
                                     <input class="field-publicarevent obligatorio" type="text" id="nom-event" name="nom-event"/>
                                     <div class="mensaje-error error-obligatorio">
                                         <div class="content-mensaje">* Debes ingresar el nombre</div>
@@ -52,7 +52,7 @@
                                     <div class="hashtag-incorr"></div>
                                     
                                     <div class="mensaje-error error-obligatorio mensaje-m">
-                                        <div class="content-mensaje">* Debes ingresar el hashtag</div>
+                                        <div class="content-mensaje">* Crea tu hashtag</div>
                                     </div>
                                 </div>
                                 <div class="item-publicar">
@@ -87,7 +87,7 @@
                                 
     
                                 <div class="item-publicar">
-                                 <div class="nombre-publicarevent">Agrega las palabras claves para que encuentren tu evento</div>
+                                 <div class="nombre-publicarevent">Agrega las palabras relacionadas a tu publicacion, con las cuales tus anuncios serán encontrados</div>
                                     <input type="text" class="obligatorio" id="tags-hidden" name="tags-hidden"/>
                                     <div class="mensaje-error error-obligatorio mensaje-tags">
                                         <div class="content-mensaje">* Ingresa al menos una palabra clave</div>
@@ -146,30 +146,30 @@
     
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">Descripción</div>
-                                 <textarea placeholder="Detalla la información de tu evento" class="field-publicarevent obligatorio" rows="4" cols="50" id="descripcion-event" name="descripcion-event"></textarea>
+                                 <textarea placeholder="Detalla la información de tu anuncio, fechas, horas, ubicacion, etc." class="field-publicarevent obligatorio" rows="4" cols="50" id="descripcion-event" name="descripcion-event"></textarea>
                                  <div class="mensaje-error error-obligatorio">
                                         <div class="content-mensaje">* Ingresa una drescripción</div>
                                  </div>
                                 </div>
     
                                 <div class="item-publicar">
-                                  <div class="nombre-publicarevent">Sitio web oficial del evento</div>
-                                  <input placeholder="http://www.tuevento.com" class="field-publicarevent" type="text" id="sitioevento" name="sitioevento"/>
+                                  <div class="nombre-publicarevent">Sitio web oficial</div>
+                                  <input placeholder="http://www.tusitioweb.com" class="field-publicarevent" type="text" id="sitioevento" name="sitioevento"/>
                                 </div>
     
                                 <div class="item-publicar">
-                                  <div class="nombre-publicarevent">Facebook del evento</div>
-                                  <input placeholder="http://www.facebook.com/event/tuevento" class="field-publicarevent" type="text" id="urlfacebook" name="url-face"/>
+                                  <div class="nombre-publicarevent">Dirección de Facebook</div>
+                                  <input placeholder="http://www.facebook.com/event/tusitio" class="field-publicarevent" type="text" id="urlfacebook" name="url-face"/>
                                 </div>
                                 
                                 <div class="item-publicar">
-                                  <div class="nombre-publicarevent">Twitter del evento</div>
-                                  <input placeholder="http://www.twitter.com/tuevento" class="field-publicarevent" type="text" id="urltwitter" name="url-twitter"/>
+                                  <div class="nombre-publicarevent">Dirección de Twitter</div>
+                                  <input placeholder="http://www.twitter.com/tusitio" class="field-publicarevent" type="text" id="urltwitter" name="url-twitter"/>
                                 </div>
                                 
                                 <div class="item-publicar">
-                                 <div class="nombre-publicarevent">URL Youtube del evento</div>
-                                 <input placeholder="http://www.youtube.com/tuevento" class="field-publicarevent" type="text" id="urlyoutube" name="url-youtube"/>
+                                 <div class="nombre-publicarevent">Dirección Youtube</div>
+                                 <input placeholder="http://www.youtube.com/tusitio" class="field-publicarevent" type="text" id="urlyoutube" name="url-youtube"/>
                                 </div>
                                 
                                 
