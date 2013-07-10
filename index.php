@@ -154,6 +154,19 @@
                                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                     <!--</b>-->
                                       <!--redes sociales-->
+                                      <!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
+                                        
+                                      <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+                                        <!-- Inserta esta etiqueta después de la última etiqueta de Botón +1. -->
+                                        <script type="text/javascript">
+                                          window.___gcfg = {lang: 'es'};
+
+                                          (function() {
+                                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                            po.src = 'https://apis.google.com/js/plusone.js';
+                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                          })();
+                                        </script>
                                      
                     </div>
                 <?php } ?>                            
