@@ -15,8 +15,8 @@ class evento {
         $a = $this->hoy();
        // return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ), 'fecha_realizacion'=> array('$gte' => $a )   ))->limit(10);
         //return $this->db->evento->find(array("loc" => array('$near' => 50,30))); //array('$near' =>[50,50])
-                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(10);
-
+//                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(10);
+        return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   )   ))->limit(10);
     }
     public function verCantidadComentarios($id){
          $theObjId = new MongoId($id); 
@@ -261,9 +261,8 @@ class evento {
                                    $video, $sitioWeb,$hashtag){ 
          $arrtags = explode(",", $tag);
          $arrtags[] = strtolower($nombre);
-////         unset($arrtags[count($arrtags)-2]);
-//         
-//         $fotos = explode(",", $arrayfotos);
+         $hoyMustra = date('Y-m-d 00:00:00');
+         $fechMongo = new MongoDate(strtotime($hoyMustra));
           $event = array(
             "nombre" => $nombre,
             "hash" => $hashtag,//$this->crearHash($nombre),
@@ -278,7 +277,9 @@ class evento {
              "visitas"=>0,
              "redes" => array($urlfacebook, $urltwitter,$video),
              "sitio_web"=>$sitioWeb,
-             "verificacion"=>0
+             "verificacion"=>0,
+             "fecha-publicacion"=>$hoyMustra,
+             "fecha-publicacion-mongo"=>$fechMongo
         );
 //         $event = array(
 //            "nombre" => $nombre,

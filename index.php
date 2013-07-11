@@ -50,6 +50,41 @@
     </head>
      
      <body>
+         <!--para redes sociales-->
+                    <?php 
+                    if($page_site=='cerca')
+                    {
+                        
+                    ?>
+         <div class="content-redes-sociales">  
+                    <div class="redes-sociales">
+                                                       <div class="fb-like" data-href="http://www.findbreak.com" data-send="false" data-width="380" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
+
+                                                      <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
+                                                       <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
+                                                       </script>
+                                                       <a href='http://www.findbreak.com' name='fb_share' type='button_count' >Compartir</a>
+
+                                                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com" data-hashtags="findbreak">Tweet</a>
+                                                       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    <!--</b>-->
+                                      <!--redes sociales-->
+                                      <!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
+                                        
+                                      <div class="g-plusone" data-size="medium" data-annotation="none"></div>
+                                        <!-- Inserta esta etiqueta después de la última etiqueta de Botón +1. -->
+                                        <script type="text/javascript">
+                                            window.___gcfg = {lang: 'es'};
+                                            (function() {
+                                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                            po.src = 'https://apis.google.com/js/plusone.js';
+                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                            })();
+                                        </script>
+                                     
+                    </div>
+         </div>
+                <?php } ?> 
         <div id="allbackground">
             
         </div>
@@ -118,10 +153,12 @@
         <div id="top">
             <div id="content-top">
                 <div class="top-left">
-                    <a href="/findbreak/cerca">
-                        <div class="logoper"></div>
-                        <div class="logo"></div>
-                    </a>
+                    <?php if($page_site != 'cerca'){?>
+                        <a href="/findbreak/mapa">
+                            <div class="logoper"></div>
+                            <div class="logo"></div>
+                        </a>
+                    <?php }?>
                 </div>
                 
                 <div class="top-center">
@@ -136,40 +173,7 @@
                                 
                         </div>    
                     <!--</div>-->
-                    <!--para redes sociales-->
-                    <?php 
-                    if($page_site=='cerca')
-                    {
-                        
-                    ?>
-                    <div class="redes-sociales">
-                                                       <div class="fb-like" data-href="http://www.findbreak.com" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
-
-                                                      <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
-                                                       <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
-                                                       </script>
-                                                       <a href='http://www.findbreak.com' name='fb_share' type='button_count' >Compartir</a>
-
-                                                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com" data-hashtags="findbreak">Tweet</a>
-                                                       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    <!--</b>-->
-                                      <!--redes sociales-->
-                                      <!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
-                                        
-                                      <div class="g-plusone" data-annotation="inline" data-width="300"></div>
-                                        <!-- Inserta esta etiqueta después de la última etiqueta de Botón +1. -->
-                                        <script type="text/javascript">
-                                          window.___gcfg = {lang: 'es'};
-
-                                          (function() {
-                                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                                            po.src = 'https://apis.google.com/js/plusone.js';
-                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                                          })();
-                                        </script>
-                                     
-                    </div>
-                <?php } ?>                            
+                                               
                     
                 </div>
                  <div class="top-right">
@@ -400,7 +404,7 @@
                                               <input type="submit" name="cerrarsession" value="-C" class="content-option "/>
                                             </form>
                                          </div>-->
-                                         <a href="/findbreak/cerca"  class="option ">
+                                         <a href="/findbreak/mapa"  class="option ">
                                             <div id="optionhome"  class="content-option">
                                                 Mapa
                                             </div>

@@ -1,5 +1,5 @@
 <?php
-  $place = empty($_GET['place']) ? 'inicio' : $_GET['place'];
+  $place = empty($_GET['place']) ? 'mapa' : $_GET['place'];
   $page_class_near = 'class="inner"';
   switch ($place){
       case 'inicio': $page_title = 'Findbreak';
@@ -33,7 +33,7 @@
                    $page_class = 'login';
                    $page_description = "Encuentra un quiebre a tu rutina";
                    break;
-      case 'cerca': $page_title = 'Findbreak';
+      case 'mapa': $page_title = 'Findbreak';
                    $page_site = 'cerca';
                    $page_class = 'cerca';
                    $page_class_near = 'class="inner inner-near"';

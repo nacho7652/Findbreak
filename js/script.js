@@ -117,7 +117,10 @@ $(document).ready(function(){
        //cerca
           $('body').delegate('.botonitemcerca','click',function(){
               var item = $(this).parent().parent().parent();
-             
+               if(item.find('.coment-cerca').is(':visible')){
+                   item.find('.coment-cerca').hide();
+                   return false;
+               }
                $('body, html').animate({
                          'scrollTop': item.offset().top - 200 + "px" 
                      },

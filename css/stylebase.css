@@ -21,6 +21,38 @@ html {
     overflow-y: scorll;
     overflow-x: auto;
 }
+.fb-like.fb_edge_widget_with_comment.fb_iframe_widget {
+    margin-bottom: 11px;
+}
+.twitter-share-button.twitter-count-horizontal{
+    position: relative;
+    right: -31px;
+    bottom: -5px;
+}
+.content-redes-sociales {
+    right: 11px;
+    padding: 15px 35px;
+    bottom: -5px;
+    position: absolute;
+    width: 371px;
+    height: 150px;
+    z-index: 10000000000000000000000000000000;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    background: rgba(31, 28, 28, 0.26);
+}
+.redes-sociales {
+    right: 9px;
+    padding: 15px 35px;
+    bottom: -9px;
+    position: relative;
+    width: 323px;
+    height: 103px;
+    z-index: 100000000000000000000000000000000;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;  
+    background: #fff;  
+}
 #allbackground{
     position: fixed;
     width: 100%;
@@ -1986,12 +2018,27 @@ float: left;
     position: absolute;
     bottom: 6px;
 }
-.fb-share-button.fb_iframe_widget {
+#___plusone_0 {
+    bottom: -4px;
+    position: relative;
+    left: 34px;
+}
+.eventprofile #___plusone_0 {
+    bottom: 9px;
+    position: relative;
+    left: 4px;
+}
+.eventprofile .fb-share-button.fb_iframe_widget {
+    position: relative;
+    right: -15px;
+    bottom: 15px;
+}
+.event-profile .fb-share-button.fb_iframe_widget {
     position: relative;
     right: -12px;
     bottom: 15px;
 }
-.twitter-share-button.twitter-count-horizontal {
+.eventprofile .twitter-share-button.twitter-count-horizontal {
     position: relative;
     right: -34px;
     bottom: 9px;
@@ -2021,8 +2068,8 @@ float: left;
     float: left;
 }
 .leer-masevent {
-    width: 548px;
-    margin: 0px 0px 0px 1px;
+    width: 472px;
+    margin: 0px 0px 27px 1px;
     height: 34px;
     overflow: hidden;
     font-size: 0.8em;

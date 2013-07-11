@@ -32,31 +32,16 @@
     
 </script>
 
-<div class="more-fotos">
-    <!--para redes sociales-->
-                       <div class="fb-like" data-href="http://www.findbreak.com/break/<?= $_GET['id']?>" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
-                      
-                      <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
-                       <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
-                       </script>
-                       <a href='http://www.findbreak.com/break/<?= $_GET['id']?>' name='fb_share' type='button_count' >Compartir</a>
-                       
-                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com/break/<?= $_GET['id']?>" data-hashtags="<?= $_GET['id']?>">Tweet</a>
-                       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                       
-                      <!--</b>-->
-                                        <div class="g-plusone" data-annotation="inline" data-width="300"></div>
-                                        <!-- Inserta esta etiqueta después de la última etiqueta de Botón +1. -->
-                                        <script type="text/javascript">
-                                          window.___gcfg = {lang: 'es'};
+<script type="text/javascript">
+    window.___gcfg = {lang: 'es'};
+    (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+    })();
+</script>
 
-                                          (function() {
-                                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                                            po.src = 'https://apis.google.com/js/plusone.js';
-                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                                          })();
-                                          </script>
-      <!--redes sociales-->
+<div class="more-fotos">
              <?php
                 if(!empty($_SESSION['userid']))
                 {
@@ -192,7 +177,7 @@
                     <div class="part-left-lf">
                         <!--para redes sociales-->
                                 <div class="redes-event">
-                                            <div class="fb-like" data-href="http://www.findbreak.com/break/<?= $_GET['id']?>" data-send="false" data-width="200" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
+                                            <div class="fb-like" data-href="http://www.findbreak.com/break/<?= $_GET['id']?>" data-send="false" data-width="200" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
 
                                            <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
                                             <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
@@ -201,6 +186,7 @@
 
                                             <a id="tw-evento" href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com/break/<?= $_GET['id']?>" data-hashtags="<?= $_GET['id']?>">Tweet</a>
                                             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                                            <div class="g-plusone" data-size="medium" data-annotation="none"></div>
                                 </div>
                                            <!--</b>-->
                            <!--redes sociales-->

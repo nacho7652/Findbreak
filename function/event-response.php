@@ -332,15 +332,15 @@
             $arreglo = array();
              foreach ($eventsNears as $dcto){
                         //Con esta info. el mapa de google muestra los pines
-                         $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['direccion']."+".$dcto['fotos'][0]."+".
+                         $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['direccion']."+".$dcto['fotos'][0][0]."+".
                                 $dcto['loc'][0]."+".$dcto['loc'][1].'</div>'."\n";
                          $cont++;
                        //----0----   
                      //   $mongotime = New Mongodate(strtotime($realtime));
                         $folder = (string)$dcto['producido_por']['_id'];
-                        $url = 'background:url("/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0].'"); background-size: cover';
+                        $url = 'background:url("/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0][0].'"); background-size: cover';
                                   $nombreLink = str_replace(' ', '-', $dcto['nombre']);
-                                  $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'],1);
+                                  
                                   $cantidadComentarios = $e->verCantidadComentarios($dcto['_id']);
                                     $textoComentario = '';
                                     if($cantidadComentarios == 0){
@@ -351,13 +351,6 @@
                                         $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
                                     }
                                      $infoEventCerca = '
-                                                           <div class="item-infocerca">
-                                                               
-                                                               <div id="fechaevent" class="resp-cuando">'.$realizacion['fecha'].'</div>
-                                                           </div>
-                                                            <div class="item-infocerca">
-                                                                    <div id="horaevent" class="resp-cuando">'.$realizacion['hora'].' hrs.</div>
-                                                           </div>
                                                            <div class="item-infocerca">
                                                                 
                                                                 <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
