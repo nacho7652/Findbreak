@@ -177,7 +177,7 @@
                     <div class="part-left-lf">
                         <!--para redes sociales-->
                                 <div class="redes-event">
-                                            <div class="fb-like" data-href="http://www.findbreak.com/break/<?= $_GET['id']?>" data-send="false" data-width="200" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
+                                            <div class="fb-like" data-href="http://www.findbreak.com/break/<?= $_GET['id']?>" data-send="false" data-width="200" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
 
                                            <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
                                             <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 

@@ -30,36 +30,13 @@
                          <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca" style="">
                                             <div class="barra"></div>
                                             <div class="event-right">
-                                                        <div class="event-left" ></div>
-                                                         <div class="num-event"></div>   
-                                                        <a target="_blank" href="/findbreak/break/518d0c174de8b45810000000" class="tit-eventcerca">Rooster en chile pico</a>
-                                                       <div class="info-eventcerca info-eventcercawhte">
-                                                           <div class="item-infocerca">
-                                                               
-                                                               <div id="fechaevent" class="resp-cuando">Miercoles, 20 de Mayo del 2013</div>
-                                                           </div>
-                                                            <div class="item-infocerca">
-                                                                    <div id="horaevent" class="resp-cuando">22:00:00 hrs.</div>
-                                                           </div>
-                                                           <div class="item-infocerca">
-                                                                
-                                                                <div id="dondeevent" class="resp-cuando">Santa Sofia #2092</div>
-                                                            </div>
-                                                            
-                                                            
-                                                            
-                                                            <div class="item-infocerca">
-                                                                <div id="visitavent-prof" class="info-event-item resp-cuando">
-                                                                   <div>Visto por <span class="bold">181</span></div>
-                                                                   <div id="comentaevent-prof"><span class="bold">70</span> Comentarios</div>
-                                                                   <input type="hidden" id="totalComent" value="70">
-                                                               </div>  
-                                                           </div>
-                                                           <div class="botonitemcerca botonblue">Ver comentarios</div>
-                                                        
+                                                      
+                                                      <div class="num-event"></div>   
+                                                      <a target="_blank" href="/findbreak/break/518d0c174de8b45810000000" class="tit-eventcerca">Rooster en chile pico</a>
+                                                      <div class="info-eventcerca info-eventcercawhte">
                                                       </div>
                                                       
-                                                        <div class="tags-hidden">quilicura,carrete,</div>
+                                                      <div class="tags-hidden">quilicura,carrete,</div>
                                                     
                                             </div>
                                             

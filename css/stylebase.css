@@ -1178,15 +1178,28 @@ letter-spacing: 1px;
 left: -8px;
 top: -8px;
 }
+#infoWindow {
+    overflow: hidden;
+    height: 84px;
+}
+.fotopin{
+    padding: 1px;
+    box-shadow: 0px 1px 10px -3px #444;
+    border: 1px solid #fff;
+    margin: 3px 0px 0px 4px;
+    float: left;
+}
 .event-left {
     width: 98px;
     float: left;
     height: 134px;
-    margin: 8px 13px 0px 13px;
+    left: 2px;
+    margin: -32px 14px 0px 13px;
     border: 1px solid rgba(221, 187, 187, 0.45);
     padding: 4px;
     box-shadow: 0px 1px 10px -3px #444;
     border: 2px solid #fff;
+    position: absolute;
 }
 .event-right {
     width: 447px;
@@ -1204,7 +1217,8 @@ top: -8px;
     display: block; 
     height: 20px;
     overflow: hidden;
-    font-size: 0.8em !important;  margin-top: 13px;  margin-bottom: 2px;  display: block;  color: #fff;  font-size: 16px;  font-weight: bold;  text-decoration: none;  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.77);  padding-left: 0px;
+    font-size: 0.8em !important;  margin-top: 13px;  margin-bottom: 2px;  display: block;  color: #fff;  font-size: 16px;  font-weight: bold;  text-decoration: none;  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.77);  
+    padding-left: 143px;
 }
 .inner-eveninfo.info-eventcerca {
     margin: 0px 0px 0px 0px;
@@ -1217,7 +1231,7 @@ top: -8px;
 .info-eventcerca.info-eventcercawhte {
     padding: 8px 0px 0px 10px;
     color: rgb(88, 88, 88) !important;
-    height: 200px;
+    height: 190px;
     box-shadow: 0px -25px 38px -12px #000;
 }
 .info-eventcerca {
@@ -1400,14 +1414,21 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     border-bottom-color: rgba(41, 134, 33, 1);
 }
 .verRuta {
-margin: 10px 28px 0px 0px;
+margin: 20px 28px 0px 0px;
 }
 .botonitemcerca {
-    margin: 10px 9px 0px 0px;
+    margin: 20px 9px 0px 0px;
+}
+.descripcion-cerca {
+    font-size: 12px;
+    float: left;
+    margin: 5px 0px 0px 11px;
 }
 .item-infocerca {
     margin-bottom: 0px;
     margin-left: 124px;
+    width: 310px;
+    float: left;
 }
 .sitioevento {
     font-size: 0.6em;
@@ -1446,7 +1467,7 @@ margin: 10px 28px 0px 0px;
     font-size: 0.7em;
     display: block;
     right: 12px;
-    top: 128px;
+    top: 58px;
     position: absolute;
     color: rgba(38, 113, 163, 1);
     text-decoration: none;
@@ -1522,7 +1543,8 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .item-eventcerca {
     box-shadow: 0px 2px 9px -3px #444;
-    width: 447px;  height: 240px;  border-radius: 2px;  margin: 16px 0px 23px 14px;    position: relative;    background-size: cover;
+    width: 447px;  
+    height: 231px;  border-radius: 2px;  margin: 16px 0px 23px 14px;    position: relative;    background-size: cover;
     padding-top: 11px;
 }
 .item-eventcerca:hover{
@@ -2003,6 +2025,9 @@ line-height: 19px;
     float: left;
     width: 117px;
 }
+.content-cerca .item-visita {
+    font-size: 11px;
+}
 .part-left .info-event-item{
     float: left;
     margin: 8px 0px 6px 0px;
@@ -2147,6 +2172,11 @@ float: left;
     text-decoration: none;
     font-weight: bold;
     font-size: 12px;
+}
+.tit-gray.titpin {
+    margin: 2px 0px 0px 8px;
+    float: left;
+    width: 300px;
 }
 .tit1 {
     font-size: 0.7em;

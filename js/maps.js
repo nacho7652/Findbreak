@@ -306,7 +306,7 @@ function geolocalizarPorTags(){
                     hash = data.arreglo[i]['hash'];
                     //html = data.arreglo[i]['event-right'];
                     infoCerca = data.arreglo[i]['info'];//$infoEventCerca
-                  //  alert(infoCerca)
+//                    alert(infoCerca)
                     tagshidden = data.arreglo[i]['tags'];
                     nombre = data.arreglo[i]['nombre'];
                     foto = data.arreglo[i]['foto'];
@@ -323,7 +323,6 @@ function geolocalizarPorTags(){
                    $('#item-eventcerca'+i).find('.nombreevent').val(nombre);
                    $('#item-eventcerca'+i).show();
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('style',foto);
-                   $('#item-eventcerca'+i).find('.event-left').attr('style',foto);
                    infoDiv = $('#info'+i).text();	 
                    tokens = infoDiv.split("+");
                    
@@ -332,6 +331,7 @@ function geolocalizarPorTags(){
                    var address = tokens[1];
                        lat = parseFloat(tokens[2]); 	 
                        lng = parseFloat(tokens[3]);
+                       fotoPe = tokens[4];
                    //var distance = parseFloat(tokens[4]); 
    
                    var PointMaps = new google.maps.LatLng(lat, lng);
@@ -387,8 +387,8 @@ function geolocalizarPorTags(){
                                }
                    //nota es el recuadro que sale en grande cuando se hace click en la clinica
                    note = '<div id="infoWindow" style="">\n\
-                                <img src="http://localhost/findbreak/images/productoras/51db0b624de8b43002000000/130708-1373311156-63_gr.jpg" />\n\
-                                <strong>'+name+'sadsadads</strong>\n\
+                                <img class="fotopin" src="'+fotoPe+'" />\n\
+                                <string class="tit-gray titpin">'+name+'</strong>\n\
                             <div>';
                    
                    

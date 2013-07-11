@@ -331,14 +331,15 @@
             $e = new evento();
             $arreglo = array();
              foreach ($eventsNears as $dcto){
+                    $folder = (string)$dcto['producido_por']['_id'];
+                        $url = 'background:url(/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0][0].'); background-size: cover';
+                        $urlPe = '/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0][1];
                         //Con esta info. el mapa de google muestra los pines
-                         $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['direccion']."+".$dcto['fotos'][0][0]."+".
-                                $dcto['loc'][0]."+".$dcto['loc'][1].'</div>'."\n";
+                         $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['nombre']."+".$dcto['fotos'][0][0]."+".
+                                $dcto['loc'][0]."+".$dcto['loc'][1]."+".$urlPe.'</div>'."\n";
                          $cont++;
                        //----0----   
-                     //   $mongotime = New Mongodate(strtotime($realtime));
-                        $folder = (string)$dcto['producido_por']['_id'];
-                        $url = 'background:url("/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0][0].'"); background-size: cover';
+
                                   $nombreLink = str_replace(' ', '-', $dcto['nombre']);
                                   
                                   $cantidadComentarios = $e->verCantidadComentarios($dcto['_id']);
@@ -350,7 +351,13 @@
                                     }else{
                                         $textoComentario = '<span class="bold">'.$cantidadComentarios.'</span> Comentarios';
                                     }
-                                     $infoEventCerca = '
+                                    $size = 100;
+                                    $str = $dcto['descripcion'];
+                                    // substr se usa para cortar la cadena y trim para eliminar el posible espacio del final para que no quede "ultima palabra(espacio)..."
+                                    $str = trim(substr($str, 0, $size));
+                                    $str .= '<span >...</span>';
+                                  
+                                     $infoEventCerca = '<div style="'.$url.'" class="event-left"></div>
                                                            <div class="item-infocerca">
                                                                 
                                                                 <div id="dondeevent" class="resp-cuando">'.$dcto['direccion'].'</div>
@@ -362,11 +369,21 @@
                                                             
                                                             
                                                             <div class="item-infocerca">
-                                                                <div id="visitavent-prof" class="info-event-item resp-cuando">
-                                                                   <div>Visto por <span class="bold">'.$dcto['visitas'].'</span></div>
-                                                                   <div id="comentaevent-prof">'.$textoComentario.'</div>
-                                                                   <input type="hidden" id="totalComent" value="'.$cantidadComentarios.'"/>
-                                                               </div>  
+                                                                <div class="item-visita">
+                                                                    <div id="visitavent-prof"></div>
+                                                                    <span>Visto por </span>
+                                                                    <span class="bold">'.$dcto['visitas'].'</span>
+                                                                </div>
+                                                                <div class="item-visita">
+                                                                    <div id="comentaevent-prof"></div>
+                                                                    <div>'.$textoComentario.'</div>
+                                                                    <input type="hidden" id="totalComent" value="'.$cantidadComentarios.'">
+                                                                </div>
+                                                           </div>
+                                                           <div class="item-infocerca">
+                                                                <div class="descripcion-cerca">
+                                                                    '.$str.'
+                                                                </div>
                                                            </div>
                                                            <div class="botonitemcerca botonblue">Ver comentarios</div>
                                                            <div class="verRuta botongreen">¿Cómo llegar?</div>';
@@ -418,7 +435,7 @@
                         $listevents.= '<div data-id="'.$dcto['_id'].'"  style="background-image:url('.$url.'); background-size: cover" data-hash="'.$dcto['hash'].'" class="item-eventcerca">';
                         $listevents.= '<div class="barra"></div>
                                             <div class="event-right">
-                                                        <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
+                                                        
                                                          <div class="num-event"></div>';
                                   $nombreLink = str_replace(' ', '-', $dcto['nombre']);
                                   $realizacion = $e->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'],1);
@@ -433,6 +450,7 @@
                                     }
                                   $listevents.= '   <a target="_blank" href="/findbreak/break/'.$dcto['hash'].'" class="tit-eventcerca" >'.$dcto['nombre'].'</a>
                                                        <div class="info-eventcerca info-eventcercawhte">
+                                                           <div class="event-left" style="background-image:url('.$url.'); background-size: cover"></div>
                                                            <div class="item-infocerca">
                                                                
                                                                <div id="fechaevent" class="resp-cuando">'.$realizacion['fecha'].'</div>
