@@ -80,8 +80,13 @@
             $evento = new evento();
             $idEvento = $_REQUEST['idEvento'];
             $urlBorrar = $_REQUEST['urlBorrar'];
+            $urlBorrarPe = $_REQUEST['urlBorrarPe'];
             $nombreBorrar = $_REQUEST['nombreBorrar'];
-            $re = $evento->eliminarFoto($idEvento, $urlBorrar, $nombreBorrar);
+            $nombreBorrarPe = $_REQUEST['nombreBorrarPe'];
+            $numero = $_REQUEST['numero'];
+            
+            $re = $evento->eliminarFoto($idEvento, $urlBorrar, $nombreBorrar,$numero,'gr');//gr
+            $rePe = $evento->eliminarFoto($idEvento, $urlBorrarPe, $nombreBorrarPe,$numero,'pe');//pe
             echo $re;
         }  
    if(!empty($_REQUEST['delEvento']))
@@ -332,10 +337,10 @@
             $arreglo = array();
              foreach ($eventsNears as $dcto){
                     $folder = (string)$dcto['producido_por']['_id'];
-                        $url = 'background:url(/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0][0].'); background-size: cover';
-                        $urlPe = '/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0][1];
+                        $url = 'background:url(/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0]['gr'].'); background-size: cover';
+                        $urlPe = '/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0]['pe'];
                         //Con esta info. el mapa de google muestra los pines
-                         $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['nombre']."+".$dcto['fotos'][0][0]."+".
+                         $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['nombre']."+".$dcto['fotos'][0]['gr']."+".
                                 $dcto['loc'][0]."+".$dcto['loc'][1]."+".$urlPe.'</div>'."\n";
                          $cont++;
                        //----0----   
@@ -355,6 +360,7 @@
                                     $str = $dcto['descripcion'];
                                     // substr se usa para cortar la cadena y trim para eliminar el posible espacio del final para que no quede "ultima palabra(espacio)..."
                                     $str = trim(substr($str, 0, $size));
+                                    if(strlen($dcto['descripcion']) > 100)
                                     $str .= '<span >...</span>';
                                   
                                      $infoEventCerca = '<div style="'.$url.'" class="event-left"></div>

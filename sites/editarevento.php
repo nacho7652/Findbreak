@@ -24,13 +24,13 @@
 <!--                                     <input type="file" id="images" name="images[]"/>
 -->                                     <div class="foto-publicarevent">
                                             <?php for($i=0; $i< count($evento['fotos']); $i++){ 
-                                                      $url = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i][0]; 
-                                                      $url2 = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i][1];
+                                                      $url = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i]['gr']; 
+                                                      $url2 = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i]['pe'];
                                                 ?>
                                                    <div  style="background-image: url(<?= $url ?>); background-size:cover; background-position: 0px 0px;" class="coverfile-galerias" data-cant="<?= $i?>">
                                                         <input type="file" id="images-evento-upd" data-num="<?= $i ?>" name="images-evento-upd" class="fotonoticia-galerias" />
                                                         <?php if($i!=0){?>
-                                                            <a data-urlsin="<?= 'images/productoras/'.$folder ?>" data-url2="<?= $url2 ?>" data-nombre2="<?= $evento['fotos'][$i][1] ?>" data-url="<?= $url ?>" data-nombre="<?= $evento['fotos'][$i][0] ?>" class="borrarFotoEvento" href="#">borrar</a>
+                                                            <a data-numero="<?= $i?>" data-urlsin="<?= 'images/productoras/'.$folder ?>" data-url2="<?= $url2 ?>" data-nombre2="<?= $evento['fotos'][$i]['pe'] ?>" data-url="<?= $url ?>" data-nombre="<?= $evento['fotos'][$i]['gr'] ?>" class="borrarFotoEvento delfoto" href="#">borrar</a>
                                                         <?php }?>
                                                    </div>
                                             <?php }?>

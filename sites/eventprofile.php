@@ -11,12 +11,12 @@
       $pagar = new usuarioRelacional();
       $visitasEvento = $eventfound['visitas'];
       $folder = (string)$eventfound['producido_por']['_id'];
-      $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0][0];
+      $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0]['gr'];
         if(isset($_SESSION['username'])){  
                 $userid = $_SESSION['userid'];
                 $tags = $eventfound['tags'];
                 $re = $usuario->guardarTagsBuscados($userid, $tags);
-                $re2 = $usuario->guardarHistorial($eventfound['_id'], $eventfound['fotos'][0], $eventfound['nombre'],$eventfound['producido_por']['_id'],$userid);
+                $re2 = $usuario->guardarHistorial($eventfound['_id'], $eventfound['fotos'][0]['pe'], $eventfound['nombre'],$eventfound['producido_por']['_id'],$userid);
                 $visitaResp = $event->registrarVisita($eventfound['_id']); // sumar visita y se guardo la hora de cuando entró
                 $visitasEvento+= $visitaResp;
         }
@@ -46,11 +46,11 @@
                 if(!empty($_SESSION['userid']))
                 {
                 $mio = false;
-                if($pagar->VerVigenciaYProducidoPor($_SESSION['userid'], $eventfound['_id']) == 1 )
+                if($_SESSION['userid'] == $eventfound['producido_por']['_id'])
                 {
                     $mio = true;
                     ?> 
-                            <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar NOTIFICACION CUANDO LLEGE A 10000 VISItaS</a>
+                            <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar anuncio</a>
                             
                         <?php
                         
@@ -90,14 +90,14 @@
                    if(count($eventfound['fotos']) >= 1){
                        for($i=0; $i<count($eventfound['fotos']) ; $i++){
                            
-                           $url = '/findbreak/images/productoras/'.$folder.'/'.$fotos[$i][0];
+                           $url = '/findbreak/images/productoras/'.$folder.'/'.$fotos[$i]['gr'];
 //                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
                            ?>
                        <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
                 <?php
                      }
                    }
-                   $urlPrincipal = '/findbreak/images/productoras/'.$folder.'/'.$fotos[0][0];
+                   $urlPrincipal = '/findbreak/images/productoras/'.$folder.'/'.$fotos[0]['gr'];
                ?>
 </div>
 <div class="content-perfilevento">
@@ -369,7 +369,7 @@
                                 <div class="item-event">   
                                      <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
-                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        <a class="tittle-event tit" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                         <div class="inner-eventpeq">  
                                             <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
                                             
@@ -408,7 +408,7 @@
                                 <div class="item-event">   
                                      <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
                                      <div class="info-event">
-                                        <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        <a class="tittle-event tit" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                         <div class="inner-eventpeq">  
                                             <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
                                             

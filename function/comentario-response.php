@@ -28,7 +28,7 @@
        // $cuerpo.= '<div style="background: url('.$fotoEvento.'); background-size: cover" class="foto-event"></div>';//$event['foto'][0]
         $cuerpo.= '<div class="tit title-event">'.$event['nombre'].'</div>';
         $cuerpo.= '<div class="bloq2msj"><div class="itemcomentmsj">';
-        $cuerpo.=   '<div style="background: url('.$quienCito['foto'].')" class="bloq1"></div>';
+        $cuerpo.=   '<div style="background: url('.$quienCito['foto']['pe'].')" class="bloq1"></div>';
         $cuerpo.=   '<div class="bloq2msjinner">';
         $cuerpo.=       '<div class="nomusercom tit">'.ucwords($quienCito['nombre']).'</div>';
         $cuerpo.=       '<div class="comentuser"><a href="/findbreak/break/'.$event['hash'].'" class="hashlink">'.$event['hash'].'</a>'.$coment['comentario'].'</div>';
@@ -115,7 +115,7 @@
             $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
             $html.='<div data-num="'.$numComent.'" class="itemcoment">
                         <div class="line"></div>
-                        <div class="bloq1"  style="background: url('.$userFoto['foto'].') no-repeat"></div>
+                        <div class="bloq1"  style="background: url('.$userFoto['foto']['pe'].') no-repeat"></div>
                         <div class="bloq2">
                             <div class="titu-usercom">
                                <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
@@ -172,7 +172,7 @@
             $userFoto = $usuario->verFoto($dcto['_userId']);
             $html.='<div data-num="'.$numComent.'" class="itemcoment">
                         <div class="line"></div>
-                        <div class="bloq1" style="background: url('.$userFoto['foto'].') no-repeat"></div>
+                        <div class="bloq1" style="background: url('.$userFoto['foto']['pe'].') no-repeat"></div>
                         <div class="bloq2">
                             <div class="titu-usercom">
                                <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
@@ -230,7 +230,7 @@
             $realizacion = $comentarios->verFecha($dcto['fechaMuestra']);
             $html.='<div data-num="'.$numComent.'" class="itemcoment">
                         <div class="line"></div>
-                        <div class="bloq1" style="background: url('.$userFoto['foto'].') no-repeat"></div>
+                        <div class="bloq1" style="background: url('.$userFoto['foto']['pe'].') no-repeat"></div>
                         <div class="bloq2">
                             <div class="titu-usercom">
                                <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
@@ -292,7 +292,7 @@
             $userFoto = $usuario->verFoto($dcto['_userId']);
             $html.='<div data-num="'.$numComent.'" class="itemcoment">
                         <div class="line"></div>
-                        <div class="bloq1" style="background: url('.$userFoto['foto'].') no-repeat"></div>
+                        <div class="bloq1" style="background: url('.$userFoto['foto']['pe'].') no-repeat"></div>
                         <div class="bloq2">
                             <div class="titu-usercom">
                                <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
