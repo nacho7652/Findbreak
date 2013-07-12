@@ -56,7 +56,7 @@
                     {
                         
                     ?>
-         <div class="content-redes-sociales">  
+         <div class="content-redes-sociales" >  
                     <div class="redes-sociales">
                                                        <div class="fb-like" data-href="http://www.findbreak.com" data-send="false" data-width="380" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
 
@@ -84,6 +84,7 @@
                                      
                     </div>
          </div>
+         
                 <?php } ?> 
         <div id="allbackground">
             
