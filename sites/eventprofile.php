@@ -251,7 +251,7 @@
             <div class="input-transcom">
                 <div class="hash"><?php echo '#'.$eventfound['hash']?></div>
                 <div id="overcoment">
-                  <textarea class="textoajustable" id="coment"></textarea>
+                  <textarea class="textoajustable" id="coment" placeholder="¿Qué opinas?"></textarea>
                 </div>
 <!--                <div id="citasHidden"></div>
                 <div class="citasHiddenReservas"></div>-->
