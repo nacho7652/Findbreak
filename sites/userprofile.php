@@ -236,7 +236,7 @@
 
 
                                     <div id="overcoment">
-                                      <textarea class="textoajustable" id="coment"></textarea>
+                                      <textarea class="textoajustable" id="coment" placeholder="¿Qué está pasando?"></textarea>
                                     </div>
                     <!--                <div id="citasHidden"></div>
                                     <div class="citasHiddenReservas"></div>-->
