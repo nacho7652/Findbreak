@@ -231,7 +231,7 @@
         <!--                        <input type="hidden" id="hashevent" value="<?ph//p echo $eventfound['hash'] ?>"/>-->
                                 <div class="input-transcom">
                                     <!--<div class="hash"><?php //echo $eventfound['hash']?></div>-->
-                                    <textarea id="hasheventos" class="hash" placeholder="menciona a un evento #"></textarea>
+                                    <textarea id="hasheventos" class="hash" placeholder="menciona a un evento #" style="display:none"></textarea>
                                     <div class="eventosCitar"></div>
 
 
@@ -243,7 +243,7 @@
                                     <div id="replica"></div>
                                 </div>
                                 <div class="showfocuscom">
-                                 <div class="divcitar">@</div>
+                                 <!--<div class="divcitar">@</div>-->
                                  <div class="amigosCitar"></div>
                                  <input type="button" class="botonblue" id="btn-comentar-puser" value="Comentar" />
                                 </div>
