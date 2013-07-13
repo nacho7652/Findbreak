@@ -49,6 +49,7 @@ $(document).ready(function(){
          return error;
     }
     $('body').delegate('.borrarFotoEvento2','click',function(){
+        alert('b2')
         var padre =  $(this).parent();
          padre.attr('style','');
          valorTemporal = padre.find('input').val();
@@ -104,16 +105,24 @@ $(document).ready(function(){
         
          return false;
     });
-    $('.borrarFotoEvento').click(function(){
+    $('.delfoto').click(function(){
        var padre =  $(this).parent();
         var url = '../'+$(this).attr('data-url');
+        var urlBorrarPe = '../'+$(this).attr('data-url2');
+        
         var idEvento = $('#idevent').val();
         var nombre = $(this).attr('data-nombre');
+        var nombreBorrarPe = $(this).attr('data-nombre2');
+        var numero = $(this).attr('data-numero');
+//        alert(nombreBorrarPe);
+//        alert(urlBorrarPe);
+//        alert(numero)
+//        return false;
         loader('Eliminando foto...');
         $.ajax({
             url : '/findbreak/function/event-response.php',
             type : 'POST',
-            data : 'eliminarFoto=1&idEvento='+idEvento+"&urlBorrar="+url+"&nombreBorrar="+nombre,
+            data : 'eliminarFoto=1&idEvento='+idEvento+"&urlBorrar="+url+"&nombreBorrar="+nombre+"&numero="+numero+'&urlBorrarPe='+urlBorrarPe+'&nombreBorrarPe='+nombreBorrarPe,
             success : function(res){
                 
                 if(res == 1){

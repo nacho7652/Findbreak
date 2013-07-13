@@ -21,6 +21,9 @@ html {
     overflow-y: scorll;
     overflow-x: auto;
 }
+.perfiluser .fb-like.fb_edge_widget_with_comment.fb_iframe_widget {
+    margin: 30px 0px 0px 13px;
+}
 .fb-like.fb_edge_widget_with_comment.fb_iframe_widget {
     margin-bottom: 11px;
 }
@@ -262,7 +265,7 @@ html {
     background-image: linear-gradient(#A5235B,#962154);*/
 }
 #content-top {
-    width: 950px;
+    width: 1000px;
     height: 53px;
     margin: 0px auto;
     position: relative;
@@ -279,9 +282,9 @@ html {
 }
 #content-top .top-left {
     float: left;
-    width: 200px;
+    width: 188px;
     height: 53px;
-    margin-right: 36px;
+    margin-right: 26px;
 }
 .logoper {
     background: url('/findbreak/images/logoper.png')no-repeat;
@@ -294,22 +297,23 @@ html {
     display: none;
 }
 .logo {
-    width: 201px;
+    width: 181px;
     height: 50px;
     background: url('/findbreak/images/logon13.png')no-repeat;
     margin-top: 3px;
 }
 #content-top .top-center {
     float: left;
-    width: 313px;
+    width: 314px;
     height: 53px;
     position: relative;
 }
 #content-top .top-right {
     float: left;
-    width: 400px;
+    width: 447px;
     height: 53px;
     position: relative;
+    margin-left: 4px;
 }
 .login-msj {
     margin: 0px 68px 0px 0px !important;
@@ -480,6 +484,7 @@ html {
 }
 .nohaycoinci {
     padding: 9px 8px;
+    color: #444;
 }
 #eventresponse {
     width: 493px;
@@ -528,9 +533,10 @@ html {
     float: right;
     height: 38px;
     margin-top: 0px;
-    max-width: 370px;
+    max-width: 438px;
     color: #fff;
     position: relative;
+    margin-left: 27px;
 }
 #user-login .groupoption {
     width: 196px;
@@ -1423,6 +1429,8 @@ margin: 20px 28px 0px 0px;
     font-size: 12px;
     float: left;
     margin: 5px 0px 0px 11px;
+    word-wrap: break-word;
+    width: 285px;
 }
 .item-infocerca {
     margin-bottom: 0px;
@@ -2079,11 +2087,11 @@ float: left;
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -134px;
     width: 23px;
     height: 27px;
-    margin: 6px 0px 0px 0px;
+    margin: 15px 0px 0px 0px;
     float: left;
 }
 .descripcion-event {
-    width: 523px;
+    width: 481px;
     margin: 12px 0px 0px 0px;
     max-height: 115px;
     overflow: hidden;
@@ -2091,6 +2099,7 @@ float: left;
     line-height: 21px;
     padding: 0px 7px 10px 6px;
     float: left;
+    word-wrap: break-word;
 }
 .leer-masevent {
     width: 472px;
@@ -2597,14 +2606,15 @@ margin: -3px -5px 0px 6px;
     text-decoration: none;
     position: absolute;
     top: 305px;
-    left: -186px;
+    left: 187px;
     width: 146px;
-    padding: 10px 16px;
+    padding: 5px 5px;
     
     text-shadow: 0px 1px 0px #444;
     box-shadow: 0px 0px 7px -2px #000;
     font-size: 18px;
     z-index: 8;
+    /* font-weight: bold; */
 }
 .more-fotos .fb-like{
     position: absolute;

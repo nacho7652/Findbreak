@@ -260,7 +260,7 @@
                                              $comentarioEvent = new comentario();
                                              $evento = new evento();
 //                                             $solicitud = $usuario->VerSolicitudes($_SESSION['userid']);
-                                             $divMenciones = "";
+                                             $divMenciones = '<div class="nohaycoinci"> No tienes notificaciones :)</div>';
                                             
                                              foreach($notificaciones as $not)
                                              {  
@@ -344,7 +344,7 @@
                                                         $hashevent = $evento->verUrl($not['evento']);
                                                         $nombreevent = $evento->verNombre($not['evento']);
                                                         $divMenciones.='<a href="/findbreak/break/'.$hashevent['hash'].'" id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend item-search-friend"> 
-                                                                           <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                           <div style="background-image:url('.$user['foto']['pe'].')" class="item-friends-userpic"></div>
                                                                   
                                                                             
                                                                             <div class="item-friends-msj">
@@ -369,13 +369,13 @@
                                              }
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>
-                                        <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
+                                        <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
                                             
                                         </a>
                                    <?php }
                                    else
                                    {?>
-                                    <a style="background: url('<?php echo $_SESSION['foto']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
+                                    <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
                                  
                                         </a>
                                    
@@ -387,7 +387,7 @@
                                         </a>
                                    
                                         <div class="option noti-friend">
-                                            <div class="content-option">Menciones (<span id="cant-solicitud"><?php echo $contsol ?></span>)</div>
+                                            <div class="content-option">Notificaciones (<span id="cant-solicitud"><?php echo $contsol ?></span>)</div>
                                             
                                         </div>
                                         <div id="show-solicitud" class="boxscroll" style="display:none">

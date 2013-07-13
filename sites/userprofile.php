@@ -38,9 +38,7 @@
                         $buttonFriend = '<div id="logeate-friend" class="boton-perfiluser botongreen">Inicia sesión</div>';
          }
 ?>
-<!--redes sociales-->
-<div class="fb-like" data-href="http://www.findbreak.com/<?= $_GET['id'] ?>" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="dark"></div>
-<!--redes sociales-->
+
 <div class="parte-left-parent">
             <div class="part-left divtrans2">
                     <div class="part-left-right">
@@ -101,7 +99,7 @@
                                                         <div class="item-event">   
                                                              <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
                                                              <div class="info-event">
-                                                                <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                                                <a class="tittle-event tit"  href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                                                 <div class="inner-eventpeq">  
                                                                     <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
 
@@ -150,7 +148,7 @@
                                                         <div class="item-event">   
                                                              <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
                                                              <div class="info-event">
-                                                                <a class="tittle-event tit" target="_blank" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                                                <a class="tittle-event tit"  href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
                                                                 <div class="inner-eventpeq">  
                                                                     <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
 
@@ -175,7 +173,7 @@
 </div>
 <div class="parte-der">
     <div class="part-right divtrans2">
-          <div class="foto-user" style="background-size: cover; background-image: url(<?php echo $usuariofound['foto'] ?>)"></div>
+          <div class="foto-user" style="background-size: cover; background-image: url(<?php echo $usuariofound['foto']['gr'] ?>)"></div>
           
           <div class="bloque-info info-event-item">
               <div class="title-user tit-gray"><?php echo ucwords($usuariofound['nombre']) ?></div>
@@ -215,7 +213,9 @@
                       </div>
                   </div>
               </div>
-              
+              <!--redes sociales-->
+                <div class="fb-like" data-href="http://www.findbreak.com/<?= $_GET['id'] ?>" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
+              <!--redes sociales-->
               <!--<div class="info-num moreinfouser"></div>-->
           </div>
           <!--<div class="tit tit1">Comenta el evento</div>-->
@@ -279,7 +279,7 @@
                 ?>
                 <div data-num="<?= $numComent ?>" class="itemcoment">
                     <div class="line"></div>
-                    <div class="bloq1" style="background: url('<?php echo $usuariofound['foto']?>') no-repeat"></div>
+                    <div class="bloq1" style="background: url('<?php echo $usuariofound['foto']['pe']?>') no-repeat"></div>
                     <div class="bloq2">
                         <div class="titu-usercom">
                             <a href="/findbreak/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo $dcto['nombreUsuario'] ?></a>

@@ -166,10 +166,10 @@ class usuario {
          return $this->db->usuario->findOne(array("_id" => $id), array("userface" => 1));
          //return $this->db->usuario->find(array("_id" => $id),array("foto" => 1));
      }
-     public function reemplazarFoto($userid,$fotoGr)
+     public function reemplazarFoto($userid,$fotoGr, $fotoPe)
      { 
         $_SESSION['foto'] = "images/productoras/".$_SESSION['userid']."/".$fotoGr;
-        return $this->db->usuario->update( array("_id"=>$userid), array('$set'=> array("foto"=>"images/productoras/".$_SESSION['userid']."/".$fotoGr) ));   
+        return $this->db->usuario->update( array("_id"=>$userid), array('$set'=> array("foto"=>array('gr'=>"images/productoras/".$_SESSION['userid']."/".$fotoGr, 'pe'=>"images/productoras/".$_SESSION['userid']."/".$fotoPe)) ));   
      }
      public function modificar($id, $username, $nombre, $mail){ 
 //         $theObjId = new MongoId($id); 

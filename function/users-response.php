@@ -110,7 +110,7 @@
                                 $nombre = $usuario->verNombre($item['_id']);
                                 $foto = $usuario->verFoto($item['_id']);
                                 $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
-                                                       <div style="background-image:url('.$foto['foto'].')" class="item-friends-userpic"></div>
+                                                       <div style="background-image:url('.$foto['foto']['pe'].')" class="item-friends-userpic"></div>
                                                        <div class="item-friends-name">'.$nombre['nombre'].'</div>
                                                        <span class="arr-username username">@</span>
                                                        <div class="item-friends-username username">'.$username['username'].'</div>
@@ -132,7 +132,7 @@
                                           $nombre = $usuario->verNombre($item['_id']);
                                           $foto = $usuario->verFoto($item['_id']);
                                           $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
-                                                                 <div style="background-image:url('.$foto['foto'].')" class="item-friends-userpic"></div>
+                                                                 <div style="background-image:url('.$foto['foto']['pe'].')" class="item-friends-userpic"></div>
                                                                  <div class="item-friends-username">'.$nombre['nombre'].'</div>
                                                                  <span class="username arr-username">@</span>
                                                                  <div class="item-friends-username username">'.$username['username'].'</div>
@@ -168,7 +168,7 @@
                                 $nombre = $usuario->verNombre($item['_id']);
                                 $foto = $usuario->verFoto($item['_id']);
                                 $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
-                                                       <div style="background-image:url('.$foto['foto'].')" class="item-friends-userpic"></div>
+                                                       <div style="background-image:url('.$foto['foto']['pe'].')" class="item-friends-userpic"></div>
                                                        <div class="item-friends-name">'.$nombre['nombre'].'</div>
                                                        <span class="arr-username username">@</span>
                                                        <div class="item-friends-username username">'.$username['username'].'</div>
@@ -211,7 +211,7 @@
                 $hayuser = true;
                 $cuadrouser.= 
                 '<a href="/findbreak/!'.$dcto["username"].'" class="'.$classPrimero.' item-search item-search-friend">
-                   <div style="background:url('.$dcto["foto"].'); background-size:cover" class="foto-item-search"></div>
+                   <div style="background:url('.$dcto["foto"]['pe'].'); background-size:cover" class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
                 </a>';
@@ -265,7 +265,7 @@
         $solicitud->guardarNotificacion2($userQuien, $userAquien, $fechaMongo, $fecha);
         $re = -1;
         $item = '<div data-id="'.$userQuien['_id'].'" class="item-friends-user">';
-        $item.=  '<div style="background-image:url('.$userQuien['foto'].')" class="item-friends-userpic"></div>';
+        $item.=  '<div style="background-image:url('.$userQuien['foto']['gr'].')" class="item-friends-userpic"></div>';
         $item.=  '<div class="item-friends-username">'.$userQuien['nombre'].'</div>';
         $item.= '</div>';
         if($resp == $resp2){
