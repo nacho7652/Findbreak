@@ -168,7 +168,7 @@ class usuario {
      }
      public function reemplazarFoto($userid,$fotoGr, $fotoPe)
      { 
-        $_SESSION['foto'] = "images/productoras/".$_SESSION['userid']."/".$fotoGr;
+        $_SESSION['foto'] = array('pe'=>"images/productoras/".$_SESSION['userid']."/".$fotoPe, 'gr'=>"images/productoras/".$_SESSION['userid']."/".$fotoGr);
         return $this->db->usuario->update( array("_id"=>$userid), array('$set'=> array("foto"=>array('gr'=>"images/productoras/".$_SESSION['userid']."/".$fotoGr, 'pe'=>"images/productoras/".$_SESSION['userid']."/".$fotoPe)) ));   
      }
      public function modificar($id, $username, $nombre, $mail){ 
@@ -505,7 +505,7 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>'/findbreak/images/user-default.png'   
+            "foto"=>array('pe'=>'/findbreak/images/user-default_pe.png', 'gr'=>'/findbreak/images/user-default.png') 
         );
          
          $emailRepetido = $this->findforemail($mail);
@@ -533,7 +533,7 @@ class usuario {
             "tags_buscados" => array(),
             "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto" => $foto
+            "foto" => array('gr'=>$foto, 'pe'=>$foto)
         );
          
          $emailRepetido = $this->findforemail($mail);

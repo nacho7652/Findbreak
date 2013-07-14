@@ -53,6 +53,28 @@ $(document).ready(function(){
             }
         })
     })
+    $('.fix-redes').click(function(){
+        if( $('.content-redes-sociales').attr('style') == 'bottom: -2px;'){
+     
+             $('.content-redes-sociales').animate({
+                         'bottom': "-164px" 
+                     },
+                     {
+                        duration:500,
+                        easing:"swing"
+                     }
+                     );
+        }else{
+         $('.content-redes-sociales').animate({
+                         'bottom': "-2px" 
+                     },
+                     {
+                        duration:500,
+                        easing:"swing"
+                     }
+                     );
+        }
+    })
     //PERFIL USUARIO
     $('body').delegate('.leermas-comentuser','click',function(){
             var id = $('#iduser').val();
@@ -481,7 +503,7 @@ $(document).ready(function(){
                                         }else{
                                             textoComentario = '<span class="bold">'+cantidadComentarios+'</span> Comentarios';
                                         }
-                 padre.find('#comentaevent-prof').html(textoComentario);
+                 padre.find('.textoComentario').html(textoComentario);
                 
                  padre.find('.list').animate({
                      'scrollTop': "0px" 
@@ -496,6 +518,7 @@ $(document).ready(function(){
         })
         $('body').delegate('#btn-comentar','click',function(){
          var coment = $('#coment').val();
+         
          if(trim(coment) == ""){
             return false;
         }
@@ -515,7 +538,6 @@ $(document).ready(function(){
              data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
              success: function (data)
              {
-                
                  $('.showfocuscom').hide();
                  $('#coment').css('height','16px');
                  $('#coment').val('');
@@ -526,6 +548,7 @@ $(document).ready(function(){
                  //sumar evento
                 
                  cantidadComentarios = (parseInt($('#totalComent').val())  + 1)
+                 
                  $('#totalComent').val(cantidadComentarios)
                  if(cantidadComentarios == 0){
                                             textoComentario = 'Se el primero en comentar!';
@@ -535,7 +558,7 @@ $(document).ready(function(){
                                         }else{
                                             textoComentario = '<span class="bold">'+cantidadComentarios+'</span> Comentarios';
                                         }
-                 $('#comentaevent-prof').html(textoComentario);
+                 $('.textoComentario').html(textoComentario);
                 
                  $('.list').animate({
                      'scrollTop': "0px" 
@@ -641,7 +664,7 @@ $(document).ready(function(){
                                            }else{
                                                textoComentario = '<span class="bold">'+cantidadComentarios+'</span> Comentarios';
                                            }
-                    $('#comentaevent-prof').html(textoComentario);
+                    $('.textoComentario').html(textoComentario);
                  ///
                    if(data == 1){
                     covermsjclose();
@@ -1184,20 +1207,22 @@ $(document).ready(function(){
             }, "html");
       });
       
-      var outLoginCont = false;
-       $(".login-cont").mouseover(function(){
-//           alert("entrar")
-           outLoginCont = true;
-       });
-       $(".login-cont").mouseout(function(){
-//           alert("salio")
-           outLoginCont = false;
-       });
-       $('body, html').click(function(){
-           if(!outLoginCont){
-                $(".login-cont").hide();
-           }
-       })
+       //abrir cerrar para cualquier div
+         var cualquierDiv = false;
+            $(".cualquierDiv").mouseover(function(){
+     //           alert("entrar")
+                cualquierDiv = true;
+            });
+            $(".cualquierDiv").mouseout(function(){
+     //           alert("salio")
+                cualquierDiv = false;
+            });
+            $('body, html').click(function(){
+                if(!cualquierDiv){
+                     $(".cualquierDiv").hide();
+                }
+            })
+       //fin abrir y cerrar cualquier div
       $(".login-hover").click(function(){
           $(".login-cont").toggle();
           $('#mail').focus();

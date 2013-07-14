@@ -22,7 +22,7 @@
 <!--                                     <input type="file" id="images" name="images[]"/>
 -->                                     <div class="foto-publicaruser">
                                             <?php 
-                                                      $url = $usuario['foto'];  
+                                                      $url = $usuario['foto']['gr'];  
                                                 ?>
                                                    <div  style="background-image: url(<?= $url ?>); background-size:cover; background-position: 0px 0px;" class="coverfile-galerias" >
                                                         <input type="file" id="fotousuario" name="fotousuario" class="fotonoticia-galerias" />

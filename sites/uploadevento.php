@@ -10,36 +10,32 @@
             $evento = new evento();  
             $rutasFotos = array();
             $re1 = true;$re2 = true;$re3 = true;$re4 = true;$re5 = true;
-            if($_FILES['images-galerias1']['error'] == UPLOAD_ERR_OK ){
+            if($_FILES['images-galerias1']['name'] != '' ){
                 $exito1 = subir($_FILES['images-galerias1']['name'], $_FILES['images-galerias1']['tmp_name']);
                 $rutasFotos[]= array('gr'=>trim($exito1['fotoGr']), 'pe'=>trim($exito1['fotoPe']));
                 $re1 = $exito1['re'];
             }
-            if($_FILES['images-galerias2']['error'] == UPLOAD_ERR_OK ){
+            if($_FILES['images-galerias2']['name'] != ''  ){
                 $exito2 = subir($_FILES['images-galerias2']['name'], $_FILES['images-galerias2']['tmp_name']);
                 $rutasFotos[]= array('gr'=>trim($exito2['fotoGr']), 'pe'=>trim($exito2['fotoPe']));
                 $re2 = $exito2['re'];
             }
-            if($_FILES['images-galerias3']['error'] == UPLOAD_ERR_OK){
+            if($_FILES['images-galerias3']['name'] != '' ){
                 $exito3 = subir($_FILES['images-galerias3']['name'], $_FILES['images-galerias3']['tmp_name']);
                 $rutasFotos[]= array('gr'=>trim($exito3['fotoGr']), 'pe'=>trim($exito3['fotoPe']));
                 $re3 = $exito3['re'];
             }
-            if($_FILES['images-galerias4']['error'] == UPLOAD_ERR_OK){
+            if($_FILES['images-galerias4']['name'] != '' ){
                 $exito4 = subir($_FILES['images-galerias4']['name'], $_FILES['images-galerias4']['tmp_name']);
                 $rutasFotos[]= array('gr'=>trim($exito4['fotoGr']), 'pe'=>trim($exito4['fotoPe']));
                 $re4 = $exito4['re'];
             }
-            if($_FILES['images-galerias5']['error'] == UPLOAD_ERR_OK){
+            if($_FILES['images-galerias5']['name'] != '' ){
                 $exito5 = subir($_FILES['images-galerias5']['name'], $_FILES['images-galerias5']['tmp_name']);
                 $rutasFotos[]= array('gr'=>trim($exito5['fotoGr']), 'pe'=>trim($exito5['fotoPe']));
                 $re5 = $exito5['re'];
             }
             
-            
-            if($re1 && $re2 && $re3 && $re4 && $re5){
-                $result = true;
-            }
             //datos
             $idproductora = $_SESSION['userid'];
             $nombreproductora = $_SESSION['username'];;
@@ -116,7 +112,7 @@
             }
             
             //fin datos
-        if($result && $guardar==1){
+        if($guardar==1){
             header("location:/findbreak/break/".$hashtag."/success");
         }else{
              header("location:/findbreak/publicar/saldo");

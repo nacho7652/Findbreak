@@ -49,7 +49,7 @@ $(document).ready(function(){
          return error;
     }
     $('body').delegate('.borrarFotoEvento2','click',function(){
-        alert('b2')
+       
         var padre =  $(this).parent();
          padre.attr('style','');
          valorTemporal = padre.find('input').val();
@@ -253,6 +253,12 @@ $(document).ready(function(){
 
     $('#guardarevento').click(function(){
          guardar = true;
+         
+//         $('.fotonoticia-galerias').each(function(){
+//             if($(this).val() != ''){
+//                 guardar = false;
+//             }
+//         })
          $('.obligatorio').each(function(){
              valor = $(this).val();
              error = $(this).parent().find('.error-obligatorio');
@@ -288,7 +294,7 @@ $(document).ready(function(){
 //                     error.fadeIn(200); 
 //         }
          if(guardar){
-            loader('Guardando Evento...');
+            loader('Guardando Anuncio...');
             document.formularioevento.submit();
          }
          
@@ -317,13 +323,76 @@ $(document).ready(function(){
              
          })
          if(guardar){
-            loader('Guardando Evento...');
+            loader('Guardando Anuncio...');
             document.formularioevento.submit();
          }
          
     }); 
+
+        
+        $(document).on("click",".nombres-tag",function(){
+                nuevotag = $(this).html();
+                $('.content-tags').prepend('<div class="tag-elegir tag-selected">'+nuevotag+'</div>');
+                tags();
+                $('.coincidencia-tags').hide();
+                $('#buscar-tag').val('');
+                $('#buscar-tag').focus();
+        });
+    $('#buscar-tag').keyup(function(e){
+        if(e.keyCode == 13){
+            agregarTag();
+            return false; 
+        }
+        if(e.keyCode == 40){//abajo          
+                //si estoy en el ultimo no haga nada
+               if( $('.coincidencia-tags .nombres-tag:last-child').hasClass('itemCitarSelected')){
+                     selected = $('.nombres-tag.itemCitarSelected');
+                     nuevo = $('.nombres-tag:first');
+                     selected.removeClass('itemCitarSelected');
+                     nuevo.addClass('itemCitarSelected');
+                     return false;
+                }
+                selected = selected = $('.nombres-tag.itemCitarSelected');
+                nuevo = selected.next('.nombres-tag');
+                selected.removeClass('itemCitarSelected');
+                nuevo.addClass('itemCitarSelected');
+               return false;
+        }
+        if(e.keyCode == 38){//arriba          
+                //si estoy en el ultimo no haga nada
+               if( $('.coincidencia-tags .nombres-tag:first-child').hasClass('itemCitarSelected')){
+                     selected = $('.nombres-tag.itemCitarSelected');
+                     nuevo = $('.nombres-tag:last');
+                     selected.removeClass('itemCitarSelected');
+                     nuevo.addClass('itemCitarSelected');
+                     return false;
+                }
+                selected = selected = $('.nombres-tag.itemCitarSelected');
+                nuevo = selected.prev('.nombres-tag');
+                selected.removeClass('itemCitarSelected');
+                nuevo.addClass('itemCitarSelected');
+               return false;
+        }
+        nuevotag = $('#buscar-tag').val();
+        
+        $.ajax({
+                      type:"POST",
+                      dataType:"html",
+                      url:"/findbreak/function/event-response.php",
+                      data:"buscartag=1&nombre="+nuevotag,
+                      success:function(data)
+                      {    
+                            $('.coincidencia-tags').html(data);
+                            $('.coincidencia-tags .nombres-tag:first-child').addClass('itemCitarSelected')
+                            $('.coincidencia-tags').show();
+                      }
+                  }); 
+    })
     $('#nuevo-tag-btn').click(function(){
-        nuevotag = $('#nuevo-tag').val();
+        agregarTag()
+    })
+    function agregarTag(){
+        nuevotag = $('.coincidencia-tags .nombres-tag.itemCitarSelected').html();
         if(trim(nuevotag) == ''){
             return false;
         }
@@ -331,49 +400,56 @@ $(document).ready(function(){
             alert('La palabra que agregaste ya existe, por ende se agregó automáticamente')
             return false;
         }
-        $.ajax({
-                      type:"POST",
-                      dataType:"html",
-                      url:"/findbreak/function/event-response.php",
-                      data:"nuevotag=1&nombre="+nuevotag,
-                      success:function(data)
-                      {
-                          if(data == 1){
-                            $('.content-tags').prepend('<div class="tag-elegir tag-selected">'+nuevotag+'</div>');
-                            tags();
-                          }
-                      }
-                  }); 
-    })
+                          
+        $('.content-tags').prepend('<div class="tag-elegir tag-selected">'+nuevotag+'</div>');
+        tags();
+        $('.coincidencia-tags').hide();
+        $('#buscar-tag').val('');
+        $('#buscar-tag').focus();
+ 
+    }
     $('.mostrar-agre-tag').click(function(){
         $('.divmostrar-agre-tag').toggle();
         $('#nuevo-tag').focus();
         return false;
     })
+    
+    nombreBorrado = '';
+    $('body').delegate('.tag-selected','hover',function(){
+        este = $(this);
+        if(!este.hasClass('paraBorrar')){//si no tiene para borrar
+            nombreBorrado = este.html();
+        }
+        este.html('borrar '+nombreBorrado);
+        este.addClass('paraBorrar');
+        este.attr('style','background: rgb(235, 84, 77) !important');
+    });
+    $('body').delegate('.tag-selected','mouseleave',function(){
+        este = $(this);
+        este.html(nombreBorrado);
+        este.attr('style','rgba(36, 115, 167, 1) !important');
+        este.removeClass('paraBorrar');
+    });
     $('body').delegate('.tag-elegir','click',function(){
         este = $(this);
         if(este.hasClass('tag-noselected')){
             este.removeClass('tag-noselected');
             este.addClass('tag-selected');
-        }else{
-            este.removeClass('tag-selected');
-            este.addClass('tag-noselected');
+        }else{        
+            este.remove();
         }
         tags();
     });
      function tags(){
          tagsElegidos = '';
-         $('.tag-elegir').each(function(){
-            if($(this).hasClass('tag-selected')){
+         $('.content-tags .tag-elegir.tag-selected').each(function(index){
+//            if($(this).hasClass('tag-selected')){
+                if(index != 0)//me agrega dos :S pero SOLUCIONADO
                 tagsElegidos+= $(this).html()+',';
-            }
+//            }
          })
          $('#tags-hidden').val(tagsElegidos)
      }
-    $('#date-event').datepick({ 
-        multiSelect: 999, monthsToShow: 1, dateFormat: 'yyyy-mm-dd'
-    });
-    
     function mostrarImagenSubida(source, este){
         var    img  = document.createElement('img');
         img.src = source;
@@ -383,6 +459,7 @@ $(document).ready(function(){
         este.css('background-position','0px 0px');
     }
     $('body').delegate('#images-galerias','change',function(evt){
+           $('.error-obligatorio').hide();
             var i = 0, len = this.files.length, img, reader, file;
             var este = $(this).parent();
                  //for( ; i < len; i++){
@@ -419,12 +496,14 @@ $(document).ready(function(){
           return error;
       }
   $('#coverall').delegate('#guardarusuario','click',function()
-  {
+  {alert('guardar')
        if(!validarCorreo($('#correo-usuario').val())){
            $('.todosloscampos .content-mensaje').html('Correo electrónico inválido');
            $('.todosloscampos').show();
+           alert('a')
            return false;
        }
+       alert('se puede')
        if(comprobarCampos()){
            $('.todosloscampos .content-mensaje').html('Debes completar todos los campos');
            $('.todosloscampos').show();

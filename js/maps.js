@@ -484,11 +484,13 @@ function geolocalizarPorTags(){
    //cuando el usuario escriba una dirección en el buscador
    $('#search-location').keypress(function(e){
        if(e.keyCode == 13){
+           desactivarLocation()
            geolocalizarManual($(this).val())
            // geolocalizarPorTags($(this).val())
        }
    })
    $('#boton-buscarcerca').click(function(e){
+       desactivarLocation()
        geolocalizarManual($('#search-location').val())
    })
    //cuando quiere location automática

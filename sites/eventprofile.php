@@ -166,7 +166,7 @@
                                     </div>
                                     <div class="item-visita">
                                         <div id="comentaevent-prof"></div>
-                                        <div><?php echo $textoComentario?> </div>
+                                        <div class="textoComentario"><?php echo $textoComentario?> </div>
                                         <input type="hidden" id="totalComent" value="<?= $cantidadComentarios?>"/>
                                     </div>
                                 </div>
@@ -299,7 +299,7 @@
                 ?>
                 <div data-num="<?= $numComent ?>" class="itemcoment">
                     <div class="line"></div>
-                    <div class="bloq1" style="background: url('<?php echo $userFoto['foto']?>') no-repeat"></div>
+                    <div class="bloq1" style="background: url('<?php echo $userFoto['foto']['pe']?>') no-repeat"></div>
                     <div class="bloq2">
                         <div class="titu-usercom">
                             <a href="/findbreak/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo ucwords($dcto['nombreUsuario'])?></a>

@@ -152,6 +152,23 @@
        echo $evento->agregarTag($nombre);
             
     }
+    if(!empty($_REQUEST["buscartag"])){
+       $evento = new evento();
+       $nombre = $_REQUEST['nombre'];
+       $encontrados =  $evento->buscarTagPorCoincidencia($nombre);
+       $re = '';
+       $hay = 0;
+       foreach($encontrados as $dcto){
+            $hay = 1;
+            $re.= '<div class="item-search nombres-tag tit-gray">'.$dcto['nombre'].'</div>';
+       }
+       
+       if($hay == 1){
+           echo $re;
+       }else{
+           echo '<div class="item-search nombres-tag tit-gray tagNuevo">'.$nombre.'</div>';
+       }
+    }
     if(!empty($_POST["search-event-cit"])){
                     $evento = new evento();
                     $popular = $evento->findpopular(3);
@@ -224,17 +241,14 @@
                 
                     $listcoment.= '<div data-num="'.$numComent.'" class="itemcoment">
                                <div class="line"></div>
-                               <div class="bloq1" style="background:url('.$userFoto['foto'].')"></div>
+                               <div class="bloq1" style="background:url('.$userFoto['foto']['pe'].')"></div>
                                <div class="bloq2">
                                 <div class="titu-usercom">
                                     <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.$dcto['nombreUsuario'].'</a>
                                     <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
                                 </div>
-                                   <div class="comentuser">
-
-                                        
-                                                                      '.$dcto['comentario'].'
-
+                                   <div class="comentuser">                     
+                                        '.$dcto['comentario'].'
                                    </div>
                                </div>
                                <div class="bloq3">
@@ -382,7 +396,7 @@
                                                                 </div>
                                                                 <div class="item-visita">
                                                                     <div id="comentaevent-prof"></div>
-                                                                    <div>'.$textoComentario.'</div>
+                                                                    <div class="textoComentario">'.$textoComentario.'</div>
                                                                     <input type="hidden" id="totalComent" value="'.$cantidadComentarios.'">
                                                                 </div>
                                                            </div>
@@ -418,6 +432,7 @@
                                  'arreglo'=>$arreglo);
                     return $arr;
        }
+       /*
        function eventoscernanos5($eventsNears){
             $cont = 0; //cantidad de eventos encontrados para mostrarlos en el mapa
             //$listevents = '<div class="eventsnear">';
@@ -548,6 +563,7 @@
                                  'infodiv'=>$infodiv);
                     return $arr;
        }
+      
        
        function eventospopulares($eventpopular){
            $listeventspop = '<div class="eventspopular">';
@@ -633,7 +649,7 @@
                                 $listeventsor.= '</div>';
                                 return $listeventsor;
        }
-       
+        */
        if(isset($_REQUEST['findnear2'])){
             $lat = $_REQUEST['lat'];
             $long = $_REQUEST['lng'];
@@ -714,7 +730,7 @@
 //                         );
 //            echo json_encode($resp);
 //        }
-        
+       /* 
         if(isset($_POST['guardarevent'])){
             
             
@@ -743,7 +759,7 @@
                                     
             echo $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $fechas, $fechMongo,$hor, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter);
         }
-        
+        */
         
         
 ?>

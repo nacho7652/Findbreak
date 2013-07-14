@@ -27,16 +27,48 @@ html {
 .fb-like.fb_edge_widget_with_comment.fb_iframe_widget {
     margin-bottom: 11px;
 }
+.fb-share-button.fb_iframe_widget {
+    right: -42px;
+}
 .twitter-share-button.twitter-count-horizontal{
     position: relative;
-    right: -31px;
-    bottom: -5px;
+    right: -51px;
+    bottom: -7px;
+}
+.fix-redes{
+    opacity:.8;
+}
+.fix-redes:hover{
+    opacity:1;
+    cursor: pointer;
+}
+.fix-google.fix-redes {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -17px -771px;  
+    width: 40px;  
+    height: 33px;  position: absolute;  top: -14px;  
+    left: 268px;
+}
+.fix-twitter.fix-redes {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -22px -730px;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: -15px;
+    left: 210px;
+}
+.fix-face.fix-redes {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -17px -687px;
+    width: 38px;
+    height: 33px;
+    position: absolute;
+    top: -14px;
+    left: 147px;
 }
 .content-redes-sociales {
     right: 11px;
     padding: 15px 35px;
-    bottom: -5px;
-    position: absolute;
+    bottom: -164px;
+    position: fixed;
     width: 371px;
     height: 150px;
     z-index: 10000000000000000000000000000000;
@@ -45,12 +77,12 @@ html {
     background: rgba(31, 28, 28, 0.26);
 }
 .redes-sociales {
-    right: 9px;
+    right: 17px;
     padding: 15px 35px;
-    bottom: -9px;
+    bottom: -1px;
     position: relative;
-    width: 323px;
-    height: 103px;
+    width: 336px;
+    height: 115px;
     z-index: 100000000000000000000000000000000;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;  
@@ -131,11 +163,12 @@ html {
 }
 #calmsj {
     min-height: 100%;
-    overflow: hidden;                font-size: .9em;  
+    overflow: hidden;                
+    font-size: 26px;  
     border-radius: 2px;
     color: rgb(59, 113, 172);  text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
     margin: 0px auto 0px auto;    
-    padding: 25px 43px;
+    padding: 53px 43px;
     text-align: center;
     background: url(/findbreak/images/iconos-bg.png) rgb(253, 253, 253);
 }
@@ -482,9 +515,15 @@ html {
     color: rgba(78, 78, 78, 0.77);
     font-size: 19px;
 }
+#show-solicitud .nohaycoinci {
+     border-bottom: 1px solid #e4e5e8;
+     font-size: 13px;
+     text-align: center;
+}
 .nohaycoinci {
     padding: 9px 8px;
     color: #444;
+   
 }
 #eventresponse {
     width: 493px;
@@ -730,6 +769,13 @@ overflow: hidden;
     height: 58px;
     float: left;
 }
+.content-tags .item-search {
+    height: 33px;
+}
+.item-search.nombres-tag {
+    padding: 9px 0px 0px 7px;
+    font-size: 16px;
+}
 .item-search:hover{
     background: rgba(228, 228, 228, 0.7) !important;
     cursor: pointer;
@@ -743,9 +789,9 @@ overflow: hidden;
     margin: 4px 2px 0px 6px;
 }
  .name-item-search{
-    margin: 6px 0px 0px 5px;
+    margin: 6px 0px 0px 5px !important;
     
-    float: left;
+    float: left !important;
 }
 .title-search-item2{
     border-top: 1px solid rgb(216, 216, 216);
@@ -2029,6 +2075,9 @@ line-height: 19px;
     border-left: 1px solid rgba(211, 211, 211, 0.31);
     float: left;  width: 24px;  height: 24px;
 }
+.eventprofile .item-visita{
+    width: 130px;
+}
 .item-visita {
     float: left;
     width: 117px;
@@ -2052,9 +2101,9 @@ float: left;
     bottom: 6px;
 }
 #___plusone_0 {
-    bottom: -4px;
+    bottom: -7px;
     position: relative;
-    left: 34px;
+    left: 13px;
 }
 .eventprofile #___plusone_0 {
     bottom: 9px;
@@ -2293,7 +2342,7 @@ float: left;
     position: absolute;
     margin: 5px 0px 7px 0px;
     padding: 5px 3px 6px 7px;
-    width: 315px;
+    width: 417px;
     top: 22px;
     direction: ltr;
     background: transparent;
@@ -2315,7 +2364,7 @@ float: left;
 #coment {
     overflow-y: hidden;
     margin: 5px 0px 7px 0px;
-    width: 319px;
+    width: 417px;
     font-size: 12px;
     color: rgb(104, 104, 104);
     padding: 5px 3px 6px 7px;
@@ -2379,10 +2428,13 @@ float: left;
     background: url(/findbreak/images/iconos-bg.png) rgb(231, 205, 98) 0px -9px;
     padding: 25px 16px;
 }
+.coment-cerca .advert.mjscoment {
+    width: 342px;
+}
 .mjscoment{
     font-size: 0.8em;
     color: rgb(88, 88, 88) !important;
-    width: 321px;
+    width: 413px;
     height: 40px;
     font-weight: bold;
 }
@@ -2498,11 +2550,11 @@ margin: -3px -5px 0px 6px;
 .line {
     border-top: 1px solid rgba(211, 211, 211, 0.31);
     float: left;
-    width: 328px;
+    width: 423px;
     margin: 0px 0px 6px 0px;
 }
 .itemcoment {
-    width: 339px;
+    width: 434px;
     min-height: 70px;
     float: left;
     padding: 0px 0px 0px 12px;
@@ -2577,8 +2629,11 @@ margin: -3px -5px 0px 6px;
     border-top: 1px solid rgba(211, 211, 211, 0.31);
     box-shadow: 0px -3px 5px -6px #444;
 }
+.eventprofile .leermas-coment.readmorecoment {
+    width: 406px;
+}
 .list {
-    width: 351px;
+    width: 449px;
     float: left;
 /*    min-height: 300px;*/
     max-height: 443px;
@@ -2956,8 +3011,8 @@ margin: -11px 0px 2px 0px !important;
 .publicar .field-publicarevent-s {
     width: 50px !important;
 }
-#nuevo-tag {
-margin-top: 6px;
+#nuevo-tag, #buscar-tag {
+    margin-top: 6px;
 }
 .divmostrar-agre-tag{
     display: none;
@@ -2997,6 +3052,18 @@ left: 0;
     float: left;
     width: 777px;
     margin: 11px 0px 0px 41px;
+}
+.content-tags.coincidencia-tags {
+    background: #fff;
+    left: -3px;
+    position: absolute;
+    top: 64px;
+    display: none;
+    width: 237px;
+    border: 1px solid rgb(189, 189, 189);
+    overflow: hidden;
+    z-index: 10240000000000000000000000000000;
+    box-shadow: 0px 2px 11px -5px rgb(82, 82, 82);
 }
 .tag-elegir:hover {
     background: rgb(38, 69, 170);
@@ -3096,7 +3163,7 @@ margin: 3px 0px 0px 7px;
 }
 .mensaje-tags {
     top: -8px !important;
-    left: 385px;
+    left: 627px;
     width: 227px !important;
 }
 .mensaje-m {
@@ -3105,6 +3172,10 @@ margin: 3px 0px 0px 7px;
 .item-editaruser .mensaje-error.error-obligatorio {
     top: -2px;
     right: -2px;
+}
+.mensaje-error.error-obligatorio.error-fotos {
+    left: -23px;
+    top: 33px;
 }
 .mensaje-error.error-obligatorio {
     width: 194px;

@@ -256,8 +256,14 @@ class evento {
 
      public function insertar($idproductora, $nombreproductora, $nombre, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
                                    $video, $sitioWeb,$hashtag){ 
-         $arrtags = explode(",", $tag);
-         $arrtags[] = strtolower($nombre);
+         $arrtags = explode(",", $tag); 
+         $arrtags2 = array();
+         //sacar el tag vacío
+         for($i=0; $i<count($arrtags)-1; $i++){
+             $arrtags2[] = $arrtags[$i];
+         }
+         $arrtags2[] = strtolower($nombre);
+         
          $hoyMustra = date('Y-m-d 00:00:00');
          $fechMongo = new MongoDate(strtotime($hoyMustra));
           $event = array(
@@ -267,7 +273,7 @@ class evento {
             "direccion" =>  $dir,
             "fotos" => $arrayfotos,
             "producido_por"=>(object)array("_id"=>$idproductora, "nombre"=>$nombreproductora),
-            "tags" => $arrtags,
+            "tags" => $arrtags2,
             "loc"=> array((float)$lat, (float)$lng),
             "descripcion"=>  $desc,
              "visitas"=>0,
@@ -308,8 +314,13 @@ class evento {
          return $re;
      }
      public function modificar($idEvento, $nom, $dir,$tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,$video){ 
-         $arrtags = explode(",", $tag);
-         unset($arrtags[count($arrtags)-1]);
+         $arrtags = explode(",", $tag); 
+         $arrtags2 = array();
+         //sacar el tag vacío
+         for($i=0; $i<count($arrtags)-1; $i++){
+             $arrtags2[] = $arrtags[$i];
+         }
+         $arrtags2[] = strtolower($nom);
 //         $arrtags[] = strtolower($nombre);
         // $db->users->update(array("b" => "q"), array('$set' => array("a" => 1)));
          $theObjId = new MongoId($idEvento); 
@@ -317,7 +328,7 @@ class evento {
                                           array(
                                             '$set'=> array("nombre"=>$nom,
                                                            "direccion"=>$dir,
-                                                           "tags"=>$arrtags,
+                                                           "tags"=>$arrtags2,
                                                            "loc"=>array((float)$lat, (float)$lng),
                                                            "descripcion"=>$desc,
                                                            "redes" => array($urlfacebook, $urltwitter,$video)
@@ -386,6 +397,19 @@ class evento {
      { 
          $tagdcto = array("nombre"=>$nombre);
          return $this->db->tags->insert($tagdcto);  
+     }
+     public function buscarTagPorCoincidencia($buscador)
+     { 
+        $buscador = trim(strtolower($buscador));
+        $words = explode(" ", $buscador);
+        $result = array();
+        for($i=0 ; $i < count($words); $i++){
+           $nombre =  array("nombre" => new MongoRegex("/".$words[$i]."/")); // '%rock%'
+           $result[]= $nombre;
+        }
+        return $this->db->tags->find(array('$or' => $result
+                                           )
+                                      )->limit(5);
      }
      public function comprobarHashTag($hashmin)
      { 

@@ -26,15 +26,26 @@
                                 
                                 <div class="item-publicar">
                                      <div class="nombre-publicarevent">Selecciona fotos para tu evento, la primera será la principal</div>
+                                     
 <!--                                     <input type="file" id="images" name="images[]"/>
 -->                                     <div class="foto-publicarevent">
-                                            <?php for($i=1; $i<=5; $i++){ ?>
+                                            <?php 
+                                                $obligatorio = 'obligatorio';
+                                                for($i=1; $i<=5; $i++){ 
+                                                    if($i != 1){
+                                                        $obligatorio = '';
+                                                    }
+                                                    ?>
                                                    <div class="coverfile-galerias" data-cant="<?= $i?>">
-                                                        <input type="file"  id="images-galerias" name="images-galerias<?= $i?>" class="fotonoticia-galerias"/>
+                                                        <input type="file"  id="images-galerias" name="images-galerias<?= $i?>" class="fotonoticia-galerias <?= $obligatorio?>"/>
                                                         <a class="borrarFotoEvento2" href="#">borrar</a>
+                                                        <div class="mensaje-error error-obligatorio error-fotos">
+                                                            <div class="content-mensaje">* Debes ingresar al menos la primera foto</div>
+                                                         </div>
                                                     </div>
                                             <?php }?>
                                        </div>
+                                       
                                 </div>
                                 
                                 <div class="item-publicar">
@@ -92,23 +103,26 @@
                                     <div class="mensaje-error error-obligatorio mensaje-tags">
                                         <div class="content-mensaje">* Ingresa al menos una palabra clave</div>
                                     </div>
+                                    <input placeholder="Busca las palabras clave para tu enuncio ej: venta, fiesta, celular, etc." class="field-publicarevent field-publicarevent-m " type="text" id="buscar-tag"/>
+                                    <input  type="button" id="nuevo-tag-btn" value="Agregar palabra a mi anuncio" class="botongreen">
+                                    <div  class="cualquierDiv content-tags coincidencia-tags"></div>
                                     <div class="content-tags">
                                            <?php 
-                                           $evento = new evento();
-                                           $tags = $evento->verTags();
-                                           foreach($tags as $dcto){
+//                                           $evento = new evento();
+//                                           $tags = $evento->verTags();
+                                          // foreach($tags as $dcto){
                                            ?>
-                                               <div class="tag-elegir tag-noselected"><?=$dcto['nombre']?></div>
+                                               <!--<div class="tag-elegir tag-noselected">/$dcto['nombre']?></div>-->
 
-                                           <?php }?>
+                                           <?php //}?>
 
                                        </div>  
 
-                                    <div class="nombre-publicarevent msj-peqeno">¿No encuentras una palabra que deseas? <a class="mostrar-agre-tag" href="">Agrégala aquí!</a></div>
+<!--                                    <div class="nombre-publicarevent msj-peqeno">¿No encuentras una palabra que deseas? <a class="mostrar-agre-tag" href="">Agrégala aquí!</a></div>
                                       <div class="divmostrar-agre-tag">
                                         <input class="field-publicarevent field-publicarevent-s2 " type="text" id="nuevo-tag"/>
                                         <input type="button" id="nuevo-tag-btn" value="Agregar nueva palabra" class="botongreen"/>
-                                      </div>
+                                      </div>-->
                                   
                                  
                                 </div>

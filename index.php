@@ -56,7 +56,10 @@
                     {
                         
                     ?>
-         <div class="content-redes-sociales">  
+         <div class="content-redes-sociales">
+             <div class="fix-face fix-redes"></div>
+             <div class="fix-twitter fix-redes"></div>
+             <div class="fix-google fix-redes"></div>
                     <div class="redes-sociales">
                                                        <div class="fb-like" data-href="http://www.findbreak.com" data-send="false" data-width="380" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
 
@@ -103,11 +106,11 @@
        
        if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'success'){
             $stiloMensaje = 'style="display:block"';
-            $mensajeEvento = 'Evento publicado con éxito :)';
+            $mensajeEvento = 'Anuncio publicado con éxito :)';
        }
        if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'success-upd'){
             $stiloMensaje = 'style="display:block"';
-            $mensajeEvento = 'Evento modificado con éxito :)';
+            $mensajeEvento = 'Anuncio modificado con éxito :)';
        }
        if(isset($_REQUEST['evento-msj']) && $_REQUEST['evento-msj'] == 'saldo'){
             $stiloMensaje = 'style="display:block"';
@@ -220,7 +223,7 @@
                                    <a href="" class="login-hover">
                                        Iniciar sesion
                                    </a>
-                                   <div class="login-cont"> 
+                                   <div class="login-cont cualquierDiv"> 
                                       <input   type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
                                       <a href="#" class="botonblue" id="boton-login">Entrar</a>
@@ -278,7 +281,7 @@
                                                         if($not['idEventos'] != null){//si mencionó evento
                                                             $fotosNombres = $evento->verEventosMencionados($not['idEventos']);
                                                             $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not1"> 
-                                                                               <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                               <div style="background-image:url('.$user['foto']['pe'].')" class="item-friends-userpic"></div>
                                                                                <div class="item-friends-msj">
                                                                                    <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>';
                                                                                    if(count($not['idEventos']) == 1){
@@ -320,7 +323,7 @@
                                                         $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
                                                         $user = $usuario->findforid($not['quien']);
                                                         $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend not2 item-search-friend"> 
-                                                                           <div style="background-image:url('.$user['foto'].')" class="item-friends-userpic"></div>
+                                                                           <div style="background-image:url('.$user['foto']['pe'].')" class="item-friends-userpic"></div>
                                                                            <div class="item-friends-msj">
                                                                                <div class="item-friends-username tit-gray">'.$user['nombre'].'</div>
                                                                                <span class="msjmencion">te ha seguido.</span>
@@ -571,8 +574,10 @@
 //             $('body').delegate('.boxscroll','',function(){
 //                 
 //             })
-             $(".boxscroll").niceScroll({cursorborder:"rgb(185, 185, 185)",cursorcolor:"rgb(185, 185, 185)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
 
+                    //esta es la funcion normal
+                       $(".boxscroll").niceScroll({cursorborder:"rgb(185, 185, 185)",cursorcolor:"rgb(185, 185, 185)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
+                 
               // Customizable cursor
               // $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#00F",cursoropacitymax:0.7,cursorwidth:11,cursorborder:"1px solid #2848BE",cursorborderradius:"8px"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar
 

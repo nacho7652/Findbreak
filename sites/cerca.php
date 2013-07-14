@@ -40,7 +40,7 @@
                                                     
                                             </div>
                                             
-                                            <div class="coment-cerca">
+                                            <div class="coment-cerca cualquierDiv">
                                                <?php if(!isset($_SESSION['userid'])){?>
                                                     <div class="cuadrocoment">
                                                         <div class="coments-nolog">

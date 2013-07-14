@@ -82,7 +82,7 @@
                                 
     
                                 <div class="item-publicar">
-                                 <div class="nombre-publicarevent">Agrega las palabras claves para que encuentren tu evento</div>
+                                 <div class="nombre-publicarevent">Agrega las palabras relacionadas a tu publicacion, con las cuales tus anuncios serán encontrados</div>
                                     <?php 
                                         $valueTags = '';
                                         if(count($evento['tags']) > 0){
@@ -95,30 +95,29 @@
                                     <div class="mensaje-error error-obligatorio mensaje-tags">
                                         <div class="content-mensaje">* Ingresa al menos una palabra para que tus anuncios sean encontrados.</div>
                                     </div>
+                                    <input placeholder="Busca las palabras clave para tu enuncio ej: venta, fiesta, celular, etc." class="field-publicarevent field-publicarevent-m " type="text" id="buscar-tag"/>
+                                    <input  type="button" id="nuevo-tag-btn" value="Agregar palabra a mi anuncio" class="botongreen">
+                                    <div  class="cualquierDiv content-tags coincidencia-tags"></div>
                                     <div class="content-tags">
                                            <?php 
                                            
-                                           $tags = $eventoFound->verTags();
+//                                           $tags = $eventoFound->verTags();
                                            
-                                           foreach($tags as $dcto){ 
-                                               $tagEncontrado = $eventoFound->comprobarTags($evento['_id'], $dcto['nombre']);
-                                               if(count($tagEncontrado) > 0){
+                                           foreach($evento['tags'] as $dcto){ 
+                                               if($dcto != strtolower($evento['nombre'])){
                                                ?>
-                                                   
-                                                    <div class="tag-elegir tag-selected"><?=$dcto['nombre']?></div>   
-                                            <?php  }else{ ?>
-                                                <div class="tag-elegir tag-noselected"><?=$dcto['nombre']?></div>  
-                                   <?php    } 
-                                           }?>
+                                                    <div class="tag-elegir tag-selected"><?=$dcto?></div>   
+                                            <?php   }}?>
+                                         
                                             
 
                                        </div>  
 
-                                    <div class="nombre-publicarevent msj-peqeno">¿No encuentras la palabra que quieres? <a class="mostrar-agre-tag" href="">Agrégala aquí!</a></div>
+<!--                                    <div class="nombre-publicarevent msj-peqeno">¿No encuentras la palabra que quieres? <a class="mostrar-agre-tag" href="">Agrégala aquí!</a></div>
                                       <div class="divmostrar-agre-tag">
                                         <input class="field-publicarevent field-publicarevent-s2 " type="text" id="nuevo-tag"/>
                                         <input type="button" id="nuevo-tag-btn" value="Agregar nueva palabra" class="botongreen"/>
-                                      </div>
+                                      </div>-->
                                   
                                  
                                 </div>
