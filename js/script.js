@@ -417,7 +417,7 @@ $(document).ready(function(){
                 $(this).removeClass('norevi');
                 descontarNotificacion();
             }
-            alert(id)
+       
             $.ajax({           
                 type:"POST",
                 dataType:"html",
@@ -425,7 +425,6 @@ $(document).ready(function(){
                 data: "noti-compra=1&id="+id,
                 success: function (data)
                 { 
-                    alert(data)
                     popup("Te han comprado el evento en"+data+", se te ha cargado: "+(parseInt(data))*0.8+" Finbreak desconto el 20% equibalente a "+(parseInt(data))*0.2 );
                 }
             })   

@@ -175,7 +175,7 @@ html {
 .content-preguntar {
     width: 508px;
     margin: 0px auto;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
 }
 
 .bloq1msj {
@@ -183,7 +183,7 @@ html {
     width: 511px;
     height: 25px;
     text-align: center;
-    font-size: 0.9em;
+    font-size: 0.7em;
     font-weight: bold;
     color: rgba(36, 115, 167, 1);
     padding: 10px 5px 2px 5px;
@@ -202,7 +202,7 @@ html {
     width: 497px;
     height: 16px;
     font-size: 0.6em;
-    color: #999;
+    color: rgba(68, 68, 68, 0.65);
     margin-top: 14px;
 }
 .bloq3msj {
@@ -251,6 +251,7 @@ html {
 .itemcomentmsj {
     width: 505px;
     min-height: 70px;
+    font-size: 0.7em;
     float: left;
     padding: 10px 0px 0px 6px;
     margin-left: 0px;

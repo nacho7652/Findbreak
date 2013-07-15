@@ -265,7 +265,7 @@ function geolocalizarPorTags(){
                 return false;
             }
             //return false;
-//        alert(lat); alert(lng); 
+        alert(lat); alert(lng); 
             
             $.ajax({
                 data: "findnear2=1&lat="+lat+"&lng="+lng,

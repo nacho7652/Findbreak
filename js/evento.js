@@ -10,10 +10,35 @@ $(document).ready(function(){
             $('#calmsj').html(msj);
         }
     //Comprar evento
-    
+  function preguntar(pregunta, cuerpo, pie){
+            $("#covermsj").fadeIn(0);
+            $(".innermsj").fadeIn(0);
+            $('#calmsj').html('<div class="content-preguntar">'+pregunta+cuerpo+pie+'</div>');
+    }     
     $('#denunciar-evento').click(function(){
+               
+              var pregunta = '<div class="bloq1msj">¿Realmente deseas borrar este comentario?</div>';
+//              var nombre = $(this).parent().parent().find('.nomusercom').html();
+//              var foto = $(this).parent().parent().find('.bloq1').css('background');
+//              var tiempo = $(this).parent().parent().find('.hacecuant').html();
+//              var comentario = $(this).parent().parent().find('.comentuser').html();
+              
+              var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
+//                  cuerpo+=   '<div style="background:'+foto+'" class="bloq1"></div>';
+//                  cuerpo+=   '<div class="bloq2msjinner">';
+//                  cuerpo+=       '<div class="nomusercom tit-gray">'+nombre+'</div>';
+//                  cuerpo+=       '<div class="comentuser">'+comentario+'</div>';
+//                  cuerpo+=   '</div>';
+//                  cuerpo+= '<div class="bloq3msjinner">';
+//                  cuerpo+=    '<div class="hacecuant">'+tiempo+'</div>';
+//                  cuerpo+= '</div></div></div>';
+             
+             var pie = '<div class="bloq3msj"><div data-id="9" id="aceptarcoment" class="botonblue">Aceptar</div>';
+                 pie+= '<div id="cancelar" class="botoncancel">Cancelar</div></div>';
+                 
                 
-                $('#enviar-denuncia').show();       
+              preguntar(pregunta, cuerpo, pie)
+               // $('#enviar-denuncia').show();       
      });
         
     $('#boton-denuncia').click(function(){

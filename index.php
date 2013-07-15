@@ -21,7 +21,8 @@
         <link rel="apple-touch-icon" href="images/icon.png">
         <title><?= $page_title ?></title>
         <meta name="description" content="<?= $page_description ?>">
-        <link rel="stylesheet" href="css/stylebase.css">
+        <link rel="stylesheet" href="css/movil.css"  type="text/css" media="handheld, only screen and (max-device-width: 480px)" />
+        <link rel="stylesheet" href="css/stylebase.css" type="text/css" media="screen and (min-width: 481px)" >
 <!--        <link rel="stylesheet" href="css/style.css">-->
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/normalize.css">
