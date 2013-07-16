@@ -1,9 +1,9 @@
 <?php 
       echo 'hola'.$_GET['id'];
-      require_once '../DAL/connect.php';
-      require_once '../DAL/evento.php';
-      require_once '../DAL/comentario.php';
-      require_once '../DAL/usuario.php';
+//      require_once '../DAL/connect.php';
+//      require_once '../DAL/evento.php';
+//      require_once '../DAL/comentario.php';
+//      require_once '../DAL/usuario.php';
       echo 'chao'.$_GET['id'];
       $usuario = new usuario();
       $comentarioEvent = new comentario();
