@@ -195,13 +195,18 @@ FileETag None
 ##
 # URL rewriting
 ##
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /findbreak
-  <FilesMatch "\.(htm|php|js|css|htc|png|gif|jpe?g|ico|xml|csv|txt|swf|flv|mp4|webm|ogv|mp3|ogg|oga|eot|woff|svg|ttf|pdf|gz)$">
+ <FilesMatch "\.(htm|php|js|css|htc|png|gif|jpe?g|ico|xml|csv|txt|swf|flv|mp4|webm|ogv|mp3|ogg|oga|eot|woff|svg|ttf|pdf|gz)$">
     RewriteEngine Off
   </FilesMatch>
-RewriteCond %{REQUEST_FILENAME} !-f 
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteBase /findbreak
+  RewriteCond %{REQUEST_FILENAME} !-f 
   RewriteCond %{REQUEST_FILENAME} !-d
 
   RewriteRule (.*)images/(.*)$ images/$2 [L]
