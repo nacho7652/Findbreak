@@ -135,7 +135,7 @@
                                           $foto = $usuario->verFoto($item['_id']);
                                           $html.= '<div data-id="'.$item['_id'].'" class="item-friends-user itemCitar">
                                                                  <div style="background-image:url('.$foto['foto']['pe'].')" class="item-friends-userpic"></div>
-                                                                 <div class="item-friends-username">'.$nombre['nombre'].'</div>
+                                                                 <div class="item-friends-name">'.$nombre['nombre'].'</div>
                                                                  <span class="username arr-username">@</span>
                                                                  <div class="item-friends-username username">'.$username['username'].'</div>
                                                              </div>';
