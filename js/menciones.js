@@ -201,20 +201,30 @@ $(document).ready(function(){
           }
           
                 textoAmigo = $(this).val();
-                //alert(textoAmigo)
-                $.post('/findbreak/function/users-response.php', {'search-friend-cit-arroa':1,'textoAmigo':textoAmigo},
-                    function(data){   
-                                //alert(data)
-                                if(data == ''){
-                                    padreComent.find('.amigosCitar').hide();
-                                    padreComent.find('.amigosCitar').html(data);
-                                    padreComent.find('.itemCitar:first').addClass('itemCitarSelected');
-                                }else{
-                                    padreComent.find('.amigosCitar').show();
-                                    padreComent.find('.amigosCitar').html(data);
-                                    padreComent.find('.itemCitar:first').addClass('itemCitarSelected');
-                                }
-                    }, "html");
+                if(e.keyCode == 13){//elijo a la persona a mencionar
+                    padreComent.find('.amigosCitar').hide();
+                    return false;
+                 }
+                textoAmigo3 = textoAmigo.replace(/ /g,'&nbsp;');
+                textoAmigo4 = textoAmigo3.replace(/\n/g,'<br>');
+                
+//                 alert(textoAmigo4)
+                    $.post('/findbreak/function/users-response.php', {'search-friend-cit-arroa':1,'textoAmigo':textoAmigo4},
+                        function(data){   
+                                    //-1 = no mandamos arrao
+                                    //-2 = mandamos arroa, pero no hay coincidencia de amigos
+                                    if(data == -1 || data == -2){
+                                        padreComent.find('.amigosCitar').hide();
+                                        padreComent.find('.amigosCitar').html(data);
+                                        padreComent.find('.itemCitar:first').addClass('itemCitarSelected');
+                                    }else{
+                                        
+                                        padreComent.find('.amigosCitar').show();
+                                        padreComent.find('.amigosCitar').html(data);
+                                        padreComent.find('.itemCitar:first').addClass('itemCitarSelected');
+                                    }
+                        }, "html");
+                
         })
       
       focusArroa = false;
@@ -228,7 +238,7 @@ $(document).ready(function(){
           if(e.keyCode == 13){
              //si no hay arroa no haga nada
              if(HayArroa() || apretoFuera){
-                
+               
                 var id = padreComent.find('.itemCitar.itemCitarSelected').attr('data-id');
                 var nombre = padreComent.find('.itemCitar.itemCitarSelected').find('.item-friends-username.username').html(); 
                 
@@ -272,17 +282,21 @@ $(document).ready(function(){
         })
         //itemCitar
         $('body').delegate('.itemCitar','click',function(){
+            
             var id = $(this).attr('data-id');
             var nombre = $(this).find('.item-friends-username.username').html();
-            comentGlobal.val(comentGlobal.val()+ ' #'+nombre)
-//            citar(nombre)
-//            alert(nombre)
+//            comentGlobal.val(comentGlobal.val()+ ' #'+nombre)
+            citar(nombre);
             reemplazar();
-//            conocerElFocusFinalClick(nombre);
-//            setCaretToPos(document.getElementById('coment'), parseInt(focusFinal))
-//            focusFinal = 0;
-//            focusArroa = false;
+            conocerElFocusFinal();
+            setCaretToPos(document.getElementById('coment'), parseInt(focusFinal))
+            focusFinal = 0;
+            focusArroa = false;
+            apretoFuera = false;
+            reemplazar();
             tobr();
+            ///
+            
         })
        
       //autoresize

@@ -82,8 +82,10 @@
     //search-friend-cit-arroa'
     if(!empty($_POST["search-friend-cit-arroa"]))
     {
-                $busqueda = $_POST["textoAmigo"];
-                $palabras = explode(' ', $busqueda);
+                $busqueda1 = $_POST["textoAmigo"];
+                $busqueda = str_replace('<br>',' ', $busqueda1);
+                $busqueda3 = str_replace('&nbsp;',' ', $busqueda);
+                $palabras = explode(' ', $busqueda3);
                 $textoAmigo = '';
                 $r = 0;
                 $hayArroa = false;
@@ -137,6 +139,8 @@
                                                                  <span class="username arr-username">@</span>
                                                                  <div class="item-friends-username username">'.$username['username'].'</div>
                                                              </div>';
+                                      }else{//no hay coincidencia
+                                          $html = -2;
                                       }
                                   }
                           }else{
@@ -148,9 +152,9 @@
                }
             
                 if($hayArroa)
-                echo $html;
+                    echo $html;
                 else
-                echo '';
+                    echo -1;
             
     }
     if(!empty($_POST["search-friend-cit"]))

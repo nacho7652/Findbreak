@@ -1792,7 +1792,7 @@ color: rgb(189, 189, 189);
     font-size: 0.8em;
 }
 .perfiluser #replica {
-    top: 39px;
+    top:1px;
     width: 606px;
     font-size: 0.8em;
 }
