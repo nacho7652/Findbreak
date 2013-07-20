@@ -194,8 +194,10 @@ $(document).ready(function(){
         clavenueva1 = $('#clave-nueva1').val();
         clavenueva2 = $('#clave-nueva2').val();
         if(trim(claveactual) != '' || trim(clavenueva1) != '' || trim(clavenueva2) != ''){
-            alert('cambiar clave')
-            modificarClave(claveactual, clavenueva1, clavenueva2);
+            
+            if(!modificarClave(claveactual, clavenueva1, clavenueva2)){
+                return false;
+            }
         }
         //fin pass
         
