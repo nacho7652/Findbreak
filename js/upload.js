@@ -511,9 +511,11 @@ $(document).ready(function(){
        }else{
            $('.todosloscampos').hide();
        }
+       alert(usernameCorrecto)
        if(usernameCorrecto == false){
            return false;
        }
+       alert('paso')
         var nomeuser = $('#nombre-usuario').val();
         var username = $('#user-name').val();
         var correousuario = $('#correo-usuario').val();
@@ -526,7 +528,7 @@ $(document).ready(function(){
                                  data : "guardaruser=1&nomuser="+nomeuser+"&username="+username+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
                                  success : function(res){                      
                                      //modificar la foto con el mail
-                                    
+                                    alert(res)
                                      if(res == 1){
                                           $.ajax({
                                                     type: "POST",

@@ -333,8 +333,8 @@ html {
 .logo {
     width: 181px;
     height: 50px;
-    background: url('/findbreak/images/logon13.png')no-repeat;
-    margin-top: 3px;
+    background: url('/findbreak/images/logo-nowsup2.png')no-repeat;
+    margin-top: -4px;
 }
 #content-top .top-center {
     float: left;
@@ -1170,7 +1170,7 @@ overflow: hidden;
 .title .logo {
     position: absolute;
     top: 0px;
-    left: -31px;
+    left: 10px;
 }
 .title {
     background: rgba(36, 115, 167, 1);  

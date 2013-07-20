@@ -80,12 +80,13 @@
          */
     }
     //search-friend-cit-arroa'
-    if(!empty($_POST["search-friend-cit-arroa"]))
+    if(!empty($_REQUEST["search-friend-cit-arroa"]))
     {
-                $busqueda1 = $_POST["textoAmigo"];
+                $busqueda1 = $_REQUEST["textoAmigo"];
                 $busqueda = str_replace('<br>',' ', $busqueda1);
                 $busqueda3 = str_replace('&nbsp;',' ', $busqueda);
                 $palabras = explode(' ', $busqueda3);
+                $encontroAmigo = false;
                 $textoAmigo = '';
                 $r = 0;
                 $hayArroa = false;
@@ -106,6 +107,7 @@
                if($textoAmigoSinArroa == '')//si mando sólo el arroa muestro todos los seguidores
                {
                    if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
+                        $encontroAmigo = true;
                         foreach ($yo['siguiendo'] as $item){
                             if($limit > 0){
                                 $username = $usuario->verUserName($item['_id']);
@@ -126,10 +128,11 @@
                }else
                {
                     if($textoAmigoSinArroa != ''){
+                        
                          if(isset($yo['siguiendo']) && count($yo['siguiendo'])>0){
                                   foreach ($yo['siguiendo'] as $item){
                                       $nombre = $usuario->verNombre($item['_id']);
-                                      if(strpos($nombre['nombre'], $textoAmigoSinArroa) !== false){
+                                      if(strpos(strtolower($nombre['nombre']), strtolower($textoAmigoSinArroa)) !== false){
                                           $username = $usuario->verUserName($item['_id']);
                                           $nombre = $usuario->verNombre($item['_id']);
                                           $foto = $usuario->verFoto($item['_id']);
@@ -139,8 +142,8 @@
                                                                  <span class="username arr-username">@</span>
                                                                  <div class="item-friends-username username">'.$username['username'].'</div>
                                                              </div>';
-                                      }else{//no hay coincidencia
-                                          $html = -2;
+                                          $encontroAmigo = true;
+                                           
                                       }
                                   }
                           }else{
@@ -152,7 +155,10 @@
                }
             
                 if($hayArroa)
-                    echo $html;
+                    if($encontroAmigo)
+                        echo $html;
+                    else
+                        echo -2;
                 else
                     echo -1;
             
