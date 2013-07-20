@@ -53,6 +53,17 @@ $(document).ready(function(){
             }
         })
     })
+    $('.menu-show').click(function(){
+        if($('.title').css('left') == '0px'){//esconder
+            $('.title').css('left','-477px');
+            $('.first-partevent .list-maps').css('left','-506px');
+            $('.mensaje-location').hide();
+        }else{//mostrar
+            $('.title').css('left','0px');
+            $('.mensaje-location').show();
+            $('.first-partevent .list-maps').css('left','-33px');
+        }
+    });
     $('.fix-redes').click(function(){
         if( $('.content-redes-sociales').attr('style') == 'bottom: -2px;'){
      

@@ -1172,16 +1172,26 @@ overflow: hidden;
     top: 0px;
     left: 10px;
 }
+.menu-show {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -16px -820px;
+    width: 51px;
+    height: 40px;
+    right: -57px;
+    position: absolute;
+}
+.menu-show:hover{
+    cursor: pointer;
+}
 .title {
     background: rgba(36, 115, 167, 1);  
     background: url(/findbreak/images/iconos-bg.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
-    width: 468px;
+    width: 456px;
     height: 156px;
     color: #FFF;
     padding: 7px 0px 2px 17px;
     position: fixed;
     z-index: 70000;
-    left: 26px;
+    left: 0px;
     margin: 1px 0px 0px 0px;
     box-shadow: 0px 2px 6px -3px black;
     border-bottom-left-radius: 2px;
@@ -1195,6 +1205,7 @@ overflow: hidden;
     background: rgba(136, 129, 128, 0.38);
     z-index: 2;
     padding: 0px 0px 16px 0px;
+    left: -33px;
 }
 .event-none{
     display: none;
@@ -1345,7 +1356,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     margin: 0px 142px 0px 0px !important;
 }
 .login-fb{
-    background: url(/mooff/images/login-face-sprite.png) top right no-repeat;
+    background: url(/findbreak/images/login-face-sprite.png) top right no-repeat;
     width: 162px;
     float: right;
     font: bold 11px/22px "Lucida Grande",Lucida,Arial,sans-serif;  
@@ -1361,7 +1372,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     margin: 0px 0px 0px 30px;
 }
 #loginbtn-fb{
-    background: url(/mooff/images/loginbtn-face-sprite.png) top right no-repeat;
+    background: url(/findbreak/images/loginbtn-face-sprite.png) top right no-repeat;
     width: 24px;
     height: 22px;
     position: absolute;
