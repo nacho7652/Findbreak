@@ -106,7 +106,7 @@ $(document).ready(function(){
     }
     function nuevaClaveFace(clavenueva1, clavenueva2)
     {
-        if(trim(clavenueva1) != trim(clavenueva2)){
+        if(clavenueva1 != clavenueva2){
             loader('Las contraseñas no coinciden !');
             return false;
         }
