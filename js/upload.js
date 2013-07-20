@@ -59,10 +59,9 @@ $(document).ready(function(){
 //         padre.find('.borrarFotoEvento2').hide();
          return false;
     });
-    $('body').delegate('#modificarclave','click',function(){
-        claveactual = $('#clave-actual').val();
-        clavenueva1 = $('#clave-nueva1').val();
-        clavenueva2 = $('#clave-nueva2').val();
+    function modificarClave(claveactual, clavenueva1, clavenueva2)
+    {
+
         //verificar su su contraseña es la actual
         $.ajax({
             url : '/findbreak/function/users-response.php',
@@ -104,7 +103,7 @@ $(document).ready(function(){
         //
         
          return false;
-    });
+    }
     $('.delfoto').click(function(){
        var padre =  $(this).parent();
         var url = '../'+$(this).attr('data-url');
@@ -190,6 +189,16 @@ $(document).ready(function(){
     })
     //editaruser
     $('#editaruser').click(function(){
+        //pass
+        claveactual = $('#clave-actual').val();
+        clavenueva1 = $('#clave-nueva1').val();
+        clavenueva2 = $('#clave-nueva2').val();
+        if(trim(claveactual) != '' || trim(clavenueva1) != '' || trim(clavenueva2) != ''){
+            alert('cambiar clave')
+            modificarClave(claveactual, clavenueva1, clavenueva2);
+        }
+        //fin pass
+        
          if(!validarCorreo($('#email').val())){
             loader('Correo electrónico inválido');
             return false;

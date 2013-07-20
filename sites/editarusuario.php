@@ -63,9 +63,9 @@
                                         <div class="item-editaruser">
                                             <input id="clave-nueva2" placeholder="Repetición de la nueva contraseña" type="password" class="input-edituser"/>
                                         </div>
-                                        <div class="item-editaruser">
+<!--                                        <div class="item-editaruser">
                                             <input type="button" class="botonblue" id="modificarclave" value="Guardar contraseña"/>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 
