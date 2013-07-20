@@ -3,7 +3,14 @@
     require_once '../DAL/connect.php';
     require_once '../DAL/usuario.php';
     date_default_timezone_set("Chile/Continental");
-
+   
+    if(!empty($_POST["cambiarClaveFace"]))
+    {
+        $clave = $_POST["clave"];
+        $userid = $_SESSION['userid'];
+        $usuario = new usuario();
+        echo $usuario->updateClave($userid, $clave);
+    }
     if(!empty($_POST["cambiarClave"]))
     {
         $clave = $_POST["clave"];
