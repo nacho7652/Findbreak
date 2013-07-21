@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                     <div class="bloq-special">
-                                      <?php if($usuario['user_face'] == 1 && $usuario['clave'] != ''){?>
+                                      <?php if($usuario['user_face'] == 1 && $usuario['clave'] == ''){?>
                                             <div class="nombre-publicarevent">Crea una contraseña para que ingreses con tu correo</div>
                                             <div class="item-editaruser">
                                                 <input id="clave-nueva1-fb" placeholder="Nueva contraseña" type="password" class="input-edituser"/>
