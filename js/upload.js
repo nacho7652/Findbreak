@@ -216,27 +216,29 @@ $(document).ready(function(){
     //editaruser
     $('#editaruser').click(function(){
         //pass
-        claveactual = $('#clave-actual').val();
-        clavenueva1 = $('#clave-nueva1').val();
-        clavenueva2 = $('#clave-nueva2').val();
-        if(trim(claveactual) != '' || trim(clavenueva1) != '' || trim(clavenueva2) != ''){
-            
-            if(!modificarClave(claveactual, clavenueva1, clavenueva2)){
-                return false;
+        if($('#clave-nueva1-fb') == undefined){
+            claveactual = $('#clave-actual').val();
+            clavenueva1 = $('#clave-nueva1').val();
+            clavenueva2 = $('#clave-nueva2').val();
+            if(trim(claveactual) != '' || trim(clavenueva1) != '' || trim(clavenueva2) != ''){
+
+                if(!modificarClave(claveactual, clavenueva1, clavenueva2)){
+                    return false;
+                }
             }
-        }
-        //face
-        clavenueva1face = $('#clave-nueva1-fb').val();
-        clavenueva2face = $('#clave-nueva2-fb').val();
-        alert('aaaaa'); alert('adssdsda')
-        if(trim(clavenueva1face) != '' || trim(clavenueva2face) != ''){
-            
-            if(!nuevaClaveFace( clavenueva1face, clavenueva2face)){
-                return false;
+        }else{
+            //face
+            clavenueva1face = $('#clave-nueva1-fb').val();
+            clavenueva2face = $('#clave-nueva2-fb').val();
+            alert('aaaaa'); alert('adssdsda')
+            if(trim(clavenueva1face) != '' || trim(clavenueva2face) != ''){
+
+                if(!nuevaClaveFace( clavenueva1face, clavenueva2face)){
+                    return false;
+                }
             }
+            //fin pass
         }
-        //fin pass
-        
          if(!validarCorreo($('#email').val())){
             loader('Correo electrónico inválido');
             return false;
