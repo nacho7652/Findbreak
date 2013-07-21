@@ -1,11 +1,8 @@
-
-
-
 <div class="content-cerca">
     <div class="first-partevent">
         <div class="divevents">
                      <div class="title">
-                         <div class="menu-show"></div>
+                         <a href="#" title="Esconder/Mostrar la lista de anuncios" class="menu-show"></a>
                           <div class="logo"></div>
                           <div class="text-cerca">Anuncios: <span class="tipoBusqueda">cerca de <b>mi ubicación actual</b></span></div>
 

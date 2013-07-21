@@ -32,13 +32,13 @@
                                 </div>
                                 <div class="item-publicar item-publicar-medium">
                                     <div class="item-editaruser">
-                                        <input value="<?= $usuario['nombre']?>" id="nombreuser" name="nombreuser" type="text" class="input-edituser obligatorio"/>
+                                        <input placeholder="Nombre completo" value="<?= $usuario['nombre']?>" id="nombreuser" name="nombreuser" type="text" class="input-edituser obligatorio"/>
                                          <div class="mensaje-error error-obligatorio">
                                             <div class="content-mensaje">* Debes ingresar el nombre</div>
                                         </div>
                                     </div>
                                     <div class="item-editaruser">
-                                        <input value="<?= $usuario['username']?>" id="user-name" name="username" type="text" class="input-edituser obligatorio"/>
+                                        <input placeholder="Nombre de usuario" value="<?= $usuario['username']?>" id="user-name" name="username" type="text" class="input-edituser obligatorio"/>
                                         <div class="mensaje-error error-username"></div>
                                     <div class="username-corr"></div>
                                     <div class="username-incorr"></div>
@@ -47,7 +47,7 @@
                                     </div>
                                     </div>
                                     <div class="item-editaruser">
-                                        <input value="<?= $usuario['email']?>" id="email" name="email" type="text" class="input-edituser obligatorio"/>
+                                        <input placeholder="Email" value="<?= $usuario['email']?>" id="email" name="email" type="text" class="input-edituser obligatorio"/>
                                         <div class="mensaje-error error-obligatorio">
                                             <div class="content-mensaje">* Debes ingresar el mail</div>
                                         </div>

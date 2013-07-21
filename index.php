@@ -264,7 +264,7 @@
                                              $comentarioEvent = new comentario();
                                              $evento = new evento();
 //                                             $solicitud = $usuario->VerSolicitudes($_SESSION['userid']);
-                                             $divMenciones = '<div class="nohaycoinci"> No tienes notificaciones :)</div>';
+                                             $divMenciones = '';
                                             
                                              foreach($notificaciones as $not)
                                              {  
@@ -370,6 +370,9 @@
                                                  } 
                                                  
                                                  
+                                             }
+                                             if($contsol == 0){
+                                                     $divMenciones = '<div class="nohaycoinci"> No tienes notificaciones :)</div>';
                                              }
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>

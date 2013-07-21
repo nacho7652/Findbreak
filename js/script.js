@@ -63,6 +63,7 @@ $(document).ready(function(){
             $('.mensaje-location').show();
             $('.first-partevent .list-maps').css('left','-33px');
         }
+        return false;
     });
     $('.fix-redes').click(function(){
         if( $('.content-redes-sociales').attr('style') == 'bottom: -2px;'){
@@ -1152,11 +1153,8 @@ $(document).ready(function(){
       
       //MOSTRAR SOLICITUD
       
-      $('.noti-friend').click(function(){
-          
+      $('.noti-friend').click(function(){   
           $('#show-solicitud').toggle();
-         
-          
       });
       
       //aceptar solicitud
@@ -1374,6 +1372,7 @@ $(document).ready(function(){
      $('body').delegate('#seguiramigo-perfil','click',function(){
          boton = $(this);
          userid = $(this).attr('data-userid');
+        
          $.ajax({
                           type: "POST",
                           dataType: "json",
@@ -1381,6 +1380,7 @@ $(document).ready(function(){
                           data: "seguirpersona=1&idSolicitado="+userid,
                           success : function (data)
                           {    
+                  
                                if(data.re==1)
                                    {
                                         //id="seguiramigo" class="botoncancel"

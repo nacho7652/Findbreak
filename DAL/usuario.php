@@ -232,7 +232,7 @@ class usuario {
         $aquienId = new MongoId($aquien['_id']);
        
         $user = array(
-            "_id"=> MongoId($quien['_id'])
+            "_id"=> $quien['_id']
         );
         
         return $this->db->usuario->update( array("_id"=>$aquienId), array('$push'=> array("seguidores"=>($user))   )    );
