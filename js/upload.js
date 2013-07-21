@@ -59,10 +59,8 @@ $(document).ready(function(){
 //         padre.find('.borrarFotoEvento2').hide();
          return false;
     });
-    $('body').delegate('#modificarclave','click',function(){
-        claveactual = $('#clave-actual').val();
-        clavenueva1 = $('#clave-nueva1').val();
-        clavenueva2 = $('#clave-nueva2').val();
+    function modificarClave(claveactual, clavenueva1, clavenueva2)
+    {
         //verificar su su contraseña es la actual
         $.ajax({
             url : '/findbreak/function/users-response.php',
@@ -77,7 +75,7 @@ $(document).ready(function(){
                         return false;
                       }
                    }else{
-                       loader('Las contraseñas no pueden estár vacias !');
+                       loader('No has ingresado una nueva contraseña');
                        return false;
                    }
                    $.ajax({
@@ -98,13 +96,40 @@ $(document).ready(function(){
                         });
                 }else{
                      loader('Tu contraseña antigua no coincide');
+                     return false;
                 }
             }                
         });
         //
         
          return false;
-    });
+    }
+    function nuevaClaveFace(clavenueva1, clavenueva2)
+    {
+        if(clavenueva1 != clavenueva2){
+            loader('Las contraseñas no coinciden !');
+            return false;
+        }
+       $.ajax({
+                url : '/findbreak/function/users-response.php',
+                type : 'POST',
+                data : 'cambiarClaveFace=1&clave='+clavenueva2,
+                success : function(res){
+
+                    if(res == 1){
+                       loader('Contraseña modificada con éxito :)');
+                       
+                       $('#clave-nueva1-fb').val('');
+                       $('#clave-nueva2-fb').val('');
+                    }else{
+                         loader('Tu contraseña no se pudo editar');
+                    }
+                }                
+             });
+        //
+        
+         return false;
+    }
     $('.delfoto').click(function(){
        var padre =  $(this).parent();
         var url = '../'+$(this).attr('data-url');
@@ -190,6 +215,30 @@ $(document).ready(function(){
     })
     //editaruser
     $('#editaruser').click(function(){
+        //pass
+        if($('#clave-nueva1-fb') == undefined){
+            claveactual = $('#clave-actual').val();
+            clavenueva1 = $('#clave-nueva1').val();
+            clavenueva2 = $('#clave-nueva2').val();
+            if(trim(claveactual) != '' || trim(clavenueva1) != '' || trim(clavenueva2) != ''){
+
+                if(!modificarClave(claveactual, clavenueva1, clavenueva2)){
+                    return false;
+                }
+            }
+        }else{
+            //face
+            clavenueva1face = $('#clave-nueva1-fb').val();
+            clavenueva2face = $('#clave-nueva2-fb').val();
+            alert('aaaaa'); alert('adssdsda')
+            if(trim(clavenueva1face) != '' || trim(clavenueva2face) != ''){
+
+                if(!nuevaClaveFace( clavenueva1face, clavenueva2face)){
+                    return false;
+                }
+            }
+            //fin pass
+        }
          if(!validarCorreo($('#email').val())){
             loader('Correo electrónico inválido');
             return false;
@@ -496,14 +545,14 @@ $(document).ready(function(){
           return error;
       }
   $('#coverall').delegate('#guardarusuario','click',function()
-  {alert('guardar')
+  {
        if(!validarCorreo($('#correo-usuario').val())){
            $('.todosloscampos .content-mensaje').html('Correo electrónico inválido');
            $('.todosloscampos').show();
            alert('a')
            return false;
        }
-       alert('se puede')
+   
        if(comprobarCampos()){
            $('.todosloscampos .content-mensaje').html('Debes completar todos los campos');
            $('.todosloscampos').show();
@@ -511,9 +560,11 @@ $(document).ready(function(){
        }else{
            $('.todosloscampos').hide();
        }
+     
        if(usernameCorrecto == false){
            return false;
        }
+      
         var nomeuser = $('#nombre-usuario').val();
         var username = $('#user-name').val();
         var correousuario = $('#correo-usuario').val();

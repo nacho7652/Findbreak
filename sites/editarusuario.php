@@ -53,19 +53,32 @@
                                         </div>
                                     </div>
                                     <div class="bloq-special">
-                                        <div class="nombre-publicarevent">Cambia tu contraseña</div>
-                                        <div class="item-editaruser">
-                                            <input id="clave-actual" placeholder="Contraseña actual" type="password" class="input-edituser"/>
-                                        </div>
-                                        <div class="item-editaruser">
-                                            <input id="clave-nueva1" placeholder="Nueva contraseña" type="password" class="input-edituser"/>
-                                        </div>
-                                        <div class="item-editaruser">
-                                            <input id="clave-nueva2" placeholder="Repetición de la nueva contraseña" type="password" class="input-edituser"/>
-                                        </div>
-                                        <div class="item-editaruser">
-                                            <input type="button" class="botonblue" id="modificarclave" value="Guardar contraseña"/>
-                                        </div>
+                                      <?php if($usuario['user_face'] == 1){?>
+                                            <div class="nombre-publicarevent">Crea una contraseña para que ingreses con tu correo</div>
+                                            <div class="item-editaruser">
+                                                <input id="clave-nueva1-fb" placeholder="Nueva contraseña" type="password" class="input-edituser"/>
+                                            </div>
+                                            <div class="item-editaruser">
+                                                <input id="clave-nueva2-fb" placeholder="Repetición de la nueva contraseña" type="password" class="input-edituser"/>
+                                            </div>
+    <!--                                        <div class="item-editaruser">
+                                                <input type="button" class="botonblue" id="modificarclave" value="Guardar contraseña"/>
+                                            </div>-->
+                                        <?php }else{?>
+                                                <div class="nombre-publicarevent">Cambia tu contraseña</div>
+                                               <div class="item-editaruser">
+                                                   <input id="clave-actual" placeholder="Contraseña actual" type="password" class="input-edituser"/>
+                                               </div>
+                                               <div class="item-editaruser">
+                                                   <input id="clave-nueva1" placeholder="Nueva contraseña" type="password" class="input-edituser"/>
+                                               </div>
+                                               <div class="item-editaruser">
+                                                   <input id="clave-nueva2" placeholder="Repetición de la nueva contraseña" type="password" class="input-edituser"/>
+                                               </div>
+       <!--                                        <div class="item-editaruser">
+                                                   <input type="button" class="botonblue" id="modificarclave" value="Guardar contraseña"/>
+                                               </div>-->
+                                        <?php }?>
                                     </div>
                                 </div>
                                 

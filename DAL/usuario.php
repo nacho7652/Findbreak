@@ -230,8 +230,9 @@ class usuario {
     public function agregarSiguiendo($quien, $aquien)
     {
         $aquienId = new MongoId($aquien['_id']);
+       
         $user = array(
-            "_id"=> $quien['_id']
+            "_id"=> MongoId($quien['_id'])
         );
         
         return $this->db->usuario->update( array("_id"=>$aquienId), array('$push'=> array("seguidores"=>($user))   )    );
@@ -517,7 +518,7 @@ class usuario {
                $re = $this->db->usuario->insert($user); 
                $usuariorelacional = new usuarioRelacional();
                $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
-               mkdir('../images/productoras/'.(string)$user['_id'],0777);
+               mkdir('/findbreak/images/productoras/'.(string)$user['_id'],0777);
                return $user;
           }
          

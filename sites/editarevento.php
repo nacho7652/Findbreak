@@ -67,7 +67,7 @@
                                     
                                     <div class="nombre-publicarevent">¿Dónde? *Escribe la dirección y compruébala en el mapa</div>
                                     <input value="<?= $evento['direccion']?>" class="field-publicarevent obligatorio" placeholder="Ej: Calle #246, Comuna, Ciudad" type="text" id="addresEvent" name="addresEvent"/> </br>
-                                    <input type="button" id="comprobar-event" value="Comprobar dirección" class="botongreen"/>
+                                    <input type="button" id="comprobar-event" value="Establecer dirección" class="botongreen"/>
                                     <div class="map_evento" id="map_canvas" style="width:800px; height:250px;"></div>
                                     <div class="mensaje-error error-obligatorio">
                                         <div class="content-mensaje">* Debes indicar la dirección</div>

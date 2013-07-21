@@ -259,13 +259,13 @@ function geolocalizarPorTags(){
             latitud = lat;
             longitud = lng;
             if(guardarEvento){
-                
+           
                 $('.lat-event').val(lat);
                 $('.lng-event').val(lng);
                 return false;
             }
             //return false;
-        alert(lat); alert(lng); 
+//        alert(lat); alert(lng); 
             
             $.ajax({
                 data: "findnear2=1&lat="+lat+"&lng="+lng,
