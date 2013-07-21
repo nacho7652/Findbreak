@@ -126,9 +126,6 @@ $(document).ready(function(){
                     }
                 }                
              });
-        //
-        
-         return false;
     }
     $('.delfoto').click(function(){
        var padre =  $(this).parent();
@@ -230,7 +227,7 @@ $(document).ready(function(){
             //face
             clavenueva1face = $('#clave-nueva1-fb').val();
             clavenueva2face = $('#clave-nueva2-fb').val();
-            alert('aaaaa'); alert('adssdsda')
+            
             if(trim(clavenueva1face) != '' || trim(clavenueva2face) != ''){
 
                 if(!nuevaClaveFace( clavenueva1face, clavenueva2face)){
