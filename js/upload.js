@@ -213,7 +213,7 @@ $(document).ready(function(){
     //editaruser
     $('#editaruser').click(function(){
         //pass
-        if($('#clave-nueva1-fb') == undefined){
+        if($('#tipoClave').val() == '0'){
             alert('normal')
             claveactual = $('#clave-actual').val();
             clavenueva1 = $('#clave-nueva1').val();

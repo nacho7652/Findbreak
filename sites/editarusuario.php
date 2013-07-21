@@ -54,6 +54,7 @@
                                     </div>
                                     <div class="bloq-special">
                                       <?php if($usuario['user_face'] == 1 && $usuario['clave'] == ''){?>
+                                            <input type="hidden" id="tipoClave" value="1"/>
                                             <div class="nombre-publicarevent">Crea una contraseña para que ingreses con tu correo</div>
                                             <div class="item-editaruser">
                                                 <input id="clave-nueva1-fb" placeholder="Nueva contraseña" type="password" class="input-edituser"/>
@@ -65,6 +66,7 @@
                                                 <input type="button" class="botonblue" id="modificarclave" value="Guardar contraseña"/>
                                             </div>-->
                                         <?php }else{?>
+                                             <input type="hidden" id="tipoClave" value="0"/>
                                                 <div class="nombre-publicarevent">Cambia tu contraseña</div>
                                                <div class="item-editaruser">
                                                    <input id="clave-actual" placeholder="Contraseña actual" type="password" class="input-edituser"/>
