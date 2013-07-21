@@ -214,6 +214,7 @@ $(document).ready(function(){
     $('#editaruser').click(function(){
         //pass
         if($('#clave-nueva1-fb') == undefined){
+            alert('normal')
             claveactual = $('#clave-actual').val();
             clavenueva1 = $('#clave-nueva1').val();
             clavenueva2 = $('#clave-nueva2').val();
@@ -225,6 +226,7 @@ $(document).ready(function(){
             }
         }else{
             //face
+             alert('face')
             clavenueva1face = $('#clave-nueva1-fb').val();
             clavenueva2face = $('#clave-nueva2-fb').val();
             
