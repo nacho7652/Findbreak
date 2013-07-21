@@ -32,7 +32,7 @@
                                             <div class="barra"></div>
                                             <div class="event-right">
                                                       
-                                                      <div class="num-event"></div>   
+                                                      <div class="num-event"><?php echo $i+1?></div>   
                                                       <a target="_blank" href="/findbreak/break/518d0c174de8b45810000000" class="tit-eventcerca">Rooster en chile pico</a>
                                                       <div class="info-eventcerca info-eventcercawhte">
                                                       </div>
