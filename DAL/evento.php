@@ -18,6 +18,10 @@ class evento {
 //                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(10);
         return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   )   ))->limit(10);
     }
+    public function buscarPorLatLong($lat, $long){
+      
+        return $this->db->evento->find(Array('loc.$' => $lat));
+    }
     public function verCantidadComentarios($id){
          $theObjId = new MongoId($id); 
          //return $this->db->comentariosEvento->find(array("_eventId" => $theObjId))->count();

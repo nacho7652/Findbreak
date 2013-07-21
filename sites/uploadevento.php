@@ -1,6 +1,6 @@
 <?php
 //    require_once 'function/escalar.php';
-    session_start();
+    
     require_once 'DAL/evento.php';
     require_once 'DAL/usuario.php';
     require_once 'DAL/relacional/connect_relacional.php';
@@ -97,12 +97,26 @@
             
             $usuariorelacional = new usuarioRelacional();
             $saldo = $usuariorelacional->ValidarSaldo($_SESSION['userid']);
+            $guardar=0;
             if($saldo >= 0)
             {
                 //$usuariorelacional->DisminuirSaldo($_SESSION['userid']);
-              $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+                 $comprobar = $evento->buscarPorLatLong($lat, $lng);
+//                
+//                if(isset($comprobar["_id"]))
+//                {
+                
+                    $guardar = $evento->insertar($idproductora, $nombreproductora,$nom , $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
                                    $video, $sitioWeb,$hashtag);
-            
+//                }
+//                else
+//                {
+//                    $lng+= 119999;
+//                    $lat+= 118911;
+//                    $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+//                                   $video, $sitioWeb,$hashtag);
+//                    
+//                }
               
             }
             else
