@@ -168,8 +168,8 @@ class usuario {
      }
      public function reemplazarFoto($userid,$fotoGr, $fotoPe)
      { 
-        $_SESSION['foto'] = array('pe'=>"images/productoras/".$_SESSION['userid']."/".$fotoPe, 'gr'=>"images/productoras/".$_SESSION['userid']."/".$fotoGr);
-        return $this->db->usuario->update( array("_id"=>$userid), array('$set'=> array("foto"=>array('gr'=>"images/productoras/".$_SESSION['userid']."/".$fotoGr, 'pe'=>"images/productoras/".$_SESSION['userid']."/".$fotoPe)) ));   
+        $_SESSION['foto'] = array('pe'=>"images/usuarios/".$fotoPe, 'gr'=>"images/usuarios/".$fotoGr);
+        return $this->db->usuario->update( array("_id"=>$userid), array('$set'=> array("foto"=>array('gr'=>"images/usuarios/".$fotoGr, 'pe'=>"images/usuarios/".$fotoPe)) ));   
      }
      public function modificar($id, $username, $nombre, $mail){ 
 //         $theObjId = new MongoId($id); 
@@ -506,7 +506,7 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>array('pe'=>'/findbreak/images/user-default_pe.png', 'gr'=>'/findbreak/images/user-default.png') 
+            "foto"=>array('pe'=>'/images/user-default_pe.png', 'gr'=>'/images/user-default.png') 
         );
          
          $emailRepetido = $this->findforemail($mail);
@@ -518,7 +518,6 @@ class usuario {
                $re = $this->db->usuario->insert($user); 
                $usuariorelacional = new usuarioRelacional();
                $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
-               mkdir('/findbreak/images/productoras/'.(string)$user['_id'],0777);
                return $user;
           }
          
@@ -546,7 +545,6 @@ class usuario {
                $re = $this->db->usuario->insert($user); 
                $usuariorelacional = new usuarioRelacional();
                $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
-               mkdir('C:/wamp/www/findbreak/images/productoras/'.(string)$user['_id'],0777);
                return $user;
           }
          

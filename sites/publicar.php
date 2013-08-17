@@ -4,7 +4,7 @@
         if(isset($_SESSION["userid"]))
         {
 ?>
-<form id="guardarevento-form" method="POST" action="/findbreak/uploadevento" name="formularioevento" enctype="multipart/form-data">
+<form id="guardarevento-form" method="POST" action="<?= PATH?>uploadevento" name="formularioevento" enctype="multipart/form-data">
 <input type="hidden" name="guardarevento"/>
 <div class="content-publicarevent">
                                  <div class="item-publicar">

@@ -8,7 +8,7 @@
         $evento = $eventoFound->findforid($id);
         $folder = $evento["producido_por"]['_id'];
 ?>
-<form id="editarevento-form" method="POST" action="/findbreak/uploadevento" name="formularioevento" enctype="multipart/form-data">
+<form id="editarevento-form" method="POST" action=<?= PATH?>"/uploadevento" name="formularioevento" enctype="multipart/form-data">
 <input type="hidden" name="editarevento"/>
 <input type="hidden" name="hash-event" value="<?= $evento['hash']?>"/>
 <div class="content-publicarevent">
@@ -24,13 +24,13 @@
 <!--                                     <input type="file" id="images" name="images[]"/>
 -->                                     <div class="foto-publicarevent">
                                             <?php for($i=0; $i< count($evento['fotos']); $i++){ 
-                                                      $url = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i]['gr']; 
-                                                      $url2 = 'images/productoras/'.$folder.'/'.$evento['fotos'][$i]['pe'];
+                                                      $url = 'images/anuncios/'.$evento['fotos'][$i]['gr']; 
+                                                      $url2 = 'images/anuncios/'.$evento['fotos'][$i]['pe'];
                                                 ?>
                                                    <div  style="background-image: url(<?= $url ?>); background-size:cover; background-position: 0px 0px;" class="coverfile-galerias" data-cant="<?= $i?>">
                                                         <input type="file" id="images-evento-upd" data-num="<?= $i ?>" name="images-evento-upd" class="fotonoticia-galerias" />
                                                         <?php if($i!=0){?>
-                                                            <a data-numero="<?= $i?>" data-urlsin="<?= 'images/productoras/'.$folder ?>" data-url2="<?= $url2 ?>" data-nombre2="<?= $evento['fotos'][$i]['pe'] ?>" data-url="<?= $url ?>" data-nombre="<?= $evento['fotos'][$i]['gr'] ?>" class="borrarFotoEvento delfoto" href="#">borrar</a>
+                                                            <a data-numero="<?= $i?>" data-urlsin="<?= 'images/anuncios/'.$folder ?>" data-url2="<?= $url2 ?>" data-nombre2="<?= $evento['fotos'][$i]['pe'] ?>" data-url="<?= $url ?>" data-nombre="<?= $evento['fotos'][$i]['gr'] ?>" class="borrarFotoEvento delfoto" href="#">borrar</a>
                                                         <?php }?>
                                                    </div>
                                             <?php }?>
@@ -170,14 +170,14 @@
       </div>
 </form>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="/findbreak/js/maps.js"></script>
+    <script type="text/javascript" src="<?= PATH?>js/maps.js"></script>
 <?php 
 
 
         }
         else
         {
-            header("location:/findbreak/login");
+            header("location:".PATH."login");
             
         }
 ?>

@@ -1,5 +1,6 @@
 $(document).ready(function(){
-        
+     //path = '/nowsup/';
+    path = '/';   
      largoUsuario = 0;
      focusFinal = 0;
      comentGlobal = 0;
@@ -209,7 +210,7 @@ $(document).ready(function(){
                 textoAmigo4 = textoAmigo3.replace(/\n/g,'<br>');
                 
 //                 alert(textoAmigo4)
-                    $.post('/findbreak/function/users-response.php', {'search-friend-cit-arroa':1,'textoAmigo':textoAmigo4},
+                    $.post(path+'function/users-response.php', {'search-friend-cit-arroa':1,'textoAmigo':textoAmigo4},
                         function(data){   
                                     //-1 = no mandamos arrao
                                     //-2 = mandamos arroa, pero no hay coincidencia de amigos
@@ -271,7 +272,7 @@ $(document).ready(function(){
                 amigosCitVisible = false;
             }
             
-            $.post('/findbreak/function/users-response.php', {'search-friend-cit':1,'textoAmigo':''},
+            $.post(path+'function/users-response.php', {'search-friend-cit':1,'textoAmigo':''},
                     function(data){   
 //                        alert(data)
                                 $('.amigosCitar').html(data)

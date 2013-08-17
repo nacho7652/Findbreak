@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    //path = '/nowsup/';
+    path = '/';
     localizame();
     var popupNew;
     var latitud;
@@ -118,7 +120,7 @@ function geolocalizarPorTags(){
                 data: "findnear-eventos=1&q="+$('#search-location').val(),
                 type: "POST",
                 dataType: "json",
-                url: "/findbreak/function/event-response.php",
+                url: path+"function/event-response.php",
                 success: function(data){
                    $('.loading-events').hide();
                    $('.event-hidden').html(data.infodiv);
@@ -163,7 +165,7 @@ function geolocalizarPorTags(){
                    $('#item-eventcerca'+i).find('.hash').html('#'+hash);
                    $('#item-eventcerca'+i).find('.tags-hidden').html(tagshidden);
                    $('#item-eventcerca'+i).find('.tit-eventcerca').html(nombre); //
-                   $('#item-eventcerca'+i).find('.tit-eventcerca').attr("href","/findbreak/break/"+hash);
+                   $('#item-eventcerca'+i).find('.tit-eventcerca').attr("href",path+"break/"+hash);
                    $('#item-eventcerca'+i).find('.idevent').val(id);
                    $('#item-eventcerca'+i).find('.hashevent').val(hash);
                    $('#item-eventcerca'+i).find('.nombreevent').val(nombre);
@@ -271,7 +273,7 @@ function geolocalizarPorTags(){
                 data: "findnear2=1&lat="+lat+"&lng="+lng,
                 type: "POST",
                 dataType: "json",
-                url: "/findbreak/function/event-response.php",
+                url: path+"function/event-response.php",
                 success: function(data){
                    
                    $('.loading-events').hide();
@@ -317,7 +319,7 @@ function geolocalizarPorTags(){
                    $('#item-eventcerca'+i).find('.hash').html('#'+hash);
                    $('#item-eventcerca'+i).find('.tags-hidden').html(tagshidden);
                    $('#item-eventcerca'+i).find('.tit-eventcerca').html(nombre); //
-                   $('#item-eventcerca'+i).find('.tit-eventcerca').attr("href","/findbreak/break/"+hash);
+                   $('#item-eventcerca'+i).find('.tit-eventcerca').attr("href",path+"break/"+hash);
                    $('#item-eventcerca'+i).find('.idevent').val(id);
                    $('#item-eventcerca'+i).find('.hashevent').val(hash);
                    $('#item-eventcerca'+i).find('.nombreevent').val(nombre);

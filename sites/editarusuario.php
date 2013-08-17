@@ -11,7 +11,7 @@
         $usuario = $usuariofound->findforusername($username);
         
 ?>
-<form id="editarusuario-form" method="POST" action="/findbreak/uploadevento" name="formulariousuario" enctype="multipart/form-data">
+<form id="editarusuario-form" method="POST" action=<?= PATH?>uploadevento name="formulariousuario" enctype="multipart/form-data">
 <input type="hidden" name="editarusuario" />
 <div class="content-publicarevent">
                                  <div class="item-publicar">
@@ -99,7 +99,8 @@
         }
         else
         {
-            header("location:/findbreak/login");
+            $dir = 'location:'.PATH.'login';
+            header($dir);
             
         }
 ?>

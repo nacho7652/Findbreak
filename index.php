@@ -1,5 +1,8 @@
 <?php 
+   
     session_start();
+    define(PATH, '/');
+    //define(PATH, '/nowsup/');
     date_default_timezone_set("Chile/Continental");
     require_once 'function/place.php';
     require_once 'DAL/connect.php';
@@ -10,6 +13,7 @@
     $usuariorelacional = new usuarioRelacional();
 //    include_once ('function/facebook-response.php');
     $contsol=0;
+    
 ?>
 <!DOCTYPE html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
@@ -62,14 +66,14 @@
              <div class="fix-twitter fix-redes"></div>
              <div class="fix-google fix-redes"></div>
                     <div class="redes-sociales">
-                                                       <div class="fb-like" data-href="http://www.findbreak.com" data-send="false" data-width="380" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
+                                                       <div class="fb-like" data-href="http://www.nowsup.com" data-send="false" data-width="380" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
 
                                                       <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
                                                        <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
                                                        </script>
-                                                       <a href='http://www.findbreak.com' name='fb_share' type='button_count' >Compartir</a>
+                                                       <a href='http://www.nowsup.com' name='fb_share' type='button_count' >Compartir</a>
 
-                                                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com" data-hashtags="findbreak">Tweet</a>
+                                                       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.nowsup.com" data-hashtags="nowsup">Tweet</a>
                                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                     <!--</b>-->
                                       <!--redes sociales-->
@@ -159,7 +163,7 @@
             <div id="content-top">
                 <div class="top-left">
                     <?php if($page_site != 'cerca'){?>
-                        <a href="/findbreak/mapa">
+                        <a href=<?= PATH?>mapa>
                             <div class="logoper"></div>
                             <div class="logo"></div>
                         </a>
@@ -195,7 +199,7 @@
                                    $_SESSION['userid'] = $comp['_id'];
                                    $_SESSION['username'] = $comp['username'];
                                    $_SESSION['nombre'] = $comp['nombre'];
-                                   if($comp['foto'] == '/findbreak/images/user-default.png')
+                                   if($comp['foto'] == PATH.'images/user-default.png')
                                    {
                                       $us->updatePhoto($comp['_id'], $user_profile['picture']);
                                       $_SESSION['foto']=$user_profile['picture'];
@@ -347,7 +351,7 @@
                                                         $url = $evento->verFoto($not['evento']);
                                                         $hashevent = $evento->verUrl($not['evento']);
                                                         $nombreevent = $evento->verNombre($not['evento']);
-                                                        $divMenciones.='<a href="/findbreak/break/'.$hashevent['hash'].'" id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend item-search-friend"> 
+                                                        $divMenciones.='<a href="'.PATH.'break/'.$hashevent['hash'].'" id="'.$not['_id'].'" class="'.$clase.' item-solicitud-friend item-search-friend"> 
                                                                            <div style="background-image:url('.$user['foto']['pe'].')" class="item-friends-userpic"></div>
                                                                   
                                                                             
@@ -376,18 +380,18 @@
                                              }
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>
-                                        <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
+                                        <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-photo">
                                             
                                         </a>
                                    <?php }
                                    else
                                    {?>
-                                    <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-photo">
+                                    <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-photo">
                                  
                                         </a>
                                    
                                    <?php } ?>
-                                        <a href="/findbreak/!<?php echo $_SESSION['username']?>" class="option user-name" >
+                                        <a href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-name" >
                                              <div class="content-option">
                                                  <?php echo $_SESSION['username'] ?>
                                              </div>
@@ -412,7 +416,7 @@
                                               <input type="submit" name="cerrarsession" value="-C" class="content-option "/>
                                             </form>
                                          </div>-->
-                                         <a href="/findbreak/mapa"  class="option ">
+                                         <a href="<?= PATH?>mapa"  class="option ">
                                             <div id="optionhome"  class="content-option">
                                                 Mapa
                                             </div>
@@ -424,8 +428,8 @@
                                         </div>
                                          
                                         <div class="groupoption">
-                                                <a class="itemgroup-option itemgroup-option last" href="/findbreak/publicar">Publicar !</a>
-                                                <a href="/findbreak/editar-user/!<?=$_SESSION['username']?>"id="editar-info" class="itemgroup-option last">
+                                                <a class="itemgroup-option itemgroup-option last" href="<?= PATH?>publicar">Publicar !</a>
+                                                <a href="<?= PATH?>editar-user/!<?=$_SESSION['username']?>"id="editar-info" class="itemgroup-option last">
                                                     Editar mi perfil
                                                 </a>
 <!--                                                <div class="itemgroup-option itemgroup-option last">
@@ -450,7 +454,7 @@
                                     
                                                     </form>
                                                 </div>-->
-                                                <a href="/findbreak/publicaciones" id="mis-publicaciones" class="itemgroup-option last">
+                                                <a href="<?= PATH?>publicaciones" id="mis-publicaciones" class="itemgroup-option last">
                                                     Mis publicaciones
                                                 </a>
                                                 <div id="boton-logout" class="itemgroup-option last">
@@ -472,7 +476,7 @@
                      </div>-->
                      <div id="info-mostrar" style="display:none">  
                          <div class="content-infomostrar">
-                             Publica un evento y obtén todos los beneficios que te bindra findbreak
+                             Publica un evento y obtén todos los beneficios que te bindra Nowsup
                              
                          </div>
                          <div class="option-infomostrar">
@@ -480,7 +484,7 @@
 
                                     if(isset($_SESSION["userid"])) //estoy logeado
                                     {
-                                       ?> <a href="/findbreak/publicar" >click aquí</a> <?php
+                                       ?> <a href="<?= PATH?>publicar" >click aquí</a> <?php
                                     }
                                     else
                                     {                          

@@ -351,8 +351,8 @@
             $arreglo = array();
              foreach ($eventsNears as $dcto){
                     $folder = (string)$dcto['producido_por']['_id'];
-                        $url = 'background:url(/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0]['gr'].'); background-size: cover';
-                        $urlPe = '/findbreak/images/productoras/'.$folder.'/'.$dcto['fotos'][0]['pe'];
+                        $url = 'background:url(/images/anuncios/'.$dcto['fotos'][0]['gr'].'); background-size: cover';
+                        $urlPe = '/images/anuncios/'.$dcto['fotos'][0]['pe'];
                         //Con esta info. el mapa de google muestra los pines
                          $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['nombre']."+".$dcto['fotos'][0]['gr']."+".
                                 $dcto['loc'][0]."+".$dcto['loc'][1]."+".$urlPe.'</div>'."\n";

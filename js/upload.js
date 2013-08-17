@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    //path = '/nowsup/';
+    path = '/';
     //mensajes transacciones
     formdata = false;
     formdata = new FormData();
@@ -63,7 +65,7 @@ $(document).ready(function(){
     {
         //verificar su su contraseña es la actual
         $.ajax({
-            url : '/findbreak/function/users-response.php',
+            url : path+'function/users-response.php',
             type : 'POST',
             data : 'comprobarClave=1&claveactual='+claveactual,
             success : function(res){
@@ -79,7 +81,7 @@ $(document).ready(function(){
                        return false;
                    }
                    $.ajax({
-                            url : '/findbreak/function/users-response.php',
+                            url : path+'function/users-response.php',
                             type : 'POST',
                             data : 'cambiarClave=1&clave='+clavenueva2,
                             success : function(res){
@@ -111,7 +113,7 @@ $(document).ready(function(){
             return false;
         }
        $.ajax({
-                url : '/findbreak/function/users-response.php',
+                url : path+'function/users-response.php',
                 type : 'POST',
                 data : 'cambiarClaveFace=1&clave='+clavenueva2,
                 success : function(res){
@@ -142,7 +144,7 @@ $(document).ready(function(){
 //        return false;
         loader('Eliminando foto...');
         $.ajax({
-            url : '/findbreak/function/event-response.php',
+            url : path+'function/event-response.php',
             type : 'POST',
             data : 'eliminarFoto=1&idEvento='+idEvento+"&urlBorrar="+url+"&nombreBorrar="+nombre+"&numero="+numero+'&urlBorrarPe='+urlBorrarPe+'&nombreBorrarPe='+nombreBorrarPe,
             success : function(res){
@@ -166,7 +168,7 @@ $(document).ready(function(){
             $('.hashtag-corr').hide();
             return false;
         }
-        $.post('/findbreak/function/event-response.php', {'comprobarHashTag':1, 'conEspacios':nombre}, 
+        $.post(path+'function/event-response.php', {'comprobarHashTag':1, 'conEspacios':nombre}, 
         function(data){
             if(data.re == 1){
                 $('#hash-event').val(data.limpio);
@@ -198,7 +200,7 @@ $(document).ready(function(){
 
             return false;
         }
-        $.post('/findbreak/function/event-response.php', {'comprobarHashTag2':1, 'sinEspacios':nombreSinEsp}, 
+        $.post(path+'function/event-response.php', {'comprobarHashTag2':1, 'sinEspacios':nombreSinEsp}, 
         function(data){
             if(data.re == 1){
                 $('#hash-event').val(data.limpio);
@@ -426,7 +428,7 @@ $(document).ready(function(){
         $.ajax({
                       type:"POST",
                       dataType:"html",
-                      url:"/findbreak/function/event-response.php",
+                      url:path+"function/event-response.php",
                       data:"buscartag=1&nombre="+nuevotag,
                       success:function(data)
                       {    
@@ -548,7 +550,7 @@ $(document).ready(function(){
        if(!validarCorreo($('#correo-usuario').val())){
            $('.todosloscampos .content-mensaje').html('Correo electrónico inválido');
            $('.todosloscampos').show();
-           alert('a')
+     
            return false;
        }
    
@@ -571,7 +573,7 @@ $(document).ready(function(){
 //        alert("adads"); return;
                         $.ajax({
                                  dataType:"html",
-                                 url : '/findbreak/function/users-response.php',
+                                 url : path+'function/users-response.php',
                                  type : 'POST',
                                  data : "guardaruser=1&nomuser="+nomeuser+"&username="+username+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
                                  success : function(res){                      
@@ -581,7 +583,7 @@ $(document).ready(function(){
                                           $.ajax({
                                                     type: "POST",
                                                     dataType: "JSON",
-                                                    url: "/findbreak/function/login-response.php",
+                                                    url: path+"function/login-response.php",
                                                     data: "login=1&mail="+correousuario+"&pass="+claveusuario,
                                                     success : function (data)
                                                     {  
@@ -612,7 +614,7 @@ $(document).ready(function(){
               $('.username-corr').hide();
               return false;
           }
-          $.post("/findbreak/function/users-response.php", {'comprobar-username':1,'username':username}, function(data){
+          $.post(path+"function/users-response.php", {'comprobar-username':1,'username':username}, function(data){
               
                if(data == 1){//se puede
                     $('.username-corr').show();

@@ -205,31 +205,60 @@ FileETag None
 </IfModule>
 
 <IfModule mod_rewrite.c>
-  RewriteBase /findbreak
-  RewriteCond %{REQUEST_FILENAME} !-f 
-  RewriteCond %{REQUEST_FILENAME} !-d
+ # RewriteBase /nowsup
+ # RewriteCond %{REQUEST_FILENAME} !-f 
+ # RewriteCond %{REQUEST_FILENAME} !-d
 
-  RewriteRule (.*)images/(.*)$ images/$2 [L]
-  RewriteRule (.*)highslide/(.*)$ highslide/$2 [L]
-  RewriteRule (.*)css/(.*)$ css/$2 [L]
-  RewriteRule (.*)js/(.*)$ js/$2 [L]
+ # RewriteRule (.*)images/(.*)$ images/$2 [L]
+ # RewriteRule (.*)highslide/(.*)$ highslide/$2 [L]
+ # RewriteRule (.*)css/(.*)$ css/$2 [L]
+ # RewriteRule (.*)js/(.*)$ js/$2 [L]
 
-  RewriteRule ^([a-z0-9_-]+)/?$ /findbreak/index.php?place=$1 [NC,L]
+ # RewriteRule ^([a-z0-9_-]+)/?$ /nowsup/index.php?place=$1 [NC,L]
 
-  RewriteRule ^(![\w.\-_]+)/?$ /findbreak/index.php?place=userprofile&id=$1 [NC,L]
+ # RewriteRule ^(![\w.\-_]+)/?$ /nowsup/index.php?place=userprofile&id=$1 [NC,L]
   
-  RewriteRule ^editar-user/(![\w.\-_]+)/?$ /findbreak/index.php?place=editar-usuario&id=$1 [NC,L]
+ # RewriteRule ^editar-user/(![\w.\-_]+)/?$ /nowsup/index.php?place=editar-usuario&id=$1 [NC,L]
   
-  RewriteRule ^break/([\w.\-_]+)/([a-z0-9_-]+)?$ /findbreak/index.php?place=eventprofile&id=$1&evento-msj=$2 [NC,L]
+ # RewriteRule ^break/([\w.\-_]+)/([a-z0-9_-]+)?$ /nowsup/index.php?place=eventprofile&id=$1&evento-msj=$2 [NC,L]
  
-  RewriteRule ^publicar/([a-z0-9_-]+)?$ /findbreak/index.php?place=publicar&id=$1&evento-msj=$1 [NC,L]
+ # RewriteRule ^publicar/([a-z0-9_-]+)?$ /nowsup/index.php?place=publicar&id=$1&evento-msj=$1 [NC,L]
 
-  RewriteRule ^break/([\w.\-_]+)/?$ /findbreak/index.php?place=eventprofile&id=$1 [NC,L]
+ # RewriteRule ^break/([\w.\-_]+)/?$ /nowsup/index.php?place=eventprofile&id=$1 [NC,L]
 
-  RewriteRule ^productora/([a-z0-9_-]+)/?$ /findbreak/index.php?place=productora&id=$1 [NC,L]
+ # RewriteRule ^productora/([a-z0-9_-]+)/?$ /nowsup/index.php?place=productora&id=$1 [NC,L]
 
-  RewriteRule ^editar-evento/([a-z0-9_-]+)/?$ /findbreak/index.php?place=editar-evento&id=$1 [NC,L]
+ # RewriteRule ^editar-evento/([a-z0-9_-]+)/?$ /nowsup/index.php?place=editar-evento&id=$1 [NC,L]
  
-  RewriteRule ^cerca/([a-z0-9_-]+)/?$ /findbreak/index.php?place=cerca&tran-msj=$1 [NC,L]
+ # RewriteRule ^cerca/([a-z0-9_-]+)/?$ /nowsup/index.php?place=cerca&tran-msj=$1 [NC,L]
+
+ 
+
+   RewriteBase /
+   RewriteCond %{REQUEST_FILENAME} !-f 
+   RewriteCond %{REQUEST_FILENAME} !-d
+
+   RewriteRule (.*)images/(.*)$ images/$2 [L]
+   RewriteRule (.*)highslide/(.*)$ highslide/$2 [L]
+   RewriteRule (.*)css/(.*)$ css/$2 [L]
+   RewriteRule (.*)js/(.*)$ js/$2 [L]
+
+   RewriteRule ^([a-z0-9_-]+)/?$ /index.php?place=$1 [NC,L]
+
+  RewriteRule ^(![\w.\-_]+)/?$ /index.php?place=userprofile&id=$1 [NC,L]
+  
+  RewriteRule ^editar-user/(![\w.\-_]+)/?$ /index.php?place=editar-usuario&id=$1 [NC,L]
+  
+  RewriteRule ^break/([\w.\-_]+)/([a-z0-9_-]+)?$ /index.php?place=eventprofile&id=$1&evento-msj=$2 [NC,L]
+ 
+  RewriteRule ^publicar/([a-z0-9_-]+)?$ /index.php?place=publicar&id=$1&evento-msj=$1 [NC,L]
+
+  RewriteRule ^break/([\w.\-_]+)/?$ /index.php?place=eventprofile&id=$1 [NC,L]
+
+  RewriteRule ^productora/([a-z0-9_-]+)/?$ /index.php?place=productora&id=$1 [NC,L]
+
+  RewriteRule ^editar-evento/([a-z0-9_-]+)/?$ /index.php?place=editar-evento&id=$1 [NC,L]
+ 
+  RewriteRule ^cerca/([a-z0-9_-]+)/?$ /index.php?place=cerca&tran-msj=$1 [NC,L]
 </IfModule>
 

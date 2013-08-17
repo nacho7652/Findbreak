@@ -42,7 +42,7 @@ $(document).ready(function(){
          $.ajax({           
              type:"POST",
              dataType:"html",
-             url: "/findbreak/function/comentario-response.php",
+             url: path+"function/comentario-response.php",
              data: "comenteventUser=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
              success: function (data)
              {   
@@ -85,7 +85,7 @@ $(document).ready(function(){
                 eventosCitVisible = false;
             }
             
-            $.post('/findbreak/function/event-response.php', {'search-event-cit':1,'textoEvento':''},
+            $.post(path+'function/event-response.php', {'search-event-cit':1,'textoEvento':''},
                     function(data){   
                                 $('.eventosCitar').html(data)
                     }, "html");

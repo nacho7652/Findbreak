@@ -233,14 +233,14 @@
                         //si es evento poner 
                         //<a href="/findbreak/break/51ae59464de8b4e810000023" class="hashlink">#MillencolinEnChile2013</a>
                         $menciones.= $usuario['_id'].'-';
-                        $itemCita = '<a class="itemcita" href="/findbreak/!'.$usuario['username'].'">@'.$usuario['username'].'</a>';
+                        $itemCita = '<a class="itemcita" href="/!'.$usuario['username'].'">@'.$usuario['username'].'</a>';
                         $comentario = str_replace($nicknameCompleto, $itemCita, $comentario);
                     }else{
                         //si es evento poner 
                         $eventofound = $evento->findforhash($nickname);
                         if($eventofound !=null){
                             $totalEventos.= $eventofound['_id'].'-';
-                            $itemCita = '<a href="/findbreak/break/'.$eventofound['hash'].'" class="hashlink">'.$nicknameCompleto.'</a>';
+                            $itemCita = '<a href="/break/'.$eventofound['hash'].'" class="hashlink">'.$nicknameCompleto.'</a>';
                             $comentario = str_replace($nicknameCompleto, $itemCita, $comentario);
                         }
                     }

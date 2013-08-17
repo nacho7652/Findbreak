@@ -1,6 +1,6 @@
 @font-face{
     font-family: "EstoyBueno";
-    src: url('/findbreak/fonts/DroidSans.ttf'),
+    src: url('/fonts/DroidSans.ttf'),
          url('../fonts/Impact.eot'),
          url('../fonts/Impact.otf'),
          url('../fonts/Impact.woff') ;
@@ -12,7 +12,7 @@ body{
     background: url('http://d1l2emnu9r9dtc.cloudfront.net/img/bg.jpg');
 }
 .sprites{
-     background: url('/findbreak/images/sprites.png') no-repeat;
+     background: url('/images/sprites.png') no-repeat;
 }
 html, body {
     min-height: 100%;

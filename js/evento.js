@@ -1,4 +1,6 @@
 $(document).ready(function(){
+     //path = '/nowsup/';
+    path = '/'; 
     var popupNew;
     var latitud = $('#lat-event').val();
     var longitud = $('#lng-event').val();
@@ -17,7 +19,7 @@ $(document).ready(function(){
     }     
     $('#denunciar-evento').click(function(){
                
-              var pregunta = '<div class="bloq1msj">¿Realmente deseas borrar este comentario?</div>';
+              var pregunta = '<div class="bloq1msj">¿Realmente deseas denunciar este anuncio?</div>';
 //              var nombre = $(this).parent().parent().find('.nomusercom').html();
 //              var foto = $(this).parent().parent().find('.bloq1').css('background');
 //              var tiempo = $(this).parent().parent().find('.hacecuant').html();
@@ -33,7 +35,7 @@ $(document).ready(function(){
 //                  cuerpo+=    '<div class="hacecuant">'+tiempo+'</div>';
 //                  cuerpo+= '</div></div></div>';
              //dassadds
-             var pie = '<div class="bloq3msj"><div data-id="9" id="aceptarcoment" class="botonblue">Aceptar</div>';
+             var pie = '<div class="bloq3msj"><div data-id="9" id="cancelar" class="botonblue">Aceptar</div>';
                  pie+= '<div id="cancelar" class="botoncancel">Cancelar</div></div>';
                  
                 
@@ -56,7 +58,7 @@ $(document).ready(function(){
                     data: "denuncia-evento=1&idevento="+idevento+"&iduser="+iduser+"&comentario="+denuncia,
                     type: "POST",
                     dataType: "html",//debe ser hmtl :(
-                    url: "/findbreak/function/event-response.php",
+                    url: path+"function/event-response.php",
                     success: function(data){
                        // window.location.reload();
                         if(data == 1)

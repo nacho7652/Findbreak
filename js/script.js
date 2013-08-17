@@ -1,4 +1,7 @@
 $(document).ready(function(){
+   //path = '/nowsup/';
+    path = '/';
+    
     //SI YA ESTOY LOGUEADO EN FACEBOOK
 //    fb.ready(function(){ 
 //              if (fb.logged)
@@ -36,7 +39,7 @@ $(document).ready(function(){
                $.ajax({
                       type:"GET",
                       dataType:"html",
-                      url:"/findbreak/function/facebook-response.php",
+                      url:path+"function/facebook-response.php",
                       data:"login=1&name="+fb.user.name+"&first_name="+fb.user.first_name+"&last_name="+fb.user.last_name+"&username="+fb.user.username+"&email="+fb.user.email+"&picture="+fb.user.picture,
                       success:function(data)
                       {
@@ -102,7 +105,7 @@ $(document).ready(function(){
             $.ajax({           
                 type:"POST",
                 dataType:"html",
-                url: "/findbreak/function/comentario-response.php",
+                url: path+"function/comentario-response.php",
                 data: "vermascomentariosUser=1&ultimo="+ultimoComentario+'&iduser='+id+'&totalComent='+totalComent,
                 success: function (data)
                 {   
@@ -173,7 +176,7 @@ $(document).ready(function(){
                  $.ajax({           
                             type:"POST",
                             dataType:"html",
-                            url: "/findbreak/function/event-response.php",
+                            url: path+"function/event-response.php",
                             data: "mostrar-coment-cerca=1&idevento="+idevento+'&hashevent='+hashevent,
                             success: function (data)
                              {  
@@ -353,7 +356,7 @@ $(document).ready(function(){
             $.ajax({           
                 type:"POST",
                 dataType:"html",
-                url: "/findbreak/function/comentario-response.php",
+                url: path+"function/comentario-response.php",
                 data: "vermascomentarios=1&ultimo="+ultimoComentario+'&eventid='+id+'&hashevent='+hashevent+'&totalComent='+totalComent,
                 success: function (data)
                 {   
@@ -378,7 +381,7 @@ $(document).ready(function(){
             $.ajax({           
                 type:"POST",
                 dataType:"html",
-                url: "/findbreak/function/comentario-response.php",
+                url: path+"function/comentario-response.php",
                 data: "vermascomentarios=1&cerca=1&ultimo="+ultimoComentario+'&eventid='+id+'&hashevent='+hashevent+'&totalComent='+totalComent,
                 success: function (data)
                 {   
@@ -403,7 +406,7 @@ $(document).ready(function(){
             $.ajax({           
                 type:"POST",
                 dataType:"html",
-                url: "/findbreak/function/comentario-response.php",
+                url: path+"function/comentario-response.php",
                 data: "vercomentario=1&id="+id,
                 success: function (data)
                 { 
@@ -433,7 +436,7 @@ $(document).ready(function(){
             $.ajax({           
                 type:"POST",
                 dataType:"html",
-                url: "/findbreak/json/zoom.php",
+                url: path+"json/zoom.php",
                 data: "noti-compra=1&id="+id,
                 success: function (data)
                 { 
@@ -490,7 +493,7 @@ $(document).ready(function(){
          $.ajax({           
              type:"POST",
              dataType:"html",
-             url: "/findbreak/function/comentario-response.php",
+             url: path+"function/comentario-response.php",
              data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
              success: function (data)
              {
@@ -545,7 +548,7 @@ $(document).ready(function(){
          $.ajax({           
              type:"POST",
              dataType:"html",
-             url: "/findbreak/function/comentario-response.php",
+             url: path+"function/comentario-response.php",
              data: "comentevent=1&comentario="+coment+"&eventId="+eventid+"&hashevent="+hashevent+"&nombreevent="+nombreevent+'&totalComent='+totalComent+"&ultimo="+ultimoComentario,
              success: function (data)
              {
@@ -643,7 +646,7 @@ $(document).ready(function(){
             $.ajax({           
                type:"POST",
                dataType:"html",
-               url: "/findbreak/function/event-response.php",
+               url: path+"function/event-response.php",
                data: "delEvento=1&dataid="+dataid,
                success: function (data)
                {
@@ -660,7 +663,7 @@ $(document).ready(function(){
             $.ajax({           
                type:"POST",
                dataType:"html",
-               url: "/findbreak/function/comentario-response.php",
+               url: path+"function/comentario-response.php",
                data: "delcoment=1&dataid="+dataid,
                success: function (data)
                {
@@ -956,7 +959,7 @@ $(document).ready(function(){
               
                     type: "POST",
                     dataType: "json",
-                    url: "/findbreak/function/event-response.php",// url: "../function/users-response.php",
+                    url: path+"function/event-response.php",// url: "../function/users-response.php",
                     data: "search-space=1", 
                     success : function(data) // data = cuadro
                     {  
@@ -1031,7 +1034,7 @@ $(document).ready(function(){
               
               type: "POST",
               dataType: "json",
-              url: "/findbreak/function/event-response.php",// url: "../function/users-response.php",
+              url: path+"function/event-response.php",// url: "../function/users-response.php",
               data: "search-ini=1&busqueda="+textoAmigo, 
               success : function(data) // data = cuadro
               {     
@@ -1130,7 +1133,7 @@ $(document).ready(function(){
               
               type: "POST",
               dataType: "html",
-              url: "/findbreak/function/users-response.php",// url: "../function/users-response.php",
+              url: path+"function/users-response.php",// url: "../function/users-response.php",
               data: "search-friend=1&textoAmigo="+textoAmigo, 
               success : function(data) // data = cuadro
               {     
@@ -1169,7 +1172,7 @@ $(document).ready(function(){
          
               type: "POST",
               dataType: "html",
-              url: "/findbreak/function/users-response.php",// url: "../function/users-response.php",
+              url: path+"function/users-response.php",// url: "../function/users-response.php",
               data: "solicitudaceptada=1&idsolicitud="+idsolicitud,
               success : function(data)
               {
@@ -1192,7 +1195,7 @@ $(document).ready(function(){
          
               type: "POST",
               dataType: "html",
-              url: "/findbreak/function/users-response.php",// url: "../function/users-response.php",
+              url: path+"function/users-response.php",// url: "../function/users-response.php",
               data: "solicitud-rechazada=1&id-solicitud="+idsolicitud,
               success : function(data)
               {
@@ -1209,7 +1212,7 @@ $(document).ready(function(){
       //LOGIN
       $('.registrate').click(function(){
           
-          $.post("/findbreak/json/zoom.php", {'popup-registrousuario':1}, function(data){
+          $.post(path+"json/zoom.php", {'popup-registrousuario':1}, function(data){
                 popup(data);
                 $('#nombre-usuario').focus();
             }, "html");
@@ -1254,7 +1257,7 @@ $(document).ready(function(){
                           
                           type: "POST",
                           dataType: "JSON",
-                          url: "/findbreak/function/login-response.php",
+                          url: path+"function/login-response.php",
                           data: "login=1&mail="+mail+"&pass="+pass,
                           success : function (data)
                           {  
@@ -1286,7 +1289,7 @@ $(document).ready(function(){
                           
                           type: "POST",
                           dataType: "JSON",
-                          url: "/findbreak/function/login-response.php",
+                          url: path+"function/login-response.php",
                           data: "login=1&mail="+mail+"&pass="+pass,
                           success : function (data)
                           {  
@@ -1325,11 +1328,11 @@ $(document).ready(function(){
           $.ajax({
                           type: "POST",
                           dataType: "json",
-                          url: "/findbreak/function/login-response.php",
+                          url: path+"function/login-response.php",
                           data: "logout=1",
                           success : function ()
                           {
-                                  window.location.reload();
+                                  location.href = path+"mapa";
                           }
              
              
@@ -1344,12 +1347,12 @@ $(document).ready(function(){
          if($(this).hasClass('norevi')){
              $(this).removeClass('norevi');
               descontarNotificacion();
-              $.post('/findbreak/function/users-response.php', {'revisarnot2':1,'id':$(this).attr('id')});
+              $.post(path+'function/users-response.php', {'revisarnot2':1,'id':$(this).attr('id')});
          }
          $.ajax({
                           type: "POST",
                           dataType: "json",
-                          url: "/findbreak/json/zoom.php",
+                          url: path+"json/zoom.php",
                           data: "popup-user=1&idSolicitado="+idSolicitado,
                           success : function (data)
                           {
@@ -1376,7 +1379,7 @@ $(document).ready(function(){
          $.ajax({
                           type: "POST",
                           dataType: "json",
-                          url: "/findbreak/function/users-response.php",
+                          url: path+"function/users-response.php",
                           data: "seguirpersona=1&idSolicitado="+userid,
                           success : function (data)
                           {    
@@ -1406,7 +1409,7 @@ $(document).ready(function(){
          $.ajax({
                           type: "POST",
                           dataType: "json",
-                          url: "/findbreak/function/users-response.php",
+                          url: path+"function/users-response.php",
                           data: "seguirpersona=1&idSolicitado="+idSolicitado,
                           success : function (data)
                           {    
@@ -1436,7 +1439,7 @@ $(document).ready(function(){
          $.ajax({
                           type: "POST",
                           dataType: "json",
-                          url: "/findbreak/function/users-response.php",
+                          url: path+"function/users-response.php",
                           data: "dejardeseguirpersona=1&idSolicitado="+userid,
                           success : function (data)
                           {    
@@ -1464,7 +1467,7 @@ $(document).ready(function(){
          $.ajax({
                           type: "POST",
                           dataType: "json",
-                          url: "/findbreak/function/users-response.php",
+                          url: path+"function/users-response.php",
                           data: "dejardeseguirpersona=1&idSolicitado="+idSolicitado,
                           success : function (data)
                           {    

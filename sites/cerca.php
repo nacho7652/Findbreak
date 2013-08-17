@@ -19,8 +19,8 @@
                       </div>
                
             <div class="list-maps">
-              <div class="loading-events tit advert mjscoment">Buscando eventos...</div>
-              <div class="loading-events no-resultados advert mjscoment">No hemos encontrado resultados :(</div>
+              <div class="loading-events tit advert mjscoment">¿Qué está sucediendo por acá?...</div>
+              <div class="loading-events no-resultados advert mjscoment">Buuu... por acá nada de nada :(</div>
                 <div class="inner-list-maps">
                     
                     <?php $j=0; for($i=0; $i<=10; $i++){?> 

@@ -1,11 +1,15 @@
 <?php
 //    require_once 'function/escalar.php';
-    
+
+//     header("location:http://nowsup.com/publicar");
+     
     require_once 'DAL/evento.php';
     require_once 'DAL/usuario.php';
     require_once 'DAL/relacional/connect_relacional.php';
     require_once 'function/escalar.php';
+   
     if(isset($_REQUEST['guardarevento'])){
+         
             //foto1.jps, foto2.jpg
             $evento = new evento();  
             $rutasFotos = array();
@@ -101,7 +105,7 @@
             if($saldo >= 0)
             {
                 //$usuariorelacional->DisminuirSaldo($_SESSION['userid']);
-                 $comprobar = $evento->buscarPorLatLong($lat, $lng);
+//                 $comprobar = $evento->buscarPorLatLong($lat, $lng);
 //                
 //                if(isset($comprobar["_id"]))
 //                {
@@ -125,11 +129,11 @@
             
             }
             
-            //fin datos
+        
         if($guardar==1){
-            header("location:/findbreak/break/".$hashtag."/success");
+            header("location:http://www.nowsup.com/break/".$hashtag."/success");
         }else{
-             header("location:/findbreak/publicar/saldo");
+             header("location:http://www.nowsup.com/publicar");
         }
     }
     if(isset($_REQUEST['editarusuario'])){
@@ -159,7 +163,7 @@
             $idEvento = $_REQUEST['idevent'];
             $fotosActuales = $evento->verFotos($idEvento);
             $producidoPor = $evento->verProductora($idEvento);
-            $urlFotos = 'images/productoras/'.$producidoPor['producido_por']['_id'];
+            $urlFotos = 'images/anuncios';
             //fotos
             $re1 = true;$re2 = true;$re3 = true;$re4 = true;$re5 = true;
             if($_FILES['images-evento-nueva0']['name'] != '' ){
@@ -291,9 +295,9 @@
             //fin datos
         if($guardar==1){
 //            header("location:/findbreak/publicar/success-upd");
-            header("location:/findbreak/break/".$hashtag."/success");
+            header("location:/break/".$hashtag."/success");
         }else{
-             header("location:/findbreak/publicar/saldo");
+             header("location:/publicar/saldo");
         }
     }
     function subir($name, $temp){
@@ -316,9 +320,9 @@
         $nameconcateGr = $fec.'-'.$hor.'-'.$ran.'_gr.'.$ext;
     //    $url = $urluser."/".$nameconcate;
 
-        $fotoRedimensionar = "images/pruebas/".$nameconcate;
-        $fotoFinalPq = "images/productoras/".$_SESSION['userid']."/".$nameconcate;
-        $fotoFinalGr = "images/productoras/".$_SESSION['userid']."/".$nameconcateGr;
+        $fotoRedimensionar = "./images/pruebas/".$nameconcate;
+        $fotoFinalPq = "./images/anuncios/".$nameconcate;
+        $fotoFinalGr = "./images/anuncios/".$nameconcateGr;
 
         $re = move_uploaded_file($temp,$fotoRedimensionar);//pego la foto de prueba
         //$fotoFinalSmall = "../fotos/dentistas/small_".$nombre_foto;

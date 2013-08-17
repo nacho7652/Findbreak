@@ -7,7 +7,7 @@
       $pagar = new usuarioRelacional();
       $visitasEvento = $eventfound['visitas'];
       $folder = (string)$eventfound['producido_por']['_id'];
-      $url = '../images/productoras/'.$folder.'/'.$eventfound['fotos'][0]['gr'];
+      $url = '/images/anuncios/'.$eventfound['fotos'][0]['gr'];
         if(isset($_SESSION['username'])){  
                 $userid = $_SESSION['userid'];
                 $tags = $eventfound['tags'];
@@ -46,7 +46,7 @@
                 {
                     $mio = true;
                     ?> 
-                            <a href="/findbreak/editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar anuncio</a>
+                            <a href="<?= PATH?>editar-evento/<?= $eventfound['_id'] ?>" id="editar-mievento" class="botongreen">Editar anuncio</a>
                             
                         <?php
                         
@@ -86,14 +86,14 @@
                    if(count($eventfound['fotos']) >= 1){
                        for($i=0; $i<count($eventfound['fotos']) ; $i++){
                            
-                           $url = '/findbreak/images/productoras/'.$folder.'/'.$fotos[$i]['gr'];
+                           $url = '/images/anuncios/'.$fotos[$i]['gr'];
 //                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
                            ?>
                        <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
                 <?php
                      }
                    }
-                   $urlPrincipal = '/findbreak/images/productoras/'.$folder.'/'.$fotos[0]['gr'];
+                   $urlPrincipal = '/images/anuncios/'.$fotos[0]['gr'];
                ?>
 </div>
 <div class="content-perfilevento">
