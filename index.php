@@ -55,6 +55,8 @@
     </head>
      
      <body>
+	 <html>
+</html>
          <!--para redes sociales-->
                     <?php 
                     if($page_site=='cerca')
@@ -237,6 +239,7 @@
                                             <div id="loginbtn-fb"></div>
                                             <div class="txtfb">Ingresar con Facebook</div>
                                         </a>
+                                      <a href="#" id="forgot-pass">Olvido su contraseña</a>
                                       <!--<fb:login-button show-faces="false" width="200" max-rows="1"></fb:login-button>-->
                                    </div>
                                    <?php 
@@ -585,7 +588,7 @@
 //             })
 
                     //esta es la funcion normal
-                       $(".boxscroll").niceScroll({cursorborder:"rgb(185, 185, 185)",cursorcolor:"rgb(185, 185, 185)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
+                       $(".boxscroll").niceScroll({cursorborder:"rgba(185, 184, 184, 0.83)",cursorcolor:"rgba(185, 184, 184, 0.83)",boxzoom:false, cursorwidth:9}).cursor.css({"right":"3px"}); // MAC like scrollbar; // First scrollable DIV
                  
               // Customizable cursor
               // $("#boxscroll").niceScroll({touchbehavior:false,cursorcolor:"#00F",cursoropacitymax:0.7,cursorwidth:11,cursorborder:"1px solid #2848BE",cursorborderradius:"8px"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar

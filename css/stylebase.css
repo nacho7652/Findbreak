@@ -27,6 +27,11 @@ html {
 .fb-like.fb_edge_widget_with_comment.fb_iframe_widget {
     margin-bottom: 11px;
 }
+.publicaciones #comentaevent-prof {
+    width: 168px;
+    margin-left: 22px;
+    padding-left: 33px;
+}
 .fb-share-button.fb_iframe_widget {
     right: -42px;
 }
@@ -1617,13 +1622,17 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     border: 1px solid #CCC;
     margin: 0 auto;
 }
-
-.publicidad-large {
-    width: 928px;
-    height: 70px;
-    background: #444;
+.pub-ladoder {
+    width: 120px;
+    height: 540px;
+    margin: 9px 10px 0px 2px;
     float: left;
-    margin: 16px 0px 0px 0px;
+}
+.publicidad-large {
+    width: 728px;
+    height: 90px;
+    float: left;
+    margin: 24px 0px 30px 114px;
 }
 .event-hidden, .est-hidden {
     display: none;
@@ -1650,9 +1659,9 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     border-left: 1px solid rgba(211, 211, 211, 0.31);
 }
 .titlediv {
-    background: rgba(36, 115, 167, 1);
+    background: #124191;
     font-size: 0.7em;
-    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#134394,#124191);
     color: rgb(241, 241, 241);
     padding: 7px 0px 7px 12px;
     font-weight: bold;
@@ -1726,13 +1735,20 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 194px;
     border: none;
 }
+.boxscrollEvents .tit-eventcerca {
+    width: 158px;
+    text-align: left;
+    padding: 0px 0px 0px 14px;
+    margin-top: 7px;
+}
 .item-event {
-    width: 326px;
+    width: 311px;
     height: 82px;
     float: left;
-    margin: 9px 0px 0px 10px;
+    margin: 1px 0px 0px 0px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
     color: #444;
+    box-shadow: 0px 25px 62px -12px #000 inset;
 }
 .divseventsord .title {
     font-weight: bold;
@@ -1893,8 +1909,8 @@ padding: 0px 25px;
 
 .info-event {
     float: left;
-    width: 274px;
-    height: 81px;
+    width: 301px;
+    height: 38px;
 }
 .inner-eventpeq {
     float: left;
@@ -2262,6 +2278,9 @@ float: left;
     width: 963px;
     top: 51px;
 }
+#list-similares {
+    width: 311px;
+}
 .part-right {
     float: left;
     width: 445px;
@@ -2324,7 +2343,7 @@ float: left;
     color: #444;
 }
 #videoEvento {
-    width: 400px;
+    width: 639px;
     height: 400px;
 }
 .cercanos {
@@ -2689,13 +2708,13 @@ margin: -3px -5px 0px 6px;
     top: 10px;
 }
 .more-fotos {
-    width: 1000px;
+    width: 100%;
     margin: 45px auto 0px auto;
     top: 5px;
     position: relative;
     height: 110px;
     padding-left: 417px;
-    background: url('/findbreak/images/superpos-bg.png') rgb(22, 23, 24);
+    background: url('/images/superpos-bg.png') rgb(22, 23, 24);
 }
 .foto-event-small {
     width: 92px;
@@ -3285,6 +3304,15 @@ margin: 3px 0px 0px 7px;
     border-radius: 3px;
     border: none;
 }
+
+#forgot-usuario{
+    float: left;
+    width: 185px;
+    padding: 11px 0px;
+    font-size: 13px;
+    margin: 20px 0px 0px 253px;
+    font-weight: bold;
+}
 #guardarusuario{
     float: left;
     
@@ -3296,8 +3324,8 @@ margin: 3px 0px 0px 7px;
 }
 /*END PRODUCTORA*/
 footer{
-    background: rgba(36, 115, 167, 1);
-    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1),rgba(35, 106, 151, 1) );
+    background: #124191;
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#134394,#124191);
     width: 100%;  
     height: 20px; 
     margin: -110px 0px 0px 0px;   

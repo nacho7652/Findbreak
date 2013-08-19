@@ -108,9 +108,12 @@ $(document).ready(function(){
     }
     function nuevaClaveFace(clavenueva1, clavenueva2)
     {
-        if(clavenueva1 != clavenueva2){
+        res = false;
+//        alert(clavenueva1+' '+clavenueva2)
+        if(trim(clavenueva1) != trim(clavenueva2)){
             loader('Las contraseñas no coinciden !');
-            return false;
+//            alert('no coinciden')
+            return res;
         }
        $.ajax({
                 url : path+'function/users-response.php',
@@ -123,8 +126,10 @@ $(document).ready(function(){
                        
                        $('#clave-nueva1-fb').val('');
                        $('#clave-nueva2-fb').val('');
+                       return true;
                     }else{
                          loader('Tu contraseña no se pudo editar');
+                         return res;
                     }
                 }                
              });
@@ -217,6 +222,7 @@ $(document).ready(function(){
         //pass
         if($('#tipoClave').val() == '0'){
             //normal
+             
             claveactual = $('#clave-actual').val();
             clavenueva1 = $('#clave-nueva1').val();
             clavenueva2 = $('#clave-nueva2').val();
@@ -228,13 +234,18 @@ $(document).ready(function(){
             }
         }else{
             //face
-          
+            
             clavenueva1face = $('#clave-nueva1-fb').val();
             clavenueva2face = $('#clave-nueva2-fb').val();
             
             if(trim(clavenueva1face) != '' || trim(clavenueva2face) != ''){
-
-                if(!nuevaClaveFace( clavenueva1face, clavenueva2face)){
+                respFace = nuevaClaveFace( clavenueva1face, clavenueva2face);
+                alert(respFace)
+                if(respFace){ 
+                    alert('falso')
+                    return false;
+                }else{
+                    alert('true')
                     window.location.reload();
                 }
             }

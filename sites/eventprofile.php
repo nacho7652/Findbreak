@@ -97,6 +97,7 @@
                ?>
 </div>
 <div class="content-perfilevento">
+    
     <div id="content-mapaenvento">
         <div id='map_establecimientos' style='width:100%; height:250px;'></div>
     </div>
@@ -148,7 +149,7 @@
                                 <div  class="info-event-item">
                                   <div id="precioevent-prof"></div>
                                   <span class="producidoPor">Publicado por: </span>
-                                  <a style="float:left; margin-top: 0px; " class="hashlink" href="/findbreak/!<?= $usernameProductora['username']?>">
+                                  <a style="float:left; margin-top: 0px; " class="hashlink" href="/!<?= $usernameProductora['username']?>">
                                     <?php echo $usernameProductora['username'] ?>
                                   </a>
                                    
@@ -173,14 +174,14 @@
                     <div class="part-left-lf">
                         <!--para redes sociales-->
                                 <div class="redes-event">
-                                            <div class="fb-like" data-href="http://www.findbreak.com/break/<?= $_GET['id']?>" data-send="false" data-width="200" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
+                                            <div class="fb-like" data-href="http://www.nowsup.com/break/<?= $_GET['id']?>" data-send="false" data-width="200" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
 
                                            <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
                                             <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
                                             </script>
-                                            <a id="sharefb-evento" href='http://www.findbreak.com/break/<?= $_GET['id']?>' name='fb_share' type='button_count' >Compartir</a>
+                                            <a id="sharefb-evento" href='http://www.nowsup.com/break/<?= $_GET['id']?>' name='fb_share' type='button_count' >Compartir</a>
 
-                                            <a id="tw-evento" href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.findbreak.com/break/<?= $_GET['id']?>" data-hashtags="<?= $_GET['id']?>">Tweet</a>
+                                            <a id="tw-evento" href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.nowsup.com/break/<?= $_GET['id']?>" data-hashtags="<?= $_GET['id']?>">Tweet</a>
                                             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                                             <div class="g-plusone" data-size="medium" data-annotation="none"></div>
                                 </div>
@@ -209,22 +210,23 @@
              </div>
     
     <div class="cercanos">
-        <div id="videoEvento">
-            <?php 
-            $videoCompleto = $eventfound['redes'][2];//
-            $youtube = '';
-            if($videoCompleto != ''){
-                $videoPartes = explode('=', $videoCompleto);
-                if(count($videoPartes) > 1){
-                    $video = $videoPartes[1];
-                }else{
-                    $video = '';//link roto poner video fbk
+                <?php 
+                $videoCompleto = $eventfound['redes'][2];//
+                $youtube = '';
+                if($videoCompleto != ''){
+                    $videoPartes = explode('=', $videoCompleto);
+                    if(count($videoPartes) > 1){
+                        $video = $videoPartes[1];
+                    }else{
+                        $video = '';//link roto poner video fbk
+                    }
+                    $youtube = '<iframe width="639" height="400" src="//www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
+                
+                     echo ' <div id="videoEvento">'.$youtube.'</div>';
                 }
-                $youtube = '<iframe width="591" height="326" src="//www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
-            }
-            ?>
-            <?= $youtube?>
-        </div>
+                ?>
+               
+         
             <!--<div class="tit tit1">Establecimientos cercanos al evento</div>-->
           
             <div class="description-event">
@@ -233,9 +235,9 @@
             <div class="title-coment-event">Comentarios</div>
     </div>
     
-    <div class="part-bottom">
+<!--    <div class="part-bottom">
         <div class="publicidad-media"></div>      
-    </div>
+    </div>-->
 </div>
 <div class="parte-der">
     <div class="part-right divtrans">
@@ -298,7 +300,7 @@
                     <div class="bloq1" style="background: url('<?php echo $userFoto['foto']['pe']?>') no-repeat"></div>
                     <div class="bloq2">
                         <div class="titu-usercom">
-                            <a href="/findbreak/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo ucwords($dcto['nombreUsuario'])?></a>
+                            <a href="/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo ucwords($dcto['nombreUsuario'])?></a>
                             <spam class="username usernamecom">@<?php echo $dcto['userName']?></spam>
                         </div> 
                         <div class="comentuser">
@@ -339,7 +341,17 @@
             </div>
          
     </div>
-    
+   <div class="pub-ladoder">
+       <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- banner_right -->
+        <ins class="adsbygoogle"
+        style="display:inline-block;width:120px;height:240px"
+        data-ad-client="ca-pub-3584063439345600"
+        data-ad-slot="1903562170"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+   </div>
     <div id="list-similares" class="part-right divtrans">
         <div class="titlediv">Actividades similares</div>
         <div class="boxscroll boxscrollEvents">
@@ -348,8 +360,8 @@
 //                                if(isset($_SESSION['userid'])){
                                 $similares = $event->similares($eventfound['_id'], $eventfound['tags'],5);
                                 foreach($similares as $dcto){
-                                    $fotoEvento = $event->verFoto($dcto['_id']);
-                                    $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
+                                    $fotoEvento = $event->verFoto($dcto['_id'], 1);
+                                   // $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
                                         $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                         $textoComentario = '';
                                         if($cantidadComentarios == 0){
@@ -362,14 +374,11 @@
                                     
                                    // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                 ?>
-                                <div class="item-event">   
-                                     <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
+                                 <div class="item-event " style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" >   
+                                   
                                      <div class="info-event">
-                                        <a class="tittle-event tit" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
-                                        <div class="inner-eventpeq">  
-                                            <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
-                                            
-                                         </div>
+                                        <a class="tit-eventcerca" href="/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        
                                     </div>
                                 </div>
                                 <?php 
@@ -387,8 +396,8 @@
 //                                if(isset($_SESSION['userid'])){
                                 $pop = $event->findpopular(4);
                                 foreach($pop as $dcto){
-                                    $fotoEvento = $event->verFoto($dcto['_id']);
-                                    $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
+                                    $fotoEvento = $event->verFoto($dcto['_id'], 1);
+//                                    $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
                                         $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                         $textoComentario = '';
                                         if($cantidadComentarios == 0){
@@ -401,14 +410,11 @@
                                     
                                    // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                 ?>
-                                <div class="item-event">   
-                                     <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
+                                <div class="item-event " style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" >   
+                                   
                                      <div class="info-event">
-                                        <a class="tittle-event tit" href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
-                                        <div class="inner-eventpeq">  
-                                            <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
-                                            
-                                         </div>
+                                        <a class="tit-eventcerca" href="/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
+                                        
                                     </div>
                                 </div>
                                 <?php 
@@ -417,8 +423,19 @@
                             <!--</div>-->
         </div>
     </div>
+    
 </div>
-<div class="publicidad-large"></div>
+<div class="publicidad-large">
+     <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- banner_bottom -->
+        <ins class="adsbygoogle"
+        style="display:inline-block;width:728px;height:90px"
+        data-ad-client="ca-pub-3584063439345600"
+        data-ad-slot="4857028578"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+</div>
 
 
 

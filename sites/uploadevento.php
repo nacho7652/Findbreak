@@ -133,7 +133,7 @@
         if($guardar==1){
             header("location:http://www.nowsup.com/break/".$hashtag."/success");
         }else{
-             header("location:http://www.nowsup.com/publicar");
+             header("location:http://www.nowsup.com/publicar/saldo");
         }
     }
     if(isset($_REQUEST['editarusuario'])){
@@ -147,7 +147,7 @@
         if($_FILES['fotousuario']['name'] != '' ){//llega foto
                     unlink($foto['foto']['gr']);
                     unlink($foto['foto']['pe']);
-                    $exito1 = subir($_FILES['fotousuario']['name'], $_FILES['fotousuario']['tmp_name']);
+                    $exito1 = subirUsuario($_FILES['fotousuario']['name'], $_FILES['fotousuario']['tmp_name']);
                     $re1 = $usuario->reemplazarFoto($userid, $exito1['fotoGr'], $exito1['fotoPe']);
             }
         $nombre = trim($_REQUEST['nombreuser']);
@@ -155,7 +155,7 @@
         $mail = trim($_REQUEST['email']);
         $resp = $usuario->modificar($userid, $username, $nombre, $mail);
         $_SESSION['username'] = $username;
-        header("location:/findbreak/editar-user/!".$username."");
+        header("location:http://www.nowsup.com/editar-user/!".$username."");
     }
     if(isset($_REQUEST['editarevento'])){
             
@@ -294,10 +294,9 @@
             
             //fin datos
         if($guardar==1){
-//            header("location:/findbreak/publicar/success-upd");
-            header("location:/break/".$hashtag."/success");
+            header("location:http://www.nowsup.com/break/".$hashtag."/success");
         }else{
-             header("location:/publicar/saldo");
+             header("location:http://www.nowsup.com/publicar/saldo");
         }
     }
     function subir($name, $temp){
@@ -338,5 +337,42 @@
         $resp = array("re"=>$re,"fotoGr"=>$nameconcateGr, "fotoPe"=>$nameconcate);
         return $resp;
     }
-   
+     function subirUsuario($name, $temp){
+        
+        $re = false;
+        $resultEscalar = false;
+        $resultEscalarGr = false;
+        $nameconcate = '';
+        //$userid = $_SESSION['userid'];
+        
+        $partes = explode(".", $name);
+        $ext = $partes[count($partes) - 1 ];       
+        $fec = date('d-m-y');
+        $partesfecha = explode("-", $fec);
+        $fec = $partesfecha[2].$partesfecha[1].$partesfecha[0];
+        $hor = time();
+        $ran = rand(0, 100);
+
+        $nameconcate = $fec.'-'.$hor.'-'.$ran.'_pe.'.$ext;
+        $nameconcateGr = $fec.'-'.$hor.'-'.$ran.'_gr.'.$ext;
+    //    $url = $urluser."/".$nameconcate;
+
+        $fotoRedimensionar = "./images/pruebas/".$nameconcate;
+        $fotoFinalPq = "./images/usuarios/".$nameconcate;
+        $fotoFinalGr = "./images/usuarios/".$nameconcateGr;
+
+        $re = move_uploaded_file($temp,$fotoRedimensionar);//pego la foto de prueba
+        //$fotoFinalSmall = "../fotos/dentistas/small_".$nombre_foto;
+        if($re){//si copio correctamente
+           $resultEscalar = cuadrar($fotoRedimensionar, $fotoFinalPq, 60, 60); //pequeña
+           $resultEscalarGr = escalar($fotoRedimensionar, $fotoFinalGr, 800, 500); //grande
+           //ELIMINAR LA FOTO ANTIGUA 
+           unlink($fotoRedimensionar);
+        }
+
+        chmod($fotoFinalPq, 0755);
+        chmod($fotoFinalGr, 0755);
+        $resp = array("re"=>$re,"fotoGr"=>$nameconcateGr, "fotoPe"=>$nameconcate);
+        return $resp;
+    }
 ?>

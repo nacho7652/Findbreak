@@ -103,7 +103,7 @@
             $idEvento = $_REQUEST['idEvento'];
             $fotoGr = $_REQUEST['fotoGr'];
             $re = $evento->nuevaFoto($idEvento, $fotoGr);
-            $urlSinImg = 'images/productora/'.(string)$_SESSION['userid'];
+            $urlSinImg = 'images/usuarios';
             $resp = array('re'=>$re, 'urlSinImg'=>$urlSinImg);
             echo json_encode($resp);
         } 

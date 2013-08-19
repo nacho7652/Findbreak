@@ -33,6 +33,28 @@ if(isset($_POST['login']))
         echo $re;
 }
 
+if(isset($_POST['forgot'])){
+    require_once '../DAL/connect.php';
+    require_once '../DAL/usuario.php';
+    $username = $_POST['username'];
+    $resp = 0;
+    $usuario = new usuario();
+    $encontrado = $usuario->findforusername($username);
+    if(isset($encontrado['_id']))
+    {
+        $resp=1;
+        $clave = rand(2000,10000).$encontrado['username'];
+        $usuario->updateClave($encontrado['_id'], $clave);
+        $headers = "From: no-reply Nowsup <no-reply@nowsup.com>\r\n";
+	$headers .= "MIME-Version: 1.0\r\n";
+	$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+	$headers .= "Content-Transfer-Encoding: 8bit\r\n";
+        $body = "Tu nueva contraseña es : ".$clave;
+        mail($encontrado['email'], 'Nowsup - Recuperacion de clave', $body, $headers);
+    }
+    echo $resp;
+}
+
 if(isset($_POST['logout'])){
     session_start();
     session_destroy();

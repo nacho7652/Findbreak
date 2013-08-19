@@ -63,13 +63,17 @@ class evento {
      }
      public function findpopular($limit){
          $numeroPromedio = $this->promedioVisitas();
-         return $this->db->evento->find(array( 'fecha_realizacion'=> array('$gte' => $this->hoy()), 'visitas'=> array('$gte' => ($numeroPromedio/2)) ))->sort(array("visitas" => -1 ))->limit($limit);
+         return $this->db->evento->find(array( 'visitas'=> array('$gte' => ($numeroPromedio/2)) ))->sort(array("visitas" => -1 ))->limit($limit);
      }
-      public function verFoto($id){
+      public function verFoto($id, $grande = null){
          $theObjId = new MongoId($id); 
          $carpeta = $this->db->evento->findOne(array("_id" => $theObjId), array("producido_por" => 1));
          $nombreFoto = $this->db->evento->findOne(array("_id" => $theObjId), array("fotos" => 1));
-         $url = 'images/productoras/'.(string)$carpeta['producido_por']['_id'].'/'.$nombreFoto['fotos'][0]['pe'];
+         if($grande == null){
+            $url = '/images/anuncios/'.$nombreFoto['fotos'][0]['pe'];
+         }else{
+            $url = '/images/anuncios/'.$nombreFoto['fotos'][0]['gr'];
+         }
          return $url;
      }
      public function verProductora($id){
@@ -169,14 +173,14 @@ class evento {
            }
         
         
-        
+        //,  'fecha_realizacion'=> array('$gte' => $this->hoy()
         return $this->db->evento->find(array('$or' => $result//array($a
                                                             //$result
 //                                                           array("tags" => new MongoRegex("/hard/")), 
 //                                                            array("tags" => new MongoRegex("/lsls/"))
                                                             //array("tags" => new MongoRegex("/asc/"))
                                                           //)
-                                              ,  'fecha_realizacion'=> array('$gte' => $this->hoy())
+                                              
                                            )
                                       )->limit($limit);
     }

@@ -506,7 +506,7 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>array('pe'=>'/images/user-default_pe.png', 'gr'=>'/images/user-default.png') 
+            "foto"=>array('pe'=>'/images/user-default_pe.jpg', 'gr'=>'/images/user-default.png') 
         );
          
          $emailRepetido = $this->findforemail($mail);

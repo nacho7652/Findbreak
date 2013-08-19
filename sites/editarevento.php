@@ -8,7 +8,7 @@
         $evento = $eventoFound->findforid($id);
         $folder = $evento["producido_por"]['_id'];
 ?>
-<form id="editarevento-form" method="POST" action=<?= PATH?>"/uploadevento" name="formularioevento" enctype="multipart/form-data">
+<form id="editarevento-form" method="POST" action=<?= PATH?>uploadevento name="formularioevento" enctype="multipart/form-data">
 <input type="hidden" name="editarevento"/>
 <input type="hidden" name="hash-event" value="<?= $evento['hash']?>"/>
 <div class="content-publicarevent">

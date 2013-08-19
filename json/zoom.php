@@ -66,7 +66,7 @@
                               <div class="info-user">';
          $divProfileUser.=     '
                                 <div class="bloque-info info-event-item">
-                                            <a href="/findbreak/!'.$usuariofound['username'].'" class="title-user tit-gray">'.ucwords($usuariofound['nombre']).'</a>
+                                            <a href="/!'.$usuariofound['username'].'" class="title-user tit-gray">'.ucwords($usuariofound['nombre']).'</a>
                                             <div class="username">'.$usuariofound['username'].'</div>
                                             <div class="info-num">
                                                   <div class="item-info-num">
@@ -104,7 +104,7 @@
 //            foreach($seguidores as $item){
 //                $divProfileUser.=   '<div data-id="'.$item['_id'].'" class="item-friends-user">
 //                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-//                                        <a href="/findbreak/!#'.$item['_id'].'" class="item-friends-username">'.ucwords($item['nombre']).'</a>
+//                                        <a href="/!#'.$item['_id'].'" class="item-friends-username">'.ucwords($item['nombre']).'</a>
 //                                    </div>';
 //            }
 //             $divProfileUser.=   '</div>';
@@ -148,7 +148,7 @@
                                 
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">Dirección de correo electrónico</div>
-                                 <input placeholder="ejemplo@findbreak.com" class="field-publicar" type="text" id="correo-usuario"/>
+                                 <input placeholder="ejemplo@nowsup.com" class="field-publicar" type="text" id="correo-usuario"/>
                                 </div>
                                 
                                 <div class="item-publicar">

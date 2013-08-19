@@ -44,7 +44,7 @@
                                 <div class="item-publicar">   
                                    <div class="content-eventpublicar">  
                                        <div style="background-image: url(<?=$url?>);background-size:cover" class="foto-event-pubicar"></div>
-                                       <a href=<?= PATH?>break/<?= $dcto['hash']?>" class="nombre-event-pubicar title-publicarevent"><?= $dcto['nombre']?></a>
+                                       <a href=<?= PATH?>break/<?= $dcto['hash']?> class="nombre-event-pubicar title-publicarevent"><?= $dcto['nombre']?></a>
 
                                            <div class="info-eventcerca infot-eventpublicar">
                                                            
@@ -63,7 +63,7 @@
                                                                </div>  
                                                            </div>
                                                            <!--<div class="botonitemcerca botonblue">Ver comentarios</div>-->
-                                                           <a href=<?= PATH?>editar-evento/<?= $dcto['_id']?>" class="editarEvento botongreen">Editar</a>
+                                                           <a href=<?= PATH?>editar-evento/<?= $dcto['_id']?> class="editarEvento botongreen">Editar</a>
                                                            <a href="#" data-id="<?php echo $dcto['_id'];?>" class="eliminarEvento botonred">Eliminar publicación</a>
                                             </div>
                                        
@@ -82,7 +82,7 @@
         }
         else
         {
-            header("location:/findbreak/login");
+            header("location:http://www.nowsup.com/login");
             
         }
 ?>

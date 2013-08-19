@@ -20,6 +20,40 @@ $(document).ready(function(){
 //        //        });
 //              }
 //            });
+
+// Recordar contraseña
+    $('#forgot-pass').click(function(){
+        var pop = '<div class="content-registro"><div class="item-publicar"><div class="nombre-publicarevent">Escribe tu nombre de usuario</div><input placeholder="bastian.toro24" class="field-publicar" type="text" id="user-name"/><div class="mensaje-error error-username"></div><div class="username-corr"></div><div class="username-incorr"></div></div><div class="item-publicarevent-large item-botonregistro"><div class="todosloscampos mensaje-error"><div class="content-mensaje"></div></div><input type="submit" id="forgot-usuario" class="botongreen" value="Recordar"/></div></div>';
+        popup(pop);                
+    });
+    
+    $('body').delegate('#forgot-usuario','click',function(event){
+        event.preventDefault();
+        var username = $('#user-name').val();
+        
+        $.ajax({
+           type:"POST" ,
+           dataType:"html",
+           url:path+"function/login-response.php",
+           data:"forgot=1&username="+username,
+           success:function(data)
+           {
+               if(data == 1)
+                   {
+                       alert('La contraseña ha sido enviada a su correo');
+                       window.location.reload();
+                   }
+               else
+                   {
+                      alert('El usuario no existe');
+                      window.location.reload();
+                   }
+           }
+        });
+    });
+    
+    //fin recordar contraseña
+    
     $('body').delegate('.login-face','click',function(event){
         event.preventDefault();
        

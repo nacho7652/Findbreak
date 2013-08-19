@@ -227,7 +227,7 @@
                 }
                 $hayuser = true;
                 $cuadrouser.= 
-                '<a href="/findbreak/!'.$dcto["username"].'" class="'.$classPrimero.' item-search item-search-friend">
+                '<a href="/!'.$dcto["username"].'" class="'.$classPrimero.' item-search item-search-friend">
                    <div style="background:url('.$dcto["foto"]['pe'].'); background-size:cover" class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
@@ -249,7 +249,7 @@
                 $fotoEvento = $evento->verFoto($dcto['_id']);
                 $hayevents = true;
                 $cuadroevento.= 
-                '<a href="/findbreak/break/'.$dcto['hash'].'" target="_blank" class="item-search item-search-event">
+                '<a href="/break/'.$dcto['hash'].'" target="_blank" class="item-search item-search-event">
                    <div style="background:url('.$fotoEvento.'); background-size:cover" class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>
