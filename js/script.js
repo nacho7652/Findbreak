@@ -21,8 +21,12 @@ $(document).ready(function(){
 //              }
 //            });
 
+$('.equis-tutorial').click(function(){
+    $('.tutorial-mapa').hide();
+    $('#allbackground').hide();
+})
 // Recordar contraseña
-    $('#forgot-pass').click(function(){
+    $('.popup-forgot').click(function(){
          $.post(path+'json/zoom.php', {'forgot-usuario':1},
                     function(data){
                                  popup(data); 
@@ -33,6 +37,9 @@ $(document).ready(function(){
     $('body').delegate('#forgot-usuario','click',function(event){
         event.preventDefault();
         var username = $('#correo-username').val();
+        if(trim(username) == ''){
+            return false;
+        }
         $.ajax({
            type:"POST" ,
            dataType:"html",
@@ -440,6 +447,7 @@ $(document).ready(function(){
                 $(this).removeClass('norevi');
                 descontarNotificacion();
             }
+            //alert(id)
             $.ajax({           
                 type:"POST",
                 dataType:"html",
@@ -447,7 +455,7 @@ $(document).ready(function(){
                 data: "vercomentario=1&id="+id,
                 success: function (data)
                 { 
-                    
+                   // alert(data)
                     popup(data);
                 }
             })   

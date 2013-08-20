@@ -19,7 +19,7 @@
                 <div id="loginbtn-fb"></div>
                 <div class="txtfb">Ingresar con Facebook</div>
             </a>
-            <a href="#" id="forgot-pass">¿ Olvidó su contraseña ?</a>
+            <a href="#" id="forgot-pass" class="popup-forgot">¿ Olvidó su contraseña ?</a>
         </div>
         
     

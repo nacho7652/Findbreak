@@ -109,7 +109,7 @@
 //                
 //                if(isset($comprobar["_id"]))
 //                {
-                    if($nombreproductora == 'Daniel' || $nombreproductora == 'skumblue')
+                    if($nombreproductora == 'Daniel' || $nombreproductora == 'skumblue' || $nombreproductora == 'nacho1593')
                     {
                         $guardar = $evento->insertar($idproductora, $nombreproductora,$nom , $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
                                    $video, $sitioWeb,$hashtag,2);

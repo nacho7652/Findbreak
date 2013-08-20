@@ -1,8 +1,19 @@
 <div class="content-cerca">
     <div class="first-partevent">
         <div class="divevents">
+             <div class="tutorial-mapa">
+                            <div class="equis-tutorial"></div>
+                             <div class="flecha-mapa"></div>
+                             <div class="mapa-explic1">
+                                 <span>Pulsa aquí para buscar anuncios</span>
+                                 <span>- Busca fiestas, venta de artículos y mucho más !</span>
+                                 <span>- Busca anuncios en tu calle, comuna o ciudad</span>
+                             </div>
+             </div>
                      <div class="title">
+                        
                          <a href="#" title="Esconder/Mostrar la lista de anuncios" class="menu-show"></a>
+                          <div class="logoper"></div>
                           <div class="logo"></div>
                           <div class="text-cerca">Anuncios: <span class="tipoBusqueda">cerca de <b>mi ubicación actual</b></span></div>
 

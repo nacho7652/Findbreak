@@ -21,8 +21,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="images/icon.png">
-        <link rel="apple-touch-icon" href="images/icon.png">
+        <meta property="og:type" content="article">
+<meta property="og:site_name" content="Nowsup">
+<meta property="og:description" content="<?= $page_description?>">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="http://www.nowsup.com/images/favicon.png">
+<meta name="language" content="es">
+<meta name="Description" content="<?= $page_description?>">
+<meta name="Keywords" content="nowsup, fiestas, entretención, carrete, eventos, salir, encontrar, red social">
+
+        <link rel="shortcut icon" href="images/favicon.png">
+        <link rel="apple-touch-icon" href="images/favicon.png">
         <title><?= $page_title ?></title>
         <meta name="description" content="<?= $page_description ?>">
         <link rel="stylesheet" href="css/movil.css"  type="text/css" media="handheld, only screen and (max-device-width: 480px)" />
@@ -245,7 +254,7 @@
                                             <div id="loginbtn-fb"></div>
                                             <div class="txtfb">Ingresar con Facebook</div>
                                         </a>
-                                      <a href="#" id="forgot-pass">¿ Olvidó su contraseña ?</a>
+                                      <a href="#" id="forgot-pass" class="popup-forgot">¿ Olvidó su contraseña ?</a>
                                       <!--<fb:login-button show-faces="false" width="200" max-rows="1"></fb:login-button>-->
                                    </div>
                                    <?php 
@@ -384,9 +393,9 @@
                                                  
                                                  
                                              }
-                                             if($contsol == 0){
-                                                     $divMenciones = '<div class="nohaycoinci"> No tienes notificaciones :)</div>';
-                                             }
+//                                             if($contsol == 0){
+//                                                     $divMenciones = '<div class="nohaycoinci"> No tienes notificaciones :)</div>';
+//                                             }
                                           if(isset($_SESSION['userprofile']) != null){
                                    ?>
                                         <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-photo">

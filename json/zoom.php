@@ -57,7 +57,7 @@
          if(isset($usuariofound['siguiendo']))
              $siguiendo = count($usuariofound['siguiendo']);
          
-         $fotoUsuario = $usuariofound['foto'];
+         $fotoUsuario = $usuariofound['foto']['pe'];
          $publicaciones = $usuario->verCantidadPublicaciones($idSolicitado);
          $divProfileUser = '<div class="profileuser">';
          $divProfileUser.=   '<div class="left-user">

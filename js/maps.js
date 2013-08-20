@@ -334,6 +334,7 @@ function geolocalizarPorTags(){
                        lat = parseFloat(tokens[2]); 	 
                        lng = parseFloat(tokens[3]);
                        fotoPe = tokens[4];
+                       hash = tokens[5];
                    //var distance = parseFloat(tokens[4]); 
    
                    var PointMaps = new google.maps.LatLng(lat, lng);
@@ -389,8 +390,10 @@ function geolocalizarPorTags(){
                                }
                    //nota es el recuadro que sale en grande cuando se hace click en la clinica
                    note = '<div id="infoWindow" style="">\n\
-                                <img class="fotopin" src="'+fotoPe+'" />\n\
-                                <string class="tit-gray titpin">'+name+'</strong>\n\
+                                <a href="/break/'+hash+'">\n\
+                                    <img class="fotopin" src="'+fotoPe+'" />\n\
+                                    <string class="tit-gray titpin">'+name+'</strong>\n\
+                                </a>\n\
                             <div>';
                    
                    

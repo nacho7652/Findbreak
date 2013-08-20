@@ -155,3 +155,105 @@ Stack trace:
   thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
 [19-Aug-2013 17:31:24 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 155
 [19-Aug-2013 17:31:24 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.jpg) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 156
+[20-Aug-2013 00:07:10 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 00:18:45 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 01:02:06 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
+#1 /home/nowsup/public_html/DAL/evento.php(207): evento->findforid('')
+#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
+#3 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#4 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[20-Aug-2013 01:34:38 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 01:47:02 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 01:48:47 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
+#1 /home/nowsup/public_html/DAL/evento.php(207): evento->findforid('')
+#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
+#3 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#4 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[20-Aug-2013 01:59:17 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 12:01:26 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
+#1 /home/nowsup/public_html/DAL/evento.php(227): evento->findforid('')
+#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
+#3 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#4 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[20-Aug-2013 14:26:17 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 14:26:18 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 14:26:19 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 14:26:34 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 14:26:50 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 14:27:19 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 14:28:20 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[20-Aug-2013 14:29:20 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358

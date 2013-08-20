@@ -355,7 +355,7 @@
                         $urlPe = '/images/anuncios/'.$dcto['fotos'][0]['pe'];
                         //Con esta info. el mapa de google muestra los pines
                          $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['nombre']."+".$dcto['fotos'][0]['gr']."+".
-                                $dcto['loc'][0]."+".$dcto['loc'][1]."+".$urlPe.'</div>'."\n";
+                                $dcto['loc'][0]."+".$dcto['loc'][1]."+".$urlPe."+".$dcto['hash'].'</div>'."\n";
                          $cont++;
                        //----0----   
 
