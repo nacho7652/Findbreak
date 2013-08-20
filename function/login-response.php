@@ -43,13 +43,13 @@ if(isset($_POST['forgot'])){
     if(isset($encontrado['_id']))
     {
         $resp=1;
-        $clave = rand(2000,10000).$encontrado['username'];
+        $clave = rand(2000,10000).date('z').rand(2000,10000);
         $usuario->updateClave($encontrado['_id'], $clave);
         $headers = "From: no-reply Nowsup <no-reply@nowsup.com>\r\n";
 	$headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 	$headers .= "Content-Transfer-Encoding: 8bit\r\n";
-        $body = "Tu nueva contraseña es : ".$clave." \n\n Esta contraseña está asociada al correo: ".$encontrado['email'];
+        $body = "Tu nueva contraseña es : ".$clave;
         mail($encontrado['email'], 'Nowsup - Recuperacion de clave', $body, $headers);
     }
     echo $resp;
