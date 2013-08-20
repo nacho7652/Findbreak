@@ -339,11 +339,11 @@
     </div>
    <div class="pub-ladoder">
        <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- banner_right -->
+        <!-- banner_right2 -->
         <ins class="adsbygoogle"
-        style="display:inline-block;width:120px;height:240px"
-        data-ad-client="ca-pub-3584063439345600"
-        data-ad-slot="1903562170"></ins>
+             style="display:inline-block;width:120px;height:600px"
+             data-ad-client="ca-pub-3584063439345600"
+             data-ad-slot="2905630576"></ins>
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
