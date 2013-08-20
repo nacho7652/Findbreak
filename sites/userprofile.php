@@ -35,7 +35,7 @@
 ?>
 
 <div class="parte-left-parent">
-            <div class="part-left divtrans2">
+            <div class="part-left">
                     <div class="part-left-right">
                       
 <!--                        <div class="info-num">
@@ -50,7 +50,7 @@
                         </div>-->
                     </div>
 
-                    <div class="part-left-cent">
+                    <div class="part-left-cent parte-primera">
                        
                                 <?php 
                                       //  $realizacion = $event->formatoFecha($eventfound['fecha_muestra'], $eventfound['hora_inicio']);
@@ -69,7 +69,7 @@
                             if($_SESSION['userid'] == $userid)//mostrar mis recomendaciones
                              { ?>
                                 <div class="titlediv">Actividades sugeridas</div>
-                                    <div class="boxscroll boxscrollEvents">
+                                    <div class="boxscrollEvents">
                                                         <!--<div class="eventsfavo">-->
                                                             <?php 
                                 //                          if(isset($_SESSION['userid'])){
@@ -77,8 +77,7 @@
                                                         if(count($usuariofound['tags_buscados']) > 0){
                                                         $pop = $usuario->verEventosFavoritos($usuariofound['tags_buscados']);
                                                         foreach($pop as $dcto){
-                                                            $fotoEvento = $event->verFoto($dcto['_id']);
-                                                            $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
+                                                            $fotoEvento = $event->verFoto($dcto['_id'], 1);
                                                                 $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                                                 $textoComentario = '';
                                                                 if($cantidadComentarios == 0){
@@ -91,16 +90,13 @@
 
                                                            // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                                         ?>
-                                                        <div class="item-event">   
-                                                             <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
-                                                             <div class="info-event">
-                                                                <a class="tittle-event tit"  href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
-                                                                <div class="inner-eventpeq">  
-                                                                    <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
+                                                        <div class="item-event " style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" >   
+                                   
+                                                            <div class="info-event">
+                                                               <a class="tit-eventcerca" href="/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
 
-                                                                 </div>
-                                                            </div>
-                                                        </div>
+                                                           </div>
+                                                       </div>
                                                         <?php 
 
                                                         } }?>
@@ -111,23 +107,22 @@
                    
                    }else{
                         ?>
-                               no logged
+                               
                         
                         <?php }?>
                     </div>
 
                     <div class="part-left-cent">
-                            <div class="titlediv">Lo más comentado del momento</div>
-                                    <div class="boxscroll boxscrollEvents">
+                            <div class="titlediv">Anuncios más visitados</div>
+                                    <div class="boxscrollEvents">
                                                         <!--<div class="eventsfavo">-->
                                                             <?php 
                                 //                          if(isset($_SESSION['userid'])){
                                                         //$pop = $event->findpopular(4);
-                                                        if(count($usuariofound['tags_buscados']) > 0){
-                                                        $pop = $usuario->verEventosFavoritos($usuariofound['tags_buscados']);
+                                                        
+                                                        $pop = $event->findpopular(4);
                                                         foreach($pop as $dcto){
-                                                            $fotoEvento = $event->verFoto($dcto['_id']);
-                                                            $realizacion = $event->formatoFecha($dcto['fecha_muestra'], $dcto['hora_inicio'], 1);
+                                                            $fotoEvento = $event->verFoto($dcto['_id'],1);
                                                                 $cantidadComentarios = $event->verCantidadComentarios($dcto['_id']);
                                                                 $textoComentario = '';
                                                                 if($cantidadComentarios == 0){
@@ -140,19 +135,16 @@
 
                                                            // $url = '../images/productoras/'.$dcto['producido_por'].'/'.$dcto['foto'];
                                                         ?>
-                                                        <div class="item-event">   
-                                                             <div style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" class="foto-event-peq"></div>
-                                                             <div class="info-event">
-                                                                <a class="tittle-event tit"  href="/findbreak/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
-                                                                <div class="inner-eventpeq">  
-                                                                    <div id="fechaevent-prof" class="info-event-item"><?php echo $realizacion['fecha']?></div>                                           
+                                                       <div class="item-event " style="background-image:url(<?php echo $fotoEvento?>); background-size: cover" >   
+                                   
+                                                            <div class="info-event">
+                                                               <a class="tit-eventcerca" href="/break/<?php echo $dcto['hash'];?>"><?php echo $dcto['nombre']; ?></a> 
 
-                                                                 </div>
-                                                            </div>
-                                                        </div>
+                                                           </div>
+                                                       </div>
                                                         <?php 
 
-                                                        } }?>
+                                                        } ?>
                                                     <!--</div>-->
                                 </div>
                     </div>

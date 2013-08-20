@@ -3,11 +3,11 @@
     if(!isset($_SESSION["userid"]))
     {
     ?>
-        <div class="mensaje-publicarevent" >Para publicar un evento debes logearte</div>
+        <div class="mensaje-publicarevent mjscoment" >Para publicar un anuncio debes logearte :)</div>
         <div class="content-inputlog">
             <div class="titulo-login1">
                 <div class="msj-log1 mjscoment">Inicia sesión</div>
-                <div class="msj-log2">o <a class="login-hover-com" href="#">crea una cuenta</a></div>
+                <div class="msj-log2">o <a class="login-hover-com popup-registrate" href="#">crea una cuenta</a></div>
             </div>
             <input type="text" placeholder="Correo electronico" id="mail2">
             <input type="password" placeholder="Contraseña" id="pass2">
@@ -19,13 +19,14 @@
                 <div id="loginbtn-fb"></div>
                 <div class="txtfb">Ingresar con Facebook</div>
             </a>
+            <a href="#" id="forgot-pass">¿ Olvidó su contraseña ?</a>
         </div>
         
     
    <?php     
    }else
         {
-            header("location:/findbreak/publicar");
+            header("location:http://www.nowsup.com/publicar");
             
         }
 ?>                                    

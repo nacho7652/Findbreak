@@ -239,7 +239,7 @@
             }
             //EVENTOS 
              require_once '../DAL/evento.php';
-             $cuadroevento = '<div class="title-search-item title-search-item2">Eventos</div>';
+             $cuadroevento = '<div class="title-search-item title-search-item2">Anuncios</div>';
              
              $evento = new evento();
              $coincidenciaevento = $evento->filtrar($busqueda);

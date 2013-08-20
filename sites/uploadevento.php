@@ -109,9 +109,16 @@
 //                
 //                if(isset($comprobar["_id"]))
 //                {
-                
+                    if($nombreproductora == 'Daniel' || $nombreproductora == 'skumblue')
+                    {
+                        $guardar = $evento->insertar($idproductora, $nombreproductora,$nom , $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+                                   $video, $sitioWeb,$hashtag,2);
+                    }
+                    else
+                    {
                     $guardar = $evento->insertar($idproductora, $nombreproductora,$nom , $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
-                                   $video, $sitioWeb,$hashtag);
+                                   $video, $sitioWeb,$hashtag,0);
+                    }
 //                }
 //                else
 //                {

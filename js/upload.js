@@ -242,10 +242,10 @@ $(document).ready(function(){
                 respFace = nuevaClaveFace( clavenueva1face, clavenueva2face);
                 alert(respFace)
                 if(respFace){ 
-                    alert('falso')
+                    
                     return false;
                 }else{
-                    alert('true')
+                    
                     window.location.reload();
                 }
             }

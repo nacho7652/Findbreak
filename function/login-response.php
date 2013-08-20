@@ -39,7 +39,7 @@ if(isset($_POST['forgot'])){
     $username = $_POST['username'];
     $resp = 0;
     $usuario = new usuario();
-    $encontrado = $usuario->findforusername($username);
+    $encontrado = $usuario->findforusernameANDcorreo($username);
     if(isset($encontrado['_id']))
     {
         $resp=1;
@@ -49,7 +49,7 @@ if(isset($_POST['forgot'])){
 	$headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 	$headers .= "Content-Transfer-Encoding: 8bit\r\n";
-        $body = "Tu nueva contraseña es : ".$clave;
+        $body = "Tu nueva contraseña es : ".$clave." \n\n Esta contraseña está asociada al correo: ".$encontrado['email'];
         mail($encontrado['email'], 'Nowsup - Recuperacion de clave', $body, $headers);
     }
     echo $resp;

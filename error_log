@@ -139,3 +139,19 @@ Stack trace:
 [17-Aug-2013 12:13:58 Chile/Continental] PHP Warning:  unlink() [<a href='function.unlink'>function.unlink</a>]: cURL does not allow unlinking in /home/nowsup/public_html/sites/uploadevento.php on line 149
 [17-Aug-2013 12:22:00 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 148
 [17-Aug-2013 12:22:00 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 149
+[18-Aug-2013 10:44:33 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
+#1 /home/nowsup/public_html/DAL/evento.php(227): evento->findforid('')
+#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
+#3 /home/nowsup/public_html/index.php(529): include_once('/home/nowsup/pu...')
+#4 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[18-Aug-2013 21:15:08 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(529): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[19-Aug-2013 17:31:24 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 155
+[19-Aug-2013 17:31:24 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.jpg) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 156

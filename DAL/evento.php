@@ -263,7 +263,7 @@ class evento {
      }
 
      public function insertar($idproductora, $nombreproductora, $nombre, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
-                                   $video, $sitioWeb,$hashtag){ 
+                                   $video, $sitioWeb,$hashtag,$verificacion){ 
          $arrtags = explode(",", $tag); 
          $arrtags2 = array();
          //sacar el tag vacío
@@ -287,9 +287,11 @@ class evento {
              "visitas"=>0,
              "redes" => array($urlfacebook, $urltwitter,$video),
              "sitio_web"=>$sitioWeb,
-             "verificacion"=>0,
+             "verificacion"=>$verificacion,
              "fecha-publicacion"=>$hoyMustra,
-             "fecha-publicacion-mongo"=>$fechMongo
+             "fecha-publicacion-mongo"=>$fechMongo,
+             "vigencia"=>0,
+             "estado"=>1
         );
 //         $event = array(
 //            "nombre" => $nombre,

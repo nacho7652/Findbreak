@@ -39,7 +39,25 @@
 
 <div class="more-fotos">
              <?php
-                if(!empty($_SESSION['userid']))
+               
+                   $fotos = $eventfound['fotos'];
+                   
+                   if(count($eventfound['fotos']) >= 1){
+                       for($i=0; $i<count($eventfound['fotos']) ; $i++){
+                           
+                           $url = '/images/anuncios/'.$fotos[$i]['gr'];
+//                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
+                           ?>
+                       <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
+                <?php
+                     }
+                   }
+                   $urlPrincipal = '/images/anuncios/'.$fotos[0]['gr'];
+               ?>
+</div>
+<div class="content-perfilevento">
+    <?php 
+     if(!empty($_SESSION['userid']))
                 {
                 $mio = false;
                 if($_SESSION['userid'] == $eventfound['producido_por']['_id'])
@@ -80,23 +98,7 @@
                 }
                 }
                 
-                
-                   $fotos = $eventfound['fotos'];
-                   
-                   if(count($eventfound['fotos']) >= 1){
-                       for($i=0; $i<count($eventfound['fotos']) ; $i++){
-                           
-                           $url = '/images/anuncios/'.$fotos[$i]['gr'];
-//                           $url = 'http://cdn.lifeboxset.com/wp-content/uploads/2010/09/millencolin-flyer.jpg';
-                           ?>
-                       <div class="foto-event-small" style="background-size: cover; background-image: url(<?php echo $url ?>)"></div>
-                <?php
-                     }
-                   }
-                   $urlPrincipal = '/images/anuncios/'.$fotos[0]['gr'];
-               ?>
-</div>
-<div class="content-perfilevento">
+                ?>
     
     <div id="content-mapaenvento">
         <div id='map_establecimientos' style='width:100%; height:250px;'></div>
@@ -220,19 +222,13 @@
                     }else{
                         $video = '';//link roto poner video fbk
                     }
-                    $youtube = '<iframe width="639" height="400" src="//www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
+                    $youtube = '<iframe width="513" height="290" src="//www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
                 
                      echo ' <div id="videoEvento">'.$youtube.'</div>';
                 }
                 ?>
                
          
-            <!--<div class="tit tit1">Establecimientos cercanos al evento</div>-->
-          
-            <div class="description-event">
-                <?php echo $eventfound['descripcion']; ?>
-            </div>
-            <div class="title-coment-event">Comentarios</div>
     </div>
     
 <!--    <div class="part-bottom">
@@ -389,8 +385,8 @@
     </div>
 
      <div id="list-similares" class="part-right divtrans">
-        <div class="titlediv">Actividades más visitadas</div>
-        <div class="boxscroll boxscrollEvents">
+        <div class="titlediv">Anuncios más visitados</div>
+        <div class="boxscrollEvents">
                             <!--<div class="eventsfavo">-->
                                 <?php 
 //                                if(isset($_SESSION['userid'])){

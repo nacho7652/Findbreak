@@ -55,8 +55,6 @@
     </head>
      
      <body>
-	 <html>
-</html>
          <!--para redes sociales-->
                     <?php 
                     if($page_site=='cerca')
@@ -173,13 +171,17 @@
                 </div>
                 
                 <div class="top-center">
+                    
                     <!--<div id="hover-response">-->
                      <?php if($page_site != 'cerca'){?>
                         <div class="input-textparent1">
                             <input placeholder="Busca lo que quieras" type="text" id="search" class="input-transf">
                             <input id="boton-buscar" type="button" class="sprites" />
                         </div>
-                    <?php }?>
+                    <?php }else{ ?>
+                        <a href="http://www.nowsup.com/publicar" class=" boton-publicar">Publicar !</a>
+                    <?php }
+                     ?>
                         <div id="response-friend" >
                                 
                         </div>    
@@ -188,8 +190,11 @@
                     
                 </div>
                  <div class="top-right">
-                                        
+                                       
                             <?php
+                            if($page_site != 'cerca'){
+                               echo '<a href="http://www.nowsup.com/publicar" class=" boton-publicar2">Publicar !</a>'; 
+                            }
                             if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
                                 $us = new usuario();
                                 $user_profile = $_SESSION['userprofile'];
@@ -235,11 +240,12 @@
                                       <input   type="text" placeholder="Correo electronico" id="mail">
                                       <input type="password" placeholder="Contraseña" id="pass">
                                       <a href="#" class="botonblue" id="boton-login">Entrar</a>
+                                      
                                        <a class="loginface-top login-face login-fb"  href="#<?php //echo $loginUrl; ?>">
                                             <div id="loginbtn-fb"></div>
                                             <div class="txtfb">Ingresar con Facebook</div>
                                         </a>
-                                      <a href="#" id="forgot-pass">Olvido su contraseña</a>
+                                      <a href="#" id="forgot-pass">¿ Olvidó su contraseña ?</a>
                                       <!--<fb:login-button show-faces="false" width="200" max-rows="1"></fb:login-button>-->
                                    </div>
                                    <?php 
@@ -248,7 +254,7 @@
 //                                       echo $user_profile['email'];
 //                                       
 //                                       } ?> 
-                                   <a href="#" class="registrate">Registrate</a>
+                                   <a href="#" class="registrate popup-registrate">Registrate</a>
                                    <a href="#" class="productora-registro">¿Deseas publicar?</a>
                                </div>
                  

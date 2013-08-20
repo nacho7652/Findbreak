@@ -1,4 +1,5 @@
 <?php
+ 
     if(isset($_REQUEST['noti-compra'])){
          session_start();
          require_once '../DAL/connect.php';  
@@ -66,7 +67,7 @@
                               <div class="info-user">';
          $divProfileUser.=     '
                                 <div class="bloque-info info-event-item">
-                                            <a href="/!'.$usuariofound['username'].'" class="title-user tit-gray">'.ucwords($usuariofound['nombre']).'</a>
+                                            <a href="/findbreak/!'.$usuariofound['username'].'" class="title-user tit-gray">'.ucwords($usuariofound['nombre']).'</a>
                                             <div class="username">'.$usuariofound['username'].'</div>
                                             <div class="info-num">
                                                   <div class="item-info-num">
@@ -104,7 +105,7 @@
 //            foreach($seguidores as $item){
 //                $divProfileUser.=   '<div data-id="'.$item['_id'].'" class="item-friends-user">
 //                                        <div style="background-image:url('.$item['foto'].')" class="item-friends-userpic"></div>
-//                                        <a href="/!#'.$item['_id'].'" class="item-friends-username">'.ucwords($item['nombre']).'</a>
+//                                        <a href="/findbreak/!#'.$item['_id'].'" class="item-friends-username">'.ucwords($item['nombre']).'</a>
 //                                    </div>';
 //            }
 //             $divProfileUser.=   '</div>';
@@ -135,7 +136,24 @@
 //        
 //    }
 
-    
+    if(isset($_REQUEST['forgot-usuario'])){
+        $pop = '<div class="content-registro">
+                    <div class="item-publicarevent-titulo">
+                          <div class="title-publicar"><div class="logo"></div></div>
+                    </div>
+                   <div class="item-publicar item-olvidoClave">
+                      <div class="nombre-publicarevent">Escribe tu correo electrónico o nombre de usuario</div>
+                      
+                      <input placeholder="tucorreo@nowsup.com o nombredeusuario" class="field-publicar" type="text" id="correo-username"/>
+                     
+                   </div>
+                   <div class="item-publicarevent-large item-botonregistro">
+                  
+                   <input type="submit" id="forgot-usuario" class="botongreen" value="Enviar clave a mi correo"/>
+                 </div>
+              </div>';
+        echo $pop;
+    }
     if(isset($_POST['popup-registrousuario'])){
         $divPublicar = '<div class="content-registro">
                                 <div class="item-publicarevent-titulo">
@@ -148,7 +166,7 @@
                                 
                                 <div class="item-publicar">
                                  <div class="nombre-publicarevent">Dirección de correo electrónico</div>
-                                 <input placeholder="ejemplo@nowsup.com" class="field-publicar" type="text" id="correo-usuario"/>
+                                 <input placeholder="ejemplo@findbreak.com" class="field-publicar" type="text" id="correo-usuario"/>
                                 </div>
                                 
                                 <div class="item-publicar">

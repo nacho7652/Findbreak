@@ -816,3 +816,21 @@ Stack trace:
 #1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
 #2 {main}
   thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[19-Aug-2013 10:56:28 America/New_York] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/DAL/usuario.php:154
+Stack trace:
+#0 /home/nowsup/public_html/DAL/usuario.php(154): MongoCollection->findOne(Array)
+#1 /home/nowsup/public_html/function/login-response.php(42): usuario->findforusernameANDcorreo('skumblue@live.c...')
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/usuario.php on line 154
+[19-Aug-2013 10:58:52 America/New_York] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/DAL/usuario.php:154
+Stack trace:
+#0 /home/nowsup/public_html/DAL/usuario.php(154): MongoCollection->findOne(Array)
+#1 /home/nowsup/public_html/function/login-response.php(42): usuario->findforusernameANDcorreo('skumblue')
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/usuario.php on line 154
+[19-Aug-2013 11:00:18 America/New_York] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/DAL/usuario.php:154
+Stack trace:
+#0 /home/nowsup/public_html/DAL/usuario.php(154): MongoCollection->findOne(Array)
+#1 /home/nowsup/public_html/function/login-response.php(42): usuario->findforusernameANDcorreo('skumblue')
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/usuario.php on line 154

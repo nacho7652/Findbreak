@@ -23,14 +23,16 @@ $(document).ready(function(){
 
 // Recordar contraseña
     $('#forgot-pass').click(function(){
-        var pop = '<div class="content-registro"><div class="item-publicar"><div class="nombre-publicarevent">Escribe tu nombre de usuario</div><input placeholder="bastian.toro24" class="field-publicar" type="text" id="user-name"/><div class="mensaje-error error-username"></div><div class="username-corr"></div><div class="username-incorr"></div></div><div class="item-publicarevent-large item-botonregistro"><div class="todosloscampos mensaje-error"><div class="content-mensaje"></div></div><input type="submit" id="forgot-usuario" class="botongreen" value="Recordar"/></div></div>';
-        popup(pop);                
+         $.post(path+'json/zoom.php', {'forgot-usuario':1},
+                    function(data){
+                                 popup(data); 
+                    }, "html");
+                      
     });
     
     $('body').delegate('#forgot-usuario','click',function(event){
         event.preventDefault();
-        var username = $('#user-name').val();
-        
+        var username = $('#correo-username').val();
         $.ajax({
            type:"POST" ,
            dataType:"html",
@@ -40,12 +42,13 @@ $(document).ready(function(){
            {
                if(data == 1)
                    {
-                       alert('La contraseña ha sido enviada a su correo');
-                       window.location.reload();
+                       coverallclose();
+                       loader('La contraseña ha sido enviada a su correo');
+                      // window.location.reload();
                    }
                else
                    {
-                      alert('El usuario no existe');
+                      loader('El usuario no existe');
                       window.location.reload();
                    }
            }
@@ -86,7 +89,7 @@ $(document).ready(function(){
                       }
                   }); 
             }else{
-                alert('no login facebook :(')
+                loader('no login facebook :(')
             }
         })
     })
@@ -1244,7 +1247,7 @@ $(document).ready(function(){
      
   });
       //LOGIN
-      $('.registrate').click(function(){
+      $('.popup-registrate').click(function(){
           
           $.post(path+"json/zoom.php", {'popup-registrousuario':1}, function(data){
                 popup(data);

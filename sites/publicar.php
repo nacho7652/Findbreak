@@ -8,14 +8,14 @@
 <input type="hidden" name="guardarevento"/>
 <div class="content-publicarevent">
                                  <div class="item-publicar">
-                                    <div class="title-publicarevent">¿Quieres publicar un evento?</div>
+                                    <div class="title-publicarevent">¿Quieres publicar?</div>
                                  </div>
                                 <div class="item-publicar item-publicar-queganas">   
                                     <div id="info-mostrar">
-                                    ¿Que ganas tú al publicar un anuncio o evento? <br>
+                                    ¿Que ganas tú al publicar? <br>
                                     
-                                    <b> Claramente potenciar la publicidad de tus anuncios.</b><br>
-                                    <b>Que tus anuncios sean vistos por las personas que ingresen a la aplicacion cerca de la ubicacion del anuncio o suceso.</b><br>
+                                    <b>Claramente potenciar tu publicidad.</b><br>
+                                    <b>Que tu publicación sea vista por las personas que entren al sitio cerca de la ubicación de la publicación.</b><br>
                                     <b>Publica gratuitamente!</b>
 <!--                                    <a href="#">ver tabla de premios!</a>-->
                                     </div>
@@ -191,7 +191,7 @@
         }
         else
         {
-            header("location:/findbreak/login");
+            header("location:http://www.nowsup.com/login");
             
         }
 ?>

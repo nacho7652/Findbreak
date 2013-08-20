@@ -140,7 +140,28 @@ html {
     overflow: hidden;            
     background: url('http://d1l2emnu9r9dtc.cloudfront.net/img/bg.jpg');
 }
-
+#forgot-usuario {
+    float: left;
+    width: 185px;
+    padding: 11px 0px;
+    font-size: 13px;
+    margin: 20px 0px 0px 253px;
+    font-weight: bold;
+}
+.login #forgot-pass {
+    margin: 11px 0px 0px 120px;
+}   
+#forgot-pass {
+    color: #6F6F6F;
+    font-size: 11px;
+    clear: both;
+    float: left;
+    margin: 0px 0px 3px 71px;
+    text-decoration: none;
+}
+#forgot-pass:hover{
+    text-decoration: underline;
+}
 #covermsj {
     width: 100%;
     height: 100%;
@@ -302,7 +323,7 @@ html {
     background-image: linear-gradient(#A5235B,#962154);*/
 }
 #content-top {
-    width: 1000px;
+    width: 1100px;
     height: 53px;
     margin: 0px auto;
     position: relative;
@@ -334,10 +355,10 @@ html {
     display: none;
 }
 .logo {
-    width: 181px;
-    height: 50px;
-    background: url('/findbreak/images/logo-nowsup2.png')no-repeat;
-    margin-top: -4px;
+    width: 196px;
+    height: 68px;
+    background: url('/findbreak/images/logo-nowsup3.png')no-repeat;
+    margin-top: -12px;
 }
 #content-top .top-center {
     float: left;
@@ -347,7 +368,7 @@ html {
 }
 #content-top .top-right {
     float: left;
-    width: 447px;
+    width: 547px;
     height: 53px;
     position: relative;
     margin-left: 4px;
@@ -1030,7 +1051,7 @@ overflow: hidden;
 #content-login {
     width: 950px;
     margin: 0px auto 0 auto;
-    padding-top: 30px;
+    padding-top: 66px;
 }
 #content-login .login-fb {
     margin: 22px 134px 0px 0px;
@@ -1232,7 +1253,8 @@ overflow: hidden;
     display: none;
 }
 .num-event {
-color: rgb(88, 88, 88) !important;
+    background-color: #134394;
+color: #FFFFFF !important;
 position: absolute;
 font-size: 0.7em;
 border-radius: 15px;
@@ -1393,11 +1415,11 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     background: rgba(36, 115, 167, 1);
     background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1)) !important;
     display: block;
-    width: 92px;
+    width: 95px;
     border-radius: 2px;
     text-align: center;
     float: right;
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin: -6px 11px 0px 0px;
     padding: 7px 18px;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
@@ -1625,8 +1647,8 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .pub-ladoder {
     width: 120px;
     height: 540px;
-    margin: 9px 10px 0px 2px;
-    float: left;
+    margin: 9px 2px 0px 0px;
+    float: right;
 }
 .publicidad-large {
     width: 728px;
@@ -1716,7 +1738,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     background: rgba(255,255,255,0.8);
 }
 .perfiluser .item-event {
-    width: 276px;
+    width: 286px;
 }
 .perfiluser .info-event {
     width: 218px;
@@ -1745,10 +1767,13 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 311px;
     height: 82px;
     float: left;
-    margin: 1px 0px 0px 0px;
+    margin: 0px 0px 1px 0px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
     color: #444;
     box-shadow: 0px 25px 62px -12px #000 inset;
+}
+.parte-primera{
+    margin-bottom: 10px;
 }
 .divseventsord .title {
     font-weight: bold;
@@ -1977,6 +2002,7 @@ padding: 0px 25px;
     width: 1000px;
     margin: -3px auto 0px auto;
     overflow: visible;
+    position: relative;
 }
 .perfiluser{
     padding-top: 56px !important;
@@ -1995,6 +2021,46 @@ padding: 0px 25px;
     margin: 51px 0px 0px 0px;
     z-index: -36;
 }
+.boton-publicar2 {
+    text-decoration: none;
+    margin: 10px 0px 0px 15px;
+    font-size: 18px;
+    display: block;
+    width: 92px;
+    border-radius: 2px;
+    text-align: center;
+    float: left;
+    padding: 4px 14px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-repeat: repeat-x;
+    border: 1px solid rgba(65, 115, 169, 0.34);
+    border: 1px solid rgba(65, 169, 94, 0);
+    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
+    color: #FFF;
+    border: 1px solid rgba(48, 156, 39, 1);
+    border-top-color: rgba(77, 184, 67, 1);
+    border-bottom-color: rgba(41, 134, 33, 1);
+}
+.boton-publicar {
+    text-decoration: none;
+    margin: 10px 1px 0px 0px;
+    font-size: 18px;
+    display: block;
+    width: 92px;
+    border-radius: 2px;
+    text-align: center;
+    float: right;
+    padding: 4px 14px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-repeat: repeat-x;
+    border: 1px solid rgba(65, 115, 169, 0.34);
+    border: 1px solid rgba(65, 169, 94, 0);
+    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
+    color: #FFF;
+    border: 1px solid rgba(48, 156, 39, 1);
+    border-top-color: rgba(77, 184, 67, 1);
+    border-bottom-color: rgba(41, 134, 33, 1);
+}
 .parte-left-parent {
     width: 526px;
     float: left;
@@ -2006,6 +2072,8 @@ padding: 0px 25px;
 .parte-der {
     float: left;
     width: 445px;
+    min-height: 782px;
+    margin-top: 4px;
 }
 .part-left {
     width: 512px;
@@ -2343,12 +2411,12 @@ float: left;
     color: #444;
 }
 #videoEvento {
-    width: 639px;
+    width: 513px;
     height: 400px;
 }
 .cercanos {
     width: 591px;
-    height: 192px;
+    max-height: 29px;
     margin: 6px 0px 0px 8px;
     float: left;
 }
@@ -2678,8 +2746,8 @@ margin: -3px -5px 0px 6px;
 
 #denunciar-evento {
     position: absolute;
-    top: 306px;
-    left: 192px;
+    top: 204px;
+    left: 19px;
     padding: 0px 9px;
     
     text-shadow: 0px 1px 0px #444;
@@ -2690,8 +2758,8 @@ margin: -3px -5px 0px 6px;
 #editar-mievento {
     text-decoration: none;
     position: absolute;
-    top: 305px;
-    left: 187px;
+    top: 204px;
+    left: 19px;
     width: 146px;
     padding: 5px 5px;
     
@@ -3304,15 +3372,6 @@ margin: 3px 0px 0px 7px;
     border-radius: 3px;
     border: none;
 }
-
-#forgot-usuario{
-    float: left;
-    width: 185px;
-    padding: 11px 0px;
-    font-size: 13px;
-    margin: 20px 0px 0px 253px;
-    font-weight: bold;
-}
 #guardarusuario{
     float: left;
     
@@ -3321,6 +3380,9 @@ margin: 3px 0px 0px 7px;
     font-size: 13px;
     margin: 20px 0px 0px 253px;
     font-weight: bold;
+}
+.mensaje-publicarevent.mjscoment {
+    font-size: 17px;
 }
 /*END PRODUCTORA*/
 footer{

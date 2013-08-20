@@ -129,7 +129,7 @@ class usuario {
     public function login($mail, $pass)
     {
         $passEncript = md5($pass);
-        $result = $this->db->usuario->findOne(array("email"=>$mail,"clave"=>$passEncript ));
+        $result = $this->db->usuario->findOne(array("email"=>  strtolower($mail),"clave"=>$passEncript ));
         return $result;
          //this->db->$coll->find(array("nombre"=>"LOLAPALUSA", "direccion"=>"San carlos #294"))
     }
@@ -149,6 +149,9 @@ class usuario {
      
      public function findforusername($username){
          return $this->db->usuario->findOne(array("username" => $username));
+     }
+     public function findforusernameANDcorreo($username){
+         return $this->db->usuario->findOne(array('$or' =>array(array("username" => $username), array('email'=>$username))));
      }
      public function comprobarClave($clave){
          $clave = md5($clave);
@@ -563,21 +566,25 @@ class usuario {
          return $hoy;
      }
      
-    public function verEventosFavoritos($tagsfavoritos){
+    public function verEventosFavoritos($tagsfavoritos, $limit = null){
         $result = array();
+        if($limit == null){
+            $limit = 4;
+        }
         for($i=0 ; $i < count($tagsfavoritos); $i++){
            $tags =  array("tags" => new MongoRegex("/".$tagsfavoritos[$i]['tag']."/")); // '%rock%'
            $result[]= $tags;
         }
+        //,  'fecha_realizacion'=> array('$gte' => $this->hoy())
         return $this->db->evento->find(array('$or' => $result//array($a
                                                             //$result
 //                                                           array("tags" => new MongoRegex("/hard/")), 
 //                                                            array("tags" => new MongoRegex("/lsls/"))
                                                             //array("tags" => new MongoRegex("/asc/"))
                                                           //)
-                                             ,  'fecha_realizacion'=> array('$gte' => $this->hoy())
+                                             
                                            )
-                                      );
+                                      )->sort(array("visitas" => -1 ))->limit($limit);
     }
 }
    ?>  
