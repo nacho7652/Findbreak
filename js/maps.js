@@ -282,8 +282,12 @@ function geolocalizarPorTags(){
                    
                     if(numberOfCase == 0){
                         
-                        geolocalizarPorTags();
-                        return false;                       
+//                        geolocalizarPorTags();
+//                        return false;         
+                        $('.tipoBusqueda').html('cerca de <b>'+$('#search-near').val()+'</b>');
+                        $('.inner-list-maps').hide();
+                        $('.no-resultados').show();
+                        return false;
                     }else{
                         if(geolocation){
                             geolocation = false;
@@ -490,13 +494,20 @@ function geolocalizarPorTags(){
    $('#search-location').keypress(function(e){
        if(e.keyCode == 13){
            desactivarLocation()
-           geolocalizarManual($(this).val())
-           // geolocalizarPorTags($(this).val())
+           //geolocalizarManual($(this).val())
+            geolocalizarPorTags($(this).val())
        }
    })
+   $('#search-near').keypress(function(e){
+       if(e.keyCode == 13){
+           desactivarLocation()
+           geolocalizarManual($(this).val())
+       }
+   })
+   
    $('#boton-buscarcerca').click(function(e){
        desactivarLocation()
-       geolocalizarManual($('#search-location').val())
+       geolocalizarPorTags($('#search-location').val())
    })
    //cuando quiere location automática
    $('#boton-location').hover(function(){
@@ -514,6 +525,7 @@ function geolocalizarPorTags(){
            
    }
    function activarLocation(){
+           $('#search-near').val('')
            $('.mensaje-location').html('Usando tu ubicación actual');
            $('.mensaje-location').fadeIn(200);
            $('#boton-location').removeClass('loc-desactivado');

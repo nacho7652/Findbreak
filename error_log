@@ -257,3 +257,23 @@ Stack trace:
 #1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
 #2 {main}
   thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[21-Aug-2013 01:10:50 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(547): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[21-Aug-2013 01:41:07 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(547): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[21-Aug-2013 01:49:57 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 155
+[21-Aug-2013 01:49:57 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.jpg) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 156
+[21-Aug-2013 10:09:51 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(547): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358

@@ -3,12 +3,26 @@
         <div class="divevents">
              <div class="tutorial-mapa">
                             <div class="equis-tutorial"></div>
-                             <div class="flecha-mapa"></div>
-                             <div class="mapa-explic1">
-                                 <span>Pulsa aquí para buscar anuncios</span>
-                                 <span>- Busca fiestas, venta de artículos y mucho más !</span>
-                                 <span>- Busca anuncios en tu calle, comuna o ciudad</span>
-                             </div>
+                            <div class="paso1-tutorial">
+                                <div class="flecha-mapa"></div>
+                                <div class="mapa-explic1">
+                                    <span>Pulsa aquí para buscar anuncios</span>
+                                    <span>- Busca fiestas, venta de artículos y mucho más !</span>
+                                    <span>- Busca anuncios en tu calle, comuna o ciudad</span>
+                                </div>
+                            </div>
+                            <div class="paso2-tutorial">
+                                <div class="flecha-mapa"></div>
+                                <div class="mapa-explic1">
+                                    <span>Pulsa aquí para ver anuncios cerca de tu ubicación actual </span>
+                                </div>
+                            </div>
+                            <div class="lista-pasos">
+                                <div class="mapa-explic1">Sigue los siguientes pasos :)</div>
+                                <div id="paso1" class="paso paso-selected">1</div>
+                                <div id="paso2" class="paso">2</div>
+                                <div id="paso3" class="paso">3</div>
+                            </div>
              </div>
                      <div class="title">
                         
@@ -23,10 +37,10 @@
                           </div> 
                           <input id="boton-location" type="button" class="sprites loc-activado" />
                           <div class="mensaje-location">Usando tu ubicación actual</div>
-<!--                          <div class="input-textparent3">
-                            <input type="text" value="UBICACIÓN ACTUAL" id="search-location" class="input-transf"/>
-                            <input id="boton-location" type="button" class="sprites loc-activado" />
-                          </div>-->
+                          <div class="input-textparent3">
+                            <input type="text" placeholder="Ubicación actual" id="search-near" class="input-transf"/>
+                            
+                          </div>
                       </div>
                
             <div class="list-maps">

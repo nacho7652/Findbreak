@@ -189,6 +189,7 @@
                         </div>
                     <?php }else{ ?>
                         <a href="http://www.nowsup.com/publicar" class=" boton-publicar">Publicar !</a>
+                        
                     <?php }
                      ?>
                         <div id="response-friend" >
@@ -201,8 +202,10 @@
                  <div class="top-right">
                                        
                             <?php
-                            if($page_site != 'cerca'){
+                            if($page_site != 'cerca'){//salga en todos los sites menos en cerca
                                echo '<a href="http://www.nowsup.com/publicar" class=" boton-publicar2">Publicar !</a>'; 
+                            }else{//salga en el cerca
+                                echo '<a href="#" class="explicacion-mapa">¿Cómo funciona Nowsup?</a>';
                             }
                             if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
                                 $us = new usuario();
@@ -396,27 +399,20 @@
 //                                             if($contsol == 0){
 //                                                     $divMenciones = '<div class="nohaycoinci"> No tienes notificaciones :)</div>';
 //                                             }
-                                          if(isset($_SESSION['userprofile']) != null){
+                                          
                                    ?>
-                                        <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-photo">
-                                            
-                                        </a>
-                                   <?php }
-                                   else
-                                   {?>
-                                    <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-photo">
-                                 
-                                        </a>
-                                   
-                                   <?php } ?>
-                                        <a href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-name" >
-                                             <div class="content-option">
-                                                 <?php echo $_SESSION['username'] ?>
-                                             </div>
-                                        </a>
-                                   
-                                        <div class="option noti-friend">
-                                            <div class="content-option">Notificaciones (<span id="cant-solicitud"><?php echo $contsol ?></span>)</div>
+                                        
+                                       
+                                  
+                                      
+                                        <div class="option noti-friend sprites">
+                                            <div class="content-option ">
+                                                <?php if($contsol > 0){?>
+                                                    <span id="cant-solicitud">
+                                                          <?= $contsol?>
+                                                    </span>
+                                                <?php }?>
+                                            </div>
                                             
                                         </div>
                                         <div id="show-solicitud" class="boxscroll" style="display:none">
@@ -439,9 +435,19 @@
                                                 Mapa
                                             </div>
                                         </a>
+
+                                        <a href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-name" >
+                                             <div class="content-option">
+                                                 <?php echo $_SESSION['username'] ?>
+                                             </div>
+                                        </a>
+                                         <a style="background: url('<?php echo $_SESSION['foto']['pe']?>') no-repeat" href="<?= PATH?>!<?php echo $_SESSION['username']?>" class="option user-photo">
+                                 
+                                        </a>
+
                                          <div class="option  menu">
-                                            <div class="content-option content-option-last">
-                                                Opciones
+                                            <div class="content-option content-option-last sprites">
+                                                
                                             </div>
                                         </div>
                                          

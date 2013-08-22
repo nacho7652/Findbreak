@@ -21,9 +21,38 @@ $(document).ready(function(){
 //              }
 //            });
 
+
+$('.explicacion-mapa').click(function(){
+    $('.tutorial-mapa').show();
+    $('#allbackground').show();
+    
+})
+
 $('.equis-tutorial').click(function(){
     $('.tutorial-mapa').hide();
     $('#allbackground').hide();
+})
+
+$('#paso1').click(function(){
+    $('.paso').removeClass('paso-selected')
+    $('.paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
+         $('#paso1').addClass('paso-selected')
+         $('.paso1-tutorial').fadeIn(300);
+    });
+})
+$('#paso2').click(function(){
+    $('.paso').removeClass('paso-selected')
+    $('.paso1-tutorial, .paso3-tutorial').fadeOut(300, function(){
+         $('#paso2').addClass('paso-selected')
+         $('.paso2-tutorial').fadeIn(300);
+    });
+})
+$('#paso3').click(function(){
+    $('.paso').removeClass('paso-selected')
+    $('.paso1-tutorial, .paso2-tutorial').fadeOut(300, function(){
+         $('#paso3').addClass('paso-selected')
+         $('.paso3-tutorial').fadeIn(300);
+    });
 })
 // Recordar contraseña
     $('.popup-forgot').click(function(){

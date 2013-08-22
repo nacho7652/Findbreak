@@ -93,16 +93,54 @@ html {
     border-top-right-radius: 2px;  
     background: url(/findbreak/images/iconos-bg.png), -webkit-linear-gradient(top,rgba(255, 255, 255, 1), rgba(35, 106, 151, 1));  
 }
+.paso {
+    background: #F1F1F1;
+    width: 55px;
+    height: 55px;
+    border-radius: 111px;
+    margin-bottom: 29px;
+    text-align: center;
+    line-height: 55px;
+    font-weight: bold;
+    color: #505050;
+    font-size: 14px;
+}
+.paso-selected{
+    background: #BB1F1F !important;
+    color: #FFFFFF !important;
+}
+.paso:hover{
+    cursor: pointer;
+    background: #BB1F1F;
+    color: #FFFFFF !important;
+}
+.lista-pasos .mapa-explic1 {
+    color: #fff;
+    width: 300px;
+    height: 42px;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    top: -27px;
+    left: -217px;
+    text-shadow: 0px 1px 1px #000;
+}
+.lista-pasos {
+    position: absolute;
+    left: 1179px;
+    width: 62px;
+    top: 101px;
+}
 .tutorial-mapa {
     position: fixed;
     top: 0px;
     left: 0px;
     width: 600px;
     height: 200px;
-    /* background: #fff; */
+    display: none;
     z-index: 5000000000000;
 }
-.flecha-mapa {
+.paso1-tutorial .flecha-mapa {
     background: url('/images/flecha.png') no-repeat;
     width: 167px;
     height: 93px;
@@ -110,11 +148,22 @@ html {
     position: absolute;
     left: 31px;
 }
+.paso2-tutorial{
+    display: none;
+}
+.paso2-tutorial .flecha-mapa {
+    background: url('/images/flecha.png') no-repeat;
+    width: 167px;
+    height: 93px;
+    top: 114px;
+    position: absolute;
+    left: 413px;
+}
 .mapa-explic1 span {
     width: 459px;
     display: block;
 }
-.mapa-explic1 {
+.paso1-tutorial .mapa-explic1 {
     color: #fff;
     font-weight: bold;
     font-size: 18px;
@@ -123,13 +172,22 @@ html {
     left: 203px;
     text-shadow: 0px 1px 1px #000;
 }
+.paso2-tutorial .mapa-explic1 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 156px;
+    left: 581px;
+    text-shadow: 0px 1px 1px #000;
+}
 #allbackground{
     position: fixed;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
-    /* display: none; */
+     display: none; 
     background: rgba(0, 0, 0, 0.87);
     z-index: 50000000000000000000000000000000000000;
 }
@@ -353,7 +411,7 @@ html {
     background-image: linear-gradient(#A5235B,#962154);*/
 }
 #content-top {
-    width: 1100px;
+    width: 1135px;
     height: 53px;
     margin: 0px auto;
     position: relative;
@@ -396,9 +454,16 @@ html {
     height: 53px;
     position: relative;
 }
+.explicacion-mapa {
+    float: left;
+    margin: 20px 0px 0px 9px;
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+}
 #content-top .top-right {
     float: left;
-    width: 547px;
+    width: 574px;
     height: 53px;
     position: relative;
     margin-left: 4px;
@@ -455,9 +520,9 @@ html {
 }
 .mensaje-location {
     
-    top: 84px;
+    top: 89px;
     position: absolute;
-    right: -137px;
+    right: -172px;
     border-radius: 2px;
     background: rgba(53, 53, 53, 0.75) -181px -115px;
     font-size: 0.7em;
@@ -467,21 +532,21 @@ html {
     text-align: center;
 }
 #boton-location {
-    width: 40px;
+    width: 29px;
     height: 31px;
     position: absolute;
-    top: 84px;
-    right: 31px;
+    top: 88px;
+    right: 17px;
     border: none;
     
     
     
 }
 .loc-activado{
-    background-position: -4px -448px;
+    background-position: -12px -449px;
 }
 .loc-desactivado{
-    background-position: -47px -447px;
+    background-position: -56px -447px;
 }
 .input-textparent-ini{
     border-radius: 2px;  
@@ -508,8 +573,8 @@ html {
 }
 .input-textparent2{
     border-radius: 2px;  
-    height: 39px;
-    width: 385px;
+    height: 46px;
+    width: 232px;
     margin-top: 5px;
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
@@ -519,8 +584,8 @@ html {
 }
 .input-textparent3{
     border-radius: 2px;  
-    height: 31px;
-    width: 184px;
+    height: 47px;
+    width: 200px;
     margin-top: 5px;
     margin-left: 8px;
     border: 1px solid rgb(209, 209, 209);  
@@ -552,8 +617,8 @@ html {
     height: 36px;
     background-position: -38px -408px;
     position: absolute;
-    top: 81px;
-    right: 83px;
+    top: 83px;
+    right: 225px;
     border: none;
 }
 #content-top #search{
@@ -593,15 +658,15 @@ html {
     display: none;
 }
 #search-near {
-    width: 221px;
-    margin: 0px 0px 0px 0px;
-    padding: 8px 5px;
-    font-size: 11px;
+    width: 188px;
+    margin: 0px 0px 0px 2px;
+    padding: 15px 4px;
+    font-size: 14px;
 }
 #search-location {
-    width: 335px;
+    width: 188px;
     margin: 0px 0px 0px 2px;
-    padding: 11px 4px;
+    padding: 15px 4px;
     font-size: 14px;
 }
 .registro-msj {
@@ -627,10 +692,10 @@ html {
     float: right;
     height: 38px;
     margin-top: 0px;
-    max-width: 438px;
+    max-width: 468px;
     color: #fff;
     position: relative;
-    margin-left: 27px;
+    margin-left: 9px;
 }
 #user-login .groupoption {
     width: 196px;
@@ -639,7 +704,7 @@ html {
     font-size: 12px;
     position: absolute;
     right: 0px;
-    top: 43px;
+    top: 51px;
     display: none;  
     box-shadow: 0px 1px 10px -2px rgb(117, 117, 117);  
     border-radius: 2px;
@@ -657,6 +722,13 @@ html {
 .itemgroup-option:hover{
     background: rgba(237, 237, 237, 1) !important;
     cursor: pointer;
+}
+.option.menu {
+    width: 22px;
+}
+.menu .content-option {
+    height: 17px;
+    background-position: -5px -422px;
 }
 #user-login .option{
     float: left;
@@ -682,7 +754,7 @@ overflow: hidden;
 }
 
 #user-login #optionhome{
-    border-right: 1px solid rgb(59, 91, 173);
+    border-right: 1px solid rgba(214, 214, 214, 0.63);
 }
 
 #user-login .option:hover{
@@ -690,14 +762,20 @@ overflow: hidden;
     cursor: pointer;
 }
 #user-login .content-option {
-    border-right: 1px solid rgb(59, 91, 173);
+    border-right: 1px solid rgba(214, 214, 214, 0.63);
     padding: 0px 15px 0px 15px;
+    min-height: 17px;
 }
 #user-login .content-option-first {
     border-left: none !important;
 }
 #user-login .content-option-last {
     border-right: none !important;
+}
+.option.noti-friend.sprites {
+    height: 17px;
+    background-position: -10px -363px;
+    width: 46px;
 }
 #show-solicitud .item-friends-userpic {
     width: 40px;
@@ -733,8 +811,8 @@ overflow: hidden;
     max-height: 343px;
     background-color: #fff;
     position: absolute;
-    top: 43px;
-    left: -11px;
+    top: 51px;
+    left: -244px;
     border-top: 1px solid #e4e5e8;  
     border-left: 1px solid #e4e5e8;
     border-right: 1px solid #e4e5e8;
@@ -1246,7 +1324,7 @@ overflow: hidden;
     width: 456px;
     height: 156px;
     color: #FFF;
-    padding: 7px 0px 2px 17px;
+    padding: 7px 0px 2px 13px;
     position: fixed;
     z-index: 70000;
     left: 0px;
@@ -2057,8 +2135,8 @@ padding: 0px 25px;
 }
 .boton-publicar2 {
     text-decoration: none;
-    margin: 10px 0px 0px 15px;
-    font-size: 18px;
+    margin: 12px 0px 0px 15px;
+    font-size: 15px;
     display: block;
     width: 92px;
     border-radius: 2px;
@@ -2077,15 +2155,15 @@ padding: 0px 25px;
 }
 .boton-publicar {
     text-decoration: none;
-    margin: 10px 1px 0px 0px;
-    font-size: 18px;
+    margin: 12px 1px 0px 0px;
+    font-size: 15px;
     display: block;
     width: 92px;
     border-radius: 2px;
     text-align: center;
     float: right;
     padding: 4px 14px;
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);
     border: 1px solid rgba(65, 169, 94, 0);
@@ -2662,6 +2740,22 @@ margin: -3px -5px 0px 6px;
     margin-top: -2px;
     width: 180px;
     margin-bottom: 2px;
+}
+#cant-solicitud {
+    color: #fff;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0px;
+    background-image: -webkit-linear-gradient(top, rgb(250, 60, 69), rgb(220, 13, 23));
+    border: none;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.701961) 0px 0px -1px 4px;
+    box-shadow: 0px 0px -1px 4px rgba(0, 0, 0, 0.701961);
+    width: 23px;
+    height: 23px;
+    display: block;
+    line-height: 23px;
+    border-radius: 15px;
+    position: relative;
+    top: -3px;
+    left: -4px;
 }
 .hash {
     margin: 2px 0px 0px 5px;
