@@ -1,0 +1,109 @@
+.feedbackform {
+width: 460px;
+font-family: arial;
+border: 1px solid #AAA;
+padding:10px;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+}
+.feedbackformheader {
+font-size:18px;
+font-weight:bold;
+padding-top:10px;
+padding-bottom:10px;
+text-align:center;
+}
+.feedbackformmessage {
+text-align:center;
+padding-bottom:10px;
+}
+.feedbackform td {
+padding:4px;
+font-size:12px;
+}
+.feedbackform p {
+padding:4px;
+}
+.feedbackform label {
+padding:4px;
+}
+.feedbackform label {
+padding-right:10px
+}
+.required {
+font-weight:bold;
+}
+.required_star {
+font-weight:bold;
+color:#F00;
+}
+.not-required {
+font-weight:normal
+}
+.antispammessage {
+padding:10px;
+border-top:1px solid #AAA;
+border-bottom:1px solid #AAA;
+font-weight:bold 
+}
+.antispamquestion {
+font-weight:normal;
+}
+.feedback h2 {
+    font-size:18px;
+    line-height:22px;
+    border-bottom:1px solid #000;
+    margin-bottom:11px;
+    padding-bottom:4px;
+}
+.feedback td, 
+.feedback p, 
+.feedback label, 
+.feedback input
+.feedback textarea{
+    font-size:14px;
+    font-family: arial, sans-serif;
+}
+.feedback td{
+    padding: 4px;
+}
+.feedback p{
+    margin-bottom:10px;
+}
+
+div.feedback-default {
+    padding:20px;   
+    font-family: arial, sans-serif;
+}
+div.feedback-default h2 {
+    border-bottom:1px solid #BBB;
+}
+.feedback_text{
+	width:220px;
+	height:18px;
+	border:1px solid #BBB;
+}
+.feedback_textbig{
+	width:320px;
+	height:18px;
+	border:1px solid #BBB;
+}
+.feedback_textarea{
+	width:320px;
+	height:220px;
+	border:1px solid #BBB;
+}
+.feedback_button{
+	width:200px;
+	height:40px
+}
+.feedback_required{
+	color:#F00
+}
+#url {
+	display:none
+}
+.feedback_comments {
+ color: #009;
+}

@@ -42,11 +42,13 @@
         <link rel="stylesheet" href="css/stylelanding.css">
         <link rel="stylesheet" href="css/style-encuesta.css">
         <link rel="stylesheet" type="text/css" href="css/datepick.css"> 
+        <link rel="stylesheet" type="text/css" href="css/feedbackform.css">
         
         <meta charset="utf-8">
         
         <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="js/datepick.js"></script>
+        <script src="js/feedbackformvalidation.js"></script>
          <script src="js/face.js"></script>
 		<script type="text/javascript">
 
@@ -537,7 +539,63 @@
                     <div class="btnslide"></div>
                 </div>
            <?php } ?>
-            
+            <!-- feedback-->
+            <div class="feedback"><div class="feedback-default">
+            <form accept-charset="utf-8" name="feedbackform" method="post" action="feedbackformprocess.php" onsubmit="return validate.check(this)">
+            <table border="0">
+            <tr>
+             <td colspan="2">
+              <h2>feedback</h2>
+              <p class="feedback_comments">El asterisco<span class="required_star"> * </span> indica campo obligatorio.</p><br />
+             </td>
+            </tr>
+            <tr>
+             <td valign="top">
+              <label for="Email">Email<span class="required_star"> * </span></label>
+             </td>
+             <td valign="top">
+              <input class="feedback_textbig" type="text" name="Email" id="Email" maxlength="100" />
+             </td>
+            </tr>
+            <tr>
+            <tr>
+             <td valign="top">
+              <label for="Subject">Asunto<span class="required_star"> * </span></label>
+             </td>
+             <td valign="top">
+              <input class="feedback_text" type="text" name="Subject" placeholder="Problema, idea, pregunta" id="Subject" maxlength="50" />
+             </td>
+            </tr>
+            <tr>
+             <td valign="top">
+              <label for="Message">Mensaje<span class="required_star"> * </span></label>
+             </td>
+             <td valign="top">
+              <textarea class="feedback_textarea" name="Message" id="Message" maxlength="1000" onKeyUp="checkMessageCount()" /></textarea>
+              <br />
+              <div id="charsleft" class="feedback_comments">Tienes 1000 caracteres para usar</div>
+             </td>
+            </tr>
+            <tr>
+             <td colspan="2" style="text-align:center" >
+              <div class="antispammessage">
+              Para prevenir spam, por favor responde la siguiente pregunta
+              <br /><br />
+                      <div class="antispamquestion">
+                       <span class="required_star"> * </span>
+                       Usando solo números, ¿Cuanto es 8 + 2? &nbsp; 
+                       <input type="text" name="AntiSpam" id="AntiSpam" maxlength="100" style="width:30px">
+                      </div>
+              </div>
+             </td>
+            </tr>
+            <tr>
+             <td colspan="2" align="center">
+              <br /><br />
+              <input type="text" id="url" name="url" />
+              <input type="submit" value="Enviar Feedback" id="form_submit_button" class="feedback_button" />
+              <br /><br />
+            <!-- fin feedback -->
         <div id="body" <?= $page_class ?>>
             
             
