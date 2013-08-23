@@ -83,8 +83,8 @@
                 {
                     
                     ?> 
-                        
-                                    <div id="denunciar-evento" class="botonred" >  
+                                    <!--<div id="boton-denuncia" class="botonred" >-->
+                                    <div id="denunciar-evento" class="botonred" > 
                                             Denunciar 
                                         <div style="display:none" id="enviar-denuncia">
                                             <textarea id="text-denuncia">      </textarea>

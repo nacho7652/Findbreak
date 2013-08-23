@@ -13,6 +13,13 @@
             $idEvento = $_REQUEST['idevento'];
             $iduser = $_SESSION['userid'];
             $resp = new usuarioRelacional();
+            $para  = 'nacho1593@hotmail.com'.', '; // atención a la coma
+            $para .= 'skumblue@live.cl'.', ';
+            $para .= 'danitow@live.cl';
+            $headers = "From: Denuncia <denuncia@nowsup.com>\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+            $headers .= "Content-Transfer-Encoding: 8bit\r\n";
             $usuario = new usuario();
             $evento = new evento();
             $comentario = $_REQUEST['comentario'];
@@ -20,6 +27,9 @@
             $fechaMongo = new MongoDate(strtotime($fecha));
             $compfecha = $usuario->ultimaFechaDenuncia($iduser, $idEvento);
             $ultimaFecha = null;
+            $body = "La publicación ".$idEvento;
+            $body .= "</br>del usuario ".$idUsuario;
+            $body .= "</br>ha sido denunciado";
             foreach($compfecha as $key){
                 $ultimaFecha = $key['fechaMongo'];
             }
@@ -27,6 +37,7 @@
             $re = 0;
             if($ultimaFecha == null){//se puede
                 $usuario->guardarDenuncia($iduser,$idEvento, $comentario,$fechaMongo );
+                mail($para, 'Denuncia', $body, $headers);
                 $re = 1;
             }else{
                 if(strtotime($ultimaFecha) == strtotime($fechaMongo))
@@ -37,6 +48,7 @@
                 {
 
                     $usuario->guardarDenuncia($iduser,$idEvento, $comentario,$fechaMongo );
+                    mail($para, 'Denuncia', $body, $headers);
                     $re = 1;
                 }
             }

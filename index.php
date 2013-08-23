@@ -539,7 +539,7 @@
                     <div class="btnslide"></div>
                 </div>
            <?php } ?>
-            <!-- feedback-->
+            <!-- feedback
             <div class="feedback"><div class="feedback-default">
             <table border="0">
             <tr>
@@ -585,7 +585,7 @@
               <input type="text" id="url" name="url" />
               <input type="button" value="Enviar Feedback" id="form_submit_button" class="feedback_button" />
               <br /><br />
-            <!--fin feedback -->
+            fin feedback -->
         <div id="body" <?= $page_class ?>>
             
             
