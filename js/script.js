@@ -21,6 +21,36 @@ $(document).ready(function(){
 //              }
 //            });
 
+$('#form_submit_button').click(function(){
+    if($('#Email').val()!="" && $('#Subject').val()!="" &&$('#Message').val()!="")
+        {
+            var mail = $('#Email').val();
+            var asunto = $('#Subject').val();
+            var mensaje = $('#Message').val();
+            $.ajax({
+                   type:"POST" ,
+                   dataType:"html",
+                   url:path+"function/feedback-response.php",
+                   data:"feedback=1&mail="+mail+"&asunto="+asunto+"&mensaje="+mensaje,
+                   success:function(data)
+                   {
+                       if(data == 1)
+                           {
+                               alert('Feedback enviado con exito');
+                           }
+                       else
+                           {
+                               alert('Feedback NO fue enviado');
+                           }
+                   }
+             });
+        }
+    else
+        {
+            alert('Por favor rellene todos los campos');
+        }
+})
+
 
 $('.explicacion-mapa').click(function(){
     $('.tutorial-mapa').show();

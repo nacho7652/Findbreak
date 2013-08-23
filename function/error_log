@@ -1014,3 +1014,15 @@ Stack trace:
 #1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
 #2 {main}
   thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[22-Aug-2013 15:51:08 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct(Array)
+#1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[22-Aug-2013 15:51:11 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct(Array)
+#1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61

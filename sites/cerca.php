@@ -6,15 +6,24 @@
                             <div class="paso1-tutorial">
                                 <div class="flecha-mapa"></div>
                                 <div class="mapa-explic1">
-                                    <span>Pulsa aquí para buscar anuncios</span>
-                                    <span>- Busca fiestas, venta de artículos y mucho más !</span>
-                                    <span>- Busca anuncios en tu calle, comuna o ciudad</span>
+                                    <span>Pulsa aquí y prueba buscando</span>
+                                    <span>fiestas, deporte, conciertos, venta de artículos y mucho más!</span>
+                                    
                                 </div>
                             </div>
                             <div class="paso2-tutorial">
                                 <div class="flecha-mapa"></div>
                                 <div class="mapa-explic1">
                                     <span>Pulsa aquí para ver anuncios cerca de tu ubicación actual </span>
+                                    <span>o en alguna zona en específica</span>
+                                   
+                                </div>
+                            </div>
+                            <div class="paso3-tutorial">
+                                <div class="flecha-mapa"></div>
+                                <div class="mapa-explic1">
+                                    <span>Esta es lista de anuncios cercanos a tu ubicación actual</span>
+                                    <span>ordenados del más cercano al más lejano</span>
                                 </div>
                             </div>
                             <div class="lista-pasos">

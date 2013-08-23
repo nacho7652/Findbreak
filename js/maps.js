@@ -61,7 +61,7 @@ $(document).ready(function(){
             if (navigator.geolocation) { /* Si el navegador tiene geolocalizacion */
                 navigator.geolocation.getCurrentPosition(coordenadas, errores);
             }else{
-                alert('Oops! Tu navegador no soporta geolocalizaci�n. B�jate Chrome, que es gratis!');
+                alert('Oops! Tu navegador no soporta geolocalización. B�jate Chrome, que es gratis!');
             }
         }
 function errores(err) {

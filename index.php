@@ -541,7 +541,6 @@
            <?php } ?>
             <!-- feedback-->
             <div class="feedback"><div class="feedback-default">
-            <form accept-charset="utf-8" name="feedbackform" method="post" action="feedbackformprocess.php" onsubmit="return validate.check(this)">
             <table border="0">
             <tr>
              <td colspan="2">
@@ -563,7 +562,11 @@
               <label for="Subject">Asunto<span class="required_star"> * </span></label>
              </td>
              <td valign="top">
-              <input class="feedback_text" type="text" name="Subject" placeholder="Problema, idea, pregunta" id="Subject" maxlength="50" />
+              <select class="feedback_text" name="Subject" placeholder="Problema, idea, pregunta" id="Subject">
+                    <option value="problema">Problema</option>
+                    <option value="idea">Idea</option>
+                    <option value="pregunta">Pregunta</option>
+              </select>
              </td>
             </tr>
             <tr>
@@ -577,25 +580,12 @@
              </td>
             </tr>
             <tr>
-             <td colspan="2" style="text-align:center" >
-              <div class="antispammessage">
-              Para prevenir spam, por favor responde la siguiente pregunta
-              <br /><br />
-                      <div class="antispamquestion">
-                       <span class="required_star"> * </span>
-                       Usando solo números, ¿Cuanto es 8 + 2? &nbsp; 
-                       <input type="text" name="AntiSpam" id="AntiSpam" maxlength="100" style="width:30px">
-                      </div>
-              </div>
-             </td>
-            </tr>
-            <tr>
              <td colspan="2" align="center">
               <br /><br />
               <input type="text" id="url" name="url" />
-              <input type="submit" value="Enviar Feedback" id="form_submit_button" class="feedback_button" />
+              <input type="button" value="Enviar Feedback" id="form_submit_button" class="feedback_button" />
               <br /><br />
-            <!-- fin feedback -->
+            <!--fin feedback -->
         <div id="body" <?= $page_class ?>>
             
             

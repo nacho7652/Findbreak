@@ -1,18 +1,18 @@
 @font-face{
     font-family: "EstoyBueno";
-    src: url('/findbreak/fonts/DroidSans.ttf'),
+    src: url('/fonts/DroidSans.ttf'),
          url('../fonts/Impact.eot'),
          url('../fonts/Impact.otf'),
          url('../fonts/Impact.woff') ;
 }
 
-*{}
+*{font-family: EstoyBueno}
 body{
     background: rgba(150, 71, 66, 0.11);
     background: url('http://d1l2emnu9r9dtc.cloudfront.net/img/bg.jpg');
 }
 .sprites{
-     background: url('/findbreak/images/sprites.png') no-repeat;
+     background: url('/images/sprites.png') no-repeat;
 }
 html, body {
     min-height: 100%;
@@ -26,6 +26,11 @@ html {
 }
 .fb-like.fb_edge_widget_with_comment.fb_iframe_widget {
     margin-bottom: 11px;
+}
+.publicaciones #comentaevent-prof {
+    width: 168px;
+    margin-left: 22px;
+    padding-left: 33px;
 }
 .fb-share-button.fb_iframe_widget {
     right: -42px;
@@ -65,7 +70,6 @@ html {
     left: 147px;
 }
 .content-redes-sociales {
-    display: none;
     right: 11px;
     padding: 15px 35px;
     bottom: -164px;
@@ -89,14 +93,102 @@ html {
     border-top-right-radius: 2px;  
     background: url(/findbreak/images/iconos-bg.png), -webkit-linear-gradient(top,rgba(255, 255, 255, 1), rgba(35, 106, 151, 1));  
 }
+.paso {
+    background: #F1F1F1;
+    width: 55px;
+    height: 55px;
+    border-radius: 111px;
+    margin-bottom: 29px;
+    text-align: center;
+    line-height: 55px;
+    font-weight: bold;
+    color: #505050;
+    font-size: 14px;
+}
+.paso-selected{
+    background: #BB1F1F !important;
+    color: #FFFFFF !important;
+}
+.paso:hover{
+    cursor: pointer;
+    background: #BB1F1F;
+    color: #FFFFFF !important;
+}
+.lista-pasos .mapa-explic1 {
+    color: #fff;
+    width: 300px;
+    height: 42px;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    top: -27px;
+    left: -217px;
+    text-shadow: 0px 1px 1px #000;
+}
+.lista-pasos {
+    position: absolute;
+    left: 1179px;
+    width: 62px;
+    top: 101px;
+}
+.tutorial-mapa {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 600px;
+    height: 200px;
+    display: none;
+    z-index: 5000000000000;
+}
+.paso1-tutorial .flecha-mapa {
+    background: url('/images/flecha.png') no-repeat;
+    width: 167px;
+    height: 93px;
+    top: 126px;
+    position: absolute;
+    left: 31px;
+}
+.paso2-tutorial{
+    display: none;
+}
+.paso2-tutorial .flecha-mapa {
+    background: url('/images/flecha.png') no-repeat;
+    width: 167px;
+    height: 93px;
+    top: 114px;
+    position: absolute;
+    left: 413px;
+}
+.mapa-explic1 span {
+    width: 459px;
+    display: block;
+}
+.paso1-tutorial .mapa-explic1 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 166px;
+    left: 203px;
+    text-shadow: 0px 1px 1px #000;
+}
+.paso2-tutorial .mapa-explic1 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 156px;
+    left: 581px;
+    text-shadow: 0px 1px 1px #000;
+}
 #allbackground{
     position: fixed;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
-    display: none;
-    background: rgba(0,0,0,0.6);
+     display: none; 
+    background: rgba(0, 0, 0, 0.87);
     z-index: 50000000000000000000000000000000000000;
 }
 #coverall {
@@ -136,7 +228,28 @@ html {
     overflow: hidden;            
     background: url('http://d1l2emnu9r9dtc.cloudfront.net/img/bg.jpg');
 }
-
+#forgot-usuario {
+    float: left;
+    width: 185px;
+    padding: 11px 0px;
+    font-size: 13px;
+    margin: 20px 0px 0px 253px;
+    font-weight: bold;
+}
+.login #forgot-pass {
+    margin: 11px 0px 0px 120px;
+}   
+#forgot-pass {
+    color: #6F6F6F;
+    font-size: 11px;
+    clear: both;
+    float: left;
+    margin: 0px 0px 3px 71px;
+    text-decoration: none;
+}
+#forgot-pass:hover{
+    text-decoration: underline;
+}
 #covermsj {
     width: 100%;
     height: 100%;
@@ -280,9 +393,7 @@ html {
     
 }*/
 #top {
-    background: rgba(36, 115, 167, 1);
-    /*background: url(/findbreak/images/bg-bner.png);*/
-    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#134394,#124191);    -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.15);  -o-box-shadow: 0 3px 4px rgba(0,0,0,.25);
     width: 100%;  
     height: 51px; 
     margin: 0px 0px 0px 0px; 
@@ -300,7 +411,7 @@ html {
     background-image: linear-gradient(#A5235B,#962154);*/
 }
 #content-top {
-    width: 1000px;
+    width: 1135px;
     height: 53px;
     margin: 0px auto;
     position: relative;
@@ -317,25 +428,25 @@ html {
 }
 #content-top .top-left {
     float: left;
-    width: 188px;
+    width: 203px;
     height: 53px;
     margin-right: 26px;
 }
 .logoper {
-    background: url('/findbreak/images/logoper.png')no-repeat;
-    width: 60px;
-    height: 37px;
-    position: absolute;
-    left: -12px;
+    width: 48px;
+    height: 47px;
+    background: url('/images/logotipo-nowsup2.png')no-repeat;
+    margin-top: 4px;
     background-size: cover;
-    top: 16px;
-    display: none;
+    float: left;
 }
 .logo {
-    width: 181px;
-    height: 50px;
-    background: url('/findbreak/images/logon13.png')no-repeat;
-    margin-top: 3px;
+    width: 123px;
+    height: 51px;
+    background: url('/images/logo-nowsup7.png')no-repeat;
+    margin-top: 8px;
+    background-size: cover;
+    float: left;
 }
 #content-top .top-center {
     float: left;
@@ -343,9 +454,16 @@ html {
     height: 53px;
     position: relative;
 }
+.explicacion-mapa {
+    float: left;
+    margin: 20px 0px 0px 9px;
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+}
 #content-top .top-right {
     float: left;
-    width: 447px;
+    width: 574px;
     height: 53px;
     position: relative;
     margin-left: 4px;
@@ -402,9 +520,9 @@ html {
 }
 .mensaje-location {
     
-    top: 84px;
+    top: 89px;
     position: absolute;
-    right: -137px;
+    right: -172px;
     border-radius: 2px;
     background: rgba(53, 53, 53, 0.75) -181px -115px;
     font-size: 0.7em;
@@ -414,21 +532,21 @@ html {
     text-align: center;
 }
 #boton-location {
-    width: 40px;
+    width: 29px;
     height: 31px;
     position: absolute;
-    top: 84px;
-    right: 31px;
+    top: 88px;
+    right: 17px;
     border: none;
     
     
     
 }
 .loc-activado{
-    background-position: -4px -448px;
+    background-position: -12px -449px;
 }
 .loc-desactivado{
-    background-position: -47px -447px;
+    background-position: -56px -447px;
 }
 .input-textparent-ini{
     border-radius: 2px;  
@@ -455,8 +573,8 @@ html {
 }
 .input-textparent2{
     border-radius: 2px;  
-    height: 39px;
-    width: 385px;
+    height: 46px;
+    width: 232px;
     margin-top: 5px;
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
@@ -466,8 +584,8 @@ html {
 }
 .input-textparent3{
     border-radius: 2px;  
-    height: 31px;
-    width: 184px;
+    height: 47px;
+    width: 200px;
     margin-top: 5px;
     margin-left: 8px;
     border: 1px solid rgb(209, 209, 209);  
@@ -499,8 +617,8 @@ html {
     height: 36px;
     background-position: -38px -408px;
     position: absolute;
-    top: 81px;
-    right: 83px;
+    top: 83px;
+    right: 225px;
     border: none;
 }
 #content-top #search{
@@ -540,15 +658,15 @@ html {
     display: none;
 }
 #search-near {
-    width: 221px;
-    margin: 0px 0px 0px 0px;
-    padding: 8px 5px;
-    font-size: 11px;
+    width: 188px;
+    margin: 0px 0px 0px 2px;
+    padding: 15px 4px;
+    font-size: 14px;
 }
 #search-location {
-    width: 335px;
+    width: 188px;
     margin: 0px 0px 0px 2px;
-    padding: 11px 4px;
+    padding: 15px 4px;
     font-size: 14px;
 }
 .registro-msj {
@@ -574,10 +692,10 @@ html {
     float: right;
     height: 38px;
     margin-top: 0px;
-    max-width: 438px;
+    max-width: 468px;
     color: #fff;
     position: relative;
-    margin-left: 27px;
+    margin-left: 9px;
 }
 #user-login .groupoption {
     width: 196px;
@@ -586,7 +704,7 @@ html {
     font-size: 12px;
     position: absolute;
     right: 0px;
-    top: 43px;
+    top: 51px;
     display: none;  
     box-shadow: 0px 1px 10px -2px rgb(117, 117, 117);  
     border-radius: 2px;
@@ -604,6 +722,13 @@ html {
 .itemgroup-option:hover{
     background: rgba(237, 237, 237, 1) !important;
     cursor: pointer;
+}
+.option.menu {
+    width: 22px;
+}
+.menu .content-option {
+    height: 17px;
+    background-position: -5px -422px;
 }
 #user-login .option{
     float: left;
@@ -629,22 +754,28 @@ overflow: hidden;
 }
 
 #user-login #optionhome{
-    border-right: 1px solid rgb(59, 91, 173);
+    border-right: 1px solid rgba(214, 214, 214, 0.63);
 }
 
 #user-login .option:hover{
-    background-color: rgba(25, 81, 153, 0.36);
+    background-color: rgba(63, 114, 180, 0.36);
     cursor: pointer;
 }
 #user-login .content-option {
-    border-right: 1px solid rgb(59, 91, 173);
+    border-right: 1px solid rgba(214, 214, 214, 0.63);
     padding: 0px 15px 0px 15px;
+    min-height: 17px;
 }
 #user-login .content-option-first {
     border-left: none !important;
 }
 #user-login .content-option-last {
     border-right: none !important;
+}
+.option.noti-friend.sprites {
+    height: 17px;
+    background-position: -10px -363px;
+    width: 46px;
 }
 #show-solicitud .item-friends-userpic {
     width: 40px;
@@ -680,8 +811,8 @@ overflow: hidden;
     max-height: 343px;
     background-color: #fff;
     position: absolute;
-    top: 43px;
-    left: -11px;
+    top: 51px;
+    left: -244px;
     border-top: 1px solid #e4e5e8;  
     border-left: 1px solid #e4e5e8;
     border-right: 1px solid #e4e5e8;
@@ -1028,7 +1159,7 @@ overflow: hidden;
 #content-login {
     width: 950px;
     margin: 0px auto 0 auto;
-    padding-top: 30px;
+    padding-top: 66px;
 }
 #content-login .login-fb {
     margin: 22px 134px 0px 0px;
@@ -1170,19 +1301,33 @@ overflow: hidden;
 }
 .title .logo {
     position: absolute;
+    top: 1px;
+    left: 64px;
+}
+.title .logoper {
+    position: absolute;
     top: 0px;
-    left: -31px;
+}
+.menu-show {
+    background: url('/findbreak/nuevo/images/sprites.png') no-repeat -16px -820px;
+    width: 51px;
+    height: 40px;
+    right: -57px;
+    position: absolute;
+}
+.menu-show:hover{
+    cursor: pointer;
 }
 .title {
-    background: rgba(36, 115, 167, 1);  
-    background: url(/findbreak/images/iconos-bg.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
-    width: 468px;
+    background: #134394;  
+    background: url(/findbreak/images/iconos-bg.png), -webkit-linear-gradient(top,#134394,#124191);  -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.15);  -o-box-shadow: 0 3px 4px rgba(0,0,0,.25);
+    width: 456px;
     height: 156px;
     color: #FFF;
-    padding: 7px 0px 2px 17px;
+    padding: 7px 0px 2px 13px;
     position: fixed;
     z-index: 70000;
-    left: 26px;
+    left: 0px;
     margin: 1px 0px 0px 0px;
     box-shadow: 0px 2px 6px -3px black;
     border-bottom-left-radius: 2px;
@@ -1196,6 +1341,7 @@ overflow: hidden;
     background: rgba(136, 129, 128, 0.38);
     z-index: 2;
     padding: 0px 0px 16px 0px;
+    left: -33px;
 }
 .event-none{
     display: none;
@@ -1219,7 +1365,8 @@ overflow: hidden;
     display: none;
 }
 .num-event {
-color: rgb(88, 88, 88) !important;
+    background-color: #134394;
+color: #FFFFFF !important;
 position: absolute;
 font-size: 0.7em;
 border-radius: 15px;
@@ -1346,7 +1493,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     margin: 0px 142px 0px 0px !important;
 }
 .login-fb{
-    background: url(/mooff/images/login-face-sprite.png) top right no-repeat;
+    background: url(/findbreak/images/login-face-sprite.png) top right no-repeat;
     width: 162px;
     float: right;
     font: bold 11px/22px "Lucida Grande",Lucida,Arial,sans-serif;  
@@ -1362,7 +1509,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     margin: 0px 0px 0px 30px;
 }
 #loginbtn-fb{
-    background: url(/mooff/images/loginbtn-face-sprite.png) top right no-repeat;
+    background: url(/findbreak/images/loginbtn-face-sprite.png) top right no-repeat;
     width: 24px;
     height: 22px;
     position: absolute;
@@ -1380,11 +1527,11 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     background: rgba(36, 115, 167, 1);
     background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1)) !important;
     display: block;
-    width: 92px;
+    width: 95px;
     border-radius: 2px;
     text-align: center;
     float: right;
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin: -6px 11px 0px 0px;
     padding: 7px 18px;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
@@ -1609,13 +1756,17 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     border: 1px solid #CCC;
     margin: 0 auto;
 }
-
+.pub-ladoder {
+    width: 120px;
+    height: 650px;
+    margin: 9px 2px 0px 0px;
+    float: right;
+}
 .publicidad-large {
-    width: 928px;
-    height: 70px;
-    background: #444;
+    width: 728px;
+    height: 90px;
     float: left;
-    margin: 16px 0px 0px 0px;
+    margin: 24px 0px 30px 114px;
 }
 .event-hidden, .est-hidden {
     display: none;
@@ -1642,9 +1793,9 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     border-left: 1px solid rgba(211, 211, 211, 0.31);
 }
 .titlediv {
-    background: rgba(36, 115, 167, 1);
+    background: #124191;
     font-size: 0.7em;
-    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1));
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#134394,#124191);
     color: rgb(241, 241, 241);
     padding: 7px 0px 7px 12px;
     font-weight: bold;
@@ -1699,7 +1850,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     background: rgba(255,255,255,0.8);
 }
 .perfiluser .item-event {
-    width: 276px;
+    width: 286px;
 }
 .perfiluser .info-event {
     width: 218px;
@@ -1718,13 +1869,23 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     width: 194px;
     border: none;
 }
+.boxscrollEvents .tit-eventcerca {
+    width: 158px;
+    text-align: left;
+    padding: 0px 0px 0px 14px;
+    margin-top: 7px;
+}
 .item-event {
-    width: 326px;
+    width: 311px;
     height: 82px;
     float: left;
-    margin: 9px 0px 0px 10px;
+    margin: 0px 0px 1px 0px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.31);
     color: #444;
+    box-shadow: 0px 25px 62px -12px #000 inset;
+}
+.parte-primera{
+    margin-bottom: 10px;
 }
 .divseventsord .title {
     font-weight: bold;
@@ -1793,7 +1954,7 @@ color: rgb(189, 189, 189);
     font-size: 0.8em;
 }
 .perfiluser #replica {
-    top: 39px;
+    top:1px;
     width: 606px;
     font-size: 0.8em;
 }
@@ -1885,8 +2046,8 @@ padding: 0px 25px;
 
 .info-event {
     float: left;
-    width: 274px;
-    height: 81px;
+    width: 301px;
+    height: 38px;
 }
 .inner-eventpeq {
     float: left;
@@ -1953,6 +2114,7 @@ padding: 0px 25px;
     width: 1000px;
     margin: -3px auto 0px auto;
     overflow: visible;
+    position: relative;
 }
 .perfiluser{
     padding-top: 56px !important;
@@ -1971,6 +2133,46 @@ padding: 0px 25px;
     margin: 51px 0px 0px 0px;
     z-index: -36;
 }
+.boton-publicar2 {
+    text-decoration: none;
+    margin: 12px 0px 0px 15px;
+    font-size: 15px;
+    display: block;
+    width: 92px;
+    border-radius: 2px;
+    text-align: center;
+    float: left;
+    padding: 4px 14px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-repeat: repeat-x;
+    border: 1px solid rgba(65, 115, 169, 0.34);
+    border: 1px solid rgba(65, 169, 94, 0);
+    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
+    color: #FFF;
+    border: 1px solid rgba(48, 156, 39, 1);
+    border-top-color: rgba(77, 184, 67, 1);
+    border-bottom-color: rgba(41, 134, 33, 1);
+}
+.boton-publicar {
+    text-decoration: none;
+    margin: 12px 1px 0px 0px;
+    font-size: 15px;
+    display: block;
+    width: 92px;
+    border-radius: 2px;
+    text-align: center;
+    float: right;
+    padding: 4px 14px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    background-repeat: repeat-x;
+    border: 1px solid rgba(65, 115, 169, 0.34);
+    border: 1px solid rgba(65, 169, 94, 0);
+    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
+    color: #FFF;
+    border: 1px solid rgba(48, 156, 39, 1);
+    border-top-color: rgba(77, 184, 67, 1);
+    border-bottom-color: rgba(41, 134, 33, 1);
+}
 .parte-left-parent {
     width: 526px;
     float: left;
@@ -1982,6 +2184,8 @@ padding: 0px 25px;
 .parte-der {
     float: left;
     width: 445px;
+    min-height: 782px;
+    margin-top: 4px;
 }
 .part-left {
     width: 512px;
@@ -2254,6 +2458,9 @@ float: left;
     width: 963px;
     top: 51px;
 }
+#list-similares {
+    width: 311px;
+}
 .part-right {
     float: left;
     width: 445px;
@@ -2316,12 +2523,12 @@ float: left;
     color: #444;
 }
 #videoEvento {
-    width: 400px;
+    width: 513px;
     height: 400px;
 }
 .cercanos {
     width: 591px;
-    height: 192px;
+    max-height: 29px;
     margin: 6px 0px 0px 8px;
     float: left;
 }
@@ -2362,6 +2569,7 @@ float: left;
 #overcoment {
     z-index: 1;
     position: relative;
+    padding: 3px 0px;
 }
 #coment {
     overflow-y: hidden;
@@ -2370,7 +2578,7 @@ float: left;
     font-size: 12px;
     color: rgb(104, 104, 104);
     padding: 5px 3px 6px 7px;
-    height: 10px;
+    height: 15px;
     resize: none;
     border: none;
     overflow: hidden;
@@ -2451,6 +2659,7 @@ float: left;
     color: rgb(105, 105, 105);
     margin: 5px 0px 0px 2px;
     font-size: 1.1em;
+    display: none;
 }
 .eventosCitar .item-event-citar:hover {
     background-color: rgba(247, 247, 247, 0.78);
@@ -2531,6 +2740,22 @@ margin: -3px -5px 0px 6px;
     margin-top: -2px;
     width: 180px;
     margin-bottom: 2px;
+}
+#cant-solicitud {
+    color: #fff;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0px;
+    background-image: -webkit-linear-gradient(top, rgb(250, 60, 69), rgb(220, 13, 23));
+    border: none;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.701961) 0px 0px -1px 4px;
+    box-shadow: 0px 0px -1px 4px rgba(0, 0, 0, 0.701961);
+    width: 23px;
+    height: 23px;
+    display: block;
+    line-height: 23px;
+    border-radius: 15px;
+    position: relative;
+    top: -3px;
+    left: -4px;
 }
 .hash {
     margin: 2px 0px 0px 5px;
@@ -2650,8 +2875,8 @@ margin: -3px -5px 0px 6px;
 
 #denunciar-evento {
     position: absolute;
-    top: 306px;
-    left: 192px;
+    top: 204px;
+    left: 19px;
     padding: 0px 9px;
     
     text-shadow: 0px 1px 0px #444;
@@ -2662,8 +2887,8 @@ margin: -3px -5px 0px 6px;
 #editar-mievento {
     text-decoration: none;
     position: absolute;
-    top: 305px;
-    left: 187px;
+    top: 204px;
+    left: 19px;
     width: 146px;
     padding: 5px 5px;
     
@@ -2680,13 +2905,13 @@ margin: -3px -5px 0px 6px;
     top: 10px;
 }
 .more-fotos {
-    width: 1000px;
+    width: 100%;
     margin: 45px auto 0px auto;
     top: 5px;
     position: relative;
     height: 110px;
     padding-left: 417px;
-    background: url('/findbreak/images/superpos-bg.png') rgb(22, 23, 24);
+    background: url('/images/superpos-bg.png') rgb(22, 23, 24);
 }
 .foto-event-small {
     width: 92px;
@@ -2767,6 +2992,7 @@ margin: -3px -5px 0px 6px;
 #editaruser{
     position: absolute;
     top: -168px;
+    left: 7px;
 }
 #info-mostrar a {
     text-shadow: none;
@@ -3119,6 +3345,17 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -39px -260px;
     color: rgb(59, 113, 172);      
     text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
 }
+.equis-tutorial{
+    background: url('/images/sprites.png') no-repeat -1px -174px;
+    width: 35px;
+    height: 30px;
+    left: 1194px;
+    top: 17px;
+    position: absolute;
+}
+.equis-tutorial:hover{
+    cursor: pointer;
+}
 .equis {
 color: rgb(235, 55, 55);
 font-weight: bold;
@@ -3284,10 +3521,13 @@ margin: 3px 0px 0px 7px;
     margin: 20px 0px 0px 253px;
     font-weight: bold;
 }
+.mensaje-publicarevent.mjscoment {
+    font-size: 17px;
+}
 /*END PRODUCTORA*/
 footer{
-    background: rgba(36, 115, 167, 1);
-    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1),rgba(35, 106, 151, 1) );
+    background: #124191;
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#134394,#124191);
     width: 100%;  
     height: 20px; 
     margin: -110px 0px 0px 0px;   
