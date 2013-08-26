@@ -10,138 +10,138 @@
    
     if(isset($_REQUEST['guardarevento'])){
          
-            //foto1.jps, foto2.jpg
-            $evento = new evento();  
-            $rutasFotos = array();
-            $re1 = true;$re2 = true;$re3 = true;$re4 = true;$re5 = true;
-            if($_FILES['images-galerias1']['name'] != '' ){
-                $exito1 = subir($_FILES['images-galerias1']['name'], $_FILES['images-galerias1']['tmp_name']);
-                $rutasFotos[]= array('gr'=>trim($exito1['fotoGr']), 'pe'=>trim($exito1['fotoPe']));
-                $re1 = $exito1['re'];
-            }
-            if($_FILES['images-galerias2']['name'] != ''  ){
-                $exito2 = subir($_FILES['images-galerias2']['name'], $_FILES['images-galerias2']['tmp_name']);
-                $rutasFotos[]= array('gr'=>trim($exito2['fotoGr']), 'pe'=>trim($exito2['fotoPe']));
-                $re2 = $exito2['re'];
-            }
-            if($_FILES['images-galerias3']['name'] != '' ){
-                $exito3 = subir($_FILES['images-galerias3']['name'], $_FILES['images-galerias3']['tmp_name']);
-                $rutasFotos[]= array('gr'=>trim($exito3['fotoGr']), 'pe'=>trim($exito3['fotoPe']));
-                $re3 = $exito3['re'];
-            }
-            if($_FILES['images-galerias4']['name'] != '' ){
-                $exito4 = subir($_FILES['images-galerias4']['name'], $_FILES['images-galerias4']['tmp_name']);
-                $rutasFotos[]= array('gr'=>trim($exito4['fotoGr']), 'pe'=>trim($exito4['fotoPe']));
-                $re4 = $exito4['re'];
-            }
-            if($_FILES['images-galerias5']['name'] != '' ){
-                $exito5 = subir($_FILES['images-galerias5']['name'], $_FILES['images-galerias5']['tmp_name']);
-                $rutasFotos[]= array('gr'=>trim($exito5['fotoGr']), 'pe'=>trim($exito5['fotoPe']));
-                $re5 = $exito5['re'];
-            }
-            
-            //datos
-            $idproductora = $_SESSION['userid'];
-            $nombreproductora = $_SESSION['username'];;
-            $nom = trim($_REQUEST['nom-event']);//
-            $dir = trim($_REQUEST['addresEvent']);//
-            $arrayfotos = $rutasFotos;//
-            $fec =  trim($_REQUEST['date-event']);//
-            $formatoHora = $_REQUEST['hour-event'].':'.$_REQUEST['minute-event'].':00';
-            $hor = $formatoHora;//
-            $hor = explode(',', $hor);
-            $fechString = $fec;   
-            $fechas = explode(',', $fec);  
-            $fechMongo = array();
-            for($i=0; $i<count($fechas); $i++){
-                $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
-            }
-            $tag = strtolower(trim($_REQUEST['tags-hidden']));//
-            $lat = $_REQUEST['lat-event'];//
-            $lng = $_REQUEST['lng-event'];//
-            $precio = trim($_REQUEST['precio-event']);//
-            $desc = trim($_REQUEST['descripcion-event']);//
-            $urltwitter = trim($_REQUEST['url-twitter']);//
-            $urlfacebook = trim($_REQUEST['url-face']);//
-            //nuevo
-            $video = trim($_REQUEST['url-youtube']);//
-            
-            $hashtag = trim($_REQUEST['hash-event']);
-            $establecimiento = array('id'=>'-1',
-                                     'nombre'=>trim($_REQUEST['establecimiento-event']),
-                                     'direccion'=>'-1');//
-            $puntosDeVenta = $evento->verPuntosVenta();
-            $numPunto = 1;
-            $puntosGuardar = array();
-            foreach($puntosDeVenta as $dcto){
-                if(isset($_REQUEST["puntosventa-event".$numPunto])){
-                    $linkEntrada = -1;
-                    if(isset($_REQUEST["linkentrada-".$numPunto])){
-                        $linkEntrada = $_REQUEST["linkentrada-".$numPunto];
-                    }
-                    $punto = array('id'=>$dcto['_id'],
-                                    'nombre'=>$dcto['nombre'],
-                                    'web'=>$dcto['web'],
-                                    'link_entrada'=>$linkEntrada);
-                    $puntosGuardar[] = $punto;
+            //foto1.jps, foto2.jpg 
+                $evento = new evento();  
+                $rutasFotos = array();
+                $re1 = true;$re2 = true;$re3 = true;$re4 = true;$re5 = true;
+                if($_FILES['images-galerias1']['name'] != '' ){
+                    $exito1 = subir($_FILES['images-galerias1']['name'], $_FILES['images-galerias1']['tmp_name']);
+                    $rutasFotos[]= array('gr'=>trim($exito1['fotoGr']), 'pe'=>trim($exito1['fotoPe']));
+                    $re1 = $exito1['re'];
                 }
-                $numPunto++;
-            }
-//            $puntosDeVenta = array( array('id'=>'232323',
-//                                          'nombre'=>'Ticket Master',
-//                                          'web'=>'http://www.google.cl'),
-//                                    array('id'=>'232323',
-//                                          'nombre'=>'Ticket Master',
-//                                          'web'=>'http://www.google.cl') //
-//                                   );
-            $sitioWeb = trim($_REQUEST["sitioevento"]); //
-            $dondeComprar = '-1';//demás
-            
-                                
-            
-            $usuariorelacional = new usuarioRelacional();
-            $saldo = $usuariorelacional->ValidarSaldo($_SESSION['userid']);
-            $guardar=0;
-            if($saldo >= 0)
-            {
-                //$usuariorelacional->DisminuirSaldo($_SESSION['userid']);
-//                 $comprobar = $evento->buscarPorLatLong($lat, $lng);
-//                
-//                if(isset($comprobar["_id"]))
-//                {
-                    if($nombreproductora == 'Daniel' || $nombreproductora == 'skumblue' || $nombreproductora == 'nacho1593')
-                    {
+                if($_FILES['images-galerias2']['name'] != ''  ){
+                    $exito2 = subir($_FILES['images-galerias2']['name'], $_FILES['images-galerias2']['tmp_name']);
+                    $rutasFotos[]= array('gr'=>trim($exito2['fotoGr']), 'pe'=>trim($exito2['fotoPe']));
+                    $re2 = $exito2['re'];
+                }
+                if($_FILES['images-galerias3']['name'] != '' ){
+                    $exito3 = subir($_FILES['images-galerias3']['name'], $_FILES['images-galerias3']['tmp_name']);
+                    $rutasFotos[]= array('gr'=>trim($exito3['fotoGr']), 'pe'=>trim($exito3['fotoPe']));
+                    $re3 = $exito3['re'];
+                }
+                if($_FILES['images-galerias4']['name'] != '' ){
+                    $exito4 = subir($_FILES['images-galerias4']['name'], $_FILES['images-galerias4']['tmp_name']);
+                    $rutasFotos[]= array('gr'=>trim($exito4['fotoGr']), 'pe'=>trim($exito4['fotoPe']));
+                    $re4 = $exito4['re'];
+                }
+                if($_FILES['images-galerias5']['name'] != '' ){
+                    $exito5 = subir($_FILES['images-galerias5']['name'], $_FILES['images-galerias5']['tmp_name']);
+                    $rutasFotos[]= array('gr'=>trim($exito5['fotoGr']), 'pe'=>trim($exito5['fotoPe']));
+                    $re5 = $exito5['re'];
+                }
+
+                //datos
+                $idproductora = $_SESSION['userid'];
+                $nombreproductora = $_SESSION['username'];;
+                $nom = trim($_REQUEST['nom-event']);//
+                $dir = trim($_REQUEST['addresEvent']);//
+                $arrayfotos = $rutasFotos;//
+                $fec =  trim($_REQUEST['date-event']);//
+                $formatoHora = $_REQUEST['hour-event'].':'.$_REQUEST['minute-event'].':00';
+                $hor = $formatoHora;//
+                $hor = explode(',', $hor);
+                $fechString = $fec;   
+                $fechas = explode(',', $fec);  
+                $fechMongo = array();
+                for($i=0; $i<count($fechas); $i++){
+                    $fechMongo[] = new MongoDate(strtotime($fechas[$i])); 
+                }
+                $tag = strtolower(trim($_REQUEST['tags-hidden']));//
+                $lat = $_REQUEST['lat-event'];//
+                $lng = $_REQUEST['lng-event'];//
+                $precio = trim($_REQUEST['precio-event']);//
+                $desc = trim($_REQUEST['descripcion-event']);//
+                $urltwitter = trim($_REQUEST['url-twitter']);//
+                $urlfacebook = trim($_REQUEST['url-face']);//
+                //nuevo
+                $video = trim($_REQUEST['url-youtube']);//
+
+                $hashtag = trim($_REQUEST['hash-event']);
+                $establecimiento = array('id'=>'-1',
+                                         'nombre'=>trim($_REQUEST['establecimiento-event']),
+                                         'direccion'=>'-1');//
+                $puntosDeVenta = $evento->verPuntosVenta();
+                $numPunto = 1;
+                $puntosGuardar = array();
+                foreach($puntosDeVenta as $dcto){
+                    if(isset($_REQUEST["puntosventa-event".$numPunto])){
+                        $linkEntrada = -1;
+                        if(isset($_REQUEST["linkentrada-".$numPunto])){
+                            $linkEntrada = $_REQUEST["linkentrada-".$numPunto];
+                        }
+                        $punto = array('id'=>$dcto['_id'],
+                                        'nombre'=>$dcto['nombre'],
+                                        'web'=>$dcto['web'],
+                                        'link_entrada'=>$linkEntrada);
+                        $puntosGuardar[] = $punto;
+                    }
+                    $numPunto++;
+                }
+    //            $puntosDeVenta = array( array('id'=>'232323',
+    //                                          'nombre'=>'Ticket Master',
+    //                                          'web'=>'http://www.google.cl'),
+    //                                    array('id'=>'232323',
+    //                                          'nombre'=>'Ticket Master',
+    //                                          'web'=>'http://www.google.cl') //
+    //                                   );
+                $sitioWeb = trim($_REQUEST["sitioevento"]); //
+                $dondeComprar = '-1';//demás
+
+
+
+                $usuariorelacional = new usuarioRelacional();
+                $saldo = $usuariorelacional->ValidarSaldo($_SESSION['userid']);
+                $guardar=0;
+                if($saldo >= 0)
+                {
+                    //$usuariorelacional->DisminuirSaldo($_SESSION['userid']);
+    //                 $comprobar = $evento->buscarPorLatLong($lat, $lng);
+    //                
+    //                if(isset($comprobar["_id"]))
+    //                {
+                        if($nombreproductora == 'Daniel' || $nombreproductora == 'skumblue' || $nombreproductora == 'nacho1593')
+                        {
+                            $guardar = $evento->insertar($idproductora, $nombreproductora,$nom , $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+                                       $video, $sitioWeb,$hashtag,2);
+                        }
+                        else
+                        {
                         $guardar = $evento->insertar($idproductora, $nombreproductora,$nom , $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
-                                   $video, $sitioWeb,$hashtag,2);
-                    }
-                    else
-                    {
-                    $guardar = $evento->insertar($idproductora, $nombreproductora,$nom , $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
-                                   $video, $sitioWeb,$hashtag,0);
-                    }
-//                }
-//                else
-//                {
-//                    $lng+= 119999;
-//                    $lat+= 118911;
-//                    $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
-//                                   $video, $sitioWeb,$hashtag);
-//                    
-//                }
-              
+                                       $video, $sitioWeb,$hashtag,0);
+                        }
+    //                }
+    //                else
+    //                {
+    //                    $lng+= 119999;
+    //                    $lat+= 118911;
+    //                    $guardar = $evento->insertar($idproductora, $nombreproductora, $nom, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
+    //                                   $video, $sitioWeb,$hashtag);
+    //                    
+    //                }
+
+                }
+                else
+                {
+                    $result = false;
+
+                }
+
+
+            if($guardar==1){
+                header("location:http://www.nowsup.com/break/".$hashtag."/success");
+            }else{
+                 header("location:http://www.nowsup.com/publicar/saldo");
             }
-            else
-            {
-                $result = false;
-            
-            }
-            
-        
-        if($guardar==1){
-            header("location:http://www.nowsup.com/break/".$hashtag."/success");
-        }else{
-             header("location:http://www.nowsup.com/publicar/saldo");
-        }
     }
     if(isset($_REQUEST['editarusuario'])){
         

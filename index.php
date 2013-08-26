@@ -16,6 +16,8 @@
     require_once 'DAL/evento.php';
     require_once 'DAL/comentario.php';
     require_once 'DAL/relacional/connect_relacional.php';
+    require_once('function/recaptchalib.php');
+    $publickey = "6LdvkeYSAAAAAHc8lhTvB8s8_NXUZTYhTohyLihE";
     $usuariorelacional = new usuarioRelacional();
 //    include_once ('function/facebook-response.php');
     $contsol=0;

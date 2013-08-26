@@ -341,6 +341,46 @@ $(document).ready(function(){
                  }
              
          })
+         challengeField = $("input#recaptcha_challenge_field").val();
+    	 responseField = $("input#recaptcha_response_field").val();
+          $.ajax({
+           type:"POST" ,
+           dataType:"html",
+           url:path+"function/captcha-response.php",
+           data:"vercaptcha=1&recaptcha_challenge_field=" + challengeField + "&amp;recaptcha_response_field=" + responseField,
+           success:function(data)
+           {
+               if(data == 1)
+                   {
+                       if(guardar){
+                        loader('Guardando Anuncio...');
+                        document.formularioevento.submit();
+                     }
+                   }
+               else
+                   {
+                      Recaptcha.reload();
+                      valor = $(this).val();
+                     error = $(this).parent().find('.error-obligatorio');
+                     if(trim(valor) == ""){//si está vacío mostrar msj
+                            guardar = false;
+                            $(this).focus();
+                             $('html, body').animate({
+                                 'scrollTop': $(this).offset().top - 90 + "px" 
+                             },
+                             {
+                                duration:500,
+                                easing:"swing"
+                             }
+                             );
+                             error.fadeIn(200); 
+                             return false;
+                     }else{
+                              error.fadeOut(200); 
+                         }
+                           }
+           }
+           })
 //         if(!validarSiEsNumero($('#hour-event').val()) || !validarSiEsNumero($('#minute-event').val())){
 //             guardar = false;
 //             error = $('#hour-event').parent().find('.error-obligatorio');
@@ -354,10 +394,7 @@ $(document).ready(function(){
 //                     );
 //                     error.fadeIn(200); 
 //         }
-         if(guardar){
-            loader('Guardando Anuncio...');
-            document.formularioevento.submit();
-         }
+         
          
     }); 
     $('#modificarevento').click(function(){
