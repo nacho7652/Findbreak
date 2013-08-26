@@ -360,8 +360,8 @@ $(document).ready(function(){
                else
                    {
                       loader('Ingresa las palabras nuevamente...');
-                      $("input#recaptcha_response_field").focus();
                       Recaptcha.reload();
+                      $("input#recaptcha_response_field").focus();
                    }
            }
                       
