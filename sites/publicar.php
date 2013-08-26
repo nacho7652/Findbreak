@@ -180,8 +180,8 @@
                                  <input placeholder="http://www.youtube.com/tusitio" class="field-publicarevent" type="text" id="urlyoutube" name="url-youtube"/>
                                 </div>
 
-                                <div class="item-publicar">
-                                    <div class="nombre-publicarevent">Captcha</div>
+                                <div id="item-publicar-capcha" class="item-publicar">
+                                    <div class="nombre-publicarevent">¿Eres humano?</div>
                                     <?php echo recaptcha_get_html($publickey); ?>
                                      <div class="mensaje-error error-obligatorio">
                                         <div class="content-mensaje">* Ingresa las 2 palabras</div>

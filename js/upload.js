@@ -320,6 +320,8 @@ $(document).ready(function(){
 //                 guardar = false;
 //             }
 //         })
+         challengeField = $("input#recaptcha_challenge_field").val();
+    	 responseField = $("input#recaptcha_response_field").val();
          $('.obligatorio').each(function(){
              valor = $(this).val();
              error = $(this).parent().find('.error-obligatorio');
@@ -341,8 +343,19 @@ $(document).ready(function(){
                  }
              
          })
-         challengeField = $("input#recaptcha_challenge_field").val();
-    	 responseField = $("input#recaptcha_response_field").val();
+         if(trim(responseField) == ""){
+                     $("input#recaptcha_response_field").focus();
+                     $('html, body').animate({
+                         'scrollTop': $("input#recaptcha_response_field").offset().top - 90 + "px" 
+                     },
+                     {
+                        duration:500,
+                        easing:"swing"
+                     }
+                     );
+                     $("#item-publicar-capcha").find('.error-obligatorio').fadeIn(200); 
+                     return false;
+         }
           $.ajax({
            type:"POST" ,
            dataType:"html",
@@ -359,9 +372,17 @@ $(document).ready(function(){
                    }
                else
                    {
-                      loader('Ingresa las palabras nuevamente...');
-                      Recaptcha.reload();
-                      $("input#recaptcha_response_field").focus();
+                        Recaptcha.reload();
+                        $("input#recaptcha_response_field").focus();
+                        $('html, body').animate({
+                            'scrollTop': $("input#recaptcha_response_field").offset().top - 90 + "px" 
+                        },
+                        {
+                           duration:500,
+                           easing:"swing"
+                        }
+                        );
+                        $("#item-publicar-capcha").find('.error-obligatorio').fadeIn(200); 
                    }
            }
                       
