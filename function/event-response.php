@@ -417,8 +417,10 @@
                                                                     '.$str.'
                                                                 </div>
                                                            </div>
+                                                           
+                                                           <a href="http://www.nowsup.com/break/'.$dcto['hash'].'" class="botonitem-vermas botongreen">Ver más</a>
                                                            <div class="botonitemcerca botonblue">Ver comentarios</div>
-                                                           <div class="verRuta botongreen">¿Cómo llegar?</div>';
+                                                            <div class="verRuta">¿Cómo llegar?</div>';
                                  $tagsHidden = '';
                                                     foreach ($dcto['tags'] as $tags){
 

@@ -1,9 +1,9 @@
 @font-face{
     font-family: "EstoyBueno";
     src: url('/fonts/DroidSans.ttf'),
-         url('../fonts/Impact.eot'),
-         url('../fonts/Impact.otf'),
-         url('../fonts/Impact.woff') ;
+         url('/fonts/DroidSans.eot'),
+         url('/fonts/DroidSans.otf'),
+         url('/fonts/DroidSans.woff') ;
 }
 
 *{font-family: EstoyBueno}
@@ -61,6 +61,23 @@ html {
     top: -15px;
     left: 210px;
 }
+.icons-fb {
+    background: url(/images/login-face-sprite.png) top right no-repeat;
+    width: 97px;
+    float: right;
+    font: bold 11px/22px "Lucida Grande",Lucida,Arial,sans-serif;
+    height: 22px;
+    padding-right: 6px;
+    text-shadow: rgba(0, 0, 0, 0.5) 0 -1px 0;
+    -webkit-text-stroke: 1px transparent;
+    position: relative;
+    margin: 9px 20px 10px 0px;
+    color: #fff;
+    text-decoration: none;
+    position: relative;  
+    top: 0px;  
+    left: -238px;
+}
 .fix-face.fix-redes {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -17px -687px;
     width: 38px;
@@ -114,6 +131,16 @@ html {
     background: #BB1F1F;
     color: #FFFFFF !important;
 }
+.mapa-geoexplic {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    text-shadow: 0px 1px 1px #000;
+    top: 43px;
+    position: absolute;
+    left: 471px;
+    width: 400px;
+}
 .lista-pasos .mapa-explic1 {
     color: #fff;
     width: 300px;
@@ -140,8 +167,52 @@ html {
     display: none;
     z-index: 5000000000000;
 }
+.geo-explicacion {
+    position: relative;
+    top: 74px;
+    left: 418px;
+    background-position: -2px -870px;
+    width: 91px;
+    height: 60px;
+}
+.clickaqui:hover, #boton-location-tut:hover{
+    cursor: pointer;
+}
+.paso2-tutorial .clickaqui {
+    background: rgba(255, 255, 255, 0.11);
+    width: 201px;
+    height: 47px;
+    top: 82px;
+    left: 255px;
+    position: absolute;
+    border-radius: 2px;
+}
+.paso1-tutorial .clickaqui {
+    background: rgba(255, 255, 255, 0.11);
+    width: 234px;
+    height: 47px;
+    top: 82px;
+    left: 13px;
+    position: absolute;
+    border-radius: 2px;
+}
+.paso0-tutorial .flecha-mapa {
+    width: 167px;
+    height: 70px;
+    top: 8px;
+    position: absolute;
+    left: 31px;
+}
+.paso0-tutorial .mapa-explic1 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: -20000px;
+    text-shadow: 0px 1px 1px #000;
+}
 .paso1-tutorial .flecha-mapa {
-    background: url('/images/flecha.png') no-repeat;
+    background: url('/images/flecha.png') no-repeat 0px -151px;
     width: 167px;
     height: 93px;
     top: 126px;
@@ -149,7 +220,7 @@ html {
     left: 31px;
 }
 .paso3-tutorial .flecha-mapa {
-    background: url('/images/flecha.png') no-repeat;
+    background: url('/images/flecha.png') no-repeat 0px -151px;
     width: 167px;
     height: 93px;
     top: 262px;
@@ -165,16 +236,16 @@ html {
     left: 508px;
     text-shadow: 0px 1px 1px #000;
 }
-.paso2-tutorial, .paso3-tutorial{
+.paso1-tutorial, .paso2-tutorial, .paso3-tutorial{
     display: none;
 }
 .paso2-tutorial .flecha-mapa {
-    background: url('/images/flecha.png') no-repeat;
+    background: url('/images/flecha.png') no-repeat 0px -143px;
     width: 167px;
     height: 93px;
-    top: 114px;
+    top: 119px;
     position: absolute;
-    left: 413px;
+    left: 288px;
 }
 .mapa-explic1 span {
     width: 459px;
@@ -194,8 +265,8 @@ html {
     font-weight: bold;
     font-size: 18px;
     position: absolute;
-    top: 156px;
-    left: 581px;
+    top: 170px;
+    left: 453px;
     text-shadow: 0px 1px 1px #000;
 }
 #allbackground{
@@ -472,7 +543,7 @@ html {
     height: 53px;
     position: relative;
 }
-.explicacion-mapa {
+.explicacion-mapa-style {
     float: left;
     margin: 20px 0px 0px 9px;
     color: #fff;
@@ -1551,7 +1622,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     float: right;
     font-size: 0.8em;
     margin: -6px 11px 0px 0px;
-    padding: 7px 18px;
+    padding: 6px 16px;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);                  
@@ -1613,7 +1684,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     border-radius: 2px;
     text-align: center;
     float: right;
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin: -6px 11px 0px 0px;
     padding: 7px 18px;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
@@ -1635,10 +1706,21 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     border-bottom-color: rgba(41, 134, 33, 1);
 }
 .verRuta {
-margin: 20px 28px 0px 0px;
+    margin: 49px 0px 0px 12px;
+    float: left;
+    font-size: 12px;
+    color: rgba(38, 113, 163, 1);
 }
+.verRuta:hover {
+     cursor: pointer;
+     text-decoration: underline;
+ }
 .botonitemcerca {
     margin: 20px 9px 0px 0px;
+}
+.botonitem-vermas {
+    margin: 20px 9px 0px 0px;
+    text-decoration: none;
 }
 .descripcion-cerca {
     font-size: 12px;
@@ -1646,6 +1728,7 @@ margin: 20px 28px 0px 0px;
     margin: 5px 0px 0px 11px;
     word-wrap: break-word;
     width: 285px;
+    height: 49px;
 }
 .item-infocerca {
     margin-bottom: 0px;
@@ -2167,6 +2250,7 @@ padding: 0px 25px;
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);
     border: 1px solid rgba(65, 169, 94, 0);
+    background: rgba(118, 194, 47, 1);
     background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
     color: #FFF;
     border: 1px solid rgba(48, 156, 39, 1);
@@ -2326,6 +2410,7 @@ float: left;
 .redes-event {
     position: absolute;
     bottom: 6px;
+    position: absolute;  bottom: 0px;  background: rgba(247, 247, 247, 0.36);  width: 512px;  border-top: 1px solid rgba(204, 204, 204, 0.17);
 }
 #___plusone_0 {
     bottom: -7px;
@@ -2333,9 +2418,9 @@ float: left;
     left: 13px;
 }
 .eventprofile #___plusone_0 {
-    bottom: 9px;
+    bottom: -10px;
     position: relative;
-    left: 4px;
+    left: -10px;
 }
 .eventprofile .fb-share-button.fb_iframe_widget {
     position: relative;
@@ -2349,13 +2434,13 @@ float: left;
 }
 .eventprofile .twitter-share-button.twitter-count-horizontal {
     position: relative;
-    right: -34px;
-    bottom: 9px;
+    right: -11px;
+    bottom: -10px;
 }
 .part-left-lf {
     width: 495px;
     float: left;
-    padding: 0px 0px 0px 11px;
+    padding: 0px 0px 0px 0px;
     margin-top: 28px;
     position: relative;
 }
@@ -2545,7 +2630,7 @@ float: left;
 }
 #videoEvento {
     width: 513px;
-    height: 400px;
+    height: 290px;
 }
 .cercanos {
     width: 591px;
@@ -2765,6 +2850,7 @@ margin: -3px -5px 0px 6px;
 #cant-solicitud {
     color: #fff;
     text-shadow: rgba(0, 0, 0, 0.4) 0px -1px 0px;
+    background: rgb(220, 13, 23);
     background-image: -webkit-linear-gradient(top, rgb(250, 60, 69), rgb(220, 13, 23));
     border: none;
     -webkit-box-shadow: rgba(0, 0, 0, 0.701961) 0px 0px -1px 4px;

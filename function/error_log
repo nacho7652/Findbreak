@@ -1026,3 +1026,27 @@ Stack trace:
 #1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
 #2 {main}
   thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[23-Aug-2013 11:33:36 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct(Array)
+#1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[23-Aug-2013 11:38:47 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct(Array)
+#1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[24-Aug-2013 20:53:23 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct(Array)
+#1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
+[24-Aug-2013 20:55:37 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+Stack trace:
+#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct(Array)
+#1 /home/nowsup/public_html/function/comentario-response.php(24): evento->findforid(Array)
+#2 {main}
+  thrown in /home/nowsup/public_html/DAL/evento.php on line 61

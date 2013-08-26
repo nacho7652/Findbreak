@@ -3,7 +3,11 @@
     require_once '../DAL/connect.php';
     require_once '../DAL/usuario.php';
     date_default_timezone_set("Chile/Continental");
-   
+    if(!empty($_POST["cookie-ubicacion"]))
+    {
+       if(!isset($_COOKIE['ubicacion']))
+        setcookie("ubicacion", 'si', time() + (60 * 60 * 24 * 30), "/"); //30 dias | crearlo al cerrar el Primer tutorial   
+    }
     if(!empty($_POST["cambiarClaveFace"]))
     {
         $clave = $_POST["clave"];
@@ -207,6 +211,13 @@
         $comentarios = new comentario();
         $comentarios->revisado($id);//dejo la notificacion como revisada
     }
+    if(!empty($_REQUEST["revisarnot4"]))
+    {
+        require_once '../DAL/comentario.php';
+        $id = $_POST['id'];
+        $comentarios = new comentario();
+        $comentarios->revisado($id);//dejo la notificacion como revisada  
+    }
     if(!empty($_POST["search-friend"]))
     {
             $busqueda = $_POST["textoAmigo"];
@@ -265,8 +276,8 @@
              echo '<div class="nohaycoinci">No hay coincidencias</div>';
             }else
             echo $cuadrouser.$cuadroevento;
-    }
-           
+    }  
+    
     if(!empty($_REQUEST["seguirpersona"]))
     {
        

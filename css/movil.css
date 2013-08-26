@@ -70,6 +70,7 @@ html {
     left: 147px;
 }
 .content-redes-sociales {
+    display: none;
     right: 11px;
     padding: 15px 35px;
     bottom: -164px;
@@ -122,7 +123,7 @@ html {
     font-size: 14px;
     position: absolute;
     top: -27px;
-    left: -217px;
+    left: -266px;
     text-shadow: 0px 1px 1px #000;
 }
 .lista-pasos {
@@ -148,7 +149,24 @@ html {
     position: absolute;
     left: 31px;
 }
-.paso2-tutorial{
+.paso3-tutorial .flecha-mapa {
+    background: url('/images/flecha.png') no-repeat;
+    width: 167px;
+    height: 93px;
+    top: 262px;
+    position: absolute;
+    left: 340px;
+}
+.paso3-tutorial .mapa-explic1 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 300px;
+    left: 508px;
+    text-shadow: 0px 1px 1px #000;
+}
+.paso2-tutorial, .paso3-tutorial{
     display: none;
 }
 .paso2-tutorial .flecha-mapa {
@@ -393,9 +411,10 @@ html {
     
 }*/
 #top {
+    background: #124191;
     background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#134394,#124191);    -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.15);  -o-box-shadow: 0 3px 4px rgba(0,0,0,.25);
     width: 100%;  
-    height: 51px; 
+    height: 35px; 
     margin: 0px 0px 0px 0px; 
     position: fixed;  
     box-shadow: 0px 2px 6px -3px black;  
@@ -412,8 +431,9 @@ html {
 }
 #content-top {
     width: 1135px;
-    height: 53px;
+    height: 38px;
     margin: 0px auto;
+    float: left;
     position: relative;
     top: -2px;
 }
@@ -428,19 +448,20 @@ html {
 }
 #content-top .top-left {
     float: left;
-    width: 203px;
+    width: 39px;
     height: 53px;
-    margin-right: 26px;
+    margin-right: 6px;
 }
 .logoper {
-    width: 48px;
-    height: 47px;
+    width: 37px;
+    height: 35px;
     background: url('/images/logotipo-nowsup2.png')no-repeat;
-    margin-top: 4px;
+    margin-top: 2px;
     background-size: cover;
     float: left;
 }
 .logo {
+    display: none;
     width: 123px;
     height: 51px;
     background: url('/images/logo-nowsup7.png')no-repeat;
@@ -451,7 +472,7 @@ html {
 #content-top .top-center {
     float: left;
     width: 314px;
-    height: 53px;
+    height: 38px;
     position: relative;
 }
 .explicacion-mapa {
@@ -467,6 +488,7 @@ html {
     height: 53px;
     position: relative;
     margin-left: 4px;
+    display: none;
 }
 .login-msj {
     margin: 0px 68px 0px 0px !important;
@@ -505,8 +527,8 @@ html {
     height: 32px;
     background-position: -37px -410px;
     position: absolute;
-    top: 9px;
-    right: -10px;
+    top: 2px;
+    right: 5px;
     border: none;
 }
 #boton-buscar-ini {
@@ -535,8 +557,8 @@ html {
     width: 29px;
     height: 31px;
     position: absolute;
-    top: 88px;
-    right: 17px;
+    top: 42px;
+    right: 266px;
     border: none;
     
     
@@ -562,32 +584,33 @@ html {
 }
 .input-textparent1{
     border-radius: 2px;  
-    height: 31px;
-    width: 323px;
-    margin-top: 11px;
+    height: 27px;
+    width: 308px;
+    margin-top: 5px;
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 17px;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
 }
 .input-textparent2{
     border-radius: 2px;  
-    height: 46px;
-    width: 232px;
-    margin-top: 5px;
+    height: 28px;
+    width: 236px;
+    margin-top: 0px;
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
-    line-height: 17px;
+    line-height: 24px;
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
     float: left;
+    margin-left: 49px;
 }
 .input-textparent3{
     border-radius: 2px;  
-    height: 47px;
-    width: 200px;
-    margin-top: 5px;
-    margin-left: 8px;
+    height: 26px;
+    width: 236px;
+    margin-top: 6px;
+    margin-left: 49px;
     border: 1px solid rgb(209, 209, 209);  
     background: #fff;
     font-size: 11px;
@@ -595,6 +618,7 @@ html {
     box-shadow: 0px 3px 7px -2px #E6E6E6 inset;
     color: rgba(150, 71, 66, 0.8);
     float: left;
+    clear: left;
 }
 .input-transf{
     border: none;
@@ -617,14 +641,14 @@ html {
     height: 36px;
     background-position: -38px -408px;
     position: absolute;
-    top: 83px;
-    right: 225px;
+    top: 2px;
+    right: 263px;
     border: none;
 }
 #content-top #search{
-    width: 286px;
+    width: 269px;
     margin: 0px 0px 0px 0px;
-    padding: 8px 5px;  
+    padding: 6px 5px;  
     color: rgb(145, 145, 145);
 }
 #search-ini{
@@ -658,16 +682,16 @@ html {
     display: none;
 }
 #search-near {
-    width: 188px;
+    width: 205px;
     margin: 0px 0px 0px 2px;
-    padding: 15px 4px;
-    font-size: 14px;
+    padding: 5px 4px;
+    font-size: 13px;
 }
 #search-location {
-    width: 188px;
-    margin: 0px 0px 0px 2px;
-    padding: 15px 4px;
-    font-size: 14px;
+    width: 203px;
+    margin: 0px 0px 0px 4px;
+    padding: 6px 4px;
+    font-size: 13px;
 }
 .registro-msj {
     float: left !important;
@@ -888,7 +912,7 @@ overflow: hidden;
 #content-top #response-friend{
     background-color: white;
     display: none;
-    width: 460px;
+    width: 307px;
     border: 1px solid rgb(189, 189, 189);
     overflow: hidden;
     z-index: 10240000000000000000000000000000;
@@ -925,6 +949,9 @@ overflow: hidden;
     margin: 6px 0px 0px 5px !important;
     
     float: left !important;
+    width: 60%;
+    height: 32px;
+    overflow: hidden;
 }
 .title-search-item2{
     border-top: 1px solid rgb(216, 216, 216);
@@ -1276,24 +1303,27 @@ overflow: hidden;
 }
 .first-partevent .divevents {
     width: 950px;
+    width: 100%;
     position: relative;
     left: 31px;
+    left: 0px;
     top: 45px;
     height: 100%;
 }
 .first-partevent .loading-events{
     font-size: 0.8em;
     text-align: center;
-    margin: 139px 0px 0px 14px;
+    margin: 50px 0px 0px 0px;
     float: left;
-    width: 413px;  
-    height: 27px;  border-radius: 2px;     
+    width: 100%;  
+    height: 27px;       
     box-shadow: 0px 2px 9px -3px #444;  position: relative;
 }
 .no-resultados{
     display: none;
 }
 .text-cerca {
+    display: none;
     font-size: 0.9em;
     font-family: EstoyBueno;
     margin-top: 49px;
@@ -1306,7 +1336,7 @@ overflow: hidden;
 }
 .title .logoper {
     position: absolute;
-    top: 0px;
+    top: -4px;
 }
 .menu-show {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -16px -820px;
@@ -1321,8 +1351,8 @@ overflow: hidden;
 .title {
     background: #134394;  
     background: url(/findbreak/images/iconos-bg.png), -webkit-linear-gradient(top,#134394,#124191);  -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.15);  -o-box-shadow: 0 3px 4px rgba(0,0,0,.25);
-    width: 456px;
-    height: 156px;
+    width: 547px;
+    height: 71px;
     color: #FFF;
     padding: 7px 0px 2px 13px;
     position: fixed;
@@ -1335,27 +1365,33 @@ overflow: hidden;
     top: 0px;
 }
 .first-partevent .list-maps {
-    width: 475px;
+    width: 375px;
+    width: 100%;
     position: absolute;
     min-height: 183px;
-    background: rgba(136, 129, 128, 0.38);
     z-index: 2;
     padding: 0px 0px 16px 0px;
-    left: -33px;
+    left: -45px;
+    left: 0px;
+    margin-top: 0px;
+    top: 317px;
 }
 .event-none{
     display: none;
 }
 .content-eventcerca {
-    width: 447px;
-    height: 240px;
-    margin: 0px 0px 29px 0px;
+    width: 358px;
+    width: 100%;
+    height: 251px;
+    margin: 0px 0px 30px 0px;
+    float: left;
 }
 .first-partevent .list-maps .inner-list-maps{
     max-height: 102px;
     margin: 0px auto 0 auto;  
-    min-height: 186px;
-    padding-top: 120px;
+    min-height: 213px;
+    padding-top: 0px;
+    width: 100%;
 }
 .barra {
     width: 8px;
@@ -1376,7 +1412,8 @@ display: inline-block;
 text-align: center;
 line-height: 30px;
 letter-spacing: 1px;
-left: -8px;
+
+    left: 6px;
 top: -8px;
 }
 #infoWindow {
@@ -1403,10 +1440,10 @@ top: -8px;
     position: absolute;
 }
 .event-right {
-    width: 447px;
     height: 100%;
     float: left;
     margin: 0px 0px 0px 0px;
+    width: 100%;
 }
 .tit-eventcerca:hover{
     text-decoration: underline;
@@ -1430,10 +1467,11 @@ top: -8px;
     background: #fff;
 }
 .info-eventcerca.info-eventcercawhte {
-    padding: 8px 0px 0px 10px;
+    padding: 8px 0px 0px 0px;
     color: rgb(88, 88, 88) !important;
-    height: 190px;
+    height: 203px;
     box-shadow: 0px -25px 38px -12px #000;
+    width: 100%;
 }
 .info-eventcerca {
     padding: 8px 0px 0px 10px;
@@ -1527,7 +1565,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     background: rgba(36, 115, 167, 1);
     background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,rgba(42, 124, 179, 1), rgba(35, 106, 151, 1)) !important;
     display: block;
-    width: 95px;
+    width: 108px;
     border-radius: 2px;
     text-align: center;
     float: right;
@@ -1602,7 +1640,9 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);                  
     border: 1px solid rgba(65, 169, 94, 0);    
-    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);            background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
+    -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);  box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);            
+    background: rgba(48, 160, 38, 1);
+    background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
     color: #FFF;
     border: 1px solid rgba(48, 156, 39, 1);        border-top-color: rgba(77, 184, 67, 1);        border-bottom-color: rgba(41, 134, 33, 1);
 }
@@ -1615,22 +1655,36 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     border-bottom-color: rgba(41, 134, 33, 1);
 }
 .verRuta {
-margin: 20px 28px 0px 0px;
+    margin: 38px 0px 0px 12px;
+    float: left;
+    font-size: 12px;
+    color: rgba(38, 113, 163, 1);
 }
 .botonitemcerca {
     margin: 20px 9px 0px 0px;
+    display: none;
 }
+.botonitem-vermas {
+    margin: 20px 9px 0px 0px;
+    text-decoration: none;
+}
+.verRuta:hover {
+     cursor: pointer;
+     text-decoration: underline;
+ }
 .descripcion-cerca {
     font-size: 12px;
     float: left;
     margin: 5px 0px 0px 11px;
     word-wrap: break-word;
-    width: 285px;
+    width: 201px;
+    max-height: 40px;
+    min-height: 40px;
 }
 .item-infocerca {
     margin-bottom: 0px;
     margin-left: 124px;
-    width: 310px;
+    width: 212px;
     float: left;
 }
 .sitioevento {
@@ -1674,6 +1728,7 @@ margin: 20px 28px 0px 0px;
     position: absolute;
     color: rgba(38, 113, 163, 1);
     text-decoration: none;
+    display: none;
 }
 .verEnMapa:hover{
     text-decoration: underline;
@@ -1746,8 +1801,10 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 }
 .item-eventcerca {
     box-shadow: 0px 2px 9px -3px #444;
-    width: 447px;  
-    height: 231px;  border-radius: 2px;  margin: 16px 0px 23px 14px;    position: relative;    background-size: cover;
+    width: 346px;  
+    width: 100%;
+    height: 246px;    
+    margin: 16px 0px 23px 0px;    position: relative;    background-size: cover;
     padding-top: 11px;
 }
 .item-eventcerca:hover{
@@ -1759,7 +1816,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .pub-ladoder {
     width: 120px;
     height: 650px;
-    margin: 9px 2px 0px 0px;
+    margin: 9px 37px 0px 0px;
     float: right;
 }
 .publicidad-large {
@@ -1876,7 +1933,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
     margin-top: 7px;
 }
 .item-event {
-    width: 311px;
+    width: 280px;
     height: 82px;
     float: left;
     margin: 0px 0px 1px 0px;
@@ -2027,10 +2084,10 @@ padding: 0px 25px;
     box-shadow: 0px 3px 8px -2px #444;
 }
 .foto-event {
-    width: 195px;
-    height: 227px;
+    width: 154px;
+    height: 153px;
     float: right;
-    margin: -45px 9px 0px 0px;
+    margin: -108px 0px 0px 0px;
     background-image: url(http://3.bp.blogspot.com/-BDrt8UjnTis/TVq6Yzct59I/AAAAAAAAAZg/9dH2MauSfhk/s1600/millencolin_4.jpg);  
     border-right: 1px solid rgba(24, 24, 24, 0.16);
     border-bottom: 1px solid rgba(24, 24, 24, 0.16);
@@ -2046,7 +2103,7 @@ padding: 0px 25px;
 
 .info-event {
     float: left;
-    width: 301px;
+    width: 280px;
     height: 38px;
 }
 .inner-eventpeq {
@@ -2112,8 +2169,10 @@ padding: 0px 25px;
 }
 .content-perfilevento{
     width: 1000px;
+    width: 100%;
     margin: -3px auto 0px auto;
     overflow: visible;
+    float: left;
     position: relative;
 }
 .perfiluser{
@@ -2134,6 +2193,7 @@ padding: 0px 25px;
     z-index: -36;
 }
 .boton-publicar2 {
+    display: none !important;
     text-decoration: none;
     margin: 12px 0px 0px 15px;
     font-size: 15px;
@@ -2167,6 +2227,7 @@ padding: 0px 25px;
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);
     border: 1px solid rgba(65, 169, 94, 0);
+    background: rgba(48, 160, 38, 1);
     background: -webkit-linear-gradient(top,rgba(118, 194, 47, 1), rgba(48, 160, 38, 1));
     color: #FFF;
     border: 1px solid rgba(48, 156, 39, 1);
@@ -2175,6 +2236,7 @@ padding: 0px 25px;
 }
 .parte-left-parent {
     width: 526px;
+    width: 100%;
     float: left;
     margin-bottom: 30px;
 }
@@ -2188,9 +2250,9 @@ padding: 0px 25px;
     margin-top: 4px;
 }
 .part-left {
-    width: 512px;
+    width: 100%;
     float: left;
-    margin: 8px 0px 0px 6px;            position: relative;
+    margin: 8px 0px 0px 0px;            position: relative;
     color: rgb(88, 88, 88);
 }
 .part-left-cent {
@@ -2198,17 +2260,17 @@ padding: 0px 25px;
     float: left;
 }
 .part-left-right {
-    width: 199px;
+    width: 154px;
     float: left;
     margin-right: 0px;
 }
 .part-left .title-event{
     width: 743px;
     float: left;
-    margin: 8px 0px 0px 14px;
+    margin: 8px 0px 0px 5px;
     font-weight: bold;
     position: absolute;
-    top: -32px;
+    top: -48px;
     color: #fff;
     font-size: 16px;
     text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.77);
@@ -2229,6 +2291,7 @@ padding: 0px 25px;
 }
 .verMapaEvento{
     float: right;
+    display: none;
 }
 #comprarevent-prof {
 background: url('/findbreak/nuevo/images/sprites.png') no-repeat -62px -136px;
@@ -2277,8 +2340,7 @@ line-height: 19px;
 }
 #comentaevent-prof {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -30px -112px;
-    padding-left: 6px;
-    border-left: 1px solid rgba(211, 211, 211, 0.31);
+    padding-left: 5px;
     float: left;  width: 24px;  height: 24px;
 }
 .eventprofile .item-visita{
@@ -2332,7 +2394,7 @@ float: left;
     bottom: 9px;
 }
 .part-left-lf {
-    width: 495px;
+    width: 100%;
     float: left;
     padding: 0px 0px 0px 11px;
     margin-top: 28px;
@@ -2342,11 +2404,11 @@ float: left;
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -34px -134px;
     width: 23px;
     height: 27px;
-    margin: 15px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     float: left;
 }
 .descripcion-event {
-    width: 481px;
+    width: 100%;
     margin: 12px 0px 0px 0px;
     max-height: 115px;
     overflow: hidden;
@@ -2387,7 +2449,7 @@ float: left;
     border-bottom: none;
 }
 .boxscrollEvents{
-    max-height: 275px !important;
+    max-height: 280px !important;
 }
 .divtrans{
     background: rgb(255, 255, 255);
@@ -2459,7 +2521,7 @@ float: left;
     top: 51px;
 }
 #list-similares {
-    width: 311px;
+    width: 280px;
 }
 .part-right {
     float: left;
@@ -2523,14 +2585,16 @@ float: left;
     color: #444;
 }
 #videoEvento {
-    width: 513px;
-    height: 400px;
+    width: 346px;
+    height: 195px;
+    float: left;
 }
 .cercanos {
-    width: 591px;
-    max-height: 29px;
+    max-height: 195px;
+    width: 346px;  
     margin: 6px 0px 0px 8px;
     float: left;
+    min-height: 195px;
 }
 .part-bottom {
     float: left;
@@ -2907,10 +2971,10 @@ margin: -3px -5px 0px 6px;
 .more-fotos {
     width: 100%;
     margin: 45px auto 0px auto;
-    top: 5px;
+    top: -11px;
     position: relative;
     height: 110px;
-    padding-left: 417px;
+    padding-left: 189px;
     background: url('/images/superpos-bg.png') rgb(22, 23, 24);
 }
 .foto-event-small {
@@ -3543,4 +3607,7 @@ footer .textbottom {
     margin: 3px 0px 0px 140px;
     color: #FFF;
     float: left;
+}
+#boton-compartirfb {
+    display: none;
 }

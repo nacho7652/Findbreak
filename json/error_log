@@ -1,0 +1,80 @@
+[23-Aug-2013 11:35:14 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:17 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:21 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:29 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:32 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:38 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:38 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:38 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:40 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:40 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:41 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:41 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:43 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:43 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:43 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37
+[23-Aug-2013 11:35:43 America/New_York] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/json/zoom.php:37
+Stack trace:
+#0 /home/nowsup/public_html/json/zoom.php(37): MongoId->__construct('')
+#1 {main}
+  thrown in /home/nowsup/public_html/json/zoom.php on line 37

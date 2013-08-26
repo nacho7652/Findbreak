@@ -56,30 +56,103 @@ $(document).ready(function(){
                 title: "Estoy aquí !" 
             });
   }
-            
+ function comprobarnavegador() {
+        /* Variables para cada navegador, la funcion indexof() si no encuentra la cadena devuelve -1, 
+        las variables se quedaran sin valor si la funcion indexof() no ha encontrado la cadena. */
+        var is_safari = navigator.userAgent.toLowerCase().indexOf('safari/') > -1;
+        var is_chrome= navigator.userAgent.toLowerCase().indexOf('chrome/') > -1;
+        var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox/') > -1;
+        var is_ie = navigator.userAgent.toLowerCase().indexOf('msie ') > -1;
+
+        /* Detectando  si es Safari, vereis que en esta condicion preguntaremos por chrome ademas, esto es porque el 
+        la cadena de texto userAgent de Safari es un poco especial y muy parecida a chrome debido a que los dos navegadores
+        usan webkit. */
+
+        if (is_safari && !is_chrome ) {
+            $('.paso0-tutorial .mapa-explic1').css('top','420px');
+            $('.paso0-tutorial .mapa-explic1').css('left','195px');
+            $('.paso0-tutorial .flecha-mapa').css('top','386px');
+            $('.paso0-tutorial .flecha-mapa').css('left','584px');
+            $('.paso0-tutorial .flecha-mapa').css('background','url(/images/flecha.png) no-repeat 0px 1px');        
+        }else{
+
+        //Detectando si es Chrome
+            if (is_chrome ) {
+                $('.paso0-tutorial .mapa-explic1').css('top','47px');
+                $('.paso0-tutorial .mapa-explic1').css('left','203px');
+                $('.paso0-tutorial .flecha-mapa').css('background','url(/images/flecha.png) no-repeat 0px -150px'); 
+                
+            }else{
+                 if (is_firefox ) {
+                     $('.paso0-tutorial .flecha-mapa').css('background','url(/images/flecha.png) no-repeat 2px -149px'); 
+                     $('.paso0-tutorial .mapa-explic1').css('top','155px');
+                     $('.paso0-tutorial .mapa-explic1').css('left','532px');
+                     $('.paso0-tutorial .flecha-mapa').css('top','142px');
+                     $('.paso0-tutorial .flecha-mapa').css('left','349px');
+                 }else{
+                     if (is_ie ) {
+                        $('.paso0-tutorial .mapa-explic1').css('top','480px');
+                        $('.paso0-tutorial .mapa-explic1').css('left','303px');
+                        $('.paso0-tutorial .flecha-mapa').css('top','461px');
+                        $('.paso0-tutorial .flecha-mapa').css('left','680px');
+                        $('.paso0-tutorial .flecha-mapa').css('background','url(/images/flecha.png) no-repeat 0px -76px');
+                    }else{
+                        $('.paso0-tutorial .mapa-explic1').css('top','255px');
+                        $('.paso0-tutorial .mapa-explic1').css('left','532px');
+                        $('.paso0-tutorial .flecha-mapa').css('top','222px');
+                        $('.paso0-tutorial .flecha-mapa').css('left','349px');
+                        $('.paso0-tutorial .flecha-mapa').css('background','url(/images/flecha.png) no-repeat 2px -149px'); 
+                    }
+                 }
+            }
+        }
+        //Detectando si es Firefox
+       
+
+        //Detectando Cualquier version de IE
+        
+    }           
  function localizame() {   
             if (navigator.geolocation) { /* Si el navegador tiene geolocalizacion */
+                comprobarnavegador();
                 navigator.geolocation.getCurrentPosition(coordenadas, errores);
             }else{
-                alert('Oops! Tu navegador no soporta geolocalización. B�jate Chrome, que es gratis!');
+                geolocalizarPorTags('');
             }
         }
 function errores(err) {
             /*Controlamos los posibles errores */
             if (err.code == 0) {
-              alert("Oops! Algo ha salido mal");
+              //alert("Oops! Algo ha salido mal");
+              geolocalizarPorTags('');
             }
             if (err.code == 1) {
-              alert("Oops! No has aceptado compartir tu posici�n");
+              //alert("Oops! No has aceptado compartir tu posici�n");
+              geolocalizarPorTags('');
             }
             if (err.code == 2) {
-              alert("Oops! No se puede obtener la posici�n actual");
+              // alert("Oops! No se puede obtener la posici�n actual");
+              geolocalizarPorTags('');
             }
             if (err.code == 3) {
-              alert("Oops! Hemos superado el tiempo de espera");
+              //alert("Oops! Hemos superado el tiempo de espera");
+              geolocalizarPorTags('');
             }
         }        
 function coordenadas(position) {
+            //post a guardar la cookie si no existe      
+            $.post('/function/users-response.php', {'cookie-ubicacion':1},
+                    function(){
+                        $('.paso').removeClass('paso-selected')
+                        $('.paso0-tutorial, .paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
+                                $('.paso0-tutorial').css('display','none');
+                                $('.paso2-tutorial').css('display','none');
+                                $('.paso3-tutorial').css('display','none');
+                                $('#paso1').addClass('paso-selected')
+                                $('.paso1-tutorial').fadeIn(300);
+                             
+                        });    
+                    }, "html");
             latitud = position.coords.latitude; /*Guardamos nuestra latitud*/
             longitud = position.coords.longitude;
             geolocalizar();
@@ -343,14 +416,14 @@ function geolocalizarPorTags(){
    
                    var PointMaps = new google.maps.LatLng(lat, lng);
                   
-                       var markerNew = new google.maps.Marker({
-                       position: PointMaps
-                       , map: map
-                       , title: name
-                       //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
-                       
-                       , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/marker'+cont+'.png' 
-                   });
+//                       var markerNew = new google.maps.Marker({
+//                       position: PointMaps
+//                       , map: map
+//                       , title: name
+//                       //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
+//                       
+//                       , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/marker'+cont+'.png' 
+//                   });
                        
                        if(verif==0 || verif == null)
                            {
@@ -532,12 +605,13 @@ function geolocalizarPorTags(){
            $('#boton-location').addClass('loc-activado');     
    }
    geolocation = false;
-   $('#boton-location').click(function(){
+   $('#boton-location, #boton-location-tut').click(function(){
             activarLocation();
             manualLocation = false;
             geolocation = true;
             localizame();
    })
+   
    //guardar evento
    guardarEvento = false;
    $('#addresEvent').keyup(function(e){

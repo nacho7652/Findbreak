@@ -35,7 +35,7 @@ $(document).ready(function(){
 //                  cuerpo+=    '<div class="hacecuant">'+tiempo+'</div>';
 //                  cuerpo+= '</div></div></div>';
              //dassadds
-             var pie = '<div class="bloq3msj"><div data-id="9" id="cancelar" class="botonblue">Aceptar</div>';
+             var pie = '<div class="bloq3msj"><div data-id="9" id="boton-denuncia" class="botonblue">Aceptar</div>';
                  pie+= '<div id="cancelar" class="botoncancel">Cancelar</div></div>';
                  
                 

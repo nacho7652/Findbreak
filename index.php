@@ -1,5 +1,11 @@
 <?php 
-   
+     define(UBICACION, 'nuevo');
+     if(isset($_COOKIE["ubicacion"]) == 'si'){//si ya acepto
+      define(UBICACION, 'antiguo');
+      $styleTutorial = 'style="display:none"';
+    }else{//debe mostrar el mensaje
+      $styleTutorial = 'style="display:block"';
+    }
     session_start();
     define(PATH, '/');
     //define(PATH, '/nowsup/');
@@ -20,7 +26,8 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+        
         <meta property="og:type" content="article">
 <meta property="og:site_name" content="Nowsup">
 <meta property="og:description" content="<?= $page_description?>">
@@ -42,13 +49,11 @@
         <link rel="stylesheet" href="css/stylelanding.css">
         <link rel="stylesheet" href="css/style-encuesta.css">
         <link rel="stylesheet" type="text/css" href="css/datepick.css"> 
-        <link rel="stylesheet" type="text/css" href="css/feedbackform.css">
         
         <meta charset="utf-8">
         
         <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="js/datepick.js"></script>
-        <script src="js/feedbackformvalidation.js"></script>
          <script src="js/face.js"></script>
 		<script type="text/javascript">
 
@@ -105,7 +110,7 @@
          </div>
          
                 <?php } ?> 
-        <div id="allbackground">
+        <div <?= $styleTutorial?> id="allbackground">
             
         </div>
         <div id="coverall">
@@ -207,7 +212,7 @@
                             if($page_site != 'cerca'){//salga en todos los sites menos en cerca
                                echo '<a href="http://www.nowsup.com/publicar" class=" boton-publicar2">Publicar !</a>'; 
                             }else{//salga en el cerca
-                                echo '<a href="#" class="explicacion-mapa">¿Cómo funciona Nowsup?</a>';
+                                echo '<a href="#" class="explicacion-mapa explicacion-mapa-style">¿Cómo funciona Nowsup?</a>';
                             }
                             if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
                                 $us = new usuario();
@@ -395,6 +400,32 @@
 
                                                         $divMenciones.=   '</a>';
                                                  } 
+                                                 if($not['tipo'] == 4){
+                                                        $realizacion = $comentarioEvent->verFecha($not['fechaMuestra']);
+                                                        $user = $usuario->findforid($not['aquien']);
+                                                        //si estamos en el mapa
+                                                        $claseNoti = '';
+                                                        if($page_site == 'cerca'){
+                                                            $claseNoti = 'explicacion-mapa';
+                                                        }
+                                                        $divMenciones.='<div id="'.$not['_id'].'" class="'.$clase.' not4 '.$claseNoti.' item-solicitud-friend item-search-friend"> 
+                                                                           <div style="background-image:url('.$user['foto']['pe'].')" class="item-friends-userpic"></div>
+                                                                  
+                                                                            
+                                                                            <div class="item-friends-msj">
+                                                                                   <div class="item-friends-username tit-gray">'.ucwords($user['nombre']).'</div>
+                                                                                   <span class="msjmencion tit-gray">!Bienvenido a Nowsup :)! </span>
+                                                                                   <span class="tit-gray msjmencion msjeventonom">haz click aquí para empezar</span>
+                                                                               </div>
+                                                                               
+                                                                           <div class="bloq3">
+                                                                               <div class="hacecuant">'.$realizacion.'</div>
+                                                                           </div>
+                                                                           <div style="display:none" class="id-item-search">'.$user['_id'].'</div>
+                                                                           ';
+
+                                                        $divMenciones.=   '</div>';
+                                                 } 
                                                  
                                                  
                                              }
@@ -539,53 +570,7 @@
                     <div class="btnslide"></div>
                 </div>
            <?php } ?>
-            <!-- feedback
-            <div class="feedback"><div class="feedback-default">
-            <table border="0">
-            <tr>
-             <td colspan="2">
-              <h2>feedback</h2>
-              <p class="feedback_comments">El asterisco<span class="required_star"> * </span> indica campo obligatorio.</p><br />
-             </td>
-            </tr>
-            <tr>
-             <td valign="top">
-              <label for="Email">Email<span class="required_star"> * </span></label>
-             </td>
-             <td valign="top">
-              <input class="feedback_textbig" type="text" name="Email" id="Email" maxlength="100" />
-             </td>
-            </tr>
-            <tr>
-            <tr>
-             <td valign="top">
-              <label for="Subject">Asunto<span class="required_star"> * </span></label>
-             </td>
-             <td valign="top">
-              <select class="feedback_text" name="Subject" placeholder="Problema, idea, pregunta" id="Subject">
-                    <option value="problema">Problema</option>
-                    <option value="idea">Idea</option>
-                    <option value="pregunta">Pregunta</option>
-              </select>
-             </td>
-            </tr>
-            <tr>
-             <td valign="top">
-              <label for="Message">Mensaje<span class="required_star"> * </span></label>
-             </td>
-             <td valign="top">
-              <textarea class="feedback_textarea" name="Message" id="Message" maxlength="1000" onKeyUp="checkMessageCount()" /></textarea>
-              <br />
-              <div id="charsleft" class="feedback_comments">Tienes 1000 caracteres para usar</div>
-             </td>
-            </tr>
-            <tr>
-             <td colspan="2" align="center">
-              <br /><br />
-              <input type="text" id="url" name="url" />
-              <input type="button" value="Enviar Feedback" id="form_submit_button" class="feedback_button" />
-              <br /><br />
-            fin feedback -->
+            
         <div id="body" <?= $page_class ?>>
             
             

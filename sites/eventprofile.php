@@ -83,8 +83,8 @@
                 {
                     
                     ?> 
-                                    <!--<div id="boton-denuncia" class="botonred" >-->
-                                    <div id="denunciar-evento" class="botonred" > 
+                        
+                                    <div id="denunciar-evento" class="botonred" >  
                                             Denunciar 
                                         <div style="display:none" id="enviar-denuncia">
                                             <textarea id="text-denuncia">      </textarea>
@@ -176,16 +176,18 @@
                     <div class="part-left-lf">
                         <!--para redes sociales-->
                                 <div class="redes-event">
-                                            <div class="fb-like" data-href="http://www.nowsup.com/break/<?= $_GET['id']?>" data-send="false" data-width="200" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
 
                                            <!--<b cond='data:blog.pageType == &quot;item&quot;'>-->
-                                            <script src='http://static.ak.fbcdn.net/connect.php/js/FB.Share' type='text/javascript'> 
-                                            </script>
-                                            <a id="sharefb-evento" href='http://www.nowsup.com/break/<?= $_GET['id']?>' name='fb_share' type='button_count' >Compartir</a>
-
-                                            <a id="tw-evento" href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.nowsup.com/break/<?= $_GET['id']?>" data-hashtags="<?= $_GET['id']?>">Tweet</a>
+                                            
+                                            <a id="boton-compartirfb" class="btn icons-fb" data-id="<?= $_GET['id']?>"
+                                                onclick="window.open(this.href,this.target, 'width=600, height=400'); return false;"
+                                                href='http://www.facebook.com/sharer.php?s=100&p[url]=http://www.nowsup.com/break/<?= $_GET['id']?>&p[images][0]=http://www.nowsup.com<?= $urlPrincipal?>&p[title]=<?= $eventfound['nombre'] ?>&p[summary]=<?= $page_description?> :) !' target="_blank">
+                                                 <div id="loginbtn-fb"></div> 
+                                                 <div class="txtfb">Compartir</div>
+                                             </a>
+                                            <a id="boton-compartirfb" href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.nowsup.com/break/<?= $_GET['id']?>" data-hashtags="<?= $_GET['id']?>">Tweet</a>
                                             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                                            <div class="g-plusone" data-size="medium" data-annotation="none"></div>
+                                            <div id="boton-gplus" class="g-plusone" data-size="medium" data-annotation="none"></div>
                                 </div>
                                            <!--</b>-->
                            <!--redes sociales-->
@@ -222,7 +224,7 @@
                     }else{
                         $video = '';//link roto poner video fbk
                     }
-                    $youtube = '<iframe width="513" height="290" src="//www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
+                    $youtube = '<iframe width="100%" height="100%" src="//www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
                 
                      echo ' <div id="videoEvento">'.$youtube.'</div>';
                 }
@@ -264,7 +266,7 @@
              <input type="hidden" id="idevent" value="<?php echo $_GET['id'] ?>"/>
              <input type="hidden" id="hashevent" value="<?php echo '#'.$eventfound['hash'] ?>"/>
             <div class="advert mjscoment">
-                Para comentar el evento debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
+                Para comentar el anuncio debes <a class="login-hover login-hover-com" href="#">Iniciar sesión</a> ó
                 <a class="paracoment login-face login-fb" href="<?php echo '#'; ?>">
                     <div id="loginbtn-fb"></div>
                     <div class="txtfb">Ingresar con Facebook</div>
@@ -339,11 +341,11 @@
     </div>
    <div class="pub-ladoder">
        <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- banner_right2 -->
+        <!-- banner_right -->
         <ins class="adsbygoogle"
-             style="display:inline-block;width:120px;height:600px"
-             data-ad-client="ca-pub-3584063439345600"
-             data-ad-slot="2905630576"></ins>
+        style="display:inline-block;width:120px;height:240px"
+        data-ad-client="ca-pub-3584063439345600"
+        data-ad-slot="1903562170"></ins>
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>

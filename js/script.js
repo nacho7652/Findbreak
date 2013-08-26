@@ -21,35 +21,7 @@ $(document).ready(function(){
 //              }
 //            });
 
-$('#form_submit_button').click(function(){
-    if($('#Email').val()!="" && $('#Subject').val()!="" &&$('#Message').val()!="")
-        {
-            var mail = $('#Email').val();
-            var asunto = $('#Subject').val();
-            var mensaje = $('#Message').val();
-            $.ajax({
-                   type:"POST" ,
-                   dataType:"html",
-                   url:path+"function/feedback-response.php",
-                   data:"feedback=1&mail="+mail+"&asunto="+asunto+"&mensaje="+mensaje,
-                   success:function(data)
-                   {
-                       if(data == 1)
-                           {
-                               alert('Feedback enviado con exito');
-                           }
-                       else
-                           {
-                               alert('Feedback NO fue enviado');
-                           }
-                   }
-             });
-        }
-    else
-        {
-            alert('Por favor rellene todos los campos');
-        }
-})
+
 
 
 $('.explicacion-mapa').click(function(){
@@ -62,24 +34,44 @@ $('.equis-tutorial').click(function(){
     $('.tutorial-mapa').hide();
     $('#allbackground').hide();
 })
-
+$('#paso0').click(function(){
+    $('.paso').removeClass('paso-selected')
+    $('.paso1-tutorial, .paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
+         $('#paso0').addClass('paso-selected')
+         $('.paso0-tutorial').fadeIn(300);
+    });
+})
 $('#paso1').click(function(){
     $('.paso').removeClass('paso-selected')
-    $('.paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
+    $('.paso0-tutorial, .paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
          $('#paso1').addClass('paso-selected')
          $('.paso1-tutorial').fadeIn(300);
     });
 })
 $('#paso2').click(function(){
     $('.paso').removeClass('paso-selected')
-    $('.paso1-tutorial, .paso3-tutorial').fadeOut(300, function(){
+    $('.paso0-tutorial, .paso1-tutorial, .paso3-tutorial').fadeOut(300, function(){
          $('#paso2').addClass('paso-selected')
          $('.paso2-tutorial').fadeIn(300);
     });
 })
+$('.paso2-tutorial .clickaqui').click(function(){//CLICK EN EXPLICACIONES - en alguna zona específica
+     $('.tutorial-mapa').hide();
+     $('#allbackground').hide();
+     $('#search-near').focus();
+})
+$('#boton-location-tut').click(function(){//CLICK EN EXPLICACIONES - geolocalizacion
+     $('.tutorial-mapa').hide();
+     $('#allbackground').hide(); 
+})
+$('.paso1-tutorial .clickaqui').click(function(){//CLICK EN EXPLICACIONES - buscar lo que quiera
+     $('.tutorial-mapa').hide();
+     $('#allbackground').hide();
+     $('#search-location').focus();
+}) 
 $('#paso3').click(function(){
     $('.paso').removeClass('paso-selected')
-    $('.paso1-tutorial, .paso2-tutorial').fadeOut(300, function(){
+    $('.paso0-tutorial, .paso1-tutorial, .paso2-tutorial').fadeOut(300, function(){
          $('#paso3').addClass('paso-selected')
          $('.paso3-tutorial').fadeIn(300);
     });
@@ -498,8 +490,30 @@ $('#paso3').click(function(){
         function descontarNotificacion(){
             var count = parseInt($('#cant-solicitud').html());
             count--;
-            $('#cant-solicitud').html(count);
+            if(count == 0){
+                 $('#cant-solicitud').hide();
+            }else{
+                $('#cant-solicitud').html(count);
+            }
         }
+        $('body').delegate('.not4','click',function(){
+            var id = $(this).attr('id');
+            if($(this).hasClass('norevi')){
+                $(this).removeClass('norevi');
+                descontarNotificacion();
+            }
+            $.ajax({           
+                type:"POST",
+                dataType:"html",
+                url: path+"function/users-response.php",
+                data: "revisarnot4=1&id="+id,
+                success: function ()
+                { 
+                   // alert(data)
+                   // popup(data);
+                }
+            }) 
+        });
         $('body').delegate('.not1','click',function(){
             var id = $(this).attr('id');
             if($(this).hasClass('norevi')){

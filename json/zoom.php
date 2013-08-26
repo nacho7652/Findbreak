@@ -67,7 +67,7 @@
                               <div class="info-user">';
          $divProfileUser.=     '
                                 <div class="bloque-info info-event-item">
-                                            <a href="/findbreak/!'.$usuariofound['username'].'" class="title-user tit-gray">'.ucwords($usuariofound['nombre']).'</a>
+                                            <a href="/!'.$usuariofound['username'].'" class="title-user tit-gray">'.ucwords($usuariofound['nombre']).'</a>
                                             <div class="username">'.$usuariofound['username'].'</div>
                                             <div class="info-num">
                                                   <div class="item-info-num">

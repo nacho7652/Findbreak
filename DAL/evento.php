@@ -10,13 +10,13 @@ class evento {
         //php = $cursor = $coats->find(Array('latLong' => Array('$near' => $latLong)))->limit(10);
         //find({  loc:  { $near: [50,30], $maxDistance: 5}  }).limit(10)
          //return $this->db->evento->find('loc' => array( '$near' => array( (float)50 , (float)30 ), '$maxDistance' => 1 ));
-        $km = 99999999999999999999 / 111.12;
+        $km = 10000 / 111.12;
         //lat, lon
         $a = $this->hoy();
        // return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ), 'fecha_realizacion'=> array('$gte' => $a )   ))->limit(10);
         //return $this->db->evento->find(array("loc" => array('$near' => 50,30))); //array('$near' =>[50,50])
 //                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(10);
-        return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   )   ))->limit(50);
+        return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   )   ))->limit(100);
     }
     public function buscarPorLatLong($lat, $long){
       

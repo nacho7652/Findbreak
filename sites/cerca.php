@@ -1,9 +1,20 @@
 <div class="content-cerca">
     <div class="first-partevent">
         <div class="divevents">
-             <div class="tutorial-mapa">
+            
+             <div <?= $styleTutorial?> class="tutorial-mapa">
                             <div class="equis-tutorial"></div>
+                            <div class="paso0-tutorial">
+                                <div class="flecha-mapa"></div>
+                                <div class="mapa-explic1">
+                                    <span>Nowsup quiere acceder a tu ubicación actual</span>
+                                    <span>Pulsa PERMITIR en el mensaje de tu navegador</span>
+                                    
+                                </div>
+                            </div>
                             <div class="paso1-tutorial">
+                                <div class="clickaqui">
+                                </div>
                                 <div class="flecha-mapa"></div>
                                 <div class="mapa-explic1">
                                     <span>Pulsa aquí y prueba buscando</span>
@@ -12,10 +23,18 @@
                                 </div>
                             </div>
                             <div class="paso2-tutorial">
+                                <div class="clickaqui">
+                                </div>
+                                <div id="boton-location-tut" class="geo-explicacion sprites"></div>
+                                <div class="mapa-geoexplic">
+                                   <span>Pulsa este ícono para ver anuncios cerca de tu ubicación actual</span>
+                                </div>
+                                
+                                
                                 <div class="flecha-mapa"></div>
                                 <div class="mapa-explic1">
-                                    <span>Pulsa aquí para ver anuncios cerca de tu ubicación actual </span>
-                                    <span>o en alguna zona en específica</span>
+                                    <span>Pulsa aquí para ver anuncios en alguna zona específica</span>
+                                    <span>Ej: Santiago, Viña del Mar, Providencia, etc.</span>
                                    
                                 </div>
                             </div>
@@ -28,9 +47,10 @@
                             </div>
                             <div class="lista-pasos">
                                 <div class="mapa-explic1">Sigue los siguientes pasos :)</div>
-                                <div id="paso1" class="paso paso-selected">1</div>
-                                <div id="paso2" class="paso">2</div>
-                                <div id="paso3" class="paso">3</div>
+                                <div id="paso0" class="paso paso-selected">1</div>
+                                <div id="paso1" class="paso">2</div>
+                                <div id="paso2" class="paso">3</div>
+                                <div id="paso3" class="paso">4</div>
                             </div>
              </div>
                      <div class="title">
@@ -57,7 +77,7 @@
               <div class="loading-events no-resultados advert mjscoment">Buuu... por acá nada de nada :(</div>
                 <div class="inner-list-maps">
                     
-                    <?php $j=0; for($i=0; $i<=10; $i++){?> 
+                    <?php $j=0; for($i=0; $i<=40; $i++){?> 
                        <div class="content-eventcerca event-none" id="item-eventcerca<?=$i?>">  
                          <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca" style="">
                                             <div class="barra"></div>

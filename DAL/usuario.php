@@ -66,6 +66,18 @@ class usuario {
                     $this->db->notificaciones->insert($noti3);
              
     }
+    public function guardarNotificacion4($aquien, $fechaMongo, $fecha){
+                   // $idM = new MongoId($aquien['_id']);   
+                    $noti4 = array(
+                        "aquien"=>$aquien,
+                        "tipo"=>4,
+                        "fechaMongo"=>$fechaMongo,
+                        "fechaMuestra"=>$fecha,
+                        "estado"=>0
+                      );
+                    $this->db->notificaciones->insert($noti4);
+             
+    }
     public function verNotificaciones($id){
         $idM = new MongoId($id);                   //516e9e314de8b4180d000003
         $mencionesFound = $this->db->notificaciones->find( array("aquien"=>$idM))->sort(array("fechaMongo" => -1 ));
@@ -521,6 +533,9 @@ class usuario {
                $re = $this->db->usuario->insert($user); 
                $usuariorelacional = new usuarioRelacional();
                $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
+               $fecha = date('Y-m-d H:i:s');
+               $fechaMongo = new MongoDate(strtotime($fecha));
+               $this->guardarNotificacion4($user['_id'], $fechaMongo, $fecha);
                return $user;
           }
          
@@ -548,6 +563,9 @@ class usuario {
                $re = $this->db->usuario->insert($user); 
                $usuariorelacional = new usuarioRelacional();
                $usuariorelacional->insertarUsuarioRelacional((string)$user['_id'], $name, 0);
+               $fecha = date('Y-m-d H:i:s');
+               $fechaMongo = new MongoDate(strtotime($fecha));
+               $this->guardarNotificacion4($user['_id'], $fechaMongo, $fecha);
                return $user;
           }
          

@@ -304,3 +304,13 @@ Stack trace:
 [21-Aug-2013 23:49:12 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
 [21-Aug-2013 23:49:12 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
 [21-Aug-2013 23:49:12 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
+[23-Aug-2013 08:00:04 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+Stack trace:
+#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
+#1 /home/nowsup/public_html/index.php(598): include_once('/home/nowsup/pu...')
+#2 {main}
+  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
+[24-Aug-2013 17:37:17 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 155
+[24-Aug-2013 17:37:17 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.jpg) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 156
+[24-Aug-2013 22:41:42 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 342
+[24-Aug-2013 22:41:42 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 343

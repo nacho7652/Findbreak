@@ -31,7 +31,7 @@
         $cuerpo.=   '<div style="background: url('.$quienCito['foto']['pe'].')" class="bloq1"></div>';
         $cuerpo.=   '<div class="bloq2msjinner">';
         $cuerpo.=       '<div class="nomusercom tit">'.ucwords($quienCito['nombre']).'</div>';
-        $cuerpo.=       '<div class="comentuser"><a href="/findbreak/break/'.$event['hash'].'" class="hashlink">'.$event['hash'].'</a>'.$coment['comentario'].'</div>';
+        $cuerpo.=       '<div class="comentuser"><a href="/break/'.$event['hash'].'" class="hashlink">'.$event['hash'].'</a>'.$coment['comentario'].'</div>';
         $cuerpo.=   '</div>';
         $cuerpo.= '<div class="bloq3msjinner">';
         $realizacion = $comentarios->verFecha($coment['fechaMuestra']);
@@ -118,7 +118,7 @@
                         <div class="bloq1"  style="background: url('.$userFoto['foto']['pe'].') no-repeat"></div>
                         <div class="bloq2">
                             <div class="titu-usercom">
-                               <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
+                               <a href="/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
                                <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
                            </div>
                             
@@ -175,7 +175,7 @@
                         <div class="bloq1" style="background: url('.$userFoto['foto']['pe'].') no-repeat"></div>
                         <div class="bloq2">
                             <div class="titu-usercom">
-                               <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
+                               <a href="/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
                                <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
                            </div>
                             
@@ -233,7 +233,7 @@
                         <div class="bloq1" style="background: url('.$userFoto['foto']['pe'].') no-repeat"></div>
                         <div class="bloq2">
                             <div class="titu-usercom">
-                               <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
+                               <a href="/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
                                <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
                            </div>
                             <div class="comentuser">
@@ -295,7 +295,7 @@
                         <div class="bloq1" style="background: url('.$userFoto['foto']['pe'].') no-repeat"></div>
                         <div class="bloq2">
                             <div class="titu-usercom">
-                               <a href="/findbreak/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
+                               <a href="/!'.$dcto['userName'].'" class="nomusercom tit-gray">'.ucwords($dcto['nombreUsuario']).'</a>
                                <spam class="username usernamecom">@'.$dcto['userName'].'</spam>
                            </div>
                             <div class="comentuser">

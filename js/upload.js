@@ -242,10 +242,10 @@ $(document).ready(function(){
                 respFace = nuevaClaveFace( clavenueva1face, clavenueva2face);
                 alert(respFace)
                 if(respFace){ 
-                    
+                    alert('falso')
                     return false;
                 }else{
-                    
+                    alert('true')
                     window.location.reload();
                 }
             }
@@ -591,6 +591,13 @@ $(document).ready(function(){
                                      //modificar la foto con el mail
                                     
                                      if(res == 1){
+                                          $.ajax({
+                                                    type: "POST",
+                                                    dataType: "html",
+                                                    url: path+"function/send.php",
+                                                    data: "mailBienvenida=1&para="+correousuario+"&nombre="+nomeuser
+                                                  
+                                                })
                                           $.ajax({
                                                     type: "POST",
                                                     dataType: "JSON",
