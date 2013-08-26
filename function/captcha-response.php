@@ -1,8 +1,9 @@
-<?php
-    require_once('function/recaptchalib.php');
-    $privatekey = "6LdvkeYSAAAAAJCoqn0YR2WqMVR-SPLVfykJm8AO";
-    
+<?php  
+
+require_once('recaptchalib.php');
+
     if(isset($_REQUEST['vercaptcha'])){
+        $privatekey = "6LdvkeYSAAAAAJCoqn0YR2WqMVR-SPLVfykJm8AO";
         $ans = 0;
         $resp = recaptcha_check_answer ($privatekey,
                                     $_SERVER["REMOTE_ADDR"],
