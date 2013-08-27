@@ -23,7 +23,7 @@ if(isset($_REQUEST['email'])){
 function email($para, $asunto, $cuerpo){
 	 $headers = "MIME-Version: 1.0\r\n"; 
 	 $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-         $para = "skumblue@live.cl";
+        // $para = "sebastian.lagos@gmail.com";
 	 $re =  mail($para,$asunto,$cuerpo,$headers);
          return $re;
 }

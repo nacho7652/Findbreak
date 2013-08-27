@@ -19,13 +19,13 @@ $(document).ready(function(){
     }     
     $('#denunciar-evento').click(function(){
                
-              var pregunta = '<div class="bloq1msj">¿Realmente deseas denunciar este anuncio?</div>';
+              var pregunta = '<div class="bloq1msj">¿Cuál es el problema?</div>';
 //              var nombre = $(this).parent().parent().find('.nomusercom').html();
 //              var foto = $(this).parent().parent().find('.bloq1').css('background');
 //              var tiempo = $(this).parent().parent().find('.hacecuant').html();
 //              var comentario = $(this).parent().parent().find('.comentuser').html();
               
-              var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
+              var cuerpo = '<div class="bloq2msj"><input type="radio" name="group1" value="1">Contenido sexual</br> <input type="radio" name="group1" value="2">Contenido violento o repulsivo</br> <input type="radio" name="group1" value="3">Inapropiado o incita al odio</br> <input type="radio" name="group1" value="4">Actividades peligrosas dañinas</br> <input type="radio" name="group1" value="5">Contenido engañoso o con spam</br> <input type="radio" name="group1" value="6">Maltrato infantil</br> <input type="radio" name="group1" value="7">Infracción de mis derechos</br> <div class="itemcomentmsj">';
 //                  cuerpo+=   '<div style="background:'+foto+'" class="bloq1"></div>';
 //                  cuerpo+=   '<div class="bloq2msjinner">';
 //                  cuerpo+=       '<div class="nomusercom tit-gray">'+nombre+'</div>';

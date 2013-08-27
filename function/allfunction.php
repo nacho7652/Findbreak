@@ -129,6 +129,12 @@
 	 	$replace = explode(",","A,E,I,O,U,a,a,a,a,a,A,A,A,A,e,e,e,E,E,E,i,i,i,I,I,I,o,o,o,o,o,O,O,O,O,u,u,u,U,U,U,n,N");
 
 		$string = str_replace($search, $replace, $string);
+                //tildes y ñ
+                $search2 =  explode(",","ñ,Ñ,á,é,í,ó,ú,Á,É,Í,Ó,Ú,´");
+                $replace2 =  explode(",","N,N,a,e,i,o,u,A,E,I,O,O,");
+                $string = str_replace($search2, $replace2, $string);
+                
+                //fin tildes y ñ
                 $string = preg_replace("/[^a-zA-Z0-9_ \.-]/", "_", $string);
 
               
