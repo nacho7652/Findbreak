@@ -141,18 +141,18 @@ function errores(err) {
         }        
 function coordenadas(position) {
             //post a guardar la cookie si no existe      
-            $.post('/function/users-response.php', {'cookie-ubicacion':1},
-                    function(){
-                        $('.paso').removeClass('paso-selected')
-                        $('.paso0-tutorial, .paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
-                                $('.paso0-tutorial').css('display','none');
-                                $('.paso2-tutorial').css('display','none');
-                                $('.paso3-tutorial').css('display','none');
-                                $('#paso1').addClass('paso-selected')
-                                $('.paso1-tutorial').fadeIn(300);
-                             
-                        });    
-                    }, "html");
+//            $.post('/function/users-response.php', {'cookie-ubicacion':1},
+//                    function(){
+//                        $('.paso').removeClass('paso-selected')
+//                        $('.paso0-tutorial, .paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
+//                                $('.paso0-tutorial').css('display','none');
+//                                $('.paso2-tutorial').css('display','none');
+//                                $('.paso3-tutorial').css('display','none');
+//                                $('#paso1').addClass('paso-selected')
+//                                $('.paso1-tutorial').fadeIn(300);
+//                             
+//                        });    
+//                    }, "html");
             latitud = position.coords.latitude; /*Guardamos nuestra latitud*/
             longitud = position.coords.longitude;
             geolocalizar();
