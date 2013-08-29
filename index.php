@@ -1,8 +1,6 @@
 <?php 
-     define(UBICACION, 'nuevo');
-     if(isset($_COOKIE["ubicacion"]) == 'si'){//si ya acepto
-      define(UBICACION, 'antiguo');
-      $styleTutorial = 'style="display:none"';
+     if(isset($_COOKIE["ubicacion"]) == 'si'){//si ya aceptó la ubicación
+      $styleTutorial = 'style="display:none"';//escondo el tutorial
     }else{//debe mostrar el mensaje
       $styleTutorial = 'style="display:block"';
     }
@@ -16,8 +14,6 @@
     require_once 'DAL/evento.php';
     require_once 'DAL/comentario.php';
     require_once 'DAL/relacional/connect_relacional.php';
-    require_once('function/recaptchalib.php');
-    $publickey = "6LdvkeYSAAAAAHc8lhTvB8s8_NXUZTYhTohyLihE";
     $usuariorelacional = new usuarioRelacional();
 //    include_once ('function/facebook-response.php');
     $contsol=0;
@@ -73,6 +69,52 @@
     </head>
      
      <body>
+         <!-- publicar facil y rapido -->
+         <?php if($page_site == 'cerca'){?>
+            <div class="publicar-facil">
+                <div class="equis-facil"></div>
+                <div class="item-publicar mensaje-abajo">
+                    <div class="nombre-publicarevent">¿Qué está pasando por aquí?</div>
+                    <input type="button" class="botonred" id="mostrar-facil" value="Publicar"/>
+                </div>
+                <div class="popup-login">
+                                      <div class="titulo-loginfacil">Último paso: Inicia sesión o regístrate</div>
+                                      <input type="text" placeholder="Correo electronico" id="mail-facil">
+                                      <input type="password" placeholder="Contraseña" id="pass-facil">
+                                      <a href="#" class="botonblue" id="boton-login-facil">Entrar y publicar anuncio</a>
+                                      <div class="eresnuevo">
+                                        <a href="#" class="botongreen popup-registrate-facil" id="boton-registrarse-facil">Registrase y publicar anuncio</a>
+                                      </div>
+                                      <div class="titulo-login2">
+                                        <div class="msj-log3 mjscoment">O también puedes</div>
+                                      </div>
+                                       <a class="loginface-top login-face-facil login-fb" href="#">
+                                            <div id="loginbtn-fb"></div>
+                                            <div class="txtfb">Ingresar con Facebook</div>
+                                        </a>
+                                      <a href="#" id="forgot-pass" class="popup-forgot">¿ Olvidó su contraseña ?</a>
+                                      <!--<fb:login-button show-faces="false" width="200" max-rows="1"></fb:login-button>-->
+                    
+                </div>
+                <div class="item-publicar">
+                    <div class="nombre-publicarevent">¿Qué está pasando por aquí?</div>
+                    <input type="text" id="nombre-facil" class="field-publicarevent obligatorio"/>
+                </div>
+                <div class="item-publicar">
+                    <div class="nombre-publicarevent">¿Dónde?</div>
+                    <div class="botongreen" id="comprobarDireFacil">Comprobar</div>
+                    <div class="sprites" id="comprobar-geo"></div>
+                    <input id="direccion-facil" placeholder="Dirección o tu ubicación" type="text" class="field-publicarevent obligatorio"/>
+                </div>
+                <div class="item-publicar">
+                   <input type="button" class="botonred" id="guardarevento-facil" value="Publicar"/>
+                </div>
+                <div class="item-publicar"></div>
+            </div>
+         <?php }?>
+         <!--fin publicar facil y rapido-->
+         
+         
          <!--para redes sociales-->
                     <?php 
                     if($page_site=='cerca')
@@ -111,9 +153,17 @@
                     </div>
          </div>
          
-                <?php } ?> 
-        <div <?= $styleTutorial?> id="allbackground">
-            
+                <?php }
+                $mostrarAllBackground = 'style="display:block"';
+                if($page_site != 'cerca'){//si no estoy en el mapa ke no salga el tutorial
+                    $mostrarAllBackground = 'style="display:none"';
+                }elseif(isset($_COOKIE["ubicacion"]) == 'si'){//si acepto la cookie
+                    $mostrarAllBackground = 'style="display:none"';
+                }
+                ?> 
+         
+        <div <?= $mostrarAllBackground?> id="allbackground">
+            <div class="equis-tutorial"></div>
         </div>
         <div id="coverall">
             <div class="innercal">

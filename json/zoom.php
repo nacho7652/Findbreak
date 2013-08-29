@@ -154,6 +154,60 @@
               </div>';
         echo $pop;
     }
+    if(isset($_POST['popup-registrousuario-facil'])){
+        $divPublicar = '<div class="content-registro">
+                                <div class="item-publicarevent-titulo">
+                                    <div class="title-publicar"><div class="logo"></div></div>
+                                 </div>
+                                <div class="item-publicar">
+                                 <div class="nombre-publicarevent">Nombre completo</div>
+                                 <input placeholder="Bastian Nicolas Toro" class="field-publicar" type="text" id="nombre-usuario" />
+                                </div>
+                                
+                                <div class="item-publicar">
+                                 <div class="nombre-publicarevent">Dirección de correo electrónico</div>
+                                 <input placeholder="ejemplo@findbreak.com" class="field-publicar" type="text" id="correo-usuario"/>
+                                </div>
+                                
+                                <div class="item-publicar">
+                                 <div class="nombre-publicarevent">Crea una contraseña</div>
+                                 <input placeholder="******" class="field-publicar" type="password" id="clave-usuario" />
+                                </div>
+                                
+                                <div class="item-publicar">
+                                    <div class="nombre-publicarevent">Escoge tu nombre de usuario</div>
+                                    <input placeholder="bastian.toro24" class="field-publicar" type="text" id="user-name"/>
+                                    <div class="mensaje-error error-username"></div>
+                                    <div class="username-corr"></div>
+                                    <div class="username-incorr"></div>
+                                </div>
+                                
+                                    
+                                
+                                 <div class="item-publicarevent-large item-botonregistro">
+                                   <div class="todosloscampos mensaje-error">
+                                      <div class="content-mensaje">
+                                        
+                                      </div>
+                                   </div>
+                                 
+                                   <input type="submit" id="guardarusuario-facil" class="botongreen" value="Registrarse y publicar "/>
+                                 </div>
+                                 
+                                 <div class="item-publicarevent-large">
+                                    <div class="oface txtini-blue">ó</div>
+                                    <a class="loginface-top login-face-facil login-fb"  href="#">
+                                            <div id="loginbtn-fb"></div>
+                                            <div class="txtfb">Regístrate con Facebook</div>
+                                    </a>
+                                 </div>
+                                 
+                               </div>
+                               
+                                ';
+
+          echo $divPublicar;
+    }
     if(isset($_POST['popup-registrousuario'])){
         $divPublicar = '<div class="content-registro">
                                 <div class="item-publicarevent-titulo">

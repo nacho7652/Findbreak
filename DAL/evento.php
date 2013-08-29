@@ -1,5 +1,7 @@
 <?php
+include_once '/function/allfunction.php';
 require_once 'usuarioRelacional.php';
+
 class evento {
     private $db;
     function __construct() {
@@ -10,13 +12,13 @@ class evento {
         //php = $cursor = $coats->find(Array('latLong' => Array('$near' => $latLong)))->limit(10);
         //find({  loc:  { $near: [50,30], $maxDistance: 5}  }).limit(10)
          //return $this->db->evento->find('loc' => array( '$near' => array( (float)50 , (float)30 ), '$maxDistance' => 1 ));
-        $km = 10000 / 111.12;
+        $km = 40 / 111.12;
         //lat, lon
         $a = $this->hoy();
        // return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ), 'fecha_realizacion'=> array('$gte' => $a )   ))->limit(10);
         //return $this->db->evento->find(array("loc" => array('$near' => 50,30))); //array('$near' =>[50,50])
 //                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(10);
-        return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   )   ))->limit(100);
+        return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   )   ))->limit(40);
     }
     public function buscarPorLatLong($lat, $long){
       
@@ -239,6 +241,58 @@ class evento {
          }
          
      }
+     public function registrarVisita2($idEvento){//registra la visita con menos cantidad de tiempo
+         $ahora = time();
+         $ultimaVisita = $this->verificarVisita($idEvento);
+         $usuarioR = new usuarioRelacional();
+         $usuario = new usuario();
+         if($ultimaVisita == null){//si aun no se registra su visita
+              $vistas_evento = array(
+                       "evento"=>$idEvento,
+                       "usuario"=>$_SESSION['userid'],
+                       "hora_visita"=>$ahora
+                       );
+            $this->db->vistas_evento->insert($vistas_evento);
+            $this->sumarvisita($idEvento);     
+            $cant = $this->cantidadVisitas($idEvento);
+            $cantF = $cant['visitas'];
+            if($cantF%10000 == 0)
+            {
+                $ev = $this->findforid((string)$idEvento);
+                $usuarioR->PagoVisitas((string)$ev['producido_por']['_id']);
+                $fecha = date('Y-m-d H:i:s');
+                $fechaMongo = new MongoDate(strtotime($fecha));
+                $usuario->guardarNotificacion3($ev['producido_por']['_id'], $idEvento, $cantF, $fechaMongo, $fecha);
+            }
+                
+             return 1;
+         }else{//verifico la hora
+            $inicio = $ultimaVisita["hora_visita"];
+            $duracion = $ahora - $inicio; //tiempo transcurrido en segundos
+            $tiempoTranscurrido =  (int)$duracion/3600; //en hora /3600
+            if($tiempoTranscurrido >= 1) //10 minutos = puede sumarse
+            {
+                $this->db->vistas_evento->update(array("evento" => $idEvento), array('$set'=> array("hora_visita"=>$ahora)));
+                $this->sumarvisita($idEvento);     
+                $cant = $this->cantidadVisitas($idEvento);
+                $cantF = $cant['visitas'];
+                if($cantF%10000 == 0)
+                {
+                    $ev = $this->findforid((string)$idEvento);
+                    $usuarioR->PagoVisitas((string)$ev['producido_por']['_id']);
+                    $fecha = date('Y-m-d H:i:s');
+                    $fechaMongo = new MongoDate(strtotime($fecha));
+                    $usuario->guardarNotificacion3($ev['producido_por']['_id'], $idEvento, $cantF, $fechaMongo, $fecha);
+                }
+                
+                
+                return 1;
+            }else{
+                return 0;
+            }
+         }
+         
+     }
       public function verificarVisita($idEvento){
          return $this->db->vistas_evento->findOne(array('evento'=>$idEvento, 'usuario'=>$_SESSION['userid']));
      }
@@ -261,9 +315,21 @@ class evento {
          }
          return $hash;
      }
-
+     private function crearHashFacil($nom, $username){
+         $arr = explode(' ', $nom);
+         $hash = '';
+            for($i=0; $i<count($arr); $i++){
+                $hash.= ucwords($arr[$i]);
+            }
+            $hashmin = strtolower($hash);
+            $re = $this->comprobarHashTag($hashmin);
+            if(isset($re['_id']) != null){//si existe un anuncio con el mismo hash
+                $$hash.='_'.$username;
+            }
+         return $hash;
+     }
      public function insertar($idproductora, $nombreproductora, $nombre, $dir, $arrayfotos, $tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,
-                                   $video, $sitioWeb,$hashtag,$verificacion){ 
+                                   $video, $sitioWeb,$hashtag){ 
          $arrtags = explode(",", $tag); 
          $arrtags2 = array();
          //sacar el tag vacío
@@ -287,11 +353,69 @@ class evento {
              "visitas"=>0,
              "redes" => array($urlfacebook, $urltwitter,$video),
              "sitio_web"=>$sitioWeb,
-             "verificacion"=>$verificacion,
+             "verificacion"=>0,
              "fecha-publicacion"=>$hoyMustra,
-             "fecha-publicacion-mongo"=>$fechMongo,
-             "vigencia"=>0,
-             "estado"=>1
+             "fecha-publicacion-mongo"=>$fechMongo
+        );
+//         $event = array(
+//            "nombre" => $nombre,
+//            "hash" => $hashtag,//$this->crearHash($nombre),
+//            "hashmin"=>  strtolower($hashtag),
+//            "direccion" =>  $direccion,
+//            "fotos" => $arrayfotos,
+//            "fecha_realizacion" => $fechaMongo, //para la busqueda por fechas
+//            "fecha_muestra" => $fechaString, //para mostrar
+//            "hora_inicio"=>$hor,
+//            "estado"=> "pendiente",
+//            "producido_por"=>(object)array("_id"=>$userid, "nombre"=>$username),
+//            "tags" => $arrtags,
+//            "loc"=> array((float)$lat, (float)$lng),
+//            "descripcion"=>  $desc,
+//             "visitas"=>0,
+//             "redes" => array($urlfb, $urltw,$video),
+//             "establecimiento"=> $establecimiento,
+//             "precio"=>$precio,
+//             "puntos_de_venta"=>$puntosDeVenta,
+//             "sitio_web"=>$sitioWeb,
+//             "donde_comprar"=>$dondeComprar,
+//             "verificacion"=>0
+//        );
+         $re = $this->db->evento->insert($event); 
+         //$eventoR = new usuarioRelacional();
+        // $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
+        // session_start();
+        // $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000,1,0);
+         return $re;
+     }
+     public function insertarFacil($idproductora, $nombreproductora, $username, $nombre, $dir,$lat, $lng){ 
+         $arrtags2 = array();
+         $rutasFotos = array();
+         $arrtags2[] = strtolower($nombre);
+         session_start();
+         $_SESSION['anuncioAgregado'] = $dir;
+         
+         $hashtag = $this->crearHashFacil($nombre, $username);
+         $hashLimpio = clearDir($hashtag,false);//lo limpio
+         $hoyMustra = date('Y-m-d 00:00:00');
+         $rutasFotos[] = array('gr'=>'http://www.nowsup.com/images/anuncio-default-gr.jpg', 'pe'=>'http://www.nowsup.com/images/anuncio-default-pe.jpg');
+         $fechMongo = new MongoDate(strtotime($hoyMustra));
+         $descrip = '¿Qué te parece mi publicación: <b>'.$nombre.'</b>???, entra aquí ! :)';
+          $event = array(
+            "nombre" => $nombre,
+            "hash" => $hashLimpio,//$this->crearHash($nombre),
+            "hashmin"=>  strtolower($hashLimpio),
+            "direccion" =>  $dir,
+            "fotos" => $rutasFotos,
+            "producido_por"=>(object)array("_id"=>$idproductora, "nombre"=>$nombreproductora),
+            "tags" => $arrtags2,
+            "loc"=> array((float)$lat, (float)$lng),
+            "descripcion"=> $descrip,
+             "visitas"=>0,
+             "redes" => array('', '',''),
+             "sitio_web"=>'',
+             "verificacion"=>0,
+             "fecha-publicacion"=>$hoyMustra,
+             "fecha-publicacion-mongo"=>$fechMongo
         );
 //         $event = array(
 //            "nombre" => $nombre,

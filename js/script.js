@@ -80,7 +80,7 @@ $('#paso3').click(function(){
     $('.popup-forgot').click(function(){
          $.post(path+'json/zoom.php', {'forgot-usuario':1},
                     function(data){
-                                 popup(data); 
+                                popup(data)
                     }, "html");
                       
     });
@@ -142,6 +142,13 @@ $('#paso3').click(function(){
 //                           window.location.reload();
                           if(data == "ok")
                               {
+                                   $.ajax({
+                                            type: "POST",
+                                            dataType: "html",
+                                            url: path+"function/send.php",
+                                            data: "mailBienvenida=1&para="+fb.user.email+"&nombre="+fb.user.first_name
+
+                                        })
                                   window.location.reload();
                               }
                       }
@@ -1335,7 +1342,14 @@ $('#paso3').click(function(){
                 $('#nombre-usuario').focus();
             }, "html");
       });
-      
+      //popup-registrate-facil
+      $('.popup-registrate-facil').click(function(){
+          
+          $.post(path+"json/zoom.php", {'popup-registrousuario-facil':1}, function(data){
+                popup(data);
+                $('#nombre-usuario').focus();
+            }, "html");
+      });
        //abrir cerrar para cualquier div
          var cualquierDiv = false;
             $(".cualquierDiv").mouseover(function(){
@@ -1392,6 +1406,7 @@ $('#paso3').click(function(){
           
           
       })
+
       $("#boton-login2").click(function(){
           //var textoAmigo = $('#amigo').val();
           var mail = $('#mail2').val();

@@ -7,6 +7,17 @@
         require_once '../DAL/comentario.php';
         require_once '../DAL/usuarioRelacional.php';
         require_once 'allfunction.php';
+        if(!empty($_REQUEST['guardar-facil']))
+        {
+            $event = new evento();
+            $nombre = $_REQUEST['nombre'];
+            $direccion = $_REQUEST['direccion'];  
+            $lat = $_REQUEST['lat'];
+            $lng = $_REQUEST['lng'];
+            $re = $event->insertarFacil($_SESSION['userid'], $_SESSION['nombre'], $_SESSION['username'], $nombre, $direccion, $lat, $lng);
+            echo $re;
+            
+        }
         //price
         if(!empty($_REQUEST['denuncia-evento']))
         {

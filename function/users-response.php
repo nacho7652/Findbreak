@@ -3,9 +3,18 @@
     require_once '../DAL/connect.php';
     require_once '../DAL/usuario.php';
     date_default_timezone_set("Chile/Continental");
+    
+    if(!empty($_POST["comprobar-login"]))
+    {
+       if(isset($_SESSION['userid'])){
+           echo 1;
+       } else {
+           echo -5;
+       }
+    }
     if(!empty($_POST["cookie-ubicacion"]))
     {
-       if(!isset($_COOKIE['ubicacion']))
+//       if(!isset($_COOKIE['ubicacion']))
         setcookie("ubicacion", 'si', time() + (60 * 60 * 24 * 30), "/"); //30 dias | crearlo al cerrar el Primer tutorial   
     }
     if(!empty($_POST["cambiarClaveFace"]))
@@ -260,7 +269,7 @@
                 $fotoEvento = $evento->verFoto($dcto['_id']);
                 $hayevents = true;
                 $cuadroevento.= 
-                '<a href="/break/'.$dcto['hash'].'" target="_blank" class="item-search item-search-event">
+                '<a href="/break/'.$dcto['hash'].'" class="item-search item-search-event">
                    <div style="background:url('.$fotoEvento.'); background-size:cover" class="foto-item-search"></div>
                    <div class="name-item-search tit-gray">'.$dcto["nombre"].'</div>
                    <div style="display:none" class="id-item-search">'.$dcto["_id"].'</div>

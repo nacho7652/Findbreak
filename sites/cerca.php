@@ -1,9 +1,17 @@
+<?php 
+         if(isset($_SESSION['anuncioAgregado']) != ''){
+             echo '<input id="anuncioAgregado" type="hidden" value="'.$_SESSION['anuncioAgregado'].'" />';
+             $_SESSION['anuncioAgregado'] = '';
+         }else{
+            echo '<input id="anuncioAgregado" type="hidden" value="" />';
+         }
+?>
 <div class="content-cerca">
     <div class="first-partevent">
         <div class="divevents">
             
              <div <?= $styleTutorial?> class="tutorial-mapa">
-                            <div class="equis-tutorial"></div>
+                            
                             <div class="paso0-tutorial">
                                 <div class="flecha-mapa"></div>
                                 <div class="mapa-explic1">
@@ -160,3 +168,4 @@
     </div>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript" src="/findbreak/js/maps.js"></script>
+    <script src="http://j.maxmind.com/app/geoip.js"></script>

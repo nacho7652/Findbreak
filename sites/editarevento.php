@@ -131,7 +131,7 @@
                                  <div class="nombre-publicarevent">Descripción</div>
                                  <textarea placeholder="Detalla la información de tu anuncio, fechas, horas, precios, ubicacion, etc" class="field-publicarevent obligatorio" rows="4" cols="50" id="descripcion-event" name="descripcion-event"><?=$evento['descripcion']?></textarea>
                                  <div class="mensaje-error error-obligatorio">
-                                        <div class="content-mensaje">* Ingresa una descripción</div>
+                                        <div class="content-mensaje">* Ingresa una drescripción</div>
                                  </div>
                                 </div>
     

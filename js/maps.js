@@ -2,6 +2,7 @@ $(document).ready(function(){
     //path = '/nowsup/';
     path = '/';
     localizame();
+     
     var popupNew;
     var latitud;
     var longitud;
@@ -12,6 +13,7 @@ $(document).ready(function(){
     {
          geolocalizarManual(editarEvento)   
     }
+
   function cargarMapa() {
 //           alert('lat: '+latitud)
 //           alert('long: '+longitud)
@@ -141,18 +143,18 @@ function errores(err) {
         }        
 function coordenadas(position) {
             //post a guardar la cookie si no existe      
-//            $.post('/function/users-response.php', {'cookie-ubicacion':1},
-//                    function(){
-//                        $('.paso').removeClass('paso-selected')
-//                        $('.paso0-tutorial, .paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
-//                                $('.paso0-tutorial').css('display','none');
-//                                $('.paso2-tutorial').css('display','none');
-//                                $('.paso3-tutorial').css('display','none');
-//                                $('#paso1').addClass('paso-selected')
-//                                $('.paso1-tutorial').fadeIn(300);
-//                             
-//                        });    
-//                    }, "html");
+            $.post('/function/users-response.php', {'cookie-ubicacion':1},
+                    function(){
+                        $('.paso').removeClass('paso-selected')
+                        $('.paso0-tutorial, .paso2-tutorial, .paso3-tutorial').fadeOut(300, function(){
+                                $('.paso0-tutorial').css('display','none');
+                                $('.paso2-tutorial').css('display','none');
+                                $('.paso3-tutorial').css('display','none');
+                                $('#paso1').addClass('paso-selected')
+                                $('.paso1-tutorial').fadeIn(300);
+                             
+                        });    
+                    }, "html");
             latitud = position.coords.latitude; /*Guardamos nuestra latitud*/
             longitud = position.coords.longitude;
             geolocalizar();
@@ -339,6 +341,13 @@ function geolocalizarPorTags(){
                 $('.lng-event').val(lng);
                 return false;
             }
+            if($('#anuncioAgregado').val() != ''){
+               
+                $('#search-near').val($('#anuncioAgregado').val())
+                geolocalizarManual($('#anuncioAgregado').val()); 
+                $('#anuncioAgregado').val('');
+                return false;
+           }
             //return false;
 //        alert(lat); alert(lng); 
             
@@ -362,6 +371,7 @@ function geolocalizarPorTags(){
                         $('.no-resultados').show();
                         return false;
                     }else{
+                        
                         if(geolocation){
                             geolocation = false;
                             $('.tipoBusqueda').html('cerca de <b>mi ubicación actual</b>');
@@ -369,7 +379,8 @@ function geolocalizarPorTags(){
 
                         }else{
                             if(manualLocation){
-                                $('.tipoBusqueda').html('cerca de <b>'+$('#search-location').val()+'</b>');
+                               
+                                $('.tipoBusqueda').html('cerca de <b>'+$('#search-near').val()+'</b>');
                                 manualLocation = false;
                             }
                         }
@@ -633,7 +644,320 @@ function geolocalizarPorTags(){
         geolocalizarManual(direccionEvento);
   })
   //fin guardar evento
+ 
+  //FACIL
+  $('.equis-facil').click(function(){
+      $('.publicar-facil').animate({
+                         'top': "-190px" 
+                     }, 500, function() {
+                           $('.mensaje-abajo').fadeIn(300);
+                           $('#guardarevento-facil').fadeOut(300)
+                           $('#popup-login').hide();
+                  });
+                     
+                     
+  })
+  $('#mostrar-facil').click(function(){
+      $('.publicar-facil').animate({
+                         'top': "57px" 
+                     }, 500, function() {
+                           $('.mensaje-abajo').fadeOut(300);
+                           $('#guardarevento-facil').fadeIn(300)
+                           $('#nombre-facil').focus();
+                  });
+                     
+                     
+  })
+   $('#coverall').delegate('#guardarusuario-facil','click',function()
+  {
+       if(!validarCorreo($('#correo-usuario').val())){
+           $('.todosloscampos .content-mensaje').html('Correo electrónico inválido');
+           $('.todosloscampos').show();
+     
+           return false;
+       }
+   
+       if(comprobarCampos()){
+           $('.todosloscampos .content-mensaje').html('Debes completar todos los campos');
+           $('.todosloscampos').show();
+           return false;
+       }else{
+           $('.todosloscampos').hide();
+       }
+     
+       if(usernameCorrecto == false){
+           return false;
+       }
+      
+        var nomeuser = $('#nombre-usuario').val();
+        var username = $('#user-name').val();
+        var correousuario = $('#correo-usuario').val();
+        var claveusuario = $('#clave-usuario').val();
+//        alert("adads"); return;
+                        $.ajax({
+                                 dataType:"html",
+                                 url : path+'function/users-response.php',
+                                 type : 'POST',
+                                 data : "guardaruser=1&nomuser="+nomeuser+"&username="+username+"&correousuario="+correousuario+"&claveusuario="+claveusuario, 
+                                 success : function(res){                      
+                                     //modificar la foto con el mail
+                                    
+                                     if(res == 1){
+                                          $.ajax({
+                                                    type: "POST",
+                                                    dataType: "html",
+                                                    url: path+"function/send.php",
+                                                    data: "mailBienvenida=1&para="+correousuario+"&nombre="+nomeuser
+                                                  
+                                                })
+                                          $.ajax({
+                          
+                                                                type: "POST",
+                                                                dataType: "JSON",
+                                                                url: path+"function/login-response.php",
+                                                                data: "login=1&mail="+correousuario+"&pass="+claveusuario,
+                                                                success : function (data)
+                                                                {  
+                                                                    if(data.exito)
+                                                                        { 
+                                                                            if(data.usertype == 1){
+                                      //                                          alert('entro :)')
+                                                                              //ya validado que los campos NO estén vacios
+                                                                              nombre = $('#nombre-facil').val();
+                                                                              direccion = $('#direccion-facil').val();
+                                      //                                        alert(latitud)
+                                      //                                        alert(longitud)
+                                                                              $.post('/function/event-response.php', {'guardar-facil':1,'nombre':nombre,'direccion':direccion,'lat':latitud,'lng':longitud},
+                                                                                          function(data){
+                                                                                                      window.location.reload();
+                                                                                          }, "html");
 
+                                                                            }   
+                                                                        }
+                                                                }
+                                                            })
+                                                                           }else
+                                                                              if(res == -5){
+                                                                                  $('.todosloscampos .content-mensaje').html("Lo sentimos, esta cuenta ya existe. ¿Te gustaría reclamar esta dirección de correo electrónico?");
+                                                                                   $('.todosloscampos').show();
+                                                                               }
+                                                                        }//success                
+                              });
+      
+  })
+   $('#guardarevento-facil').click(function(e){
+        if(trim($('#direccion-facil').val()) != '' && trim($('#nombre-facil').val()) != '' ){
+            $.post('/function/users-response.php', {'comprobar-login':1},
+                                                    function(data){
+                                                                if(data == 1){
+                                                                         nombre = $('#nombre-facil').val();
+                                                                        direccion = $('#direccion-facil').val();
+                                //                                        alert(latitud)
+                                //                                        alert(longitud)
+                                                                        $.post('/function/event-response.php', {'guardar-facil':1,'nombre':nombre,'direccion':direccion,'lat':latitud,'lng':longitud},
+                                                                                    function(data){
+
+                                                                                                 geolocalizarManual(direccion) 
+                                                                                                  anuncioListo();
+                                                                                    }, "html");
+                                                                }else{
+                                                                    $('.popup-login').fadeIn(300);
+                                                                    $('#mail-facil').focus();
+                                                                }
+                                                    }, "html");
+        }
+   });
+          $("#boton-login-facil").click(function(){
+       
+          //var textoAmigo = $('#amigo').val();
+          var mail = $('.popup-login #mail-facil').val();
+          var pass = $('.popup-login #pass-facil').val();
+          
+          if(mail=="" || pass=="")
+              {
+                  loader('Email o contraseña no son válidos');
+              }
+              else
+                  {
+                      
+                      $.ajax({
+                          
+                          type: "POST",
+                          dataType: "JSON",
+                          url: path+"function/login-response.php",
+                          data: "login=1&mail="+mail+"&pass="+pass,
+                          success : function (data)
+                          {  
+                              if(data.exito)
+                                  { 
+                                      if(data.usertype == 1){
+//                                          alert('entro :)')
+                                        //ya validado que los campos NO estén vacios
+                                        nombre = $('#nombre-facil').val();
+                                        direccion = $('#direccion-facil').val();
+//                                        alert(latitud)
+//                                        alert(longitud)
+                                        $.post('/function/event-response.php', {'guardar-facil':1,'nombre':nombre,'direccion':direccion,'lat':latitud,'lng':longitud},
+                                                    function(data){
+                                                                window.location.reload();
+                                                    }, "html");
+                                        
+                                      }   
+                                  }
+                          }
+                      })
+                  }
+              
+          
+          
+      })
+    $('body').delegate('.login-face-facil','click',function(event){
+        event.preventDefault();
+       
+        fb.login(function(){ 
+            if (fb.logged) 
+            {
+//                alert(fb.user.name)
+//                alert(fb.user.first_name)
+//                alert(fb.user.last_name)
+//                alert(fb.user.username)
+//                alert(fb.user.email)
+//                alert(fb.user.picture)
+               if(fb.user.name == 'undefined'){
+                   loader('Intenta nuevamente en un momento :(')
+                   return false;
+               }
+               $.ajax({
+                      type:"GET",
+                      dataType:"html",
+                      url:path+"function/facebook-response.php",
+                      data:"login=1&name="+fb.user.name+"&first_name="+fb.user.first_name+"&last_name="+fb.user.last_name+"&username="+fb.user.username+"&email="+fb.user.email+"&picture="+fb.user.picture,
+                      success:function(data)
+                      {
+//                          alert(data)
+//                           window.location.reload();
+                          if(data == "ok")
+                              {
+                                   $.ajax({
+                                            type: "POST",
+                                            dataType: "html",
+                                            url: path+"function/send.php",
+                                            data: "mailBienvenida=1&para="+fb.user.email+"&nombre="+fb.user.first_name
+
+                                        })
+                                        nombre = $('#nombre-facil').val();
+                                        direccion = $('#direccion-facil').val();
+//                                        alert(latitud)
+//                                        alert(longitud)
+                                        $.post('/function/event-response.php', {'guardar-facil':1,'nombre':nombre,'direccion':direccion,'lat':latitud,'lng':longitud},
+                                                    function(data){
+                                                                 window.location.reload();
+                                                    }, "html");
+                              }
+                      }
+                  }); 
+            }else{
+                loader('no login facebook :(')
+            }
+        })
+    })
+
+   function geolocalizarFacil(){
+        getGeo();
+        geolocation = true;
+        $('#search-near').val($('#direccion-facil').val())
+        localizame();
+        activarLocation();
+        $('#comprobar-geo').fadeOut(300);
+   }
+   $('#comprobar-geo').click(function(e){
+       geolocalizarFacil();
+   });
+   $('#direccion-facil').keyup(function(e){
+            if(trim($('#direccion-facil').val()) == ''){
+                 
+                  $('#comprobarDireFacil').fadeOut(300);
+                  $('#comprobar-geo').fadeIn(300);
+              }else{
+                  $('#comprobarDireFacil').fadeIn(300);
+                  $('#comprobar-geo').fadeOut(300);
+              }
+   });
+    $('#direccion-facil').keypress(function(e){
+      
+       if(e.keyCode == 13){
+           if(trim($('#direccion-facil').val()) != ''){
+                desactivarLocation()
+                manualLocation = true;
+                $('#search-near').val($('#direccion-facil').val())
+                geolocalizarManual($(this).val())
+           }else{
+               geolocalizarFacil();
+               return false;
+           }
+       }
+   })
+   $('#comprobarDireFacil').click(function(e){
+           desactivarLocation()
+           manualLocation = true;
+           $('#search-near').val($('#direccion-facil').val())
+           geolocalizarManual($('#direccion-facil').val())
+   })
+   
+   
+function getGeo(){
+
+if (navigator && navigator.geolocation) {
+   navigator.geolocation.getCurrentPosition(geoOK, geoKO);
+} else {
+   geoMaxmind();
+}
+
+}
+
+function geoOK(position) {
+showLatLong(position.coords.latitude, position.coords.longitude);
+}
+
+
+function geoMaxmind() {
+showLatLong(geoip_latitude(), geoip_longitude());
+}
+
+function geoKO(err) {
+if (err.code == 1) {
+error('El usuario ha denegado el permiso para obtener informacion de ubicacion.');
+} else if (err.code == 2) {
+error('Tu ubicacion no se puede determinar.');
+} else if (err.code == 3) {
+error('TimeOut.')
+} else {
+error('No sabemos que pasÃ³ pero ocurrio un error.');
+}
+}
+
+function showLatLong(lat, longi) {
+var geocoder = new google.maps.Geocoder();
+var yourLocation = new google.maps.LatLng(lat, longi);
+geocoder.geocode({ 'latLng': yourLocation },processGeocoder);
+
+}
+function processGeocoder(results, status){
+
+if (status == google.maps.GeocoderStatus.OK) {
+if (results[0]) {
+    $('#direccion-facil').val(results[0].formatted_address);
+} else {
+    error('Google no retorno resultado alguno.');
+}
+} else {
+error("Geocoding fallo debido a : " + status);
+}
+}
+function error(msg) {
+alert(msg);
+}
+  //FIN FACIL
 
 //   $('#search-near').keyup(function(e){
 //       if(e.keyCode != 32){
@@ -787,6 +1111,24 @@ $('body').delegate('.verRuta','click',function(){
         retorno=retorno.replace(/\s+$/g,'');
         return retorno;
         }
-    
+    function validarCorreo(correo){
+         var expre = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
+         if(expre.test(correo)){
+             return true;
+         }else{
+             return false;
+         }
+  }
+  usernameCorrecto = false;
+  function comprobarCampos(){
+          error = false;
+          $('.item-publicar input').each(function(){
+              valor = $(this).val();
+              if(trim(valor) == ""){
+                  error = true;
+              }
+          })
+          return error;
+      }
 });
  

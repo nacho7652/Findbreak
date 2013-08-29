@@ -13,6 +13,7 @@
      }
     if(isset($_REQUEST['vercomentario'])){
         session_start();
+        
         require_once '../DAL/usuario.php';
         $usuario = new usuario();
         $evento = new evento();
@@ -20,9 +21,13 @@
         $comentarios = new comentario();
         $comentarios->revisado($id);//dejo la notificacion como revisada
         $not = $comentarios->findNotificacionForId($id);
+        
         $coment = $comentarios->findcomentarioforid($not['idComentario']);
-        $event = $evento->findforid($coment['_eventId']);
+        
+        $event = $evento->findforid($coment['_eventId'][0]['id']);
+       // echo 'asddsa';
         $quienCito = $usuario->findforid($coment['_userId']);
+        
       //  $fotoEvento = $evento->verFoto($coment['_eventId']);
         $cuerpo = '<div class="divmencionevent">';
        // $cuerpo.= '<div style="background: url('.$fotoEvento.'); background-size: cover" class="foto-event"></div>';//$event['foto'][0]
@@ -38,7 +43,7 @@
         $cuerpo.=    '<div class="hacecuant">'.$realizacion.'</div>';
         $cuerpo.= '</div></div></div></div>';
         
-        $theObjId = new MongoId($coment['_eventId']);
+        $theObjId = new MongoId($coment['_eventId'][0]['id']);
         $todosComent = $comentarios->findOtrasMenciones($_SESSION['userid'], 4);
 //        $html = '<div class="otroscoment">
 //                   <div class="tit titotros">Otras menciones</div>';

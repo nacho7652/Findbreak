@@ -201,7 +201,7 @@
                   </div>
               </div>
               <!--redes sociales-->
-                <div class="fb-like" data-href="http://www.findbreak.com/<?= $_GET['id'] ?>" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
+                <div class="fb-like" data-href="http://www.nowsup.com/<?= $_GET['id'] ?>" data-send="false" data-width="450" data-show-faces="true" data-font="arial" data-colorscheme="light"></div>
               <!--redes sociales-->
               <!--<div class="info-num moreinfouser"></div>-->
           </div>
@@ -269,7 +269,7 @@
                     <div class="bloq1" style="background: url('<?php echo $usuariofound['foto']['pe']?>') no-repeat"></div>
                     <div class="bloq2">
                         <div class="titu-usercom">
-                            <a href="/findbreak/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo $dcto['nombreUsuario'] ?></a>
+                            <a href="/!<?php echo $dcto['userName']?>" class="nomusercom tit-gray"><?php echo $dcto['nombreUsuario'] ?></a>
                             <spam class="username usernamecom">@<?php echo $dcto['userName']?></spam>
                         </div>
                         <div class="comentuser">
