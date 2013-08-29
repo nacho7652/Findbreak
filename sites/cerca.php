@@ -85,7 +85,7 @@
               <div class="loading-events no-resultados advert mjscoment">Buuu... por acá nada de nada :(</div>
                 <div class="inner-list-maps">
                     
-                    <?php $j=0; for($i=0; $i<=40; $i++){?> 
+                    <?php $j=0; for($i=0; $i<=49; $i++){?> 
                        <div class="content-eventcerca event-none" id="item-eventcerca<?=$i?>">  
                          <div data-id="518d0c174de8b45810000000" data-hash="#RoosterEnChile2013" class="item-eventcerca" style="">
                                             <div class="barra"></div>
