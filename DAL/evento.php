@@ -12,7 +12,7 @@ class evento {
         //php = $cursor = $coats->find(Array('latLong' => Array('$near' => $latLong)))->limit(10);
         //find({  loc:  { $near: [50,30], $maxDistance: 5}  }).limit(10)
          //return $this->db->evento->find('loc' => array( '$near' => array( (float)50 , (float)30 ), '$maxDistance' => 1 ));
-        $km = 40 / 111.12;
+        $km = 1000000 / 111.12;
         //lat, lon
         $a = $this->hoy();
        // return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ), 'fecha_realizacion'=> array('$gte' => $a )   ))->limit(10);
