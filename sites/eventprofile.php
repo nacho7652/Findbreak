@@ -340,14 +340,16 @@
          
     </div>
    <div class="pub-ladoder">
-       <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- banner_right -->
-        <ins class="adsbygoogle"
-        style="display:inline-block;width:120px;height:240px"
-        data-ad-client="ca-pub-3584063439345600"
-        data-ad-slot="1903562170"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
+       <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-3584063439345600";
+        /* banner_right2 */
+        google_ad_slot = "2905630576";
+        google_ad_width = 120;
+        google_ad_height = 600;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
         </script>
    </div>
     <div id="list-similares" class="part-right divtrans">
