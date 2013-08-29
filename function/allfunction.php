@@ -130,8 +130,8 @@
 
 		$string = str_replace($search, $replace, $string);
                 //tildes y ñ
-                $search2 =  explode(",","ñ,Ñ,á,é,í,ó,ú,Á,É,Í,Ó,Ú,´");
-                $replace2 =  explode(",","N,N,a,e,i,o,u,A,E,I,O,O,");
+                $search2 =  explode(",","ñ,Ñ,á,é,í,ó,ú,Á,É,Í,Ó,Ú,´,:,!");
+                $replace2 =  explode(",","N,N,a,e,i,o,u,A,E,I,O,O,,,,");
                 $string = str_replace($search2, $replace2, $string);
                 
                 //fin tildes y ñ

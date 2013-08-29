@@ -96,15 +96,15 @@ html {
 }
 .paso {
     background: #F1F1F1;
-    width: 55px;
-    height: 55px;
+    width: 35px;
+    height: 35px;
     border-radius: 111px;
-    margin-bottom: 29px;
+    margin-bottom: 16px;
     text-align: center;
-    line-height: 55px;
+    line-height: 37px;
     font-weight: bold;
     color: #505050;
-    font-size: 14px;
+    font-size: 10px;
 }
 .paso-selected{
     background: #BB1F1F !important;
@@ -119,18 +119,19 @@ html {
     color: #fff;
     width: 300px;
     height: 42px;
+    display: none;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     position: absolute;
-    top: -27px;
+    top: -42px;
     left: -266px;
     text-shadow: 0px 1px 1px #000;
 }
 .lista-pasos {
     position: absolute;
-    left: 1179px;
+    left: 366px;
     width: 62px;
-    top: 101px;
+    top: 71px;
 }
 .tutorial-mapa {
     position: fixed;
@@ -138,14 +139,14 @@ html {
     left: 0px;
     width: 600px;
     height: 200px;
-    display: none;
+    display: none !important;
     z-index: 5000000000000;
 }
 .paso1-tutorial .flecha-mapa {
     background: url('/images/flecha.png') no-repeat;
     width: 167px;
     height: 93px;
-    top: 126px;
+    top: 36px;
     position: absolute;
     left: 31px;
 }
@@ -184,10 +185,10 @@ html {
 .paso1-tutorial .mapa-explic1 {
     color: #fff;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 13px;
     position: absolute;
-    top: 166px;
-    left: 203px;
+    top: 95px;
+    left: 20px;
     text-shadow: 0px 1px 1px #000;
 }
 .paso2-tutorial .mapa-explic1 {
@@ -205,7 +206,8 @@ html {
     height: 100%;
     left: 0;
     top: 0;
-     display: none; 
+     
+    display: none !important; 
     background: rgba(0, 0, 0, 0.87);
     z-index: 50000000000000000000000000000000000000;
 }
@@ -3413,7 +3415,7 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -39px -260px;
     background: url('/images/sprites.png') no-repeat -1px -174px;
     width: 35px;
     height: 30px;
-    left: 1194px;
+    left: 371px;
     top: 17px;
     position: absolute;
 }

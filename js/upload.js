@@ -166,25 +166,25 @@ $(document).ready(function(){
         return false;
     })
     //hash-event
-    $('#nom-event').keyup(function(){
-        nombre = $(this).val();
-        if(trim(nombre) == ""){
-            $('#hash-event').val('');
-            $('.hashtag-corr').hide();
-            return false;
-        }
-        $.post(path+'function/event-response.php', {'comprobarHashTag':1, 'conEspacios':nombre}, 
-        function(data){
-            if(data.re == 1){
-                $('#hash-event').val(data.limpio);
-                hashCorrecto();
-            }else{
-                $('#hash-event').val(data.limpio);
-                hashInCorrecto()
-            }
-        }, "json");
-        
-    })
+//    $('#nom-event').keyup(function(){
+//        nombre = $(this).val();
+//        if(trim(nombre) == ""){
+//            $('#hash-event').val('');
+//            $('.hashtag-corr').hide();
+//            return false;
+//        }
+//        $.post(path+'function/event-response.php', {'comprobarHashTag':1, 'conEspacios':nombre}, 
+//        function(data){
+//            if(data.re == 1){
+//                $('#hash-event').val(data.limpio);
+//                hashCorrecto();
+//            }else{
+//                $('#hash-event').val(data.limpio);
+//                hashInCorrecto()
+//            }
+//        }, "json");
+//        
+//    })
     function hashCorrecto(){
          $('.hashtag-incorr').hide();
          $('.error-hashtag').hide();
@@ -343,19 +343,21 @@ $(document).ready(function(){
                  }
              
          })
-         if(trim(responseField) == ""){
-                     $("input#recaptcha_response_field").focus();
-                     $('html, body').animate({
-                         'scrollTop': $("input#recaptcha_response_field").offset().top - 90 + "px" 
-                     },
-                     {
-                        duration:500,
-                        easing:"swing"
-                     }
-                     );
-                     $("#item-publicar-capcha").find('.error-obligatorio').fadeIn(200); 
-                     return false;
-         }
+         if(guardar){
+            if(trim(responseField) == ""){
+                        $("input#recaptcha_response_field").focus();
+                        $('html, body').animate({
+                            'scrollTop': $("input#recaptcha_response_field").offset().top - 90 + "px" 
+                        },
+                        {
+                           duration:500,
+                           easing:"swing"
+                        }
+                        );
+                        $("#item-publicar-capcha").find('.error-obligatorio').fadeIn(200); 
+                        return false;
+            }
+       
           $.ajax({
            type:"POST" ,
            dataType:"html",
@@ -387,6 +389,7 @@ $(document).ready(function(){
            }
                       
            })
+    }
 //         if(!validarSiEsNumero($('#hour-event').val()) || !validarSiEsNumero($('#minute-event').val())){
 //             guardar = false;
 //             error = $('#hour-event').parent().find('.error-obligatorio');
@@ -598,6 +601,7 @@ $(document).ready(function(){
           })
           return error;
       }
+   
   $('#coverall').delegate('#guardarusuario','click',function()
   {
        if(!validarCorreo($('#correo-usuario').val())){

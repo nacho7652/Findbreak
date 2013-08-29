@@ -1,316 +1,74 @@
-[15-Aug-2013 20:49:37 Chile/Continental] PHP Warning:  include_once(sites/cerca.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/index.php on line 522
-[15-Aug-2013 20:49:37 Chile/Continental] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening 'sites/cerca.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/index.php on line 522
-[15-Aug-2013 20:49:50 Chile/Continental] PHP Warning:  include_once(sites/cerca.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/index.php on line 522
-[15-Aug-2013 20:49:50 Chile/Continental] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening 'sites/cerca.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/index.php on line 522
-[15-Aug-2013 21:07:15 Chile/Continental] PHP Fatal error:  Class 'Mongo' not found in /home/nowsup/public_html/DAL/connect.php on line 7
-[15-Aug-2013 21:08:15 Chile/Continental] PHP Fatal error:  Class 'Mongo' not found in /home/nowsup/public_html/DAL/connect.php on line 7
-[15-Aug-2013 21:11:40 Chile/Continental] PHP Fatal error:  Class 'Mongo' not found in /home/nowsup/public_html/DAL/connect.php on line 7
-[15-Aug-2013 21:15:06 Chile/Continental] PHP Fatal error:  Class 'Mongo' not found in /home/nowsup/public_html/DAL/connect.php on line 7
-[15-Aug-2013 21:20:52 Chile/Continental] PHP Fatal error:  Class 'Mongo' not found in /home/nowsup/public_html/DAL/connect.php on line 7
-[15-Aug-2013 21:23:17 Chile/Continental] PHP Fatal error:  Class 'Mongo' not found in /home/nowsup/public_html/DAL/connect.php on line 7
-[15-Aug-2013 21:27:27 Chile/Continental] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: No such file or directory in /home/nowsup/public_html/DAL/usuario.php on line 549
-[15-Aug-2013 21:38:50 Chile/Continental] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: No such file or directory in /home/nowsup/public_html/DAL/usuario.php on line 549
-[15-Aug-2013 22:14:40 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: No such file or directory in /home/nowsup/public_html/index.php on line 4
-[15-Aug-2013 22:15:39 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: No such file or directory in /home/nowsup/public_html/index.php on line 4
-[15-Aug-2013 22:15:39 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 10
-[15-Aug-2013 22:16:02 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:16:06 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:16:08 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:16:10 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:16:32 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:20:42 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:20:50 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:21:22 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:22:11 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:27:33 America/New_York] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: File exists in /home/nowsup/public_html/index.php on line 9
-[15-Aug-2013 22:41:11 Chile/Continental] PHP Warning:  move_uploaded_file(images/pruebas/130815-1376620871-47_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 22:41:11 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpwuMfPF' to 'images/pruebas/130815-1376620871-47_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 22:41:11 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 332
-[15-Aug-2013 22:41:11 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 333
-[15-Aug-2013 22:41:11 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 130
-[15-Aug-2013 22:43:06 Chile/Continental] PHP Warning:  move_uploaded_file(/images/pruebas/130815-1376620986-99_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 22:43:06 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpiAU8W7' to '/images/pruebas/130815-1376620986-99_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 22:43:06 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 332
-[15-Aug-2013 22:43:06 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 333
-[15-Aug-2013 22:43:06 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 130
-[15-Aug-2013 22:46:13 Chile/Continental] PHP Warning:  move_uploaded_file(/images/pruebas/130815-1376621173-98_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 22:46:13 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpni0DZ2' to '/images/pruebas/130815-1376621173-98_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 22:46:13 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 332
-[15-Aug-2013 22:46:13 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 333
-[15-Aug-2013 22:46:13 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 130
-[15-Aug-2013 22:49:17 Chile/Continental] PHP Warning:  move_uploaded_file(./images/pruebas/130815-1376621357-19_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 22:49:17 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpdIBqqt' to './images/pruebas/130815-1376621357-19_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 22:49:17 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 332
-[15-Aug-2013 22:49:17 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 333
-[15-Aug-2013 22:49:17 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 130
-[15-Aug-2013 23:05:41 Chile/Continental] PHP Warning:  move_uploaded_file(/images/pruebas/130815-1376622341-30_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 23:05:41 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpPvDVJG' to '/images/pruebas/130815-1376622341-30_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 23:05:41 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 332
-[15-Aug-2013 23:05:41 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 333
-[15-Aug-2013 23:05:41 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 130
-[15-Aug-2013 23:08:16 Chile/Continental] PHP Warning:  move_uploaded_file(/images/pruebas/130815-1376622496-56_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 23:08:16 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpm1k30G' to '/images/pruebas/130815-1376622496-56_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 23:08:16 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 332
-[15-Aug-2013 23:08:16 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 333
-[15-Aug-2013 23:08:16 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 130
-[15-Aug-2013 23:08:54 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/publicar.php on line 194
-[15-Aug-2013 23:10:12 Chile/Continental] PHP Warning:  move_uploaded_file(/images/pruebas/130815-1376622612-14_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 23:10:12 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpOMKttW' to '/images/pruebas/130815-1376622612-14_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 323
-[15-Aug-2013 23:10:12 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 332
-[15-Aug-2013 23:10:12 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 333
-[15-Aug-2013 23:10:12 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 127
-[15-Aug-2013 23:11:53 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 9
-[15-Aug-2013 23:11:53 Chile/Continental] PHP Warning:  move_uploaded_file(/images/pruebas/130815-1376622713-13_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 324
-[15-Aug-2013 23:11:53 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpcgrWPi' to '/images/pruebas/130815-1376622713-13_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 324
-[15-Aug-2013 23:11:53 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 333
-[15-Aug-2013 23:11:53 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 334
-[15-Aug-2013 23:11:53 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 128
-[15-Aug-2013 23:13:15 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 8
-[15-Aug-2013 23:13:15 Chile/Continental] PHP Warning:  move_uploaded_file(/images/pruebas/130815-1376622795-90_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 325
-[15-Aug-2013 23:13:15 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpQUYBEU' to '/images/pruebas/130815-1376622795-90_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 325
-[15-Aug-2013 23:13:15 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 334
-[15-Aug-2013 23:13:15 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 335
-[15-Aug-2013 23:13:15 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 129
-[15-Aug-2013 23:13:55 Chile/Continental] PHP Warning:  Unterminated comment starting line 4 in /home/nowsup/public_html/sites/uploadevento.php on line 4
-[15-Aug-2013 23:13:55 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 3
-[15-Aug-2013 23:14:25 Chile/Continental] PHP Warning:  Unterminated comment starting line 6 in /home/nowsup/public_html/sites/uploadevento.php on line 6
-[15-Aug-2013 23:34:57 Chile/Continental] PHP Warning:  move_uploaded_file(../images/pruebas/130815-1376624097-96_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 327
-[15-Aug-2013 23:34:57 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/php5a51wS' to '../images/pruebas/130815-1376624097-96_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 327
-[15-Aug-2013 23:34:57 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 336
-[15-Aug-2013 23:34:57 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 337
-[15-Aug-2013 23:34:57 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 131
-[15-Aug-2013 23:35:02 Chile/Continental] PHP Warning:  move_uploaded_file(../images/pruebas/130815-1376624102-54_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 327
-[15-Aug-2013 23:35:02 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpGDUHmd' to '../images/pruebas/130815-1376624102-54_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 327
-[15-Aug-2013 23:35:02 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 336
-[15-Aug-2013 23:35:02 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 337
-[15-Aug-2013 23:35:02 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 131
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  move_uploaded_file(../images/pruebas/130815-1376624270-99_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 327
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phpIjBxC8' to '../images/pruebas/130815-1376624270-99_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 327
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 336
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 337
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  move_uploaded_file(../images/pruebas/130815-1376624270-56_pe.jpg) [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 327
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  move_uploaded_file() [<a href='function.move-uploaded-file'>function.move-uploaded-file</a>]: Unable to move '/tmp/phprDHoaX' to '../images/pruebas/130815-1376624270-56_pe.jpg' in /home/nowsup/public_html/sites/uploadevento.php on line 327
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 336
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 337
-[15-Aug-2013 23:37:50 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 131
-[15-Aug-2013 23:38:34 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 131
-[15-Aug-2013 23:50:33 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 131
-[15-Aug-2013 23:52:44 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+[14-Aug-2013 00:42:34 Chile/Continental] PHP Warning:  include_once(sites/cerca.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/index.php on line 522
+[14-Aug-2013 00:42:34 Chile/Continental] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening 'sites/cerca.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/index.php on line 522
+[14-Aug-2013 00:42:34 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 00:48:30 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 00:49:49 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 00:50:18 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 00:56:57 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 01:10:50 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 01:11:33 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 01:14:24 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 01:53:25 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 01:53:32 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 01:58:15 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:05:47 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:07:58 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:21:48 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:24:29 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:29:35 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:30:36 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:31:55 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:32:14 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:33:08 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b244c5afc024a1ed685f4/130814-1376461988-94_pe.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 173
+[14-Aug-2013 02:33:08 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b244c5afc024a1ed685f4/130814-1376461988-94_pe.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 207
+[14-Aug-2013 02:33:08 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b244c5afc024a1ed685f4/130814-1376461988-94_gr.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 85
+[14-Aug-2013 02:33:08 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 332
+[14-Aug-2013 02:33:08 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 333
+[14-Aug-2013 02:33:08 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:33:08 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:33:17 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:33:24 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:34:08 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:34:32 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:34:32 Chile/Continental] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/nowsup/public_html/findbreak/DAL/relacional/connect_relacional.php on line 7
+[14-Aug-2013 02:39:14 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b24f85afc02e41ead4ea1/130814-1376462354-52_pe.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 173
+[14-Aug-2013 02:39:14 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b24f85afc02e41ead4ea1/130814-1376462354-52_pe.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 207
+[14-Aug-2013 02:39:15 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b24f85afc02e41ead4ea1/130814-1376462354-52_gr.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 85
+[14-Aug-2013 02:39:15 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 332
+[14-Aug-2013 02:39:15 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 333
+[14-Aug-2013 02:39:15 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/findbreak/DAL/usuario.php:586) in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 130
+[14-Aug-2013 02:54:57 Chile/Continental] PHP Warning:  unlink(/findbreak/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 144
+[14-Aug-2013 02:54:57 Chile/Continental] PHP Warning:  unlink(/findbreak/images/user-default_pe.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 145
+[14-Aug-2013 02:54:57 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b244c5afc024a1ed685f4/130814-1376463297-46_pe.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 173
+[14-Aug-2013 02:54:57 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b244c5afc024a1ed685f4/130814-1376463297-46_pe.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 207
+[14-Aug-2013 02:54:57 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b244c5afc024a1ed685f4/130814-1376463297-46_gr.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 85
+[14-Aug-2013 02:54:57 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 332
+[14-Aug-2013 02:54:57 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 333
+[14-Aug-2013 02:54:57 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/findbreak/DAL/usuario.php:586) in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 154
+[14-Aug-2013 02:55:23 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/findbreak/DAL/usuario.php:586) in /home/nowsup/public_html/findbreak/sites/editarusuario.php on line 102
+[14-Aug-2013 12:08:48 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/findbreak/sites/eventprofile.php:350
 Stack trace:
-#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
-#1 /home/nowsup/public_html/DAL/evento.php(203): evento->findforid('')
-#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
-#3 /home/nowsup/public_html/index.php(525): include_once('/home/nowsup/pu...')
-#4 {main}
-  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
-[15-Aug-2013 23:57:37 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 134
-[15-Aug-2013 23:59:02 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 134
-[16-Aug-2013 00:01:32 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 132
-[16-Aug-2013 00:01:41 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/404.php on line 28
-[16-Aug-2013 00:10:03 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 132
-[16-Aug-2013 00:10:24 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/index.php on line 16
-[16-Aug-2013 00:10:28 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/index.php on line 16
-[16-Aug-2013 00:14:52 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/404.php on line 28
-[16-Aug-2013 00:50:10 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 134
-[16-Aug-2013 00:54:37 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/DAL/usuario.php:584) in /home/nowsup/public_html/sites/uploadevento.php on line 135
-[16-Aug-2013 16:54:45 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:350
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(350): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(526): include_once('/home/nowsup/pu...')
+#0 /home/nowsup/public_html/findbreak/sites/eventprofile.php(350): MongoCursor->rewind()
+#1 /home/nowsup/public_html/findbreak/index.php(522): include_once('/home/nowsup/pu...')
 #2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 350
-[16-Aug-2013 17:13:42 America/New_York] PHP Parse error:  syntax error, unexpected T_STRING in /home/nowsup/public_html/index.php on line 7
-[16-Aug-2013 17:13:44 America/New_York] PHP Parse error:  syntax error, unexpected T_STRING in /home/nowsup/public_html/index.php on line 7
-[16-Aug-2013 17:13:47 America/New_York] PHP Parse error:  syntax error, unexpected T_STRING in /home/nowsup/public_html/index.php on line 7
-[16-Aug-2013 17:15:36 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 22
-[16-Aug-2013 17:15:38 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 22
-[16-Aug-2013 17:15:39 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 22
-[16-Aug-2013 17:15:39 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 22
-[16-Aug-2013 17:15:40 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 22
-[16-Aug-2013 17:15:54 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 22
-[16-Aug-2013 17:15:56 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 22
-[16-Aug-2013 17:15:59 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 22
-[16-Aug-2013 17:20:28 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 522
-[16-Aug-2013 17:20:30 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 522
-[16-Aug-2013 17:20:31 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 522
-[16-Aug-2013 17:20:31 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 522
-[16-Aug-2013 17:20:31 America/New_York] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/nowsup/public_html/index.php on line 522
-[17-Aug-2013 12:13:58 Chile/Continental] PHP Warning:  unlink() [<a href='function.unlink'>function.unlink</a>]: cURL does not allow unlinking in /home/nowsup/public_html/sites/uploadevento.php on line 148
-[17-Aug-2013 12:13:58 Chile/Continental] PHP Warning:  unlink() [<a href='function.unlink'>function.unlink</a>]: cURL does not allow unlinking in /home/nowsup/public_html/sites/uploadevento.php on line 149
-[17-Aug-2013 12:22:00 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 148
-[17-Aug-2013 12:22:00 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 149
-[18-Aug-2013 10:44:33 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
+  thrown in /home/nowsup/public_html/findbreak/sites/eventprofile.php on line 350
+[14-Aug-2013 14:59:06 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/findbreak/sites/eventprofile.php:350
 Stack trace:
-#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
-#1 /home/nowsup/public_html/DAL/evento.php(227): evento->findforid('')
-#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
-#3 /home/nowsup/public_html/index.php(529): include_once('/home/nowsup/pu...')
-#4 {main}
-  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
-[18-Aug-2013 21:15:08 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(529): include_once('/home/nowsup/pu...')
+#0 /home/nowsup/public_html/findbreak/sites/eventprofile.php(350): MongoCursor->rewind()
+#1 /home/nowsup/public_html/findbreak/index.php(522): include_once('/home/nowsup/pu...')
 #2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[19-Aug-2013 17:31:24 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 155
-[19-Aug-2013 17:31:24 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.jpg) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 156
-[20-Aug-2013 00:07:10 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
+  thrown in /home/nowsup/public_html/findbreak/sites/eventprofile.php on line 350
+[14-Aug-2013 15:20:57 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/findbreak/DAL/usuario.php:586) in /home/nowsup/public_html/findbreak/sites/editarusuario.php on line 102
+[14-Aug-2013 15:21:11 Chile/Continental] PHP Warning:  mkdir() [<a href='function.mkdir'>function.mkdir</a>]: No such file or directory in /home/nowsup/public_html/findbreak/DAL/usuario.php on line 549
+[14-Aug-2013 16:00:50 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/findbreak/sites/eventprofile.php:350
 Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
+#0 /home/nowsup/public_html/findbreak/sites/eventprofile.php(350): MongoCursor->rewind()
+#1 /home/nowsup/public_html/findbreak/index.php(522): include_once('/home/nowsup/pu...')
 #2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 00:18:45 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 01:02:06 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
-Stack trace:
-#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
-#1 /home/nowsup/public_html/DAL/evento.php(207): evento->findforid('')
-#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
-#3 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
-#4 {main}
-  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
-[20-Aug-2013 01:34:38 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 01:47:02 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 01:48:47 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
-Stack trace:
-#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
-#1 /home/nowsup/public_html/DAL/evento.php(207): evento->findforid('')
-#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
-#3 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
-#4 {main}
-  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
-[20-Aug-2013 01:59:17 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 12:01:26 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoException' with message 'Invalid object ID' in /home/nowsup/public_html/DAL/evento.php:61
-Stack trace:
-#0 /home/nowsup/public_html/DAL/evento.php(61): MongoId->__construct('')
-#1 /home/nowsup/public_html/DAL/evento.php(227): evento->findforid('')
-#2 /home/nowsup/public_html/sites/eventprofile.php(16): evento->registrarVisita(NULL)
-#3 /home/nowsup/public_html/index.php(535): include_once('/home/nowsup/pu...')
-#4 {main}
-  thrown in /home/nowsup/public_html/DAL/evento.php on line 61
-[20-Aug-2013 14:26:17 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 14:26:18 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 14:26:19 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 14:26:34 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 14:26:50 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 14:27:19 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 14:28:20 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[20-Aug-2013 14:29:20 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(544): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[21-Aug-2013 01:10:50 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(547): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[21-Aug-2013 01:41:07 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(547): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[21-Aug-2013 01:49:57 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 155
-[21-Aug-2013 01:49:57 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.jpg) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 156
-[21-Aug-2013 10:09:51 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(547): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[21-Aug-2013 23:36:47 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:36:47 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:36:47 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:38:17 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:38:17 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:38:17 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:40:29 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:40:29 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:40:29 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:42:52 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:42:52 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:42:52 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:43:16 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:43:16 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:43:16 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:43:16 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:43:16 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:43:16 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:44:49 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:44:49 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:44:49 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:46:27 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:46:27 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:46:27 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:49:12 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:49:12 America/New_York] PHP Warning:  include(feedbackformsettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[21-Aug-2013 23:49:12 America/New_York] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'feedbackformsettings.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/nowsup/public_html/feedbackformprocess.php on line 34
-[23-Aug-2013 08:00:04 Chile/Continental] PHP Fatal error:  Uncaught exception 'MongoCursorException' with message 'localhost:27017: $or requires nonempty array' in /home/nowsup/public_html/sites/eventprofile.php:358
-Stack trace:
-#0 /home/nowsup/public_html/sites/eventprofile.php(358): MongoCursor->rewind()
-#1 /home/nowsup/public_html/index.php(598): include_once('/home/nowsup/pu...')
-#2 {main}
-  thrown in /home/nowsup/public_html/sites/eventprofile.php on line 358
-[24-Aug-2013 17:37:17 Chile/Continental] PHP Warning:  unlink(/images/user-default.png) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 155
-[24-Aug-2013 17:37:17 Chile/Continental] PHP Warning:  unlink(/images/user-default_pe.jpg) [<a href='function.unlink'>function.unlink</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 156
-[24-Aug-2013 22:41:42 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 342
-[24-Aug-2013 22:41:42 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/sites/uploadevento.php on line 343
+  thrown in /home/nowsup/public_html/findbreak/sites/eventprofile.php on line 350
+[14-Aug-2013 16:04:14 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b244c5afc024a1ed685f4/130814-1376510654-58_pe.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 173
+[14-Aug-2013 16:04:14 Chile/Continental] PHP Warning:  imagejpeg() [<a href='function.imagejpeg'>function.imagejpeg</a>]: Unable to open 'images/productoras/520b244c5afc024a1ed685f4/130814-1376510654-58_pe.jpg' for writing: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 207
+[14-Aug-2013 16:04:14 Chile/Continental] PHP Warning:  copy(images/productoras/520b244c5afc024a1ed685f4/130814-1376510654-58_gr.jpg) [<a href='function.copy'>function.copy</a>]: failed to open stream: No such file or directory in /home/nowsup/public_html/findbreak/function/escalar.php on line 48
+[14-Aug-2013 16:04:14 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 332
+[14-Aug-2013 16:04:14 Chile/Continental] PHP Warning:  chmod() [<a href='function.chmod'>function.chmod</a>]: No such file or directory in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 333
+[14-Aug-2013 16:04:14 Chile/Continental] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/nowsup/public_html/findbreak/DAL/usuario.php:586) in /home/nowsup/public_html/findbreak/sites/uploadevento.php on line 130

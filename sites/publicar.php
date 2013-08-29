@@ -4,28 +4,18 @@
         if(isset($_SESSION["userid"]))
         {
 ?>
-<script type="text/javascript">
- var RecaptchaOptions = {
-    theme : 'clean'
- };
- </script>
 <form id="guardarevento-form" method="POST" action="<?= PATH?>uploadevento" name="formularioevento" enctype="multipart/form-data">
 <input type="hidden" name="guardarevento"/>
 <div class="content-publicarevent">
-                                
                                  <div class="item-publicar">
-                                    <div class="title-publicarevent">¿Quieres publicar?</div>
+                                    <div class="title-publicarevent">¿Quieres publicar un evento?</div>
                                  </div>
                                 <div class="item-publicar item-publicar-queganas">   
                                     <div id="info-mostrar">
-                                     ¿Que puedes publicar?
-                                     <b>-Lo que tú quieras! </b>
-                                     <br>
-                                        
-                                    ¿Que ganas tú al publicar? <br>
+                                    ¿Que ganas tú al publicar un anuncio o evento? <br>
                                     
-                                    <b>-Claramente potenciar tu publicidad.</b><br>
-                                    <b>-Que tu publicación sea vista por las personas que entren al sitio cerca de la ubicación de la publicación.</b><br>
+                                    <b> Claramente potenciar la publicidad de tus anuncios.</b><br>
+                                    <b>Que tus anuncios sean vistos por las personas que ingresen a la aplicación cerca de la ubicación del anuncio o suceso.</b><br>
                                     <b>Publica gratuitamente!</b>
 <!--                                    <a href="#">ver tabla de premios!</a>-->
                                     </div>
@@ -179,14 +169,9 @@
                                  <div class="nombre-publicarevent">Dirección Youtube</div>
                                  <input placeholder="http://www.youtube.com/tusitio" class="field-publicarevent" type="text" id="urlyoutube" name="url-youtube"/>
                                 </div>
-
-                                <div id="item-publicar-capcha" class="item-publicar">
-                                    <div class="nombre-publicarevent">¿Eres humano?</div>
-                                    <?php echo recaptcha_get_html($publickey); ?>
-                                     <div class="mensaje-error error-obligatorio">
-                                        <div class="content-mensaje">* Ingresa las 2 palabras</div>
-                                    </div>
-                                </div>
+                                
+                                
+                                
                                     
                                 
                                  <div class="item-publicar">
