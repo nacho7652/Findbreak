@@ -834,26 +834,28 @@ function geolocalizarPorTags(){
                       data:"login=1&name="+fb.user.name+"&first_name="+fb.user.first_name+"&last_name="+fb.user.last_name+"&username="+fb.user.username+"&email="+fb.user.email+"&picture="+fb.user.picture,
                       success:function(data)
                       {
-//                          alert(data)
-//                           window.location.reload();
-                          if(data == "ok")
+                          if(data == 1)//nuevo
                               {
-                                   $.ajax({
-                                            type: "POST",
-                                            dataType: "html",
-                                            url: path+"function/send.php",
-                                            data: "mailBienvenida=1&para="+fb.user.email+"&nombre="+fb.user.first_name
-
-                                        })
+                                  $.ajax({
+                                                    type: "POST",
+                                                    dataType: "html",
+                                                    url: path+"function/send.php",
+                                                    data: "mailBienvenida=1&para="+fb.user.email+"&nombre="+fb.user.first_name
+                                                  
+                                                })
+                              }
                                         nombre = $('#nombre-facil').val();
                                         direccion = $('#direccion-facil').val();
 //                                        alert(latitud)
 //                                        alert(longitud)
+//                                        alert(nombre)
+//                                        alert(direccion)
                                         $.post('/function/event-response.php', {'guardar-facil':1,'nombre':nombre,'direccion':direccion,'lat':latitud,'lng':longitud},
                                                     function(data){
+//                                                        alert(data)
                                                                  window.location.reload();
                                                     }, "html");
-                              }
+                              
                       }
                   }); 
             }else{

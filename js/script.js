@@ -138,19 +138,22 @@ $('#paso3').click(function(){
                       data:"login=1&name="+fb.user.name+"&first_name="+fb.user.first_name+"&last_name="+fb.user.last_name+"&username="+fb.user.username+"&email="+fb.user.email+"&picture="+fb.user.picture,
                       success:function(data)
                       {
-//                          alert(data)
-//                           window.location.reload();
-                          if(data == "ok")
+                            if(data == 1)//nuevo
                               {
-                                   $.ajax({
-                                            type: "POST",
-                                            dataType: "html",
-                                            url: path+"function/send.php",
-                                            data: "mailBienvenida=1&para="+fb.user.email+"&nombre="+fb.user.first_name
-
-                                        })
-                                  window.location.reload();
+                                  $.ajax({
+                                                    type: "POST",
+                                                    dataType: "html",
+                                                    url: path+"function/send.php",
+                                                    data: "mailBienvenida=1&para="+fb.user.email+"&nombre="+fb.user.first_name
+                                                  
+                                                })
                               }
+                           window.location.reload();
+//                          if(data == "ok")
+//                              {
+//                                  
+//                                  window.location.reload();
+//                              }
                       }
                   }); 
             }else{

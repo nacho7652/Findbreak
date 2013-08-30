@@ -14,6 +14,8 @@
     require_once 'DAL/evento.php';
     require_once 'DAL/comentario.php';
     require_once 'DAL/relacional/connect_relacional.php';
+    require_once('function/recaptchalib.php');
+    $publickey = "6LdvkeYSAAAAAHc8lhTvB8s8_NXUZTYhTohyLihE";
     $usuariorelacional = new usuarioRelacional();
 //    include_once ('function/facebook-response.php');
     $contsol=0;
@@ -266,39 +268,39 @@
                             }else{//salga en el cerca
                                 echo '<a href="#" class="explicacion-mapa explicacion-mapa-style">¿Cómo funciona Nowsup?</a>';
                             }
-                            if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
-                                $us = new usuario();
-                                $user_profile = $_SESSION['userprofile'];
-                                $comp = $us->loginFace($user_profile['email']);
-                               
-                                if($comp!=null)
-                                {
-                                   
-                                   $_SESSION['userid'] = $comp['_id'];
-                                   $_SESSION['username'] = $comp['username'];
-                                   $_SESSION['nombre'] = $comp['nombre'];
-                                   if($comp['foto'] == PATH.'images/user-default.png')
-                                   {
-                                      $us->updatePhoto($comp['_id'], $user_profile['picture']);
-                                      $_SESSION['foto']=$user_profile['picture'];
-                                      
-                                   }
-                                   else
-                                   {
-                                       $_SESSION['foto'] = $comp['foto'];
-                                   }
-                                   $_SESSION['usertype'] = 1;
-                                }else{
-                                  
-                                   $hola = $us->insertarFB($user_profile['name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
-                                   $_SESSION['userid'] = $hola['_id'];
-                                   $_SESSION['username'] = $hola['username'];
-                                   $_SESSION['nombre'] = $hola['nombre'];
-                                   $_SESSION['foto'] = $hola['foto'];
-                                   $_SESSION['usertype'] = 1;
-                                  
-                                }
-                            }
+//                            if(isset($_SESSION['userprofile']) != null){//apreté el boton y se creo mi usuario
+//                                $us = new usuario();
+//                                $user_profile = $_SESSION['userprofile'];
+//                                $comp = $us->loginFace($user_profile['email']);
+//                               
+//                                if($comp!=null)
+//                                {
+//                                   
+//                                   $_SESSION['userid'] = $comp['_id'];
+//                                   $_SESSION['username'] = $comp['username'];
+//                                   $_SESSION['nombre'] = $comp['nombre'];
+//                                   if($comp['foto'] == PATH.'images/user-default.png')
+//                                   {
+//                                      $us->updatePhoto($comp['_id'], $user_profile['picture']);
+//                                      $_SESSION['foto']=$user_profile['picture'];
+//                                      
+//                                   }
+//                                   else
+//                                   {
+//                                       $_SESSION['foto'] = $comp['foto'];
+//                                   }
+//                                   $_SESSION['usertype'] = 1;
+//                                }else{
+//                                  
+//                                   $hola = $us->insertarFB($user_profile['name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
+//                                   $_SESSION['userid'] = $hola['_id'];
+//                                   $_SESSION['username'] = $hola['username'];
+//                                   $_SESSION['nombre'] = $hola['nombre'];
+//                                   $_SESSION['foto'] = $hola['foto'];
+//                                   $_SESSION['usertype'] = 1;
+//                                  
+//                                }
+//                            }
 
                            
                             if(empty($_SESSION['userid'])){?>

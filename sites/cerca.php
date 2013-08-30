@@ -69,7 +69,7 @@
                           <div class="text-cerca">Anuncios: <span class="tipoBusqueda">cerca de <b>mi ubicación actual</b></span></div>
 
                           <div class="input-textparent2">
-                            <input type="text" placeholder="¿Qué buscas?" id="search-location" class="input-transf"/>
+                            <input type="text" placeholder="¿Qué buscas? Ej: música, tortas, etc." id="search-location" class="input-transf"/>
                             <input id="boton-buscarcerca" type="button" class="sprites" />
                           </div> 
                           <input id="boton-location" type="button" class="sprites loc-activado" />

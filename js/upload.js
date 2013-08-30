@@ -196,27 +196,27 @@ $(document).ready(function(){
         $('.hashtag-incorr').show();
         $('.error-hashtag').show();
     }
-    $('#hash-event').keyup(function(){
-        nombre = $(this).val();
-        nombreSinEsp = nombre.replace(/ /g,"");
-        $('#hash-event').val(nombreSinEsp)
-        if(trim(nombreSinEsp) == ""){
-            //mostrar mensaje de que no puede estar vacio
-
-            return false;
-        }
-        $.post(path+'function/event-response.php', {'comprobarHashTag2':1, 'sinEspacios':nombreSinEsp}, 
-        function(data){
-            if(data.re == 1){
-                $('#hash-event').val(data.limpio);
-                 hashCorrecto()
-            }else{
-                $('#hash-event').val(data.limpio);
-                 hashInCorrecto()
-            }
-        }, "json");
-       
-    })
+//    $('#hash-event').keyup(function(){
+//        nombre = $(this).val();
+//        nombreSinEsp = nombre.replace(/ /g,"");
+//        $('#hash-event').val(nombreSinEsp)
+//        if(trim(nombreSinEsp) == ""){
+//            //mostrar mensaje de que no puede estar vacio
+//
+//            return false;
+//        }
+//        $.post(path+'function/event-response.php', {'comprobarHashTag2':1, 'sinEspacios':nombreSinEsp}, 
+//        function(data){
+//            if(data.re == 1){
+//                $('#hash-event').val(data.limpio);
+//                 hashCorrecto()
+//            }else{
+//                $('#hash-event').val(data.limpio);
+//                 hashInCorrecto()
+//            }
+//        }, "json");
+//       
+//    })
     //editaruser
     $('#editaruser').click(function(){
         //pass
