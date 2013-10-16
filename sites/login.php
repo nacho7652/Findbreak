@@ -12,6 +12,7 @@
             <input type="text" placeholder="Correo electronico" id="mail2">
             <input type="password" placeholder="Contraseña" id="pass2">
             <a href="#" class="botonblue" id="boton-login2">Entrar</a>
+            <div id="nocoinciden" class="error-username">El mail o clave no coinciden</div>
             <div class="titulo-login2">
                 <div class="msj-log3 mjscoment">O también puedes</div>
             </div>

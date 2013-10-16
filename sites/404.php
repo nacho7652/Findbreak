@@ -25,7 +25,7 @@
    <?php     
    }else
         {
-            header("location:/findbreak/publicar");
+            header("location:/publicar");
             
         }
 ?>                                    

@@ -508,8 +508,15 @@ class usuario {
             }
         }
     }
-    
+    private function getIP(){
+        if( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] )) $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if( isset( $_SERVER ['HTTP_VIA'] ))  $ip = $_SERVER['HTTP_VIA'];
+        else if( isset( $_SERVER ['REMOTE_ADDR'] ))  $ip = $_SERVER['REMOTE_ADDR'];
+        else $ip = null ;
+        return $ip;
+    }
     public function insertar($name, $username, $mail, $pass){ 
+        $ip = $this->getIP();
          $passEncript = md5($pass);
          $user = array(
             "nombre" => $name,
@@ -521,7 +528,8 @@ class usuario {
              "tags_buscados" => array(),
              "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto"=>array('pe'=>'/images/user-default_pe.jpg', 'gr'=>'/images/user-default.png') 
+            "foto"=>array('pe'=>'/images/user-default_pe.jpg', 'gr'=>'/images/user-default.png'),
+             "ip"=>$ip
         );
          
          $emailRepetido = $this->findforemail($mail);
@@ -541,6 +549,7 @@ class usuario {
          
      }                          //$user_profile['first_name'], $user_profile['last_name'], $user_profile['email'], '',$user_profile['picture'],$user_profile['username']);
      public function insertarFB($name, $mail,$pass, $foto, $username){ 
+          $ip = $this->getIP();
          $user = array(
             "nombre" => $name,
             "username"=>$username,
@@ -551,7 +560,8 @@ class usuario {
             "tags_buscados" => array(),
             "historial_eventos" => array(),
             "fecha_registro" => $this->hoy(),
-            "foto" => array('gr'=>$foto, 'pe'=>$foto)
+            "foto" => array('gr'=>$foto, 'pe'=>$foto),
+             "ip"=>$ip
         );
          
          $emailRepetido = $this->findforemail($mail);

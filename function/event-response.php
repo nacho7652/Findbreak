@@ -7,6 +7,28 @@
         require_once '../DAL/comentario.php';
         require_once '../DAL/usuarioRelacional.php';
         require_once 'allfunction.php';
+        
+        
+        if(!empty($_REQUEST['mismoLugar']))
+        {
+            $event = new evento(); 
+            $lat = -33.5434941;
+            $lng =  -70.59482120000001;       
+            $re = $event->comprobarMismoLugar($lat, $lng);
+            echo count(iterator_to_array($re));
+        }
+        if(!empty($_REQUEST['ano']))
+        {
+            $event = new evento();
+            $nombre = $_REQUEST['nombre'];
+            $direccion = $_REQUEST['direccion'];  
+            $lat = $_REQUEST['lat'];
+            $lng = $_REQUEST['lng'];
+            for($i=0; $i<1000; $i++)
+             $re = $event->insertarFacil_ano(1, 'nombre_prueba', 'username_prueba', $nombre+$i, $direccion, $lat, $lng);
+            echo $re;
+            
+        }
         if(!empty($_REQUEST['guardar-facil']))
         {
             $event = new evento();
@@ -14,7 +36,8 @@
             $direccion = $_REQUEST['direccion'];  
             $lat = $_REQUEST['lat'];
             $lng = $_REQUEST['lng'];
-            $re = $event->insertarFacil($_SESSION['userid'], $_SESSION['nombre'], $_SESSION['username'], $nombre, $direccion, $lat, $lng);
+            $latLng = $lat.'_'.$lng;
+            $re = $event->insertarFacil($_SESSION['userid'], $_SESSION['nombre'], $_SESSION['username'], $nombre, $direccion, $lat, $lng, $latLng);
             echo $re;
             
         }
@@ -364,7 +387,33 @@
             $re = array('hay'=>$hayevents,'re'=>$cuadroevento);
             echo json_encode($re);
     }
-    
+
+       function verNote($hash, $fotos, $nombre, $mismo_lugar, $lat_lng){
+            $event = new evento(); 
+            $note = '<div id="infoWindow">';
+            if($mismo_lugar > 0){
+                $anuncios = $event->comprobarMismoLugar2($lat_lng);
+                    foreach ($anuncios as $dctos){
+                        $note.= '<div class="item-info">
+                                            <a href="/break/'.$dctos['hash'].'">
+                                                <img class="fotopin" src="'.$dctos['fotos'][0]['pe'].'" />
+                                                <string class="tit-gray titpin">'.$dctos['nombre'].'</strong>
+                                            </a>
+                                 </div>';
+                    }
+
+                }else{
+                    $note = '<div class="item-info">
+                                            <a href="/break/'.$hash.'">
+                                                <img class="fotopin" src="'.$fotos[0]['pe'].'" />
+                                                <string class="tit-gray titpin">'.$nombre.'</strong>
+                                            </a>
+                                 </div>';
+                }
+            $note.= '</div>';
+            return $note;
+            
+        }
        function eventoscernanos($eventsNears){
            $cont = 0; //cantidad de eventos encontrados para mostrarlos en el mapa
             //$listevents = '<div class="eventsnear">';
@@ -377,6 +426,7 @@
                         $url = 'background:url(/images/anuncios/'.$dcto['fotos'][0]['gr'].'); background-size: cover';
                         $urlPe = '/images/anuncios/'.$dcto['fotos'][0]['pe'];
                         //Con esta info. el mapa de google muestra los pines
+                         $note = verNote($dcto['hash'], $dcto['fotos'], $dcto['nombre'], $dcto['mismo_lugar'], $dcto['lat_lng']);
                          $infodiv = $infodiv.'<div id="info'.$cont.'">'.$dcto['nombre']."+".$dcto['fotos'][0]['gr']."+".
                                 $dcto['loc'][0]."+".$dcto['loc'][1]."+".$urlPe."+".$dcto['hash'].'</div>'."\n";
                          $cont++;
@@ -447,7 +497,8 @@
                                              'lat'=>$dcto['loc'][0],
                                              'lng'=>$dcto['loc'][1],
                                              'nombre'=>$dcto['nombre'],
-                                             'verificacion'=>$dcto['verificacion']
+                                             'verificacion'=>$dcto['verificacion'],
+                                             'note'=>$note
                                   );  
                     }
                     //$listevents.= '</div>';

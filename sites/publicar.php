@@ -4,11 +4,6 @@
         if(isset($_SESSION["userid"]))
         {
 ?>
-<script type="text/javascript">
- var RecaptchaOptions = {
-    theme : 'clean'
- };
- </script>
 <form id="guardarevento-form" method="POST" action="<?= PATH?>uploadevento" name="formularioevento" enctype="multipart/form-data">
 <input type="hidden" name="guardarevento"/>
 <div class="content-publicarevent">
@@ -175,13 +170,6 @@
                                  <input placeholder="http://www.youtube.com/tusitio" class="field-publicarevent" type="text" id="urlyoutube" name="url-youtube"/>
                                 </div>
                                 
-                                <div id="item-publicar-capcha" class="item-publicar">
-                                    <div class="nombre-publicarevent">¿Eres humano?</div>
-                                    <?php echo recaptcha_get_html($publickey); ?>
-                                     <div class="mensaje-error error-obligatorio">
-                                        <div class="content-mensaje">* Ingresa las 2 palabras</div>
-                                    </div>
-                                </div>
                                 
                                 
                                     

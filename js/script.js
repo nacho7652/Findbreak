@@ -30,7 +30,7 @@ $('.explicacion-mapa').click(function(){
     
 })
 
-$('.equis-tutorial').click(function(){
+$('.equis-tutorial, .equis-rutas').click(function(){
     $('.tutorial-mapa').hide();
     $('#allbackground').hide();
 })
@@ -1430,15 +1430,11 @@ $('#paso3').click(function(){
                           success : function (data)
                           {  
                               if(data.exito)
-                                  { 
+                                  { $('#nocoinciden').hide();
                                       if(data.usertype == 1){
                                         window.location.reload();//es usuario y recargo la página donde esté
                                       }
-                                      if(data.usertype == 2){  
-                                        var id = data.userid;
-                                        
-                                        window.location.href="../productora/"+id+"";//es usuario y recargo la página donde esté
-                                      }
+                                      
                                      // alert(data.divuserlogin)
                                      // $('.top-right').html(data.divuserlogin);
                                       //$("#login").html("Bienvenido");
@@ -1449,6 +1445,8 @@ $('#paso3').click(function(){
                                       //user-id 
                                       
                                       
+                                  }else{
+                                      $('#nocoinciden').show();
                                   }
                           }
                           

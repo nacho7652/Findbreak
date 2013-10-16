@@ -14,11 +14,12 @@ class evento {
          //return $this->db->evento->find('loc' => array( '$near' => array( (float)50 , (float)30 ), '$maxDistance' => 1 ));
         $km = 1000000000 / 111.12;
         //lat, lon
-        $a = $this->hoy();
+        $hoy = $this->hoy();
        // return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ), 'fecha_realizacion'=> array('$gte' => $a )   ))->limit(10);
         //return $this->db->evento->find(array("loc" => array('$near' => 50,30))); //array('$near' =>[50,50])
-//                return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha_realizacion'=> array('$gte' => $a )) )    ))->limit(10);
-        return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   )   ))->limit(1000);
+       //  dani : return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km   ) , '$or' => array( array('fecha-publicacion-mongo'=> array('$gte' => $a )), array('fecha-caducidad-mongo'=> array('$lte' => $a )) )    ))->limit(10);
+        return $this->db->evento->find(Array('loc' => Array( '$near' => array($lat,$long), '$maxDistance' => $km),
+                                             'fecha-caducidad-mongo'=> array('$gte' => $hoy ) ))->limit(1000);
     }
     public function buscarPorLatLong($lat, $long){
       
@@ -63,7 +64,7 @@ class evento {
          $theObjId = new MongoId($id); 
          return $this->db->evento->findOne(array("_id" => $theObjId));
      }
-     public function findpopular($limit){
+     public function findpopular($limit){//AGREGAR CRITERIO DE FECHAS
          $numeroPromedio = $this->promedioVisitas();
          return $this->db->evento->find(array( 'visitas'=> array('$gte' => ($numeroPromedio/2)) ))->sort(array("visitas" => -1 ))->limit($limit);
      }
@@ -135,13 +136,13 @@ class evento {
      public function hoy(){
         
       //  $a = date('2012-11-26 23:59:59'); // date("d-m-Y H:i:s");
-        $a = date('Y-m-d 00:00:00');
+        $a = date("d-m-Y H:i:s");
          $hoy = new MongoDate(strtotime($a));
         // strto
          return $hoy;
      }
      
-      public function filtrar($buscador, $limit = false){
+      public function filtrar($buscador, $limit = false){//AGREGAR CRITERIO DE FECHAS
         if(!$limit){
             $limit = 4;
         }
@@ -338,8 +339,13 @@ class evento {
          }
          $arrtags2[] = strtolower($nombre);
          
-         $hoyMustra = date('Y-m-d 00:00:00');
+         $hoyMustra = date('j-m-Y H:i:s');
          $fechMongo = new MongoDate(strtotime($hoyMustra));
+         
+         $fechaCaducidad = strtotime('+3 day', strtotime($hoyMustra));
+         $fechaCaducidad = date('j-m-Y H:i:s', $fechaCaducidad);
+         $fechCaducidadMongo = new MongoDate(strtotime($fechaCaducidad));
+         
           $event = array(
             "nombre" => $nombre,
             "hash" => $hashtag,//$this->crearHash($nombre),
@@ -355,7 +361,9 @@ class evento {
              "sitio_web"=>$sitioWeb,
              "verificacion"=>0,
              "fecha-publicacion"=>$hoyMustra,
-             "fecha-publicacion-mongo"=>$fechMongo
+             "fecha-publicacion-mongo"=>$fechMongo,
+             "fecha-caducidad"=>$fechaCaducidad,
+             "fecha-caducidad-mongo"=>$fechCaducidadMongo
         );
 //         $event = array(
 //            "nombre" => $nombre,
@@ -387,19 +395,53 @@ class evento {
         // $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000,1,0);
          return $re;
      }
-     public function insertarFacil($idproductora, $nombreproductora, $username, $nombre, $dir,$lat, $lng){ 
+     public function comprobarMismoLugar($lat, $lng)
+     { 
+         $lat_lng = $lat.'_'.$lng;
+         return $this->db->evento->find(array('lat_lng'=>$lat_lng));       
+     }
+     public function comprobarMismoLugar2($lat_lng)
+     { 
+         return $this->db->evento->find(array('lat_lng'=>$lat_lng));       
+     }
+     public function modificarMismoLugar($anuncios, $mismoLugar)
+     { 
+         foreach($anuncios as $dcto){
+               $re = $this->db->evento->update(array("_id" => $dcto['_id']), 
+                                          array(
+                                            '$set'=> array("mismo_lugar"=>$mismoLugar     
+                                                            )
+                                          ));     
+         }
+         return $re;
+     }
+    private function getIP(){
+        if( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] )) $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if( isset( $_SERVER ['HTTP_VIA'] ))  $ip = $_SERVER['HTTP_VIA'];
+        else if( isset( $_SERVER ['REMOTE_ADDR'] ))  $ip = $_SERVER['REMOTE_ADDR'];
+        else $ip = null ;
+        return $ip;
+    }
+     public function insertarFacil($idproductora, $nombreproductora, $username, $nombre, $dir,$lat, $lng, $latLng){ 
          $arrtags2 = array();
          $rutasFotos = array();
          $arrtags2[] = strtolower($nombre);
          session_start();
          $_SESSION['anuncioAgregado'] = $dir;
-         
+         mail('skumblue@live.cl', 'anuncio'.$nombreproductora, $nombre.' '.$dir);
          $hashtag = $this->crearHashFacil($nombre, $username);
          $hashLimpio = clearDir($hashtag,false);//lo limpio
-         $hoyMustra = date('Y-m-d 00:00:00');
+         
          $rutasFotos[] = array('gr'=>'http://www.nowsup.com/images/anuncio-default-gr.jpg', 'pe'=>'http://www.nowsup.com/images/anuncio-default-pe.jpg');
-         $fechMongo = new MongoDate(strtotime($hoyMustra));
+         
          $descrip = '¿Qué te parece mi publicación: <b>'.$nombre.'</b>???, entra aquí ! :)';
+         
+         $hoyMustra = date('j-m-Y H:i:s');
+         $fechMongo = new MongoDate(strtotime($hoyMustra));
+         
+         $fechaCaducidad = strtotime('+3 day', strtotime($hoyMustra));
+         $fechaCaducidad = date('j-m-Y H:i:s', $fechaCaducidad);
+         $fechCaducidadMongo = new MongoDate(strtotime($fechaCaducidad));
           $event = array(
             "nombre" => $nombre,
             "hash" => $hashLimpio,//$this->crearHash($nombre),
@@ -409,13 +451,18 @@ class evento {
             "producido_por"=>(object)array("_id"=>$idproductora, "nombre"=>$nombreproductora),
             "tags" => $arrtags2,
             "loc"=> array((float)$lat, (float)$lng),
+            "lat_lng"=> $latLng,
             "descripcion"=> $descrip,
              "visitas"=>0,
              "redes" => array('', '',''),
              "sitio_web"=>'',
              "verificacion"=>0,
              "fecha-publicacion"=>$hoyMustra,
-             "fecha-publicacion-mongo"=>$fechMongo
+             "fecha-publicacion-mongo"=>$fechMongo,
+             "fecha-caducidad"=>$fechaCaducidad,
+             "fecha-caducidad-mongo"=>$fechCaducidadMongo,
+             "mismo_lugar"=>0,
+             "ip_creado"=>$this->getIP()
         );
 //         $event = array(
 //            "nombre" => $nombre,
@@ -445,11 +492,38 @@ class evento {
         // $eventoR->GuardarEvento((string)$event['_id'], $nombre, 10000);
         // session_start();
         // $eventoR->GuardarEvento_____Usuario((string)$event['_id'], $_SESSION['userid'], 10000,1,0);
+        
+        //comprobar el mismo lugar
+            $anuncios = $this->comprobarMismoLugar($lat, $lng);
+            $mismoLugar = count(iterator_to_array($anuncios));//cantidad del mismo lugar
+            if($mismoLugar > 1){
+                $this->modificarMismoLugar($anuncios, $mismoLugar);
+            }
+         //fin comprobar mismo lugar
          return $re;
+     }
+     
+     private function auditarModificar($idAnuncio){  
+         $hoy = $this->hoy();
+         //session_start()
+         $quien = $_SESSION['userid'];
+         $ip = $this->getIP();
+         $anuncioOld = $this->findforid($idAnuncio);
+         $anuncioAuditado = array(
+                                    "quien"=>$quien,
+                                    "ip"=>$ip,
+                                    "anuncio"=>$idAnuncio,
+                                    "fecha"=>$hoy,
+                                    "old"=>$anuncioOld
+                                    );
+         return $this->db->anuncios_modificados->insert($anuncioAuditado);  
      }
      public function modificar($idEvento, $nom, $dir,$tag, $lat, $lng, $desc,$urlfacebook,$urltwitter,$video){ 
          $arrtags = explode(",", $tag); 
          $arrtags2 = array();
+         //AUDITAR
+         $this->auditarModificar($idEvento);
+         
          //sacar el tag vacío
          for($i=0; $i<count($arrtags)-1; $i++){
              $arrtags2[] = $arrtags[$i];
@@ -507,8 +581,22 @@ class evento {
         $this->eliminarFotos($idEvento);
         $eventoR = new usuarioRelacional();
         $eventoR->EliminarEvento($idEvento);
+        $this->auditarEliminar($idEvento);//NOMBRE
        // return $this->db->evento->update( array("_id"=>$theObjId,"fotos"=>$nombreBorrar), array('$set'=> array("fotos.$"=>$fotoGr) ));
         return $this->db->evento->remove( array("_id"=>$theObjId));   
+     }
+     private function auditarEliminar($idAnuncio){  
+         $hoy = $this->hoy();
+         //session_start()
+         $quien = $_SESSION['userid'];
+         $ip = $this->getIP();
+         $anuncioAuditado = array(
+                                    "quien"=>$quien,
+                                    "ip"=>$ip,
+                                    "anuncio"=>$idAnuncio,
+                                    "fecha"=>$hoy
+                                    );
+         return $this->db->anuncios_eliminados->insert($anuncioAuditado);  
      }
      public function nuevaFoto($idEvento,$fotoGr, $fotoPe)
      { 

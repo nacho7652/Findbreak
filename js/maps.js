@@ -14,7 +14,7 @@ $(document).ready(function(){
          geolocalizarManual(editarEvento)   
     }
 
-  function cargarMapa() {
+  function cargarMapa(nombreMapa) {
 //           alert('lat: '+latitud)
 //           alert('long: '+longitud)
             var latlon = new google.maps.LatLng(latitud,longitud); /* Creamos un punto con nuestras coordenadas */
@@ -48,7 +48,7 @@ $(document).ready(function(){
             };/*Configuramos una serie de opciones como el zoom del mapa y el tipo. */
             
             
-            map = new google.maps.Map($("#map_canvas").get(0), myOptions); /*Creamos el mapa y lo situamos en su capa */
+            map = new google.maps.Map($("#"+nombreMapa).get(0), myOptions); /*Creamos el mapa y lo situamos en su capa */
             
             var coorMarcador = new google.maps.LatLng(latitud,longitud); /*Un nuevo punto con nuestras coordenadas para el marcador (flecha) */
             var marcador = new google.maps.Marker({
@@ -165,7 +165,7 @@ function geolocalizar(){
         var geocoder = new google.maps.Geocoder();
         var address = latitud+","+longitud;//$("#direHidden").val()+', Chile';
 //        alert(latitud +" , "+ longitud);
-        cargarMapa();
+        cargarMapa('map_canvas');
         geocoder.geocode({'address': address}, geocodeResult);
 }
 function geolocalizarManual(address){
@@ -223,7 +223,7 @@ function geolocalizarPorTags(){
 //                 alert(numberOfCase)
                  latitud = data.arreglo[0]['lat'];
                  longitud = data.arreglo[0]['lng'];
-                 cargarMapa();
+                 cargarMapa('map_canvas');
                  for(var i=0;i<numberOfCase;i++){
                      
                     id = data.arreglo[i]['id'];
@@ -357,7 +357,7 @@ function geolocalizarPorTags(){
                 dataType: "json",
                 url: path+"function/event-response.php",
                 success: function(data){
-                   
+              
                    $('.loading-events').hide();
                    $('.event-hidden').html(data.infodiv);
                    var numberOfCase = parseInt($('#number').text());
@@ -401,6 +401,7 @@ function geolocalizarPorTags(){
                     nombre = data.arreglo[i]['nombre'];
                     foto = data.arreglo[i]['foto'];
                     verif = data.arreglo[i]['verificacion'];
+                   note = data.arreglo[i]['note'];
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-id',id);
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('data-hash',hash);
                    $('#item-eventcerca'+i).find('.info-eventcerca').html(infoCerca);
@@ -413,10 +414,11 @@ function geolocalizarPorTags(){
                    $('#item-eventcerca'+i).find('.nombreevent').val(nombre);
                    $('#item-eventcerca'+i).show();
                    $('#item-eventcerca'+i).find('.item-eventcerca').attr('style',foto);
+                   
                    infoDiv = $('#info'+i).text();	 
                    tokens = infoDiv.split("+");
                    
-                   var note="";
+                   
                    var name = tokens[0];
                    var address = tokens[1];
                        lat = parseFloat(tokens[2]); 	 
@@ -426,16 +428,6 @@ function geolocalizarPorTags(){
                    //var distance = parseFloat(tokens[4]); 
    
                    var PointMaps = new google.maps.LatLng(lat, lng);
-                  
-//                       var markerNew = new google.maps.Marker({
-//                       position: PointMaps
-//                       , map: map
-//                       , title: name
-//                       //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
-//                       
-//                       , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/blue/marker'+cont+'.png' 
-//                   });
-                       
                        if(verif==0 || verif == null)
                            {
                       
@@ -453,42 +445,34 @@ function geolocalizarPorTags(){
                                    if(verif==1)
                                        {
                                            var markerNew = new google.maps.Marker({
-                                   position: PointMaps
-                                   , map: map
-                                   , title: name
-                                   //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
+                                                position: PointMaps
+                                                , map: map
+                                                , title: name
+                                                //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
 
-                                   , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/marker'+cont+'.png'
-                               })
+                                                , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/marker'+cont+'.png'
+                                            })
                                        }
                                        else
                                            {
                                                if(verif==2)
                                                    {
                                                        var markerNew = new google.maps.Marker({
-                                                       position: PointMaps
-                                                       , map: map
-                                                       , title: name
-                                                       //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
+                                                            position: PointMaps
+                                                            , map: map
+                                                            , title: name
+                                                            //, icon: '<div style="width:35px; height:40px; background:url("/findbreak/images/marker5.png")">1</div>'
 
-                                                       , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/green/marker'+cont+'.png'
-                                                   })
+                                                            , icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/green/marker'+cont+'.png'
+                                                        })
                                                    }
                                            }
                                }
-                   //nota es el recuadro que sale en grande cuando se hace click en la clinica
-                   note = '<div id="infoWindow" style="">\n\
-                                <a href="/break/'+hash+'">\n\
-                                    <img class="fotopin" src="'+fotoPe+'" />\n\
-                                    <string class="tit-gray titpin">'+name+'</strong>\n\
-                                </a>\n\
-                            <div>';
-                   
-                   
-
-                   
-                 PrintStore(map,markerNew,note,lat,lng,name, address, cont);  	   
-                 cont++; 
+//                  
+                   PrintStore(map,markerNew,note,lat,lng,name, address, cont);  	   
+                   cont++;
+                 
+                 
                 }
                 //esconder los eventos tipo que no se usan
                 
@@ -1060,51 +1044,98 @@ alert(msg);
         function initialize() {
           directionsDisplay = new google.maps.DirectionsRenderer();
           directionsDisplay.setMap(map);
-           
+          directionsDisplay.setPanel(document.getElementById('directions-panel'));  
         }
-    function calcRoute(latEvento, lngEvento) {
-          initialize();
-//        alert(latitud)
-//        alert(longitud)
-    var start = new google.maps.LatLng(latitud,longitud);
-    var end = new google.maps.LatLng(latEvento,lngEvento);
-      var request = {
-        origin: start,
-        destination: end,
-        travelMode: google.maps.TravelMode.DRIVING
-      };
-       directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          directionsDisplay.setDirections(response);
-        }
-        else{alert('No se pudo determinar el camino, prueba desde otra dirección')}
+    function calcRoute(latEvento, lngEvento, rutaType) {
+            initialize();
+  //        alert(latitud)
+  //        alert(longitud)
+        //var selectedMode = document.getElementById('mode').value;
+        var start = new google.maps.LatLng(latitud,longitud);
+        var end = new google.maps.LatLng(latEvento,lngEvento);
+        var request = {
+          origin: start,
+          destination: end,
+          travelMode: google.maps.TravelMode[rutaType]
+         // travelMode: google.maps.TravelMode[selectedMode]
+        };
+         directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+          else{
+              switch(status){
+                  case google.maps.DirectionsStatus.NOT_FOUND: 
+                       alert('al menos una de las ubicaciones especificadas en el origen, el destino o los hitos de la solicitud no se pudo codificar de forma geográfica');
+                       break;
+                  case google.maps.DirectionsStatus.ZERO_RESULTS: 
+                       alert('no se pudo encontrar ninguna ruta entre el origen y el destino');
+                       break;
+                  case google.maps.DirectionsStatus.MAX_WAYPOINTS_EXCEEDED: 
+                       alert('El número máximo de hitos permitido es ocho, además del origen y del destino');
+                       break;
+                  case google.maps.DirectionsStatus.INVALID_REQUEST: 
+                       alert('rror son las solicitudes que no incluyen un origen o un destino, o las solicitudes de transporte público que incluyen hitos.');
+                       break;
+                  case google.maps.DirectionsStatus.OVER_QUERY_LIMIT: 
+                       alert('ndica que la página web ha enviado demasiadas solicitudes dentro del período de tiempo permitido');
+                       break;
+                  case google.maps.DirectionsStatus.REQUEST_DENIED: 
+                       alert('indica que no se permite el uso del servicio de rutas en la página web.');
+                       break;
+                  case google.maps.DirectionsStatus.UNKNOWN_ERROR: 
+                       alert('indica que no se ha podido procesar una solicitud de rutas debido a un error del servidor. Puede que la solicitud se realice correctamente si lo intentas de nuevo.');
+                       break;
+              }       
+          }
       });
+      
     }
-    function mostrarError(){
-	   	if (gdir.getStatus().code == G_GEO_UNKNOWN_ADDRESS)
-	     	alert("No se ha encontrado una ubicación geográfica que se corresponda con la dirección especificada.");
-	   	else if (gdir.getStatus().code == G_GEO_SERVER_ERROR)
-	     	alert("No se ha podido procesar correctamente la solicitud de ruta o de códigos geográficos, sin saberse el motivo exacto del fallo.");
-	   	else if (gdir.getStatus().code == G_GEO_MISSING_QUERY)
-	     	alert("Falta el parámetro HTTP q o no tiene valor alguno. En las solicitudes de códigos geográficos, esto significa que se ha especificado una dirección vacía.");
-		else if (gdir.getStatus().code == G_GEO_BAD_KEY)
-	     	alert("La clave proporcionada no es válida o no coincide con el dominio para el cual se ha indicado.");
-	   	else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
-	     	alert("No se ha podido analizar correctamente la solicitud de ruta.");
-	   	else alert("Error desconocido.");
-	   
-	}
+    $('body').delegate('.equis-rutas','click',function(){
+        $('#directions-panel').html('');
+        cerrarRuta();
+    });
     //google.maps.event.addDomListener(window, 'load', initialize);
-
+function mostrarRuta(){
+      $('#allbackground-rutas').css('top','0px');
+      $('html').css('overflow-y','hidden')
+}
+function cerrarRuta(){
+      $('#allbackground-rutas').css('top','-5000px');
+      $('html').css('overflow-y','scroll');
+      $('.ruta-type').each(function(){ 
+          $(this).attr('checked',false);
+      })
+      $('#radio_driving').attr('checked',true);
+}
+var latR;
+var lngR;
 $('body').delegate('.verRuta','click',function(){
-    cargarMapa();
+    cargarMapa('map_canvas_ruta');
     lat = $(this).parent().find('.latHidden').val();//borrar ruta anterior
     lng = $(this).parent().find('.lngHidden').val();
+    latR = lat;
+    lngR = lng;
 //    alert(lng);alert(lat);//return false;
-    calcRoute(lat,lng)
+    calcRoute(lat,lng, 'DRIVING');
+    mostrarRuta();
 })
-
-
+$('body').delegate('.ruta-type','change',function(){
+    rutaType = $(this).attr('data-value');
+    cargarMapa('map_canvas_ruta');
+    $('#directions-panel').html('');
+    calcRoute(latR,lngR, rutaType)
+})
+$('#verEplicacionRuta').click(function(){
+    if($('#directions-panel').is(':visible')){
+        $('#directions-panel').hide();
+        $(this).html('Ver explicación');
+    }else{
+        $('#directions-panel').show();
+        $(this).html('Ocultar explicación');
+    }
+    return false;
+})
 //fin ruta
  
     function trim(cadena){

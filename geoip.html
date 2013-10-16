@@ -32,7 +32,7 @@
     </header>
     <section>
         <article>
-            <div id='map_canvas' style='width:100%; height:400px;'></div><!--Esta capa hará de elemento contenedor del mapa-->
+            <div id='map_canvas' style='width:100%; height:400px;'></div><!--Esta capa harï¿½ de elemento contenedor del mapa-->
         </article>
     </section>
 
@@ -43,14 +43,14 @@
         var latitud;
         var longitud; 
         $(document).ready(function() {
-            localizame(); /*Cuando cargue la página, cargamos nuestra posición*/   
+            localizame(); /*Cuando cargue la pï¿½gina, cargamos nuestra posiciï¿½n*/   
         });
         
         function localizame() {
             if (navigator.geolocation) { /* Si el navegador tiene geolocalizacion */
                 navigator.geolocation.getCurrentPosition(coordenadas, errores);
             }else{
-                alert('Oops! Tu navegador no soporta geolocalización. Bájate Chrome, que es gratis!');
+                alert('Oops! Tu navegador no soporta geolocalizaciï¿½n. Bï¿½jate Chrome, que es gratis!');
             }
         }
         
@@ -68,10 +68,10 @@
               alert("Oops! Algo ha salido mal");
             }
             if (err.code == 1) {
-              alert("Oops! No has aceptado compartir tu posición");
+              alert("Oops! No has aceptado compartir tu posiciï¿½n");
             }
             if (err.code == 2) {
-              alert("Oops! No se puede obtener la posición actual");
+              alert("Oops! No se puede obtener la posiciï¿½n actual");
             }
             if (err.code == 3) {
               alert("Oops! Hemos superado el tiempo de espera");
@@ -93,7 +93,7 @@
 				/*Creamos un marcador*/
                 position: coorMarcador, /*Lo situamos en nuestro punto */
                 map: map, /* Lo vinculamos a nuestro mapa */
-                title: "Dónde estoy?" 
+                title: "Dï¿½nde estoy?" 
             });
 			
 			/*var coorMarcador2 = new google.maps.LatLng(-33.490507,-70.61309);*/
@@ -101,7 +101,7 @@
 				/*Creamos un marcador*/
                 /*position: coorMarcador2 ,*/ /*Lo situamos en nuestro punto */
                 /*map: map,*/ /* Lo vinculamos a nuestro mapa */
-                /*title: "Dónde estoy realmente?" 
+                /*title: "Dï¿½nde estoy realmente?" 
             });*/
         }
     </script>

@@ -149,6 +149,7 @@
                 </div>
             </div>
         </div>
+        
         <div style='bottom: 0;
                     left: 0px;
                     position: fixed;

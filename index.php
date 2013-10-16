@@ -167,6 +167,40 @@
         <div <?= $mostrarAllBackground?> id="allbackground">
             <div class="equis-tutorial"></div>
         </div>
+        <div id="allbackground-rutas">
+            
+                    <div id="content-mapa-rutas">
+                        <div class="equis-rutas"></div>
+                        <div id='map_canvas_ruta' style='width: 100%;
+                                                  height: 100%;
+                                                  overflow: hidden;
+                                                  position: relative;
+                                                  background-color: rgb(229, 227, 223);
+                                                  -webkit-transform: translateZ(0);'></div>
+                        <div id="options-rutas-content">
+                            <div class="text-option-rutas">Quiero llegar en</div>
+                            <div class="option-rutas">
+                                <input id="radio_driving"class="ruta-type" type="radio" name="ruta-type" checked="checked" data-value="DRIVING"/>
+                                <img id="img_driving" src="/images/driving.png" title="Automóvil"/>
+                            </div>
+                            <div class="option-rutas">
+                                <input class="ruta-type" type="radio" name="ruta-type" data-value="WALKING"/>
+                                <img id="img_walking" src="/images/walking.png" title="Caminando"/>
+                            </div>
+                            <div class="option-rutas">
+                                <input class="ruta-type" type="radio" name="ruta-type" data-value="BICYCLING"/>
+                                <img id="img_bicycling" src="/images/bicycling.png" title="Bicicleta"/>
+                            </div>
+                            <div class="option-rutas">
+                                <input class="ruta-type" type="radio" name="ruta-type" data-value="TRANSIT"/>
+                                <img id="img_transit" src="/images/transit.png" title="Transporte Público"/>
+                            </div>
+                            <a href="#" id="verEplicacionRuta" class="botonblue">Ver explicación</a>
+                        </div>                   
+                        
+                        <div id="directions-panel"></div>
+                  </div>
+        </div>
         <div id="coverall">
             <div class="innercal">
                 <div class="cerrar"></div>
@@ -228,7 +262,7 @@
                 </div>
             </div>
         </div>
-        <?php if($page_site != 'inicio'){?>
+        <?php if($page_site != 'inicio3'){?>
         <div id="top">
             <div id="content-top">
                 <div class="top-left">
@@ -329,6 +363,7 @@
 //                                       } ?> 
                                    <a href="#" class="registrate popup-registrate">Registrate</a>
                                    <a href="#" class="productora-registro">¿Deseas publicar?</a>
+                                   
                                </div>
                  
                                <?php }else{//ESTA LOGEADO?>

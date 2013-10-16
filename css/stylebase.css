@@ -11,6 +11,47 @@ body{
     background: rgba(150, 71, 66, 0.11);
     background: url('http://d1l2emnu9r9dtc.cloudfront.net/img/bg.jpg');
 }
+#mapa-inicio, .content-map-inicio{
+    width: 100%;
+    height: 400px;
+}
+.content-map-inicio{
+    position: relative;
+}
+.content-chat {
+    width: 266px;
+    height: 223px;
+    background: #FFF;
+    position: absolute;
+    bottom: 97px;
+    left: 23px;
+}
+#directions-panel {
+        height: 100%;
+        float: right;
+        width: 938px;
+        overflow: auto;
+        position: absolute;
+        z-index: 10000000000000000000000000;
+        background: #fff;
+        padding: 3px 7px;
+        font-size: 15px;
+        top: 551px;
+        right: -2px;
+        display: none;
+}
+#verEplicacionRuta {
+    float: right;
+    margin: 0px;
+    width: 126px;
+    text-decoration: none;
+    margin: 0px 25px 0px 0px;
+}
+.overmap{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
 .sprites{
      background: url('/images/sprites.png') no-repeat;
 }
@@ -148,13 +189,13 @@ html {
     font-weight: bold;
     font-size: 14px;
     position: absolute;
-    top: -27px;
-    left: -266px;
+    top: -40px;
+    left: -159px;
     text-shadow: 0px 1px 1px #000;
 }
 .lista-pasos {
     position: absolute;
-    left: 1179px;
+    left: 1074px;
     width: 62px;
     top: 101px;
 }
@@ -269,14 +310,69 @@ html {
     left: 453px;
     text-shadow: 0px 1px 1px #000;
 }
+#allbackground-rutas{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    margin: 0px 0px 0px 0px;
+    padding-top: 0px;
+    top: -5000px; 
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 50000000000000000000000000000000000000;
+    overflow-y: scroll;
+}
+#img_driving {
+    position: relative;
+    bottom: 6px;
+    left: 5px;
+}
+#img_walking {
+    position: relative;
+    bottom: 8px;
+    left: 0px;
+    width: 30px;
+}
+#img_bicycling {
+    position: relative;
+    bottom: 6px;
+    left: 1px;
+}
+#img_transit {
+    position: relative;
+    bottom: 6px;
+    left: 3px;
+}
+.option-rutas {
+    padding: 3px 5px;
+    float: left;
+    margin-right: 28px;
+}
+.text-option-rutas {
+    width: 128px;
+    float: left;
+    font-size: 17px;
+    color: #444;
+    margin-top: 3px;
+}
+#options-rutas-content {
+    width: 937px;
+    height: 39px;
+    float: left;
+    background: #fff;
+    margin: 0px 0px 0px 0px;
+    box-shadow: 0px -1px 11px -4px #646464;
+    padding-top: 14px;
+    padding-left: 15px;
+}
 #allbackground{
     position: fixed;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
-     display: none; 
-    background: rgba(0, 0, 0, 0.87);
+    display: none; 
+    background: rgba(0, 0, 0, 0.7);
     z-index: 50000000000000000000000000000000000000;
 }
 #coverall {
@@ -482,7 +578,7 @@ html {
 }*/
 #top {
     background: #124191;
-    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#134394,#124191);    -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.15);  -o-box-shadow: 0 3px 4px rgba(0,0,0,.25);
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#153D81,#14469C);    -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.15);  -o-box-shadow: 0 3px 4px rgba(0,0,0,.25);
     width: 100%;  
     height: 51px; 
     margin: 0px 0px 0px 0px; 
@@ -500,7 +596,7 @@ html {
     background-image: linear-gradient(#A5235B,#962154);*/
 }
 #content-top {
-    width: 1142px;
+    width: 950px;
     height: 53px;
     margin: 0px auto;
     position: relative;
@@ -517,32 +613,37 @@ html {
 }
 #content-top .top-left {
     float: left;
-    width: 203px;
+    width: 158px;
     height: 53px;
     margin-right: 26px;
 }
 .logoper {
-    width: 48px;
-    height: 47px;
-    background: url('/images/logotipo-nowsup2.png')no-repeat;
-    margin-top: 4px;
-    background-size: cover;
-    float: left;
-}
-.logo {
-    width: 123px;
-    height: 51px;
-    background: url('/images/logo-nowsup7.png')no-repeat;
+    width: 40px;
+    height: 40px;
+    background: url('/images/logo-gps.png')no-repeat;
     margin-top: 8px;
     background-size: cover;
     float: left;
+    margin-left: 0px;
+}
+.content-registro .logo {
+    margin-left: 22px;
+}
+.logo {
+    width: 109px;
+    height: 25px;
+    background: url('/images/logo-nowsup29.png')no-repeat;
+    margin-top: 17px;
+    background-size: cover;
+    float: left;
+    margin-left: 3px;
 }
 #content-top .top-center {
     float: left;
-    width: 319px;
+    width: 329px;
     height: 53px;
     position: relative;
-    margin-left: 51px;
+    margin-left: 5px;
 }
 .explicacion-mapa-style {
     float: left;
@@ -553,10 +654,10 @@ html {
 }
 #content-top .top-right {
     float: left;
-    width: 524px;
+    width: 402px;
     height: 53px;
     position: relative;
-    margin-left: 4px;
+    margin-left: 0px;
 }
 .login-msj {
     margin: 0px 68px 0px 0px !important;
@@ -596,7 +697,7 @@ html {
     background-position: -37px -410px;
     position: absolute;
     top: 9px;
-    right: -10px;
+    right: 10px;
     border: none;
 }
 #boton-buscar-ini {
@@ -762,6 +863,14 @@ html {
 .registro-msj {
     float: left !important;
     margin: 0px 0px 0px 78px !important;
+}
+#nocoinciden {
+    display: none;
+    font-size: 12px;
+    height: 20px;
+    position: absolute;
+    bottom: 135px;
+    width: 162px !important;
 }
 .registrate {
     float: right;
@@ -1422,6 +1531,7 @@ overflow: hidden;
 }
 .publicar-facil .item-publicar {
     width: 297px;
+    
 }
 #guardarevento-facil {
  margin: 23px 0px 0px 54px !important;
@@ -1430,12 +1540,14 @@ overflow: hidden;
     width: 400px;
     height: 300px;
     float: right;
+    position: relative;
 }
 .inicio-primera{
-    background: url('/findbreak/images/superpos-bg.png') rgb(35, 111, 160);
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#153D81,#14469C);
     box-shadow: 0px 2px 12px -3px #444;
     padding-bottom: 18px;
     margin-bottom: 34px;
+    padding-top: 48px;
 }
 .redir-cerca {
     text-decoration: none;
@@ -1541,6 +1653,7 @@ overflow: hidden;
 .title .logoper {
     position: absolute;
     top: 0px;
+    left: 25px;
 }
 .menu-show {
     background: url('/findbreak/nuevo/images/sprites.png') no-repeat -16px -820px;
@@ -1554,7 +1667,7 @@ overflow: hidden;
 }
 .title {
     background: #134394;  
-    background: url(/findbreak/images/iconos-bg.png), -webkit-linear-gradient(top,#134394,#124191);  -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.15);  -o-box-shadow: 0 3px 4px rgba(0,0,0,.25);
+    background: url(/findbreak/images/overtop.png), -webkit-linear-gradient(top,#153D81,#14469C);  -moz-box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);  -webkit-box-shadow: 0 3px 4px rgba(0,0,0,.15);  -o-box-shadow: 0 3px 4px rgba(0,0,0,.25);
     width: 456px;
     height: 156px;
     color: #FFF;
@@ -1615,7 +1728,14 @@ top: -8px;
 }
 #infoWindow {
     overflow: hidden;
-    height: 84px;
+    width: 348px;
+    max-height: 241px;
+    overflow-y: scroll;
+}
+.item-info {
+    float: left;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #E4E4E4;
 }
 .fotopin{
     padding: 1px;
@@ -1816,6 +1936,7 @@ border: 1px solid rgba(65, 115, 169, 0.34);
     border: 1px solid rgba(65, 169, 94, 0);    
     -webkit-box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2); 
     box-shadow: 0 1px 0 #ddd,inset 0 1px 0 rgba(255,255,255,0.2);          
+    background: rgb(239, 62, 54);
     background: -webkit-linear-gradient(top,rgb(239, 62, 54), rgb(196, 52, 46));
     color: #FFF;                
 }
@@ -2003,6 +2124,19 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -32px -47px;
 .item-eventcerca:hover{
 }
 .first-partevent #map_canvas{
+    border: 1px solid #CCC;
+    margin: 0 auto;
+}
+#content-mapa-rutas {
+    width: 950px;
+    height: 500px;
+    z-index: 100000000;
+    position: relative;
+    margin: 0px auto 52px auto;
+    box-shadow: 0px 0px 30px black;
+    background: #fff;
+}
+#map_canvas_ruta{
     border: 1px solid #CCC;
     margin: 0 auto;
 }
@@ -2393,7 +2527,7 @@ padding: 0px 25px;
     text-align: center;
     float: left;
     padding: 4px 14px;
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    text-shadow: 0 1px 1px rgba(0,0,0,0.25);
     background-repeat: repeat-x;
     border: 1px solid rgba(65, 115, 169, 0.34);
     border: 1px solid rgba(65, 169, 94, 0);
@@ -2693,7 +2827,7 @@ float: left;
 .tit-gray.titpin {
     margin: 2px 0px 0px 8px;
     float: left;
-    width: 300px;
+    width: 223px;
 }
 .tit1 {
     font-size: 0.7em;
@@ -3604,15 +3738,15 @@ background: url('/findbreak/nuevo/images/sprites.png') no-repeat -39px -260px;
     color: rgb(59, 113, 172);      
     text-shadow: 0px 1px 1px rgba(209, 209, 209, 0.88);
 }
-.equis-tutorial{
+.equis-tutorial, .equis-rutas{
     background: url('/images/sprites.png') no-repeat -1px -174px;
     width: 35px;
     height: 30px;
-    left: 1194px;
+    right: 151px;
     top: 17px;
-    position: absolute;
+    position: fixed;
 }
-.equis-tutorial:hover{
+.equis-tutorial:hover, .equis-rutas:hover{
     cursor: pointer;
 }
 .equis-facil{
