@@ -86,6 +86,8 @@
                         
                                     <div id="denunciar-evento" class="botonred" >  
                                             Denunciar 
+                                        <input type="hidden" class="denid" value="<?php echo $eventfound['nombre'] ?>"/> 
+                                        <input type="hidden" class="denuser" value="<?php echo $_SESSION['username'] ?>"/> 
                                         <div style="display:none" id="enviar-denuncia">
                                             <textarea id="text-denuncia">      </textarea>
                                             <input type="button" id="boton-denuncia" value="Enviar" data-idevent='<?php echo $eventfound['_id']?>' data-userid='<?php echo $_SESSION['userid'] ?>'>

@@ -26,13 +26,15 @@ class usuario {
          $theObjId = new MongoId($id); 
          return $this->db->evento->find(array("producido_por._id" => $theObjId))->count();
      }
-     public function guardarDenuncia($userid, $evento, $denuncia, $fecha){
+     public function guardarDenuncia($nomUser, $evento, $denuncia, $fecha, $hora, $ip){
                    // $idM = new MongoId($aquien['_id']);   
                     $denuncias = array(
-                        "usuario"=>$userid,
-                        "evento"=>$evento,
+                        "usuario_denunciante"=>$nomUser,
+                        "evento_denunciado"=>$evento,
                         "denuncia"=>$denuncia,
-                        "fechaMongo"=>$fecha,
+                        "fecha"=>$fecha,
+                        "hora"=>$hora,
+                        "ip"=>$ip,
                         "revisado"=>0
                       );
                     $this->db->denuncias->insert($denuncias);

@@ -19,13 +19,13 @@ $(document).ready(function(){
     }     
     $('#denunciar-evento').click(function(){
                
-              var pregunta = '<div class="bloq1msj">¿Realmente deseas denunciar este anuncio?</div>';
+              var pregunta = '<div class="bloq1msj">¿Cuál es el problema?</div>';
 //              var nombre = $(this).parent().parent().find('.nomusercom').html();
 //              var foto = $(this).parent().parent().find('.bloq1').css('background');
 //              var tiempo = $(this).parent().parent().find('.hacecuant').html();
 //              var comentario = $(this).parent().parent().find('.comentuser').html();
               
-              var cuerpo = '<div class="bloq2msj"><div class="itemcomentmsj">';
+              var cuerpo = '<div class="bloq2msj"><input type="radio" name="group1" value="Contenido sexual">Contenido sexual</br> <input type="radio" name="group1" value="Contenido violento o repulsivo">Contenido violento o repulsivo</br> <input type="radio" name="group1" value="Inapropiado o incita al odio">Inapropiado o incita al odio</br> <input type="radio" name="group1" value="Actividades peligrosas dañinas">Actividades peligrosas dañinas</br> <input type="radio" name="group1" value="Contenido engañoso o con spam">Contenido engañoso o con spam</br> <input type="radio" name="group1" value="Maltrato infantil">Maltrato infantil</br> <input type="radio" name="group1" value="Infracción de mis derechos">Infracción de mis derechos</br> <div class="itemcomentmsj">';
 //                  cuerpo+=   '<div style="background:'+foto+'" class="bloq1"></div>';
 //                  cuerpo+=   '<div class="bloq2msjinner">';
 //                  cuerpo+=       '<div class="nomusercom tit-gray">'+nombre+'</div>';
@@ -43,6 +43,33 @@ $(document).ready(function(){
                // $('#enviar-denuncia').show();       
      });
         
+    $('body').delegate('#boton-denuncia','click',function(){
+                var evento = $('.denid').val();
+                var user = $('.denuser').val();
+                var motivo = $("input[name='group1']:checked").val();
+               // alert(user);
+                $.ajax({
+             
+                    data: "denuncia-evento=1&evento="+evento+"&user="+user+"&comentario="+motivo,
+                    type: "POST",
+                    dataType: "html",//debe ser hmtl :(
+                    url: path+"function/event-response.php",
+                    success: function(data){
+                       // window.location.reload();
+                        if(data == 1)
+                            {
+                                loader("La denuncia ha sido enviada, te enviaremos un email con la respuesta");
+                            }
+                            else
+                                {
+                                    loader("Se puede enviar solo una denuncia por dia");
+                                }
+                        
+
+                    }
+                });
+    });
+    
     $('#boton-denuncia').click(function(){
         
                 item = $(this);

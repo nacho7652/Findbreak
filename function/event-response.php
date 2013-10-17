@@ -44,7 +44,8 @@
         //price
         if(!empty($_REQUEST['denuncia-evento']))
         {
-            $idEvento = $_REQUEST['idevento'];
+            $idEvento = $_REQUEST['evento'];
+            $nomUser = $_REQUEST['user'];
             $iduser = $_SESSION['userid'];
             $resp = new usuarioRelacional();
             $para  = 'nacho1593@hotmail.com'.', '; // atención a la coma
@@ -61,16 +62,19 @@
             $fechaMongo = new MongoDate(strtotime($fecha));
             $compfecha = $usuario->ultimaFechaDenuncia($iduser, $idEvento);
             $ultimaFecha = null;
-            $body = "La publicación ".$idEvento;
-            $body .= "</br>del usuario ".$idUsuario;
-            $body .= "</br>ha sido denunciado";
+            $body = "La publicación: ".$idEvento;
+            $body .= "</br>ha sido denunciado por: ".$comentario;
+            $body .= "</br>por el usuario: ".$nomUser;
+            $body .= "</br>desde la ip: ".$evento->getIP();
+            $body .= "</br>el día: ".date('d-m-Y');
+            $body .= "</br>a las: ".date('H:i:s');
             foreach($compfecha as $key){
                 $ultimaFecha = $key['fechaMongo'];
             }
             
             $re = 0;
             if($ultimaFecha == null){//se puede
-                $usuario->guardarDenuncia($iduser,$idEvento, $comentario,$fechaMongo );
+                $usuario->guardarDenuncia($nomUser,$idEvento, $comentario,date('d-m-Y'), date('H:i:s'), $evento->getIP());
                 mail($para, 'Denuncia', $body, $headers);
                 $re = 1;
             }else{
@@ -81,7 +85,7 @@
                 else 
                 {
 
-                    $usuario->guardarDenuncia($iduser,$idEvento, $comentario,$fechaMongo );
+                    $usuario->guardarDenuncia($nomUser,$idEvento, $comentario,date('d-m-Y'), date('H:i:s'), $evento->getIP());
                     mail($para, 'Denuncia', $body, $headers);
                     $re = 1;
                 }
