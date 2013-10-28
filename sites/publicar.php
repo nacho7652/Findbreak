@@ -12,7 +12,7 @@
                                  </div>
                                 <div class="item-publicar item-publicar-queganas">   
                                     <div id="info-mostrar">
-                                    ¿Que ganas tú al publicar un anuncio o evento? <br>
+                                    ¿Qué ganas tú al publicar un anuncio o evento? <br>
                                     
                                     <b> Claramente potenciar la publicidad de tus anuncios.</b><br>
                                     <b>Que tus anuncios sean vistos por las personas que ingresen a la aplicación cerca de la ubicación del anuncio o suceso.</b><br>
@@ -25,7 +25,7 @@
                         
                                 
                                 <div class="item-publicar">
-                                     <div class="nombre-publicarevent">Selecciona fotos para tu evento, la primera será la principal</div>
+                                     <div class="nombre-publicarevent">Selecciona fotos para tu anuncio, la primera será la principal</div>
                                      
 <!--                                     <input type="file" id="images" name="images[]"/>
 -->                                     <div class="foto-publicarevent">
@@ -170,7 +170,13 @@
                                  <input placeholder="http://www.youtube.com/tusitio" class="field-publicarevent" type="text" id="urlyoutube" name="url-youtube"/>
                                 </div>
                                 
-                                
+                                <div id="item-publicar-capcha" class="item-publicar">
+                                    <div class="nombre-publicarevent">¿Eres humano?</div>
+                                    <?php echo recaptcha_get_html($publickey); ?>
+                                     <div class="mensaje-error error-obligatorio">
+                                        <div class="content-mensaje">* Ingresa las 2 palabras</div>
+                                    </div>
+                                </div>
                                 
                                     
                                 
